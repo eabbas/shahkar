@@ -35,7 +35,7 @@
                 </ul>
             </div>
             <div class="w-3/12 flex flex-row justify-end items-center gap-3">
-                <span class="text-sm font-semibold text-gray-600">حاج محمد اکبرنژاد</span>
+                <span class="text-sm font-semibold text-gray-600"> {{$user -> name}}   {{$user -> family}}</span>
                 <img src="https://picsum.photos/200/300" class="size-10 rounded-full border-2 border-gray-500" alt="user picture">
             </div>
         </div>
@@ -63,14 +63,21 @@
                     <div class="h-[537px] overflow-y-auto">
                         <ul class="w-full p-2">
                             <li class="border-b border-gray-300">
-                                <a href="#" class="inline-block w-full py-3 px-4 text-sm">تست</a>
+                                <a href="{{route('user_edit' ,$user -> id)}}" class="inline-block w-full py-3 px-4 text-sm">ادیت پروفایل</a>
                             </li>
                             <li class="border-b border-gray-300">
-                                <a href="#" class="inline-block w-full py-3 px-4 text-sm">تست</a>
+                                <a href="{{route('user_delete' , $user -> id)}}" class="inline-block w-full py-3 px-4 text-sm">حذف حساب کاربری</a>
                             </li>
                             <li class="border-b border-gray-300">
-                                <a href="#" class="inline-block w-full py-3 px-4 text-sm">تست</a>
+                                <a href="{{route('user_logOtu')}}" class="inline-block w-full py-3 px-4 text-sm">خروج از حساب کاربری</a>
                             </li>
+                            
+                            @if($user -> is_admin == "1")
+                                <li class="border-b border-gray-300">
+                                    <a href="{{route('user_index')}}" class="inline-block w-full py-3 px-4 text-sm">نمایش کاربران</a>
+                                </li>
+                            @endif
+
                             <li class="border-b border-gray-300">
                                 <a href="#" class="inline-block w-full py-3 px-4 text-sm">تست</a>
                             </li>
@@ -80,6 +87,7 @@
                 <div class="w-4/12 h-full bg-transparent" onclick="mobileMenu('close')"></div>
             </div>
          </div>
+       
         <!-- mobile menu -->
     </header>
 
@@ -89,14 +97,21 @@
     <aside class="hidden w-3/12 lg:h-[500px] border-l border-gray-300 lg:block">
         <ul class="w-full p-2">
             <li class="border-b border-gray-300">
-                <a href="#" class="inline-block w-full py-3 px-4 text-sm">تست</a>
+                <a href="{{route('user_edit' ,$user -> id)}}" class="inline-block w-full py-3 px-4 text-sm">ادیت پروفایل</a>
             </li>
             <li class="border-b border-gray-300">
-                <a href="#" class="inline-block w-full py-3 px-4 text-sm">تست</a>
+                <a href="{{route('user_delete' , $user -> id)}}" class="inline-block w-full py-3 px-4 text-sm">حذف حساب کاربری</a>
             </li>
             <li class="border-b border-gray-300">
-                <a href="#" class="inline-block w-full py-3 px-4 text-sm">تست</a>
+                <a href="{{route('user_logOtu')}}" class="inline-block w-full py-3 px-4 text-sm">خروج از حساب کاربری</a>
             </li>
+                                        
+            @if($user -> is_admin == "1")
+                <li class="border-b border-gray-300">
+                    <a href="{{route('user_index')}}" class="inline-block w-full py-3 px-4 text-sm">نمایش کاربران</a>
+                </li>
+            @endif
+
             <li class="border-b border-gray-300">
                 <a href="#" class="inline-block w-full py-3 px-4 text-sm">تست</a>
             </li>
@@ -105,11 +120,7 @@
 
 
     <div class="w-9/12">
-        <?php
-            if($flag){
-                echo "yessss";
-            }
-        ?>
+        
     </div>
 
 
