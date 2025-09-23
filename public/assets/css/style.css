@@ -1,0 +1,73 @@
+@import url("fontiran.css");
+
+* {
+  font-family: 'IRANSansX';
+}
+
+.samim {
+  font-family: 'Samim';
+}
+
+.yekan {
+  font-family: 'Yekan';
+}
+
+.menuLink svg path {
+  transition: all 300ms;
+}
+
+.menuLink:hover {
+  color: #FD9636;
+}
+
+.menuLink:hover svg>path {
+  fill: #FD9636;
+}
+
+.menuItemParent:hover > .menuItemChild {
+  margin-top: 0;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: visible;
+  top: 56px;
+}
+.menuItemParent:hover > div {
+  margin-top: 0;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: visible;
+  max-height: 575px;
+}
+
+.activeSubMenuCat{
+  background-color: #FD9636;
+  color: white;
+}
+
+.productItem:hover div .buttonProduct{
+  transform: translateX(16px);
+  opacity: 1;
+}
+
+.productItem > div > .buttonProduct:first-child, .productItem > div > .buttonProduct:first-child>svg>path, .productAnimation, .productAnimation>svg>path{
+  animation: itemProduct 1s infinite;
+}
+
+@keyframes itemProduct{
+  0%{
+    background-color: #FD9636;
+    border-color: #FD9636;
+    fill: white;
+
+  }
+  50%{
+    background-color: white;
+    border-color: #D5DFE4;
+    fill: #425A8B;
+  }
+  100%{
+    background-color: #FD9636;
+    border-color: #FD9636;
+    fill: white;
+  }
+}
