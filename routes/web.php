@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CourseCategoryController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
@@ -27,6 +29,26 @@ Route::group(['prefix' => 'product', 'controller' => ProductController::class, '
    Route::post('/update', 'update')->name('update');
    Route::get('/delete/{product}', 'delete')->name('delete');
 });
+// course category
+Route::group(['prefix' => 'courseCategory', 'controller' => CourseCategoryController::class, 'as' => 'courseCategory-'], function () {
+   Route::view('/create', 'courseCategory.create');
+   Route::post('/store', 'store')->name('store');
+   Route::get('/list', 'index')->name('index');
+   Route::get('/show/{courseCategory}', 'show')->name('show');
+   Route::get('/edit/{courseCategory}', 'edit')->name('edit');
+   Route::post('/update', 'update')->name('update');
+   Route::get('/delete/{courseCategory}', 'delete')->name('delete');
+});
+// course routes
+Route::group(['prefix' => 'course', 'controller' => CourseController::class, 'as' => 'course-'], function () {
+   Route::get('/create', 'create');
+   Route::post('/store', 'store')->name('store');
+   Route::get('/list', 'index')->name('index');
+   Route::get('/show/{course}', 'show')->name('show');
+   Route::get('/edit/{course}', 'edit')->name('edit');
+   Route::post('/update', 'update')->name('update');
+   Route::get('/delete/{course}', 'delete')->name('delete');
+=======
 
 
 
