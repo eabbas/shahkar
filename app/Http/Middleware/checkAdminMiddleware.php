@@ -18,11 +18,11 @@ class checkAdminMiddleware
     {
         if(Auth::check()){
             $user = Auth::user();
-            if( $user -> is_admin  !=1){
+            if($user -> is_admin  !=1){
                 return to_route("notAccess");
             }
         }else{
-            return to_route("notAccess");
+            return to_route("loginAtFirst");
         }
         return $next($request);
     }

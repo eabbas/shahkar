@@ -49,19 +49,59 @@ class userController extends Controller
 
 
     public function profile($id =null){
-        $user = Auth::user();
-        $flag =false;
+     
+        if(Auth::check()){
+            $user = Auth::user();
+        }
         if(!Auth::check()){
             return to_route("user_login");
         }
-        if($user-> is_admin ==1){
-            $flag = true;
-        }
+        
         if($id){
             $user = User::find($id);
         }
 
-        return view("user.profile",["user" => $user,"flag" => $flag]);
+        return view("user.profile",["user" => $user ]);
+    }
+
+
+    public function edit($user){
+        return view("user.user_edit",["user" => $user ]);
+    }
+
+
+    public function updata(Request $request){
+        $user = User::find($request -> id);
+     
+        $user -> name = $request -> name;
+        $user -> family = $request -> family;
+        $user -> email = $request -> email;
+
+        if($request -> password){
+            $password = Hash::make($request -> password);
+            $user -> password = $password;
+        }
+
+        $user -> save();
+
+        return redirect("user/profile");
+    }
+
+    public function delete($user){
+       
+        $user -> delete();
+        return to_route("user_signUp");
+    }
+
+    public function logOut(){
+        Auth::logout();
+
+        return redirect("/user/login  ");
+    }
+
+    public function index(){
+        $users = User::all();
+        return view('user.index' , ["users" => $users]);
     }
 }
 
