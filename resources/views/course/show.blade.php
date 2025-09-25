@@ -23,7 +23,7 @@
             <td>{{$course['id']}}</td>
             <td>{{$course['title']}}</td>
             <td>{{$course['description']}}</td>
-            <td>{{$course['courseCategory']['title']}}</td>
+            <td>@if($course['courseCategory']) {{$course['courseCategory']['title']}} @endif</td>
          </tr>
       </tbody>
    </table>

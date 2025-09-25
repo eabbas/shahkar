@@ -27,7 +27,7 @@
             <td>{{$product['description']}}</td>
             <td>{{$product['image']}}</td>
             <td>{{$product['summary']}}</td>
-            <td>{{$product['category']['title']}}</td>
+            <td>@if($product['category']) {{$product['category']['title']}} @endif</td>
          </tr>
       </tbody>
    </table>

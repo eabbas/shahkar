@@ -1,5 +1,13 @@
 @import url("fontiran.css");
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
 * {
   font-family: 'IRANSansX';
 }
@@ -24,14 +32,15 @@
   fill: #FD9636;
 }
 
-.menuItemParent:hover > .menuItemChild {
+.menuItemParent:hover>.menuItemChild {
   margin-top: 0;
   opacity: 1;
   visibility: visible;
   pointer-events: visible;
   top: 56px;
 }
-.menuItemParent:hover > div {
+
+.menuItemParent:hover>div {
   margin-top: 0;
   opacity: 1;
   visibility: visible;
@@ -39,33 +48,38 @@
   max-height: 575px;
 }
 
-.activeSubMenuCat{
+.activeSubMenuCat {
   background-color: #FD9636;
   color: white;
 }
 
-.productItem:hover div .buttonProduct{
+.productItem:hover div .buttonProduct {
   transform: translateX(16px);
   opacity: 1;
 }
 
-.productItem > div > .buttonProduct:first-child, .productItem > div > .buttonProduct:first-child>svg>path, .productAnimation, .productAnimation>svg>path{
+.productItem>div>.buttonProduct:first-child,
+.productItem>div>.buttonProduct:first-child>svg>path,
+.productAnimation,
+.productAnimation>svg>path {
   animation: itemProduct 1s infinite;
 }
 
-@keyframes itemProduct{
-  0%{
+@keyframes itemProduct {
+  0% {
     background-color: #FD9636;
     border-color: #FD9636;
     fill: white;
 
   }
-  50%{
+
+  50% {
     background-color: white;
     border-color: #D5DFE4;
     fill: #425A8B;
   }
-  100%{
+
+  100% {
     background-color: #FD9636;
     border-color: #FD9636;
     fill: white;
