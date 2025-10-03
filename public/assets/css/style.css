@@ -1,4 +1,7 @@
 @import url("fontiran.css");
+@import url("primary_colors.css");
+
+
 
 * {
   font-family: 'IRANSansX';
@@ -17,11 +20,11 @@
 }
 
 .menuLink:hover {
-  color: #FD9636;
+  color: var(--color-primary);
 }
 
 .menuLink:hover svg>path {
-  fill: #FD9636;
+  fill: var(--color-primary);
 }
 
 .menuItemParent:hover > .menuItemChild {
@@ -40,7 +43,7 @@
 }
 
 .activeSubMenuCat{
-  background-color: #FD9636;
+  background-color: var(--color-primary);
   color: white;
 }
 
@@ -49,14 +52,18 @@
   opacity: 1;
 }
 
-.productItem > div > .buttonProduct:first-child, .productItem > div > .buttonProduct:first-child>svg>path, .productAnimation, .productAnimation>svg>path{
+.productItem > div > .buttonProduct.btnAnimation, .productItem > div > .buttonProduct.btnAnimation>svg>path, .productAnimation, .productAnimation>svg>path{
   animation: itemProduct 1s infinite;
+}
+
+.productItemNone:hover div.showMetric{
+  display: block;
 }
 
 @keyframes itemProduct{
   0%{
-    background-color: #FD9636;
-    border-color: #FD9636;
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
     fill: white;
 
   }
@@ -66,8 +73,21 @@
     fill: #425A8B;
   }
   100%{
-    background-color: #FD9636;
-    border-color: #FD9636;
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
     fill: white;
   }
+}
+
+.styles_Tooltip__tooltip___Mj8o{
+    max-width: 320px;
+    width: max-content;
+    word-wrap: break-word;
+    border: 1px solid black;
+    background: var(--color-bg-card-btn);
+    color: var(--color-primary-text);
+    border-radius: 4px;
+    padding: calc(2 * 4px) calc(3 * 4px);
+    margin: calc(2 * 4px);
+    display: none;
 }

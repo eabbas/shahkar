@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\category;
 use App\Models\product;
+use App\Models\settings;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -31,8 +32,9 @@ class ProductController extends Controller
     }
     public function show(product $product)
     {
+        $settings = settings::all();
         $product->category;
-        return view('product.show', ['product' => $product]);
+        return view('product.show', ['product' => $product, 'settings'=>$settings]);
     }
     public function edit(product $product)
     {
