@@ -9,6 +9,8 @@ use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
 use App\Http\Middleware\checkAdminMiddleware;
+use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\HomeController;
 
 Route::view('/', 'welcome');
 // category routes
@@ -51,6 +53,14 @@ Route::group(['prefix' => 'course', 'controller' => CourseController::class, 'as
    Route::post('/update', 'update')->name('update');
    Route::get('/delete/{course}', 'delete')->name('delete');
 });
+
+
+
+Route::get('/home', [HomeController::Class, 'index']) -> name("home");
+Route::view('/notAccess', 'notAccess') -> name("notAccess");
+Route::view('/loginAtFirst', 'loginAtFirst') -> name("loginAtFirst");
+
+
 // menu routes
 Route::group(['prefix' => 'menu', 'controller' => MenuController::class, 'as' => 'menu-'], function () {
    Route::get('/create', 'create');
@@ -73,6 +83,20 @@ Route::group(['prefix' => 'productAttribute', 'controller' => ProductAttributesC
 });
 
 
+
+
+   Route::get("/signup","signup")->name("user_signUp") ;
+   Route::post("/store","store") -> name("user_store");
+
+   Route::get("/login","login") -> name("user_login");
+   Route::post("/check_user","checkUser") -> name("checkUser");
+   Route::get("/profile/{id?}","profile") ->name("user_profile");
+   Route::get("/edit/{user}","edit") ->name("user_edit");
+   Route::post("/updata","updata") -> name("user_update");
+   Route::get("/delete/{user}","delete") -> name("user_delete");
+   Route::get("/logOut","logOut") -> name("user_logOtu");
+   Route::get("/index","index") -> name("user_index");
+
 Route::view('/home', 'home')->name("home");
 Route::view('/notAccess', 'notAccess')->name("notAccess");
 Route::view('/loginAtFirst', 'loginAtFirst')->name("loginAtFirst");
@@ -91,6 +115,7 @@ Route::controller(userController::class)->prefix("user")->group(function () {
    Route::get("/delete/{user}", "delete")->name("user_delete");
    Route::get("/logOut", "logOut")->name("user_logOtu");
    Route::get("/index", "index")->name("user_index");
+
 });
 
 Route::controller(userController::class)->prefix("admin")->group(function () {
@@ -107,3 +132,32 @@ Route::controller(userController::class)->prefix("admin")->group(function () {
    // Route::get("/delete/{id}","delete");
 
 });
+
+// menu routes
+Route::group(['prefix' => 'menu', 'controller' => MenuController::class, 'as' => 'menu-'], function () {
+   Route::get('/create', 'create');
+   Route::post('/store', 'store')->name('store');
+   Route::get('/list', 'index')->name('index');
+   Route::get('/show/{menu}', 'show')->name('show');
+   Route::get('/edit/{menu}', 'edit')->name('edit');
+   Route::post('/update', 'update')->name('update');
+   Route::get('/delete/{menu}', 'delete')->name('delete');
+});
+
+
+Route::group([
+   'prefix' => 'settings',
+   'controller' => SettingsController::class,
+   'as' => 'settings.'
+], function(){
+   Route::group([
+      'prefix'=>'colors',
+      'as' => 'colors.'
+   ], function(){
+      Route::get('/create', 'createColor')->name('createColor');
+      Route::post('/update', 'upsertColor')->name('upsertColor');
+      Route::get('/show', 'showColors')->name('showColors');
+      Route::get('/delete', 'deleteColor')->name('deleteColor');
+   });
+});
+main

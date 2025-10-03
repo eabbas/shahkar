@@ -1,0 +1,22 @@
+:root {
+    --color-primary: #FD9636;
+    --color-secondary: #0dcaf0;
+    --color-secondary-bg: #efeff080;
+    --color-danger: #e6123d;
+    --color-info: #1028ff;
+    --color-subheader-btn: #FD9636;
+    --color-text: #425A8B;
+    --color-secondary-text: #8C9EC5;
+    --color-primary-text: #ffffff;
+    --color-bg-card-btn: #425A8B;
+    --color-bg-hover-btn: #425A8B;
+    --color-primary-btn: #F0F3F8;
+    --color-primary-btn-hover: #F0F3F8;
+    --color-bg-contact-section: #425A8B;
+    --color-btn-contact: #425A8B;
+    --color-btn-contact-hover: #334a76;
+    --color-border: #D5DFE4;
+    --color-discount-bg: #D36B0B;
+    --color-fill: #425A8B;
+    --color-success-bg: #00a049;
+}
