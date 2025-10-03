@@ -4,21 +4,33 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="{{ url('/assets/css/style.css') }}" type="text/css">
+   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
    <title>edit course category</title>
 </head>
 
 <body>
-   <h2>فرم ویرایش دسته بندی دوره</h2>
-   <form action="{{route('courseCategory-update')}}" method="post">
-      @csrf
-      <input type="hidden" name="courseCategory_id" value="{{$courseCategory->id}}">
-      <div>
-         <label for="courseCatTitle">عنوان دسته بندی دوره:</label>
-         <input type="text" name="title" id="courseCatTitle" value="{{$courseCategory->title}}">
+   <div class="w-full h-svh bg-[url('https://keenthemes.com/static/metronic/tailwind/dist/assets/media/images/2600x1200/bg-10.png')] bg-cover bg-no-repeat">
+      <h2 class="text-3xl text-center font-bold py-10 text-[#425A8B]">فرم ویرایش دسته بندی دوره</h2>
+      <div class="w-2/3 mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white">
+         <form action="{{route('courseCategory-update')}}" method="post">
+            @csrf
+            <input type="hidden" name="courseCategory_id" value="{{$courseCategory->id}}">
+            <div class="w-full flex flex-col">
+               <label for="courseCatTitle" class="mb-2 flex flex-row items-center">
+                  <span>
+                     عنوان دسته بندی دوره:
+                     <span class="text-rose-500">*</span>
+                  </span>
+               </label>
+               <input type="text" name="title" id="courseCatTitle" class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]" placeholder="نام دسته دوره را وارد کنید" value="{{$courseCategory->title}}" required>
+            </div>
+            <div class="mt-5 text-center">
+               <button type="submit" class="py-3 px-10 rounded-[10px] bg-[#1B84FF] hover:bg-[#056EE9] text-white cursor-pointer">ثبت</button>
+            </div>
+         </form>
       </div>
-      <br>
-      <input type="submit" value="تایید">
-   </form>
+   </div>
 </body>
 
 </html>

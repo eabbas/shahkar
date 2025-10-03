@@ -25,7 +25,7 @@
             <td>{{$course['id']}}</td>
             <td>{{$course['title']}}</td>
             <td>{{$course['description']}}</td>
-            <td>{{$course['courseCategory']['title']}}</td>
+            <td>@if($course['courseCategory']) {{$course['courseCategory']['title']}} @endif</td>
             <td>
                <a href="{{route('course-show',[$course])}}">نمایش</a>
                <a href="{{route('course-edit',[$course])}}">ویرایش</a>

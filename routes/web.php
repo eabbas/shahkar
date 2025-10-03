@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CourseCategoryController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\ProductAttributesController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
@@ -54,12 +55,35 @@ Route::group(['prefix' => 'course', 'controller' => CourseController::class, 'as
 });
 
 
+
 Route::get('/home', [HomeController::Class, 'index']) -> name("home");
 Route::view('/notAccess', 'notAccess') -> name("notAccess");
 Route::view('/loginAtFirst', 'loginAtFirst') -> name("loginAtFirst");
 
 
-Route::controller(userController::class)->prefix("user") -> group(function (){
+// menu routes
+Route::group(['prefix' => 'menu', 'controller' => MenuController::class, 'as' => 'menu-'], function () {
+   Route::get('/create', 'create');
+   Route::post('/store', 'store')->name('store');
+   Route::get('/list', 'index')->name('index');
+   Route::get('/show/{menu}', 'show')->name('show');
+   Route::get('/edit/{menu}', 'edit')->name('edit');
+   Route::post('/update', 'update')->name('update');
+   Route::get('/delete/{menu}', 'delete')->name('delete');
+});
+// product attributes routes
+Route::group(['prefix' => 'productAttribute', 'controller' => ProductAttributesController::class, 'as' => 'productAttribute-'], function () {
+   Route::get('/create', 'create');
+   Route::post('/store', 'store')->name('store');
+   Route::get('/list', 'index')->name('index');
+   Route::get('/show/{productAttribute}', 'show')->name('show');
+   Route::get('/edit/{productAttribute}', 'edit')->name('edit');
+   Route::post('/update', 'update')->name('update');
+   Route::get('/delete/{productAttribute}', 'delete')->name('delete');
+});
+
+
+
 
    Route::get("/signup","signup")->name("user_signUp") ;
    Route::post("/store","store") -> name("user_store");
@@ -72,22 +96,43 @@ Route::controller(userController::class)->prefix("user") -> group(function (){
    Route::get("/delete/{user}","delete") -> name("user_delete");
    Route::get("/logOut","logOut") -> name("user_logOtu");
    Route::get("/index","index") -> name("user_index");
+
+Route::view('/home', 'home')->name("home");
+Route::view('/notAccess', 'notAccess')->name("notAccess");
+Route::view('/loginAtFirst', 'loginAtFirst')->name("loginAtFirst");
+
+
+Route::controller(userController::class)->prefix("user")->group(function () {
+
+   Route::get("/signup", "signup")->name("user_signUp");
+   Route::post("/store", "store")->name("user_store");
+
+   Route::get("/login", "login")->name("user_login");
+   Route::post("/check_user", "checkUser")->name("checkUser");
+   Route::get("/profile/{id?}", "profile")->name("user_profile");
+   Route::get("/edit/{user}", "edit")->name("user_edit");
+   Route::post("/updata", "updata")->name("user_update");
+   Route::get("/delete/{user}", "delete")->name("user_delete");
+   Route::get("/logOut", "logOut")->name("user_logOtu");
+   Route::get("/index", "index")->name("user_index");
+
 });
 
-Route::controller(userController::class)->prefix("admin") -> group(function (){
+Route::controller(userController::class)->prefix("admin")->group(function () {
 
-    Route::get("/signUpUser","signup")-> middleware(checkAdminMiddleware::class) ->name("admin_create_user") ;
-    // Route::post("/store","store") -> name("user_store");
+   Route::get("/signUpUser", "signup")->middleware(checkAdminMiddleware::class)->name("admin_create_user");
+   // Route::post("/store","store") -> name("user_store");
 
-    // Route::get("/loginUser","login") -> name("user_login");
-    // Route::post("/check_login","checkLogin");
-    Route::get("/profile/{id?}","profile")-> middleware(checkAdminMiddleware::class);
-    // Route::get("/index","index");
-    // Route::get("/edit/{id}","edit");
-    // Route::post("/updata","updata");
-    // Route::get("/delete/{id}","delete");
+   // Route::get("/loginUser","login") -> name("user_login");
+   // Route::post("/check_login","checkLogin");
+   Route::get("/profile/{id?}", "profile")->middleware(checkAdminMiddleware::class);
+   // Route::get("/index","index");
+   // Route::get("/edit/{id}","edit");
+   // Route::post("/updata","updata");
+   // Route::get("/delete/{id}","delete");
 
 });
+
 // menu routes
 Route::group(['prefix' => 'menu', 'controller' => MenuController::class, 'as' => 'menu-'], function () {
    Route::get('/create', 'create');
@@ -115,3 +160,4 @@ Route::group([
       Route::get('/delete', 'deleteColor')->name('deleteColor');
    });
 });
+main

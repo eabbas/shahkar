@@ -19,6 +19,7 @@
 </head>
 
 <body>
+
     <header class="2xl:container mx-auto w-full border-b border-[var(--color-border)] py-3">
 
         <!-- desktop header -->

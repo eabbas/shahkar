@@ -3,6 +3,14 @@
 
 
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
 * {
   font-family: 'IRANSansX';
 }
@@ -27,14 +35,15 @@
   fill: var(--color-primary);
 }
 
-.menuItemParent:hover > .menuItemChild {
+.menuItemParent:hover>.menuItemChild {
   margin-top: 0;
   opacity: 1;
   visibility: visible;
   pointer-events: visible;
   top: 56px;
 }
-.menuItemParent:hover > div {
+
+.menuItemParent:hover>div {
   margin-top: 0;
   opacity: 1;
   visibility: visible;
@@ -42,15 +51,17 @@
   max-height: 575px;
 }
 
-.activeSubMenuCat{
-  background-color: var(--color-primary);
+
+.activeSubMenuCat {
+  background-color: #FD9636;
   color: white;
 }
 
-.productItem:hover div .buttonProduct{
+.productItem:hover div .buttonProduct {
   transform: translateX(16px);
   opacity: 1;
 }
+
 
 .productItem > div > .buttonProduct.btnAnimation, .productItem > div > .buttonProduct.btnAnimation>svg>path, .productAnimation, .productAnimation>svg>path{
   animation: itemProduct 1s infinite;
