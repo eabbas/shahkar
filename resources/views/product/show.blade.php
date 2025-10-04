@@ -3137,7 +3137,7 @@
                                 </div>
                             </div>
                            
-                            <div class="lg:hidden px-5 mt-7 px-5 pb-2">
+                            <div class="lg:hidden mt-7 px-5 pb-2">
                                 <div class="flex flex-row justify-between items-start">
                                     <div class="flex flex-row items-start gap-3">
                                         <div class="size-9 flex justify-center items-center bg-[var(--color-secondary-bg)] rounded-full">
