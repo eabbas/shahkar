@@ -85,21 +85,21 @@ Route::group(['prefix' => 'productAttribute', 'controller' => ProductAttributesC
 
 
 
-   Route::get("/signup","signup")->name("user_signUp") ;
-   Route::post("/store","store") -> name("user_store");
+   // Route::get("/signup","signup")->name("user_signUp") ;
+   // Route::post("/store","store") -> name("user_store");
 
-   Route::get("/login","login") -> name("user_login");
-   Route::post("/check_user","checkUser") -> name("checkUser");
-   Route::get("/profile/{id?}","profile") ->name("user_profile");
-   Route::get("/edit/{user}","edit") ->name("user_edit");
-   Route::post("/updata","updata") -> name("user_update");
-   Route::get("/delete/{user}","delete") -> name("user_delete");
-   Route::get("/logOut","logOut") -> name("user_logOtu");
-   Route::get("/index","index") -> name("user_index");
+   // Route::get("/login","login") -> name("user_login");
+   // Route::post("/check_user","checkUser") -> name("checkUser");
+   // Route::get("/profile/{id?}","profile") ->name("user_profile");
+   // Route::get("/edit/{user}","edit") ->name("user_edit");
+   // Route::post("/updata","updata") -> name("user_update");
+   // Route::get("/delete/{user}","delete") -> name("user_delete");
+   // Route::get("/logOut","logOut") -> name("user_logOtu");
+   // Route::get("/index","index") -> name("user_index");
 
-Route::view('/home', 'home')->name("home");
-Route::view('/notAccess', 'notAccess')->name("notAccess");
-Route::view('/loginAtFirst', 'loginAtFirst')->name("loginAtFirst");
+// Route::view('/home', 'home')->name("home");
+// Route::view('/notAccess', 'notAccess')->name("notAccess");
+// Route::view('/loginAtFirst', 'loginAtFirst')->name("loginAtFirst");
 
 
 Route::controller(userController::class)->prefix("user")->group(function () {
@@ -160,4 +160,4 @@ Route::group([
       Route::get('/delete', 'deleteColor')->name('deleteColor');
    });
 });
-main
+

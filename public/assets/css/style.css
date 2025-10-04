@@ -102,3 +102,7 @@ input[type=number]::-webkit-outer-spin-button {
     margin: calc(2 * 4px);
     display: none;
 }
+
+.hoverIcon:hover .styles_Tooltip__tooltip___Mj8o{
+  display: block;
+}
