@@ -68,3 +68,61 @@ children.forEach(el => {
 children.forEach(el => {
   el.style.height = maxHeight + 'px';
 });
+
+let commentModal = document.getElementById('commentModal')
+function comment(state){
+    if(state == "open"){
+        commentModal.classList.remove('invisible')
+        commentModal.classList.remove('opacity-0')
+        commentModal.children[0].classList.remove('opacity-0')
+        commentModal.children[0].classList.remove('scale-50')
+    }
+    if(state == "close"){
+        commentModal.children[0].classList.remove('delay-300')
+        commentModal.classList.add('invisible')
+        commentModal.classList.add('opacity-0')
+        commentModal.children[0].classList.add('opacity-0')
+        commentModal.children[0].classList.add('scale-50')
+    }
+}
+
+let questionModal = document.getElementById('questionModal')
+function question(state){
+    if(state == "open"){
+        questionModal.classList.remove('invisible')
+        questionModal.classList.remove('opacity-0')
+        questionModal.children[0].classList.remove('opacity-0')
+        questionModal.children[0].classList.remove('scale-50')
+    }
+    if(state == "close"){
+        questionModal.children[0].classList.remove('delay-300')
+        questionModal.classList.add('invisible')
+        questionModal.classList.add('opacity-0')
+        questionModal.children[0].classList.add('opacity-0')
+        questionModal.children[0].classList.add('scale-50')
+    }
+}
+
+let commentModalMobile = document.getElementById('commentModalMobile')
+function commentMobile(state){
+    if(state == "open"){
+        commentModalMobile.classList.remove('-bottom-full')
+        commentModalMobile.classList.add('bottom-0')
+    }
+    if(state == 'close'){
+        commentModalMobile.classList.remove('bottom-0')
+        commentModalMobile.classList.add('-bottom-full')
+    }
+}
+
+let questionModalMobile = document.getElementById('questionModalMobile')
+function questionMobile(state){
+    if(state == 'open'){
+        questionModalMobile.classList.remove('-bottom-full')
+        questionModalMobile.classList.add('bottom-0')
+    }
+    if(state == 'close'){
+        questionModalMobile.classList.remove('bottom-0')
+        questionModalMobile.classList.add('-bottom-full')
+    }
+}
