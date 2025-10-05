@@ -9,8 +9,9 @@
     <title>product single</title>
     <style>
         :root {
-            <?php foreach($settings as $setting) {
-                echo "--color-" . $setting->meta_key . ": " . $setting->meta_value.";";
+            <?php
+            foreach ($settings as $setting) {
+                echo '--color-' . $setting->meta_key . ': ' . $setting->meta_value . ';';
             }
 
             ?>
@@ -20,7 +21,7 @@
 
 <body>
 
-    <header class="2xl:container mx-auto w-full border-b border-[var(--color-border)] py-3">
+    <header class="2xl:container mx-auto 2xl:px-4 w-full border-b border-[var(--color-border)] py-3">
 
         <!-- desktop header -->
 
@@ -744,7 +745,7 @@
 
     </header>
 
-    <main class="2xl:container w-[97%] mx-auto">
+    <main class="2xl:container 2xl:px-4 w-[97%] mx-auto">
         <!-- address navbar -->
         <section
             class="w-full px-5 lg:px-0 lg:mb-5 py-5 flex flex-row justify-between items-center text-[var(--color-secondary-text)] text-xs lg:text-sm">
@@ -2711,7 +2712,7 @@
                                     </div>
                                     <div class="mt-2">
                                         <button
-                                            class="block w-full rounded-lg px-4 py-2 border border-[var(--color-primary)] text-[var(--color-primary)] text-xs leading-[2.17] cursor-pointer">
+                                            class="block w-full rounded-lg px-4 py-2 border border-[var(--color-primary)] text-[var(--color-primary)] text-xs leading-[2.17] cursor-pointer" onclick="comment('open')">
                                             ثبت دیدگاه
                                         </button>
                                     </div>
@@ -3137,7 +3138,7 @@
                                 </div>
                             </div>
                            
-                            <div class="lg:hidden px-5 mt-7 px-5 pb-2">
+                            <div class="lg:hidden mt-5 px-5 pt-6 pb-2 border-t border-[var(--color-border)]" onclick="commentMobile('open')">
                                 <div class="flex flex-row justify-between items-start">
                                     <div class="flex flex-row items-start gap-3">
                                         <div class="size-9 flex justify-center items-center bg-[var(--color-secondary-bg)] rounded-full">
@@ -3214,12 +3215,12 @@
                                 <div class="w-1/5 sticky top-16 ml-12 hidden lg:block">
                                     <div class="mt-4 mb-3">
                                         <span class="text-[10px]">
-                                            شما هم در این کالا دیدگاه ثبت کنید
+                                            شما هم در این کالا پرسش ثبت کنید
                                         </span>
                                     </div>
                                     <div class="mt-2">
-                                        <button class="block w-full rounded-lg px-4 py-2 border border-[var(--color-primary)] text-[var(--color-primary)] text-xs leading-[2.17] cursor-pointer">
-                                            ثبت دیدگاه
+                                        <button class="block w-full rounded-lg px-4 py-2 border border-[var(--color-primary)] text-[var(--color-primary)] text-xs leading-[2.17] cursor-pointer" onclick="question('open')">
+                                            ثبت پرسش
                                         </button>
                                     </div>
                                 </div>
@@ -3424,8 +3425,8 @@
                                 </div>
                             </div>
 
-                            <div class="lg:hidden p-5">
-                                <a href="#" class="flex flex-row justify-between items-center">
+                            <div class="lg:hidden p-5" onclick="questionMobile('open')">
+                                <div class="flex flex-row justify-between items-center">
                                     <div class="flex flex-row items-center gap-2">
                                         <div class="size-9 rounded-full bg-[var(--color-secondary-bg)] flex justify-center items-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 512 512">
@@ -3439,7 +3440,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
                                         <path fill="var(--color-fill)" d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z"/>
                                     </svg>
-                                </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -3759,13 +3760,251 @@
         </section>
         
         <!-- related products mobile -->
+
+
+        <!-- comment form -->
+    
+        <div class="fixed bg-black/30 inset-0 z-[1111] text-[var(--color-text)] transition-all duration-500 opacity-0 invisible" id="commentModal">
+            <div class="relative max-w-[460px] m-auto bg-white rounded-lg mt-[4%] scale-50 opacity-0 transition-all duration-500 delay-300">
+                <div class="w-full px-5 py-3 border-b-2 border-[var(--color-border)]">
+                    <div class="flex flex-row items-center">
+                        <div class="cursor-pointer" onclick="comment('close')">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 448 512">
+                                <path fill="var(--color-fill)" d="M443.3 267.3c6.2-6.2 6.2-16.4 0-22.6l-176-176c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 240 16 240c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0L244.7 420.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l176-176z"/>
+                            </svg>
+                        </div>
+                        <div class="mr-1 leading-[2.17] font-medium">
+                            ثبت دیدگاه
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full">
+                    <form class="p-4" action="" method="">
+                        <div class="w-full h-[305px] overflow-y-auto hide-scrollbar">
+                            <div class="flex flex-row items-start gap-3 pb-4 border-b border-[var(--color-border)]">
+                                <img class="size-[56px]" src="https://dkstatics-public.digikala.com/digikala-products/d6518a10b641b32833525b184f518e9ad0a38ec0_1751860865.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/format,webp/quality,q_80" alt="">
+                                <p class="font-medium">
+                                    گوشی موبایل ژیواکو مدل F121 دو سیم کارت
+                                </p>
+                            </div>
+                            <div class="py-4">
+                                <div class="py-3 flex flex-row items-start">
+                                    <label class="font-medium" for="comment">
+                                        متن دیدگاه :
+                                    </label>
+                                    <span class="font-medium text-red-500">*</span>
+                                </div>
+                                <div class="pt-2 border border-[var(--color-border)] rounded-lg">
+                                    <textarea class="w-full outline-none resize-none p-3" rows="3" placeholder="نظر خودرا درباره این کالا بنویسید"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="py-4">
+                            <button class="rounded-lg block w-full leading-[2.17] text-[var(--color-primary-text)] bg-[var(--color-primary)] text-center py-3 px-5 cursor-pointer">
+                                ثبت دیدگاه
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- end comment form -->
+
+
+
+           <!-- question form -->
+    
+        <div class="fixed bg-black/30 inset-0 z-[1111] text-[var(--color-text)] transition-all duration-500 opacity-0 invisible" id="questionModal">
+            <div class="relative max-w-[460px] m-auto bg-white rounded-lg mt-[4%] scale-50 opacity-0 transition-all duration-500 delay-300">
+                <div class="w-full px-5 py-3 border-b-2 border-[var(--color-border)]">
+                    <div class="flex flex-row items-center">
+                        <div class="cursor-pointer" onclick="question('close')">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 448 512">
+                                <path fill="var(--color-fill)" d="M443.3 267.3c6.2-6.2 6.2-16.4 0-22.6l-176-176c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 240 16 240c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0L244.7 420.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l176-176z"/>
+                            </svg>
+                        </div>
+                        <div class="mr-1 leading-[2.17] font-medium">
+                            ثبت پرسش
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full">
+                    <form class="p-4" action="" method="">
+                        <div class="w-full h-[305px] overflow-y-auto hide-scrollbar">
+                            <div class="flex flex-row items-start gap-3 pb-4 border-b border-[var(--color-border)]">
+                                <img class="size-[56px]" src="https://dkstatics-public.digikala.com/digikala-products/d6518a10b641b32833525b184f518e9ad0a38ec0_1751860865.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/format,webp/quality,q_80" alt="">
+                                <p class="font-medium">
+                                    گوشی موبایل ژیواکو مدل F121 دو سیم کارت
+                                </p>
+                            </div>
+                            <div class="py-4">
+                                <div class="py-3 flex flex-row items-start">
+                                    <label class="font-medium" for="comment">
+                                       پرسش خود را در مورد محصول مطرح کنید
+                                    </label>
+                                    <span class="font-medium text-red-500">*</span>
+                                </div>
+                                <div class="pt-2 border border-[var(--color-border)] rounded-lg">
+                                    <textarea class="w-full outline-none resize-none p-3" rows="3" placeholder="به این سوال پاسخ دهید "></textarea>
+                                </div>
+                                    
+                            </div>
+                        </div>
+                        <div class="py-4">
+                            <button class="rounded-lg block w-full leading-[2.17] text-[var(--color-primary-text)] bg-[var(--color-primary)] text-center py-3 px-5 cursor-pointer">
+                                ثبت دیدگاه
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- end question form -->
+
+
+        <!-- comment form mobile -->
+    
+        <div class="fixed w-full -bottom-full z-[1111] text-[var(--color-text)] transition-all duration-500" id="commentModalMobile">
+            <div class="relative w-full h-svh m-auto bg-white rounded-lg">
+                <div class="w-full px-5 py-3 border-b-2 border-[var(--color-border)]">
+                    <div class="flex flex-row items-center">
+                        <div class="cursor-pointer" onclick="commentMobile('close')">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 448 512">
+                                <path fill="var(--color-fill)" d="M443.3 267.3c6.2-6.2 6.2-16.4 0-22.6l-176-176c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 240 16 240c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0L244.7 420.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l176-176z"/>
+                            </svg>
+                        </div>
+                        <div class="mr-1 leading-[2.17] font-medium">
+                            ثبت دیدگاه
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full">
+                    <form class="p-4" action="" method="">
+                        <div class="w-full h-[305px] overflow-y-auto hide-scrollbar">
+                            <div class="flex flex-row items-start gap-3 pb-4 border-b border-[var(--color-border)]">
+                                <img class="size-[56px]" src="https://dkstatics-public.digikala.com/digikala-products/d6518a10b641b32833525b184f518e9ad0a38ec0_1751860865.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/format,webp/quality,q_80" alt="">
+                                <p class="font-medium">
+                                    گوشی موبایل ژیواکو مدل F121 دو سیم کارت
+                                </p>
+                            </div>
+                            <div class="py-4">
+                                <div class="py-3 flex flex-row items-start">
+                                    <label class="font-medium" for="comment">
+                                        متن دیدگاه :
+                                    </label>
+                                    <span class="font-medium text-red-500">*</span>
+                                </div>
+                                <div class="pt-2 border border-[var(--color-border)] rounded-lg">
+                                    <textarea class="w-full outline-none resize-none p-3" rows="3" placeholder="نظر خودرا درباره این کالا بنویسید"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="py-4">
+                            <button class="rounded-lg block w-full leading-[2.17] text-[var(--color-primary-text)] bg-[var(--color-primary)] text-center py-3 px-5 cursor-pointer">
+                                ثبت دیدگاه
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- end comment form mobile -->
+
+
+        <!-- question form mobile -->
+    
+        <div class="fixed w-full -bottom-full z-[1111] text-[var(--color-text)] transition-all duration-500" id="questionModalMobile">
+            <div class="relative w-full h-svh m-auto bg-white rounded-lg">
+                <div class="w-full px-5 py-3 border-b-2 border-[var(--color-border)]">
+                    <div class="flex flex-row items-center">
+                        <div class="cursor-pointer" onclick="questionMobile('close')">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 448 512">
+                                <path fill="var(--color-fill)" d="M443.3 267.3c6.2-6.2 6.2-16.4 0-22.6l-176-176c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 240 16 240c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0L244.7 420.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l176-176z"/>
+                            </svg>
+                        </div>
+                        <div class="mr-1 leading-[2.17] font-medium">
+                           جزئیات پرسش
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full">
+                    <form class="p-4" action="" method="">
+                        <div class="w-full h-[305px] overflow-y-auto hide-scrollbar">
+                            <div class="flex flex-row items-start gap-3 pb-4 border-b border-[var(--color-border)]">
+                                <img class="size-[56px]" src="https://dkstatics-public.digikala.com/digikala-products/d6518a10b641b32833525b184f518e9ad0a38ec0_1751860865.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/format,webp/quality,q_80" alt="">
+                                <p class="font-medium">
+                                    گوشی موبایل ژیواکو مدل F121 دو سیم کارت
+                                </p>
+                            </div>
+                            <div class="py-4">
+                                <div class="py-3 flex flex-row items-start">
+                                    <label class="font-medium" for="comment">
+                                         پرسش خود را درمورد محصول مطرح کنید
+                                    </label>
+                                    <span class="font-medium text-red-500">*</span>
+                                </div>
+                                <div class="pt-2 border border-[var(--color-border)] rounded-lg">
+                                    <textarea class="w-full outline-none resize-none p-3" rows="3" placeholder="به این سوال پاسخ دهید"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="py-4">
+                            <button class="rounded-lg block w-full leading-[2.17] text-[var(--color-primary-text)] bg-[var(--color-primary)] text-center py-3 px-5 cursor-pointer">
+                                ثبت پرسش
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- end question form mobile -->
+
+
+
+
+
+
+
+
+
+     
+
     </main>
 
-    <footer class="w-full py-5" style="background-color: rgb(33, 33, 33);">
+
+    <!-- buy button mobile -->
+
+    <div class="w-full px-5 py-3 bg-white fixed bottom-0 right-0 lg:hidden border-t border-[var(--color-border)] text-[var(--color-text)]">
+        <div class="flex flex-row justify-between items-center py-2">
+            <div class="w-1/2">
+                <button class="block font-medium w-full rounded-lg text-white bg-[var(--color-primary)] leading-[180%] text-center py-2">
+                    افزودن به سبد خرید
+                </button>
+            </div>
+            <div class="flex flex-row items-center gap-2">
+                <span class="font-bold">919,000</span>
+                <span class="font-medium text-xs">
+                    تومان
+                </span>
+            </div>
+        </div>
+    </div>
+     
+    <!-- buy button mobile end -->
+
+    <footer class="w-full py-5 mb-20" style="background-color: rgb(33, 33, 33);">
         <p class="text-white font-semibold text-center">
             طراحی شده توسط تیم فائوس
         </p>
     </footer>
+
+    
+
+     <script src="{{ url('assets/js/main.js') }}"></script>
 
 </body>
 

@@ -1,9 +1,5 @@
 :root {
     --color-primary: #FD9636;
-    --color-secondary: #0dcaf0;
-    --color-secondary-bg: #efeff080;
-    --color-danger: #e6123d;
-    --color-info: #1028ff;
     --color-subheader-btn: #FD9636;
     --color-text: #425A8B;
     --color-secondary-text: #8C9EC5;
@@ -18,5 +14,9 @@
     --color-border: #D5DFE4;
     --color-discount-bg: #D36B0B;
     --color-fill: #425A8B;
+    --color-secondary: #0dcaf0;
     --color-success-bg: #00a049;
+    --color-danger: #e6123d;
+    --color-info: #1028ff;
+    --color-secondary-bg: #efeff0;
 }
