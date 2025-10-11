@@ -14,8 +14,6 @@ use App\Http\Controllers\userController;
 use App\Http\Middleware\checkAdminMiddleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchController;
-use App\Http\Controllers\SettingsController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\QuestionController;
 
 
@@ -150,7 +148,7 @@ Route::group([
     Route::post('/store', 'store')->name('store');
     Route::post('/update', 'update')->name('update');
     Route::post('/delete/{comment}', 'delete')->name('delete');
-
+});
 // questions routes
 Route::group(['prefix' => 'question', 'controller' => QuestionController::class, 'as' => 'question-'], function () {
    Route::post('/store', 'store')->name('store');
@@ -159,6 +157,7 @@ Route::group(['prefix' => 'question', 'controller' => QuestionController::class,
    Route::get('/edit/{question}', 'edit')->name('edit');
    Route::post('/update', 'update')->name('update');
    Route::get('/delete/{question}', 'delete')->name('delete');
+
 });
 // answers routes
 Route::group(['prefix' => 'answer', 'controller' => AnswerController::class, 'as' => 'answer-'], function () {
