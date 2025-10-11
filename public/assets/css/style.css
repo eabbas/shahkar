@@ -1,5 +1,5 @@
 @import url("fontiran.css");
-@import url("primary_colors.css");
+/* @import url("primary_colors.css"); */
 
 
 
@@ -101,4 +101,8 @@ input[type=number]::-webkit-outer-spin-button {
     padding: calc(2 * 4px) calc(3 * 4px);
     margin: calc(2 * 4px);
     display: none;
+}
+
+.hoverIcon:hover .styles_Tooltip__tooltip___Mj8o{
+  display: block;
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CourseCategoryController;
 use App\Http\Controllers\CourseController;
@@ -76,7 +77,6 @@ Route::group(['prefix' => 'productAttribute', 'controller' => ProductAttributesC
 });
 // questions routes
 Route::group(['prefix' => 'question', 'controller' => QuestionController::class, 'as' => 'question-'], function () {
-   Route::view('/create', 'question.create');
    Route::post('/store', 'store')->name('store');
    Route::get('/list', 'index')->name('index');
    Route::get('/show/{question}', 'show')->name('show');
@@ -84,67 +84,44 @@ Route::group(['prefix' => 'question', 'controller' => QuestionController::class,
    Route::post('/update', 'update')->name('update');
    Route::get('/delete/{question}', 'delete')->name('delete');
 });
-
-
-// Route::get('/home', [HomeController::class, 'index']) -> name("home");
-// Route::view('/notAccess', 'notAccess') -> name("notAccess");
-// Route::view('/loginAtFirst', 'loginAtFirst') -> name("loginAtFirst");
-
-
-
-
-
-
-
-// Route::get("/signup","signup")->name("user_signUp") ;
-// Route::post("/store","store") -> name("user_store");
-
-// Route::get("/login","login") -> name("user_login");
-// Route::post("/check_user","checkUser") -> name("checkUser");
-// Route::get("/profile/{id?}","profile") ->name("user_profile");
-// Route::get("/edit/{user}","edit") ->name("user_edit");
-// Route::post("/updata","updata") -> name("user_update");
-// Route::get("/delete/{user}","delete") -> name("user_delete");
-// Route::get("/logOut","logOut") -> name("user_logOtu");
-// Route::get("/index","index") -> name("user_index");
-
-// Route::view('/home', 'home')->name("home");
-// Route::view('/notAccess', 'notAccess')->name("notAccess");
-// Route::view('/loginAtFirst', 'loginAtFirst')->name("loginAtFirst");
-
-
-// Route::controller(userController::class)->prefix("user")->group(function () {
-
-//    Route::get("/signup", "signup")->name("user_signUp");
-//    Route::post("/store", "store")->name("user_store");
-
-//    Route::get("/login", "login")->name("user_login");
-//    Route::post("/check_user", "checkUser")->name("checkUser");
-//    Route::get("/profile/{id?}", "profile")->name("user_profile");
-//    Route::get("/edit/{user}", "edit")->name("user_edit");
-//    Route::post("/updata", "updata")->name("user_update");
-//    Route::get("/delete/{user}", "delete")->name("user_delete");
-//    Route::get("/logOut", "logOut")->name("user_logOtu");
-//    Route::get("/index", "index")->name("user_index");
-
-// });
-
+// answers routes
+Route::group(['prefix' => 'answer', 'controller' => AnswerController::class, 'as' => 'answer-'], function () {
+   Route::post('/store', 'store')->name('store');
+   Route::get('/list', 'index')->name('index');
+   Route::get('/show/{answer}', 'show')->name('show');
+   Route::get('/edit/{answer}', 'edit')->name('edit');
+   Route::post('/update', 'update')->name('update');
+   Route::get('/delete/{answer}', 'delete')->name('delete');
+});
+// user routes
+Route::get('/home', [HomeController::class, 'index'])->name("home");
+Route::view('/notAccess', 'notAccess')->name("notAccess");
+Route::view('/loginAtFirst', 'loginAtFirst')->name("loginAtFirst");
+Route::controller(userController::class)->prefix("user")->group(function () {
+   Route::get("/signup", "signup")->name("user_signUp");
+   Route::post("/store", "store")->name("user_store");
+   Route::get("/login", "login")->name("user_login");
+   Route::post("/check_user", "checkUser")->name("checkUser");
+   Route::get("/profile/{id?}", "profile")->name("user_profile");
+   Route::get("/edit/{user}", "edit")->name("user_edit");
+   Route::post("/update", "update")->name("user_update");
+   Route::get("/delete/{user}", "delete")->name("user_delete");
+   Route::get("/logOut", "logOut")->name("user_logOut");
+   Route::get("/index", "index")->name("user_index");
+});
+// admin routes
 Route::controller(userController::class)->prefix("admin")->group(function () {
-
    Route::get("/signUpUser", "signup")->middleware(checkAdminMiddleware::class)->name("admin_create_user");
    // Route::post("/store","store") -> name("user_store");
-
    // Route::get("/loginUser","login") -> name("user_login");
    // Route::post("/check_login","checkLogin");
    Route::get("/profile/{id?}", "profile")->middleware(checkAdminMiddleware::class);
    // Route::get("/index","index");
    // Route::get("/edit/{id}","edit");
-   // Route::post("/updata","updata");
+   // Route::post("/update","update");
    // Route::get("/delete/{id}","delete");
-
 });
-
-
+// settings routes
 Route::group([
    'prefix' => 'settings',
    'controller' => SettingsController::class,
