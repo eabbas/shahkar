@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\answer;
 use App\Models\category;
 use App\Models\product;
+use App\Models\question;
 use App\Models\settings;
 use Illuminate\Http\Request;
 
@@ -32,9 +34,12 @@ class ProductController extends Controller
     }
     public function show(product $product)
     {
+        $answers = answer::all();
         $settings = settings::all();
         $product->category;
-        return view('product.show', ['product' => $product, 'settings'=>$settings]);
+        $questions = question::all();
+        // return $answers;
+        return view('product.show', ['product' => $product, 'settings' => $settings, 'questions' => $questions, 'answers' => $answers]);
     }
     public function edit(product $product)
     {

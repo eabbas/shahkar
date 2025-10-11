@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>user list</title>
-    
+
 
 </head>
+
 <body>
     <section class="2xl:container mx-auto">
         <div class="w-11/12 mx-auto">
@@ -17,10 +19,10 @@
 
 
             <div class="overflow-x-auto">
-                
+
                 <div class="w-[890px] xl:w-full mx-auto">
                     <ul class="grid grid-cols-7 gap-3 md:gap-5 lg:gap-10 text-center text-gray-700 font-semibold xl:text-lg border-b-2 border-gray-400 pb-3 mb-3">
-                        
+
 
                         <li class="w-full">آیدی</li>
                         <li class="w-full">نام</li>
@@ -29,11 +31,11 @@
                         <li class="w-full col-span-2">دکمه ها</li>
                     </ul>
                 </div>
-    
-               
 
-                @foreach($users as  $user)
-                
+
+
+                @foreach($users as $user)
+
                 <div class="w-[890px] xl:w-full mx-auto">
                     <ul class="grid grid-cols-7 gap-3 md:gap-5 xl:gap-10 text-center text-gray-700 font-medium text-sm md:text-base border-b border-gray-400 pb-5 my-5">
                         <li class="w-full"> {{$user -> id}}</li>
@@ -42,22 +44,23 @@
                         <li class="w-full"> {{$user ->email}}</li>
                         <li class="w-full col-span-2 grid grid-cols-3 gap-3 xl:gap-5">
                             <div class="w-full">
-                                <a href="http://localhost/laravel/shahkar/public/user/profile/{{$user->id}}" class="px-3 xl:px-5 py-1 border border-gray-300 rounded-md transition-all duration-150 hover:bg-gray-400 hover:text-white">نمایش</a>
+                                <a href="http://localhost/shahkar/public/user/profile/{{$user->id}}" class="px-3 xl:px-5 py-1 border border-gray-300 rounded-md transition-all duration-150 hover:bg-gray-400 hover:text-white">نمایش</a>
                             </div>
                             <div class="w-full">
-                                <a href="http://localhost/laravel/shahkar/public/user/edit/{{$user->id}}" class="px-3 xl:px-5 py-1 border border-gray-300 rounded-md transition-all duration-150 hover:bg-teal-500 hover:text-white hover:border-teal-500">ویرایش</a>
+                                <a href="http://localhost/shahkar/public/user/edit/{{$user->id}}" class="px-3 xl:px-5 py-1 border border-gray-300 rounded-md transition-all duration-150 hover:bg-teal-500 hover:text-white hover:border-teal-500">ویرایش</a>
                             </div>
                             <div class="w-full">
-                                <a href="http://localhost/laravel/shahkar/public/user/delete/{{$user->id}}" class="px-3 xl:px-5 py-1 border border-gray-300 rounded-md transition-all duration-150 hover:bg-rose-500 hover:text-white hover:border-rose-500">حذف</a>
+                                <a href="http://localhost/shahkar/public/user/delete/{{$user->id}}" class="px-3 xl:px-5 py-1 border border-gray-300 rounded-md transition-all duration-150 hover:bg-rose-500 hover:text-white hover:border-rose-500">حذف</a>
                             </div>
                         </li>
                     </ul>
                 </div>
-    
+
                 @endforeach
-                
+
             </div>
         </div>
     </section>
 </body>
+
 </html>
