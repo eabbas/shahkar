@@ -3791,7 +3791,9 @@
                     <div class="flex flex-row items-center">
                         <div class="cursor-pointer" onclick="comment('close')">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)" d="M443.3 267.3c6.2-6.2 6.2-16.4 0-22.6l-176-176c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 240 16 240c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0L244.7 420.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l176-176z" />
+
+                                <path fill="var(--color-fill)" d="M443.3 267.3c6.2-6.2 6.2-16.4 0-22.6l-176-176c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 240 16 240c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0L244.7 420.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l176-176z"/>
+
                             </svg>
                         </div>
                         <div class="mr-1 leading-[2.17] font-medium">
@@ -3834,16 +3836,19 @@
 
 
 
-        <!-- question form -->
-        <!-- یدونه اینجا رو روش کار کن -->
-        <!-- csrf توکن زا دنزدم اینپوت هیدن هم ننوشتم -->
+
+           <!-- question form -->
+    
+
         <div class="fixed bg-black/30 inset-0 z-[1111] text-[var(--color-text)] transition-all duration-500 opacity-0 invisible" id="questionModal">
             <div class="relative max-w-[460px] m-auto bg-white rounded-lg mt-[4%] scale-50 opacity-0 transition-all duration-500 delay-300">
                 <div class="w-full px-5 py-3 border-b-2 border-[var(--color-border)]">
                     <div class="flex flex-row items-center">
                         <div class="cursor-pointer" onclick="question('close')">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)" d="M443.3 267.3c6.2-6.2 6.2-16.4 0-22.6l-176-176c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 240 16 240c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0L244.7 420.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l176-176z" />
+
+                                <path fill="var(--color-fill)" d="M443.3 267.3c6.2-6.2 6.2-16.4 0-22.6l-176-176c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 240 16 240c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0L244.7 420.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l176-176z"/>
+
                             </svg>
                         </div>
                         <div class="mr-1 leading-[2.17] font-medium">
@@ -3852,9 +3857,11 @@
                     </div>
                 </div>
                 <div class="w-full">
+
                     <form class="p-4" action="{{route('question-store')}}" method="post">
                         @csrf
                         <input type="hidden" name="product_id" value="{{$product->id}}">
+
                         <div class="w-full h-[305px] overflow-y-auto hide-scrollbar">
                             <div class="flex flex-row items-start gap-3 pb-4 border-b border-[var(--color-border)]">
                                 <img class="size-[56px]" src="https://dkstatics-public.digikala.com/digikala-products/d6518a10b641b32833525b184f518e9ad0a38ec0_1751860865.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/format,webp/quality,q_80" alt="">
@@ -3864,14 +3871,18 @@
                             </div>
                             <div class="py-4">
                                 <div class="py-3 flex flex-row items-start">
-                                    <label class="font-medium" for="question">
-                                        پرسش خود را در مورد محصول مطرح کنید
+
+                                    <label class="font-medium" for="comment">
+                                       پرسش خود را در مورد محصول مطرح کنید
+
                                     </label>
                                     <span class="font-medium text-red-500">*</span>
                                 </div>
                                 <div class="pt-2 border border-[var(--color-border)] rounded-lg">
+
                                     <textarea class="w-full outline-none resize-none p-3" rows="3" placeholder="به این سوال پاسخ دهید " id="question" name="text"></textarea>
                                 </div>
+
 
                             </div>
                         </div>
@@ -3896,7 +3907,9 @@
                     <div class="flex flex-row items-center">
                         <div class="cursor-pointer" onclick="commentMobile('close')">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 448 512">
+
                                 <path fill="var(--color-fill)" d="M443.3 267.3c6.2-6.2 6.2-16.4 0-22.6l-176-176c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 240 16 240c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0L244.7 420.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l176-176z" />
+
                             </svg>
                         </div>
                         <div class="mr-1 leading-[2.17] font-medium">
@@ -3940,19 +3953,19 @@
 
         <!-- question form mobile -->
 
-
-        <!-- دیونه هم اینجا -->
         <div class="fixed w-full -bottom-full z-[1111] text-[var(--color-text)] transition-all duration-500" id="questionModalMobile">
             <div class="relative w-full h-svh m-auto bg-white rounded-lg">
                 <div class="w-full px-5 py-3 border-b-2 border-[var(--color-border)]">
                     <div class="flex flex-row items-center">
                         <div class="cursor-pointer" onclick="questionMobile('close')">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 448 512">
+
                                 <path fill="var(--color-fill)" d="M443.3 267.3c6.2-6.2 6.2-16.4 0-22.6l-176-176c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 240 16 240c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0L244.7 420.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l176-176z" />
                             </svg>
                         </div>
                         <div class="mr-1 leading-[2.17] font-medium">
                             جزئیات پرسش
+
                         </div>
                     </div>
                 </div>
@@ -3968,7 +3981,9 @@
                             <div class="py-4">
                                 <div class="py-3 flex flex-row items-start">
                                     <label class="font-medium" for="comment">
+
                                         پرسش خود را درمورد محصول مطرح کنید
+
                                     </label>
                                     <span class="font-medium text-red-500">*</span>
                                 </div>
@@ -3988,13 +4003,6 @@
         </div>
 
         <!-- end question form mobile -->
-
-
-
-
-
-
-
 
 
 
@@ -4020,15 +4028,20 @@
         </div>
     </div>
 
+     
     <!-- buy button mobile end -->
 
-    <footer class="w-full py-5" style="background-color: rgb(33, 33, 33);">
+    <footer class="w-full py-5 mb-20" style="background-color: rgb(33, 33, 33);">
+
         <p class="text-white font-semibold text-center">
             طراحی شده توسط تیم فائوس
         </p>
     </footer>
 
-    <script src="{{ url('assets/js/main.js') }}"></script>
+
+     <script src="{{ url('assets/js/main.js') }}"></script>
+
+
 
 </body>
 
