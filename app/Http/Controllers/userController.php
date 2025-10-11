@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\settings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
@@ -9,99 +10,86 @@ use Illuminate\Support\Facades\Auth;
 
 class userController extends Controller
 {
-    public function signup(){
+    public function signup()
+    {
         return view("user.signup");
     }
-
-    public function store(Request $request){
-
-        $password = Hash::make($request -> password);
+    public function store(Request $request)
+    {
+        $password = Hash::make($request->password);
         User::create([
-            "name" => $request -> name,
-            "family" => $request -> family,
-            "email" => $request -> email,
+            "name" => $request->name,
+            "family" => $request->family,
+            "email" => $request->email,
             "password" => $password,
         ]);
         return to_route("user_login");
     }
-
-    public function login(){
+    public function login()
+    {
         return view("user.login");
     }
-
-    public function checkUser(Request $request){
-        $user= User:: where("email",$request -> email) -> first();
-        if(!$user){
+    public function checkUser(Request $request)
+    {
+        $user = User::where("email", $request->email)->first();
+        if (!$user) {
             return to_route("user_login");
         }
-        $user_password = Hash::check($request -> password , $user -> password);
-        if(!$user_password){
+        $user_password = Hash::check($request->password, $user->password);
+        if (!$user_password) {
             //باید به کاربر بگیم رمز ورود اشتباه هست چطور بگیم؟؟؟؟//
             return to_route("user_login");
         }
-        if($user && $user_password){
+        if ($user && $user_password) {
             Auth::login($user);
-        }else{
+        } else {
             return to_route("user_signUp");
         }
         return to_route("home");
     }
-
-
-    public function profile($id =null){
-     
-        if(Auth::check()){
+    public function profile($id = null)
+    {
+        if (Auth::check()) {
             $user = Auth::user();
         }
-        if(!Auth::check()){
+        if (!Auth::check()) {
             return to_route("user_login");
         }
-        
-        if($id){
+        if ($id) {
             $user = User::find($id);
         }
-
-        return view("user.profile",["user" => $user ]);
+        return view("user.profile", ["user" => $user]);
     }
-
-
-    public function edit($user){
-        return view("user.user_edit",["user" => $user ]);
+    public function edit(User $user)
+    {
+        return view("user.user_edit", ["user" => $user]);
     }
-
-
-    public function updata(Request $request){
-        $user = User::find($request -> id);
-     
-        $user -> name = $request -> name;
-        $user -> family = $request -> family;
-        $user -> email = $request -> email;
-
-        if($request -> password){
-            $password = Hash::make($request -> password);
-            $user -> password = $password;
+    public function update(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->name = $request->name;
+        $user->family = $request->family;
+        $user->email = $request->email;
+        if ($request->password) {
+            $password = Hash::make($request->password);
+            $user->password = $password;
         }
-
-        $user -> save();
-
+        $user->save();
         return redirect("user/profile");
     }
-
-    public function delete($user){
-       
-        $user -> delete();
+    public function delete(User $user)
+    {
+        $user->delete();
         return to_route("user_signUp");
     }
-
-    public function logOut(){
+    public function logOut()
+    {
         Auth::logout();
-
-        return redirect("/user/login  ");
+        return redirect("/user/login");
     }
-
-    public function index(){
+    public function index()
+    {
         $users = User::all();
-        return view('user.index' , ["users" => $users]);
+        return view('user.index', ["users" => $users]);
     }
 }
-

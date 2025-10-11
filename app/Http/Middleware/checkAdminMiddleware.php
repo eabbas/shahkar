@@ -16,12 +16,12 @@ class checkAdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check()){
+        if (Auth::check()) {
             $user = Auth::user();
-            if($user -> is_admin  !=1){
+            if ($user->is_admin  != 1) {
                 return to_route("notAccess");
             }
-        }else{
+        } else {
             return to_route("loginAtFirst");
         }
         return $next($request);
