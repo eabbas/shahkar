@@ -126,3 +126,48 @@ function questionMobile(state){
         questionModalMobile.classList.add('-bottom-full')
     }
 }
+
+// search page
+
+function btn(el) {
+    if (el.children[0].classList.contains('translate-x-0')) {
+        el.children[0].classList.remove('translate-x-0')
+        el.children[0].classList.add('-translate-x-5')
+        el.children[0].classList.add('bg-white')
+        el.classList.add('bg-[var(--color-secondary)]')
+        el.classList.remove('border-gray-400')
+        el.classList.add('border-[var(--color-secondary)]')
+    } else {
+        el.children[0].classList.remove('-translate-x-5')
+        el.children[0].classList.add('translate-x-0')
+        el.children[0].classList.remove('bg-white')
+        el.classList.remove('bg-[var(--color-secondary)]')
+        el.classList.add('border-gray-400')
+        el.classList.remove('border-[var(--color-secondary)]')
+    }
+}
+
+let sidebarFeatures = document.querySelectorAll('.sidebarFeatures')
+sidebarFeatures.forEach((item) => {
+    item.addEventListener('click', () => {
+        if (item.children[1].classList.contains('max-h-0')) {
+            item.children[1].classList.remove('max-h-0')
+            item.children[1].classList.add('max-h-svh')
+            item.children[0].children[0].children[1].classList.add('rotate-180')
+            sidebarFeatures.forEach((subItem) => {
+                console.log(item);
+                console.log(subItem);
+                if (subItem.children[1] != item.children[1]) {
+                    
+                    subItem.children[1].classList.remove('max-h-svh')
+                    subItem.children[0].children[0].children[1].classList.remove('rotate-180')
+                    subItem.children[1].classList.add('max-h-0')
+                }
+            })
+        } else {
+            item.children[1].classList.remove('max-h-svh')
+            item.children[0].children[0].children[1].classList.remove('rotate-180')
+            item.children[1].classList.add('max-h-0')
+        }
+    })
+})

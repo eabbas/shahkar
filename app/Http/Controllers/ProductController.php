@@ -34,6 +34,7 @@ class ProductController extends Controller
     {
         $settings = settings::all();
         $product->category;
+        $product->comments;
         return view('product.show', ['product' => $product, 'settings'=>$settings]);
     }
     public function edit(product $product)
