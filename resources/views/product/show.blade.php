@@ -338,7 +338,7 @@
             </div>
             <div class="xl:w-4/12 w-full">
                 <div class="flex flex-row md:justify-center xl:justify-end items-center gap-5">
-                    <a href="#" class="flex items-center gap-5">
+                    <a href="{{ route('user_login') }}" class="flex items-center gap-5">
                         <div class="size-6">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-full" viewBox="0 0 448 512">
                                 <path fill="var(--color-fill)"
@@ -2791,10 +2791,10 @@
                                     </div>
 
 
-                                    <!-- comment -->
-
                                     <div class="w-full px-5 lg:px-0 lg:block flex flex-row">
-
+                                        
+                                        @foreach($product->comments as $comment)
+                                        <!-- comment -->
                                         <div
                                             class="border border-[var(--color-border)] lg:border-none rounded-lg lg:rounded-none ml-2 lg:ml-0 ">
 
@@ -2881,19 +2881,11 @@
                                                 </div>
                                                 <div class="lg:mt-6">
                                                     <p class="hidden lg:block text-sm text-justify leading-[2.17]">
-                                                        ۶ شهریور با قیمت ۸۹۹،۹۹۰ تومن سفارش دادم و امروز ۱۱ شهریور با
-                                                        وسایل دیگه به دستم رسید کیفیتی که تو این قیمت داد گوشی نوکیایی
-                                                        که گرفته بودم این کیفیت نداشت که حدودا ۳.۴ میلیون بود قیمتش دکمه
-                                                        های نرم و روان صفحه نمایشش بدک نیست برای یه گوشی اون اندازه ای
-                                                        خوبه دکمه کنارش که بالا میدی چراغ قوه میشه حتی تو حالت خاموش هم
-                                                        روشن میشه خیلی خوبه تایپ سی هستش و همراه خودش یک شارژر که به
-                                                        کلگی شارژر وصل هستش و یکسره خوبه وقتی جعبه باز میکنید باتری
-                                                        همراهشه که میزنید تو گوشی ...
+                                                       {{ $comment->comment }}
                                                     </p>
                                                     <p
                                                         class="lg:hidden block text-justify leading-[180%] text-xs max-h-[65px] overflow-hidden">
-                                                        ۶ شهریور با قیمت ۸۹۹،۹۹۰ تومن سفارش دادم و امروز ۱۱ شهریور با
-                                                        وسایل دیگه به دستم رسید کیفیتی که تو این قیمت داد گوشی
+                                                       {{ $comment->comment }}
                                                     </p>
                                                 </div>
 
@@ -2954,163 +2946,12 @@
                                             </div>
                                         </div>
 
-                                        <div
-                                            class="border border-[var(--color-border)] lg:border-none rounded-lg lg:rounded-none ml-2 lg:ml-0">
+                                        <!-- comment -->    
+                                         @endforeach
+                                     
+                                        
+                                    </div>
 
-                                            <div
-                                                class="py-3 px-3 lg:px-0 lg:py-4 lg:border-b border-[var(--color-border)] min-w-[308px] max-w-[308px] lg:max-w-full lg:min-w-full">
-                                                <div class="flex flex-row items-center justify-between">
-                                                    <div class="flex flex-row items-center">
-                                                        <div class="size-10">
-                                                            <img class="size-full rounded-full"
-                                                                src="https://dkstatics-public.digikala.com/digikala-content-x-profile/730b1da13c1ab319e28246314a4e9ab67267826b_1737805761.png?x-oss-process=image/resize,m_lfit,h_300,w_300/quality,q_80"
-                                                                alt="user profile">
-                                                        </div>
-                                                        <div class="mr-2">
-                                                            <div class="flex flex-row items-center gap-2">
-                                                                <span class="text-sm font-medium">
-                                                                    حسین حسین پور
-                                                                </span>
-                                                                <div
-                                                                    class="size-1.5 rounded-full bg-[var(--color-secondary-text)]/30">
-                                                                </div>
-                                                                <span
-                                                                    class="text-xs text-[var(--color-secondary-text)]">
-                                                                    خریدار
-                                                                </span>
-                                                            </div>
-                                                            <div class="flex flex-row items-center gap-1">
-                                                                <div class="size-4">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                        class="size-full" viewBox="0 0 576 512">
-                                                                        <path fill="var(--color-success-bg)"
-                                                                            d="M226.5 168.8L287.9 42.3l61.4 126.5c4.6 9.5 13.6 16.1 24.1 17.7l137.4 20.3-99.8 98.8c-7.4 7.3-10.8 17.8-9 28.1l23.5 139.5L303 407.7c-9.4-5-20.7-5-30.2 0L150.2 473.2l23.5-139.5c1.7-10.3-1.6-20.7-9-28.1L65 206.8l137.4-20.3c10.5-1.5 19.5-8.2 24.1-17.7zM424.9 509.1c8.1 4.3 17.9 3.7 25.3-1.7s11.2-14.5 9.7-23.5L433.6 328.4 544.8 218.2c6.5-6.4 8.7-15.9 5.9-24.5s-10.3-14.9-19.3-16.3L378.1 154.8 309.5 13.5C305.5 5.2 297.1 0 287.9 0s-17.6 5.2-21.6 13.5L197.7 154.8 44.5 177.5c-9 1.3-16.5 7.6-19.3 16.3s-.5 18.1 5.9 24.5L142.2 328.4 116 483.9c-1.5 9 2.2 18.1 9.7 23.5s17.3 6 25.3 1.7l137-73.2 137 73.2z" />
-                                                                    </svg>
-                                                                </div>
-                                                                <div>
-                                                                    <span
-                                                                        class="text-[10px] text-[var(--color-success-bg)]">
-                                                                        صاحب نظر موبایل و لوازم جانبی
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="hidden lg:flex flex-row items-center pl-3">
-                                                        <span class="text-xs text-[var(--color-secondary-text)]">
-                                                            11 شهریور 1404
-                                                        </span>
-                                                        <div
-                                                            class="size-5 flex flex-col justify-between items-center cursor-pointer">
-                                                            <span
-                                                                class="inline-block size-1 bg-[var(--color-secondary-text)] rounded-full"></span>
-                                                            <span
-                                                                class="inline-block size-1 bg-[var(--color-secondary-text)] rounded-full"></span>
-                                                            <span
-                                                                class="inline-block size-1 bg-[var(--color-secondary-text)] rounded-full"></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="lg:hidden flex flex-row items-center gap-1 py-3">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5"
-                                                        viewBox="0 0 576 512">
-                                                        <path fill="gold"
-                                                            d="M288.1 0l86.5 164 182.7 31.6L428 328.5 454.4 512 288.1 430.2 121.7 512l26.4-183.5L18.9 195.6 201.5 164 288.1 0z" />
-                                                    </svg>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5"
-                                                        viewBox="0 0 576 512">
-                                                        <path fill="gold"
-                                                            d="M288.1 0l86.5 164 182.7 31.6L428 328.5 454.4 512 288.1 430.2 121.7 512l26.4-183.5L18.9 195.6 201.5 164 288.1 0z" />
-                                                    </svg>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5"
-                                                        viewBox="0 0 576 512">
-                                                        <path fill="gold"
-                                                            d="M288.1 0l86.5 164 182.7 31.6L428 328.5 454.4 512 288.1 430.2 121.7 512l26.4-183.5L18.9 195.6 201.5 164 288.1 0z" />
-                                                    </svg>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5"
-                                                        viewBox="0 0 576 512">
-                                                        <path fill="gold"
-                                                            d="M288.1 0l86.5 164 182.7 31.6L428 328.5 454.4 512 288.1 430.2 121.7 512l26.4-183.5L18.9 195.6 201.5 164 288.1 0z" />
-                                                    </svg>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5"
-                                                        viewBox="0 0 576 512">
-                                                        <path fill="var(--color-secondary-text)"
-                                                            d="M288.1 0l86.5 164 182.7 31.6L428 328.5 454.4 512 288.1 430.2 121.7 512l26.4-183.5L18.9 195.6 201.5 164 288.1 0z" />
-                                                    </svg>
-                                                </div>
-                                                <div class="lg:mt-6">
-                                                    <p class="hidden lg:block text-sm text-justify leading-[2.17]">
-                                                        ۶ شهریور با قیمت ۸۹۹،۹۹۰ تومن سفارش دادم و امروز ۱۱ شهریور با
-                                                        وسایل دیگه به دستم رسید کیفیتی که تو این قیمت داد گوشی نوکیایی
-                                                        که گرفته بودم این کیفیت نداشت که حدودا ۳.۴ میلیون بود قیمتش دکمه
-                                                        های نرم و روان صفحه نمایشش بدک نیست برای یه گوشی اون اندازه ای
-                                                        خوبه دکمه کنارش که بالا میدی چراغ قوه میشه حتی تو حالت خاموش هم
-                                                        روشن میشه خیلی خوبه تایپ سی هستش و همراه خودش یک شارژر که به
-                                                        کلگی شارژر وصل هستش و یکسره خوبه وقتی جعبه باز میکنید باتری
-                                                        همراهشه که میزنید تو گوشی ...
-                                                    </p>
-                                                    <p
-                                                        class="lg:hidden block text-justify leading-[180%] text-xs max-h-[65px] overflow-hidden">
-                                                        ۶ شهریور با قیمت ۸۹۹،۹۹۰ تومن سفارش دادم و امروز ۱۱ شهریور با
-                                                        وسایل دیگه به دستم رسید کیفیتی که تو این قیمت داد گوشی
-                                                    </p>
-                                                </div>
-
-                                                <div class="hidden lg:block mt-2">
-                                                    <a href="#" class="leading-[2.17] flex flex-row items-center gap-2">
-                                                        <span class="text-xs font-medium text-[var(--color-secondary)]">
-                                                            ادامه
-                                                        </span>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3"
-                                                            viewBox="0 0 320 512">
-                                                            <path fill="var(--color-secondary)"
-                                                                d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
-                                                        </svg>
-                                                    </a>
-                                                </div>
-
-                                                <div class="flex flex-row justify-between items-center mt-7">
-                                                    <span class="lg:hidden text-xs text-[var(--color-secondary-text)]">
-                                                        11 شهریور 1404
-                                                    </span>
-                                                    <div class="hidden lg:flex flex-row items-center gap-4">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-4"
-                                                            viewBox="0 0 640 512">
-                                                            <path fill="var(--color-fill)"
-                                                                d="M0 185.8c0-6.4 1.6-12.7 4.7-18.3L82.4 25C90.8 9.6 106.9 0 124.5 0h391c17.6 0 33.7 9.6 42.1 25l77.7 142.4c3.1 5.6 4.7 11.9 4.7 18.3c0 21.1-17.1 38.2-38.2 38.2H576V496c0 8.8-7.2 16-16 16s-16-7.2-16-16V224H96V352H352V272 256h32v16V464c0 26.5-21.5 48-48 48H112c-26.5 0-48-21.5-48-48V224H38.2C17.1 224 0 206.9 0 185.8zM80 192H560h41.8c3.4 0 6.2-2.8 6.2-6.2c0-1-.3-2.1-.8-3L529.6 40.3c-2.8-5.1-8.2-8.3-14-8.3h-391c-5.9 0-11.2 3.2-14 8.3L32.8 182.8c-.5 .9-.8 1.9-.8 3c0 3.4 2.8 6.2 6.2 6.2H80zM96 464c0 8.8 7.2 16 16 16H336c8.8 0 16-7.2 16-16V384H96v80z" />
-                                                        </svg>
-                                                        <span class="text-xs text-[var(--color-secondary-text)]">
-                                                            دیجی کالا
-                                                        </span>
-                                                        <div
-                                                            class="size-1.5 rounded-full bg-[var(--color-secondary-text)]/30">
-                                                        </div>
-                                                        <div class="size-3 rounded-full"
-                                                            style="background-color: rgb(33, 33, 33);"></div>
-                                                        <span class="text-xs">
-                                                            مشکی
-                                                        </span>
-                                                    </div>
-                                                    <div class="flex flex-row items-center gap-4">
-                                                        <button class="flex flex-row items-center gap-2">
-                                                            <span class="text-xs">0</span>
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4"
-                                                                viewBox="0 0 512 512">
-                                                                <path fill="var(--color-fill)"
-                                                                    d="M288.8 81.7c3.5-12.8 16.7-20.3 29.5-16.8s20.3 16.7 16.8 29.5l-4.5 16.4c-5.5 20.2-13.9 39.3-24.7 56.9c-3.1 4.9-3.2 11.1-.4 16.2s8.2 8.2 14 8.2H448c17.7 0 32 14.3 32 32c0 11.3-5.9 21.3-14.8 27c-7.2 4.6-9.5 13.9-5.3 21.3c2.6 4.6 4.1 10 4.1 15.7c0 12.4-7 23.1-17.3 28.5c-4.2 2.2-7.3 6.1-8.3 10.8s.1 9.5 3 13.2c4.2 5.4 6.7 12.2 6.7 19.5c0 14.2-9.2 26.3-22.1 30.4c-7.8 2.5-12.4 10.6-10.7 18.6c.5 2.2 .7 4.5 .7 6.9c0 17.7-14.3 32-32 32H294.5c-15.8 0-31.2-4.7-44.4-13.4l-38.5-25.7c-9-6-16.6-13.7-22.4-22.6c-4.9-7.4-14.8-9.4-22.2-4.6s-9.4 14.8-4.6 22.2c8.1 12.3 18.7 23.1 31.4 31.6l38.5 25.7c18.4 12.3 40 18.8 62.1 18.8H384c35.3 0 64-28.7 64-64l0-.6c19.1-11.1 32-31.7 32-55.4c0-8.7-1.8-17.1-4.9-24.7C487.9 323.6 496 306.8 496 288c0-6.5-1-12.8-2.8-18.7C504.8 257.7 512 241.7 512 224c0-35.3-28.7-64-64-64H346.4c6.2-13.1 11.3-26.7 15.1-40.9l4.5-16.4c8.1-29.8-9.5-60.6-39.3-68.8s-60.6 9.5-68.8 39.3l-4.5 16.4c-8.9 32.6-29.6 60.8-58.2 79l-3.1 2c-11.8 7.5-21.7 17.1-29.5 28.2c-5.1 7.2-3.3 17.2 4 22.3s17.2 3.3 22.3-4c5.4-7.7 12.2-14.4 20.4-19.5l3.1-2c35.3-22.4 60.9-57.2 71.9-97.5l4.5-16.4zM32 224H96V448H32V224zM0 224V448c0 17.7 14.3 32 32 32H96c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32H32c-17.7 0-32 14.3-32 32z" />
-                                                            </svg>
-                                                        </button>
-                                                        <button class="flex flex-row items-center gap-2">
-                                                            <span class="text-xs">0</span>
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4"
-                                                                viewBox="0 0 512 512">
-                                                                <path fill="var(--color-fill)"
-                                                                    d="M288.8 430.3c3.5 12.8 16.7 20.3 29.5 16.8s20.3-16.7 16.8-29.5l-4.5-16.4c-5.5-20.2-13.9-39.3-24.7-56.9c-3.1-4.9-3.2-11.1-.4-16.2s8.2-8.2 14-8.2H448c17.7 0 32-14.3 32-32c0-11.3-5.9-21.3-14.8-27c-7.2-4.6-9.5-13.9-5.3-21.3c2.6-4.6 4.1-10 4.1-15.7c0-12.4-7-23.1-17.3-28.5c-4.2-2.2-7.3-6.1-8.3-10.8s.1-9.5 3-13.2c4.2-5.4 6.7-12.2 6.7-19.5c0-14.2-9.2-26.3-22.1-30.4c-7.8-2.5-12.4-10.6-10.7-18.6c.5-2.2 .7-4.5 .7-6.9c0-17.7-14.3-32-32-32H294.5c-15.8 0-31.2 4.7-44.4 13.4l-38.5 25.7c-9 6-16.6 13.7-22.4 22.6c-4.9 7.4-14.8 9.4-22.2 4.6s-9.4-14.8-4.6-22.2c8.1-12.3 18.7-23.1 31.4-31.6l38.5-25.7c18.4-12.3 40-18.8 62.1-18.8H384c35.3 0 64 28.7 64 64l0 .6c19.1 11.1 32 31.7 32 55.4c0 8.7-1.8 17.1-4.9 24.7C487.9 188.4 496 205.2 496 224c0 6.5-1 12.8-2.8 18.7C504.8 254.3 512 270.3 512 288c0 35.3-28.7 64-64 64H346.4c6.2 13.1 11.3 26.7 15.1 40.9l4.5 16.4c8.1 29.8-9.5 60.6-39.3 68.8s-60.6-9.5-68.8-39.3l-4.5-16.4c-8.9-32.6-29.6-60.8-58.2-79l-3.1-2 8.2-12.9-8.2 12.9c-11.8-7.5-21.7-17.1-29.5-28.2c-5.1-7.2-3.3-17.2 4-22.3s17.2-3.3 22.3 4c5.4 7.7 12.2 14.4 20.4 19.5l3.1 2c35.3 22.4 60.9 57.2 71.9 97.5l4.5 16.4zM32 352H96V128H32V352zM0 352V128c0-17.7 14.3-32 32-32H96c17.7 0 32 14.3 32 32V352c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32z" />
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
 
                                         </div>
 
@@ -3119,7 +2960,45 @@
 
 
 
-                                    <!-- comment -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    
 
                                     <div class="hidden lg:block mt-4">
                                         <a href="#" class="leading-[2.17] flex flex-row items-center gap-2">
@@ -3260,6 +3139,36 @@
                                         </div>
                                     </div>
 
+
+
+
+
+
+                                    <!-- question -->
+                                        <div class="p-4 lg:p-0 rounded-lg border border-[var(--color-border)] lg:border-none min-w-[308px] max-w-[308px] lg:min-w-full lg:max-w-full ml-3 lg:ml-0">
+                                            <div class="lg:py-4 lg:border-b border-[var(--color-border)]">
+                                                <h3 class="hidden lg:block text-sm lg:text-md pb-2 lg:pb-0 lg:py-2 font-medium leading-[180%] lg:leading-[2.17]">
+                                                    سلام وقت بخیر ، ببخشید آنتن دهیش خوبه؟؟خطش نمیپره؟؟چون یکی خریدم خطش مدام میپره
+                                                </h3>
+                                                <h3 class="lg:hidden block text-sm lg:text-md pb-2 lg:pb-0 lg:py-2 font-medium leading-[180%] lg:leading-[2.17]">
+                                                    سلام وقت بخیر ، ببخشید آنتن دهیش خوبه؟؟خطش نمیپره؟؟چون یک...
+                                                </h3>
+                                                <div class="rounded-lg border lg:border-none border-[var(--color-border)] px-3 py-2 lg:px-0 lg:py-0 bg-[var(--color-secondary-bg)] lg:bg-inherit">
+                                                    <div class="flex flex-row items-center py-2">
+                                                        <div class="flex flex-row gap-2 items-center">
+                                                            <div class="size-10">
+                                                                <img class="size-full rounded-full" src="https://dkstatics-public.digikala.com/digikala-content-x-profile/79e1a2b23332632135d587ca943b5b2f8bf8ea6e_1742409752.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/quality,q_80" alt="user profile">
+                                                            </div>
+                                                            <div class="flex flex-row items-center gap-2">
+                                                                <span class="text-sm font-medium">
+                                                                    حسین حسین  پور
+                                                                </span>
+                                                                <div class="size-1.5 rounded-full bg-[var(--color-secondary-text)]/30"></div>
+                                                                <span class="text-xs text-[var(--color-secondary-text)]">
+                                                                    خریدار
+                                                                </span>
+                                                            </div>
+
                                     <!-- comment -->
                                     @foreach($questions as $question)
                                     @if($product->id == $question->product_id)
@@ -3297,6 +3206,7 @@
                                                             <span class="text-xs text-[var(--color-secondary-text)]">
                                                                 خریدار
                                                             </span>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -3339,10 +3249,32 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                            </div>
+
+                                        </div>
+                                    <!-- question -->
+
+
+
+                                    
+
+                                    <!-- question -->
+                                        <div class="p-4 lg:p-0 rounded-lg border border-[var(--color-border)] lg:border-none min-w-[308px] max-w-[308px] lg:min-w-full lg:max-w-full ml-3 lg:ml-0">
+                                            <div class="lg:py-4 lg:border-b border-[var(--color-border)]">
+                                                <h3 class="hidden lg:block text-sm lg:text-md pb-2 lg:pb-0 lg:py-2 font-medium leading-[180%] lg:leading-[2.17]">
+                                                    سلام وقت بخیر ، ببخشید آنتن دهیش خوبه؟؟خطش نمیپره؟؟چون یکی خریدم خطش مدام میپره
+                                                </h3>
+                                                <h3 class="lg:hidden block text-sm lg:text-md pb-2 lg:pb-0 lg:py-2 font-medium leading-[180%] lg:leading-[2.17]">
+                                                    سلام وقت بخیر ، ببخشید آنتن دهیش خوبه؟؟خطش نمیپره؟؟چون یک...
+                                                </h3>
+                                                <div class="rounded-lg border lg:border-none border-[var(--color-border)] px-3 py-2 lg:px-0 lg:py-0 bg-[var(--color-secondary-bg)] lg:bg-inherit">
+
                                                 @foreach($answers as $reply)
                                                 @if($reply->question_id == $question->id && $reply->parent_id == $answer->id)
                                                 <!-- reply -->
                                                 <div class="rounded-lg border lg:border-none border-[var(--color-border)] px-3 py-2 lg:px-30 lg:py-0 bg-rose-200 lg:bg-inherit">
+
                                                     <div class="flex flex-row items-center py-2">
                                                         <div class="flex flex-row gap-2 items-center">
                                                             <div class="size-10">
@@ -3418,10 +3350,15 @@
                                             </div>
                                         </div>
 
+        
+                                    <!-- question -->
+
+
                                     </div>
                                     @endif
                                     @endforeach
                                     <!-- comment -->
+
 
                                     <div class="hidden lg:block mt-4">
                                         <a href="#" class="leading-[2.17] flex flex-row items-center gap-2">
@@ -3802,7 +3739,9 @@
                     </div>
                 </div>
                 <div class="w-full">
-                    <form class="p-4" action="" method="">
+                    <form class="p-4" action="{{ route('comment.store') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
                         <div class="w-full h-[305px] overflow-y-auto hide-scrollbar">
                             <div class="flex flex-row items-start gap-3 pb-4 border-b border-[var(--color-border)]">
                                 <img class="size-[56px]" src="https://dkstatics-public.digikala.com/digikala-products/d6518a10b641b32833525b184f518e9ad0a38ec0_1751860865.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/format,webp/quality,q_80" alt="">
@@ -3818,7 +3757,7 @@
                                     <span class="font-medium text-red-500">*</span>
                                 </div>
                                 <div class="pt-2 border border-[var(--color-border)] rounded-lg">
-                                    <textarea class="w-full outline-none resize-none p-3" rows="3" placeholder="نظر خودرا درباره این کالا بنویسید"></textarea>
+                                    <textarea class="w-full outline-none resize-none p-3" name="comment" rows="3" placeholder="نظر خودرا درباره این کالا بنویسید"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -3888,7 +3827,7 @@
                         </div>
                         <div class="py-4">
                             <button class="rounded-lg block w-full leading-[2.17] text-[var(--color-primary-text)] bg-[var(--color-primary)] text-center py-3 px-5 cursor-pointer">
-                                ثبت دیدگاه
+                                ثبت پرسش
                             </button>
                         </div>
                     </form>
@@ -3918,7 +3857,9 @@
                     </div>
                 </div>
                 <div class="w-full">
-                    <form class="p-4" action="" method="">
+                    <form class="p-4" action="{{ route('comment.store') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
                         <div class="w-full h-[305px] overflow-y-auto hide-scrollbar">
                             <div class="flex flex-row items-start gap-3 pb-4 border-b border-[var(--color-border)]">
                                 <img class="size-[56px]" src="https://dkstatics-public.digikala.com/digikala-products/d6518a10b641b32833525b184f518e9ad0a38ec0_1751860865.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/format,webp/quality,q_80" alt="">
@@ -3934,7 +3875,7 @@
                                     <span class="font-medium text-red-500">*</span>
                                 </div>
                                 <div class="pt-2 border border-[var(--color-border)] rounded-lg">
-                                    <textarea class="w-full outline-none resize-none p-3" rows="3" placeholder="نظر خودرا درباره این کالا بنویسید"></textarea>
+                                    <textarea class="w-full outline-none resize-none p-3" name="comment" rows="3" placeholder="نظر خودرا درباره این کالا بنویسید"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -4031,7 +3972,8 @@
      
     <!-- buy button mobile end -->
 
-    <footer class="w-full py-5 mb-20" style="background-color: rgb(33, 33, 33);">
+
+    <footer class="w-full py-5 mb-20 lg:mb-0" style="background-color: rgb(33, 33, 33);">
 
         <p class="text-white font-semibold text-center">
             طراحی شده توسط تیم فائوس

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigInteger('product_id');
             $table->string('comment');
             $table->bigInteger('parent_id');
+            $table->tinyInteger('is_active')->default(1);
             $table->timestamps();
         });
     }

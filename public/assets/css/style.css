@@ -106,3 +106,33 @@ input[type=number]::-webkit-outer-spin-button {
 .hoverIcon:hover .styles_Tooltip__tooltip___Mj8o{
   display: block;
 }
+
+
+.productGrid:hover{
+  z-index: 1;
+  box-shadow:0 1px 5px rgba(0, 0, 0, .2); 
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #555;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+}
+
+input[type="checkbox"]:checked {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+
+input[type="checkbox"]:checked::after {
+  content: "✔";
+  color: white;
+  position: absolute;
+  left: 3px;
+  top: 0;
+  font-size: 12px;
+}

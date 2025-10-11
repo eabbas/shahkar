@@ -37,9 +37,11 @@ class ProductController extends Controller
         $answers = answer::all();
         $settings = settings::all();
         $product->category;
+        $product->comments;
         $questions = question::all();
         // return $answers;
         return view('product.show', ['product' => $product, 'settings' => $settings, 'questions' => $questions, 'answers' => $answers]);
+
     }
     public function edit(product $product)
     {
