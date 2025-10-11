@@ -137,4 +137,3 @@ Route::group([
       Route::get('/delete', 'deleteColor')->name('deleteColor');
    });
 });
-
