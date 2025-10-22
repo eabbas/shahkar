@@ -20,13 +20,14 @@ use App\Http\Controllers\QuestionController;
 Route::view('/', 'welcome');
 // category routes
 Route::group(['prefix' => 'category', 'controller' => CategoryController::class, 'as' => 'category-'], function () {
-    Route::view('/create', 'category.create');
-    Route::post('/store', 'store')->name('store');
-    Route::get('/list', 'index')->name('index');
-    Route::get('/show/{category}', 'show')->name('show');
-    Route::get('/edit/{category}', 'edit')->name('edit');
-    Route::post('/update', 'update')->name('update');
-    Route::get('/delete/{category}', 'delete')->name('delete');
+   Route::get('/create', 'create');
+   Route::post('/store', 'store')->name('store');
+   Route::get('/list', 'index')->name('index');
+   Route::get('/show/{category}', 'show')->name('show');
+   Route::get('/edit/{category}', 'edit')->name('edit');
+   Route::post('/update', 'update')->name('update');
+   Route::get('/delete/{category}', 'delete')->name('delete');
+   Route::get('/{category}/products', 'products')->name('products');
 });
 // product routes
 Route::group(['prefix' => 'product', 'controller' => ProductController::class, 'as' => 'product-'], function () {
@@ -40,13 +41,13 @@ Route::group(['prefix' => 'product', 'controller' => ProductController::class, '
 });
 // course category routes
 Route::group(['prefix' => 'courseCategory', 'controller' => CourseCategoryController::class, 'as' => 'courseCategory-'], function () {
-    Route::view('/create', 'courseCategory.create');
-    Route::post('/store', 'store')->name('store');
-    Route::get('/list', 'index')->name('index');
-    Route::get('/show/{courseCategory}', 'show')->name('show');
-    Route::get('/edit/{courseCategory}', 'edit')->name('edit');
-    Route::post('/update', 'update')->name('update');
-    Route::get('/delete/{courseCategory}', 'delete')->name('delete');
+   Route::get('/create', 'create');
+   Route::post('/store', 'store')->name('store');
+   Route::get('/list', 'index')->name('index');
+   Route::get('/show/{courseCategory}', 'show')->name('show');
+   Route::get('/edit/{courseCategory}', 'edit')->name('edit');
+   Route::post('/update', 'update')->name('update');
+   Route::get('/delete/{courseCategory}', 'delete')->name('delete');
 });
 // course routes
 Route::group(['prefix' => 'course', 'controller' => CourseController::class, 'as' => 'course-'], function () {
@@ -58,13 +59,6 @@ Route::group(['prefix' => 'course', 'controller' => CourseController::class, 'as
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{course}', 'delete')->name('delete');
 });
-
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::view('/notAccess', 'notAccess')->name('notAccess');
-Route::view('/loginAtFirst', 'loginAtFirst')->name('loginAtFirst');
-
-
 // menu routes
 Route::group(['prefix' => 'menu', 'controller' => MenuController::class, 'as' => 'menu-'], function () {
     Route::get('/create', 'create');
@@ -115,6 +109,7 @@ Route::group([
 //     // Route::post("/updata","updata");
 //     // Route::get("/delete/{id}","delete");
 // });
+
 
 Route::group([
     'prefix' => 'settings',
@@ -189,4 +184,22 @@ Route::controller(userController::class)->prefix("admin")->group(function () {
    // Route::get("/delete/{id}","delete");
 });
 
+// settings routes
+Route::group([
+   'prefix' => 'settings',
+   'controller' => SettingsController::class,
+   'as' => 'settings.'
+], function () {
+   Route::group([
+      'prefix' => 'colors',
+      'as' => 'colors.'
+   ], function () {
+      Route::get('/create', 'createColor')->name('createColor');
+      Route::post('/update', 'upsertColor')->name('upsertColor');
+      Route::get('/show', 'showColors')->name('showColors');
+      Route::get('/delete', 'deleteColor')->name('deleteColor');
+   });
+
+});
 Route::get('/search', [SearchController::class, 'index']);
+

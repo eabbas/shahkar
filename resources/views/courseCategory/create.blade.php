@@ -24,6 +24,15 @@
                </label>
                <input type="text" name="title" id="courseCatTitle" class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]" placeholder="نام دسته دوره را وارد کنید" required>
             </div>
+            <div class="mt-5 flex flex-col gap-3">
+               <label for="parent_id">دسته بندی :</label>
+               <select name="parent_id" id="parent_id" class="md:w-1/2 bg-[#F9F9F9] py-3 pr-5 rounded-[10px]">
+                  <option value="0">بدون والد</option>
+                  @foreach($courseCategories as $courseCategory)
+                  <option value="{{$courseCategory->id}}">{{$courseCategory->title}}</option>
+                  @endforeach
+               </select>
+            </div>
             <div class="mt-5 text-center">
                <button type="submit" class="py-3 px-10 rounded-[10px] bg-[#1B84FF] hover:bg-[#056EE9] text-white cursor-pointer">ثبت</button>
             </div>
