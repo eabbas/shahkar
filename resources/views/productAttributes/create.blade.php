@@ -20,7 +20,7 @@
                   <span>محصول : </span>
                   <span class="text-rose-500">*</span>
                </label>
-               <select name="product_id" id="categoroy_id" class="md:w-1/2 bg-[#F9F9F9] py-3 pr-5 rounded-[10px]" required>
+               <select name="product_id" id="product_id" class="md:w-1/2 bg-[#F9F9F9] py-3 pr-5 rounded-[10px]" required>
                   <option hidden value="">یک محصول انتخاب کنید</option>
                   @foreach($products as $product)
                   <option value="{{$product->id}}">{{$product->title}}</option>

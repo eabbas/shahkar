@@ -39,7 +39,7 @@
             </div>
             <div class="mt-5 flex flex-col gap-3">
                <label for="category_id">دسته بندی :</label>
-               <select name="category_id" id="categoroy_id" class="md:w-1/2 bg-[#F9F9F9] py-3 pr-5 rounded-[10px]">
+               <select name="category_id" id="category_id" class="md:w-1/2 bg-[#F9F9F9] py-3 pr-5 rounded-[10px]">
                   <option value="0">بدون والد</option>
                   @foreach($categories as $category)
                   <option value="{{$category->id}}" @if($category->id == $product->category_id) selected @endif>{{$category->title}}</option>

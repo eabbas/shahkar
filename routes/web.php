@@ -22,13 +22,14 @@ use App\Http\Controllers\QuestionController;
 Route::view('/', 'welcome');
 // category routes
 Route::group(['prefix' => 'category', 'controller' => CategoryController::class, 'as' => 'category-'], function () {
-    Route::view('/create', 'category.create');
-    Route::post('/store', 'store')->name('store');
-    Route::get('/list', 'index')->name('index');
-    Route::get('/show/{category}', 'show')->name('show');
-    Route::get('/edit/{category}', 'edit')->name('edit');
-    Route::post('/update', 'update')->name('update');
-    Route::get('/delete/{category}', 'delete')->name('delete');
+   Route::get('/create', 'create');
+   Route::post('/store', 'store')->name('store');
+   Route::get('/list', 'index')->name('index');
+   Route::get('/show/{category}', 'show')->name('show');
+   Route::get('/edit/{category}', 'edit')->name('edit');
+   Route::post('/update', 'update')->name('update');
+   Route::get('/delete/{category}', 'delete')->name('delete');
+   Route::get('/{category}/products', 'products')->name('products');
 });
 // product routes
 Route::group(['prefix' => 'product', 'controller' => ProductController::class, 'as' => 'product-'], function () {
@@ -42,13 +43,13 @@ Route::group(['prefix' => 'product', 'controller' => ProductController::class, '
 });
 // course category routes
 Route::group(['prefix' => 'courseCategory', 'controller' => CourseCategoryController::class, 'as' => 'courseCategory-'], function () {
-    Route::view('/create', 'courseCategory.create');
-    Route::post('/store', 'store')->name('store');
-    Route::get('/list', 'index')->name('index');
-    Route::get('/show/{courseCategory}', 'show')->name('show');
-    Route::get('/edit/{courseCategory}', 'edit')->name('edit');
-    Route::post('/update', 'update')->name('update');
-    Route::get('/delete/{courseCategory}', 'delete')->name('delete');
+   Route::get('/create', 'create');
+   Route::post('/store', 'store')->name('store');
+   Route::get('/list', 'index')->name('index');
+   Route::get('/show/{courseCategory}', 'show')->name('show');
+   Route::get('/edit/{courseCategory}', 'edit')->name('edit');
+   Route::post('/update', 'update')->name('update');
+   Route::get('/delete/{courseCategory}', 'delete')->name('delete');
 });
 // course routes
 Route::group(['prefix' => 'course', 'controller' => CourseController::class, 'as' => 'course-'], function () {
@@ -60,13 +61,6 @@ Route::group(['prefix' => 'course', 'controller' => CourseController::class, 'as
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{course}', 'delete')->name('delete');
 });
-
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::view('/notAccess', 'notAccess')->name('notAccess');
-Route::view('/loginAtFirst', 'loginAtFirst')->name('loginAtFirst');
-
-
 // menu routes
 Route::group(['prefix' => 'menu', 'controller' => MenuController::class, 'as' => 'menu-'], function () {
     Route::get('/create', 'create');
@@ -87,45 +81,6 @@ Route::group(['prefix' => 'productAttribute', 'controller' => ProductAttributesC
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{productAttribute}', 'delete')->name('delete');
 });
-
-Route::controller(userController::class)->prefix('user')->group(function () {
-    Route::get('/signup', 'signup')->name('user_signUp');
-    Route::post('/store', 'store')->name('user_store');
-
-    Route::get('/login', 'login')->name('user_login');
-    Route::post('/check_user', 'checkUser')->name('checkUser');
-    Route::get('/profile/{id?}', 'profile')->name('user_profile');
-    Route::get('/edit/{user}', 'edit')->name('user_edit');
-    Route::post('/updata', 'updata')->name('user_update');
-    Route::get('/delete/{user}', 'delete')->name('user_delete');
-    Route::get('/logOut', 'logOut')->name('user_logOtu');
-    Route::get('/index', 'index')->name('user_index');
-});
-
-Route::controller(userController::class)->prefix('admin')->group(function () {
-    Route::get('/signUpUser', 'signup')->middleware(checkAdminMiddleware::class)->name('admin_create_user');
-    // Route::post("/store","store") -> name("user_store");
-
-    // Route::get("/loginUser","login") -> name("user_login");
-    // Route::post("/check_login","checkLogin");
-    Route::get('/profile/{id?}', 'profile')->middleware(checkAdminMiddleware::class);
-    // Route::get("/index","index");
-    // Route::get("/edit/{id}","edit");
-    // Route::post("/updata","updata");
-    // Route::get("/delete/{id}","delete");
-});
-
-// menu routes
-Route::group(['prefix' => 'menu', 'controller' => MenuController::class, 'as' => 'menu-'], function () {
-    Route::get('/create', 'create');
-    Route::post('/store', 'store')->name('store');
-    Route::get('/list', 'index')->name('index');
-    Route::get('/show/{menu}', 'show')->name('show');
-    Route::get('/edit/{menu}', 'edit')->name('edit');
-    Route::post('/update', 'update')->name('update');
-    Route::get('/delete/{menu}', 'delete')->name('delete');
-});
-
 Route::group([
     'prefix' => 'settings',
     'controller' => SettingsController::class,
@@ -214,5 +169,4 @@ Route::group([
    });
 
 });
-
 Route::get('/search', [SearchController::class, 'index']);
