@@ -105,7 +105,7 @@ Route::group([
     Route::post('/store', 'store')->name('store');
     Route::post('/update', 'update')->name('update');
     Route::post('/delete/{comment}', 'delete')->name('delete');
-
+});
 // questions routes
 Route::group(['prefix' => 'question', 'controller' => QuestionController::class, 'as' => 'question-'], function () {
    Route::post('/store', 'store')->name('store');
