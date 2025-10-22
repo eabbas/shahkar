@@ -14,8 +14,6 @@ use App\Http\Controllers\userController;
 use App\Http\Middleware\checkAdminMiddleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchController;
-use App\Http\Controllers\SettingsController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\QuestionController;
 
 
@@ -81,6 +79,38 @@ Route::group(['prefix' => 'productAttribute', 'controller' => ProductAttributesC
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{productAttribute}', 'delete')->name('delete');
 });
+
+Route::group([
+    'prefix'=>"user",
+    'controller'=>userController::class,
+    'as'=>"user."
+], function(){
+    Route::get('/signup', 'signup')->name('signup');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/login', 'login')->name('login');
+    Route::post('/check_user', 'checkUser')->name('checkUser');
+    Route::get('/profile/{id?}', 'profile')->name('profile');
+    Route::get('/edit/{user}', 'edit')->name('edit');
+    Route::post('/updata', 'updata')->name('update');
+    Route::get('/delete/{user}', 'delete')->name('delete');
+    Route::get('/logout', 'logout')->name('logout');
+    Route::get('/index', 'index')->name('index');
+});
+
+// Route::controller(userController::class)->prefix('admin')->group(function () {
+//     Route::get('/signUpUser', 'signup')->middleware(checkAdminMiddleware::class)->name('admin_create_user');
+//     // Route::post("/store","store") -> name("user_store");
+
+//     // Route::get("/loginUser","login") -> name("user_login");
+//     // Route::post("/check_login","checkLogin");
+//     Route::get('/profile/{id?}', 'profile')->middleware(checkAdminMiddleware::class);
+//     // Route::get("/index","index");
+//     // Route::get("/edit/{id}","edit");
+//     // Route::post("/updata","updata");
+//     // Route::get("/delete/{id}","delete");
+// });
+
+
 Route::group([
     'prefix' => 'settings',
     'controller' => SettingsController::class,
@@ -114,6 +144,7 @@ Route::group(['prefix' => 'question', 'controller' => QuestionController::class,
    Route::get('/edit/{question}', 'edit')->name('edit');
    Route::post('/update', 'update')->name('update');
    Route::get('/delete/{question}', 'delete')->name('delete');
+
 });
 // answers routes
 Route::group(['prefix' => 'answer', 'controller' => AnswerController::class, 'as' => 'answer-'], function () {
@@ -128,18 +159,18 @@ Route::group(['prefix' => 'answer', 'controller' => AnswerController::class, 'as
 Route::get('/home', [HomeController::class, 'index'])->name("home");
 Route::view('/notAccess', 'notAccess')->name("notAccess");
 Route::view('/loginAtFirst', 'loginAtFirst')->name("loginAtFirst");
-Route::controller(userController::class)->prefix("user")->group(function () {
-   Route::get("/signup", "signup")->name("user_signUp");
-   Route::post("/store", "store")->name("user_store");
-   Route::get("/login", "login")->name("user_login");
-   Route::post("/check_user", "checkUser")->name("checkUser");
-   Route::get("/profile/{id?}", "profile")->name("user_profile");
-   Route::get("/edit/{user}", "edit")->name("user_edit");
-   Route::post("/update", "update")->name("user_update");
-   Route::get("/delete/{user}", "delete")->name("user_delete");
-   Route::get("/logOut", "logOut")->name("user_logOut");
-   Route::get("/index", "index")->name("user_index");
-});
+// Route::controller(userController::class)->prefix("user")->group(function () {
+//    Route::get("/signup", "signup")->name("user_signUp");
+//    Route::post("/store", "store")->name("user_store");
+//    Route::get("/login", "login")->name("user_login");
+//    Route::post("/check_user", "checkUser")->name("checkUser");
+//    Route::get("/profile/{id?}", "profile")->name("user_profile");
+//    Route::get("/edit/{user}", "edit")->name("user_edit");
+//    Route::post("/update", "update")->name("user_update");
+//    Route::get("/delete/{user}", "delete")->name("user_delete");
+//    Route::get("/logOut", "logOut")->name("user_logOut");
+//    Route::get("/index", "index")->name("user_index");
+// });
 // admin routes
 Route::controller(userController::class)->prefix("admin")->group(function () {
    Route::get("/signUpUser", "signup")->middleware(checkAdminMiddleware::class)->name("admin_create_user");
@@ -152,6 +183,7 @@ Route::controller(userController::class)->prefix("admin")->group(function () {
    // Route::post("/update","update");
    // Route::get("/delete/{id}","delete");
 });
+
 // settings routes
 Route::group([
    'prefix' => 'settings',
@@ -170,3 +202,4 @@ Route::group([
 
 });
 Route::get('/search', [SearchController::class, 'index']);
+

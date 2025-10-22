@@ -15,13 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('description')->nullable();
-            $table->string('image')->nullable();
+            // $table->string('image')->nullable();
             // $table->string('images')->nullable();
             $table->string('summary')->nullable();
             // $table->string('Specifications')->nullable();
             // $table->integer('price');
             // $table->integer('discountPercent')->nullable();
             $table->integer('category_id');
+            $table->tinyInteger('is_in_home')->nullable();
             // $table->integer('amount');
             // $table->integer('functionality');
             $table->timestamps();

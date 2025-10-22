@@ -171,3 +171,21 @@ sidebarFeatures.forEach((item) => {
         }
     })
 })
+
+// new
+let loginItem = document.getElementById('login')
+function login(state){
+    if (state == "open") {
+        loginItem.classList.remove('opacity-0')
+        loginItem.classList.remove('invisible')
+        loginItem.children[0].children[1].classList.remove('opacity-0')
+        loginItem.children[0].children[1].classList.remove('scale-75')
+    }
+    if (state == "close") {
+        loginItem.classList.add('opacity-0')
+        loginItem.classList.add('invisible')
+        loginItem.children[0].children[1].classList.add('opacity-0')
+        loginItem.children[0].children[1].classList.add('scale-75')
+    }
+    
+}
