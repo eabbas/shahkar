@@ -15,6 +15,8 @@
             <th>آیدی</th>
             <th>عنوان دسته بندی</th>
             <th>توضیحات دسته بندی</th>
+            <th>دسته بندی فرزند</th>
+            <th>تصویر</th>
             <th>عملیات</th>
          </tr>
       </thead>
@@ -24,6 +26,8 @@
             <td>{{$category->id}}</td>
             <td>{{$category->title}}</td>
             <td>{{$category->description}}</td>
+            <td>@if($category->children) @foreach($category->children as $child) {{$child->title}} <br> @endforeach @endif</td>
+            <td>{{$category->image}}</td>
             <td>
                <a href="{{route('category-show', [$category])}}">نمایش</a>
                <a href="{{route('category-edit', [$category])}}">ویرایش</a>
@@ -36,3 +40,16 @@
 </body>
 
 </html>
+
+<?php
+// $children = $category->children;
+// while (!empty($children)) {
+//    foreach ($children as $child) {
+//       echo $child->title . '<br>';
+//       if (!empty($child->children)) {
+//          $children = $child->children;
+//       }
+//    }
+//    return;
+// }
+?>

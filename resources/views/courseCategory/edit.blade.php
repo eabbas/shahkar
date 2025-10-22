@@ -15,7 +15,7 @@
       <div class="w-2/3 mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white">
          <form action="{{route('courseCategory-update')}}" method="post">
             @csrf
-            <input type="hidden" name="courseCategory_id" value="{{$courseCategory->id}}">
+            <input type="hidden" name="courseCategory_id" value="{{$courseCat->id}}">
             <div class="w-full flex flex-col">
                <label for="courseCatTitle" class="mb-2 flex flex-row items-center">
                   <span>
@@ -23,7 +23,16 @@
                      <span class="text-rose-500">*</span>
                   </span>
                </label>
-               <input type="text" name="title" id="courseCatTitle" class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]" placeholder="نام دسته دوره را وارد کنید" value="{{$courseCategory->title}}" required>
+               <input type="text" name="title" id="courseCatTitle" class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]" placeholder="نام دسته دوره را وارد کنید" value="{{$courseCat->title}}" required>
+            </div>
+            <div class="mt-5 flex flex-col gap-3">
+               <label for="parent_id">دسته بندی :</label>
+               <select name="parent_id" id="parent_id" class="md:w-1/2 bg-[#F9F9F9] py-3 pr-5 rounded-[10px]">
+                  <option value="0">بدون والد</option>
+                  @foreach($courseCategories as $courseCategory)
+                  <option value="{{$courseCategory->id}}" @if($courseCategory->id == $courseCat->parent_id) selected @endif >{{$courseCategory->title}}</option>
+                  @endforeach
+               </select>
             </div>
             <div class="mt-5 text-center">
                <button type="submit" class="py-3 px-10 rounded-[10px] bg-[#1B84FF] hover:bg-[#056EE9] text-white cursor-pointer">ثبت</button>

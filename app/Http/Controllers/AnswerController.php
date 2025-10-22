@@ -13,6 +13,9 @@ class AnswerController extends Controller
 {
     public function store(Request $request)
     {
+        if (!Auth::check()) {
+            return to_route('user_login');
+        }
         answer::create([
             'text' => $request->answer,
             'question_id' => $request->question_id,
