@@ -110,8 +110,8 @@
                     <input type="text" name="name" id="name" class="kt-input" placeholder="نام ">
                 </div>
                 <div class="flex flex-col gap-1">
-                    <label for="name" class="kt-form-label text-[#0b0809]" > نام فامیلی</label>
-                    <input type="text" name="family" id="name" class="kt-input" placeholder="نام فامیلی">
+                    <label for="name" class="kt-form-label text-[#0b0809]" > نام خانوادگی</label>
+                    <input type="text" name="family" id="name" class="kt-input" placeholder="نام خانوادگی">
                 </div>
                 <div class="flex flex-col gap-1">
                     <label for="email" class="kt-form-label text-[#0b0809]">ایمیل</label>
