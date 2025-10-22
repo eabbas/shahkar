@@ -17,13 +17,14 @@ use App\Http\Controllers\QuestionController;
 Route::view('/', 'welcome');
 // category routes
 Route::group(['prefix' => 'category', 'controller' => CategoryController::class, 'as' => 'category-'], function () {
-   Route::view('/create', 'category.create');
+   Route::get('/create', 'create');
    Route::post('/store', 'store')->name('store');
    Route::get('/list', 'index')->name('index');
    Route::get('/show/{category}', 'show')->name('show');
    Route::get('/edit/{category}', 'edit')->name('edit');
    Route::post('/update', 'update')->name('update');
    Route::get('/delete/{category}', 'delete')->name('delete');
+   Route::get('/{category}/products', 'products')->name('products');
 });
 // product routes
 Route::group(['prefix' => 'product', 'controller' => ProductController::class, 'as' => 'product-'], function () {
@@ -37,7 +38,7 @@ Route::group(['prefix' => 'product', 'controller' => ProductController::class, '
 });
 // course category routes
 Route::group(['prefix' => 'courseCategory', 'controller' => CourseCategoryController::class, 'as' => 'courseCategory-'], function () {
-   Route::view('/create', 'courseCategory.create');
+   Route::get('/create', 'create');
    Route::post('/store', 'store')->name('store');
    Route::get('/list', 'index')->name('index');
    Route::get('/show/{courseCategory}', 'show')->name('show');

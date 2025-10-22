@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class CourseCategoryController extends Controller
 {
+    public function create()
+    {
+        $courseCategories = courseCategory::select('id', 'title')->get();
+        return view('courseCategory.create', ['courseCategories' => $courseCategories]);
+    }
     public function store(Request $request)
     {
         courseCategory::create($request->all());
@@ -23,12 +28,14 @@ class CourseCategoryController extends Controller
     }
     public function edit(courseCategory $courseCategory)
     {
-        return view('courseCategory.edit', ['courseCategory' => $courseCategory]);
+        $courseCategories = courseCategory::all();
+        return view('courseCategory.edit', ['courseCat' => $courseCategory, 'courseCategories' => $courseCategories]);
     }
     public function update(Request $request)
     {
         $courseCategory = courseCategory::find($request->courseCategory_id);
         $courseCategory->title = $request->title;
+        $courseCategory->parent_id = $request->parent_id;
         $courseCategory->save();
         return to_route('courseCategory-index');
     }

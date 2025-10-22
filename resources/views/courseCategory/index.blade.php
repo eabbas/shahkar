@@ -14,6 +14,7 @@
          <tr>
             <th>آیدی</th>
             <th>عنوان دسته بندی دوره</th>
+            <th>دسته بندی فرزند</th>
             <th>عملیات</th>
          </tr>
       </thead>
@@ -22,6 +23,7 @@
          <tr>
             <td>{{$courseCategory->id}}</td>
             <td>{{$courseCategory->title}}</td>
+            <td>@if($courseCategory->children) @foreach($courseCategory->children as $child) {{$child->title}} <br> @endforeach @endif</td>
             <td>
                <a href="{{route('courseCategory-show', [$courseCategory])}}">نمایش</a>
                <a href="{{route('courseCategory-edit', [$courseCategory])}}">ویرایش</a>
