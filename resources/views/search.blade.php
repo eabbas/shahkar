@@ -1486,12 +1486,14 @@
     </main>
 
 
-    <br><br><br><br><br><br>
-    <br><br><br><br><br><br>
-    <br><br><br><br><br><br>
-    <br><br><br><br><br><br>
-    <br><br><br><br><br><br>
-    <br><br><br><br><br><br>
+    <footer class="text-[var(--color-text)] pt-3">
+        <div class="py-10 bg-[var(--color-primary-btn)]">
+            <p class="text-center">
+                طراحی شده توسط
+                <span class="font-bold">فائوس</span>
+            </p>
+        </div>
+    </footer>
     <script src="{{ url('assets/js/main.js') }}"></script>
 </body>
 

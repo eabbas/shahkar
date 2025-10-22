@@ -86,43 +86,35 @@ Route::group(['prefix' => 'productAttribute', 'controller' => ProductAttributesC
     Route::get('/delete/{productAttribute}', 'delete')->name('delete');
 });
 
-Route::controller(userController::class)->prefix('user')->group(function () {
-    Route::get('/signup', 'signup')->name('user_signUp');
-    Route::post('/store', 'store')->name('user_store');
-
-    Route::get('/login', 'login')->name('user_login');
-    Route::post('/check_user', 'checkUser')->name('checkUser');
-    Route::get('/profile/{id?}', 'profile')->name('user_profile');
-    Route::get('/edit/{user}', 'edit')->name('user_edit');
-    Route::post('/updata', 'updata')->name('user_update');
-    Route::get('/delete/{user}', 'delete')->name('user_delete');
-    Route::get('/logOut', 'logOut')->name('user_logOtu');
-    Route::get('/index', 'index')->name('user_index');
-});
-
-Route::controller(userController::class)->prefix('admin')->group(function () {
-    Route::get('/signUpUser', 'signup')->middleware(checkAdminMiddleware::class)->name('admin_create_user');
-    // Route::post("/store","store") -> name("user_store");
-
-    // Route::get("/loginUser","login") -> name("user_login");
-    // Route::post("/check_login","checkLogin");
-    Route::get('/profile/{id?}', 'profile')->middleware(checkAdminMiddleware::class);
-    // Route::get("/index","index");
-    // Route::get("/edit/{id}","edit");
-    // Route::post("/updata","updata");
-    // Route::get("/delete/{id}","delete");
-});
-
-// menu routes
-Route::group(['prefix' => 'menu', 'controller' => MenuController::class, 'as' => 'menu-'], function () {
-    Route::get('/create', 'create');
+Route::group([
+    'prefix'=>"user",
+    'controller'=>userController::class,
+    'as'=>"user."
+], function(){
+    Route::get('/signup', 'signup')->name('signup');
     Route::post('/store', 'store')->name('store');
-    Route::get('/list', 'index')->name('index');
-    Route::get('/show/{menu}', 'show')->name('show');
-    Route::get('/edit/{menu}', 'edit')->name('edit');
-    Route::post('/update', 'update')->name('update');
-    Route::get('/delete/{menu}', 'delete')->name('delete');
+    Route::get('/login', 'login')->name('login');
+    Route::post('/check_user', 'checkUser')->name('checkUser');
+    Route::get('/profile/{id?}', 'profile')->name('profile');
+    Route::get('/edit/{user}', 'edit')->name('edit');
+    Route::post('/updata', 'updata')->name('update');
+    Route::get('/delete/{user}', 'delete')->name('delete');
+    Route::get('/logout', 'logout')->name('logout');
+    Route::get('/index', 'index')->name('index');
 });
+
+// Route::controller(userController::class)->prefix('admin')->group(function () {
+//     Route::get('/signUpUser', 'signup')->middleware(checkAdminMiddleware::class)->name('admin_create_user');
+//     // Route::post("/store","store") -> name("user_store");
+
+//     // Route::get("/loginUser","login") -> name("user_login");
+//     // Route::post("/check_login","checkLogin");
+//     Route::get('/profile/{id?}', 'profile')->middleware(checkAdminMiddleware::class);
+//     // Route::get("/index","index");
+//     // Route::get("/edit/{id}","edit");
+//     // Route::post("/updata","updata");
+//     // Route::get("/delete/{id}","delete");
+// });
 
 Route::group([
     'prefix' => 'settings',
@@ -172,18 +164,18 @@ Route::group(['prefix' => 'answer', 'controller' => AnswerController::class, 'as
 Route::get('/home', [HomeController::class, 'index'])->name("home");
 Route::view('/notAccess', 'notAccess')->name("notAccess");
 Route::view('/loginAtFirst', 'loginAtFirst')->name("loginAtFirst");
-Route::controller(userController::class)->prefix("user")->group(function () {
-   Route::get("/signup", "signup")->name("user_signUp");
-   Route::post("/store", "store")->name("user_store");
-   Route::get("/login", "login")->name("user_login");
-   Route::post("/check_user", "checkUser")->name("checkUser");
-   Route::get("/profile/{id?}", "profile")->name("user_profile");
-   Route::get("/edit/{user}", "edit")->name("user_edit");
-   Route::post("/update", "update")->name("user_update");
-   Route::get("/delete/{user}", "delete")->name("user_delete");
-   Route::get("/logOut", "logOut")->name("user_logOut");
-   Route::get("/index", "index")->name("user_index");
-});
+// Route::controller(userController::class)->prefix("user")->group(function () {
+//    Route::get("/signup", "signup")->name("user_signUp");
+//    Route::post("/store", "store")->name("user_store");
+//    Route::get("/login", "login")->name("user_login");
+//    Route::post("/check_user", "checkUser")->name("checkUser");
+//    Route::get("/profile/{id?}", "profile")->name("user_profile");
+//    Route::get("/edit/{user}", "edit")->name("user_edit");
+//    Route::post("/update", "update")->name("user_update");
+//    Route::get("/delete/{user}", "delete")->name("user_delete");
+//    Route::get("/logOut", "logOut")->name("user_logOut");
+//    Route::get("/index", "index")->name("user_index");
+// });
 // admin routes
 Route::controller(userController::class)->prefix("admin")->group(function () {
    Route::get("/signUpUser", "signup")->middleware(checkAdminMiddleware::class)->name("admin_create_user");
@@ -195,23 +187,6 @@ Route::controller(userController::class)->prefix("admin")->group(function () {
    // Route::get("/edit/{id}","edit");
    // Route::post("/update","update");
    // Route::get("/delete/{id}","delete");
-});
-// settings routes
-Route::group([
-   'prefix' => 'settings',
-   'controller' => SettingsController::class,
-   'as' => 'settings.'
-], function () {
-   Route::group([
-      'prefix' => 'colors',
-      'as' => 'colors.'
-   ], function () {
-      Route::get('/create', 'createColor')->name('createColor');
-      Route::post('/update', 'upsertColor')->name('upsertColor');
-      Route::get('/show', 'showColors')->name('showColors');
-      Route::get('/delete', 'deleteColor')->name('deleteColor');
-   });
-
 });
 
 Route::get('/search', [SearchController::class, 'index']);
