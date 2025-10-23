@@ -18,12 +18,12 @@ class userController extends Controller
     {
         $password = Hash::make($request->password);
         User::create([
-            "name" => $request->name,
-            "family" => $request->family,
+            "name" => $request?->name,
+            "family" => $request?->family,
             "email" => $request->email,
             "password" => $password,
         ]);
-        return to_route("user_login");
+        return to_route("user.login");
     }
     public function login()
     {
@@ -33,12 +33,13 @@ class userController extends Controller
     {
         $user = User::where("email", $request->email)->first();
         if (!$user) {
-            return to_route("user_login");
+            return to_route("user.login");
         }
         $user_password = Hash::check($request->password, $user->password);
         if (!$user_password) {
             //باید به کاربر بگیم رمز ورود اشتباه هست چطور بگیم؟؟؟؟//
-            return to_route("user_login");
+            // اونو باید با جی اس چک کنیم بگیم
+            return to_route("user.login");
         }
         if ($user && $user_password) {
             Auth::login($user);
@@ -53,7 +54,7 @@ class userController extends Controller
             $user = Auth::user();
         }
         if (!Auth::check()) {
-            return to_route("user_login");
+            return to_route("user.login");
         }
         if ($id) {
             $user = User::find($id);
@@ -82,7 +83,7 @@ class userController extends Controller
         $user->delete();
         return to_route("user_signUp");
     }
-    public function logOut()
+    public function logout()
     {
         Auth::logout();
         return redirect("/user/login");

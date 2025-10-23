@@ -14,4 +14,7 @@ class product extends Model
     public function comments(){
         return $this->hasMany(comment::class);
     }
+    public function medias(){
+        return $this->hasMany(media::class);
+    }
 }
