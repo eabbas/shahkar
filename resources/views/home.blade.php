@@ -1172,21 +1172,22 @@
         <!-- offers -->
         <section class="text-[var(--color-text)] pt-3">
             <div class="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-[30px] py-10">
+                @foreach($banners as $banner)
                 <div class="bg-[var(--color-primary-btn)] p-2.5 rounded-[10px] flex flex-col lg:flex-row items-center gap-2.5">
                     <div class="lg:w-5/12">
-                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/three.png"
+                        <img src="{{$banner->image}}"
                             class="w-[220px] sm:w-[80%] mx-auto lg:w-full" alt="product image">
                     </div>
                     <div class="lg:w-7/12 p-2.5">
                         <div class="mb-1">
                             <h2 class="text-lg font-semibold leading-8">
-                                عنوان تستی عنوان تستی عنوان تستی
+                                {{$banner->title}}
                             </h2>
                         </div>
                         <div>
-                            <a href="#"
+                            <a href="{{$banner->link_href}}"
                                 class="flex flex-row items-center gap-2 transitin-all duration-[.25s] hover:-translate-y-[2px]">
-                                <span class="leading-10 text-sm font-semibold">ارتباط با تامین کننده</span>
+                                <span class="leading-10 text-sm font-semibold">{{$banner->link_content}}</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
                                     <path fill="var(--color-fill)"
                                         d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z" />
@@ -1195,75 +1196,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-[var(--color-primary-btn)] p-2.5 rounded-[10px] flex flex-col lg:flex-row items-center gap-2.5">
-                    <div class="lg:w-5/12">
-                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/three.png"
-                            class="w-[220px] sm:w-[80%] mx-auto lg:w-full" alt="product image">
-                    </div>
-                    <div class="lg:w-7/12 p-2.5">
-                        <div class="mb-1">
-                            <h2 class="text-lg font-semibold leading-8">
-                                عنوان تستی عنوان تستی عنوان تستی
-                            </h2>
-                        </div>
-                        <div>
-                            <a href="#"
-                                class="flex flex-row items-center gap-2 transitin-all duration-[.25s] hover:-translate-y-[2px]">
-                                <span class="leading-10 text-sm font-semibold">ارتباط با تامین کننده</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
-                                    <path fill="var(--color-fill)"
-                                        d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-[var(--color-primary-btn)] p-2.5 rounded-[10px] flex flex-col lg:flex-row items-center gap-2.5">
-                    <div class="lg:w-5/12">
-                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/three.png"
-                            class="w-[220px] sm:w-[80%] mx-auto lg:w-full" alt="product image">
-                    </div>
-                    <div class="lg:w-7/12 p-2.5">
-                        <div class="mb-1">
-                            <h2 class="text-lg font-semibold leading-8">
-                                عنوان تستی عنوان تستی عنوان تستی
-                            </h2>
-                        </div>
-                        <div>
-                            <a href="#"
-                                class="flex flex-row items-center gap-2 transitin-all duration-[.25s] hover:-translate-y-[2px]">
-                                <span class="leading-10 text-sm font-semibold">ارتباط با تامین کننده</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
-                                    <path fill="var(--color-fill)"
-                                        d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-[var(--color-primary-btn)] p-2.5 rounded-[10px] flex flex-col lg:flex-row items-center gap-2.5">
-                    <div class="lg:w-5/12">
-                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/three.png"
-                            class="w-[220px] sm:w-[80%] mx-auto lg:w-full" alt="product image">
-                    </div>
-                    <div class="lg:w-7/12 p-2.5">
-                        <div class="mb-1">
-                            <h2 class="text-lg font-semibold leading-8">
-                                عنوان تستی عنوان تستی عنوان تستی
-                            </h2>
-                        </div>
-                        <div>
-                            <a href="#"
-                                class="flex flex-row items-center gap-2 transitin-all duration-[.25s] hover:-translate-y-[2px]">
-                                <span class="leading-10 text-sm font-semibold">ارتباط با تامین کننده</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
-                                    <path fill="var(--color-fill)"
-                                        d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </section>
         <!-- offers -->
