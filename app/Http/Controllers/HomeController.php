@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\banners;
 use Illuminate\Http\Request;
 use App\Models\settings;
 use App\Models\category;
@@ -12,6 +13,7 @@ class HomeController extends Controller
     {
         $settings = settings::all();
         $cats = category::all();
-        return view('home', ['settings' => $settings, 'categories' => $cats]);
+        $banners = banners::where('sectionName', 'banners')->get();
+        return view('home', ['settings' => $settings, 'categories' => $cats, 'banners' => $banners]);
     }
 }
