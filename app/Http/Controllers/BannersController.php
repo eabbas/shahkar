@@ -12,18 +12,59 @@ class BannersController extends Controller
         $banners = banners::where('sectionName', 'banners')->get();
         return view('dashboard.banners', ['banners' => $banners]);
     }
+    public function bigBannerCreate()
+    {
+        $bigBanner = banners::where('sectionName', 'bigBanner')->get();
+        return view('dashboard.bigBanner', ['bigBanner' => $bigBanner]);
+    }
     public function upsert(Request $request)
     {
-        $banners = banners::where('sectionName', 'banners')->get();
-        if (count($banners) == 4) {
-            $this->update($request);
-            return to_route('home');
-        } else {
-            $this->store($request);
-            return to_route('home');
+        if ($request->sectionName == 'bigBanner') {
+            $bigBanner = banners::where('sectionName', 'bigBanner')->get();
+            if (count($bigBanner) == 1) {
+                $this->updateBigBanner($request);
+                return to_route('home');
+            } else {
+                $this->storeBigBanner($request);
+                return to_route('home');
+            }
+        }
+        if ($request->sectionName == 'banners') {
+            $banners = banners::where('sectionName', 'banners')->get();
+            if (count($banners) == 4) {
+                $this->updateBanners($request);
+                return to_route('home');
+            } else {
+                $this->storeBanners($request);
+                return to_route('home');
+            }
         }
     }
-    public function update(Request $request)
+    public function updateBigBanner(Request $request)
+    {
+        $imgOriginalName = request()->img->getClientOriginalName();
+        $imgPath = $request->file('img')->storeAs('images', time() . $imgOriginalName, 'public');
+        $bigBanner = banners::find($request->bigBanner);
+        $bigBanner->sectionName = $request->sectionName;
+        $bigBanner->image = "storage/" . $imgPath;
+        $bigBanner->title = $request->title;
+        $bigBanner->link_content = $request->linkContent;
+        $bigBanner->link_href = $request->linkHref;
+        $bigBanner->save();
+    }
+    public function storeBigBanner(Request $request)
+    {
+        $imgOriginalName = request()->img->getClientOriginalName();
+        $imgPath = $request->file('img')->storeAs('images', time() . $imgOriginalName, 'public');
+        banners::create([
+            "sectionName" => $request->sectionName,
+            "image" => "storage/" . $imgPath,
+            "title" => $request->title,
+            "link_content" => $request->linkContent,
+            "link_href" => $request->linkHref
+        ]);
+    }
+    public function updateBanners(Request $request)
     {
         $img1OriginalName = request()->img1->getClientOriginalName();
         $img1Path = $request->file('img1')->storeAs('images', time() . $img1OriginalName, 'public');
@@ -62,7 +103,7 @@ class BannersController extends Controller
         $forthBanner->link_href = $request->linkHref4;
         $forthBanner->save();
     }
-    public function store(Request $request)
+    public function storeBanners(Request $request)
     {
         $img1OriginalName = request()->img1->getClientOriginalName();
         $img1Path = $request->file('img1')->storeAs('images', time() . $img1OriginalName, 'public');
