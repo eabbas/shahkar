@@ -845,7 +845,8 @@
 
             <div class="grid 2xl:grid-cols-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 lg:gap-5">
                 <!-- 12 -->
-                <div class="p-2 md:p-3 lg:p-4 xl:p-5 border border-[var(--color-border)] rounded-[10px] relative productItem productItemNone">
+
+                <!-- <div class="p-2 md:p-3 lg:p-4 xl:p-5 border border-[var(--color-border)] rounded-[10px] relative productItem productItemNone">
                     <div
                         class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-[555] overflow-hidden">
                         <button
@@ -1012,9 +1013,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
-
+                @foreach($specialDiscounts[0]['products'] as $specialDiscountProduct)
+                @if($specialDiscountProduct['is_in_home'] == 1)
                 <div class="p-2 md:p-3 lg:p-4 xl:p-5 border border-[var(--color-border)] rounded-[10px] relative productItem">
                     <div
                         class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-[555] overflow-hidden">
@@ -1085,19 +1087,19 @@
                     <span
                         class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
                     <div>
-                        <a href="#" class="flex justify-center mb-1 overflow-hidden">
-                            <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/onion-pro-1.jpg"
+                        <a href="http://localhost/shahkar/public/product/show/{{$specialDiscountProduct->id}}" class="flex justify-center mb-1 overflow-hidden">
+                            <img src="@foreach($specialDiscountProduct->medias as $media) {{$media['path']}} @endforeach"
                                 class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
                                 alt="product">
                         </a>
                     </div>
                     <div>
                         <div class="mb-1">
-                            <a href="#" class="text-[12px] lg:text-[14px] text-[var(--color-text)]">تست آیتم</a>
+                            <a href="http://localhost/shahkar/public/product/show/{{$specialDiscountProduct->id}}" class="text-[12px] lg:text-[14px] text-[var(--color-text)]">{{$specialDiscountProduct->title}}</a>
                         </div>
                         <div>
                             <div class="mb-2 font-semibold text-[14px] lg:text-base">
-                                <a href="#">توضیحات محصول تستی محصول تستی محصول </a>
+                                <a href="http://localhost/shahkar/public/product/show/{{$specialDiscountProduct->id}}">{{$specialDiscountProduct->description}}</a>
                             </div>
                             <div class="flex flex-row items-center mb-3 gap-2">
                                 <div class="w-1/2 flex flex-row items-center text-[12px]">
@@ -1161,9 +1163,8 @@
                         </div>
                     </div>
                 </div>
-
-
-
+                @endif
+                @endforeach
 
             </div>
         </section>

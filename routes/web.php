@@ -80,54 +80,24 @@ Route::group(['prefix' => 'productAttribute', 'controller' => ProductAttributesC
    Route::post('/update', 'update')->name('update');
    Route::get('/delete/{productAttribute}', 'delete')->name('delete');
 });
-
+// user routes
 Route::group([
-    'prefix'=>"user",
-    'controller'=>userController::class,
-    'as'=>"user."
-], function(){
-    Route::get('/signup', 'signup')->name('signup');
-    Route::post('/store', 'store')->name('store');
-    Route::get('/login', 'login')->name('login');
-    Route::post('/check_user', 'checkUser')->name('checkUser');
-    Route::get('/profile/{id?}', 'profile')->name('profile');
-    Route::get('/edit/{user}', 'edit')->name('edit');
-    Route::post('/updata', 'updata')->name('update');
-    Route::get('/delete/{user}', 'delete')->name('delete');
-    Route::get('/logout', 'logout')->name('logout');
-    Route::get('/index', 'index')->name('index');
-});
-
-// Route::controller(userController::class)->prefix('admin')->group(function () {
-//     Route::get('/signUpUser', 'signup')->middleware(checkAdminMiddleware::class)->name('admin_create_user');
-//     // Route::post("/store","store") -> name("user_store");
-
-//     // Route::get("/loginUser","login") -> name("user_login");
-//     // Route::post("/check_login","checkLogin");
-//     Route::get('/profile/{id?}', 'profile')->middleware(checkAdminMiddleware::class);
-//     // Route::get("/index","index");
-//     // Route::get("/edit/{id}","edit");
-//     // Route::post("/updata","updata");
-//     // Route::get("/delete/{id}","delete");
-// });
-
-
-Route::group([
-   'prefix' => 'settings',
-   'controller' => SettingsController::class,
-   'as' => 'settings.'
+   'prefix' => "user",
+   'controller' => userController::class,
+   'as' => "user."
 ], function () {
-   Route::group([
-      'prefix' => 'colors',
-      'as' => 'colors.'
-   ], function () {
-      Route::get('/create', 'createColor')->name('createColor');
-      Route::post('/update', 'upsertColor')->name('upsertColor');
-      Route::get('/show', 'showColors')->name('showColors');
-      Route::get('/delete', 'deleteColor')->name('deleteColor');
-   });
+   Route::get('/signup', 'signup')->name('signup');
+   Route::post('/store', 'store')->name('store');
+   Route::get('/login', 'login')->name('login');
+   Route::post('/check_user', 'checkUser')->name('checkUser');
+   Route::get('/profile/{id?}', 'profile')->name('profile');
+   Route::get('/edit/{user}', 'edit')->name('edit');
+   Route::post('/updata', 'updata')->name('update');
+   Route::get('/delete/{user}', 'delete')->name('delete');
+   Route::get('/logout', 'logout')->name('logout');
+   Route::get('/index', 'index')->name('index');
 });
-
+// comments routes
 Route::group([
    'prefix' => 'comment',
    'controller' => CommentController::class,
@@ -145,7 +115,6 @@ Route::group(['prefix' => 'question', 'controller' => QuestionController::class,
    Route::get('/edit/{question}', 'edit')->name('edit');
    Route::post('/update', 'update')->name('update');
    Route::get('/delete/{question}', 'delete')->name('delete');
-
 });
 // answers routes
 Route::group(['prefix' => 'answer', 'controller' => AnswerController::class, 'as' => 'answer-'], function () {
@@ -156,22 +125,10 @@ Route::group(['prefix' => 'answer', 'controller' => AnswerController::class, 'as
    Route::post('/update', 'update')->name('update');
    Route::get('/delete/{answer}', 'delete')->name('delete');
 });
-// user routes
+// home routes
 Route::get('/home', [HomeController::class, 'index'])->name("home");
 Route::view('/notAccess', 'notAccess')->name("notAccess");
 Route::view('/loginAtFirst', 'loginAtFirst')->name("loginAtFirst");
-// Route::controller(userController::class)->prefix("user")->group(function () {
-//    Route::get("/signup", "signup")->name("user_signUp");
-//    Route::post("/store", "store")->name("user_store");
-//    Route::get("/login", "login")->name("user_login");
-//    Route::post("/check_user", "checkUser")->name("checkUser");
-//    Route::get("/profile/{id?}", "profile")->name("user_profile");
-//    Route::get("/edit/{user}", "edit")->name("user_edit");
-//    Route::post("/update", "update")->name("user_update");
-//    Route::get("/delete/{user}", "delete")->name("user_delete");
-//    Route::get("/logOut", "logOut")->name("user_logOut");
-//    Route::get("/index", "index")->name("user_index");
-// });
 // admin routes
 Route::controller(userController::class)->prefix("admin")->group(function () {
    Route::get("/signUpUser", "signup")->middleware(checkAdminMiddleware::class)->name("admin_create_user");
@@ -184,7 +141,6 @@ Route::controller(userController::class)->prefix("admin")->group(function () {
    // Route::post("/update","update");
    // Route::get("/delete/{id}","delete");
 });
-
 // settings routes
 Route::group([
    'prefix' => 'settings',
@@ -201,6 +157,7 @@ Route::group([
       Route::get('/delete', 'deleteColor')->name('deleteColor');
    });
 });
+// search routes
 Route::get('/search', [SearchController::class, 'index']);
 // banners routes
 Route::group(['prefix' => 'banners', 'controller' => BannersController::class, 'as' => 'banners-'], function () {
@@ -218,4 +175,3 @@ Route::view('dashboard/settings', 'dashboard.settings')->name('dashboard-setting
 Route::view('dashboard/settings/home', 'dashboard.home')->name('dashboard-settings-home');
 Route::get('dashboard/settings/home/banners', [BannersController::class, 'create'])->name('dashboard-settings-home-banners');
 Route::post('dashboard/settings/home/banners/upsert', [BannersController::class, 'upsert'])->name('banners-upsert');
-
