@@ -1208,17 +1208,17 @@
 
 
                 <!-- height problem -->
-
+                @foreach($bigBanner as $bb)
                 <div
-                    class="w-full children hidden xl:block xl:w-1/4 p-[30px] rounded-[12px] bg-[url('https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/banner-11-min.png')] bg-bottom-right bg-cover bg-no-repeat rotate-y-180">
+                    class="w-full children hidden xl:block xl:w-1/4 p-[30px] rounded-[12px] bg-[url({{$bb->image}})] bg-bottom-right bg-cover bg-no-repeat rotate-y-180">
                     <div class="rotate-y-180 h-[415px]">
                         <h2 class="text-[28px] leading-12 font-bold">
-                            این یک عنوان تستی از شاهکار میباشد
+                            {{$bb->title}}
                         </h2>
                         <div class="flex mt-3">
-                            <a href="#"
+                            <a href="{{$bb->link_href}}"
                                 class="flex flex-row items-center gap-2 bg-[var(--color-primary)] rounded-[10px] py-2 px-5 text-[var(--color-primary-text)] font-semibold">
-                                <span>خرید</span>
+                                <span>{{$bb->link_content}}</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
                                     <path fill="#fff"
                                         d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z" />
@@ -1227,6 +1227,7 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
 
                 <!-- height problem -->
 

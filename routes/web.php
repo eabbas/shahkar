@@ -162,12 +162,13 @@ Route::get('/search', [SearchController::class, 'index']);
 // banners routes
 Route::group(['prefix' => 'banners', 'controller' => BannersController::class, 'as' => 'banners-'], function () {
    Route::get('/create', 'create');
-   Route::post('/store', 'store')->name('store');
-   Route::get('/list', 'index')->name('index');
-   Route::get('/show/{banners}', 'show')->name('show');
-   Route::get('/edit/{banners}', 'edit')->name('edit');
-   Route::post('/update', 'update')->name('update');
-   Route::get('/delete/{banners}', 'delete')->name('delete');
+   Route::get('/bigBanner/create', 'bigBannerCreate');
+   // Route::post('/store', 'store')->name('store');
+   // Route::get('/list', 'index')->name('index');
+   // Route::get('/show/{banners}', 'show')->name('show');
+   // Route::get('/edit/{banners}', 'edit')->name('edit');
+   // Route::post('/update', 'update')->name('update');
+   // Route::get('/delete/{banners}', 'delete')->name('delete');
 });
 // dashboard routes
 Route::view('dashboard', 'dashboard.dashboard')->name('dashboard');
