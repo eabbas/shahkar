@@ -163,6 +163,7 @@ Route::get('/search', [SearchController::class, 'index']);
 Route::group(['prefix' => 'banners', 'controller' => BannersController::class, 'as' => 'banners-'], function () {
    Route::get('/create', 'create');
    Route::get('/bigBanner/create', 'bigBannerCreate');
+   Route::get('/tiles/create', 'tilesCreate');
    // Route::post('/store', 'store')->name('store');
    // Route::get('/list', 'index')->name('index');
    // Route::get('/show/{banners}', 'show')->name('show');

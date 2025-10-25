@@ -733,20 +733,17 @@
                     class="w-full sm:w-8/12 absolute bottom-0 -left-10 sm:-left-[109px]" alt="this is image">
             </div>
             <div class="lg:w-1/3 w-full flex flex-col sm:flex-row lg:flex-col gap-5">
+                @foreach($tileBanners as $tileBanner)
                 <div
-                    class="sm:w-1/2 lg:w-full bg-[var(--color-primary-btn)] bg-[url('https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/banner-1.png')] bg-cover rotate-y-180 bg-bottom-right bg-no-repeat min-h-[225px] rounded-[10px] p-[30px]">
+                    class="sm:w-1/2 lg:w-full bg-[var(--color-primary-btn)] bg-[url({{$tileBanner->image}})] bg-cover rotate-y-180 bg-bottom-right bg-no-repeat min-h-[225px] rounded-[10px] p-[30px]">
                     <div class="rotate-y-180 flex flex-col gap-5">
                         <h2 class="font-bold xl:text-[28px] 2xl:text-[24px] leading-8">
-                            تست تست تست
-                            <br>
-                            تست تست
-                            <br>
-                            تست
+                            {{$tileBanner->title}}
                         </h2>
                         <div class="flex">
-                            <a href="#"
+                            <a href="{{$tileBanner->link_href}}"
                                 class="bg-[var(--color-subheader-btn)] rounded-[10px] text-sm lg:text-base py-2 px-5 text-[var(--color-primary-text)] font-semibold transition-all duration-500 ease-in-out hover:bg-[var(--color-bg-hover-btn)] flex items-center gap-2 buttonLink">
-                                <span>خرید</span>
+                                <span>{{$tileBanner->link_content}}</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-2.5 h-5" viewBox="0 0 320 512">
                                     <path fill="white"
                                         d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
@@ -755,28 +752,7 @@
                         </div>
                     </div>
                 </div>
-                <div
-                    class="sm:w-1/2 lg:w-full bg-[var(--color-primary-btn)] bg-[url('https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/banner-2.png')] bg-cover rotate-y-180 bg-bottom-right bg-no-repeat min-h-[256px] rounded-[10px] p-[30px]">
-                    <div class="rotate-y-180 flex flex-col gap-5">
-                        <h2 class="font-bold xl:text-[20px] 2xl:text-[24px] leading-8">
-                            تست تست تست
-                            <br>
-                            تست تست
-                            <br>
-                            تست
-                        </h2>
-                        <div class="flex">
-                            <a href="#"
-                                class="bg-[var(--color-subheader-btn)] rounded-[10px] text-sm lg:text-base py-2 px-5 text-[var(--color-primary-text)] font-semibold transition-all duration-500 ease-in-out hover:bg-[var(--color-bg-hover-btn)] flex items-center gap-2 buttonLink">
-                                <span>خرید</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-2.5 h-5" viewBox="0 0 320 512">
-                                    <path fill="white"
-                                        d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
         </section>

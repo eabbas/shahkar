@@ -17,7 +17,8 @@ class HomeController extends Controller
         $cats = category::all();
         $banners = banners::where('sectionName', 'banners')->get();
         $bigBanner = banners::where('sectionName', 'bigBanner')->get();
+        $tileBanners = banners::where('sectionName', 'tileBanners')->get();
         $specialDiscounts = category::where('title', 'تخفیفات ویژه')->with('products')->get();
-        return view('home', ['settings' => $settings, 'products' => $products, 'categories' => $cats, 'banners' => $banners, 'specialDiscounts' => $specialDiscounts, 'bigBanner' => $bigBanner]);
+        return view('home', ['settings' => $settings, 'products' => $products, 'categories' => $cats, 'banners' => $banners, 'specialDiscounts' => $specialDiscounts, 'bigBanner' => $bigBanner, 'tileBanners' => $tileBanners]);
     }
 }
