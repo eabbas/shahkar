@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $products = product::all();
+        $products = product::where('is_in_home', 1)->get();
         $settings = settings::all();
         $cats = category::all();
         $banners = banners::where('sectionName', 'banners')->get();
