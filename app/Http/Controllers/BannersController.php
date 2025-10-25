@@ -17,8 +17,23 @@ class BannersController extends Controller
         $bigBanner = banners::where('sectionName', 'bigBanner')->get();
         return view('dashboard.bigBanner', ['bigBanner' => $bigBanner]);
     }
+    public function tilesCreate()
+    {
+        $tileBanners = banners::where('sectionName', 'tileBanners')->get();
+        return view('dashboard.tileBanners', ['tileBanners' => $tileBanners]);
+    }
     public function upsert(Request $request)
     {
+        if ($request->sectionName == 'tileBanners') {
+            $tileBanners = banners::where('sectionName', 'tileBanners')->get();
+            if (count($tileBanners) == 2) {
+                $this->updateTileBanner($request);
+                return to_route('home');
+            } else {
+                $this->storeTileBanner($request);
+                return to_route('home');
+            }
+        }
         if ($request->sectionName == 'bigBanner') {
             $bigBanner = banners::where('sectionName', 'bigBanner')->get();
             if (count($bigBanner) == 1) {
@@ -39,6 +54,48 @@ class BannersController extends Controller
                 return to_route('home');
             }
         }
+    }
+    public function updateTileBanner(Request $request)
+    {
+        $img1OriginalName = request()->img1->getClientOriginalName();
+        $img1Path = $request->file('img1')->storeAs('images', time() . $img1OriginalName, 'public');
+        $firstTile = banners::find($request->firstTile);
+        $firstTile->sectionName = $request->sectionName;
+        $firstTile->image = "storage/" . $img1Path;
+        $firstTile->title = $request->title1;
+        $firstTile->link_content = $request->linkContent1;
+        $firstTile->link_href = $request->linkHref1;
+        $firstTile->save();
+        $img2OriginalName = request()->img2->getClientOriginalName();
+        $img2Path = $request->file('img2')->storeAs('images', time() . $img2OriginalName, 'public');
+        $secondTile = banners::find($request->secondTile);
+        $secondTile->sectionName = $request->sectionName;
+        $secondTile->image = "storage/" . $img2Path;
+        $secondTile->title = $request->title2;
+        $secondTile->link_content = $request->linkContent2;
+        $secondTile->link_href = $request->linkHref2;
+        $secondTile->save();
+    }
+    public function storeTileBanner(Request $request)
+    {
+        $img1OriginalName = request()->img1->getClientOriginalName();
+        $img1Path = $request->file('img1')->storeAs('images', time() . $img1OriginalName, 'public');
+        banners::create([
+            "sectionName" => $request->sectionName,
+            "image" => "storage/" . $img1Path,
+            "title" => $request->title1,
+            "link_content" => $request->linkContent1,
+            "link_href" => $request->linkHref1
+        ]);
+        $img2OriginalName = request()->img2->getClientOriginalName();
+        $img2Path = $request->file('img2')->storeAs('images', time() . $img2OriginalName, 'public');
+        banners::create([
+            "sectionName" => $request->sectionName,
+            "image" => "storage/" . $img2Path,
+            "title" => $request->title2,
+            "link_content" => $request->linkContent2,
+            "link_href" => $request->linkHref2
+        ]);
     }
     public function updateBigBanner(Request $request)
     {
