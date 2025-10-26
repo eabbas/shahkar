@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\banners;
+use App\Models\bigTile;
 use Illuminate\Http\Request;
 use App\Models\settings;
 use App\Models\category;
@@ -19,6 +20,7 @@ class HomeController extends Controller
         $bigBanner = banners::where('sectionName', 'bigBanner')->get();
         $tileBanners = banners::where('sectionName', 'tileBanners')->get();
         $specialDiscounts = category::where('title', 'تخفیفات ویژه')->with('products')->get();
-        return view('home', ['settings' => $settings, 'products' => $products, 'categories' => $cats, 'banners' => $banners, 'specialDiscounts' => $specialDiscounts, 'bigBanner' => $bigBanner, 'tileBanners' => $tileBanners]);
+        $bigTile = bigTile::all();
+        return view('home', ['settings' => $settings, 'products' => $products, 'categories' => $cats, 'banners' => $banners, 'specialDiscounts' => $specialDiscounts, 'bigBanner' => $bigBanner, 'tileBanners' => $tileBanners, 'bigTile' => $bigTile]);
     }
 }

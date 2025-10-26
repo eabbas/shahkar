@@ -164,12 +164,7 @@ Route::group(['prefix' => 'banners', 'controller' => BannersController::class, '
    Route::get('/create', 'create');
    Route::get('/bigBanner/create', 'bigBannerCreate');
    Route::get('/tiles/create', 'tilesCreate');
-   // Route::post('/store', 'store')->name('store');
-   // Route::get('/list', 'index')->name('index');
-   // Route::get('/show/{banners}', 'show')->name('show');
-   // Route::get('/edit/{banners}', 'edit')->name('edit');
-   // Route::post('/update', 'update')->name('update');
-   // Route::get('/delete/{banners}', 'delete')->name('delete');
+   Route::get('/bigTile/create', 'bigTileCreate');
 });
 // dashboard routes
 Route::view('dashboard', 'dashboard.dashboard')->name('dashboard');
