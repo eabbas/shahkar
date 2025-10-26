@@ -711,27 +711,27 @@
     <main class="2xl:container 2xl:px-4 w-11/12 lg:w-[98%] mx-auto mt-5">
         <!-- sub header -->
         <section class="flex flex-col lg:flex-row gap-5 text-[var(--color-text)]">
+            @foreach($bigTile as $bt)
             <div
-                class="lg:w-2/3 w-full rounded-md bg-[var(--color-primary-btn)] bg-center bg-[url('https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/pattern-4.png')] bg-cover bg-no-repeat p-8 lg:py-12 lg:px-20 relative overflow-hidden h-[440px] lg:h-auto max-h-[501px]">
+                class="lg:w-2/3 w-full rounded-md bg-[var(--color-primary-btn)] bg-center bg-[url({{$bt['bg_img']}})] bg-cover bg-no-repeat p-8 lg:py-12 lg:px-20 relative overflow-hidden h-[440px] lg:h-auto max-h-[501px]">
                 <div class="w-2/3">
-                    <span class="font-medium mb-4 text-xs md:text-base leading-[20px]">داغ ترین ها</span>
+                    <span class="font-medium mb-4 text-xs md:text-base leading-[20px]">{{$bt['header']}}</span>
                     <div
                         class="2xl:text-[60px] xl:text-[48px] lg:text-[42px] md:text-[36px] text-base 2xl:leading-[60px] font-bold mb-4">
-                        متن تستی متن تستی متن تستی متن تستی متن تستی
+                        {{$bt['title']}}
                     </div>
-                    <p class="w-fit mb-6">تست تست تست تست تست تست</p>
+                    <p class="w-fit mb-6">{{$bt['text']}}</p>
                     <div class="flex flex-row justify-start items-center gap-5">
-                        <a href="#"
-                            class="bg-[var(--color-subheader-btn)] text-sm lg:text-base rounded-[10px] py-2 px-5 text-[var(--color-primary-text)] font-semibold transition-all duration-500 ease-in-out hover:bg-[var(--color-bg-hover-btn)]">خرید</a>
-                        <a href="#"
-                            class="py-1 leading-[24px] text-sm lg:text-base transition-all duration-[0.25s] ease-in-out hover:-translate-y-[2px]">
-                            بیشتر
-                        </a>
+                        <a href="{{$bt['btn1_href']}}"
+                            class="bg-[var(--color-subheader-btn)] text-sm lg:text-base rounded-[10px] py-2 px-5 text-[var(--color-primary-text)] font-semibold transition-all duration-500 ease-in-out hover:bg-[var(--color-bg-hover-btn)]">{{$bt['btn1_content']}}</a>
+                        <a href="{{$bt['btn2_href']}}"
+                            class="py-1 leading-[24px] text-sm lg:text-base transition-all duration-[0.25s] ease-in-out hover:-translate-y-[2px]">{{$bt['btn2_content']}}</a>
                     </div>
                 </div>
-                <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/banner-slider-2-1.png"
+                <img src="{{$bt['img']}}"
                     class="w-full sm:w-8/12 absolute bottom-0 -left-10 sm:-left-[109px]" alt="this is image">
             </div>
+            @endforeach
             <div class="lg:w-1/3 w-full flex flex-col sm:flex-row lg:flex-col gap-5">
                 @foreach($tileBanners as $tileBanner)
                 <div

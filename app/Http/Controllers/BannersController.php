@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\banners;
+use App\Models\bigTile;
 use Illuminate\Http\Request;
 
 class BannersController extends Controller
@@ -22,8 +23,23 @@ class BannersController extends Controller
         $tileBanners = banners::where('sectionName', 'tileBanners')->get();
         return view('dashboard.tileBanners', ['tileBanners' => $tileBanners]);
     }
+    public function bigTileCreate()
+    {
+        $bigTile = bigTile::all();
+        return view('dashboard.bigTile', ['bigTile' => $bigTile]);
+    }
     public function upsert(Request $request)
     {
+        if (array_key_exists('bigTile', $request->all())) {
+            $bigTile = bigTile::all();
+            if (count($bigTile) == 1) {
+                $this->updateBigTile($request);
+                return to_route('home');
+            } else {
+                $this->storeBigTile($request);
+                return to_route('home');
+            }
+        }
         if ($request->sectionName == 'tileBanners') {
             $tileBanners = banners::where('sectionName', 'tileBanners')->get();
             if (count($tileBanners) == 2) {
@@ -54,6 +70,42 @@ class BannersController extends Controller
                 return to_route('home');
             }
         }
+    }
+    public function updateBigTile(Request $request)
+    {
+        $imgOriginalName = request()->img->getClientOriginalName();
+        $imgPath = $request->file('img')->storeAs('images', time() . $imgOriginalName, 'public');
+        $bg_imgOriginalName = request()->bg_img->getClientOriginalName();
+        $bg_imgPath = $request->file('bg_img')->storeAs('images', time() . $bg_imgOriginalName, 'public');
+        $bigTile = bigTile::find($request->bigTile);
+        $bigTile->header = $request->header;
+        $bigTile->title = $request->title;
+        $bigTile->text = $request->text;
+        $bigTile->btn1_content = $request->btn1_content;
+        $bigTile->btn1_href = $request->btn1_href;
+        $bigTile->btn2_content = $request->btn2_content;
+        $bigTile->btn2_href = $request->btn2_href;
+        $bigTile->img = "storage/" . $imgPath;
+        $bigTile->bg_img = "storage/" . $bg_imgPath;
+        $bigTile->save();
+    }
+    public function storeBigTile(Request $request)
+    {
+        $imgOriginalName = request()->img->getClientOriginalName();
+        $imgPath = $request->file('img')->storeAs('images', time() . $imgOriginalName, 'public');
+        $bg_imgOriginalName = request()->bg_img->getClientOriginalName();
+        $bg_imgPath = $request->file('bg_img')->storeAs('images', time() . $bg_imgOriginalName, 'public');
+        bigTile::create([
+            "header" => $request->header,
+            "title" => $request->title,
+            "text" => $request->text,
+            "btn1_content" => $request->btn1_content,
+            "btn1_href" => $request->btn1_href,
+            "btn2_content" => $request->btn2_content,
+            "btn2_href" => $request->btn2_href,
+            "img" => "storage/" . $imgPath,
+            "bg_img" => "storage/" . $bg_imgPath
+        ]);
     }
     public function updateTileBanner(Request $request)
     {
