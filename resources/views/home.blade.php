@@ -1406,16 +1406,17 @@
         <!-- related products -->
 
         <section class="text-[var(--color-text)] pt-3">
+            @foreach($footerTile as $ft)
             <div class="py-10">
                 <div
-                    class="flex flex-col xl:flex-row items-stretch gap-5 rounded-[10px] bg-[var(--color-bg-contact-section)] bg-[url('https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/pattern-2.png')] bg-cover bg-no-repeat bg-center">
+                    class="flex flex-col xl:flex-row items-stretch gap-5 rounded-[10px] bg-[var(--color-bg-contact-section)] bg-[url({{$ft['bg_img']}})] bg-cover bg-no-repeat bg-center">
                     <div class="w-full xl:w-1/2 px-[50px] pt-[60px] pb-[70px] flex flex-col justify-start gap-5">
                         <div>
                             <h2 class="text-[var(--color-primary-text)] sm:text-3xl lg:text-[50px] 2xl:leading-[75px] font-bold mb-1">
-                                در خانه بمانید و مایحتاج روزانه خود را از فروشگاه ما تهیه کنید
+                                {{$ft['title']}}
                             </h2>
                             <p class="text-[var(--color-primary-text)] py-5">
-                                خرید روزانه خود را با شاهکار آغاز کنید
+                                {{$ft['text']}}
                             </p>
                         </div>
                         <div class="w-full bg-white rounded-[10px] p-3">
@@ -1433,11 +1434,11 @@
                         </div>
                     </div>
                     <div
-                        class="w-full xl:w-1/2 bg-[url('https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/footer-min.jpg')] bg-cover bg-center bg-no-repeat">
-
+                        class="w-full xl:w-1/2 bg-[url({{$ft['img']}})] bg-cover bg-center bg-no-repeat">
                     </div>
                 </div>
             </div>
+            @endforeach
         </section>
 
 

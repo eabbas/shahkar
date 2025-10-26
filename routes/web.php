@@ -165,6 +165,7 @@ Route::group(['prefix' => 'banners', 'controller' => BannersController::class, '
    Route::get('/bigBanner/create', 'bigBannerCreate');
    Route::get('/tiles/create', 'tilesCreate');
    Route::get('/bigTile/create', 'bigTileCreate');
+   Route::get('/footerTile/create', 'footerTileCreate');
 });
 // dashboard routes
 Route::view('dashboard', 'dashboard.dashboard')->name('dashboard');
