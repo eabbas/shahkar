@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\banners;
 use App\Models\bigTile;
+use App\Models\footerTile;
 use Illuminate\Http\Request;
 
 class BannersController extends Controller
@@ -28,8 +29,23 @@ class BannersController extends Controller
         $bigTile = bigTile::all();
         return view('dashboard.bigTile', ['bigTile' => $bigTile]);
     }
+    public function footerTileCreate()
+    {
+        $footerTile = footerTile::all();
+        return view('dashboard.footerTile', ['footerTile' => $footerTile]);
+    }
     public function upsert(Request $request)
     {
+        if (array_key_exists('footerTile', $request->all())) {
+            $footerTile = footerTile::all();
+            if (count($footerTile) == 1) {
+                $this->updateFooterTile($request);
+                return to_route('home');
+            } else {
+                $this->storeFooterTile($request);
+                return to_route('home');
+            }
+        }
         if (array_key_exists('bigTile', $request->all())) {
             $bigTile = bigTile::all();
             if (count($bigTile) == 1) {
@@ -70,6 +86,32 @@ class BannersController extends Controller
                 return to_route('home');
             }
         }
+    }
+    public function updateFooterTile(Request $request)
+    {
+        $imgOriginalName = request()->img->getClientOriginalName();
+        $imgPath = $request->file('img')->storeAs('images', time() . $imgOriginalName, 'public');
+        $bg_imgOriginalName = request()->bg_img->getClientOriginalName();
+        $bg_imgPath = $request->file('bg_img')->storeAs('images', time() . $bg_imgOriginalName, 'public');
+        $footerTile = footerTile::find($request->footerTile);
+        $footerTile->title = $request->title;
+        $footerTile->text = $request->text;
+        $footerTile->img = "storage/" . $imgPath;
+        $footerTile->bg_img = "storage/" . $bg_imgPath;
+        $footerTile->save();
+    }
+    public function storeFooterTile(Request $request)
+    {
+        $imgOriginalName = request()->img->getClientOriginalName();
+        $imgPath = $request->file('img')->storeAs('images', time() . $imgOriginalName, 'public');
+        $bg_imgOriginalName = request()->bg_img->getClientOriginalName();
+        $bg_imgPath = $request->file('bg_img')->storeAs('images', time() . $bg_imgOriginalName, 'public');
+        footerTile::create([
+            "title" => $request->title,
+            "text" => $request->text,
+            "img" => "storage/" . $imgPath,
+            "bg_img" => "storage/" . $bg_imgPath
+        ]);
     }
     public function updateBigTile(Request $request)
     {
