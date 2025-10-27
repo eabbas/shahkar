@@ -28,7 +28,6 @@ Route::group(['prefix' => 'category', 'controller' => CategoryController::class,
    Route::get('/edit/{category}', 'edit')->name('edit');
    Route::post('/update', 'update')->name('update');
    Route::get('/delete/{category}', 'delete')->name('delete');
-   Route::get('/{category}/products', 'products')->name('products');
 });
 // product routes
 Route::group(['prefix' => 'product', 'controller' => ProductController::class, 'as' => 'product-'], function () {
@@ -158,7 +157,7 @@ Route::group([
    });
 });
 // search routes
-Route::get('/search', [SearchController::class, 'index']);
+Route::get('/search/{category}', [SearchController::class, 'index'])->name('search');
 // banners routes
 Route::group(['prefix' => 'banners', 'controller' => BannersController::class, 'as' => 'banners-'], function () {
    Route::get('/create', 'create');
