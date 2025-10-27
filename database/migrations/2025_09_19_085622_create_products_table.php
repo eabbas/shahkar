@@ -23,6 +23,8 @@ return new class extends Migration
             // $table->integer('discountPercent')->nullable();
             $table->integer('category_id');
             $table->tinyInteger('is_in_home')->nullable();
+            $table->string('brand')->nullable();
+            $table->integer('score')->default(1);
             // $table->integer('amount');
             // $table->integer('functionality');
             $table->timestamps();
