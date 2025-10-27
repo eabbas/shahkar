@@ -33,7 +33,7 @@ class userController extends Controller
     {
         $user = User::where("email", $request->email)->first();
         if (!$user) {
-            return to_route("user.login");
+            return to_route("user.signup");
         }
         $user_password = Hash::check($request->password, $user->password);
         if (!$user_password) {
@@ -41,11 +41,7 @@ class userController extends Controller
             // اونو باید با جی اس چک کنیم بگیم
             return to_route("user.login");
         }
-        if ($user && $user_password) {
-            Auth::login($user);
-        } else {
-            return to_route("user_signUp");
-        }
+        Auth::login($user);
         return to_route("home");
     }
     public function profile($id = null)

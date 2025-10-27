@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class product_attributes extends Model
 {
-    protected $fillable = ['product_id', 'attribute_key', 'attribute_value'];
-    public function product()
+    protected $fillable = ['product_id', 'attribute_id', 'attribute_value'];
+    public function product_price()
     {
-        return $this->belongsTo(product::class);
+        return $this->belongsTo(product_price::class);
     }
 }

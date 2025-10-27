@@ -19,4 +19,5 @@ class product extends Model
     {
         return $this->hasMany(media::class);
     }
+  
 }

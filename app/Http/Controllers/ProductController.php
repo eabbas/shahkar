@@ -22,6 +22,8 @@ class ProductController extends Controller
     }
     public function store(Request $request)
     {
+        
+        dd($request->all());
         $type = request()->mainImage->getClientOriginalExtension();
         $originalName = request()->mainImage->getClientOriginalname();
         $fullName = Str::uuid()."_".$originalName;
@@ -32,8 +34,9 @@ class ProductController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'summary' => $request->summary,
-            'category_id' => $request->category_id,
-            'is_in_home'=>$request->is_in_home
+            // 'category_id' => $request->category_id,
+            'is_in_home'=>$request->is_in_home,
+            'brand'=>$request->brand
         ]);
         $products []= ['product_id'=>$product_id, 'path'=>$mainPath, 'type'=>$type, 'is_main'=>1, 'created_at' => now(), 'updated_at' => now()];
 
@@ -77,7 +80,7 @@ class ProductController extends Controller
     }
     public function update(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         $medias = media::where('product_id', $request->product_id)->get();
         dd($medias);
         // foreach($product->medias as $media){
