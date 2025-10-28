@@ -56,10 +56,4 @@ class CategoryController extends Controller
         $category->delete();
         return to_route('category-index');
     }
-    public function products(category $category)
-    {
-        $category->products;
-        return $category;
-        return view('category.products', ['category', $category]);
-    }
 }

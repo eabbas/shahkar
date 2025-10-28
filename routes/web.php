@@ -28,7 +28,6 @@ Route::group(['prefix' => 'category', 'controller' => CategoryController::class,
    Route::get('/edit/{category}', 'edit')->name('edit');
    Route::post('/update', 'update')->name('update');
    Route::get('/delete/{category}', 'delete')->name('delete');
-   Route::get('/{category}/products', 'products')->name('products');
 });
 // product routes
 Route::group(['prefix' => 'product', 'controller' => ProductController::class, 'as' => 'product-'], function () {
@@ -90,9 +89,9 @@ Route::group([
    Route::post('/store', 'store')->name('store');
    Route::get('/login', 'login')->name('login');
    Route::post('/check_user', 'checkUser')->name('checkUser');
-   Route::get('/profile/{id?}', 'profile')->name('profile');
+   Route::get('/profile/{user?}', 'profile')->name('profile');
    Route::get('/edit/{user}', 'edit')->name('edit');
-   Route::post('/updata', 'updata')->name('update');
+   Route::post('/update', 'update')->name('update');
    Route::get('/delete/{user}', 'delete')->name('delete');
    Route::get('/logout', 'logout')->name('logout');
    Route::get('/index', 'index')->name('index');
@@ -158,7 +157,7 @@ Route::group([
    });
 });
 // search routes
-Route::get('/search', [SearchController::class, 'index']);
+Route::get('/search/{category}', [SearchController::class, 'index'])->name('search');
 // banners routes
 Route::group(['prefix' => 'banners', 'controller' => BannersController::class, 'as' => 'banners-'], function () {
    Route::get('/create', 'create');

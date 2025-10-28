@@ -783,7 +783,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-5">
                 @foreach($categories as $category)
                 <div class="p-4 border border-[var(--color-border)] rounded-[10px]">
-                    <a href="{{route('category-products', [$category])}}" class="block mb-1" target="_blank">
+                    <a href="{{route('search', [$category])}}" class="block mb-1" target="_blank">
                         <img src="{{$category->image}}"
                             class="w-[85px] h-20 mx-auto" alt="">
                         <span class="inline-block w-full text-center pt-2">{{$category->title}}</span>
@@ -1063,19 +1063,19 @@
                     <span
                         class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
                     <div>
-                        <a href="http://localhost/shahkar/public/product/show/{{$specialDiscountProduct->id}}" class="flex justify-center mb-1 overflow-hidden">
-                            <img src="@foreach($specialDiscountProduct->medias as $media) {{$media['path']}} @endforeach"
+                        <a href="{{route('product-show', [$specialDiscountProduct])}}" class="flex justify-center mb-1 overflow-hidden">
+                            <img src="@foreach($specialDiscountProduct->medias as $media) @if($media['is_main'] == 1) {{asset($media['path'])}} @endif @endforeach"
                                 class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
                                 alt="product">
                         </a>
                     </div>
                     <div>
                         <div class="mb-1">
-                            <a href="http://localhost/shahkar/public/product/show/{{$specialDiscountProduct->id}}" class="text-[12px] lg:text-[14px] text-[var(--color-text)]">{{$specialDiscountProduct->title}}</a>
+                            <a href="{{route('product-show', [$specialDiscountProduct])}}" class="text-[12px] lg:text-[14px] text-[var(--color-text)]">{{$specialDiscountProduct->title}}</a>
                         </div>
                         <div>
                             <div class="mb-2 font-semibold text-[14px] lg:text-base">
-                                <a href="http://localhost/shahkar/public/product/show/{{$specialDiscountProduct->id}}">{{$specialDiscountProduct->description}}</a>
+                                <a href="{{route('product-show', [$specialDiscountProduct])}}">{{$specialDiscountProduct->description}}</a>
                             </div>
                             <div class="flex flex-row items-center mb-3 gap-2">
                                 <div class="w-1/2 flex flex-row items-center text-[12px]">
@@ -1319,7 +1319,7 @@
                                 class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
                             <div>
                                 <a href="http://localhost/shahkar/public/product/show/{{$product->id}}" class="flex justify-center mb-1 overflow-hidden">
-                                    <img src="@foreach($product->medias as $media) {{$media['path']}} @endforeach"
+                                    <img src="@foreach($product->medias as $media) @if($media['is_main'] == 1) {{asset($media['path'])}} @endif @endforeach"
                                         class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
                                         alt="product">
                                 </a>
