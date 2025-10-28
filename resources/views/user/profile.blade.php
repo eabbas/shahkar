@@ -9,6 +9,7 @@
 </head>
 
 <body>
+
     <header class="2xl:container mx-auto w-full border-b border-gray-300">
         <!-- desktop menu -->
         <div class="w-11/12 mx-auto hidden lg:flex flex-row justify-between items-center py-7">
@@ -62,21 +63,22 @@
                             <span class="text-xs font-semibold text-gray-600">حاج محمد اکبرنژاد</span>
                         </div>
                     </div>
+          
                     <div class="h-[537px] overflow-y-auto">
                         <ul class="w-full p-2">
                             <li class="border-b border-gray-300">
-                                <a href="{{route('user_edit' ,$user -> id)}}" class="inline-block w-full py-3 px-4 text-sm">ادیت پروفایل</a>
+                                <a href="{{route('user.edit' ,['user'=>$user])}}" class="inline-block w-full py-3 px-4 text-sm">ادیت پروفایل</a>
                             </li>
                             <li class="border-b border-gray-300">
-                                <a href="{{route('user_delete' , $user -> id)}}" class="inline-block w-full py-3 px-4 text-sm">حذف حساب کاربری</a>
+                                <a href="{{route('user.delete' , ['user'=>$user])}}" class="inline-block w-full py-3 px-4 text-sm">حذف حساب کاربری</a>
                             </li>
                             <li class="border-b border-gray-300">
-                                <a href="{{route('user_logOut')}}" class="inline-block w-full py-3 px-4 text-sm">خروج از حساب کاربری</a>
+                                <a href="{{route('user.logout')}}" class="inline-block w-full py-3 px-4 text-sm">خروج از حساب کاربری</a>
                             </li>
 
-                            @if($user -> is_admin == "1")
+                            @if($user -> is_admin)
                             <li class="border-b border-gray-300">
-                                <a href="{{route('user_index')}}" class="inline-block w-full py-3 px-4 text-sm">نمایش کاربران</a>
+                                <a href="{{route('user.index')}}" class="inline-block w-full py-3 px-4 text-sm">نمایش کاربران</a>
                             </li>
                             @endif
 
@@ -99,18 +101,18 @@
         <aside class="hidden w-3/12 lg:h-[500px] border-l border-gray-300 lg:block">
             <ul class="w-full p-2">
                 <li class="border-b border-gray-300">
-                    <a href="{{route('user_edit' ,$user -> id)}}" class="inline-block w-full py-3 px-4 text-sm">ادیت پروفایل</a>
+                    <a href="{{route('user.edit' ,[$user])}}" class="inline-block w-full py-3 px-4 text-sm">ادیت پروفایل</a>
                 </li>
                 <li class="border-b border-gray-300">
-                    <a href="{{route('user_delete' , $user -> id)}}" class="inline-block w-full py-3 px-4 text-sm">حذف حساب کاربری</a>
+                    <a href="{{route('user.delete' , [$user])}}" class="inline-block w-full py-3 px-4 text-sm">حذف حساب کاربری</a>
                 </li>
                 <li class="border-b border-gray-300">
-                    <a href="{{route('user_logOut')}}" class="inline-block w-full py-3 px-4 text-sm">خروج از حساب کاربری</a>
+                    <a href="{{route('user.logout')}}" class="inline-block w-full py-3 px-4 text-sm">خروج از حساب کاربری</a>
                 </li>
 
-                @if($user -> is_admin == "1")
+                @if($user -> is_admin)
                 <li class="border-b border-gray-300">
-                    <a href="{{route('user_index')}}" class="inline-block w-full py-3 px-4 text-sm">نمایش کاربران</a>
+                    <a href="{{route('user.index')}}" class="inline-block w-full py-3 px-4 text-sm">نمایش کاربران</a>
                 </li>
                 @endif
 

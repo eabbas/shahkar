@@ -89,9 +89,9 @@ Route::group([
    Route::post('/store', 'store')->name('store');
    Route::get('/login', 'login')->name('login');
    Route::post('/check_user', 'checkUser')->name('checkUser');
-   Route::get('/profile/{id?}', 'profile')->name('profile');
+   Route::get('/profile/{user?}', 'profile')->name('profile');
    Route::get('/edit/{user}', 'edit')->name('edit');
-   Route::post('/updata', 'updata')->name('update');
+   Route::post('/update', 'update')->name('update');
    Route::get('/delete/{user}', 'delete')->name('delete');
    Route::get('/logout', 'logout')->name('logout');
    Route::get('/index', 'index')->name('index');

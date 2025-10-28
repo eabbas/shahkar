@@ -48,16 +48,13 @@ class userController extends Controller
         }
         return to_route("home");
     }
-    public function profile($id = null)
+    public function profile($user = null)
     {
-        if (Auth::check()) {
-            $user = Auth::user();
-        }
         if (!Auth::check()) {
             return to_route("user.login");
         }
-        if ($id) {
-            $user = User::find($id);
+        if (!$user) {
+            $user = Auth::user();
         }
         return view("user.profile", ["user" => $user]);
     }
@@ -76,17 +73,17 @@ class userController extends Controller
             $user->password = $password;
         }
         $user->save();
-        return redirect("user/profile");
+        return to_route("user.index");
     }
     public function delete(User $user)
     {
         $user->delete();
-        return to_route("user_signUp");
+        return to_route("user.index");
     }
     public function logout()
     {
         Auth::logout();
-        return redirect("/user/login");
+        return to_route("user.login");
     }
     public function index()
     {
