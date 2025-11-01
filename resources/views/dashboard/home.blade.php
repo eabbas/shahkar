@@ -9,6 +9,8 @@
 
 <body>
    <a href="{{route('dashboard-settings-home-banners')}}">banners</a>
+   <br>
+   <a href="{{route('dashboard-settings-home-logo')}}">logo</a>
 </body>
 
 </html>

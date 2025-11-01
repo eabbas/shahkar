@@ -45,10 +45,12 @@
             <div class="xl:w-8/12 w-full flex flex-row justify-center gap-5 xl:justify-start items-center">
                 <!-- logo -->
                 <div class="w-1/12 h-[33px]">
-                    <a href="#" class="inline-block size-full">
-                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/plugins/ecom-addons/assets/image/logo.svg"
-                            class="size-full" alt="logo">
+                    @foreach($logo as $l)
+                    <a href="{{$l['link_href']}}" class="inline-block size-full">
+                        <img src="{{$l['logo']}}"
+                            class="size-full" alt="{{$l['alt_text']}}">
                     </a>
+                    @endforeach
                 </div>
                 <!-- logo -->
 
@@ -379,10 +381,12 @@
         <div class="w-11/12 mx-auto lg:hidden flex flex-row justify-between items-center py-4">
             <!-- logo -->
             <div class="h-[33px]">
-                <a href="#" class="inline-block size-full">
-                    <img src="https://elango.steelthemes.com/ecom/el2/wp-content/plugins/ecom-addons/assets/image/logo.svg"
-                        class="size-full" alt="logo">
+                @foreach($logo as $l)
+                <a href="{{$l['link_href']}}" class="inline-block size-full">
+                    <img src="{{$l['logo']}}"
+                        class="size-full" alt="{{$l['alt_text']}}">
                 </a>
+                @endforeach
             </div>
             <!-- logo -->
 

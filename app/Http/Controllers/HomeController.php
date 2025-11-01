@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\settings;
 use App\Models\category;
 use App\Models\footerTile;
+use App\Models\logo;
 use App\Models\product;
 
 class HomeController extends Controller
@@ -23,6 +24,7 @@ class HomeController extends Controller
         $specialDiscounts = category::where('title', 'تخفیفات ویژه')->with('products')->get();
         $bigTile = bigTile::all();
         $footerTile = footerTile::all();
-        return view('home', ['settings' => $settings, 'products' => $products, 'categories' => $cats, 'banners' => $banners, 'specialDiscounts' => $specialDiscounts, 'bigBanner' => $bigBanner, 'tileBanners' => $tileBanners, 'bigTile' => $bigTile, 'footerTile' => $footerTile]);
+        $logo = logo::all();
+        return view('home', ['settings' => $settings, 'products' => $products, 'categories' => $cats, 'banners' => $banners, 'specialDiscounts' => $specialDiscounts, 'bigBanner' => $bigBanner, 'tileBanners' => $tileBanners, 'bigTile' => $bigTile, 'footerTile' => $footerTile, 'logo' => $logo]);
     }
 }
