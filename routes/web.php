@@ -160,16 +160,15 @@ Route::group([
 Route::get('/search/{category}', [SearchController::class, 'index'])->name('search');
 // banners routes
 Route::group(['prefix' => 'banners', 'controller' => BannersController::class, 'as' => 'banners-'], function () {
-   Route::get('/create', 'create');
-   Route::get('/bigBanner/create', 'bigBannerCreate');
-   Route::get('/tiles/create', 'tilesCreate');
-   Route::get('/bigTile/create', 'bigTileCreate');
-   Route::get('/footerTile/create', 'footerTileCreate');
+   Route::get('/create', 'bannersCreate')->name('create');
+   Route::get('/logo/create', 'logoCreate')->name('logo-create');
+   Route::get('/bigBanner/create', 'bigBannerCreate')->name('bigBanner-create');
+   Route::get('/tiles/create', 'tilesCreate')->name('tiles-create');
+   Route::get('/bigTile/create', 'bigTileCreate')->name('bigTile-create');
+   Route::get('/footerTile/create', 'footerTileCreate')->name('footerTile-create');
+   Route::post('/upsert', 'upsert')->name('upsert');
 });
 // dashboard routes
 Route::view('dashboard', 'dashboard.dashboard')->name('dashboard');
 Route::view('dashboard/settings', 'dashboard.settings')->name('dashboard-settings');
 Route::view('dashboard/settings/home', 'dashboard.home')->name('dashboard-settings-home');
-Route::get('dashboard/settings/home/banners', [BannersController::class, 'bannersCreate'])->name('dashboard-settings-home-banners');
-Route::get('dashboard/settings/home/logo', [BannersController::class, 'logoCreate'])->name('dashboard-settings-home-logo');
-Route::post('dashboard/settings/home/banners/upsert', [BannersController::class, 'upsert'])->name('banners-upsert');
