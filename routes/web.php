@@ -94,7 +94,7 @@ Route::group([
    Route::post('/update', 'update')->name('update');
    Route::get('/delete/{user}', 'delete')->name('delete');
    Route::get('/logout', 'logout')->name('logout');
-   Route::get('/index', 'index')->name('index');
+   Route::get('/index', 'index')->name('index')->middleware(checkAdminMiddleware::class);
 });
 // comments routes
 Route::group([
@@ -170,5 +170,6 @@ Route::group(['prefix' => 'banners', 'controller' => BannersController::class, '
 Route::view('dashboard', 'dashboard.dashboard')->name('dashboard');
 Route::view('dashboard/settings', 'dashboard.settings')->name('dashboard-settings');
 Route::view('dashboard/settings/home', 'dashboard.home')->name('dashboard-settings-home');
-Route::get('dashboard/settings/home/banners', [BannersController::class, 'create'])->name('dashboard-settings-home-banners');
+Route::get('dashboard/settings/home/banners', [BannersController::class, 'bannersCreate'])->name('dashboard-settings-home-banners');
+Route::get('dashboard/settings/home/logo', [BannersController::class, 'logoCreate'])->name('dashboard-settings-home-logo');
 Route::post('dashboard/settings/home/banners/upsert', [BannersController::class, 'upsert'])->name('banners-upsert');
