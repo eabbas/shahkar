@@ -9,8 +9,11 @@
    <title>create category</title>
 </head>
 
+
 <body>
-   <div class="w-full h-svh bg-[url('https://keenthemes.com/static/metronic/tailwind/dist/assets/media/images/2600x1200/bg-10.png')] bg-cover bg-no-repeat">
+@extends('dashboard')
+   @section('content')
+   <div class="w-full h-full pb-10">
       <h2 class="text-3xl text-center font-bold py-10 text-[#425A8B]">فرم ایجاد دسته بندی</h2>
       <div class="w-2/3 mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white">
          <form action="{{route('category-store')}}" method="post" enctype="multipart/form-data">
@@ -49,6 +52,8 @@
          </form>
       </div>
    </div>
+   @endsection
+
 </body>
 
 </html>

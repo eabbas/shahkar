@@ -11,6 +11,8 @@
 </head>
 
 <body>
+    @extends('dashboard')
+   @section('content')
     <section class="2xl:container mx-auto">
         <div class="w-11/12 mx-auto">
             <div class="my-10">
@@ -61,6 +63,7 @@
             </div>
         </div>
     </section>
+   @endsection
 </body>
 
 </html>
