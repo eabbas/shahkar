@@ -12,12 +12,13 @@
 <body>
 
    
-   <div class="2xl:contaner mx-auto w-8/10 max-h-[100vh]">
-        <form action="#">
+   <div class="2xl:contaner mx-auto w-8/10">
+        <form action="{{route('category-store')}}" method="post" enctype="multipart/form-data">
+            @csrf
             <div class="mx-[3%]">
                 <div class="flex justify-between">
                     <div>
-                        <h1 class="font-bold">افزودن دسته بندی</h1>
+                        <h1 class="text-[150%] font-bold mt-3">افزودن دسته بندی</h1>
                         <span class="text-[#071437bf]">خانه - تجارت - کاتالوگ</span>
                     </div>
                     <!-- <div class="flex flex-row-reverse">
@@ -47,15 +48,19 @@
                         </div>
                         <div
                         class="flex flex-col items-center text-center">
-                            <div class="rounded-lg shadow-xl/30] w-[50%] mb-[1/14] font-bold">
+                           <div class="rounded-lg shadow-xl/30] w-[50%] mb-[1/14] font-bold">
                               <!-- This photo was in a previous project. Now solve the problem with this photo yourself. -->
                                 <img src="../../../../imags/download.png" alt="">
                                 <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                            </svg> -->
-                            </div>
+                              </svg> -->
+                              <label for="image" class="rounded-lg">
+                                 <img src="https://api.gstp.ir/build/assets/plan-6186f4a2.svg" alt="عکس محصول خود را اینجا بندازید." class="cursor-pointer rounded-xl">
+                              </label>
+                              <input type="file" name="image" id="image" class="cursor-pointer hidden">
+                           </div>
 
                             <span class="text-[#99A1B7] text-[75%] w-[93%] p-[4%]">
                                 Set the category thumbnail image. Only
@@ -91,11 +96,14 @@
                                 عنوان دسته بندی: *
                             </span>
                             <input type="text" placeholder="نام دسته بندی"
-                                class="solid rounded-lg border border-solid border-[#C4CADA] h-[50px] w-full p-2">
+                                class="solid rounded-lg border border-solid border-[#C4CADA] h-[50px] w-full p-2" name="title" id="catTitle">
                             <span class="text-[#99A1B7] text-[75%] p-2">نام دسته مورد نیاز است و توصیه می شود منحصر به
                                 فرد
                                 باشد.</span>
                         </div>
+                        <!-- Since the category description is written with a library reader, when we drop that library here, we set the "Name" and "ID" at that time.
+                           name="description" 
+                           id="cat_desc" -->
                         <div class="text-right w-full mt-[20px]">
                             <span class="text-[85%] block mb-p2">
                               توضیحات دسته بندی:
@@ -154,11 +162,7 @@
                                     </div>
                                 </div>
                                 <hr class="border-[#C4CADA]">
-                                <div contenteditable="true" class="h-[150px]">
-                                    <span>
-                                       توضیحات خود را اینجا بنویسید.
-                                    </span>
-                                </div>
+                                <textarea rows="4" class="outline-none w-full h-full" name="description" id="cat_desc">توضیحات خود را اینجا بنویسید.</textarea>
                             </div>
 
                             <span class="text-[#99A1B7] text-[75%] p-2">
