@@ -55,10 +55,12 @@
             <div class="xl:w-8/12 w-full flex flex-row justify-center gap-5 xl:justify-start items-center">
                 <!-- logo -->
                 <div class="w-1/12 h-[33px]">
-                    <a href="#" class="inline-block size-full">
-                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/plugins/ecom-addons/assets/image/logo.svg"
-                            class="size-full" alt="logo">
+                    @foreach($logo as $l)
+                    <a href="{{$l['link_href']}}" class="inline-block size-full">
+                        <img src="{{$l['logo']}}"
+                            class="size-full" alt="{{$l['alt_text']}}">
                     </a>
+                    @endforeach
                 </div>
                 <!-- logo -->
 
@@ -389,10 +391,12 @@
         <div class="w-11/12 mx-auto lg:hidden flex flex-row justify-between items-center py-4">
             <!-- logo -->
             <div class="h-[33px]">
-                <a href="#" class="inline-block size-full">
-                    <img src="https://elango.steelthemes.com/ecom/el2/wp-content/plugins/ecom-addons/assets/image/logo.svg"
-                        class="size-full" alt="logo">
+                @foreach($logo as $l)
+                <a href="{{$l['link_href']}}" class="inline-block size-full">
+                    <img src="{{$l['logo']}}"
+                        class="size-full" alt="{{$l['alt_text']}}">
                 </a>
+                @endforeach
             </div>
             <!-- logo -->
 
@@ -816,59 +820,10 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-5">
                 <div class="p-4 border border-[var(--color-border)] rounded-[10px]">
-                    <a href="#" class="block mb-1">
-                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                            class="w-[85px] h-20 mx-auto" alt="product">
-                        <span class="inline-block w-full text-center pt-2">محصول تستی</span>
-                    </a>
-                    <span class="block text-center text-[14px] text-[var(--color-secondary-text)]">تست آیتم</span>
-                </div>
-                <div class="p-4 border border-[var(--color-border)] rounded-[10px]">
-                    <a href="#" class="block mb-1">
-                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                            class="w-[85px] h-20 mx-auto" alt="product">
-                        <span class="inline-block w-full text-center pt-2">محصول تستی</span>
-                    </a>
-                    <span class="block text-center text-[14px] text-[var(--color-secondary-text)]">تست آیتم</span>
-                </div>
-                <div class="p-4 border border-[var(--color-border)] rounded-[10px]">
-                    <a href="#" class="block mb-1">
-                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                            class="w-[85px] h-20 mx-auto" alt="product">
-                        <span class="inline-block w-full text-center pt-2">محصول تستی</span>
-                    </a>
-                    <span class="block text-center text-[14px] text-[var(--color-secondary-text)]">تست آیتم</span>
-                </div>
-                <div class="p-4 border border-[var(--color-border)] rounded-[10px]">
-                    <a href="#" class="block mb-1">
-                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                            class="w-[85px] h-20 mx-auto" alt="product">
-                        <span class="inline-block w-full text-center pt-2">محصول تستی</span>
-                    </a>
-                    <span class="block text-center text-[14px] text-[var(--color-secondary-text)]">تست آیتم</span>
-                </div>
-                <div class="p-4 border border-[var(--color-border)] rounded-[10px]">
-                    <a href="#" class="block mb-1">
-                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                            class="w-[85px] h-20 mx-auto" alt="product">
-                        <span class="inline-block w-full text-center pt-2">محصول تستی</span>
-                    </a>
-                    <span class="block text-center text-[14px] text-[var(--color-secondary-text)]">تست آیتم</span>
-                </div>
-                <div class="p-4 border border-[var(--color-border)] rounded-[10px]">
-                    <a href="#" class="block mb-1">
-                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                            class="w-[85px] h-20 mx-auto" alt="product">
-                        <span class="inline-block w-full text-center pt-2">محصول تستی</span>
-                    </a>
-                    <span class="block text-center text-[14px] text-[var(--color-secondary-text)]">تست آیتم</span>
-                </div>
-
-                <div class="p-4 border border-[var(--color-border)] rounded-[10px]">
-                    <a href="#" class="block mb-1">
-                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                            class="w-[85px] h-20 mx-auto" alt="product">
-                        <span class="inline-block w-full text-center pt-2">محصول تستی</span>
+                    <a href="{{route('search', [$category])}}" class="block mb-1" target="_blank">
+                        <img src="{{$category->image}}"
+                            class="w-[85px] h-20 mx-auto" alt="">
+                        <span class="inline-block w-full text-center pt-2">{{$category->title}}</span>
                     </a>
                     <span class="block text-center text-[14px] text-[var(--color-secondary-text)]">تست آیتم</span>
                 </div>
@@ -1113,41 +1068,57 @@
                     <span
                         class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
                     <div>
-                        <a href="#" class="flex justify-center mb-1 overflow-hidden">
-                            <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/onion-pro-1.jpg"
+                        <a href="{{route('product-show', [$specialDiscountProduct])}}" class="flex justify-center mb-1 overflow-hidden">
+                            <img src="@foreach($specialDiscountProduct->medias as $media) @if($media['is_main'] == 1) {{asset($media['path'])}} @endif @endforeach"
                                 class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
                                 alt="product">
                         </a>
                     </div>
-                    <div class="mb-1">
-                        <a href="#" class="text-[12px] lg:text-[14px] text-[var(--color-text)]">تست آیتم</a>
-                    </div>
-                    <div class="mb-2 font-semibold text-[14px] lg:text-base">
-                        <a href="#">توضیحات محصول تستی محصول تستی محصول </a>
-                    </div>
-                    <div class="flex flex-row items-center mb-3 gap-2">
-                        <div class="w-1/2 flex flex-row items-center text-[12px]">
-                            <div class="text-[var(--color-secondary-text)] flex flex-row items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
+                    <div>
+                        <div class="mb-1">
+                            <a href="{{route('product-show', [$specialDiscountProduct])}}" class="text-[12px] lg:text-[14px] text-[var(--color-text)]">{{$specialDiscountProduct->title}}</a>
+                        </div>
+                        <div>
+                            <div class="mb-2 font-semibold text-[14px] lg:text-base">
+                                <a href="{{route('product-show', [$specialDiscountProduct])}}">{{$specialDiscountProduct->description}}</a>
+                            </div>
+                            <div class="flex flex-row items-center mb-3 gap-2">
+                                <div class="w-1/2 flex flex-row items-center text-[12px]">
+                                    <div class="text-[var(--color-secondary-text)] flex flex-row items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
+                                            <path fill="#8C9EC5"
+                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
+                                            <path fill="#8C9EC5"
+                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
+                                            <path fill="#8C9EC5"
+                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
+                                            <path fill="#8C9EC5"
+                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
+                                            <path fill="#8C9EC5"
+                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
+                                        </svg>
+                                    </div>
+                                    <span>(0)</span>
+                                </div>
+                                <div>
+                                    <span
+                                        class="lg:py-[3px] py-px px-0.5 lg:px-[5px] bg-[var(--color-secondary)] text-[var(--color-primary-text)] rounded-full text-[10px]">
+                                        تستی
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="hidden lg:flex flex-row items-center gap-2 text-[var(--color-text)] mb-3 text-[18px] font-bold">
+                                <span>$15.22</span>
+                                <span>-</span>
+                                <span>$140.00</span>
                             </div>
                             <span>(0)</span>
                         </div>
@@ -3292,8 +3263,8 @@
                             <span
                                 class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
                             <div>
-                                <a href="#" class="flex justify-center mb-1 overflow-hidden">
-                                    <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/onion-pro-1.jpg"
+                                <a href="http://localhost/shahkar/public/product/show/{{$product->id}}" class="flex justify-center mb-1 overflow-hidden">
+                                    <img src="@foreach($product->medias as $media) @if($media['is_main'] == 1) {{asset($media['path'])}} @endif @endforeach"
                                         class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
                                         alt="product">
                                 </a>
@@ -3415,12 +3386,71 @@
 
 
     </main>
-    
-    <footer class="text-[var(--color-text)] pt-3">
-        <div class="py-10 bg-[var(--color-primary-btn)]">
+
+    <footer class="text-[var(--color-text)] pt-3 bg-[var(--color-primary-btn)] 2xl:container mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-4">
+            <div class="p-6">
+                <p class="text-gray-700 font-bold mb-4">تست</p>
+                <p>تست</p>
+                <p>تست</p>
+                <p>تست</p>
+                <p>تست</p>
+                <p>تست</p>
+                <p>تست</p>
+                <p>تست</p>
+                <p>تست</p>
+                <p>تست</p>
+                <p>تست</p>
+            </div>
+            <div class="p-6">
+                <p class="text-gray-700 font-bold mb-4">تست</p>
+                <p>تست</p>
+                <p>تست</p>
+                <p>تست</p>
+                <p>تست</p>
+                <p>تست</p>
+                <p>تست</p>
+                <p>تست</p>
+            </div>
+            <div class="p-6">
+                <p class="text-gray-700 font-bold mb-4">تست</p>
+                <p>تست</p>
+                <p>تست</p>
+                <p>تست</p>
+                <p>تست</p>
+                <p>تست</p>
+                <p>تست</p>
+                <p>تست</p>
+            </div>
+            <div class="p-6 flex flex-col gap-10">
+                <div class="">
+                    <p class="text-gray-700 font-bold mb-4">همراه ما باشید!</p>
+                </div>
+                <div class="flex justify-between items-center">
+                    <img src="" alt="insta">
+                    <img src="" alt="insta">
+                    <img src="" alt="insta">
+                    <img src="" alt="insta">
+                </div>
+                <div class="">
+                    <form action="" class="flex flex-col gap-4">
+                        <label for="" class="">با ثبت ایمیل از جدیدترین تخفیف ها با خبر شوید</label>
+                        <div class="flex gap-4">
+                            <input type="email" class="w-3/4 outline-none py-2 px-9 bg-[#F9F9F9] rounded-[12px] focus:border-1" name="" id="" placeholder="" required>
+                            <button type="submit" class="w-1/4 py-2 px-7 rounded-[10px] bg-[var(--color-btn-contact)] text-[var(--color-primary-text)] hover:bg-[var(--color-btn-contact-hover)] transition-all duration-300 text-white cursor-pointer">ثبت</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="py-10">
             <p class="text-center">
                 طراحی شده توسط
                 <span class="font-bold">فائوس</span>
+            </p>
+            <p class="text-center">
+                عباس ملکی:
+                <span class="font-bold">09147794595</span>
             </p>
         </div>
     </footer>

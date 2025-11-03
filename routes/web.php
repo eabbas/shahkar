@@ -29,6 +29,13 @@ Route::group(['prefix' => 'category', 'controller' => CategoryController::class,
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{category}', 'delete')->name('delete');
     Route::get('/{category}/products', 'products')->name('products');
+   Route::get('/create', 'create');
+   Route::post('/store', 'store')->name('store');
+   Route::get('/list', 'index')->name('index');
+   Route::get('/show/{category}', 'show')->name('show');
+   Route::get('/edit/{category}', 'edit')->name('edit');
+   Route::post('/update', 'update')->name('update');
+   Route::get('/delete/{category}', 'delete')->name('delete');
 });
 // product routes
 Route::group(['prefix' => 'product', 'controller' => ProductController::class, 'as' => 'product-'], function () {
@@ -86,16 +93,16 @@ Route::group([
     'controller' => userController::class,
     'as' => 'user.'
 ], function () {
-    Route::get('/signup', 'signup')->name('signup');
-    Route::post('/store', 'store')->name('store');
-    Route::get('/login', 'login')->name('login');
-    Route::post('/check_user', 'checkUser')->name('checkUser');
-    Route::get('/profile/{id?}', 'profile')->name('profile');
-    Route::get('/edit/{user}', 'edit')->name('edit');
-    Route::post('/updata', 'updata')->name('update');
-    Route::get('/delete/{user}', 'delete')->name('delete');
-    Route::get('/logout', 'logout')->name('logout');
-    Route::get('/index', 'index')->name('index');
+   Route::get('/signup', 'signup')->name('signup');
+   Route::post('/store', 'store')->name('store');
+   Route::get('/login', 'login')->name('login');
+   Route::post('/check_user', 'checkUser')->name('checkUser');
+   Route::get('/profile/{user?}', 'profile')->name('profile');
+   Route::get('/edit/{user}', 'edit')->name('edit');
+   Route::post('/update', 'update')->name('update');
+   Route::get('/delete/{user}', 'delete')->name('delete');
+   Route::get('/logout', 'logout')->name('logout');
+   Route::get('/index', 'index')->name('index')->middleware(checkAdminMiddleware::class);
 });
 // comments routes
 Route::group([
@@ -158,14 +165,16 @@ Route::group([
     });
 });
 // search routes
-Route::get('/search', [SearchController::class, 'index']);
+Route::get('/search/{category}', [SearchController::class, 'index'])->name('search');
 // banners routes
 Route::group(['prefix' => 'banners', 'controller' => BannersController::class, 'as' => 'banners-'], function () {
-    Route::get('/create', 'create');
-    Route::get('/bigBanner/create', 'bigBannerCreate');
-    Route::get('/tiles/create', 'tilesCreate');
-    Route::get('/bigTile/create', 'bigTileCreate');
-    Route::get('/footerTile/create', 'footerTileCreate');
+   Route::get('/create', 'bannersCreate')->name('create');
+   Route::get('/logo/create', 'logoCreate')->name('logo-create');
+   Route::get('/bigBanner/create', 'bigBannerCreate')->name('bigBanner-create');
+   Route::get('/tiles/create', 'tilesCreate')->name('tiles-create');
+   Route::get('/bigTile/create', 'bigTileCreate')->name('bigTile-create');
+   Route::get('/footerTile/create', 'footerTileCreate')->name('footerTile-create');
+   Route::post('/upsert', 'upsert')->name('upsert');
 });
 // dashboard routes
 Route::get('/dashboard', function () {
@@ -174,7 +183,3 @@ Route::get('/dashboard', function () {
 
 Route::view('dashboard/settings', 'dashboard.settings')->name('dashboard-settings');
 Route::view('dashboard/settings/home', 'dashboard.home')->name('dashboard-settings-home');
-Route::get('dashboard/settings/home/banners', [BannersController::class, 'create'])->name('dashboard-settings-home-banners');
-Route::post('dashboard/settings/home/banners/upsert', [BannersController::class, 'upsert'])->name('banners-upsert');
-
-// Route::view('/dashboard', 'dashboard');
