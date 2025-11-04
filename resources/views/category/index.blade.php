@@ -8,6 +8,9 @@
 </head>
 
 <body>
+@extends('dashboard')
+@section('content')
+<div>
    <h2> لیست دسته بندی ها</h2>
    <table border="1" style="border-collapse: collapse;">
       <thead>
@@ -37,10 +40,11 @@
          @endforeach
       </tbody>
    </table>
+</div>
 </body>
 
 </html>
-
+@endsection
 <?php
 // $children = $category->children;
 // while (!empty($children)) {

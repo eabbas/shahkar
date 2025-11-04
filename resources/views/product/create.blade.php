@@ -19,7 +19,12 @@
 </head>
 
 <body>
-   <div class="w-full h-full bg-[url('https://keenthemes.com/static/metronic/tailwind/dist/assets/media/images/2600x1200/bg-10.png')] bg-cover bg-no-repeat pb-10">
+
+@extends('dashboard')
+
+
+   @section('content')
+   <div class="w-full h-full pb-10">
       <h2 class="text-3xl text-center font-bold py-5 text-[#425A8B]">فرم ایجاد محصول</h2>
       <div class="w-3/4 mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white">
          <form action="{{route('product-store')}}" method="post" enctype="multipart/form-data">
@@ -107,6 +112,7 @@
          </form>
       </div>
    </div>
+   @endsection
    <script src="{{ url('assets/js/attribute.js') }}"></script>
 </body>
 

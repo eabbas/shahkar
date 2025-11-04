@@ -3,76 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url('assets/css/style.css') }}" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>signup</title>
-    <style>
-        .kt-card{
-            border-radius: 12px;
-            border: 1px solid white;
-            box-shadow: 0 1px  2px 0 #0000000d;
-        }
-        .kt-btn{
-            height: calc(.25rem * 8.5);
-            gap: calc(.25rem * 1.5);
-            border-radius: calc(.5rem - 2px);
-            padding-inline: calc(.25rem * 3);
-            font-size: .8125rem;
-            line-height: calc(1.25/.875);
-        }
-        .kt-btn-outline{
-            border: 1px solid #e7e3e4;
-            color: #1b1718;
-            box-shadow: 0 0 #0000;
-        }
-        .kt-btn-outline:hover{
-            background-color: #f5f4f4;
-            color: #1b1718;
-        }
-        .kt-form-label{
-            align-items: center;
-            gap: calc(.25rem * 2);
-            width: 100%;
-            font-size: .875rem;
-            line-height: 1;
-            font-weight: 500;
-            display: flex;
-        }
-        .kt-input{
-            width: 100%;
-            height: calc(.25rem * 8.5);
-            border-radius: calc(.5rem - 2px);
-            padding-inline: calc(.25rem * 3);
-            font-size: .8125rem;
-            line-height: calc(1.25/.875);
-            outline: none;
-            border: 1px solid #e7e3e4;
-            color: #0b0809;
-            box-shadow: 0 0 #0000;
-            transition: all .15s;
-        }
-        .kt-input:focus-visible{
-            border: 1px solid #9f9fa9;
-            box-shadow: 0px 0px 3px 2px #b2b2ca;
-        }
-        .kt-input:not(input) {
-            align-items: center;
-            gap: calc(.25rem * 1.5);
-            display: flex;
-        }
-        .kt-input:not(input) input{
-            border-style: solid;
-            width: 100%;
-            height: auto;
-            padding: calc(.25rem * 0);
-            color: #0b0809;
-            box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 0 #0000;
-            transition: all .15s;
-            background-color: #0000;
-            border-width: 0;
-            outline-style: none;
-            display: flex;
-        }
-    </style>
 </head>
 <body>
     <main class="w-full h-svh bg-[url('https://keenthemes.com/static/metronic/tailwind/dist/assets/media/images/2600x1200/bg-10.png')] bg-cover bg-no-repeat flex flex-row justify-center items-center">

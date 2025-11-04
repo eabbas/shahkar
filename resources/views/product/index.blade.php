@@ -8,6 +8,9 @@
 </head>
 
 <body>
+@extends('dashboard')
+@section('content')
+<div>
    <h2>لیست محصولات</h2>
    <table border="1" style="border-collapse: collapse;">
       <thead>
@@ -39,6 +42,8 @@
          @endforeach
       </tbody>
    </table>
+</div>
+@endsection
 </body>
 
 </html>
