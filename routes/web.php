@@ -194,7 +194,3 @@ Route::group(['prefix' => 'footer', 'controller' => FooterColumnController::clas
    Route::post('/footerFormMedia/store', 'footerFormMediaStore')->name('footerFormMedia-store');
    Route::post('/footerFormMedia/update', 'footerFormMediaUpdate')->name('footerFormMedia-update');
 });
-<<<<<<< HEAD
-   
-=======
->>>>>>> b61bd2f1104defa7d98e88a5547167665f0f9b7f

@@ -9,15 +9,8 @@
     <title>product single</title>
     <style>
         :root {
-<<<<<<< HEAD
             <?php foreach ($settings as $setting) {
                 echo "--color-" . $setting->meta_key . ": " . $setting->meta_value . ";";
-=======
-            <?php
-            foreach ($settings as $setting) {
-                echo '--color-' . $setting->meta_key . ': ' . $setting->meta_value . ';';
->>>>>>> b61bd2f1104defa7d98e88a5547167665f0f9b7f
-            }
 
             ?>
         }
@@ -2974,7 +2967,6 @@
                                         @endforeach
 
 
-<<<<<<< HEAD
                                                 <div class="hidden lg:block mt-2">
                                                     <a href="#" class="leading-[2.17] flex flex-row items-center gap-2">
                                                         <span class="text-xs font-medium text-[var(--color-secondary)]">
@@ -3036,9 +3028,9 @@
 
                                     </div>
 
-=======
+
                                     </div>
->>>>>>> b61bd2f1104defa7d98e88a5547167665f0f9b7f
+
 
 
                                     <div class="hidden lg:block mt-4">
@@ -3058,25 +3050,19 @@
                                 </div>
                             </div>
 
-<<<<<<< HEAD
                             <div class="lg:hidden px-5 mt-7 px-5 pb-2">
                                 <div class="flex flex-row justify-between items-start">
                                     <div class="flex flex-row items-start gap-3">
                                         <div class="size-9 flex justify-center items-center bg-[var(--color-secondary-bg)] rounded-full">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 512 512">
                                                 <path fill="var(--color-fill)" d="M256 64C125.8 64 32 148.6 32 240c0 37.1 15.5 70.6 40 100c5.2 6.3 8.4 14.8 7.4 23.9c-3.1 27-11.4 52.5-25.7 76.3c-.5 .9-1.1 1.8-1.6 2.6c11.1-2.9 22.2-7 32.7-11.5L91.2 446l-6.4-14.7c17-7.4 33-16.7 48.4-27.4c8.5-5.9 19.4-7.5 29.2-4.2C193 410.1 224 416 256 416c130.2 0 224-84.6 224-176s-93.8-176-224-176zM0 240C0 125.2 114.5 32 256 32s256 93.2 256 208s-114.5 208-256 208c-36 0-70.5-6.7-103.8-17.9c-.2-.1-.5 0-.7 .1c-16.9 11.7-34.7 22.1-53.9 30.5C73.6 471.1 44.7 480 16 480c-6.5 0-12.3-3.9-14.8-9.8s-1.1-12.8 3.4-17.4c8.1-8.2 15.2-18.2 21.7-29c11.7-19.6 18.7-40.6 21.3-63.1c0 0-.1-.1-.1-.2C19.6 327.1 0 286.6 0 240z" />
-=======
-                            <div class="lg:hidden mt-5 px-5 pt-6 pb-2 border-t border-[var(--color-border)]"
-                                onclick="commentMobile('open')">
-                                <div class="flex flex-row justify-between items-start">
-                                    <div class="flex flex-row items-start gap-3">
                                         <div
                                             class="size-9 flex justify-center items-center bg-[var(--color-secondary-bg)] rounded-full">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="size-6"
                                                 viewBox="0 0 512 512">
                                                 <path fill="var(--color-fill)"
                                                     d="M256 64C125.8 64 32 148.6 32 240c0 37.1 15.5 70.6 40 100c5.2 6.3 8.4 14.8 7.4 23.9c-3.1 27-11.4 52.5-25.7 76.3c-.5 .9-1.1 1.8-1.6 2.6c11.1-2.9 22.2-7 32.7-11.5L91.2 446l-6.4-14.7c17-7.4 33-16.7 48.4-27.4c8.5-5.9 19.4-7.5 29.2-4.2C193 410.1 224 416 256 416c130.2 0 224-84.6 224-176s-93.8-176-224-176zM0 240C0 125.2 114.5 32 256 32s256 93.2 256 208s-114.5 208-256 208c-36 0-70.5-6.7-103.8-17.9c-.2-.1-.5 0-.7 .1c-16.9 11.7-34.7 22.1-53.9 30.5C73.6 471.1 44.7 480 16 480c-6.5 0-12.3-3.9-14.8-9.8s-1.1-12.8 3.4-17.4c8.1-8.2 15.2-18.2 21.7-29c11.7-19.6 18.7-40.6 21.3-63.1c0 0-.1-.1-.1-.2C19.6 327.1 0 286.6 0 240z" />
->>>>>>> b61bd2f1104defa7d98e88a5547167665f0f9b7f
+
                                             </svg>
                                         </div>
                                         <div>
@@ -3092,12 +3078,9 @@
                                     </div>
                                     <div class="size-4">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
-<<<<<<< HEAD
                                             <path fill="var(--color-fill)" d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
-=======
-                                            <path fill="var(--color-fill)"
-                                                d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
->>>>>>> b61bd2f1104defa7d98e88a5547167665f0f9b7f
+
+                                            
                                         </svg>
                                     </div>
                                 </div>
@@ -3132,12 +3115,8 @@
                                             مشاهده 103 پرسش
                                         </span>
                                         <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 320 512">
-<<<<<<< HEAD
                                             <path fill="var(--color-fill)" d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
-=======
-                                            <path fill="var(--color-fill)"
-                                                d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
->>>>>>> b61bd2f1104defa7d98e88a5547167665f0f9b7f
+
                                         </svg>
                                     </a>
 
@@ -3157,10 +3136,6 @@
                                 class="mt-4 pt-4 flex flex-row items-start overflow-x-auto lg:overflow-x-clip px-5 lg:px-0">
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> b61bd2f1104defa7d98e88a5547167665f0f9b7f
                                 <div class="w-1/5 sticky top-16 ml-12 hidden lg:block">
                                     <div class="mt-4 mb-3">
                                         <span class="text-[10px]">
@@ -3179,14 +3154,13 @@
 
 
 
-<<<<<<< HEAD
-=======
+
 
 
 
                                                                 <div class="lg:w-4/5 flex flex-row lg:block">
 
->>>>>>> b61bd2f1104defa7d98e88a5547167665f0f9b7f
+
                                     <div class="hidden lg:flex flex-row items-center justify-between">
                                         <div class="flex flex-row items-center gap-4">
                                             <div class="flex flex-row items-center gap-2">
@@ -3218,7 +3192,6 @@
                                             </span>
                                         </div>
                                     </div>
-<<<<<<< HEAD
 
 
 
@@ -3232,9 +3205,6 @@
                                             <h3 class="lg:hidden block text-sm lg:text-md pb-2 lg:pb-0 lg:py-2 font-medium leading-[180%] lg:leading-[2.17]">
                                                 سلام وقت بخیر ، ببخشید آنتن دهیش خوبه؟؟خطش نمیپره؟؟چون یک...
                                             </h3>
-=======
-
-                                    <!-- comment -->
                                     @foreach($questions as $question)
                                     @if($product->id == $question->product_id)
                                     <div class="p-4 lg:p-0 rounded-lg border border-[var(--color-border)] lg:border-none min-w-[308px] max-w-[308px] lg:min-w-full lg:max-w-full ml-3 lg:ml-0">
@@ -3257,7 +3227,7 @@
                                             <!-- اینجا هم تموم میشه اما بازم هست شاید یکم متفاوت تر-->
                                             @foreach($answers as $answer)
                                             @if($answer->question_id == $question->id && $answer->parent_id == 0)
->>>>>>> b61bd2f1104defa7d98e88a5547167665f0f9b7f
+
                                             <div class="rounded-lg border lg:border-none border-[var(--color-border)] px-3 py-2 lg:px-0 lg:py-0 bg-[var(--color-secondary-bg)] lg:bg-inherit">
                                                 <div class="flex flex-row items-center py-2">
                                                     <div class="flex flex-row gap-2 items-center">
@@ -3266,79 +3236,15 @@
                                                         </div>
                                                         <div class="flex flex-row items-center gap-2">
                                                             <span class="text-sm font-medium">
-<<<<<<< HEAD
-                                                                حسین حسین پور
-=======
+ 
                                                                 {{$answer->user?->name ?? 'کاربر ناشناس'}} {{$answer->user?->family}}
->>>>>>> b61bd2f1104defa7d98e88a5547167665f0f9b7f
+
                                                             </span>
                                                             <div class="size-1.5 rounded-full bg-[var(--color-secondary-text)]/30"></div>
                                                             <span class="text-xs text-[var(--color-secondary-text)]">
                                                                 خریدار
                                                             </span>
-<<<<<<< HEAD
-=======
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="lg:mr-12">
-                                                    <div>
-                                                        <p class="text-sm lg:text-justify leading-[180%] lg:leading-[2.17]">
-                                                            {{$answer->text}}
-                                                        </p>
-                                                    </div>
-                                                    <!-- این قسمت برای تست کردن پاسخ سوالات توسط میستر علیافام نوشته شده -->
-                                                    <form action="{{route('answer-store')}}" method="post">
-                                                        @csrf
-                                                        <input type="text" name="answer" class="border-1 rounded-sm px-2" placeholder="پاسخی به این پاسخ بدهید">
-                                                        <input type="hidden" name="product_id" value="{{$product->id}}">
-                                                        <input type="hidden" name="question_id" value="{{$question->id}}">
-                                                        <input type="hidden" name="parent_id" value="{{$answer->id}}">
-                                                        <button type="submit" class="cursor-pointer">ثبت</button>
-                                                    </form>
-                                                    <!-- اینجا هم تموم میشه اما بازم هست شاید یکم متفاوت تر-->
-                                                    <div class="flex flex-row justify-between items-center pl-4">
-                                                        <div>
-                                                            <span class="text-sm text-[var(--color-secondary-text)] leading-[2.17]">
-                                                                <!-- 10 مهر 1404 -->
-                                                                {{$answer->created_at}}
-                                                            </span>
-                                                        </div>
-                                                        <div class="flex flex-row items-center gap-4">
-                                                            <button class="flex flex-row items-center gap-1">
-                                                                <span class="text-xs">0</span>
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
-                                                                    <path fill="var(--color-fill)" d="M288.8 81.7c3.5-12.8 16.7-20.3 29.5-16.8s20.3 16.7 16.8 29.5l-4.5 16.4c-5.5 20.2-13.9 39.3-24.7 56.9c-3.1 4.9-3.2 11.1-.4 16.2s8.2 8.2 14 8.2H448c17.7 0 32 14.3 32 32c0 11.3-5.9 21.3-14.8 27c-7.2 4.6-9.5 13.9-5.3 21.3c2.6 4.6 4.1 10 4.1 15.7c0 12.4-7 23.1-17.3 28.5c-4.2 2.2-7.3 6.1-8.3 10.8s.1 9.5 3 13.2c4.2 5.4 6.7 12.2 6.7 19.5c0 14.2-9.2 26.3-22.1 30.4c-7.8 2.5-12.4 10.6-10.7 18.6c.5 2.2 .7 4.5 .7 6.9c0 17.7-14.3 32-32 32H294.5c-15.8 0-31.2-4.7-44.4-13.4l-38.5-25.7c-9-6-16.6-13.7-22.4-22.6c-4.9-7.4-14.8-9.4-22.2-4.6s-9.4 14.8-4.6 22.2c8.1 12.3 18.7 23.1 31.4 31.6l38.5 25.7c18.4 12.3 40 18.8 62.1 18.8H384c35.3 0 64-28.7 64-64l0-.6c19.1-11.1 32-31.7 32-55.4c0-8.7-1.8-17.1-4.9-24.7C487.9 323.6 496 306.8 496 288c0-6.5-1-12.8-2.8-18.7C504.8 257.7 512 241.7 512 224c0-35.3-28.7-64-64-64H346.4c6.2-13.1 11.3-26.7 15.1-40.9l4.5-16.4c8.1-29.8-9.5-60.6-39.3-68.8s-60.6 9.5-68.8 39.3l-4.5 16.4c-8.9 32.6-29.6 60.8-58.2 79l-3.1 2c-11.8 7.5-21.7 17.1-29.5 28.2c-5.1 7.2-3.3 17.2 4 22.3s17.2 3.3 22.3-4c5.4-7.7 12.2-14.4 20.4-19.5l3.1-2c35.3-22.4 60.9-57.2 71.9-97.5l4.5-16.4zM32 224H96V448H32V224zM0 224V448c0 17.7 14.3 32 32 32H96c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32H32c-17.7 0-32 14.3-32 32z" />
-                                                                </svg>
-                                                            </button>
-                                                            <button class="flex flex-row items-center gap-1">
-                                                                <span class="text-xs">0</span>
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
-                                                                    <path fill="var(--color-fill)" d="M288.8 430.3c3.5 12.8 16.7 20.3 29.5 16.8s20.3-16.7 16.8-29.5l-4.5-16.4c-5.5-20.2-13.9-39.3-24.7-56.9c-3.1-4.9-3.2-11.1-.4-16.2s8.2-8.2 14-8.2H448c17.7 0 32-14.3 32-32c0-11.3-5.9-21.3-14.8-27c-7.2-4.6-9.5-13.9-5.3-21.3c2.6-4.6 4.1-10 4.1-15.7c0-12.4-7-23.1-17.3-28.5c-4.2-2.2-7.3-6.1-8.3-10.8s.1-9.5 3-13.2c4.2-5.4 6.7-12.2 6.7-19.5c0-14.2-9.2-26.3-22.1-30.4c-7.8-2.5-12.4-10.6-10.7-18.6c.5-2.2 .7-4.5 .7-6.9c0-17.7-14.3-32-32-32H294.5c-15.8 0-31.2 4.7-44.4 13.4l-38.5 25.7c-9 6-16.6 13.7-22.4 22.6c-4.9 7.4-14.8 9.4-22.2 4.6s-9.4-14.8-4.6-22.2c8.1-12.3 18.7-23.1 31.4-31.6l38.5-25.7c18.4-12.3 40-18.8 62.1-18.8H384c35.3 0 64 28.7 64 64l0 .6c19.1 11.1 32 31.7 32 55.4c0 8.7-1.8 17.1-4.9 24.7C487.9 188.4 496 205.2 496 224c0 6.5-1 12.8-2.8 18.7C504.8 254.3 512 270.3 512 288c0 35.3-28.7 64-64 64H346.4c6.2 13.1 11.3 26.7 15.1 40.9l4.5 16.4c8.1 29.8-9.5 60.6-39.3 68.8s-60.6-9.5-68.8-39.3l-4.5-16.4c-8.9-32.6-29.6-60.8-58.2-79l-3.1-2 8.2-12.9-8.2 12.9c-11.8-7.5-21.7-17.1-29.5-28.2c-5.1-7.2-3.3-17.2 4-22.3s17.2-3.3 22.3 4c5.4 7.7 12.2 14.4 20.4 19.5l3.1 2c35.3 22.4 60.9 57.2 71.9 97.5l4.5 16.4zM32 352H96V128H32V352zM0 352V128c0-17.7 14.3-32 32-32H96c17.7 0 32 14.3 32 32V352c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32z" />
-                                                                </svg>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                @foreach($answers as $reply)
-                                                @if($reply->question_id == $question->id && $reply->parent_id == $answer->id)
-                                                <!-- reply -->
-                                                <div class="rounded-lg border lg:border-none border-[var(--color-border)] px-3 py-2 lg:px-30 lg:py-0 bg-rose-200 lg:bg-inherit">
-                                                    <div class="flex flex-row items-center py-2">
-                                                        <div class="flex flex-row gap-2 items-center">
-                                                            <div class="size-10">
-                                                                <img class="size-full rounded-full" src="https://dkstatics-public.digikala.com/digikala-content-x-profile/79e1a2b23332632135d587ca943b5b2f8bf8ea6e_1742409752.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/quality,q_80" alt="user profile">
-                                                            </div>
-                                                            <div class="flex flex-row items-center gap-2">
-                                                                <span class="text-sm font-medium">
-                                                                    {{$reply->user?->name ?? 'کاربر ناشناس'}} {{$reply->user?->family}}
-                                                                </span>
-                                                                <div class="size-1.5 rounded-full bg-[var(--color-secondary-text)]/30"></div>
-                                                                <span class="text-xs text-[var(--color-secondary-text)]">
-                                                                    خریدار
-                                                                </span>
-                                                            </div>
->>>>>>> b61bd2f1104defa7d98e88a5547167665f0f9b7f
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -3350,7 +3256,6 @@
                                                     </div>
                                                     <div class="flex flex-row justify-between items-center pl-4">
                                                         <div>
-<<<<<<< HEAD
                                                             <span class="text-sm text-[var(--color-secondary-text)] leading-[2.17]">
                                                                 10 مهر 1404
                                                             </span>
@@ -3372,57 +3277,11 @@
                                                     </div>
                                                 </div>
 
-=======
-                                                            <p class="text-sm lg:text-justify leading-[180%] lg:leading-[2.17]">
-                                                                {{$reply->text}}
-                                                            </p>
-                                                        </div>
-                                                        <!-- این قسمت برای تست کردن پاسخ سوالات توسط میستر علیافام نوشته شده -->
-                                                        <form action="{{route('answer-store')}}" method="post">
-                                                            @csrf
-                                                            <input type="text" name="answer" class="border-1 rounded-sm px-2" placeholder="پاسخی به این پاسخ بدهید">
-                                                            <input type="hidden" name="product_id" value="{{$product->id}}">
-                                                            <input type="hidden" name="question_id" value="{{$question->id}}">
-                                                            <input type="hidden" name="parent_id" value="{{$answer->id}}">
-                                                            <button type="submit" class="cursor-pointer">ثبت</button>
-                                                        </form>
-                                                        <!-- اینجا هم تموم میشه اما بازم هست شاید یکم متفاوت تر-->
-                                                        <div class="flex flex-row justify-between items-center pl-4">
-                                                            <div>
-                                                                <span class="text-sm text-[var(--color-secondary-text)] leading-[2.17]">
-                                                                    <!-- 10 مهر 1404 -->
-                                                                    {{$reply->created_at}}
-                                                                </span>
-                                                            </div>
-                                                            <div class="flex flex-row items-center gap-4">
-                                                                <button class="flex flex-row items-center gap-1">
-                                                                    <span class="text-xs">0</span>
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
-                                                                        <path fill="var(--color-fill)" d="M288.8 81.7c3.5-12.8 16.7-20.3 29.5-16.8s20.3 16.7 16.8 29.5l-4.5 16.4c-5.5 20.2-13.9 39.3-24.7 56.9c-3.1 4.9-3.2 11.1-.4 16.2s8.2 8.2 14 8.2H448c17.7 0 32 14.3 32 32c0 11.3-5.9 21.3-14.8 27c-7.2 4.6-9.5 13.9-5.3 21.3c2.6 4.6 4.1 10 4.1 15.7c0 12.4-7 23.1-17.3 28.5c-4.2 2.2-7.3 6.1-8.3 10.8s.1 9.5 3 13.2c4.2 5.4 6.7 12.2 6.7 19.5c0 14.2-9.2 26.3-22.1 30.4c-7.8 2.5-12.4 10.6-10.7 18.6c.5 2.2 .7 4.5 .7 6.9c0 17.7-14.3 32-32 32H294.5c-15.8 0-31.2-4.7-44.4-13.4l-38.5-25.7c-9-6-16.6-13.7-22.4-22.6c-4.9-7.4-14.8-9.4-22.2-4.6s-9.4 14.8-4.6 22.2c8.1 12.3 18.7 23.1 31.4 31.6l38.5 25.7c18.4 12.3 40 18.8 62.1 18.8H384c35.3 0 64-28.7 64-64l0-.6c19.1-11.1 32-31.7 32-55.4c0-8.7-1.8-17.1-4.9-24.7C487.9 323.6 496 306.8 496 288c0-6.5-1-12.8-2.8-18.7C504.8 257.7 512 241.7 512 224c0-35.3-28.7-64-64-64H346.4c6.2-13.1 11.3-26.7 15.1-40.9l4.5-16.4c8.1-29.8-9.5-60.6-39.3-68.8s-60.6 9.5-68.8 39.3l-4.5 16.4c-8.9 32.6-29.6 60.8-58.2 79l-3.1 2c-11.8 7.5-21.7 17.1-29.5 28.2c-5.1 7.2-3.3 17.2 4 22.3s17.2 3.3 22.3-4c5.4-7.7 12.2-14.4 20.4-19.5l3.1-2c35.3-22.4 60.9-57.2 71.9-97.5l4.5-16.4zM32 224H96V448H32V224zM0 224V448c0 17.7 14.3 32 32 32H96c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32H32c-17.7 0-32 14.3-32 32z" />
-                                                                    </svg>
-                                                                </button>
-                                                                <button class="flex flex-row items-center gap-1">
-                                                                    <span class="text-xs">0</span>
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
-                                                                        <path fill="var(--color-fill)" d="M288.8 430.3c3.5 12.8 16.7 20.3 29.5 16.8s20.3-16.7 16.8-29.5l-4.5-16.4c-5.5-20.2-13.9-39.3-24.7-56.9c-3.1-4.9-3.2-11.1-.4-16.2s8.2-8.2 14-8.2H448c17.7 0 32-14.3 32-32c0-11.3-5.9-21.3-14.8-27c-7.2-4.6-9.5-13.9-5.3-21.3c2.6-4.6 4.1-10 4.1-15.7c0-12.4-7-23.1-17.3-28.5c-4.2-2.2-7.3-6.1-8.3-10.8s.1-9.5 3-13.2c4.2-5.4 6.7-12.2 6.7-19.5c0-14.2-9.2-26.3-22.1-30.4c-7.8-2.5-12.4-10.6-10.7-18.6c.5-2.2 .7-4.5 .7-6.9c0-17.7-14.3-32-32-32H294.5c-15.8 0-31.2 4.7-44.4 13.4l-38.5 25.7c-9 6-16.6 13.7-22.4 22.6c-4.9 7.4-14.8 9.4-22.2 4.6s-9.4-14.8-4.6-22.2c8.1-12.3 18.7-23.1 31.4-31.6l38.5-25.7c18.4-12.3 40-18.8 62.1-18.8H384c35.3 0 64 28.7 64 64l0 .6c19.1 11.1 32 31.7 32 55.4c0 8.7-1.8 17.1-4.9 24.7C487.9 188.4 496 205.2 496 224c0 6.5-1 12.8-2.8 18.7C504.8 254.3 512 270.3 512 288c0 35.3-28.7 64-64 64H346.4c6.2 13.1 11.3 26.7 15.1 40.9l4.5 16.4c8.1 29.8-9.5 60.6-39.3 68.8s-60.6-9.5-68.8-39.3l-4.5-16.4c-8.9-32.6-29.6-60.8-58.2-79l-3.1-2 8.2-12.9-8.2 12.9c-11.8-7.5-21.7-17.1-29.5-28.2c-5.1-7.2-3.3-17.2 4-22.3s17.2-3.3 22.3 4c5.4 7.7 12.2 14.4 20.4 19.5l3.1 2c35.3 22.4 60.9 57.2 71.9 97.5l4.5 16.4zM32 352H96V128H32V352zM0 352V128c0-17.7 14.3-32 32-32H96c17.7 0 32 14.3 32 32V352c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32z" />
-                                                                    </svg>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- end reply -->
-                                                @endif
-                                                @endforeach
->>>>>>> b61bd2f1104defa7d98e88a5547167665f0f9b7f
                                             </div>
                                             @endif
                                             @endforeach
 
-<<<<<<< HEAD
 
-=======
->>>>>>> b61bd2f1104defa7d98e88a5547167665f0f9b7f
                                             <div class="mt-4 hidden lg:block">
                                                 <a href="#" class="leading-[2.17] flex flex-row items-center gap-2">
                                                     <span class="text-xs font-medium text-[var(--color-secondary)]">
@@ -3432,7 +3291,6 @@
                                                         <path fill="var(--color-secondary)" d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
                                                     </svg>
                                                 </a>
-<<<<<<< HEAD
                                             </div>
                                         </div>
 
@@ -3511,14 +3369,13 @@
 
                                     </div>
 
-=======
                                             </div>
                                         </div>
 
                                     </div>
                                     @endif
                                     @endforeach
->>>>>>> b61bd2f1104defa7d98e88a5547167665f0f9b7f
+
                                     <!-- comment -->
 
                                     <div class="hidden lg:block mt-4">
@@ -3534,7 +3391,6 @@
 
 
                                 </div>
-<<<<<<< HEAD
                             </div>
 
                             <div class="lg:hidden p-5">
@@ -3640,8 +3496,6 @@
                 </div>
             </div>
 
-=======
->>>>>>> b61bd2f1104defa7d98e88a5547167665f0f9b7f
 
         </section>
 
@@ -3656,24 +3510,16 @@
                 <a href="#" class="flex flex-row justify-between items-center">
                     <div class="flex flex-row items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 576 512">
-<<<<<<< HEAD
                             <path fill="var(--color-text)" d="M64 96c-17.7 0-32 14.3-32 32V384c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V128c0-17.7-14.3-32-32-32H64zM0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64v47.2V336.8 384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM519.4 411.3L416 354.4V317.9l118.8 65.4c.9 .5 1.9 .8 3 .8c3.4 0 6.2-2.8 6.2-6.2V134.2c0-3.4-2.8-6.2-6.2-6.2c-1 0-2.1 .3-3 .8L416 194.1V157.6l103.4-56.9c5.6-3.1 12-4.7 18.4-4.7c21.1 0 38.2 17.1 38.2 38.2V377.8c0 21.1-17.1 38.2-38.2 38.2c-6.4 0-12.8-1.6-18.4-4.7z" />
-=======
-                            <path fill="var(--color-text)"
-                                d="M64 96c-17.7 0-32 14.3-32 32V384c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V128c0-17.7-14.3-32-32-32H64zM0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64v47.2V336.8 384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM519.4 411.3L416 354.4V317.9l118.8 65.4c.9 .5 1.9 .8 3 .8c3.4 0 6.2-2.8 6.2-6.2V134.2c0-3.4-2.8-6.2-6.2-6.2c-1 0-2.1 .3-3 .8L416 194.1V157.6l103.4-56.9c5.6-3.1 12-4.7 18.4-4.7c21.1 0 38.2 17.1 38.2 38.2V377.8c0 21.1-17.1 38.2-38.2 38.2c-6.4 0-12.8-1.6-18.4-4.7z" />
->>>>>>> b61bd2f1104defa7d98e88a5547167665f0f9b7f
+
                         </svg>
                         <h3 class="text-lg font-semibold leading-[180%]">
                             ویدئو های بررسی این کالا
                         </h3>
                     </div>
                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
-<<<<<<< HEAD
                         <path fill="var(--color-text)" d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
-=======
-                        <path fill="var(--color-text)"
-                            d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
->>>>>>> b61bd2f1104defa7d98e88a5547167665f0f9b7f
+
                     </svg>
                 </a>
             </div>
@@ -3684,13 +3530,11 @@
                 <!-- video -->
                 <div class="w-[150px] max-w-[150px]">
                     <div class="w-full h-[210px] max-h-[210px] relative">
-<<<<<<< HEAD
                         <video class="rounded-lg size-full object-cover cursor-pointer" poster="https://dkstatics-public.digikala.com/digikala-content-x-post-media/61c709a2f5e9660d587c66c7d056ba85306a5e8d_1749458853.jpg?x-oss-process=image/resize,w_600/quality,q_80"></video>
                         <a href="#" class="absolute inline-block size-12 rounded-full border-2 border-white -bottom-2 right-2">
                             <img class="size-full rounded-full" src="https://dkstatics-public.digikala.com/digikala-content-x-profile/a1250500f4ecb5ad706ab578a19c235f86c83585_1716202955.jpg?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80" alt="user image">
                         </a>
                         <svg xmlns="http://www.w3.org/2000/svg" class="size-12 absolute inset-[35%]" viewBox="0 0 512 512">
-=======
                         <video class="rounded-lg size-full object-cover cursor-pointer"
                             poster="https://dkstatics-public.digikala.com/digikala-content-x-post-media/61c709a2f5e9660d587c66c7d056ba85306a5e8d_1749458853.jpg?x-oss-process=image/resize,w_600/quality,q_80"></video>
                         <a href="#"
@@ -3701,7 +3545,7 @@
                         </a>
                         <svg xmlns="http://www.w3.org/2000/svg" class="size-12 absolute inset-[35%]"
                             viewBox="0 0 512 512">
->>>>>>> b61bd2f1104defa7d98e88a5547167665f0f9b7f
+
                             <defs>
                                 <style>
                                     .fa-primary {
@@ -3713,15 +3557,13 @@
                                     }
                                 </style>
                             </defs>
-<<<<<<< HEAD
                             <path fill="white" class="fa-secondary" d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z" />
                             <path fill="gray" class="fa-primary" d="M212.5 147.5c-7.4-4.5-16.7-4.7-24.3-.5s-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88z" />
-=======
                             <path fill="white" class="fa-secondary"
                                 d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z" />
                             <path fill="gray" class="fa-primary"
                                 d="M212.5 147.5c-7.4-4.5-16.7-4.7-24.3-.5s-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88z" />
->>>>>>> b61bd2f1104defa7d98e88a5547167665f0f9b7f
+
                         </svg>
                     </div>
                     <p class="text-xs mt-3">
