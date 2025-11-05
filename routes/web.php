@@ -30,13 +30,6 @@ Route::group(['prefix' => 'category', 'controller' => CategoryController::class,
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{category}', 'delete')->name('delete');
     Route::get('/{category}/products', 'products')->name('products');
-   Route::get('/create', 'create');
-   Route::post('/store', 'store')->name('store');
-   Route::get('/list', 'index')->name('index');
-   Route::get('/show/{category}', 'show')->name('show');
-   Route::get('/edit/{category}', 'edit')->name('edit');
-   Route::post('/update', 'update')->name('update');
-   Route::get('/delete/{category}', 'delete')->name('delete');
 });
 // product routes
 Route::group(['prefix' => 'product', 'controller' => ProductController::class, 'as' => 'product-'], function () {
@@ -94,16 +87,16 @@ Route::group([
     'controller' => userController::class,
     'as' => 'user.'
 ], function () {
-   Route::get('/signup', 'signup')->name('signup');
-   Route::post('/store', 'store')->name('store');
-   Route::get('/login', 'login')->name('login');
-   Route::post('/check_user', 'checkUser')->name('checkUser');
-   Route::get('/profile/{user?}', 'profile')->name('profile');
-   Route::get('/edit/{user}', 'edit')->name('edit');
-   Route::post('/update', 'update')->name('update');
-   Route::get('/delete/{user}', 'delete')->name('delete');
-   Route::get('/logout', 'logout')->name('logout');
-   Route::get('/index', 'index')->name('index')->middleware(checkAdminMiddleware::class);
+    Route::get('/signup', 'signup')->name('signup');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/login', 'login')->name('login');
+    Route::post('/check_user', 'checkUser')->name('checkUser');
+    Route::get('/profile/{user?}', 'profile')->name('profile');
+    Route::get('/edit/{user}', 'edit')->name('edit');
+    Route::post('/update', 'update')->name('update');
+    Route::get('/delete/{user}', 'delete')->name('delete');
+    Route::get('/logout', 'logout')->name('logout');
+    Route::get('/index', 'index')->name('index')->middleware(checkAdminMiddleware::class);
 });
 // comments routes
 Route::group([
@@ -169,13 +162,13 @@ Route::group([
 Route::get('/search/{category}', [SearchController::class, 'index'])->name('search');
 // banners routes
 Route::group(['prefix' => 'banners', 'controller' => BannersController::class, 'as' => 'banners-'], function () {
-   Route::get('/create', 'bannersCreate')->name('create');
-   Route::get('/logo/create', 'logoCreate')->name('logo-create');
-   Route::get('/bigBanner/create', 'bigBannerCreate')->name('bigBanner-create');
-   Route::get('/tiles/create', 'tilesCreate')->name('tiles-create');
-   Route::get('/bigTile/create', 'bigTileCreate')->name('bigTile-create');
-   Route::get('/footerTile/create', 'footerTileCreate')->name('footerTile-create');
-   Route::post('/upsert', 'upsert')->name('upsert');
+    Route::get('/create', 'bannersCreate')->name('create');
+    Route::get('/logo/create', 'logoCreate')->name('logo-create');
+    Route::get('/bigBanner/create', 'bigBannerCreate')->name('bigBanner-create');
+    Route::get('/tiles/create', 'tilesCreate')->name('tiles-create');
+    Route::get('/bigTile/create', 'bigTileCreate')->name('bigTile-create');
+    Route::get('/footerTile/create', 'footerTileCreate')->name('footerTile-create');
+    Route::post('/upsert', 'upsert')->name('upsert');
 });
 // dashboard routes
 Route::get('/dashboard', function () {
@@ -187,10 +180,10 @@ Route::view('dashboard/settings/home', 'dashboard.home')->name('dashboard-settin
 Route::view('dashboard/settings/home/footer', 'dashboard.footerPartsLinks')->name('footer');
 // footer column and rows routes
 Route::group(['prefix' => 'footer', 'controller' => FooterColumnController::class, 'as' => 'footer-'], function () {
-   Route::get('/create', 'create')->name('create');
-   Route::post('/store', 'store')->name('store');
-   Route::post('/update', 'update')->name('update');
-   Route::get('/footerFormMedia/create', 'footerFormMediaCreate')->name('footerFormMedia-create');
-   Route::post('/footerFormMedia/store', 'footerFormMediaStore')->name('footerFormMedia-store');
-   Route::post('/footerFormMedia/update', 'footerFormMediaUpdate')->name('footerFormMedia-update');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
+    Route::post('/update', 'update')->name('update');
+    Route::get('/footerFormMedia/create', 'footerFormMediaCreate')->name('footerFormMedia-create');
+    Route::post('/footerFormMedia/store', 'footerFormMediaStore')->name('footerFormMedia-store');
+    Route::post('/footerFormMedia/update', 'footerFormMediaUpdate')->name('footerFormMedia-update');
 });
