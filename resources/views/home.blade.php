@@ -8,22 +8,12 @@
     <link rel="stylesheet" href="{{ url('assets/css/style.css') }}" type="text/css">
     <title>home</title>
     <style>
-        :root{
-            --color-primary: #FD9636;
-            --color-subheader-btn: #FD9636;
-            --color-text: #425A8B;
-            --color-secondary-text: #8C9EC5;
-            --color-primary-text: #fff;
-            --color-bg-card-btn: #425A8B;
-            --color-bg-hover-btn:  #425A8B;
-            --color-primary-btn: #F0F3F8;
-            --color-primary-btn-hover: #F0F3F8;
-            --color-bg-contact-section: #425A8B;
-            --color-btn-contact: #425A8B;
-            --color-btn-contact-hover: #334a76;
-            --color-border: #D5DFE4;
-            --color-discount-bg: #D36B0B;
-            --color-fill: #425A8B;
+        :root {
+            <?php
+            foreach ($settings as $setting) {
+                echo "--color-" . $setting->meta_key . ": " . $setting->meta_value . ";";
+            }
+            ?>
         }
     </style>
 </head>
@@ -55,10 +45,12 @@
             <div class="xl:w-8/12 w-full flex flex-row justify-center gap-5 xl:justify-start items-center">
                 <!-- logo -->
                 <div class="w-1/12 h-[33px]">
-                    <a href="#" class="inline-block size-full">
-                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/plugins/ecom-addons/assets/image/logo.svg"
-                            class="size-full" alt="logo">
+                    @foreach($logo as $l)
+                    <a href="{{$l['link_href']}}" class="inline-block size-full">
+                        <img src="{{$l['logo']}}"
+                            class="size-full" alt="{{$l['alt_text']}}">
                     </a>
+                    @endforeach
                 </div>
                 <!-- logo -->
 
@@ -389,10 +381,12 @@
         <div class="w-11/12 mx-auto lg:hidden flex flex-row justify-between items-center py-4">
             <!-- logo -->
             <div class="h-[33px]">
-                <a href="#" class="inline-block size-full">
-                    <img src="https://elango.steelthemes.com/ecom/el2/wp-content/plugins/ecom-addons/assets/image/logo.svg"
-                        class="size-full" alt="logo">
+                @foreach($logo as $l)
+                <a href="{{$l['link_href']}}" class="inline-block size-full">
+                    <img src="{{$l['logo']}}"
+                        class="size-full" alt="{{$l['alt_text']}}">
                 </a>
+                @endforeach
             </div>
             <!-- logo -->
 
@@ -721,42 +715,39 @@
     <main class="2xl:container 2xl:px-4 w-11/12 lg:w-[98%] mx-auto mt-5">
         <!-- sub header -->
         <section class="flex flex-col lg:flex-row gap-5 text-[var(--color-text)]">
+            @foreach($bigTile as $bt)
             <div
-                class="lg:w-2/3 w-full rounded-md bg-[var(--color-primary-btn)] bg-center bg-[url('https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/pattern-4.png')] bg-cover bg-no-repeat p-8 lg:py-12 lg:px-20 relative overflow-hidden h-[440px] lg:h-auto max-h-[501px]">
+                class="lg:w-2/3 w-full rounded-md bg-[var(--color-primary-btn)] bg-center bg-[url({{$bt['bg_img']}})] bg-cover bg-no-repeat p-8 lg:py-12 lg:px-20 relative overflow-hidden h-[440px] lg:h-auto max-h-[501px]">
                 <div class="w-2/3">
-                    <span class="font-medium mb-4 text-xs md:text-base leading-[20px]">داغ ترین ها</span>
+                    <span class="font-medium mb-4 text-xs md:text-base leading-[20px]">{{$bt['header']}}</span>
                     <div
                         class="2xl:text-[60px] xl:text-[48px] lg:text-[42px] md:text-[36px] text-base 2xl:leading-[60px] font-bold mb-4">
-                        متن تستی متن تستی متن تستی متن تستی متن تستی
+                        {{$bt['title']}}
                     </div>
-                    <p class="w-fit mb-6">تست تست تست تست تست تست</p>
+                    <p class="w-fit mb-6">{{$bt['text']}}</p>
                     <div class="flex flex-row justify-start items-center gap-5">
-                        <a href="#"
-                            class="bg-[var(--color-subheader-btn)] text-sm lg:text-base rounded-[10px] py-2 px-5 text-[var(--color-primary-text)] font-semibold transition-all duration-500 ease-in-out hover:bg-[var(--color-bg-hover-btn)]">خرید</a>
-                        <a href="#"
-                            class="py-1 leading-[24px] text-sm lg:text-base transition-all duration-[0.25s] ease-in-out hover:-translate-y-[2px]">
-                            بیشتر
-                        </a>
+                        <a href="{{$bt['btn1_href']}}"
+                            class="bg-[var(--color-subheader-btn)] text-sm lg:text-base rounded-[10px] py-2 px-5 text-[var(--color-primary-text)] font-semibold transition-all duration-500 ease-in-out hover:bg-[var(--color-bg-hover-btn)]">{{$bt['btn1_content']}}</a>
+                        <a href="{{$bt['btn2_href']}}"
+                            class="py-1 leading-[24px] text-sm lg:text-base transition-all duration-[0.25s] ease-in-out hover:-translate-y-[2px]">{{$bt['btn2_content']}}</a>
                     </div>
                 </div>
-                <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/banner-slider-2-1.png"
+                <img src="{{$bt['img']}}"
                     class="w-full sm:w-8/12 absolute bottom-0 -left-10 sm:-left-[109px]" alt="this is image">
             </div>
+            @endforeach
             <div class="lg:w-1/3 w-full flex flex-col sm:flex-row lg:flex-col gap-5">
+                @foreach($tileBanners as $tileBanner)
                 <div
-                    class="sm:w-1/2 lg:w-full bg-[var(--color-primary-btn)] bg-[url('https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/banner-1.png')] bg-cover rotate-y-180 bg-bottom-right bg-no-repeat min-h-[225px] rounded-[10px] p-[30px]">
+                    class="sm:w-1/2 lg:w-full bg-[var(--color-primary-btn)] bg-[url({{$tileBanner->image}})] bg-cover rotate-y-180 bg-bottom-right bg-no-repeat min-h-[225px] rounded-[10px] p-[30px]">
                     <div class="rotate-y-180 flex flex-col gap-5">
                         <h2 class="font-bold xl:text-[28px] 2xl:text-[24px] leading-8">
-                            تست تست تست
-                            <br>
-                            تست تست
-                            <br>
-                            تست
+                            {{$tileBanner->title}}
                         </h2>
                         <div class="flex">
-                            <a href="#"
+                            <a href="{{$tileBanner->link_href}}"
                                 class="bg-[var(--color-subheader-btn)] rounded-[10px] text-sm lg:text-base py-2 px-5 text-[var(--color-primary-text)] font-semibold transition-all duration-500 ease-in-out hover:bg-[var(--color-bg-hover-btn)] flex items-center gap-2 buttonLink">
-                                <span>خرید</span>
+                                <span>{{$tileBanner->link_content}}</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-2.5 h-5" viewBox="0 0 320 512">
                                     <path fill="white"
                                         d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
@@ -765,28 +756,7 @@
                         </div>
                     </div>
                 </div>
-                <div
-                    class="sm:w-1/2 lg:w-full bg-[var(--color-primary-btn)] bg-[url('https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/banner-2.png')] bg-cover rotate-y-180 bg-bottom-right bg-no-repeat min-h-[256px] rounded-[10px] p-[30px]">
-                    <div class="rotate-y-180 flex flex-col gap-5">
-                        <h2 class="font-bold xl:text-[20px] 2xl:text-[24px] leading-8">
-                            تست تست تست
-                            <br>
-                            تست تست
-                            <br>
-                            تست
-                        </h2>
-                        <div class="flex">
-                            <a href="#"
-                                class="bg-[var(--color-subheader-btn)] rounded-[10px] text-sm lg:text-base py-2 px-5 text-[var(--color-primary-text)] font-semibold transition-all duration-500 ease-in-out hover:bg-[var(--color-bg-hover-btn)] flex items-center gap-2 buttonLink">
-                                <span>خرید</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-2.5 h-5" viewBox="0 0 320 512">
-                                    <path fill="white"
-                                        d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
         </section>
@@ -796,7 +766,7 @@
         <section class="text-[var(--color-text)] pt-3">
             <!-- title section -->
             <div class="flex flex-row justify-between items-center py-10">
-                <h2 class="font-bold text-[24px] leading-8">دسته های پرطرفدار</h2>
+                <h2 class="font-bold text-[24px] leading-8">دسته بندی ها</h2>
                 <div class="flex flex-row justify-end items-center gap-5">
                     <span class="size-[35px] rounded-[12px] border border-[var(--color-border)] flex justify-center items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 320 512">
@@ -815,63 +785,16 @@
             <!-- title section -->
 
             <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-5">
+                @foreach($categories as $category)
                 <div class="p-4 border border-[var(--color-border)] rounded-[10px]">
-                    <a href="#" class="block mb-1">
-                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                            class="w-[85px] h-20 mx-auto" alt="product">
-                        <span class="inline-block w-full text-center pt-2">محصول تستی</span>
+                    <a href="{{route('search', [$category])}}" class="block mb-1" target="_blank">
+                        <img src="{{$category->image}}"
+                            class="w-[85px] h-20 mx-auto" alt="">
+                        <span class="inline-block w-full text-center pt-2">{{$category->title}}</span>
                     </a>
-                    <span class="block text-center text-[14px] text-[var(--color-secondary-text)]">تست آیتم</span>
+                    <span class="block text-center text-[14px] text-[var(--color-secondary-text)]">{{$category->description}}</span>
                 </div>
-                <div class="p-4 border border-[var(--color-border)] rounded-[10px]">
-                    <a href="#" class="block mb-1">
-                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                            class="w-[85px] h-20 mx-auto" alt="product">
-                        <span class="inline-block w-full text-center pt-2">محصول تستی</span>
-                    </a>
-                    <span class="block text-center text-[14px] text-[var(--color-secondary-text)]">تست آیتم</span>
-                </div>
-                <div class="p-4 border border-[var(--color-border)] rounded-[10px]">
-                    <a href="#" class="block mb-1">
-                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                            class="w-[85px] h-20 mx-auto" alt="product">
-                        <span class="inline-block w-full text-center pt-2">محصول تستی</span>
-                    </a>
-                    <span class="block text-center text-[14px] text-[var(--color-secondary-text)]">تست آیتم</span>
-                </div>
-                <div class="p-4 border border-[var(--color-border)] rounded-[10px]">
-                    <a href="#" class="block mb-1">
-                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                            class="w-[85px] h-20 mx-auto" alt="product">
-                        <span class="inline-block w-full text-center pt-2">محصول تستی</span>
-                    </a>
-                    <span class="block text-center text-[14px] text-[var(--color-secondary-text)]">تست آیتم</span>
-                </div>
-                <div class="p-4 border border-[var(--color-border)] rounded-[10px]">
-                    <a href="#" class="block mb-1">
-                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                            class="w-[85px] h-20 mx-auto" alt="product">
-                        <span class="inline-block w-full text-center pt-2">محصول تستی</span>
-                    </a>
-                    <span class="block text-center text-[14px] text-[var(--color-secondary-text)]">تست آیتم</span>
-                </div>
-                <div class="p-4 border border-[var(--color-border)] rounded-[10px]">
-                    <a href="#" class="block mb-1">
-                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                            class="w-[85px] h-20 mx-auto" alt="product">
-                        <span class="inline-block w-full text-center pt-2">محصول تستی</span>
-                    </a>
-                    <span class="block text-center text-[14px] text-[var(--color-secondary-text)]">تست آیتم</span>
-                </div>
-
-                <div class="p-4 border border-[var(--color-border)] rounded-[10px]">
-                    <a href="#" class="block mb-1">
-                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                            class="w-[85px] h-20 mx-auto" alt="product">
-                        <span class="inline-block w-full text-center pt-2">محصول تستی</span>
-                    </a>
-                    <span class="block text-center text-[14px] text-[var(--color-secondary-text)]">تست آیتم</span>
-                </div>
+                @endforeach
             </div>
 
         </section>
@@ -881,7 +804,7 @@
         <section class="text-[var(--color-text)] pt-3">
             <!-- title section -->
             <div class="flex flex-col lg:flex-row justify-between gap-8 lg:gap-0 lg:items-center py-5 lg:py-10">
-                <h2 class="font-bold lg:text-[24px] leading-8">دسته های پرطرفدار</h2>
+                <h2 class="font-bold lg:text-[24px] leading-8">تخفیفات ویژه</h2>
                 <div
                     class="flex flex-row flex-wrap lg:justify-end items-center text-xs lg:text-base gap-5 font-semibold">
                     <a href="#" class="text-[var(--color-text)]">
@@ -902,12 +825,184 @@
 
             <div class="grid 2xl:grid-cols-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 lg:gap-5">
                 <!-- 12 -->
+
+                <!-- <div class="p-2 md:p-3 lg:p-4 xl:p-5 border border-[var(--color-border)] rounded-[10px] relative productItem productItemNone">
+                    <div
+                        class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-[555] overflow-hidden">
+                        <button
+                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[50ms]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
+                                <path fill="var(--color-fill)"
+                                    d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
+                            </svg>
+                        </button>
+                        <button
+                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[100ms]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
+                                <path fill="var(--color-fill)"
+                                    d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
+                            </svg>
+                        </button>
+
+
+
+                        <button
+                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[150ms]"">
+                            <svg xmlns=" http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 576 512">
+                            <path fill="var(--color-fill)"
+                                d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
+                            </svg>
+                        </button>
+
+
+                    </div>
+                    <div
+                        class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 md:hidden flex flex-col gap-2 z-[555] overflow-hidden">
+
+                        <button
+                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer productAnimation">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
+                                <path fill="var(--color-fill)"
+                                    d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
+                            </svg>
+                        </button>
+                        <button
+                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 512 512">
+                                <path fill="var(--color-fill)"
+                                    d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
+                            </svg>
+                        </button>
+                        <button
+                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
+                                <path fill="var(--color-fill)"
+                                    d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
+                            </svg>
+                        </button>
+                        <button
+                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 576 512">
+                                <path fill="var(--color-fill)"
+                                    d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
+                            </svg>
+                        </button>
+
+                    </div>
+                    <span
+                        class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
+                    <div>
+                        <a href="#" class="flex justify-center mb-1 overflow-hidden">
+                            <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/onion-pro-1.jpg"
+                                class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
+                                alt="product">
+                        </a>
+                    </div>
+                    <div>
+                        <div class="mb-1">
+                            <a href="#" class="text-[12px] lg:text-[14px] text-[var(--color-text)]">تست آیتم</a>
+                        </div>
+
+
+
+
+
+                        <div class="relative">
+                            <div class="absolute w-3/4 h-3/4 bg-[var(--color-primary-btn)] bottom-0 right-0 p-3 hidden showMetric">
+                                <div class="flex flex-row flex-wrap gap-1 text-[var(--color-text)]">
+                                    <button type="button" class="px-[5px] py-[3px] text-xs rounded-[4px] border border-[var(--color-border)] translate-all duration-300 hover:border-black cursor-pointer">
+                                        1 کیلو گرم
+                                    </button>
+                                    <button type="button" class="px-[5px] py-[3px] text-xs rounded-[4px] border border-[var(--color-border)] translate-all duration-300 hover:border-black cursor-pointer">
+                                        2 کیلو گرم
+                                    </button>
+                                    <button type="button" class="px-[5px] py-[3px] text-xs rounded-[4px] border border-[var(--color-border)] translate-all duration-300 hover:border-black cursor-pointer">
+                                        250 گرم
+                                    </button>
+                                    <button type="button" class="px-[5px] py-[3px] text-xs rounded-[4px] border border-[var(--color-border)] translate-all duration-300 hover:border-black cursor-pointer">
+                                        500 گرم
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="mb-2 font-semibold text-[14px] lg:text-base">
+                                <a href="#">توضیحات محصول تستی محصول تستی محصول </a>
+                            </div>
+                            <div class="flex flex-row items-center mb-3 gap-2">
+                                <div class="w-1/2 flex flex-row items-center text-[12px]">
+                                    <div class="text-[var(--color-secondary-text)] flex flex-row items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
+                                            <path fill="#8C9EC5"
+                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
+                                            <path fill="#8C9EC5"
+                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
+                                            <path fill="#8C9EC5"
+                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
+                                            <path fill="#8C9EC5"
+                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
+                                            <path fill="#8C9EC5"
+                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
+                                        </svg>
+                                    </div>
+                                    <span>(0)</span>
+                                </div>
+                                <div>
+                                    <span
+                                        class="lg:py-[3px] py-px px-0.5 lg:px-[5px] bg-[var(--color-secondary)] text-[var(--color-primary-text)] rounded-full text-[10px]">
+                                        تستی
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="hidden lg:flex flex-row items-center gap-2 text-[var(--color-text)] mb-3 text-[18px] font-bold">
+                                <span>$15.22</span>
+                                <span>-</span>
+                                <span>$140.00</span>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="flex lg:hidden flex-row items-start gap-2 text-[var(--color-text)] mb-3 font-bold">
+                            <span>$15.22</span>
+
+                            <del class="text-xs text-[var(--color-secondary-text)]">$140.00</del>
+                        </div>
+                        <div class="flex flex-col lg:flex-row gap-2 lg:gap-4 relative">
+                            <div class="absolute size-full bg-white/70 cursor-not-allowed"></div>
+                            <div
+                                class="w-full lg:w-1/2 flex flex-row justify-between items-center border border-[var(--color-border)] rounded-[10px] p-1">
+                                <button
+                                    class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer" disabled>-</button>
+                                <input type="text" class="w-[30px] outline-none text-center text-xs" value="1" min="0"
+                                    name="" id="" disabled>
+                                <button
+                                    class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer" disabled>+</button>
+                            </div>
+                            <div class="w-full lg:w-1/2">
+                                <button
+                                    class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-[var(--color-primary-text)] bg-[var(--color-bg-card-btn)] leading-5 rounded-[10px] cursor-pointer" disabled>ناموجود</button>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+                @foreach($specialDiscounts[0]['products'] as $specialDiscountProduct)
+                @if($specialDiscountProduct['is_in_home'] == 1)
                 <div class="p-2 md:p-3 lg:p-4 xl:p-5 border border-[var(--color-border)] rounded-[10px] relative productItem">
                     <div
                         class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-[555] overflow-hidden">
 
                         <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500">
+                            class="size-8 border border-[var(--color-border)] buttonProduct btnAnimation bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
                                 <path fill="var(--color-fill)"
                                     d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
@@ -972,1628 +1067,84 @@
                     <span
                         class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
                     <div>
-                        <a href="#" class="flex justify-center mb-1 overflow-hidden">
-                            <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/onion-pro-1.jpg"
+                        <a href="{{route('product-show', [$specialDiscountProduct])}}" class="flex justify-center mb-1 overflow-hidden">
+                            <img src="@foreach($specialDiscountProduct->medias as $media) @if($media['is_main'] == 1) {{asset($media['path'])}} @endif @endforeach"
                                 class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
                                 alt="product">
                         </a>
                     </div>
-                    <div class="mb-1">
-                        <a href="#" class="text-[12px] lg:text-[14px] text-[var(--color-text)]">تست آیتم</a>
-                    </div>
-                    <div class="mb-2 font-semibold text-[14px] lg:text-base">
-                        <a href="#">توضیحات محصول تستی محصول تستی محصول </a>
-                    </div>
-                    <div class="flex flex-row items-center mb-3 gap-2">
-                        <div class="w-1/2 flex flex-row items-center text-[12px]">
-                            <div class="text-[var(--color-secondary-text)] flex flex-row items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                            </div>
-                            <span>(0)</span>
-                        </div>
-                        <div>
-                            <span
-                                class="lg:py-[3px] py-px px-0.5 lg:px-[5px] bg-[#0dcaf0] text-[var(--color-primary-text)] rounded-full text-[10px]">
-                                تستی
-                            </span>
-                        </div>
-                    </div>
-                    <div class="hidden lg:flex flex-row items-center gap-2 text-[var(--color-text)] mb-3 text-[18px] font-bold">
-                        <span>$15.22</span>
-                        <span>-</span>
-                        <span>$140.00</span>
-                    </div>
-                    <div class="flex lg:hidden flex-row items-start gap-2 text-[var(--color-text)] mb-3 font-bold">
-                        <span>$15.22</span>
-
-                        <del class="text-xs text-[var(--color-secondary-text)]">$140.00</del>
-                    </div>
-                    <div class="flex flex-col lg:flex-row gap-2 lg:gap-4">
-                        <div
-                            class="w-full lg:w-1/2 flex flex-row justify-between items-center border border-[var(--color-border)] rounded-[10px] p-1">
-                            <button
-                                class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">-</button>
-                            <input type="text" class="w-[30px] outline-none text-center text-xs" value="1" min="0"
-                                name="" id="">
-                            <button
-                                class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">+</button>
-                        </div>
-                        <div class="w-full lg:w-1/2">
-                            <button
-                                class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-[var(--color-primary-text)] bg-[var(--color-bg-card-btn)] leading-5 rounded-[10px] cursor-pointer">خرید</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-2 md:p-3 lg:p-4 xl:p-5 border border-[var(--color-border)] rounded-[10px] relative productItem">
-                    <div
-                        class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-[555] overflow-hidden">
-
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[50ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
-                                <path fill="var(--color-fill)"
-                                    d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[100ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[150ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 576 512">
-                                <path fill="var(--color-fill)"
-                                    d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                            </svg>
-                        </button>
-
-                    </div>
-                    <div
-                        class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 md:hidden flex flex-col gap-2 z-[555] overflow-hidden">
-
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer productAnimation">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 512 512">
-                                <path fill="var(--color-fill)"
-                                    d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 576 512">
-                                <path fill="var(--color-fill)"
-                                    d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                            </svg>
-                        </button>
-
-                    </div>
-                    <span
-                        class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
                     <div>
-                        <a href="#" class="flex justify-center mb-1 overflow-hidden">
-                            <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/onion-pro-1.jpg"
-                                class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
-                                alt="product">
-                        </a>
-                    </div>
-                    <div class="mb-1">
-                        <a href="#" class="text-[12px] lg:text-[14px] text-[var(--color-text)]">تست آیتم</a>
-                    </div>
-                    <div class="mb-2 font-semibold text-[14px] lg:text-base">
-                        <a href="#">توضیحات محصول تستی محصول تستی محصول </a>
-                    </div>
-                    <div class="flex flex-row items-center mb-3 gap-2">
-                        <div class="w-1/2 flex flex-row items-center text-[12px]">
-                            <div class="text-[var(--color-secondary-text)] flex flex-row items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                            </div>
-                            <span>(0)</span>
+                        <div class="mb-1">
+                            <a href="{{route('product-show', [$specialDiscountProduct])}}" class="text-[12px] lg:text-[14px] text-[var(--color-text)]">{{$specialDiscountProduct->title}}</a>
                         </div>
                         <div>
-                            <span
-                                class="lg:py-[3px] py-px px-0.5 lg:px-[5px] bg-[#0dcaf0] text-[var(--color-primary-text)] rounded-full text-[10px]">
-                                تستی
-                            </span>
+                            <div class="mb-2 font-semibold text-[14px] lg:text-base">
+                                <a href="{{route('product-show', [$specialDiscountProduct])}}">{{$specialDiscountProduct->description}}</a>
+                            </div>
+                            <div class="flex flex-row items-center mb-3 gap-2">
+                                <div class="w-1/2 flex flex-row items-center text-[12px]">
+                                    <div class="text-[var(--color-secondary-text)] flex flex-row items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
+                                            <path fill="#8C9EC5"
+                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
+                                            <path fill="#8C9EC5"
+                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
+                                            <path fill="#8C9EC5"
+                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
+                                            <path fill="#8C9EC5"
+                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
+                                            <path fill="#8C9EC5"
+                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
+                                        </svg>
+                                    </div>
+                                    <span>(0)</span>
+                                </div>
+                                <div>
+                                    <span
+                                        class="lg:py-[3px] py-px px-0.5 lg:px-[5px] bg-[var(--color-secondary)] text-[var(--color-primary-text)] rounded-full text-[10px]">
+                                        تستی
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="hidden lg:flex flex-row items-center gap-2 text-[var(--color-text)] mb-3 text-[18px] font-bold">
+                                <span>$15.22</span>
+                                <span>-</span>
+                                <span>$140.00</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="hidden lg:flex flex-row items-center gap-2 text-[var(--color-text)] mb-3 text-[18px] font-bold">
-                        <span>$15.22</span>
-                        <span>-</span>
-                        <span>$140.00</span>
-                    </div>
-                    <div class="flex lg:hidden flex-row items-start gap-2 text-[var(--color-text)] mb-3 font-bold">
-                        <span>$15.22</span>
 
-                        <del class="text-xs text-[var(--color-secondary-text)]">$140.00</del>
-                    </div>
-                    <div class="flex flex-col lg:flex-row gap-2 lg:gap-4">
-                        <div
-                            class="w-full lg:w-1/2 flex flex-row justify-between items-center border border-[var(--color-border)] rounded-[10px] p-1">
-                            <button
-                                class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">-</button>
-                            <input type="text" class="w-[30px] outline-none text-center text-xs" value="1" min="0"
-                                name="" id="">
-                            <button
-                                class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">+</button>
+                        <div class="flex lg:hidden flex-row items-start gap-2 text-[var(--color-text)] mb-3 font-bold">
+                            <span>$15.22</span>
+
+                            <del class="text-xs text-[var(--color-secondary-text)]">$140.00</del>
                         </div>
-                        <div class="w-full lg:w-1/2">
-                            <button
-                                class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-[var(--color-primary-text)] bg-[var(--color-bg-card-btn)] leading-5 rounded-[10px] cursor-pointer">خرید</button>
+                        <div class="flex flex-col lg:flex-row gap-2 lg:gap-4">
+                            <div
+                                class="w-full lg:w-1/2 flex flex-row justify-between items-center border border-[var(--color-border)] rounded-[10px] p-1">
+                                <button
+                                    class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">-</button>
+                                <input type="text" class="w-[30px] outline-none text-center text-xs" value="1" min="0"
+                                    name="" id="">
+                                <button
+                                    class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">+</button>
+                            </div>
+                            <div class="w-full lg:w-1/2">
+                                <button
+                                    class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-[var(--color-primary-text)] bg-[var(--color-bg-card-btn)] leading-5 rounded-[10px] cursor-pointer">خرید</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="p-2 md:p-3 lg:p-4 xl:p-5 border border-[var(--color-border)] rounded-[10px] relative productItem">
-                    <div
-                        class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-[555] overflow-hidden">
-
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[50ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
-                                <path fill="var(--color-fill)"
-                                    d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[100ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[150ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 576 512">
-                                <path fill="var(--color-fill)"
-                                    d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                            </svg>
-                        </button>
-
-                    </div>
-                    <div
-                        class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 md:hidden flex flex-col gap-2 z-[555] overflow-hidden">
-
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer productAnimation">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 512 512">
-                                <path fill="var(--color-fill)"
-                                    d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 576 512">
-                                <path fill="var(--color-fill)"
-                                    d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                            </svg>
-                        </button>
-
-                    </div>
-                    <span
-                        class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
-                    <div>
-                        <a href="#" class="flex justify-center mb-1 overflow-hidden">
-                            <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/onion-pro-1.jpg"
-                                class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
-                                alt="product">
-                        </a>
-                    </div>
-                    <div class="mb-1">
-                        <a href="#" class="text-[12px] lg:text-[14px] text-[var(--color-text)]">تست آیتم</a>
-                    </div>
-                    <div class="mb-2 font-semibold text-[14px] lg:text-base">
-                        <a href="#">توضیحات محصول تستی محصول تستی محصول </a>
-                    </div>
-                    <div class="flex flex-row items-center mb-3 gap-2">
-                        <div class="w-1/2 flex flex-row items-center text-[12px]">
-                            <div class="text-[var(--color-secondary-text)] flex flex-row items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                            </div>
-                            <span>(0)</span>
-                        </div>
-                        <div>
-                            <span
-                                class="lg:py-[3px] py-px px-0.5 lg:px-[5px] bg-[#0dcaf0] text-[var(--color-primary-text)] rounded-full text-[10px]">
-                                تستی
-                            </span>
-                        </div>
-                    </div>
-                    <div class="hidden lg:flex flex-row items-center gap-2 text-[var(--color-text)] mb-3 text-[18px] font-bold">
-                        <span>$15.22</span>
-                        <span>-</span>
-                        <span>$140.00</span>
-                    </div>
-                    <div class="flex lg:hidden flex-row items-start gap-2 text-[var(--color-text)] mb-3 font-bold">
-                        <span>$15.22</span>
-
-                        <del class="text-xs text-[var(--color-secondary-text)]">$140.00</del>
-                    </div>
-                    <div class="flex flex-col lg:flex-row gap-2 lg:gap-4">
-                        <div
-                            class="w-full lg:w-1/2 flex flex-row justify-between items-center border border-[var(--color-border)] rounded-[10px] p-1">
-                            <button
-                                class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">-</button>
-                            <input type="text" class="w-[30px] outline-none text-center text-xs" value="1" min="0"
-                                name="" id="">
-                            <button
-                                class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">+</button>
-                        </div>
-                        <div class="w-full lg:w-1/2">
-                            <button
-                                class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-[var(--color-primary-text)] bg-[var(--color-bg-card-btn)] leading-5 rounded-[10px] cursor-pointer">خرید</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-2 md:p-3 lg:p-4 xl:p-5 border border-[var(--color-border)] rounded-[10px] relative productItem">
-                    <div
-                        class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-[555] overflow-hidden">
-
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[50ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
-                                <path fill="var(--color-fill)"
-                                    d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[100ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[150ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 576 512">
-                                <path fill="var(--color-fill)"
-                                    d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                            </svg>
-                        </button>
-
-                    </div>
-                    <div
-                        class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 md:hidden flex flex-col gap-2 z-[555] overflow-hidden">
-
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer productAnimation">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 512 512">
-                                <path fill="var(--color-fill)"
-                                    d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 576 512">
-                                <path fill="var(--color-fill)"
-                                    d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                            </svg>
-                        </button>
-
-                    </div>
-                    <span
-                        class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
-                    <div>
-                        <a href="#" class="flex justify-center mb-1 overflow-hidden">
-                            <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/onion-pro-1.jpg"
-                                class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
-                                alt="product">
-                        </a>
-                    </div>
-                    <div class="mb-1">
-                        <a href="#" class="text-[12px] lg:text-[14px] text-[var(--color-text)]">تست آیتم</a>
-                    </div>
-                    <div class="mb-2 font-semibold text-[14px] lg:text-base">
-                        <a href="#">توضیحات محصول تستی محصول تستی محصول </a>
-                    </div>
-                    <div class="flex flex-row items-center mb-3 gap-2">
-                        <div class="w-1/2 flex flex-row items-center text-[12px]">
-                            <div class="text-[var(--color-secondary-text)] flex flex-row items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                            </div>
-                            <span>(0)</span>
-                        </div>
-                        <div>
-                            <span
-                                class="lg:py-[3px] py-px px-0.5 lg:px-[5px] bg-[#0dcaf0] text-[var(--color-primary-text)] rounded-full text-[10px]">
-                                تستی
-                            </span>
-                        </div>
-                    </div>
-                    <div class="hidden lg:flex flex-row items-center gap-2 text-[var(--color-text)] mb-3 text-[18px] font-bold">
-                        <span>$15.22</span>
-                        <span>-</span>
-                        <span>$140.00</span>
-                    </div>
-                    <div class="flex lg:hidden flex-row items-start gap-2 text-[var(--color-text)] mb-3 font-bold">
-                        <span>$15.22</span>
-
-                        <del class="text-xs text-[var(--color-secondary-text)]">$140.00</del>
-                    </div>
-                    <div class="flex flex-col lg:flex-row gap-2 lg:gap-4">
-                        <div
-                            class="w-full lg:w-1/2 flex flex-row justify-between items-center border border-[var(--color-border)] rounded-[10px] p-1">
-                            <button
-                                class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">-</button>
-                            <input type="text" class="w-[30px] outline-none text-center text-xs" value="1" min="0"
-                                name="" id="">
-                            <button
-                                class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">+</button>
-                        </div>
-                        <div class="w-full lg:w-1/2">
-                            <button
-                                class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-[var(--color-primary-text)] bg-[var(--color-bg-card-btn)] leading-5 rounded-[10px] cursor-pointer">خرید</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-2 md:p-3 lg:p-4 xl:p-5 border border-[var(--color-border)] rounded-[10px] relative productItem">
-                    <div
-                        class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-[555] overflow-hidden">
-
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[50ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
-                                <path fill="var(--color-fill)"
-                                    d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[100ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[150ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 576 512">
-                                <path fill="var(--color-fill)"
-                                    d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                            </svg>
-                        </button>
-
-                    </div>
-                    <div
-                        class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 md:hidden flex flex-col gap-2 z-[555] overflow-hidden">
-
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer productAnimation">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 512 512">
-                                <path fill="var(--color-fill)"
-                                    d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 576 512">
-                                <path fill="var(--color-fill)"
-                                    d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                            </svg>
-                        </button>
-
-                    </div>
-                    <span
-                        class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
-                    <div>
-                        <a href="#" class="flex justify-center mb-1 overflow-hidden">
-                            <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/onion-pro-1.jpg"
-                                class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
-                                alt="product">
-                        </a>
-                    </div>
-                    <div class="mb-1">
-                        <a href="#" class="text-[12px] lg:text-[14px] text-[var(--color-text)]">تست آیتم</a>
-                    </div>
-                    <div class="mb-2 font-semibold text-[14px] lg:text-base">
-                        <a href="#">توضیحات محصول تستی محصول تستی محصول </a>
-                    </div>
-                    <div class="flex flex-row items-center mb-3 gap-2">
-                        <div class="w-1/2 flex flex-row items-center text-[12px]">
-                            <div class="text-[var(--color-secondary-text)] flex flex-row items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                            </div>
-                            <span>(0)</span>
-                        </div>
-                        <div>
-                            <span
-                                class="lg:py-[3px] py-px px-0.5 lg:px-[5px] bg-[#0dcaf0] text-[var(--color-primary-text)] rounded-full text-[10px]">
-                                تستی
-                            </span>
-                        </div>
-                    </div>
-                    <div class="hidden lg:flex flex-row items-center gap-2 text-[var(--color-text)] mb-3 text-[18px] font-bold">
-                        <span>$15.22</span>
-                        <span>-</span>
-                        <span>$140.00</span>
-                    </div>
-                    <div class="flex lg:hidden flex-row items-start gap-2 text-[var(--color-text)] mb-3 font-bold">
-                        <span>$15.22</span>
-
-                        <del class="text-xs text-[var(--color-secondary-text)]">$140.00</del>
-                    </div>
-                    <div class="flex flex-col lg:flex-row gap-2 lg:gap-4">
-                        <div
-                            class="w-full lg:w-1/2 flex flex-row justify-between items-center border border-[var(--color-border)] rounded-[10px] p-1">
-                            <button
-                                class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">-</button>
-                            <input type="text" class="w-[30px] outline-none text-center text-xs" value="1" min="0"
-                                name="" id="">
-                            <button
-                                class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">+</button>
-                        </div>
-                        <div class="w-full lg:w-1/2">
-                            <button
-                                class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-[var(--color-primary-text)] bg-[var(--color-bg-card-btn)] leading-5 rounded-[10px] cursor-pointer">خرید</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-2 md:p-3 lg:p-4 xl:p-5 border border-[var(--color-border)] rounded-[10px] relative productItem">
-                    <div
-                        class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-[555] overflow-hidden">
-
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[50ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
-                                <path fill="var(--color-fill)"
-                                    d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[100ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[150ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 576 512">
-                                <path fill="var(--color-fill)"
-                                    d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                            </svg>
-                        </button>
-
-                    </div>
-                    <div
-                        class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 md:hidden flex flex-col gap-2 z-[555] overflow-hidden">
-
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer productAnimation">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 512 512">
-                                <path fill="var(--color-fill)"
-                                    d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 576 512">
-                                <path fill="var(--color-fill)"
-                                    d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                            </svg>
-                        </button>
-
-                    </div>
-                    <span
-                        class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
-                    <div>
-                        <a href="#" class="flex justify-center mb-1 overflow-hidden">
-                            <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/onion-pro-1.jpg"
-                                class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
-                                alt="product">
-                        </a>
-                    </div>
-                    <div class="mb-1">
-                        <a href="#" class="text-[12px] lg:text-[14px] text-[var(--color-text)]">تست آیتم</a>
-                    </div>
-                    <div class="mb-2 font-semibold text-[14px] lg:text-base">
-                        <a href="#">توضیحات محصول تستی محصول تستی محصول </a>
-                    </div>
-                    <div class="flex flex-row items-center mb-3 gap-2">
-                        <div class="w-1/2 flex flex-row items-center text-[12px]">
-                            <div class="text-[var(--color-secondary-text)] flex flex-row items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                            </div>
-                            <span>(0)</span>
-                        </div>
-                        <div>
-                            <span
-                                class="lg:py-[3px] py-px px-0.5 lg:px-[5px] bg-[#0dcaf0] text-[var(--color-primary-text)] rounded-full text-[10px]">
-                                تستی
-                            </span>
-                        </div>
-                    </div>
-                    <div class="hidden lg:flex flex-row items-center gap-2 text-[var(--color-text)] mb-3 text-[18px] font-bold">
-                        <span>$15.22</span>
-                        <span>-</span>
-                        <span>$140.00</span>
-                    </div>
-                    <div class="flex lg:hidden flex-row items-start gap-2 text-[var(--color-text)] mb-3 font-bold">
-                        <span>$15.22</span>
-
-                        <del class="text-xs text-[var(--color-secondary-text)]">$140.00</del>
-                    </div>
-                    <div class="flex flex-col lg:flex-row gap-2 lg:gap-4">
-                        <div
-                            class="w-full lg:w-1/2 flex flex-row justify-between items-center border border-[var(--color-border)] rounded-[10px] p-1">
-                            <button
-                                class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">-</button>
-                            <input type="text" class="w-[30px] outline-none text-center text-xs" value="1" min="0"
-                                name="" id="">
-                            <button
-                                class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">+</button>
-                        </div>
-                        <div class="w-full lg:w-1/2">
-                            <button
-                                class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-[var(--color-primary-text)] bg-[var(--color-bg-card-btn)] leading-5 rounded-[10px] cursor-pointer">خرید</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-2 md:p-3 lg:p-4 xl:p-5 border border-[var(--color-border)] rounded-[10px] relative productItem">
-                    <div
-                        class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-[555] overflow-hidden">
-
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[50ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
-                                <path fill="var(--color-fill)"
-                                    d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[100ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[150ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 576 512">
-                                <path fill="var(--color-fill)"
-                                    d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                            </svg>
-                        </button>
-
-                    </div>
-                    <div
-                        class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 md:hidden flex flex-col gap-2 z-[555] overflow-hidden">
-
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer productAnimation">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 512 512">
-                                <path fill="var(--color-fill)"
-                                    d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 576 512">
-                                <path fill="var(--color-fill)"
-                                    d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                            </svg>
-                        </button>
-
-                    </div>
-                    <span
-                        class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
-                    <div>
-                        <a href="#" class="flex justify-center mb-1 overflow-hidden">
-                            <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/onion-pro-1.jpg"
-                                class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
-                                alt="product">
-                        </a>
-                    </div>
-                    <div class="mb-1">
-                        <a href="#" class="text-[12px] lg:text-[14px] text-[var(--color-text)]">تست آیتم</a>
-                    </div>
-                    <div class="mb-2 font-semibold text-[14px] lg:text-base">
-                        <a href="#">توضیحات محصول تستی محصول تستی محصول </a>
-                    </div>
-                    <div class="flex flex-row items-center mb-3 gap-2">
-                        <div class="w-1/2 flex flex-row items-center text-[12px]">
-                            <div class="text-[var(--color-secondary-text)] flex flex-row items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                            </div>
-                            <span>(0)</span>
-                        </div>
-                        <div>
-                            <span
-                                class="lg:py-[3px] py-px px-0.5 lg:px-[5px] bg-[#0dcaf0] text-[var(--color-primary-text)] rounded-full text-[10px]">
-                                تستی
-                            </span>
-                        </div>
-                    </div>
-                    <div class="hidden lg:flex flex-row items-center gap-2 text-[var(--color-text)] mb-3 text-[18px] font-bold">
-                        <span>$15.22</span>
-                        <span>-</span>
-                        <span>$140.00</span>
-                    </div>
-                    <div class="flex lg:hidden flex-row items-start gap-2 text-[var(--color-text)] mb-3 font-bold">
-                        <span>$15.22</span>
-
-                        <del class="text-xs text-[var(--color-secondary-text)]">$140.00</del>
-                    </div>
-                    <div class="flex flex-col lg:flex-row gap-2 lg:gap-4">
-                        <div
-                            class="w-full lg:w-1/2 flex flex-row justify-between items-center border border-[var(--color-border)] rounded-[10px] p-1">
-                            <button
-                                class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">-</button>
-                            <input type="text" class="w-[30px] outline-none text-center text-xs" value="1" min="0"
-                                name="" id="">
-                            <button
-                                class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">+</button>
-                        </div>
-                        <div class="w-full lg:w-1/2">
-                            <button
-                                class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-[var(--color-primary-text)] bg-[var(--color-bg-card-btn)] leading-5 rounded-[10px] cursor-pointer">خرید</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-2 md:p-3 lg:p-4 xl:p-5 border border-[var(--color-border)] rounded-[10px] relative productItem">
-                    <div
-                        class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-[555] overflow-hidden">
-
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[50ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
-                                <path fill="var(--color-fill)"
-                                    d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[100ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[150ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 576 512">
-                                <path fill="var(--color-fill)"
-                                    d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                            </svg>
-                        </button>
-
-                    </div>
-                    <div
-                        class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 md:hidden flex flex-col gap-2 z-[555] overflow-hidden">
-
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer productAnimation">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 512 512">
-                                <path fill="var(--color-fill)"
-                                    d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 576 512">
-                                <path fill="var(--color-fill)"
-                                    d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                            </svg>
-                        </button>
-
-                    </div>
-                    <span
-                        class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
-                    <div>
-                        <a href="#" class="flex justify-center mb-1 overflow-hidden">
-                            <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/onion-pro-1.jpg"
-                                class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
-                                alt="product">
-                        </a>
-                    </div>
-                    <div class="mb-1">
-                        <a href="#" class="text-[12px] lg:text-[14px] text-[var(--color-text)]">تست آیتم</a>
-                    </div>
-                    <div class="mb-2 font-semibold text-[14px] lg:text-base">
-                        <a href="#">توضیحات محصول تستی محصول تستی محصول </a>
-                    </div>
-                    <div class="flex flex-row items-center mb-3 gap-2">
-                        <div class="w-1/2 flex flex-row items-center text-[12px]">
-                            <div class="text-[var(--color-secondary-text)] flex flex-row items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                            </div>
-                            <span>(0)</span>
-                        </div>
-                        <div>
-                            <span
-                                class="lg:py-[3px] py-px px-0.5 lg:px-[5px] bg-[#0dcaf0] text-[var(--color-primary-text)] rounded-full text-[10px]">
-                                تستی
-                            </span>
-                        </div>
-                    </div>
-                    <div class="hidden lg:flex flex-row items-center gap-2 text-[var(--color-text)] mb-3 text-[18px] font-bold">
-                        <span>$15.22</span>
-                        <span>-</span>
-                        <span>$140.00</span>
-                    </div>
-                    <div class="flex lg:hidden flex-row items-start gap-2 text-[var(--color-text)] mb-3 font-bold">
-                        <span>$15.22</span>
-
-                        <del class="text-xs text-[var(--color-secondary-text)]">$140.00</del>
-                    </div>
-                    <div class="flex flex-col lg:flex-row gap-2 lg:gap-4">
-                        <div
-                            class="w-full lg:w-1/2 flex flex-row justify-between items-center border border-[var(--color-border)] rounded-[10px] p-1">
-                            <button
-                                class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">-</button>
-                            <input type="text" class="w-[30px] outline-none text-center text-xs" value="1" min="0"
-                                name="" id="">
-                            <button
-                                class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">+</button>
-                        </div>
-                        <div class="w-full lg:w-1/2">
-                            <button
-                                class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-[var(--color-primary-text)] bg-[var(--color-bg-card-btn)] leading-5 rounded-[10px] cursor-pointer">خرید</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-2 md:p-3 lg:p-4 xl:p-5 border border-[var(--color-border)] rounded-[10px] relative productItem">
-                    <div
-                        class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-[555] overflow-hidden">
-
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[50ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
-                                <path fill="var(--color-fill)"
-                                    d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[100ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[150ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 576 512">
-                                <path fill="var(--color-fill)"
-                                    d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                            </svg>
-                        </button>
-
-                    </div>
-                    <div
-                        class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 md:hidden flex flex-col gap-2 z-[555] overflow-hidden">
-
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer productAnimation">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 512 512">
-                                <path fill="var(--color-fill)"
-                                    d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 576 512">
-                                <path fill="var(--color-fill)"
-                                    d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                            </svg>
-                        </button>
-
-                    </div>
-                    <span
-                        class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
-                    <div>
-                        <a href="#" class="flex justify-center mb-1 overflow-hidden">
-                            <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/onion-pro-1.jpg"
-                                class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
-                                alt="product">
-                        </a>
-                    </div>
-                    <div class="mb-1">
-                        <a href="#" class="text-[12px] lg:text-[14px] text-[var(--color-text)]">تست آیتم</a>
-                    </div>
-                    <div class="mb-2 font-semibold text-[14px] lg:text-base">
-                        <a href="#">توضیحات محصول تستی محصول تستی محصول </a>
-                    </div>
-                    <div class="flex flex-row items-center mb-3 gap-2">
-                        <div class="w-1/2 flex flex-row items-center text-[12px]">
-                            <div class="text-[var(--color-secondary-text)] flex flex-row items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                            </div>
-                            <span>(0)</span>
-                        </div>
-                        <div>
-                            <span
-                                class="lg:py-[3px] py-px px-0.5 lg:px-[5px] bg-[#0dcaf0] text-[var(--color-primary-text)] rounded-full text-[10px]">
-                                تستی
-                            </span>
-                        </div>
-                    </div>
-                    <div class="hidden lg:flex flex-row items-center gap-2 text-[var(--color-text)] mb-3 text-[18px] font-bold">
-                        <span>$15.22</span>
-                        <span>-</span>
-                        <span>$140.00</span>
-                    </div>
-                    <div class="flex lg:hidden flex-row items-start gap-2 text-[var(--color-text)] mb-3 font-bold">
-                        <span>$15.22</span>
-
-                        <del class="text-xs text-[var(--color-secondary-text)]">$140.00</del>
-                    </div>
-                    <div class="flex flex-col lg:flex-row gap-2 lg:gap-4">
-                        <div
-                            class="w-full lg:w-1/2 flex flex-row justify-between items-center border border-[var(--color-border)] rounded-[10px] p-1">
-                            <button
-                                class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">-</button>
-                            <input type="text" class="w-[30px] outline-none text-center text-xs" value="1" min="0"
-                                name="" id="">
-                            <button
-                                class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">+</button>
-                        </div>
-                        <div class="w-full lg:w-1/2">
-                            <button
-                                class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-[var(--color-primary-text)] bg-[var(--color-bg-card-btn)] leading-5 rounded-[10px] cursor-pointer">خرید</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-2 md:p-3 lg:p-4 xl:p-5 border border-[var(--color-border)] rounded-[10px] relative productItem">
-                    <div
-                        class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-[555] overflow-hidden">
-
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[50ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
-                                <path fill="var(--color-fill)"
-                                    d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[100ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[150ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 576 512">
-                                <path fill="var(--color-fill)"
-                                    d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                            </svg>
-                        </button>
-
-                    </div>
-                    <div
-                        class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 md:hidden flex flex-col gap-2 z-[555] overflow-hidden">
-
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer productAnimation">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 512 512">
-                                <path fill="var(--color-fill)"
-                                    d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 576 512">
-                                <path fill="var(--color-fill)"
-                                    d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                            </svg>
-                        </button>
-
-                    </div>
-                    <span
-                        class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
-                    <div>
-                        <a href="#" class="flex justify-center mb-1 overflow-hidden">
-                            <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/onion-pro-1.jpg"
-                                class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
-                                alt="product">
-                        </a>
-                    </div>
-                    <div class="mb-1">
-                        <a href="#" class="text-[12px] lg:text-[14px] text-[var(--color-text)]">تست آیتم</a>
-                    </div>
-                    <div class="mb-2 font-semibold text-[14px] lg:text-base">
-                        <a href="#">توضیحات محصول تستی محصول تستی محصول </a>
-                    </div>
-                    <div class="flex flex-row items-center mb-3 gap-2">
-                        <div class="w-1/2 flex flex-row items-center text-[12px]">
-                            <div class="text-[var(--color-secondary-text)] flex flex-row items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                            </div>
-                            <span>(0)</span>
-                        </div>
-                        <div>
-                            <span
-                                class="lg:py-[3px] py-px px-0.5 lg:px-[5px] bg-[#0dcaf0] text-[var(--color-primary-text)] rounded-full text-[10px]">
-                                تستی
-                            </span>
-                        </div>
-                    </div>
-                    <div class="hidden lg:flex flex-row items-center gap-2 text-[var(--color-text)] mb-3 text-[18px] font-bold">
-                        <span>$15.22</span>
-                        <span>-</span>
-                        <span>$140.00</span>
-                    </div>
-                    <div class="flex lg:hidden flex-row items-start gap-2 text-[var(--color-text)] mb-3 font-bold">
-                        <span>$15.22</span>
-
-                        <del class="text-xs text-[var(--color-secondary-text)]">$140.00</del>
-                    </div>
-                    <div class="flex flex-col lg:flex-row gap-2 lg:gap-4">
-                        <div
-                            class="w-full lg:w-1/2 flex flex-row justify-between items-center border border-[var(--color-border)] rounded-[10px] p-1">
-                            <button
-                                class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">-</button>
-                            <input type="text" class="w-[30px] outline-none text-center text-xs" value="1" min="0"
-                                name="" id="">
-                            <button
-                                class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">+</button>
-                        </div>
-                        <div class="w-full lg:w-1/2">
-                            <button
-                                class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-[var(--color-primary-text)] bg-[var(--color-bg-card-btn)] leading-5 rounded-[10px] cursor-pointer">خرید</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-2 md:p-3 lg:p-4 xl:p-5 border border-[var(--color-border)] rounded-[10px] relative productItem">
-                    <div
-                        class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-[555] overflow-hidden">
-
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[50ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
-                                <path fill="var(--color-fill)"
-                                    d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[100ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[150ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 576 512">
-                                <path fill="var(--color-fill)"
-                                    d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                            </svg>
-                        </button>
-
-                    </div>
-                    <div
-                        class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 md:hidden flex flex-col gap-2 z-[555] overflow-hidden">
-
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer productAnimation">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 512 512">
-                                <path fill="var(--color-fill)"
-                                    d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 576 512">
-                                <path fill="var(--color-fill)"
-                                    d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                            </svg>
-                        </button>
-
-                    </div>
-                    <span
-                        class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
-                    <div>
-                        <a href="#" class="flex justify-center mb-1 overflow-hidden">
-                            <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/onion-pro-1.jpg"
-                                class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
-                                alt="product">
-                        </a>
-                    </div>
-                    <div class="mb-1">
-                        <a href="#" class="text-[12px] lg:text-[14px] text-[var(--color-text)]">تست آیتم</a>
-                    </div>
-                    <div class="mb-2 font-semibold text-[14px] lg:text-base">
-                        <a href="#">توضیحات محصول تستی محصول تستی محصول </a>
-                    </div>
-                    <div class="flex flex-row items-center mb-3 gap-2">
-                        <div class="w-1/2 flex flex-row items-center text-[12px]">
-                            <div class="text-[var(--color-secondary-text)] flex flex-row items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                            </div>
-                            <span>(0)</span>
-                        </div>
-                        <div>
-                            <span
-                                class="lg:py-[3px] py-px px-0.5 lg:px-[5px] bg-[#0dcaf0] text-[var(--color-primary-text)] rounded-full text-[10px]">
-                                تستی
-                            </span>
-                        </div>
-                    </div>
-                    <div class="hidden lg:flex flex-row items-center gap-2 text-[var(--color-text)] mb-3 text-[18px] font-bold">
-                        <span>$15.22</span>
-                        <span>-</span>
-                        <span>$140.00</span>
-                    </div>
-                    <div class="flex lg:hidden flex-row items-start gap-2 text-[var(--color-text)] mb-3 font-bold">
-                        <span>$15.22</span>
-
-                        <del class="text-xs text-[var(--color-secondary-text)]">$140.00</del>
-                    </div>
-                    <div class="flex flex-col lg:flex-row gap-2 lg:gap-4">
-                        <div
-                            class="w-full lg:w-1/2 flex flex-row justify-between items-center border border-[var(--color-border)] rounded-[10px] p-1">
-                            <button
-                                class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">-</button>
-                            <input type="text" class="w-[30px] outline-none text-center text-xs" value="1" min="0"
-                                name="" id="">
-                            <button
-                                class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">+</button>
-                        </div>
-                        <div class="w-full lg:w-1/2">
-                            <button
-                                class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-[var(--color-primary-text)] bg-[var(--color-bg-card-btn)] leading-5 rounded-[10px] cursor-pointer">خرید</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-2 md:p-3 lg:p-4 xl:p-5 border border-[var(--color-border)] rounded-[10px] relative productItem">
-                    <div
-                        class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-[555] overflow-hidden">
-
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[50ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
-                                <path fill="var(--color-fill)"
-                                    d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[100ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[150ms]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 576 512">
-                                <path fill="var(--color-fill)"
-                                    d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                            </svg>
-                        </button>
-
-                    </div>
-                    <div
-                        class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 md:hidden flex flex-col gap-2 z-[555] overflow-hidden">
-
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer productAnimation">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 512 512">
-                                <path fill="var(--color-fill)"
-                                    d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                            </svg>
-                        </button>
-                        <button
-                            class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 576 512">
-                                <path fill="var(--color-fill)"
-                                    d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                            </svg>
-                        </button>
-
-                    </div>
-                    <span
-                        class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
-                    <div>
-                        <a href="#" class="flex justify-center mb-1 overflow-hidden">
-                            <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/onion-pro-1.jpg"
-                                class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
-                                alt="product">
-                        </a>
-                    </div>
-                    <div class="mb-1">
-                        <a href="#" class="text-[12px] lg:text-[14px] text-[var(--color-text)]">تست آیتم</a>
-                    </div>
-                    <div class="mb-2 font-semibold text-[14px] lg:text-base">
-                        <a href="#">توضیحات محصول تستی محصول تستی محصول </a>
-                    </div>
-                    <div class="flex flex-row items-center mb-3 gap-2">
-                        <div class="w-1/2 flex flex-row items-center text-[12px]">
-                            <div class="text-[var(--color-secondary-text)] flex flex-row items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                    <path fill="#8C9EC5"
-                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                </svg>
-                            </div>
-                            <span>(0)</span>
-                        </div>
-                        <div>
-                            <span
-                                class="lg:py-[3px] py-px px-0.5 lg:px-[5px] bg-[#0dcaf0] text-[var(--color-primary-text)] rounded-full text-[10px]">
-                                تستی
-                            </span>
-                        </div>
-                    </div>
-                    <div class="hidden lg:flex flex-row items-center gap-2 text-[var(--color-text)] mb-3 text-[18px] font-bold">
-                        <span>$15.22</span>
-                        <span>-</span>
-                        <span>$140.00</span>
-                    </div>
-                    <div class="flex lg:hidden flex-row items-start gap-2 text-[var(--color-text)] mb-3 font-bold">
-                        <span>$15.22</span>
-
-                        <del class="text-xs text-[var(--color-secondary-text)]">$140.00</del>
-                    </div>
-                    <div class="flex flex-col lg:flex-row gap-2 lg:gap-4">
-                        <div
-                            class="w-full lg:w-1/2 flex flex-row justify-between items-center border border-[var(--color-border)] rounded-[10px] p-1">
-                            <button
-                                class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">-</button>
-                            <input type="text" class="w-[30px] outline-none text-center text-xs" value="1" min="0"
-                                name="" id="">
-                            <button
-                                class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">+</button>
-                        </div>
-                        <div class="w-full lg:w-1/2">
-                            <button
-                                class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-[var(--color-primary-text)] bg-[var(--color-bg-card-btn)] leading-5 rounded-[10px] cursor-pointer">خرید</button>
-                        </div>
-                    </div>
-                </div>
+                @endif
+                @endforeach
 
             </div>
         </section>
@@ -2602,21 +1153,22 @@
         <!-- offers -->
         <section class="text-[var(--color-text)] pt-3">
             <div class="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-[30px] py-10">
+                @foreach($banners as $banner)
                 <div class="bg-[var(--color-primary-btn)] p-2.5 rounded-[10px] flex flex-col lg:flex-row items-center gap-2.5">
                     <div class="lg:w-5/12">
-                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/three.png"
+                        <img src="{{$banner->image}}"
                             class="w-[220px] sm:w-[80%] mx-auto lg:w-full" alt="product image">
                     </div>
                     <div class="lg:w-7/12 p-2.5">
                         <div class="mb-1">
                             <h2 class="text-lg font-semibold leading-8">
-                                عنوان تستی عنوان تستی عنوان تستی
+                                {{$banner->title}}
                             </h2>
                         </div>
                         <div>
-                            <a href="#"
+                            <a href="{{$banner->link_href}}"
                                 class="flex flex-row items-center gap-2 transitin-all duration-[.25s] hover:-translate-y-[2px]">
-                                <span class="leading-10 text-sm font-semibold">ارتباط با تامین کننده</span>
+                                <span class="leading-10 text-sm font-semibold">{{$banner->link_content}}</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
                                     <path fill="var(--color-fill)"
                                         d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z" />
@@ -2625,75 +1177,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-[var(--color-primary-btn)] p-2.5 rounded-[10px] flex flex-col lg:flex-row items-center gap-2.5">
-                    <div class="lg:w-5/12">
-                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/three.png"
-                            class="w-[220px] sm:w-[80%] mx-auto lg:w-full" alt="product image">
-                    </div>
-                    <div class="lg:w-7/12 p-2.5">
-                        <div class="mb-1">
-                            <h2 class="text-lg font-semibold leading-8">
-                                عنوان تستی عنوان تستی عنوان تستی
-                            </h2>
-                        </div>
-                        <div>
-                            <a href="#"
-                                class="flex flex-row items-center gap-2 transitin-all duration-[.25s] hover:-translate-y-[2px]">
-                                <span class="leading-10 text-sm font-semibold">ارتباط با تامین کننده</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
-                                    <path fill="var(--color-fill)"
-                                        d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-[var(--color-primary-btn)] p-2.5 rounded-[10px] flex flex-col lg:flex-row items-center gap-2.5">
-                    <div class="lg:w-5/12">
-                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/three.png"
-                            class="w-[220px] sm:w-[80%] mx-auto lg:w-full" alt="product image">
-                    </div>
-                    <div class="lg:w-7/12 p-2.5">
-                        <div class="mb-1">
-                            <h2 class="text-lg font-semibold leading-8">
-                                عنوان تستی عنوان تستی عنوان تستی
-                            </h2>
-                        </div>
-                        <div>
-                            <a href="#"
-                                class="flex flex-row items-center gap-2 transitin-all duration-[.25s] hover:-translate-y-[2px]">
-                                <span class="leading-10 text-sm font-semibold">ارتباط با تامین کننده</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
-                                    <path fill="var(--color-fill)"
-                                        d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-[var(--color-primary-btn)] p-2.5 rounded-[10px] flex flex-col lg:flex-row items-center gap-2.5">
-                    <div class="lg:w-5/12">
-                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/three.png"
-                            class="w-[220px] sm:w-[80%] mx-auto lg:w-full" alt="product image">
-                    </div>
-                    <div class="lg:w-7/12 p-2.5">
-                        <div class="mb-1">
-                            <h2 class="text-lg font-semibold leading-8">
-                                عنوان تستی عنوان تستی عنوان تستی
-                            </h2>
-                        </div>
-                        <div>
-                            <a href="#"
-                                class="flex flex-row items-center gap-2 transitin-all duration-[.25s] hover:-translate-y-[2px]">
-                                <span class="leading-10 text-sm font-semibold">ارتباط با تامین کننده</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
-                                    <path fill="var(--color-fill)"
-                                        d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </section>
         <!-- offers -->
@@ -2704,17 +1188,17 @@
 
 
                 <!-- height problem -->
-
+                @foreach($bigBanner as $bb)
                 <div
-                    class="w-full children hidden xl:block xl:w-1/4 p-[30px] rounded-[12px] bg-[url('https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/banner-11-min.png')] bg-bottom-right bg-cover bg-no-repeat rotate-y-180">
+                    class="w-full children hidden xl:block xl:w-1/4 p-[30px] rounded-[12px] bg-[url({{$bb->image}})] bg-bottom-right bg-cover bg-no-repeat rotate-y-180">
                     <div class="rotate-y-180 h-[415px]">
                         <h2 class="text-[28px] leading-12 font-bold">
-                            این یک عنوان تستی از شاهکار میباشد
+                            {{$bb->title}}
                         </h2>
                         <div class="flex mt-3">
-                            <a href="#"
+                            <a href="{{$bb->link_href}}"
                                 class="flex flex-row items-center gap-2 bg-[var(--color-primary)] rounded-[10px] py-2 px-5 text-[var(--color-primary-text)] font-semibold">
-                                <span>خرید</span>
+                                <span>{{$bb->link_content}}</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
                                     <path fill="#fff"
                                         d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z" />
@@ -2723,9 +1207,10 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
 
                 <!-- height problem -->
-            
+
                 <div class="w-full children xl:w-3/4">
                     <div class="flex flex-row justify-between items-center pb-3">
                         <div class="flex flex-row justify-end items-center gap-5 font-semibold">
@@ -2761,6 +1246,7 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                        @foreach($products as $product)
                         <div
                             class="p-2 md:p-3 lg:p-4 xl:p-5 border border-[var(--color-border)] rounded-[10px] relative productItem">
                             <div
@@ -2836,17 +1322,17 @@
                             <span
                                 class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
                             <div>
-                                <a href="#" class="flex justify-center mb-1 overflow-hidden">
-                                    <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/onion-pro-1.jpg"
+                                <a href="http://localhost/shahkar/public/product/show/{{$product->id}}" class="flex justify-center mb-1 overflow-hidden">
+                                    <img src="@foreach($product->medias as $media) @if($media['is_main'] == 1) {{asset($media['path'])}} @endif @endforeach"
                                         class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
                                         alt="product">
                                 </a>
                             </div>
                             <div class="mb-1">
-                                <a href="#" class="text-[12px] lg:text-[14px] text-[var(--color-text)]">تست آیتم</a>
+                                <a href="http://localhost/shahkar/public/product/show/{{$product->id}}" class="text-[12px] lg:text-[14px] text-[var(--color-text)]">{{$product->title}}</a>
                             </div>
                             <div class="mb-2 font-semibold text-[14px] lg:text-base">
-                                <a href="#">توضیحات محصول تستی محصول تستی محصول </a>
+                                <a href="http://localhost/shahkar/public/product/show/{{$product->id}}">{{$product->description}}</a>
                             </div>
                             <div class="flex flex-row items-center mb-3 gap-3">
                                 <div class="lg:w-1/2 flex flex-row items-center text-[12px]">
@@ -2881,7 +1367,7 @@
                                 </div>
                                 <div>
                                     <span
-                                        class="lg:py-[3px] py-px px-0.5 lg:px-[5px] bg-[#0dcaf0] text-[var(--color-primary-text)] rounded-full text-[10px]">
+                                        class="lg:py-[3px] py-px px-0.5 lg:px-[5px] bg-[var(--color-secondary)] text-[var(--color-primary-text)] rounded-full text-[10px]">
                                         تستی
                                     </span>
                                 </div>
@@ -2913,462 +1399,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div
-                            class="hidden md:block p-2 md:p-3 lg:p-4 xl:p-5 border border-[var(--color-border)] rounded-[10px] relative productItem">
-                            <div
-                                class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-[555] overflow-hidden">
-
-                                <button
-                                    class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                        <path fill="var(--color-fill)"
-                                            d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[50ms]">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
-                                        <path fill="var(--color-fill)"
-                                            d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[100ms]">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                        <path fill="var(--color-fill)"
-                                            d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[150ms]">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 576 512">
-                                        <path fill="var(--color-fill)"
-                                            d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                                    </svg>
-                                </button>
-
-                            </div>
-                            <div
-                                class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 md:hidden flex flex-col gap-2 z-[555] overflow-hidden">
-
-                                <button
-                                    class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer productAnimation">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4"
-                                        viewBox="0 0 448 512">
-                                        <path fill="var(--color-fill)"
-                                            d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4"
-                                        viewBox="0 0 512 512">
-                                        <path fill="var(--color-fill)"
-                                            d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4"
-                                        viewBox="0 0 448 512">
-                                        <path fill="var(--color-fill)"
-                                            d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4"
-                                        viewBox="0 0 576 512">
-                                        <path fill="var(--color-fill)"
-                                            d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                                    </svg>
-                                </button>
-
-                            </div>
-                            <span
-                                class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
-                            <div>
-                                <a href="#" class="flex justify-center mb-1 overflow-hidden">
-                                    <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/onion-pro-1.jpg"
-                                        class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
-                                        alt="product">
-                                </a>
-                            </div>
-                            <div class="mb-1">
-                                <a href="#" class="text-[12px] lg:text-[14px] text-[var(--color-text)]">تست آیتم</a>
-                            </div>
-                            <div class="mb-2 font-semibold text-[14px] lg:text-base">
-                                <a href="#">توضیحات محصول تستی محصول تستی محصول </a>
-                            </div>
-                            <div class="flex flex-row items-center mb-3 gap-3">
-                                <div class="lg:w-1/2 flex flex-row items-center text-[12px]">
-                                    <div class="text-[var(--color-secondary-text)] flex flex-row items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4"
-                                            viewBox="0 0 576 512">
-                                            <path fill="#8C9EC5"
-                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4"
-                                            viewBox="0 0 576 512">
-                                            <path fill="#8C9EC5"
-                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4"
-                                            viewBox="0 0 576 512">
-                                            <path fill="#8C9EC5"
-                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4"
-                                            viewBox="0 0 576 512">
-                                            <path fill="#8C9EC5"
-                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4"
-                                            viewBox="0 0 576 512">
-                                            <path fill="#8C9EC5"
-                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                        </svg>
-                                    </div>
-                                    <span>(0)</span>
-                                </div>
-                                <div>
-                                    <span
-                                        class="lg:py-[3px] py-px px-0.5 lg:px-[5px] bg-[#0dcaf0] text-[var(--color-primary-text)] rounded-full text-[10px]">
-                                        تستی
-                                    </span>
-                                </div>
-                            </div>
-                            <div
-                                class="hidden lg:flex flex-row items-center gap-2 text-[var(--color-text)] mb-3 text-[18px] font-bold">
-                                <span>$15.22</span>
-                                <span>-</span>
-                                <span>$140.00</span>
-                            </div>
-                            <div class="flex lg:hidden flex-row items-start gap-2 text-[var(--color-text)] mb-3 font-bold">
-                                <span>$15.22</span>
-
-                                <del class="text-xs text-[var(--color-secondary-text)]">$140.00</del>
-                            </div>
-                            <div class="flex flex-col lg:flex-row gap-2 lg:gap-4">
-                                <div
-                                    class="w-full lg:w-1/2 flex flex-row justify-between items-center border border-[var(--color-border)] rounded-[10px] p-1">
-                                    <button
-                                        class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">-</button>
-                                    <input type="text" class="w-[30px] outline-none text-center text-xs" value="1"
-                                        min="0" name="" id="">
-                                    <button
-                                        class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">+</button>
-                                </div>
-                                <div class="w-full lg:w-1/2">
-                                    <button
-                                        class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-[var(--color-primary-text)] bg-[var(--color-bg-card-btn)] leading-5 rounded-[10px] cursor-pointer">خرید</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            class=" hidden md:block p-2 md:p-3 lg:p-4 xl:p-5 border border-[var(--color-border)] rounded-[10px] relative productItem">
-                            <div
-                                class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-[555] overflow-hidden">
-
-                                <button
-                                    class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                        <path fill="var(--color-fill)"
-                                            d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[50ms]">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
-                                        <path fill="var(--color-fill)"
-                                            d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[100ms]">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                        <path fill="var(--color-fill)"
-                                            d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[150ms]">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 576 512">
-                                        <path fill="var(--color-fill)"
-                                            d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                                    </svg>
-                                </button>
-
-                            </div>
-                            <div
-                                class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 md:hidden flex flex-col gap-2 z-[555] overflow-hidden">
-
-                                <button
-                                    class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer productAnimation">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4"
-                                        viewBox="0 0 448 512">
-                                        <path fill="var(--color-fill)"
-                                            d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4"
-                                        viewBox="0 0 512 512">
-                                        <path fill="var(--color-fill)"
-                                            d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4"
-                                        viewBox="0 0 448 512">
-                                        <path fill="var(--color-fill)"
-                                            d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4"
-                                        viewBox="0 0 576 512">
-                                        <path fill="var(--color-fill)"
-                                            d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                                    </svg>
-                                </button>
-
-                            </div>
-                            <span
-                                class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
-                            <div>
-                                <a href="#" class="flex justify-center mb-1 overflow-hidden">
-                                    <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/onion-pro-1.jpg"
-                                        class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
-                                        alt="product">
-                                </a>
-                            </div>
-                            <div class="mb-1">
-                                <a href="#" class="text-[12px] lg:text-[14px] text-[var(--color-text)]">تست آیتم</a>
-                            </div>
-                            <div class="mb-2 font-semibold text-[14px] lg:text-base">
-                                <a href="#">توضیحات محصول تستی محصول تستی محصول </a>
-                            </div>
-                            <div class="flex flex-row items-center mb-3 gap-3">
-                                <div class="lg:w-1/2 flex flex-row items-center text-[12px]">
-                                    <div class="text-[var(--color-secondary-text)] flex flex-row items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4"
-                                            viewBox="0 0 576 512">
-                                            <path fill="#8C9EC5"
-                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4"
-                                            viewBox="0 0 576 512">
-                                            <path fill="#8C9EC5"
-                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4"
-                                            viewBox="0 0 576 512">
-                                            <path fill="#8C9EC5"
-                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4"
-                                            viewBox="0 0 576 512">
-                                            <path fill="#8C9EC5"
-                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4"
-                                            viewBox="0 0 576 512">
-                                            <path fill="#8C9EC5"
-                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                        </svg>
-                                    </div>
-                                    <span>(0)</span>
-                                </div>
-                                <div>
-                                    <span
-                                        class="lg:py-[3px] py-px px-0.5 lg:px-[5px] bg-[#0dcaf0] text-[var(--color-primary-text)] rounded-full text-[10px]">
-                                        تستی
-                                    </span>
-                                </div>
-                            </div>
-                            <div
-                                class="hidden lg:flex flex-row items-center gap-2 text-[var(--color-text)] mb-3 text-[18px] font-bold">
-                                <span>$15.22</span>
-                                <span>-</span>
-                                <span>$140.00</span>
-                            </div>
-                            <div class="flex lg:hidden flex-row items-start gap-2 text-[var(--color-text)] mb-3 font-bold">
-                                <span>$15.22</span>
-
-                                <del class="text-xs text-[var(--color-secondary-text)]">$140.00</del>
-                            </div>
-                            <div class="flex flex-col lg:flex-row gap-2 lg:gap-4">
-                                <div
-                                    class="w-full lg:w-1/2 flex flex-row justify-between items-center border border-[var(--color-border)] rounded-[10px] p-1">
-                                    <button
-                                        class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">-</button>
-                                    <input type="text" class="w-[30px] outline-none text-center text-xs" value="1"
-                                        min="0" name="" id="">
-                                    <button
-                                        class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">+</button>
-                                </div>
-                                <div class="w-full lg:w-1/2">
-                                    <button
-                                        class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-[var(--color-primary-text)] bg-[var(--color-bg-card-btn)] leading-5 rounded-[10px] cursor-pointer">خرید</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            class="hidden md:block p-2 md:p-3 lg:p-4 xl:p-5 border border-[var(--color-border)] rounded-[10px] relative productItem">
-                            <div
-                                class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-[555] overflow-hidden">
-
-                                <button
-                                    class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                        <path fill="var(--color-fill)"
-                                            d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[50ms]">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
-                                        <path fill="var(--color-fill)"
-                                            d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[100ms]">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                        <path fill="var(--color-fill)"
-                                            d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    class="size-8 border border-[var(--color-border)] buttonProduct bg-white rounded-[4px] flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[150ms]">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 576 512">
-                                        <path fill="var(--color-fill)"
-                                            d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                                    </svg>
-                                </button>
-
-                            </div>
-                            <div
-                                class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 md:hidden flex flex-col gap-2 z-[555] overflow-hidden">
-
-                                <button
-                                    class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer productAnimation">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4"
-                                        viewBox="0 0 448 512">
-                                        <path fill="var(--color-fill)"
-                                            d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4"
-                                        viewBox="0 0 512 512">
-                                        <path fill="var(--color-fill)"
-                                            d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4"
-                                        viewBox="0 0 448 512">
-                                        <path fill="var(--color-fill)"
-                                            d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    class="size-5 sm:size-7 border border-[var(--color-border)] bg-white rounded-[4px] flex justify-center items-center cursor-pointer">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4"
-                                        viewBox="0 0 576 512">
-                                        <path fill="var(--color-fill)"
-                                            d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                                    </svg>
-                                </button>
-
-                            </div>
-                            <span
-                                class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
-                            <div>
-                                <a href="#" class="flex justify-center mb-1 overflow-hidden">
-                                    <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/onion-pro-1.jpg"
-                                        class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
-                                        alt="product">
-                                </a>
-                            </div>
-                            <div class="mb-1">
-                                <a href="#" class="text-[12px] lg:text-[14px] text-[var(--color-text)]">تست آیتم</a>
-                            </div>
-                            <div class="mb-2 font-semibold text-[14px] lg:text-base">
-                                <a href="#">توضیحات محصول تستی محصول تستی محصول </a>
-                            </div>
-                            <div class="flex flex-row items-center mb-3 gap-3">
-                                <div class="lg:w-1/2 flex flex-row items-center text-[12px]">
-                                    <div class="text-[var(--color-secondary-text)] flex flex-row items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4"
-                                            viewBox="0 0 576 512">
-                                            <path fill="#8C9EC5"
-                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4"
-                                            viewBox="0 0 576 512">
-                                            <path fill="#8C9EC5"
-                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4"
-                                            viewBox="0 0 576 512">
-                                            <path fill="#8C9EC5"
-                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4"
-                                            viewBox="0 0 576 512">
-                                            <path fill="#8C9EC5"
-                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4"
-                                            viewBox="0 0 576 512">
-                                            <path fill="#8C9EC5"
-                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                        </svg>
-                                    </div>
-                                    <span>(0)</span>
-                                </div>
-                                <div>
-                                    <span
-                                        class="lg:py-[3px] py-px px-0.5 lg:px-[5px] bg-[#0dcaf0] text-[var(--color-primary-text)] rounded-full text-[10px]">
-                                        تستی
-                                    </span>
-                                </div>
-                            </div>
-                            <div
-                                class="hidden lg:flex flex-row items-center gap-2 text-[var(--color-text)] mb-3 text-[18px] font-bold">
-                                <span>$15.22</span>
-                                <span>-</span>
-                                <span>$140.00</span>
-                            </div>
-                            <div class="flex lg:hidden flex-row items-start gap-2 text-[var(--color-text)] mb-3 font-bold">
-                                <span>$15.22</span>
-
-                                <del class="text-xs text-[var(--color-secondary-text)]">$140.00</del>
-                            </div>
-                            <div class="flex flex-col lg:flex-row gap-2 lg:gap-4">
-                                <div
-                                    class="w-full lg:w-1/2 flex flex-row justify-between items-center border border-[var(--color-border)] rounded-[10px] p-1">
-                                    <button
-                                        class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">-</button>
-                                    <input type="text" class="w-[30px] outline-none text-center text-xs" value="1"
-                                        min="0" name="" id="">
-                                    <button
-                                        class="bg-[var(--color-primary-btn)] rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">+</button>
-                                </div>
-                                <div class="w-full lg:w-1/2">
-                                    <button
-                                        class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-[var(--color-primary-text)] bg-[var(--color-bg-card-btn)] leading-5 rounded-[10px] cursor-pointer">خرید</button>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
 
 
@@ -3379,16 +1410,17 @@
         <!-- related products -->
 
         <section class="text-[var(--color-text)] pt-3">
+            @foreach($footerTile as $ft)
             <div class="py-10">
                 <div
-                    class="flex flex-col xl:flex-row items-stretch gap-5 rounded-[10px] bg-[var(--color-bg-contact-section)] bg-[url('https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/pattern-2.png')] bg-cover bg-no-repeat bg-center">
+                    class="flex flex-col xl:flex-row items-stretch gap-5 rounded-[10px] bg-[var(--color-bg-contact-section)] bg-[url({{$ft['bg_img']}})] bg-cover bg-no-repeat bg-center">
                     <div class="w-full xl:w-1/2 px-[50px] pt-[60px] pb-[70px] flex flex-col justify-start gap-5">
                         <div>
                             <h2 class="text-[var(--color-primary-text)] sm:text-3xl lg:text-[50px] 2xl:leading-[75px] font-bold mb-1">
-                                در خانه بمانید و مایحتاج روزانه خود را از فروشگاه ما تهیه کنید
+                                {{$ft['title']}}
                             </h2>
                             <p class="text-[var(--color-primary-text)] py-5">
-                                خرید روزانه خود را با شاهکار آغاز کنید
+                                {{$ft['text']}}
                             </p>
                         </div>
                         <div class="w-full bg-white rounded-[10px] p-3">
@@ -3406,21 +1438,61 @@
                         </div>
                     </div>
                     <div
-                        class="w-full xl:w-1/2 bg-[url('https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/footer-min.jpg')] bg-cover bg-center bg-no-repeat">
-                       
+                        class="w-full xl:w-1/2 bg-[url({{$ft['img']}})] bg-cover bg-center bg-no-repeat">
                     </div>
                 </div>
             </div>
+            @endforeach
         </section>
 
 
     </main>
-    
-    <footer class="text-[var(--color-text)] pt-3">
-        <div class="py-10 bg-[var(--color-primary-btn)]">
+
+    <footer class="text-[var(--color-text)] pt-3 bg-[var(--color-primary-btn)] 2xl:container mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-4">
+            @foreach($footerColumns as $footerColumn)
+            <div class="p-6">
+                <p class="text-gray-700 font-bold mb-4">{{$footerColumn['section_title']}}</p>
+                @foreach($footerColumn['rows'] as $row)
+                <p>
+                    <a href="{{$row['row_href']}}">{{$row['row_content']}}</a>
+                </p>
+                @endforeach
+            </div>
+            @endforeach
+            @foreach($footer_form_column as $ffc)
+            <div class="p-6 flex flex-col gap-10">
+                <div class="">
+                    <p class="text-gray-700 font-bold mb-4">{{$ffc['section_title']}}</p>
+                </div>
+                <div class="flex justify-between items-center">
+                    @foreach($ffc['images'] as $image)
+                    <a href="{{$image['link']}}">
+                        <img src="{{asset('storage/' . $image['path'])}}" alt="{{$image['alt']}}" class="size-10 rounded-full">
+                    </a>
+                    @endforeach
+                </div>
+                <div class="">
+                    <form action="" class="flex flex-col gap-4">
+                        <label for="" class="">{{$ffc['texts'][0]['text']}}</label>
+                        <div class="flex gap-4">
+                            <input type="email" class="w-3/4 outline-none py-2 px-9 bg-[#F9F9F9] rounded-[12px] focus:border-1" name="" id="" placeholder="{{$ffc['texts'][0]['placeholder']}}" required>
+                            <button type="submit" class="w-1/4 py-2 px-7 rounded-[10px] bg-[var(--color-btn-contact)] text-[var(--color-primary-text)] hover:bg-[var(--color-btn-contact-hover)] transition-all duration-300 text-white cursor-pointer">ثبت</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            @endforeach
+        </div>
+        <hr>
+        <div class="py-8">
             <p class="text-center">
                 طراحی شده توسط
                 <span class="font-bold">فائوس</span>
+            </p>
+            <p class="text-center">
+                عباس ملکی:
+                <span class="font-bold">09147794595</span>
             </p>
         </div>
     </footer>

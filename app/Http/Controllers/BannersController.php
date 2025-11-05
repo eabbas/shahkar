@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\banners;
 use App\Models\bigTile;
 use App\Models\footerTile;
+use App\Models\logo;
 use Illuminate\Http\Request;
 
 class BannersController extends Controller
 {
-    public function create()
+    public function bannersCreate()
     {
         $banners = banners::where('sectionName', 'banners')->get();
         return view('dashboard.banners', ['banners' => $banners]);
@@ -34,8 +35,23 @@ class BannersController extends Controller
         $footerTile = footerTile::all();
         return view('dashboard.footerTile', ['footerTile' => $footerTile]);
     }
+    public function logoCreate()
+    {
+        $logo = logo::all();
+        return view('dashboard.logo', ['logo' => $logo]);
+    }
     public function upsert(Request $request)
     {
+        if (array_key_exists('logo', $request->all())) {
+            $logo = logo::all();
+            if (count($logo) == 1) {
+                $this->updateLogo($request);
+                return to_route('home');
+            } else {
+                $this->storeLogo($request);
+                return to_route('home');
+            }
+        }
         if (array_key_exists('footerTile', $request->all())) {
             $footerTile = footerTile::all();
             if (count($footerTile) == 1) {
@@ -86,6 +102,26 @@ class BannersController extends Controller
                 return to_route('home');
             }
         }
+    }
+    public function updateLogo(Request $request)
+    {
+        $logoOriginalName = request()->logo->getClientOriginalName();
+        $logoPath = $request->file('logo')->storeAs('images', time() . $logoOriginalName, 'public');
+        $logo = logo::find($request->logo_id);
+        $logo->link_href = $request->link_href;
+        $logo->alt_text = $request->alt_text;
+        $logo->logo = "storage/" . $logoPath;
+        $logo->save();
+    }
+    public function storeLogo(Request $request)
+    {
+        $logoOriginalName = request()->logo->getClientOriginalName();
+        $logoPath = $request->file('logo')->storeAs('images', time() . $logoOriginalName, 'public');
+        logo::create([
+            "link_href" => $request->link_href,
+            "alt_text" => $request->alt_text,
+            "logo" => "storage/" . $logoPath,
+        ]);
     }
     public function updateFooterTile(Request $request)
     {

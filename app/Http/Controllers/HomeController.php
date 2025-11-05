@@ -7,7 +7,9 @@ use App\Models\bigTile;
 use Illuminate\Http\Request;
 use App\Models\settings;
 use App\Models\category;
+use App\Models\footer_column;
 use App\Models\footerTile;
+use App\Models\logo;
 use App\Models\product;
 
 class HomeController extends Controller
@@ -23,6 +25,9 @@ class HomeController extends Controller
         $specialDiscounts = category::where('title', 'تخفیفات ویژه')->with('products')->get();
         $bigTile = bigTile::all();
         $footerTile = footerTile::all();
-        return view('home', ['settings' => $settings, 'products' => $products, 'categories' => $cats, 'banners' => $banners, 'specialDiscounts' => $specialDiscounts, 'bigBanner' => $bigBanner, 'tileBanners' => $tileBanners, 'bigTile' => $bigTile, 'footerTile' => $footerTile]);
+        $logo = logo::all();
+        $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
+        $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
+        return view('home', ['settings' => $settings, 'products' => $products, 'categories' => $cats, 'banners' => $banners, 'specialDiscounts' => $specialDiscounts, 'bigBanner' => $bigBanner, 'tileBanners' => $tileBanners, 'bigTile' => $bigTile, 'footerTile' => $footerTile, 'logo' => $logo, 'footerColumns' => $footer_columns, 'footer_form_column' => $footer_form_column]);
     }
 }
