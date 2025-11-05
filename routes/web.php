@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CourseCategoryController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\FooterColumnController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProductAttributesController;
@@ -183,3 +184,13 @@ Route::get('/dashboard', function () {
 
 Route::view('dashboard/settings', 'dashboard.settings')->name('dashboard-settings');
 Route::view('dashboard/settings/home', 'dashboard.home')->name('dashboard-settings-home');
+Route::view('dashboard/settings/home/footer', 'dashboard.footerPartsLinks')->name('footer');
+// footer column and rows routes
+Route::group(['prefix' => 'footer', 'controller' => FooterColumnController::class, 'as' => 'footer-'], function () {
+   Route::get('/create', 'create')->name('create');
+   Route::post('/store', 'store')->name('store');
+   Route::post('/update', 'update')->name('update');
+   Route::get('/footerFormMedia/create', 'footerFormMediaCreate')->name('footerFormMedia-create');
+   Route::post('/footerFormMedia/store', 'footerFormMediaStore')->name('footerFormMedia-store');
+   Route::post('/footerFormMedia/update', 'footerFormMediaUpdate')->name('footerFormMedia-update');
+});
