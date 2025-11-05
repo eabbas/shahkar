@@ -34,7 +34,7 @@ class ProductController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'summary' => $request->summary,
-            // 'category_id' => $request->category_id,
+            'category_id' => $request->category_id,
             'is_in_home'=>$request->is_in_home,
             'brand'=>$request->brand
         ]);

@@ -112,8 +112,8 @@
          </form>
       </div>
    </div>
-   @endsection
    <script src="{{ url('assets/js/attribute.js') }}"></script>
+   @endsection
 </body>
 
 </html>

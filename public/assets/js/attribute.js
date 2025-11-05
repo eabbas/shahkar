@@ -1,5 +1,7 @@
 let attribute = document.getElementById('attribute')
 let attributeCount = 0;
+console.log(attribute);
+
 function add() {
     let div = document.createElement('div')
     div.id = `attribute-${attributeCount}`
