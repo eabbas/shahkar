@@ -18,7 +18,7 @@
    <br>
    <a href="{{route('banners-bigTile-create')}}">bigTile</a>
    <br>
-   <a href="{{route('banners-footerTile-create')}}">footerTile</a>
+   <a href="{{route('footer')}}">footer</a>
 </body>
 
 </html>

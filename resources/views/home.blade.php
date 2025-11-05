@@ -1450,61 +1450,42 @@
 
     <footer class="text-[var(--color-text)] pt-3 bg-[var(--color-primary-btn)] 2xl:container mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-4">
+            @foreach($footerColumns as $footerColumn)
             <div class="p-6">
-                <p class="text-gray-700 font-bold mb-4">تست</p>
-                <p>تست</p>
-                <p>تست</p>
-                <p>تست</p>
-                <p>تست</p>
-                <p>تست</p>
-                <p>تست</p>
-                <p>تست</p>
-                <p>تست</p>
-                <p>تست</p>
-                <p>تست</p>
+                <p class="text-gray-700 font-bold mb-4">{{$footerColumn['section_title']}}</p>
+                @foreach($footerColumn['rows'] as $row)
+                <p>
+                    <a href="{{$row['row_href']}}">{{$row['row_content']}}</a>
+                </p>
+                @endforeach
             </div>
-            <div class="p-6">
-                <p class="text-gray-700 font-bold mb-4">تست</p>
-                <p>تست</p>
-                <p>تست</p>
-                <p>تست</p>
-                <p>تست</p>
-                <p>تست</p>
-                <p>تست</p>
-                <p>تست</p>
-            </div>
-            <div class="p-6">
-                <p class="text-gray-700 font-bold mb-4">تست</p>
-                <p>تست</p>
-                <p>تست</p>
-                <p>تست</p>
-                <p>تست</p>
-                <p>تست</p>
-                <p>تست</p>
-                <p>تست</p>
-            </div>
+            @endforeach
+            @foreach($footer_form_column as $ffc)
             <div class="p-6 flex flex-col gap-10">
                 <div class="">
-                    <p class="text-gray-700 font-bold mb-4">همراه ما باشید!</p>
+                    <p class="text-gray-700 font-bold mb-4">{{$ffc['section_title']}}</p>
                 </div>
                 <div class="flex justify-between items-center">
-                    <img src="" alt="insta">
-                    <img src="" alt="insta">
-                    <img src="" alt="insta">
-                    <img src="" alt="insta">
+                    @foreach($ffc['images'] as $image)
+                    <a href="{{$image['link']}}">
+                        <img src="{{asset('storage/' . $image['path'])}}" alt="{{$image['alt']}}" class="size-10 rounded-full">
+                    </a>
+                    @endforeach
                 </div>
                 <div class="">
                     <form action="" class="flex flex-col gap-4">
-                        <label for="" class="">با ثبت ایمیل از جدیدترین تخفیف ها با خبر شوید</label>
+                        <label for="" class="">{{$ffc['texts'][0]['text']}}</label>
                         <div class="flex gap-4">
-                            <input type="email" class="w-3/4 outline-none py-2 px-9 bg-[#F9F9F9] rounded-[12px] focus:border-1" name="" id="" placeholder="" required>
+                            <input type="email" class="w-3/4 outline-none py-2 px-9 bg-[#F9F9F9] rounded-[12px] focus:border-1" name="" id="" placeholder="{{$ffc['texts'][0]['placeholder']}}" required>
                             <button type="submit" class="w-1/4 py-2 px-7 rounded-[10px] bg-[var(--color-btn-contact)] text-[var(--color-primary-text)] hover:bg-[var(--color-btn-contact-hover)] transition-all duration-300 text-white cursor-pointer">ثبت</button>
                         </div>
                     </form>
                 </div>
             </div>
+            @endforeach
         </div>
-        <div class="py-10">
+        <hr>
+        <div class="py-8">
             <p class="text-center">
                 طراحی شده توسط
                 <span class="font-bold">فائوس</span>
