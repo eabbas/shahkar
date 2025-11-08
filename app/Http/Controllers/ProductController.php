@@ -8,6 +8,8 @@ use App\Models\product;
 use App\Models\question;
 use App\Models\settings;
 use App\Models\media;
+use App\Models\product_attributes;
+use App\Models\product_price;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -23,7 +25,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         
-        dd($request->all());
+        // dd($request->all(), $request->proAttr[0]['value']);
         $type = request()->mainImage->getClientOriginalExtension();
         $originalName = request()->mainImage->getClientOriginalname();
         $fullName = Str::uuid()."_".$originalName;
@@ -47,8 +49,23 @@ class ProductController extends Controller
             $galleryPath = $gallery->storeAs('images', $fullNameGallery, 'public');
             $products[]=['product_id'=>$product_id, 'path'=>$galleryPath, 'type'=>$type, 'is_main'=>0, 'created_at' => now(), 'updated_at' => now()];
         }
-        
         media::insert($products);
+        $product_attribute_id = [];
+        foreach($request->proAttr as $attribute){
+            $product_attribute_id[]=product_attributes::insertGetId([
+                'product_id'=>$product_id,
+                'attribute_key'=>$attribute['key'],
+                'attribute_value'=>$attribute['value']
+            ]);
+        }
+
+        product_price::create([
+            'product_id'=>$product_id,
+            'product_attribute'=>json_encode($product_attribute_id),
+            'price'=>$request->price,
+            'discount'=>$request->discount,
+            'quantity'=>$request->quantity
+        ]);
 
         return to_route('product-index');
     }
@@ -59,7 +76,10 @@ class ProductController extends Controller
     }
     public function show(product $product)
     {
-        // dd($product::with('medias')->get());
+        // dd($product->attributes);
+        $campare = $product->price->price-$product->price->discount;
+        $x= $campare/$product->price->price;
+        $persent = $x*100;
         $answers = answer::all();
         $settings = settings::all();
         $product->category;
@@ -67,7 +87,7 @@ class ProductController extends Controller
         $questions = question::all();
         $product->medias;
         // return $answers;
-        return view('product.show', ['product' => $product, 'settings' => $settings, 'questions' => $questions, 'answers' => $answers]);
+        return view('product.show', ['product' => $product, 'settings' => $settings, 'questions' => $questions, 'answers' => $answers, 'persent'=>$persent]);
 
     }
     public function edit(product $product)

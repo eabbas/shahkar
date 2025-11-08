@@ -9,11 +9,11 @@ function add() {
         <div class="flex flex-row justify-between items-end gap-3 lg:gap-5 mt-3 md:mt-5">
             <div class="w-full flex flex-col">
                 <label class="mb-2"> نام ویژگی :</label>
-                <input type="text" class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]" placeholder="نام ویژگی"  name="attributes[${attributeCount}][key]">
+                <input type="text" class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]" placeholder="نام ویژگی"  name="proAttr[${attributeCount}][key]">
             </div>
             <div class="w-full flex flex-col">
                 <label class="mb-2"> مقدار ویژگی :</label>
-                <input type="text" class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]" placeholder="مقدار ویژگی" name="attributes[${attributeCount}][value]">
+                <input type="text" class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]" placeholder="مقدار ویژگی" name="proAttr[${attributeCount}][value]">
             </div>
             <div class="flex items-end">
                 <button type="button" class="p-2 rounded-md bg-rose-500 hover:bg-rose-600 text-white cursor-pointer" onclick="remove(${attributeCount})">حذف</button>
@@ -23,7 +23,6 @@ function add() {
     div.innerHTML = element
     attribute.appendChild(div)
     attributeCount++;
-
 }
 
 function remove(id) {

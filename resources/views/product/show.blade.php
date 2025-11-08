@@ -745,7 +745,7 @@
 
 
     </header>
-
+        
     <main class="2xl:container 2xl:px-4 w-[97%] mx-auto">
         <!-- address navbar -->
         <section
@@ -762,7 +762,7 @@
                 <div>
                     <a href="#" class="leading-[2.17]">
                         <span class="border-b border-[var(--color-secondary-text)] lg:border-none">
-                            دسته تستی
+                           {{$product->category->title}}
                         </span>
                         <span class="mx-3">/</span>
                     </a>
@@ -770,7 +770,7 @@
                 <div>
                     <a href="#" class="leading-[2.17]">
                         <span class="border-b border-[var(--color-secondary-text)] lg:border-none">
-                            محصول تستی
+                            {{$product->title}}
                         </span>
                     </a>
                 </div>
@@ -924,7 +924,7 @@
                                 @endforeach
                             </div>
                         </div>
-                        <div class="w-full overflow-x-auto">
+                        <div class="w-full overflow-x-auto" style="scrollbar-width:none;">
                             <div class="hidden lg:flex flex-row items-center mt-5 mb-3 ">
                                 @foreach($product->medias as $media)
                                  @if(!$media->is_main)
@@ -993,7 +993,7 @@
                         <div class="flex items-center w-full lg:px-0 pt-4 lg:pt-0 px-5">
                             <nav class="flex items-center text-sm lg:text-base">
                                 <a href="#"
-                                    class="text-[var(--color-text)] border-b border-[var(--color-border)] lg:border-none lg:text-[var(--color-primary)]">تابلو</a>
+                                    class="text-[var(--color-text)] border-b border-[var(--color-border)] lg:border-none lg:text-[var(--color-primary)]">{{$product->category->title}}</a>
                                 <span class="text-[var(--color-text)] mx-2 hidden lg:inline-block">/</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="size-3 mx-2 lg:hidden"
                                     viewBox="0 0 320 512">
@@ -1001,8 +1001,9 @@
                                         d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
                                 </svg>
                                 <a href="#"
-                                    class="text-[var(--color-text)] border-b border-[var(--color-border)] lg:border-none lg:text-[var(--color-primary)]">تابلو
-                                    تستی</a>
+                                    class="text-[var(--color-text)] border-b border-[var(--color-border)] lg:border-none lg:text-[var(--color-primary)]">
+                                    {{$product->title}}
+                                </a>
                             </nav>
                         </div>
                         <h1
@@ -1010,7 +1011,7 @@
                            {{ $product->title }}
                         </h1>
                         <div class="lg:pb-5 mb-5 lg:border-b border-[var(--color-border)]  px-5 lg:px-0">
-                            <span class="text-xs text-[var(--color-secondary-text)]">جزئیات محصول تستی</span>
+                            <span class="text-xs text-[var(--color-secondary-text)]">{{$product->brand}}</span>
                         </div>
                         <div
                             class="flex flex-col items-start sm:flex-row sm:itesm-center lg:flex-col lg:items-start xl:flex-row xl:items-center gap-2.5  px-5 lg:px-0">
@@ -1777,14 +1778,14 @@
                                         <div>
                                             <div class="flex flex-row items-end gap-3">
                                                 <span
-                                                    class="text-xs text-[var(--color-secondary-text)] line-through">919,000</span>
+                                                    class="text-xs text-[var(--color-secondary-text)] line-through">{{$product->price->price}}</span>
                                                 <span
                                                     class="px-2 leading-[1.9] bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] text-xs font-medium rounded-full">
-                                                    10%
+                                                    {{round($persent)}}%
                                                 </span>
                                             </div>
                                             <div class="flex flex-row gap-1 mt-1 items-end">
-                                                <span class="text-lg font-semibold">830,000</span>
+                                                <span class="text-lg font-semibold">{{$product->price->discount}}</span>
                                                 <span class="text-xs pb-1.5">تومان</span>
                                             </div>
 
@@ -2523,7 +2524,7 @@
             </div>
 
 
-            <div class="flex flex-row gap-10 w-full">
+            <div class="flex flex-row lg:flex-col gap-10 w-full">
                 <div class="2xl:w-9/12 w-full">
                     <div class="w-full mt-4">
 
@@ -2543,62 +2544,18 @@
                                 </div>
                                 <div class="w-3/4">
 
+                                @foreach($product->attributes as $attribute)
                                     <div class="flex flex-row items-start">
                                         <div
                                             class="w-1/4 text-[var(--color-secondary-text)] text-sm py-3 leading-[2.17]">
-                                            نوع گوشی موبایل
+                                           {{$attribute->attribute_key}}
                                         </div>
                                         <div
                                             class="w-3/4 text-sm border-b border-[var(--color-border)] py-3 leading-[2.17]">
-                                            سایر سیستم عامل ها
+                                            {{$attribute->attribute_value}}
                                         </div>
                                     </div>
-
-                                    <div class="flex flex-row items-start">
-                                        <div
-                                            class="w-1/4 text-[var(--color-secondary-text)] text-sm py-3 leading-[2.17]">
-                                            دسته بندی
-                                        </div>
-                                        <div
-                                            class="w-3/4 text-sm border-b border-[var(--color-border)] py-3 leading-[2.17]">
-                                            اقتصادی
-                                        </div>
-                                    </div>
-
-                                    <div class="flex flex-row items-start">
-                                        <div
-                                            class="w-1/4 text-[var(--color-secondary-text)] text-sm py-3 leading-[2.17]">
-                                            مدل
-                                        </div>
-                                        <div
-                                            class="w-3/4 text-sm border-b border-[var(--color-border)] py-3 leading-[2.17]">
-                                            F121
-                                        </div>
-                                    </div>
-
-                                    <div class="flex flex-row items-start">
-                                        <div
-                                            class="w-1/4 text-[var(--color-secondary-text)] text-sm py-3 leading-[2.17]">
-                                            زمان معرفی
-                                        </div>
-                                        <div
-                                            class="w-3/4 text-sm border-b border-[var(--color-border)] py-3 leading-[2.17]">
-                                            11 مارس 2025
-                                        </div>
-                                    </div>
-
-                                    <div class="flex flex-row items-start">
-                                        <div
-                                            class="w-1/4 text-[var(--color-secondary-text)] text-sm py-3 leading-[2.17]">
-                                            ابعاد
-                                        </div>
-                                        <div
-                                            class="w-3/4 text-sm border-b border-[var(--color-border)] py-3 leading-[2.17]">
-                                            57 * 121 * 14.4 میلی متر
-                                        </div>
-                                    </div>
-
-
+                                @endforeach
 
 
 
@@ -2967,7 +2924,7 @@
                                         @endforeach
 
 
-                                                <div class="hidden lg:block mt-2">
+                                                <!-- <div class="hidden lg:block mt-2">
                                                     <a href="#" class="leading-[2.17] flex flex-row items-center gap-2">
                                                         <span class="text-xs font-medium text-[var(--color-secondary)]">
                                                             ادامه
@@ -2978,9 +2935,9 @@
                                                                 d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
                                                         </svg>
                                                     </a>
-                                                </div>
+                                                </div> -->
 
-                                                <div class="flex flex-row justify-between items-center mt-7">
+                                                <!-- <div class="flex flex-row justify-between items-center mt-7">
                                                     <span class="lg:hidden text-xs text-[var(--color-secondary-text)]">
                                                         11 شهریور 1404
                                                     </span>
@@ -3020,7 +2977,7 @@
                                                             </svg>
                                                         </button>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                             </div>
 
                                         </div>
@@ -3198,13 +3155,14 @@
 
                                     <!-- comment -->
                                     <div class="p-4 lg:p-0 rounded-lg border border-[var(--color-border)] lg:border-none min-w-[308px] max-w-[308px] lg:min-w-full lg:max-w-full ml-3 lg:ml-0">
-                                        <div class="lg:py-4 lg:border-b border-[var(--color-border)]">
+                                        <!-- <div class="lg:py-4 lg:border-b border-[var(--color-border)]">
                                             <h3 class="hidden lg:block text-sm lg:text-md pb-2 lg:pb-0 lg:py-2 font-medium leading-[180%] lg:leading-[2.17]">
                                                 سلام وقت بخیر ، ببخشید آنتن دهیش خوبه؟؟خطش نمیپره؟؟چون یکی خریدم خطش مدام میپره
                                             </h3>
                                             <h3 class="lg:hidden block text-sm lg:text-md pb-2 lg:pb-0 lg:py-2 font-medium leading-[180%] lg:leading-[2.17]">
                                                 سلام وقت بخیر ، ببخشید آنتن دهیش خوبه؟؟خطش نمیپره؟؟چون یک...
                                             </h3>
+                                        </div> -->
                                     @foreach($questions as $question)
                                     @if($product->id == $question->product_id)
                                     <div class="p-4 lg:p-0 rounded-lg border border-[var(--color-border)] lg:border-none min-w-[308px] max-w-[308px] lg:min-w-full lg:max-w-full ml-3 lg:ml-0">
@@ -3218,7 +3176,7 @@
                                             <!-- این قسمت برای تست کردن پاسخ سوالات توسط میستر علیافام نوشته شده -->
                                             <form action="{{route('answer-store')}}" method="post">
                                                 @csrf
-                                                <input type="text" name="answer" class="border-1 rounded-sm px-2" placeholder="پاسخی به این پرسش بدهید">
+                                                <input type="text" name="answer" class="border rounded-sm px-2" placeholder="پاسخی به این پرسش بدهید">
                                                 <input type="hidden" name="product_id" value="{{$product->id}}">
                                                 <input type="hidden" name="question_id" value="{{$question->id}}">
                                                 <input type="hidden" name="parent_id" value="0">
@@ -3248,7 +3206,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="lg:mr-12">
+                                                <!-- <div class="lg:mr-12">
                                                     <div>
                                                         <p class="text-sm lg:text-justify leading-[180%] lg:leading-[2.17]">
                                                             من برای مادرم که مسن هست گرفتم راضی هستن
@@ -3275,7 +3233,7 @@
                                                             </button>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
 
                                             </div>
                                             @endif
@@ -3298,7 +3256,7 @@
 
                                     <!-- comment -->
                                     <!-- comment -->
-                                    <div class="p-4 lg:p-0 rounded-lg border border-[var(--color-border)] lg:border-none min-w-[308px] max-w-[308px] lg:min-w-full lg:max-w-full ml-3 lg:ml-0">
+                                    <!-- <div class="p-4 lg:p-0 rounded-lg border border-[var(--color-border)] lg:border-none min-w-[308px] max-w-[308px] lg:min-w-full lg:max-w-full ml-3 lg:ml-0">
                                         <div class="lg:py-4 lg:border-b border-[var(--color-border)]">
                                             <h3 class="hidden lg:block text-sm lg:text-md pb-2 lg:pb-0 lg:py-2 font-medium leading-[180%] lg:leading-[2.17]">
                                                 سلام وقت بخیر ، ببخشید آنتن دهیش خوبه؟؟خطش نمیپره؟؟چون یکی خریدم خطش مدام میپره
@@ -3367,7 +3325,7 @@
                                             </div>
                                         </div>
 
-                                    </div>
+                                    </div> -->
 
                                             </div>
                                         </div>
@@ -3590,7 +3548,7 @@
                         پیشنهاد ما
                     </h3>
                 </div>
-                <div class="w-full overflow-x-auto">
+                <div class="w-full overflow-x-auto" style="scrollbar-width:none;">
                     <div class="flex justify-start items-center gap-2 w-full overflow-auto hide-scrollbar">
                         <a href="#"
                             class="rounded-full px-3 whitespace-nowrap max-w-[300px] ellipsis-1 py-1 select-none leading-[180%] text-xs !flex items-center justify-center text-white bg-[var(--color-text)]">
