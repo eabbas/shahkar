@@ -16,12 +16,12 @@ class userController extends Controller
     }
     public function store(Request $request)
     {
-        $password = Hash::make($request->password);
+        // $password = Hash::make($request->password);
         User::create([
             "name" => $request?->name,
             "family" => $request?->family,
             "email" => $request->email,
-            "password" => $password,
+            "password" => $request->password,
         ]);
         return to_route("user.login");
     }
