@@ -11,17 +11,11 @@ class ContactUsController extends Controller
 {
     public function create()
     {
+        if (!Auth::check()) {
+            return to_route('user.login');
+        }
         $user = Auth::user();
-        if ($user) {
-            return to_route('contactus-usersContact', [$user]);
-        }
-        if (!$user) {
-            return view('contactus.create');
-        }
-    }
-    public function usersContact(User $user)
-    {
-        return $user;
+        return view('contactus.create', ['user' => $user]);
     }
     public function store(Request $request)
     {
@@ -44,6 +38,7 @@ class ContactUsController extends Controller
     public function update(Request $request)
     {
         $contactUs = contactUs::find($request->id);
+        $contactUs->user_id = $request->user_id;
         $contactUs->name = $request->name;
         $contactUs->family = $request->family;
         $contactUs->email = $request->email;
@@ -56,5 +51,32 @@ class ContactUsController extends Controller
     {
         $contactUs->delete();
         return to_route('contactus-index');
+    }
+    public function usersContact(User $user)
+    {
+        return view('contactus.usersContacts.usersContact', ['user' => $user]);
+    }
+    public function usersContactEdit(contactUs $contactUs)
+    {
+        return view('contactus.usersContacts.usersContactEdit', ['cu' => $contactUs]);
+    }
+    public function usersContactUpdate(Request $request)
+    {
+        $contactUs = contactUs::find($request->id);
+        $contactUs->user_id = $request->user_id;
+        $contactUs->name = $request->name;
+        $contactUs->family = $request->family;
+        $contactUs->email = $request->email;
+        $contactUs->phoneNum = $request->phoneNum;
+        $contactUs->description = $request->description;
+        $contactUs->save();
+        $user = Auth::user();
+        return to_route('contactus-usersContact-index', [$user]);
+    }
+    public function usersContactDelete(contactUs $contactUs)
+    {
+        $user = Auth::user();
+        $contactUs->delete();
+        return to_route('contactus-usersContact-index', [$user]);
     }
 }

@@ -198,11 +198,14 @@ Route::group(['prefix' => 'aboutus', 'controller' => AboutUsController::class, '
 // contact us routes
 Route::group(['prefix' => 'contactus', 'controller' => ContactUsController::class, 'as' => 'contactus-'], function () {
     Route::get('/create', 'create')->name('create');
-    Route::get('/usersContact/{user}', 'usersContact')->name('usersContact');
+    Route::get('/usersContact/{user}', 'usersContact')->name('usersContact-index');
     Route::post('/store', 'store')->name('store');
     Route::get('/edit/{contactUs}', 'edit')->name('edit');
+    Route::get('/usersContact/edit/{contactUs}', 'usersContactEdit')->name('usersContact-edit');
     Route::post('/update', 'update')->name('update');
+    Route::post('/usersContact/update', 'usersContactUpdate')->name('usersContact-update');
     Route::get('/show/{contactUs}', 'show')->name('show');
-    Route::get('/list', 'index')->name('index');
+    Route::get('/list', 'index')->middleware(checkAdminMiddleware::class)->name('index');
     Route::get('/delete/{contactUs}', 'delete')->name('delete');
+    Route::get('/usersContact/delete/{contactUs}', 'usersContactDelete')->name('usersContact-delete');
 });

@@ -10,11 +10,15 @@
 </head>
 
 <body>
+   @if(count($user['contactuss']) > 0)
+   <a href="{{route('contactus-usersContact-index',[$user])}}">درخواست هایی که قبلا داشته اید</a>
+   @endif
    <div class="w-full h-full pb-10">
       <h2 class="text-3xl text-center font-bold py-5 text-[#425A8B]">فرم تماس با ما</h2>
       <div class="w-3/4 mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white">
          <form action="{{route('contactus-store')}}" method="post" class="flex flex-col items-stretch justify-center gap-5">
             @csrf
+            <input type="hidden" name="user_id" value="{{$user['id']}}">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                <div class="flex flex-col">
                   <label for="name" class="mb-2 flex flex-row items-center">

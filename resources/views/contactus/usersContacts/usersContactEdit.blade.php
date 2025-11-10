@@ -10,12 +10,10 @@
 </head>
 
 <body>
-   @extends('dashboard')
-   @section('content')
    <div class="w-full h-full pb-10">
       <h2 class="text-3xl text-center font-bold py-5 text-[#425A8B]">فرم تماس با ما</h2>
       <div class="w-3/4 mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white">
-         <form action="{{route('contactus-update')}}" method="post" class="flex flex-col items-stretch justify-center gap-5">
+         <form action="{{route('contactus-usersContact-update')}}" method="post" class="flex flex-col items-stretch justify-center gap-5">
             @csrf
             <input type="hidden" name="id" value="{{$cu['id']}}">
             <input type="hidden" name="user_id" value="{{$cu['user']['id']}}">
@@ -66,7 +64,6 @@
          </form>
       </div>
    </div>
-   @endsection
 </body>
 
 </html>

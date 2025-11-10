@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class contactUs extends Model
 {
-    protected $fillable = ['name', 'family', 'email', 'phoneNum', 'description'];
+    protected $fillable = ['user_id', 'name', 'family', 'email', 'phoneNum', 'description'];
+    public function user()
+    {
+        return $this->belongsTo(user::class);
+    }
 }
