@@ -61,15 +61,9 @@
                             <option value="all">
                                 همه دسته ها
                             </option>
-                            <option value="1">
-                                دسته 1
-                            </option>
-                            <option value="2">
-                                دسته 2
-                            </option>
-                            <option value="3">
-                                دسته 3
-                            </option>
+                            @foreach($categories as $category)
+                            <option value="{{$category['id']}}">{{$category['title']}}</option>
+                            @endforeach
                         </select>
                         <input type="text"
                             class="w-full border-r border-[var(--color-border)] pr-1.5 mr-1.5 text-[var(--color-text)] text-sm py-1 outline-none rounded-l-full"
@@ -309,12 +303,12 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#"
-                            class="text-[var(--color-text)] font-semibold text-sm gap-1 transition-all duration-300 py-4 menuLink">
-
-                            ارتباط با ما
-
-                        </a>
+                        <a href="{{route('aboutus-index')}}"
+                            class="text-[var(--color-text)] font-semibold text-sm gap-1 transition-all duration-300 py-4 menuLink">درباره ما</a>
+                    </li>
+                    <li>
+                        <a href="{{route('contactus-create')}}"
+                            class="text-[var(--color-text)] font-semibold text-sm gap-1 transition-all duration-300 py-4 menuLink">تماس با ما</a>
                     </li>
 
                 </ul>
@@ -324,18 +318,25 @@
             </div>
             <div class="xl:w-4/12 w-full">
                 <div class="flex flex-row md:justify-center xl:justify-end items-center gap-5">
-                    <a href="#" class="flex items-center gap-5">
+                    <div class="flex items-center gap-5">
                         <div class="size-6">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-full" viewBox="0 0 448 512">
                                 <path fill="var(--color-fill)"
                                     d="M320 128a96 96 0 1 0 -192 0 96 96 0 1 0 192 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM32 480H416c-1.2-79.7-66.2-144-146.3-144H178.3c-80 0-145 64.3-146.3 144zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z" />
                             </svg>
                         </div>
+                        @if($user)
                         <div>
-                            <span class="block text-[var(--color-text)] leading-[22px] font-medium text-sm">اکانت من</span>
-                            <span class="block text-[var(--color-text)] leading-[22px] text-xs">با احترام وارد شوید</span>
+                            <span class="block text-[var(--color-text)] leading-[22px] font-medium text-sm">{{$user['name']}} {{$user['family']}}</span>
+                            <a href="{{route('user.profile',[$user->id])}}" class="block text-[var(--color-text)] leading-[22px] text-xs">مشاهده پروفایل</a>
                         </div>
-                    </a>
+                        @else
+                        <div>
+                            <a class="block text-[var(--color-text)] leading-[22px] font-medium text-sm" href="{{route('user.login')}}">ورود</a>
+                            <a class="block text-[var(--color-text)] leading-[22px] text-xs" href="{{route('user.signup')}}">ثبت نام</a>
+                        </div>
+                        @endif
+                    </div>
                     <a href="#" class="inline-block w-8 h-6 relative">
                         <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 512 512">
                             <path fill="var(--color-fill)"
@@ -732,7 +733,7 @@
                             class="py-1 leading-[24px] text-sm lg:text-base transition-all duration-[0.25s] ease-in-out hover:-translate-y-[2px]">{{$bt['btn2_content']}}</a>
                     </div>
                 </div>
-                <img src="{{$bt['img']}}"
+                <img src="{{asset($bt['img'])}}"
                     class="w-full sm:w-8/12 absolute bottom-0 -left-10 sm:-left-[109px]" alt="this is image">
             </div>
             @endforeach
@@ -805,7 +806,7 @@
             <!-- title section -->
             <div class="flex flex-col lg:flex-row justify-between gap-8 lg:gap-0 lg:items-center py-5 lg:py-10">
                 <h2 class="font-bold lg:text-[24px] leading-8">تخفیفات ویژه</h2>
-                <div
+                <!-- <div
                     class="flex flex-row flex-wrap lg:justify-end items-center text-xs lg:text-base gap-5 font-semibold">
                     <a href="#" class="text-[var(--color-text)]">
                         همه دسته ها
@@ -819,7 +820,7 @@
                     <a href="#" class="text-[var(--color-secondary-text)]">
                         تست 3
                     </a>
-                </div>
+                </div> -->
             </div>
             <!-- title section -->
 
@@ -1217,15 +1218,9 @@
                             <a href="#" class="text-[var(--color-text)]">
                                 همه دسته ها
                             </a>
-                            <a href="#" class="text-[var(--color-secondary-text)]">
-                                تست 1
-                            </a>
-                            <a href="#" class="text-[var(--color-secondary-text)]">
-                                تست 2
-                            </a>
-                            <a href="#" class="text-[var(--color-secondary-text)]">
-                                تست 3
-                            </a>
+                            @foreach($categories as $category)
+                            <a href="#" class="text-[var(--color-secondary-text)]">{{$category['title']}}</a>
+                            @endforeach
                         </div>
                         <div class="flex flex-row justify-end items-center gap-5">
                             <span
@@ -1492,7 +1487,7 @@
             </p>
             <p class="text-center">
                 عباس ملکی:
-                <span class="font-bold">09147794595</span>
+                <a class="font-bold" href="tel:09147794595">09147794595</a>
             </p>
         </div>
     </footer>

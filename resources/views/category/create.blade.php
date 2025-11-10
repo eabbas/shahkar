@@ -42,7 +42,7 @@
                   </select>
                </div>
                <div class="md:w-1/2 flex flex-col">
-                  <label for="image" class="mb-2">عکس محصول:</label>
+                  <label for="image" class="mb-2">عکس دسته بندی:</label>
                   <input type="file" class="w-fit outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]" name="image" id="image">
                </div>
             </div>

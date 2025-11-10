@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\BannersController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\CourseCategoryController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FooterColumnController;
@@ -186,4 +188,24 @@ Route::group(['prefix' => 'footer', 'controller' => FooterColumnController::clas
     Route::get('/footerFormMedia/create', 'footerFormMediaCreate')->name('footerFormMedia-create');
     Route::post('/footerFormMedia/store', 'footerFormMediaStore')->name('footerFormMedia-store');
     Route::post('/footerFormMedia/update', 'footerFormMediaUpdate')->name('footerFormMedia-update');
+});
+// about us routes
+Route::group(['prefix' => 'aboutus', 'controller' => AboutUsController::class, 'as' => 'aboutus-'], function () {
+    Route::get('/create', 'create')->middleware(checkAdminMiddleware::class)->name('create');
+    Route::post('/upsert', 'upsert')->name('upsert');
+    Route::get('', 'index')->name('index');
+});
+// contact us routes
+Route::group(['prefix' => 'contactus', 'controller' => ContactUsController::class, 'as' => 'contactus-'], function () {
+    Route::get('/create', 'create')->name('create');
+    Route::get('/usersContact/{user}', 'usersContact')->name('usersContact-index');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/edit/{contactUs}', 'edit')->name('edit');
+    Route::get('/usersContact/edit/{contactUs}', 'usersContactEdit')->name('usersContact-edit');
+    Route::post('/update', 'update')->name('update');
+    Route::post('/usersContact/update', 'usersContactUpdate')->name('usersContact-update');
+    Route::get('/show/{contactUs}', 'show')->name('show');
+    Route::get('/list', 'index')->middleware(checkAdminMiddleware::class)->name('index');
+    Route::get('/delete/{contactUs}', 'delete')->name('delete');
+    Route::get('/usersContact/delete/{contactUs}', 'usersContactDelete')->name('usersContact-delete');
 });
