@@ -6,7 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class product extends Model
 {
-    protected $fillable = ['title', 'description', 'is_in_home', 'summary', 'category_id', 'brand'];
+    protected $fillable = [
+        'title',
+        'description',
+        'is_in_home',
+        'summary',
+        'category_id',
+        'brand'
+    ];
     public function category()
     {
         return $this->belongsTo(category::class);
@@ -19,11 +26,12 @@ class product extends Model
     {
         return $this->hasMany(media::class);
     }
-    public function price(){
+    public function price()
+    {
         return $this->hasOne(product_price::class);
     }
-    public function attributes(){
+    public function attributes()
+    {
         return $this->hasMany(product_attributes::class)->chaperone();
     }
-  
 }

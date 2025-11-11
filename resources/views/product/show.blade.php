@@ -384,7 +384,7 @@
                             بناب
                         </span>
                         @if(Auth::check())
-                            <a href="{{ route('user.logout') }}" class="text-xs text-[var(--color-text)]">خروج از حساب کاربری</a>
+                        <a href="{{ route('user.logout') }}" class="text-xs text-[var(--color-text)]">خروج از حساب کاربری</a>
                         @endif
                     </div>
                 </div>
@@ -745,7 +745,7 @@
 
 
     </header>
-        
+
     <main class="2xl:container 2xl:px-4 w-[97%] mx-auto">
         <!-- address navbar -->
         <section
@@ -762,7 +762,7 @@
                 <div>
                     <a href="#" class="leading-[2.17]">
                         <span class="border-b border-[var(--color-secondary-text)] lg:border-none">
-                           {{$product->category->title}}
+                            {{$product->category->title}}
                         </span>
                         <span class="mx-3">/</span>
                     </a>
@@ -905,33 +905,33 @@
                                 </div>
                             </div>
                             <div class="hidden lg:flex items-center cursor-pointer">
-                                 @foreach($product->medias as $media)
-                                 @if($media->is_main)
+                                @foreach($product->medias as $media)
+                                @if($media->is_main)
                                 <img class="w-full rounded-large overflow-hidden inline-block"
-                                     src="<?= asset('/storage/'.$media->path)?>" 
-                                     alt="product image">
-                                     @endif
+                                    src="<?= asset('/storage/' . $media->path) ?>"
+                                    alt="product image">
+                                @endif
                                 @endforeach
                             </div>
                             <div
                                 class="lg:hidden flex items-center cursor-pointer max-h-[250px] h-[250px] w-[250px] bg-[var(--color-primary-btn)] lg:bg-white">
                                 @foreach($product->medias as $media)
-                                    @if($media->is_main)
+                                @if($media->is_main)
                                 <img class="w-full rounded-large overflow-hidden inline-block"
-                                    src="<?= asset('/storage/'.$media->path)?>"
+                                    src="<?= asset('/storage/' . $media->path) ?>"
                                     alt="product image">
-                                    @endif
+                                @endif
                                 @endforeach
                             </div>
                         </div>
                         <div class="w-full overflow-x-auto" style="scrollbar-width:none;">
                             <div class="hidden lg:flex flex-row items-center mt-5 mb-3 ">
                                 @foreach($product->medias as $media)
-                                 @if(!$media->is_main)
+                                @if(!$media->is_main)
                                 <div class="cursor-pointer rounded border border-[var(--color-border)] p-1 ml-2">
                                     <div class="w-[72px] h-[72px]">
                                         <img class="w-full"
-                                            src="<?= asset('/storage/'.$media->path)?>"
+                                            src="<?= asset('/storage/' . $media->path) ?>"
                                             alt="">
                                     </div>
                                 </div>
@@ -1008,7 +1008,7 @@
                         </div>
                         <h1
                             class="text-xl xl:text-3xl text-[var(--color-text)] font-semibold mt-3 mb-2 pointer-events-none  px-5 lg:px-0">
-                           {{ $product->title }}
+                            {{ $product->title }}
                         </h1>
                         <div class="lg:pb-5 mb-5 lg:border-b border-[var(--color-border)]  px-5 lg:px-0">
                             <span class="text-xs text-[var(--color-secondary-text)]">{{$product->brand}}</span>
@@ -2524,7 +2524,8 @@
             </div>
 
 
-            <div class="flex flex-row lg:flex-col gap-10 w-full">
+            <div class="flex flex-col lg:flex-row gap-10 w-full">
+
                 <div class="2xl:w-9/12 w-full">
                     <div class="w-full mt-4">
 
@@ -2544,18 +2545,18 @@
                                 </div>
                                 <div class="w-3/4">
 
-                                @foreach($product->attributes as $attribute)
+                                    @foreach($product->attributes as $attribute)
                                     <div class="flex flex-row items-start">
                                         <div
                                             class="w-1/4 text-[var(--color-secondary-text)] text-sm py-3 leading-[2.17]">
-                                           {{$attribute->attribute_key}}
+                                            {{$attribute->attribute_key}}
                                         </div>
                                         <div
                                             class="w-3/4 text-sm border-b border-[var(--color-border)] py-3 leading-[2.17]">
                                             {{$attribute->attribute_value}}
                                         </div>
                                     </div>
-                                @endforeach
+                                    @endforeach
 
 
 
@@ -2767,7 +2768,7 @@
                                     <div class="w-full px-5 lg:px-0 lg:block flex flex-row">
 
                                         @foreach($product->comments as $comment)
-                                       
+
                                         <!-- comment -->
                                         <div
                                             class="border border-[var(--color-border)] lg:border-none rounded-lg lg:rounded-none ml-2 lg:ml-0 ">
@@ -2924,7 +2925,7 @@
                                         @endforeach
 
 
-                                                <!-- <div class="hidden lg:block mt-2">
+                                        <!-- <div class="hidden lg:block mt-2">
                                                     <a href="#" class="leading-[2.17] flex flex-row items-center gap-2">
                                                         <span class="text-xs font-medium text-[var(--color-secondary)]">
                                                             ادامه
@@ -2937,7 +2938,7 @@
                                                     </a>
                                                 </div> -->
 
-                                                <!-- <div class="flex flex-row justify-between items-center mt-7">
+                                        <!-- <div class="flex flex-row justify-between items-center mt-7">
                                                     <span class="lg:hidden text-xs text-[var(--color-secondary-text)]">
                                                         11 شهریور 1404
                                                     </span>
@@ -2978,191 +2979,114 @@
                                                         </button>
                                                     </div>
                                                 </div> -->
-                                            </div>
-
-                                        </div>
-
-
                                     </div>
-
-
-                                    </div>
-
-
-
-                                    <div class="hidden lg:block mt-4">
-                                        <a href="#" class="leading-[2.17] flex flex-row items-center gap-2">
-                                            <span class="text-xs font-medium text-[var(--color-secondary)]">
-                                                229 دیدگاه
-                                            </span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3"
-                                                viewBox="0 0 320 512">
-                                                <path fill="var(--color-secondary)"
-                                                    d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
-                                            </svg>
-                                        </a>
-                                    </div>
-
 
                                 </div>
-                            </div>
 
-                            <div class="lg:hidden px-5 mt-7 px-5 pb-2">
-                                <div class="flex flex-row justify-between items-start">
-                                    <div class="flex flex-row items-start gap-3">
-                                        <div class="size-9 flex justify-center items-center bg-[var(--color-secondary-bg)] rounded-full">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 512 512">
-                                                <path fill="var(--color-fill)" d="M256 64C125.8 64 32 148.6 32 240c0 37.1 15.5 70.6 40 100c5.2 6.3 8.4 14.8 7.4 23.9c-3.1 27-11.4 52.5-25.7 76.3c-.5 .9-1.1 1.8-1.6 2.6c11.1-2.9 22.2-7 32.7-11.5L91.2 446l-6.4-14.7c17-7.4 33-16.7 48.4-27.4c8.5-5.9 19.4-7.5 29.2-4.2C193 410.1 224 416 256 416c130.2 0 224-84.6 224-176s-93.8-176-224-176zM0 240C0 125.2 114.5 32 256 32s256 93.2 256 208s-114.5 208-256 208c-36 0-70.5-6.7-103.8-17.9c-.2-.1-.5 0-.7 .1c-16.9 11.7-34.7 22.1-53.9 30.5C73.6 471.1 44.7 480 16 480c-6.5 0-12.3-3.9-14.8-9.8s-1.1-12.8 3.4-17.4c8.1-8.2 15.2-18.2 21.7-29c11.7-19.6 18.7-40.6 21.3-63.1c0 0-.1-.1-.1-.2C19.6 327.1 0 286.6 0 240z" />
-                                        <div
-                                            class="size-9 flex justify-center items-center bg-[var(--color-secondary-bg)] rounded-full">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-6"
-                                                viewBox="0 0 512 512">
-                                                <path fill="var(--color-fill)"
-                                                    d="M256 64C125.8 64 32 148.6 32 240c0 37.1 15.5 70.6 40 100c5.2 6.3 8.4 14.8 7.4 23.9c-3.1 27-11.4 52.5-25.7 76.3c-.5 .9-1.1 1.8-1.6 2.6c11.1-2.9 22.2-7 32.7-11.5L91.2 446l-6.4-14.7c17-7.4 33-16.7 48.4-27.4c8.5-5.9 19.4-7.5 29.2-4.2C193 410.1 224 416 256 416c130.2 0 224-84.6 224-176s-93.8-176-224-176zM0 240C0 125.2 114.5 32 256 32s256 93.2 256 208s-114.5 208-256 208c-36 0-70.5-6.7-103.8-17.9c-.2-.1-.5 0-.7 .1c-16.9 11.7-34.7 22.1-53.9 30.5C73.6 471.1 44.7 480 16 480c-6.5 0-12.3-3.9-14.8-9.8s-1.1-12.8 3.4-17.4c8.1-8.2 15.2-18.2 21.7-29c11.7-19.6 18.7-40.6 21.3-63.1c0 0-.1-.1-.1-.2C19.6 327.1 0 286.6 0 240z" />
 
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <p class="text-xs font-semibold leading-[180%]">
-                                                دیدگاه خود را درباره این کالا بنویسید
-                                            </p>
-                                            <p class="text-xs text-[var(--color-secondary-text)] leading-[180%]">
-                                                با ثبت دیدگاه بر روی کالا های خریداری شده 5 امتیاز در دیجی‌کلاب دریافت
-                                                کنید
-                                            </p>
-
-                                        </div>
-                                    </div>
-                                    <div class="size-4">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
-                                            <path fill="var(--color-fill)" d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
-
-                                            
-                                        </svg>
-                                    </div>
-                                </div>
                             </div>
 
 
-                            <hr class="w-full border-none h-1 bg-[var(--color-border)] mt-5">
                         </div>
-                        <div>
 
 
 
+                        <div class="hidden lg:block mt-4">
+                            <a href="#" class="leading-[2.17] flex flex-row items-center gap-2">
+                                <span class="text-xs font-medium text-[var(--color-secondary)]">
+                                    229 دیدگاه
+                                </span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3"
+                                    viewBox="0 0 320 512">
+                                    <path fill="var(--color-secondary)"
+                                        d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
+                                </svg>
+                            </a>
+                        </div>
 
 
+                    </div>
+                    <div>
+                        <div class="py-3 hidden lg:block ">
+                            <h2 class="font-semibold leading-[2.17]">
+                                پرسش ها
+                            </h2>
+                            <div class="w-[70px] h-0.5 bg-[var(--color-primary)] mt-2"></div>
+                        </div>
+                        <div class="py-3 lg:hidden flex flex-row items-center justify-between px-5">
+                            <h2 class="font-semibold leading-[2.17]">
+                                پرسش و پاسخ
+                            </h2>
 
+                            <div>
+                                <a href="#" class="flex flex-row items-center gap-1">
+                                    <span class="text-xs">
+                                        مشاهده 103 پرسش
+                                    </span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 320 512">
+                                        <path fill="var(--color-fill)" d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
 
-                            <div class="py-3 hidden lg:block ">
-                                <h2 class="font-semibold leading-[2.17]">
-                                    پرسش ها
-                                </h2>
-                                <div class="w-[70px] h-0.5 bg-[var(--color-primary)] mt-2"></div>
+                                    </svg>
+                                </a>
+
                             </div>
 
-                            <div class="py-3 lg:hidden flex flex-row items-center justify-between px-5">
-                                <h2 class="font-semibold leading-[2.17]">
-                                    پرسش و پاسخ
-                                </h2>
-
-                                <div>
-                                    <a href="#" class="flex flex-row items-center gap-1">
-                                        <span class="text-xs">
-                                            مشاهده 103 پرسش
-                                        </span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 320 512">
-                                            <path fill="var(--color-fill)" d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
-
-                                        </svg>
-                                    </a>
-
+                        </div>
+                        <div
+                            class="mt-4 pt-4 flex flex-row items-start overflow-x-auto lg:overflow-x-clip px-5 lg:px-0">
+                            <div class="w-1/5 sticky top-16 ml-12 hidden lg:block">
+                                <div class="mt-4 mb-3">
+                                    <span class="text-[10px]">
+                                        شما هم در این کالا پرسش ثبت کنید
+                                    </span>
                                 </div>
-
+                                <div class="mt-2">
+                                    <button
+                                        class="block w-full rounded-lg px-4 py-2 border border-[var(--color-primary)] text-[var(--color-primary)] text-xs leading-[2.17] cursor-pointer"
+                                        @if(Auth::check()) onclick="question('open')" @else onclick="login('open')"
+                                        @endif>
+                                        ثبت پرسش
+                                    </button>
+                                </div>
                             </div>
-
-
-
-
-
-
-
-
-
-                            <div
-                                class="mt-4 pt-4 flex flex-row items-start overflow-x-auto lg:overflow-x-clip px-5 lg:px-0">
-
-
-                                <div class="w-1/5 sticky top-16 ml-12 hidden lg:block">
-                                    <div class="mt-4 mb-3">
-                                        <span class="text-[10px]">
-                                            شما هم در این کالا پرسش ثبت کنید
-                                        </span>
-                                    </div>
-                                    <div class="mt-2">
-                                        <button
-                                            class="block w-full rounded-lg px-4 py-2 border border-[var(--color-primary)] text-[var(--color-primary)] text-xs leading-[2.17] cursor-pointer"
-                                            @if(Auth::check()) onclick="question('open')" @else onclick="login('open')"
-                                            @endif>
-                                            ثبت پرسش
-                                        </button>
-                                    </div>
-                                </div>
-
-
-
-
-
-
-
-                                                                <div class="lg:w-4/5 flex flex-row lg:block">
-
-
-                                    <div class="hidden lg:flex flex-row items-center justify-between">
+                            <div class="lg:w-4/5 flex flex-row lg:block">
+                                <div class="hidden lg:flex flex-row items-center justify-between">
+                                    <div class="flex flex-row items-center gap-4">
+                                        <div class="flex flex-row items-center gap-2">
+                                            <div class="size-6">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 576 512">
+                                                    <path fill="var(--color-fill)" d="M235.3 379.3l-96 96c-6.2 6.2-16.4 6.2-22.6 0l-96-96c-6.2-6.2-6.2-16.4 0-22.6s16.4-6.2 22.6 0L112 425.4V48c0-8.8 7.2-16 16-16s16 7.2 16 16V425.4l68.7-68.7c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6zM304 464c-8.8 0-16-7.2-16-16s7.2-16 16-16h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H304zm0-128c-8.8 0-16-7.2-16-16s7.2-16 16-16H432c8.8 0 16 7.2 16 16s-7.2 16-16 16H304zm0-128c-8.8 0-16-7.2-16-16s7.2-16 16-16H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H304zm0-128c-8.8 0-16-7.2-16-16s7.2-16 16-16H560c8.8 0 16 7.2 16 16s-7.2 16-16 16H304z" />
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <span class="text-xs font-medium cursor-pointer">
+                                                    مرتب سازی بر اساس:
+                                                </span>
+                                            </div>
+                                        </div>
                                         <div class="flex flex-row items-center gap-4">
-                                            <div class="flex flex-row items-center gap-2">
-                                                <div class="size-6">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 576 512">
-                                                        <path fill="var(--color-fill)" d="M235.3 379.3l-96 96c-6.2 6.2-16.4 6.2-22.6 0l-96-96c-6.2-6.2-6.2-16.4 0-22.6s16.4-6.2 22.6 0L112 425.4V48c0-8.8 7.2-16 16-16s16 7.2 16 16V425.4l68.7-68.7c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6zM304 464c-8.8 0-16-7.2-16-16s7.2-16 16-16h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H304zm0-128c-8.8 0-16-7.2-16-16s7.2-16 16-16H432c8.8 0 16 7.2 16 16s-7.2 16-16 16H304zm0-128c-8.8 0-16-7.2-16-16s7.2-16 16-16H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H304zm0-128c-8.8 0-16-7.2-16-16s7.2-16 16-16H560c8.8 0 16 7.2 16 16s-7.2 16-16 16H304z" />
-                                                    </svg>
-                                                </div>
-                                                <div>
-                                                    <span class="text-xs font-medium cursor-pointer">
-                                                        مرتب سازی بر اساس:
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="flex flex-row items-center gap-4">
-                                                <a href="#" class="text-xs text-[var(--color-secondary-text)] font-medium">
-                                                    جدید ترین
-                                                </a>
-                                                <a href="#" class="text-xs text-[var(--color-secondary-text)] font-medium">
-                                                    بیشترین پاسخ
-                                                </a>
+                                            <a href="#" class="text-xs text-[var(--color-secondary-text)] font-medium">
+                                                جدید ترین
+                                            </a>
+                                            <a href="#" class="text-xs text-[var(--color-secondary-text)] font-medium">
+                                                بیشترین پاسخ
+                                            </a>
 
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <span class="text-xs text-[var(--color-secondary-text)]">
-                                                333 دیدگاه
-                                            </span>
                                         </div>
                                     </div>
 
+                                    <div>
+                                        <span class="text-xs text-[var(--color-secondary-text)]">
+                                            333 دیدگاه
+                                        </span>
+                                    </div>
+                                </div>
 
 
 
-                                    <!-- comment -->
-                                    <div class="p-4 lg:p-0 rounded-lg border border-[var(--color-border)] lg:border-none min-w-[308px] max-w-[308px] lg:min-w-full lg:max-w-full ml-3 lg:ml-0">
-                                        <!-- <div class="lg:py-4 lg:border-b border-[var(--color-border)]">
-                                            <h3 class="hidden lg:block text-sm lg:text-md pb-2 lg:pb-0 lg:py-2 font-medium leading-[180%] lg:leading-[2.17]">
-                                                سلام وقت بخیر ، ببخشید آنتن دهیش خوبه؟؟خطش نمیپره؟؟چون یکی خریدم خطش مدام میپره
-                                            </h3>
-                                            <h3 class="lg:hidden block text-sm lg:text-md pb-2 lg:pb-0 lg:py-2 font-medium leading-[180%] lg:leading-[2.17]">
-                                                سلام وقت بخیر ، ببخشید آنتن دهیش خوبه؟؟خطش نمیپره؟؟چون یک...
-                                            </h3>
-                                        </div> -->
+
+                                <!-- comment -->
+                                <div class="p-4 lg:p-0 rounded-lg border border-[var(--color-border)] lg:border-none min-w-[308px] max-w-[308px] lg:min-w-full lg:max-w-full ml-3 lg:ml-0">
                                     @foreach($questions as $question)
                                     @if($product->id == $question->product_id)
                                     <div class="p-4 lg:p-0 rounded-lg border border-[var(--color-border)] lg:border-none min-w-[308px] max-w-[308px] lg:min-w-full lg:max-w-full ml-3 lg:ml-0">
@@ -3194,7 +3118,7 @@
                                                         </div>
                                                         <div class="flex flex-row items-center gap-2">
                                                             <span class="text-sm font-medium">
- 
+
                                                                 {{$answer->user?->name ?? 'کاربر ناشناس'}} {{$answer->user?->family}}
 
                                                             </span>
@@ -3206,35 +3130,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- <div class="lg:mr-12">
-                                                    <div>
-                                                        <p class="text-sm lg:text-justify leading-[180%] lg:leading-[2.17]">
-                                                            من برای مادرم که مسن هست گرفتم راضی هستن
-                                                        </p>
-                                                    </div>
-                                                    <div class="flex flex-row justify-between items-center pl-4">
-                                                        <div>
-                                                            <span class="text-sm text-[var(--color-secondary-text)] leading-[2.17]">
-                                                                10 مهر 1404
-                                                            </span>
-                                                        </div>
-                                                        <div class="flex flex-row items-center gap-4">
-                                                            <button class="flex flex-row items-center gap-1">
-                                                                <span class="text-xs">0</span>
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
-                                                                    <path fill="var(--color-fill)" d="M288.8 81.7c3.5-12.8 16.7-20.3 29.5-16.8s20.3 16.7 16.8 29.5l-4.5 16.4c-5.5 20.2-13.9 39.3-24.7 56.9c-3.1 4.9-3.2 11.1-.4 16.2s8.2 8.2 14 8.2H448c17.7 0 32 14.3 32 32c0 11.3-5.9 21.3-14.8 27c-7.2 4.6-9.5 13.9-5.3 21.3c2.6 4.6 4.1 10 4.1 15.7c0 12.4-7 23.1-17.3 28.5c-4.2 2.2-7.3 6.1-8.3 10.8s.1 9.5 3 13.2c4.2 5.4 6.7 12.2 6.7 19.5c0 14.2-9.2 26.3-22.1 30.4c-7.8 2.5-12.4 10.6-10.7 18.6c.5 2.2 .7 4.5 .7 6.9c0 17.7-14.3 32-32 32H294.5c-15.8 0-31.2-4.7-44.4-13.4l-38.5-25.7c-9-6-16.6-13.7-22.4-22.6c-4.9-7.4-14.8-9.4-22.2-4.6s-9.4 14.8-4.6 22.2c8.1 12.3 18.7 23.1 31.4 31.6l38.5 25.7c18.4 12.3 40 18.8 62.1 18.8H384c35.3 0 64-28.7 64-64l0-.6c19.1-11.1 32-31.7 32-55.4c0-8.7-1.8-17.1-4.9-24.7C487.9 323.6 496 306.8 496 288c0-6.5-1-12.8-2.8-18.7C504.8 257.7 512 241.7 512 224c0-35.3-28.7-64-64-64H346.4c6.2-13.1 11.3-26.7 15.1-40.9l4.5-16.4c8.1-29.8-9.5-60.6-39.3-68.8s-60.6 9.5-68.8 39.3l-4.5 16.4c-8.9 32.6-29.6 60.8-58.2 79l-3.1 2c-11.8 7.5-21.7 17.1-29.5 28.2c-5.1 7.2-3.3 17.2 4 22.3s17.2 3.3 22.3-4c5.4-7.7 12.2-14.4 20.4-19.5l3.1-2c35.3-22.4 60.9-57.2 71.9-97.5l4.5-16.4zM32 224H96V448H32V224zM0 224V448c0 17.7 14.3 32 32 32H96c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32H32c-17.7 0-32 14.3-32 32z" />
-                                                                </svg>
-                                                            </button>
-                                                            <button class="flex flex-row items-center gap-1">
-                                                                <span class="text-xs">0</span>
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
-                                                                    <path fill="var(--color-fill)" d="M288.8 430.3c3.5 12.8 16.7 20.3 29.5 16.8s20.3-16.7 16.8-29.5l-4.5-16.4c-5.5-20.2-13.9-39.3-24.7-56.9c-3.1-4.9-3.2-11.1-.4-16.2s8.2-8.2 14-8.2H448c17.7 0 32-14.3 32-32c0-11.3-5.9-21.3-14.8-27c-7.2-4.6-9.5-13.9-5.3-21.3c2.6-4.6 4.1-10 4.1-15.7c0-12.4-7-23.1-17.3-28.5c-4.2-2.2-7.3-6.1-8.3-10.8s.1-9.5 3-13.2c4.2-5.4 6.7-12.2 6.7-19.5c0-14.2-9.2-26.3-22.1-30.4c-7.8-2.5-12.4-10.6-10.7-18.6c.5-2.2 .7-4.5 .7-6.9c0-17.7-14.3-32-32-32H294.5c-15.8 0-31.2 4.7-44.4 13.4l-38.5 25.7c-9 6-16.6 13.7-22.4 22.6c-4.9 7.4-14.8 9.4-22.2 4.6s-9.4-14.8-4.6-22.2c8.1-12.3 18.7-23.1 31.4-31.6l38.5-25.7c18.4-12.3 40-18.8 62.1-18.8H384c35.3 0 64 28.7 64 64l0 .6c19.1 11.1 32 31.7 32 55.4c0 8.7-1.8 17.1-4.9 24.7C487.9 188.4 496 205.2 496 224c0 6.5-1 12.8-2.8 18.7C504.8 254.3 512 270.3 512 288c0 35.3-28.7 64-64 64H346.4c6.2 13.1 11.3 26.7 15.1 40.9l4.5 16.4c8.1 29.8-9.5 60.6-39.3 68.8s-60.6-9.5-68.8-39.3l-4.5-16.4c-8.9-32.6-29.6-60.8-58.2-79l-3.1-2 8.2-12.9-8.2 12.9c-11.8-7.5-21.7-17.1-29.5-28.2c-5.1-7.2-3.3-17.2 4-22.3s17.2-3.3 22.3 4c5.4 7.7 12.2 14.4 20.4 19.5l3.1 2c35.3 22.4 60.9 57.2 71.9 97.5l4.5 16.4zM32 352H96V128H32V352zM0 352V128c0-17.7 14.3-32 32-32H96c17.7 0 32 14.3 32 32V352c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32z" />
-                                                                </svg>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
-
                                             </div>
                                             @endif
                                             @endforeach
@@ -3253,126 +3148,71 @@
                                         </div>
 
                                     </div>
-
                                     <!-- comment -->
-                                    <!-- comment -->
-                                    <!-- <div class="p-4 lg:p-0 rounded-lg border border-[var(--color-border)] lg:border-none min-w-[308px] max-w-[308px] lg:min-w-full lg:max-w-full ml-3 lg:ml-0">
-                                        <div class="lg:py-4 lg:border-b border-[var(--color-border)]">
-                                            <h3 class="hidden lg:block text-sm lg:text-md pb-2 lg:pb-0 lg:py-2 font-medium leading-[180%] lg:leading-[2.17]">
-                                                سلام وقت بخیر ، ببخشید آنتن دهیش خوبه؟؟خطش نمیپره؟؟چون یکی خریدم خطش مدام میپره
-                                            </h3>
-                                            <h3 class="lg:hidden block text-sm lg:text-md pb-2 lg:pb-0 lg:py-2 font-medium leading-[180%] lg:leading-[2.17]">
-                                                سلام وقت بخیر ، ببخشید آنتن دهیش خوبه؟؟خطش نمیپره؟؟چون یک...
-                                            </h3>
-                                            <div class="rounded-lg border lg:border-none border-[var(--color-border)] px-3 py-2 lg:px-0 lg:py-0 bg-[var(--color-secondary-bg)] lg:bg-inherit">
-                                                <div class="flex flex-row items-center py-2">
-                                                    <div class="flex flex-row gap-2 items-center">
-                                                        <div class="size-10">
-                                                            <img class="size-full rounded-full" src="https://dkstatics-public.digikala.com/digikala-content-x-profile/79e1a2b23332632135d587ca943b5b2f8bf8ea6e_1742409752.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/quality,q_80" alt="user profile">
-                                                        </div>
-                                                        <div class="flex flex-row items-center gap-2">
-                                                            <span class="text-sm font-medium">
-                                                                حسین حسین پور
-                                                            </span>
-                                                            <div class="size-1.5 rounded-full bg-[var(--color-secondary-text)]/30"></div>
-                                                            <span class="text-xs text-[var(--color-secondary-text)]">
-                                                                خریدار
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="lg:mr-12">
-                                                    <div>
-                                                        <p class="text-sm lg:text-justify leading-[180%] lg:leading-[2.17]">
-                                                            من برای مادرم که مسن هست گرفتم راضی هستن
-                                                        </p>
-                                                    </div>
-                                                    <div class="flex flex-row justify-between items-center pl-4">
-                                                        <div>
-                                                            <span class="text-sm text-[var(--color-secondary-text)] leading-[2.17]">
-                                                                10 مهر 1404
-                                                            </span>
-                                                        </div>
-                                                        <div class="flex flex-row items-center gap-4">
-                                                            <button class="flex flex-row items-center gap-1">
-                                                                <span class="text-xs">0</span>
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
-                                                                    <path fill="var(--color-fill)" d="M288.8 81.7c3.5-12.8 16.7-20.3 29.5-16.8s20.3 16.7 16.8 29.5l-4.5 16.4c-5.5 20.2-13.9 39.3-24.7 56.9c-3.1 4.9-3.2 11.1-.4 16.2s8.2 8.2 14 8.2H448c17.7 0 32 14.3 32 32c0 11.3-5.9 21.3-14.8 27c-7.2 4.6-9.5 13.9-5.3 21.3c2.6 4.6 4.1 10 4.1 15.7c0 12.4-7 23.1-17.3 28.5c-4.2 2.2-7.3 6.1-8.3 10.8s.1 9.5 3 13.2c4.2 5.4 6.7 12.2 6.7 19.5c0 14.2-9.2 26.3-22.1 30.4c-7.8 2.5-12.4 10.6-10.7 18.6c.5 2.2 .7 4.5 .7 6.9c0 17.7-14.3 32-32 32H294.5c-15.8 0-31.2-4.7-44.4-13.4l-38.5-25.7c-9-6-16.6-13.7-22.4-22.6c-4.9-7.4-14.8-9.4-22.2-4.6s-9.4 14.8-4.6 22.2c8.1 12.3 18.7 23.1 31.4 31.6l38.5 25.7c18.4 12.3 40 18.8 62.1 18.8H384c35.3 0 64-28.7 64-64l0-.6c19.1-11.1 32-31.7 32-55.4c0-8.7-1.8-17.1-4.9-24.7C487.9 323.6 496 306.8 496 288c0-6.5-1-12.8-2.8-18.7C504.8 257.7 512 241.7 512 224c0-35.3-28.7-64-64-64H346.4c6.2-13.1 11.3-26.7 15.1-40.9l4.5-16.4c8.1-29.8-9.5-60.6-39.3-68.8s-60.6 9.5-68.8 39.3l-4.5 16.4c-8.9 32.6-29.6 60.8-58.2 79l-3.1 2c-11.8 7.5-21.7 17.1-29.5 28.2c-5.1 7.2-3.3 17.2 4 22.3s17.2 3.3 22.3-4c5.4-7.7 12.2-14.4 20.4-19.5l3.1-2c35.3-22.4 60.9-57.2 71.9-97.5l4.5-16.4zM32 224H96V448H32V224zM0 224V448c0 17.7 14.3 32 32 32H96c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32H32c-17.7 0-32 14.3-32 32z" />
-                                                                </svg>
-                                                            </button>
-                                                            <button class="flex flex-row items-center gap-1">
-                                                                <span class="text-xs">0</span>
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
-                                                                    <path fill="var(--color-fill)" d="M288.8 430.3c3.5 12.8 16.7 20.3 29.5 16.8s20.3-16.7 16.8-29.5l-4.5-16.4c-5.5-20.2-13.9-39.3-24.7-56.9c-3.1-4.9-3.2-11.1-.4-16.2s8.2-8.2 14-8.2H448c17.7 0 32-14.3 32-32c0-11.3-5.9-21.3-14.8-27c-7.2-4.6-9.5-13.9-5.3-21.3c2.6-4.6 4.1-10 4.1-15.7c0-12.4-7-23.1-17.3-28.5c-4.2-2.2-7.3-6.1-8.3-10.8s.1-9.5 3-13.2c4.2-5.4 6.7-12.2 6.7-19.5c0-14.2-9.2-26.3-22.1-30.4c-7.8-2.5-12.4-10.6-10.7-18.6c.5-2.2 .7-4.5 .7-6.9c0-17.7-14.3-32-32-32H294.5c-15.8 0-31.2 4.7-44.4 13.4l-38.5 25.7c-9 6-16.6 13.7-22.4 22.6c-4.9 7.4-14.8 9.4-22.2 4.6s-9.4-14.8-4.6-22.2c8.1-12.3 18.7-23.1 31.4-31.6l38.5-25.7c18.4-12.3 40-18.8 62.1-18.8H384c35.3 0 64 28.7 64 64l0 .6c19.1 11.1 32 31.7 32 55.4c0 8.7-1.8 17.1-4.9 24.7C487.9 188.4 496 205.2 496 224c0 6.5-1 12.8-2.8 18.7C504.8 254.3 512 270.3 512 288c0 35.3-28.7 64-64 64H346.4c6.2 13.1 11.3 26.7 15.1 40.9l4.5 16.4c8.1 29.8-9.5 60.6-39.3 68.8s-60.6-9.5-68.8-39.3l-4.5-16.4c-8.9-32.6-29.6-60.8-58.2-79l-3.1-2 8.2-12.9-8.2 12.9c-11.8-7.5-21.7-17.1-29.5-28.2c-5.1-7.2-3.3-17.2 4-22.3s17.2-3.3 22.3 4c5.4 7.7 12.2 14.4 20.4 19.5l3.1 2c35.3 22.4 60.9 57.2 71.9 97.5l4.5 16.4zM32 352H96V128H32V352zM0 352V128c0-17.7 14.3-32 32-32H96c17.7 0 32 14.3 32 32V352c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32z" />
-                                                                </svg>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-
-                                            <div class="mt-4 hidden lg:block">
-                                                <a href="#" class="leading-[2.17] flex flex-row items-center gap-2">
-                                                    <span class="text-xs font-medium text-[var(--color-secondary)]">
-                                                        مشاهده پاسخ های دیگر
-                                                    </span>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 320 512">
-                                                        <path fill="var(--color-secondary)" d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
-                                                    </svg>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                    </div> -->
-
-                                            </div>
-                                        </div>
-
-                                    </div>
                                     @endif
                                     @endforeach
-
-                                    <!-- comment -->
-
-                                    <div class="hidden lg:block mt-4">
-                                        <a href="#" class="leading-[2.17] flex flex-row items-center gap-2">
-                                            <span class="text-xs font-medium text-[var(--color-secondary)]">
-                                                98 پرسش دیگر
-                                            </span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 320 512">
-                                                <path fill="var(--color-secondary)" d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
-                                            </svg>
-                                        </a>
-                                    </div>
-
-
                                 </div>
                             </div>
 
-                            <div class="lg:hidden p-5">
-                                <a href="#" class="flex flex-row justify-between items-center">
-                                    <div class="flex flex-row items-center gap-2">
-                                        <div class="size-9 rounded-full bg-[var(--color-secondary-bg)] flex justify-center items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 512 512">
-                                                <path fill="var(--color-fill)" d="M480 256A224 224 0 1 0 32 256a224 224 0 1 0 448 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm168.7-86.2c6.5-24.6 28.7-41.8 54.2-41.8H280c35.5 0 64 29 64 64.3c0 24-13.4 46.2-34.9 57.2L272 268.3V288c0 8.8-7.2 16-16 16s-16-7.2-16-16V258.5c0-6 3.4-11.5 8.7-14.3l45.8-23.4c10.7-5.4 17.5-16.6 17.5-28.7c0-17.8-14.4-32.3-32-32.3H222.9c-10.9 0-20.5 7.4-23.2 17.9l-.2 .7c-2.2 8.5-11 13.7-19.5 11.4s-13.7-11-11.4-19.5l.2-.7zM232 352a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z" />
-                                            </svg>
-                                        </div>
-                                        <span class="text-xs text-[var(--color-secondary-text)] font-medium">
-                                            شما هم درباره این کالا سوال بپرسید
-                                        </span>
-                                    </div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
-                                        <path fill="var(--color-fill)" d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
-                                    </svg>
-                                </a>
-                            </div>
                         </div>
+
+                        <!-- comment -->
+
+                        <div class="hidden lg:block mt-4">
+                            <a href="#" class="leading-[2.17] flex flex-row items-center gap-2">
+                                <span class="text-xs font-medium text-[var(--color-secondary)]">
+                                    98 پرسش دیگر
+                                </span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 320 512">
+                                    <path fill="var(--color-secondary)" d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
+                                </svg>
+                            </a>
+                        </div>
+
+
                     </div>
                 </div>
 
+                <div class="lg:hidden px-5 mt-7 px-5 pb-2">
+                    <div class="flex flex-row justify-between items-start">
+                        <div class="flex flex-row items-start gap-3">
+                            <div class="size-9 flex justify-center items-center bg-[var(--color-secondary-bg)] rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 512 512">
+                                    <path fill="var(--color-fill)" d="M256 64C125.8 64 32 148.6 32 240c0 37.1 15.5 70.6 40 100c5.2 6.3 8.4 14.8 7.4 23.9c-3.1 27-11.4 52.5-25.7 76.3c-.5 .9-1.1 1.8-1.6 2.6c11.1-2.9 22.2-7 32.7-11.5L91.2 446l-6.4-14.7c17-7.4 33-16.7 48.4-27.4c8.5-5.9 19.4-7.5 29.2-4.2C193 410.1 224 416 256 416c130.2 0 224-84.6 224-176s-93.8-176-224-176zM0 240C0 125.2 114.5 32 256 32s256 93.2 256 208s-114.5 208-256 208c-36 0-70.5-6.7-103.8-17.9c-.2-.1-.5 0-.7 .1c-16.9 11.7-34.7 22.1-53.9 30.5C73.6 471.1 44.7 480 16 480c-6.5 0-12.3-3.9-14.8-9.8s-1.1-12.8 3.4-17.4c8.1-8.2 15.2-18.2 21.7-29c11.7-19.6 18.7-40.6 21.3-63.1c0 0-.1-.1-.1-.2C19.6 327.1 0 286.6 0 240z" />
+                                    </svg>
+                                    <div
+                                        class="size-9 flex justify-center items-center bg-[var(--color-secondary-bg)] rounded-full">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-6"
+                                            viewBox="0 0 512 512">
+                                            <path fill="var(--color-fill)"
+                                                d="M256 64C125.8 64 32 148.6 32 240c0 37.1 15.5 70.6 40 100c5.2 6.3 8.4 14.8 7.4 23.9c-3.1 27-11.4 52.5-25.7 76.3c-.5 .9-1.1 1.8-1.6 2.6c11.1-2.9 22.2-7 32.7-11.5L91.2 446l-6.4-14.7c17-7.4 33-16.7 48.4-27.4c8.5-5.9 19.4-7.5 29.2-4.2C193 410.1 224 416 256 416c130.2 0 224-84.6 224-176s-93.8-176-224-176zM0 240C0 125.2 114.5 32 256 32s256 93.2 256 208s-114.5 208-256 208c-36 0-70.5-6.7-103.8-17.9c-.2-.1-.5 0-.7 .1c-16.9 11.7-34.7 22.1-53.9 30.5C73.6 471.1 44.7 480 16 480c-6.5 0-12.3-3.9-14.8-9.8s-1.1-12.8 3.4-17.4c8.1-8.2 15.2-18.2 21.7-29c11.7-19.6 18.7-40.6 21.3-63.1c0 0-.1-.1-.1-.2C19.6 327.1 0 286.6 0 240z" />
 
+                                        </svg>
+                                    </div>
+                                    <div class="w-full">
+                                        <p class="text-xs font-semibold leading-[180%]">
+                                            دیدگاه خود را درباره این کالا بنویسید
+                                        </p>
+                                        <p class="text-xs text-[var(--color-secondary-text)] leading-[180%]">
+                                            با ثبت دیدگاه بر روی کالا های خریداری شده 5 امتیاز در دیجی‌کلاب دریافت
+                                            کنید
+                                        </p>
+
+                                    </div>
+                            </div>
+                            <div class="size-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
+                                    <path fill="var(--color-fill)" d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
+
+
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <hr class="w-full border-none h-1 bg-[var(--color-border)] mt-5">
+                </div>
                 <div class="w-3/12 hidden 2xl:block">
                     <div
                         class="sticky top-[60px] mt-5 p-4 rounded border border-[var(--color-border)] bg-[var(--color-secondary-bg)]">
@@ -3454,6 +3294,29 @@
                 </div>
             </div>
 
+            <div class="lg:hidden p-5">
+                <a href="#" class="flex flex-row justify-between items-center">
+                    <div class="flex flex-row items-center gap-2">
+                        <div class="size-9 rounded-full bg-[var(--color-secondary-bg)] flex justify-center items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 512 512">
+                                <path fill="var(--color-fill)" d="M480 256A224 224 0 1 0 32 256a224 224 0 1 0 448 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm168.7-86.2c6.5-24.6 28.7-41.8 54.2-41.8H280c35.5 0 64 29 64 64.3c0 24-13.4 46.2-34.9 57.2L272 268.3V288c0 8.8-7.2 16-16 16s-16-7.2-16-16V258.5c0-6 3.4-11.5 8.7-14.3l45.8-23.4c10.7-5.4 17.5-16.6 17.5-28.7c0-17.8-14.4-32.3-32-32.3H222.9c-10.9 0-20.5 7.4-23.2 17.9l-.2 .7c-2.2 8.5-11 13.7-19.5 11.4s-13.7-11-11.4-19.5l.2-.7zM232 352a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z" />
+                            </svg>
+                        </div>
+                        <span class="text-xs text-[var(--color-secondary-text)] font-medium">
+                            شما هم درباره این کالا سوال بپرسید
+                        </span>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
+                        <path fill="var(--color-fill)" d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
+                    </svg>
+                </a>
+            </div>
+
+
+
+
+
+
 
         </section>
 
@@ -3493,36 +3356,36 @@
                             <img class="size-full rounded-full" src="https://dkstatics-public.digikala.com/digikala-content-x-profile/a1250500f4ecb5ad706ab578a19c235f86c83585_1716202955.jpg?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80" alt="user image">
                         </a>
                         <svg xmlns="http://www.w3.org/2000/svg" class="size-12 absolute inset-[35%]" viewBox="0 0 512 512">
-                        <video class="rounded-lg size-full object-cover cursor-pointer"
-                            poster="https://dkstatics-public.digikala.com/digikala-content-x-post-media/61c709a2f5e9660d587c66c7d056ba85306a5e8d_1749458853.jpg?x-oss-process=image/resize,w_600/quality,q_80"></video>
-                        <a href="#"
-                            class="absolute inline-block size-12 rounded-full border-2 border-white -bottom-2 right-2">
-                            <img class="size-full rounded-full"
-                                src="https://dkstatics-public.digikala.com/digikala-content-x-profile/a1250500f4ecb5ad706ab578a19c235f86c83585_1716202955.jpg?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80"
-                                alt="user image">
-                        </a>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="size-12 absolute inset-[35%]"
-                            viewBox="0 0 512 512">
+                            <video class="rounded-lg size-full object-cover cursor-pointer"
+                                poster="https://dkstatics-public.digikala.com/digikala-content-x-post-media/61c709a2f5e9660d587c66c7d056ba85306a5e8d_1749458853.jpg?x-oss-process=image/resize,w_600/quality,q_80"></video>
+                            <a href="#"
+                                class="absolute inline-block size-12 rounded-full border-2 border-white -bottom-2 right-2">
+                                <img class="size-full rounded-full"
+                                    src="https://dkstatics-public.digikala.com/digikala-content-x-profile/a1250500f4ecb5ad706ab578a19c235f86c83585_1716202955.jpg?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80"
+                                    alt="user image">
+                            </a>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-12 absolute inset-[35%]"
+                                viewBox="0 0 512 512">
 
-                            <defs>
-                                <style>
-                                    .fa-primary {
-                                        opacity: .9
-                                    }
+                                <defs>
+                                    <style>
+                                        .fa-primary {
+                                            opacity: .9
+                                        }
 
-                                    .fa-secondary {
-                                        opacity: .7
-                                    }
-                                </style>
-                            </defs>
-                            <path fill="white" class="fa-secondary" d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z" />
-                            <path fill="gray" class="fa-primary" d="M212.5 147.5c-7.4-4.5-16.7-4.7-24.3-.5s-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88z" />
-                            <path fill="white" class="fa-secondary"
-                                d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z" />
-                            <path fill="gray" class="fa-primary"
-                                d="M212.5 147.5c-7.4-4.5-16.7-4.7-24.3-.5s-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88z" />
+                                        .fa-secondary {
+                                            opacity: .7
+                                        }
+                                    </style>
+                                </defs>
+                                <path fill="white" class="fa-secondary" d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z" />
+                                <path fill="gray" class="fa-primary" d="M212.5 147.5c-7.4-4.5-16.7-4.7-24.3-.5s-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88z" />
+                                <path fill="white" class="fa-secondary"
+                                    d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z" />
+                                <path fill="gray" class="fa-primary"
+                                    d="M212.5 147.5c-7.4-4.5-16.7-4.7-24.3-.5s-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88z" />
 
-                        </svg>
+                            </svg>
                     </div>
                     <p class="text-xs mt-3">
                         این گوشی ارزش خرید داره
