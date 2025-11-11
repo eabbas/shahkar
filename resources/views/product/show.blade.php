@@ -3089,7 +3089,7 @@
                                 <div class="p-4 lg:p-0 rounded-lg border border-[var(--color-border)] lg:border-none min-w-[308px] max-w-[308px] lg:min-w-full lg:max-w-full ml-3 lg:ml-0">
                                     @foreach($questions as $question)
                                     @if($product->id == $question->product_id)
-                                    <div class="p-4 lg:p-0 rounded-lg border border-[var(--color-border)] lg:border-none min-w-[308px] max-w-[308px] lg:min-w-full lg:max-w-full ml-3 lg:ml-0">
+                                    <div class="p-4 lg:p-0 rounded-lg border border-[var(--color-border)] lg:border-none w-full lg:max-w-full">
                                         <div class="lg:py-4 lg:border-b border-[var(--color-border)]">
                                             <h3 class="hidden lg:block text-sm lg:text-md pb-2 lg:pb-0 lg:py-2 font-medium leading-[180%] lg:leading-[2.17]">
                                                 {{$question->text}}
@@ -3176,37 +3176,34 @@
                 <div class="lg:hidden px-5 mt-7 px-5 pb-2">
                     <div class="flex flex-row justify-between items-start">
                         <div class="flex flex-row items-start gap-3">
-                            <div class="size-9 flex justify-center items-center bg-[var(--color-secondary-bg)] rounded-full">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 512 512">
-                                    <path fill="var(--color-fill)" d="M256 64C125.8 64 32 148.6 32 240c0 37.1 15.5 70.6 40 100c5.2 6.3 8.4 14.8 7.4 23.9c-3.1 27-11.4 52.5-25.7 76.3c-.5 .9-1.1 1.8-1.6 2.6c11.1-2.9 22.2-7 32.7-11.5L91.2 446l-6.4-14.7c17-7.4 33-16.7 48.4-27.4c8.5-5.9 19.4-7.5 29.2-4.2C193 410.1 224 416 256 416c130.2 0 224-84.6 224-176s-93.8-176-224-176zM0 240C0 125.2 114.5 32 256 32s256 93.2 256 208s-114.5 208-256 208c-36 0-70.5-6.7-103.8-17.9c-.2-.1-.5 0-.7 .1c-16.9 11.7-34.7 22.1-53.9 30.5C73.6 471.1 44.7 480 16 480c-6.5 0-12.3-3.9-14.8-9.8s-1.1-12.8 3.4-17.4c8.1-8.2 15.2-18.2 21.7-29c11.7-19.6 18.7-40.6 21.3-63.1c0 0-.1-.1-.1-.2C19.6 327.1 0 286.6 0 240z" />
+                            <div class="w-full flex justify-center items-center gap-3">
+                                <div
+                                    class="size-9 flex justify-center items-center bg-[var(--color-secondary-bg)] rounded-full">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-6"
+                                        viewBox="0 0 512 512">
+                                        <path fill="var(--color-fill)"
+                                            d="M256 64C125.8 64 32 148.6 32 240c0 37.1 15.5 70.6 40 100c5.2 6.3 8.4 14.8 7.4 23.9c-3.1 27-11.4 52.5-25.7 76.3c-.5 .9-1.1 1.8-1.6 2.6c11.1-2.9 22.2-7 32.7-11.5L91.2 446l-6.4-14.7c17-7.4 33-16.7 48.4-27.4c8.5-5.9 19.4-7.5 29.2-4.2C193 410.1 224 416 256 416c130.2 0 224-84.6 224-176s-93.8-176-224-176zM0 240C0 125.2 114.5 32 256 32s256 93.2 256 208s-114.5 208-256 208c-36 0-70.5-6.7-103.8-17.9c-.2-.1-.5 0-.7 .1c-16.9 11.7-34.7 22.1-53.9 30.5C73.6 471.1 44.7 480 16 480c-6.5 0-12.3-3.9-14.8-9.8s-1.1-12.8 3.4-17.4c8.1-8.2 15.2-18.2 21.7-29c11.7-19.6 18.7-40.6 21.3-63.1c0 0-.1-.1-.1-.2C19.6 327.1 0 286.6 0 240z" />
+
                                     </svg>
-                                    <div
-                                        class="size-9 flex justify-center items-center bg-[var(--color-secondary-bg)] rounded-full">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-6"
-                                            viewBox="0 0 512 512">
-                                            <path fill="var(--color-fill)"
-                                                d="M256 64C125.8 64 32 148.6 32 240c0 37.1 15.5 70.6 40 100c5.2 6.3 8.4 14.8 7.4 23.9c-3.1 27-11.4 52.5-25.7 76.3c-.5 .9-1.1 1.8-1.6 2.6c11.1-2.9 22.2-7 32.7-11.5L91.2 446l-6.4-14.7c17-7.4 33-16.7 48.4-27.4c8.5-5.9 19.4-7.5 29.2-4.2C193 410.1 224 416 256 416c130.2 0 224-84.6 224-176s-93.8-176-224-176zM0 240C0 125.2 114.5 32 256 32s256 93.2 256 208s-114.5 208-256 208c-36 0-70.5-6.7-103.8-17.9c-.2-.1-.5 0-.7 .1c-16.9 11.7-34.7 22.1-53.9 30.5C73.6 471.1 44.7 480 16 480c-6.5 0-12.3-3.9-14.8-9.8s-1.1-12.8 3.4-17.4c8.1-8.2 15.2-18.2 21.7-29c11.7-19.6 18.7-40.6 21.3-63.1c0 0-.1-.1-.1-.2C19.6 327.1 0 286.6 0 240z" />
+                                </div>
+                                <div class="w-full">
+                                    <p class="text-xs font-semibold leading-[180%]">
+                                        دیدگاه خود را درباره این کالا بنویسید
+                                    </p>
+                                    <p class="text-xs text-[var(--color-secondary-text)] leading-[180%]">
+                                        با ثبت دیدگاه بر روی کالا های خریداری شده 5 امتیاز در دیجی‌کلاب دریافت
+                                        کنید
+                                    </p>
 
-                                        </svg>
-                                    </div>
-                                    <div class="w-full">
-                                        <p class="text-xs font-semibold leading-[180%]">
-                                            دیدگاه خود را درباره این کالا بنویسید
-                                        </p>
-                                        <p class="text-xs text-[var(--color-secondary-text)] leading-[180%]">
-                                            با ثبت دیدگاه بر روی کالا های خریداری شده 5 امتیاز در دیجی‌کلاب دریافت
-                                            کنید
-                                        </p>
-
-                                    </div>
+                                </div>
                             </div>
-                            <div class="size-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
-                                    <path fill="var(--color-fill)" d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
+                        </div>
+                        <div class="size-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
+                                <path fill="var(--color-fill)" d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
 
 
-                                </svg>
-                            </div>
+                            </svg>
                         </div>
                     </div>
 
@@ -3355,37 +3352,28 @@
                         <a href="#" class="absolute inline-block size-12 rounded-full border-2 border-white -bottom-2 right-2">
                             <img class="size-full rounded-full" src="https://dkstatics-public.digikala.com/digikala-content-x-profile/a1250500f4ecb5ad706ab578a19c235f86c83585_1716202955.jpg?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80" alt="user image">
                         </a>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="size-12 absolute inset-[35%]" viewBox="0 0 512 512">
-                            <video class="rounded-lg size-full object-cover cursor-pointer"
-                                poster="https://dkstatics-public.digikala.com/digikala-content-x-post-media/61c709a2f5e9660d587c66c7d056ba85306a5e8d_1749458853.jpg?x-oss-process=image/resize,w_600/quality,q_80"></video>
-                            <a href="#"
-                                class="absolute inline-block size-12 rounded-full border-2 border-white -bottom-2 right-2">
-                                <img class="size-full rounded-full"
-                                    src="https://dkstatics-public.digikala.com/digikala-content-x-profile/a1250500f4ecb5ad706ab578a19c235f86c83585_1716202955.jpg?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80"
-                                    alt="user image">
-                            </a>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-12 absolute inset-[35%]"
-                                viewBox="0 0 512 512">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-12 absolute inset-[35%]"
+                            viewBox="0 0 512 512">
 
-                                <defs>
-                                    <style>
-                                        .fa-primary {
-                                            opacity: .9
-                                        }
+                            <defs>
+                                <style>
+                                    .fa-primary {
+                                        opacity: .9
+                                    }
 
-                                        .fa-secondary {
-                                            opacity: .7
-                                        }
-                                    </style>
-                                </defs>
-                                <path fill="white" class="fa-secondary" d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z" />
-                                <path fill="gray" class="fa-primary" d="M212.5 147.5c-7.4-4.5-16.7-4.7-24.3-.5s-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88z" />
-                                <path fill="white" class="fa-secondary"
-                                    d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z" />
-                                <path fill="gray" class="fa-primary"
-                                    d="M212.5 147.5c-7.4-4.5-16.7-4.7-24.3-.5s-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88z" />
+                                    .fa-secondary {
+                                        opacity: .7
+                                    }
+                                </style>
+                            </defs>
+                            <path fill="white" class="fa-secondary" d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z" />
+                            <path fill="gray" class="fa-primary" d="M212.5 147.5c-7.4-4.5-16.7-4.7-24.3-.5s-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88z" />
+                            <path fill="white" class="fa-secondary"
+                                d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z" />
+                            <path fill="gray" class="fa-primary"
+                                d="M212.5 147.5c-7.4-4.5-16.7-4.7-24.3-.5s-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88z" />
 
-                            </svg>
+                        </svg>
                     </div>
                     <p class="text-xs mt-3">
                         این گوشی ارزش خرید داره
