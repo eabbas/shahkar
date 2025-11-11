@@ -43,11 +43,11 @@ class ProductController extends Controller
         $products []= ['product_id'=>$product_id, 'path'=>$mainPath, 'type'=>$type, 'is_main'=>1, 'created_at' => now(), 'updated_at' => now()];
 
         foreach($request->gallery as $gallery){
-            $type = $gallery->getClientOriginalExtension();
+            $typeG = $gallery->getClientOriginalExtension();
             $originalGalleryName = $gallery->getClientOriginalname();
             $fullNameGallery = Str::uuid()."_".$originalGalleryName;
             $galleryPath = $gallery->storeAs('images', $fullNameGallery, 'public');
-            $products[]=['product_id'=>$product_id, 'path'=>$galleryPath, 'type'=>$type, 'is_main'=>0, 'created_at' => now(), 'updated_at' => now()];
+            $products[]=['product_id'=>$product_id, 'path'=>$galleryPath, 'type'=>$typeG, 'is_main'=>0, 'created_at' => now(), 'updated_at' => now()];
         }
         media::insert($products);
         $product_attribute_id = [];
@@ -76,7 +76,6 @@ class ProductController extends Controller
     }
     public function show(product $product)
     {
-        // dd($product->attributes);
         $campare = $product->price->price-$product->price->discount;
         $x= $campare/$product->price->price;
         $persent = $x*100;
@@ -86,9 +85,7 @@ class ProductController extends Controller
         $product->comments;
         $questions = question::all();
         $product->medias;
-        // return $answers;
         return view('product.show', ['product' => $product, 'settings' => $settings, 'questions' => $questions, 'answers' => $answers, 'persent'=>$persent]);
-
     }
     public function edit(product $product)
     {
@@ -100,26 +97,95 @@ class ProductController extends Controller
     }
     public function update(Request $request)
     {
-        dd($request->all());
-        $medias = media::where('product_id', $request->product_id)->get();
-        dd($medias);
-        // foreach($product->medias as $media){
-        //     Storage::disk('public')->delete($media->path);
-        // }
-        // $product = product::find($request->product_id);
-        // $product->title = $request->title;
-        // $product->description = $request->description;
-        // $product->summary = $request->summary;
-        // $product->category_id = $request->category_id;
-        // $product->save();
-        // return to_route('product-index');
+        $product = product::find($request->id);
+        if ($request->mainImage) {
+            foreach($product->medias as $mainImage){
+                if ($mainImage->is_main == 1) {
+                    Storage::disk('public')->delete($mainImage->path);
+                    $media = media::where(['product_id'=>$product->id, 'is_main'=>1])->first();
+                    $media->delete();
+                }
+            }
+            $type = request()->mainImage->getClientOriginalExtension();
+            $originalName = request()->mainImage->getClientOriginalname();
+            $fullName = Str::uuid()."_".$originalName;
+            $mainPath = request()->file('mainImage')->storeAs('images', $fullName, 'public');
+            media::create([
+                'product_id'=>$product->id,
+                'path'=>$mainPath,
+                'type'=>$type,
+                'is_main'=>1
+            ]);
+        }
+        if ($request->gallery) {
+            foreach($product->medias as $galleryPath){
+                if ($galleryPath->is_main == 0) {
+                    Storage::disk('public')->delete($galleryPath->path);
+                    $mediaG = media::where(['product_id'=>$product->id, 'is_main'=>0])->get();
+                    foreach ($mediaG as $img) {
+                        $img->delete();
+                    }
+                }
+            }
+            foreach($request->gallery as $gallery){
+                $typeG = $gallery->getClientOriginalExtension();
+                $originalNameG = $gallery->getClientOriginalname();
+                $fullNameG = Str::uuid()."_".$originalNameG;
+                $galleryPath = $gallery->storeAs('images', $fullNameG, 'public');
+                media::create([
+                    'product_id'=>$product->id,
+                    'path'=>$galleryPath,
+                    'type'=>$typeG,
+                    'is_main'=>0
+                ]);
+            }
+        }
+        if ($request->proAttr) {
+            $productAttributes = product_attributes::where('product_id', $product->id)->get();
+            foreach($productAttributes as $productAttribute){
+                $productAttribute->delete();
+            }
+            $product_attribute_id = [];
+            foreach($request->proAttr as $attribute){
+                $product_attribute_id[]=product_attributes::insertGetId([
+                    'product_id'=>$product->id,
+                    'attribute_key'=>$attribute['key'],
+                    'attribute_value'=>$attribute['value']
+                ]);
+            }
+        }
+        if ($request->price) {
+            $product->price->delete();
+            product_price::create([
+            'product_id'=>$product->id,
+            'product_attribute'=>json_encode($product_attribute_id),
+            'price'=>$request->price,
+            'discount'=>$request->discount,
+            'quantity'=>$request->quantity
+        ]);
+        }
+        $product->title = $request->title;
+        $product->description = $request->description;
+        $product->summary = $request->summary;
+        $product->category_id = $request->category_id;
+        $product->brand = $request->brand;
+        if ($request->is_in_home) {
+            $product->is_in_home = $request->is_in_home;
+        }
+        $product->save();
+        
+        return to_route('product-index');
     }
     public function delete(product $product)
     {
-        dd($product->comments);
         foreach($product->medias as $media){
             Storage::disk('public')->delete($media->path);
+            $media->delete();
         }
+        foreach ($product->attributes as $attribute) {
+            $attribute->delete();
+        }
+        $product->price->delete();
         $product->delete();
         return to_route('product-index');
     }

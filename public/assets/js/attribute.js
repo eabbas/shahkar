@@ -1,10 +1,13 @@
 let attribute = document.getElementById('attribute')
-let attributeCount = 0;
-console.log(attribute);
+
+let attributeCount = 0
+if (count) {
+    attributeCount = count
+}
 
 function add() {
     let div = document.createElement('div')
-    div.id = `attribute-${attributeCount}`
+    div.setAttribute('data-index', attributeCount)
     let element = `
         <div class="flex flex-row justify-between items-end gap-3 lg:gap-5 mt-3 md:mt-5">
             <div class="w-full flex flex-col">
@@ -23,6 +26,8 @@ function add() {
     div.innerHTML = element
     attribute.appendChild(div)
     attributeCount++;
+    console.log(attributeCount);
+    
 }
 
 function remove(id) {

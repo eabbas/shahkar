@@ -26,7 +26,7 @@
    @section('content')
    <div class="w-full h-full pb-10">
       <h2 class="text-3xl text-center font-bold py-5 text-[#425A8B]">فرم ایجاد محصول</h2>
-      <div class="w-3/4 mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white">
+      <div class="w-full mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white">
          <form action="{{route('product-store')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="flex flex-col md:flex-row gap-3 md:gap-5">
@@ -112,6 +112,9 @@
          </form>
       </div>
    </div>
+   <script>
+      let count = 0
+   </script>
    <script src="{{ url('assets/js/attribute.js') }}"></script>
    @endsection
 </body>

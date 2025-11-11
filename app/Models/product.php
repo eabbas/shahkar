@@ -20,11 +20,11 @@ class product extends Model
     }
     public function comments()
     {
-        return $this->hasMany(comment::class);
+        return $this->hasMany(comment::class)->chaperone();
     }
     public function medias()
     {
-        return $this->hasMany(media::class);
+        return $this->hasMany(media::class)->chaperone();
     }
     public function price()
     {

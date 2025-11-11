@@ -336,20 +336,25 @@
             </div>
             <div class="xl:w-4/12 w-full">
                 <div class="flex flex-row md:justify-center xl:justify-end items-center gap-5">
-                    <a href="{{ route('user.login') }}" class="flex items-center gap-5">
+                    <div class="flex items-center gap-5">
                         <div class="size-6">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-full" viewBox="0 0 448 512">
                                 <path fill="var(--color-fill)"
                                     d="M320 128a96 96 0 1 0 -192 0 96 96 0 1 0 192 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM32 480H416c-1.2-79.7-66.2-144-146.3-144H178.3c-80 0-145 64.3-146.3 144zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z" />
                             </svg>
                         </div>
+                        @if(Auth::user())
                         <div>
-                            <span class="block text-[var(--color-text)] leading-[22px] font-medium text-sm">اکانت
-                                من</span>
-                            <span class="block text-[var(--color-text)] leading-[22px] text-xs">با احترام وارد
-                                شوید</span>
+                            <span class="block text-[var(--color-text)] leading-[22px] font-medium text-sm">{{Auth::user()['name']}} {{Auth::user()['family']}}</span>
+                            <a href="{{route('user.profile',[Auth::user()->id])}}" class="block text-[var(--color-text)] leading-[22px] text-xs">مشاهده پروفایل</a>
                         </div>
-                    </a>
+                        @else
+                        <div>
+                            <a class="block text-[var(--color-text)] leading-[22px] font-medium text-sm" href="{{route('user.login')}}">ورود</a>
+                            <a class="block text-[var(--color-text)] leading-[22px] text-xs" href="{{route('user.signup')}}">ثبت نام</a>
+                        </div>
+                        @endif
+                    </div>
                     <a href="#" class="inline-block w-8 h-6 relative">
                         <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 512 512">
                             <path fill="var(--color-fill)"
@@ -383,9 +388,6 @@
                         <span class="text-sm text-[var(--color-text)]">
                             بناب
                         </span>
-                        @if(Auth::check())
-                        <a href="{{ route('user.logout') }}" class="text-xs text-[var(--color-text)]">خروج از حساب کاربری</a>
-                        @endif
                     </div>
                 </div>
             </div>
@@ -924,7 +926,7 @@
                                 @endforeach
                             </div>
                         </div>
-                        <div class="w-full overflow-x-auto" style="scrollbar-width:none;">
+                        <div class="w-full overflow-x-auto touch-pan-x" style="scrollbar-width:none;">
                             <div class="hidden lg:flex flex-row items-center mt-5 mb-3 ">
                                 @foreach($product->medias as $media)
                                 @if(!$media->is_main)
@@ -937,44 +939,7 @@
                                 </div>
                                 @endif
                                 @endforeach
-                                <!-- <div class="cursor-pointer rounded border border-[var(--color-border)] p-1 ml-2">
-                                    <div class="w-[72px] h-[72px]">
-                                        <img class="w-full"
-                                            src="https://dkstatics-public.digikala.com/digikala-products/0a94351fff27fd2ba66728d38a9bfe8171b4f1aa_1751860818.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90"
-                                            alt="">
-                                    </div>
-                                </div>
-                                <div class="block cursor-pointer rounded border border-[var(--color-border)] p-1 ml-2">
-                                    <div class="w-[72px] h-[72px]">
-                                        <img class="w-full"
-                                            src="https://dkstatics-public.digikala.com/digikala-products/0a94351fff27fd2ba66728d38a9bfe8171b4f1aa_1751860818.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90"
-                                            alt="">
-                                    </div>
-                                </div>
-                                <div
-                                    class="hidden xl:block cursor-pointer rounded border border-[var(--color-border)] p-1 ml-2">
-                                    <div class="w-[72px] h-[72px]">
-                                        <img class="w-full"
-                                            src="https://dkstatics-public.digikala.com/digikala-products/0a94351fff27fd2ba66728d38a9bfe8171b4f1aa_1751860818.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90"
-                                            alt="">
-                                    </div>
-                                </div>
-                                <div
-                                    class="hidden xl:block cursor-pointer rounded border border-[var(--color-border)] p-1 ml-2">
-                                    <div class="w-[72px] h-[72px]">
-                                        <img class="w-full"
-                                            src="https://dkstatics-public.digikala.com/digikala-products/0a94351fff27fd2ba66728d38a9bfe8171b4f1aa_1751860818.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90"
-                                            alt="">
-                                    </div>
-                                </div>
-                                <div
-                                    class="hidden xl:block cursor-pointer rounded border border-[var(--color-border)] p-1 ml-2">
-                                    <div class="w-[72px] h-[72px]">
-                                        <img class="w-full blur-xs"
-                                            src="https://dkstatics-public.digikala.com/digikala-products/0a94351fff27fd2ba66728d38a9bfe8171b4f1aa_1751860818.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90"
-                                            alt="">
-                                    </div>
-                                </div> -->
+                               
                             </div>
 
                         </div>
@@ -1403,7 +1368,7 @@
                         <hr class="w-full border-none h-2 bg-[var(--color-border)] lg:hidden">
 
                         <div class="lg:px-0 px-2 pt-5 pb-5 lg:pb-0">
-                            <h3 class="text-lg font-semibold leading-[180%] pb-3">
+                            <h3 class="text-md font-semibold leading-[180%] pb-3">
                                 خدمات پرداخت و ارسال
                             </h3>
                             <div class="pt-3 border border-[var(--color-border)] rounded-md relative">
@@ -2021,7 +1986,7 @@
                     <div class="w-[70px] h-0.5 bg-[var(--color-primary)] mt-2"></div>
                 </div>
                 <div class="w-full">
-                    <div class="flex flex-row items-center overflow-x-auto touch-pan-x hide-scrollbar">
+                    <div class="flex flex-row items-center overflow-x-auto touch-pan-x hide-scrollbar" style="scrollbar-width:none;">
 
 
                         <div class="w-auto h-auto ml-6 border-l border-[var(--color-border)]">
@@ -2386,7 +2351,7 @@
                     </h2>
                 </div>
                 <div class="w-full">
-                    <div class="flex flex-row items-center overflow-x-auto touch-pan-x hide-scrollbar">
+                    <div class="flex flex-row items-center overflow-x-auto touch-pan-x hide-scrollbar" style="scrollbar-width:none;">
 
 
                         <div class="w-auto h-auto ml-6">
@@ -2675,7 +2640,7 @@
 
 
 
-                                <div class="lg:w-4/5 overflow-x-auto lg:overflow-visible">
+                                <div class="lg:w-4/5 overflow-x-auto lg:overflow-visible" style="scrollbar-width:none;">
 
                                     <div class="hidden lg:flex flex-row items-center justify-between">
                                         <div class="flex flex-row items-center gap-4">
@@ -2742,7 +2707,7 @@
                                             class="border border-[var(--color-border)] lg:border-none rounded-lg lg:rounded-none ml-2 lg:ml-0 ">
 
                                             <div
-                                                class="py-3 px-3 lg:px-0 lg:py-4 lg:border-b border-[var(--color-border)] min-w-[308px] max-w-[308px] lg:max-w-full lg:min-w-full">
+                                                class="py-3 px-3 lg:px-0 lg:py-4 lg:border-b border-[var(--color-border)] w-fit lg:max-w-full lg:min-w-full">
                                                 <div class="flex flex-row items-center justify-between">
                                                     <div class="flex flex-row items-center">
                                                         <div class="size-10">
@@ -2752,7 +2717,7 @@
                                                         </div>
                                                         <div class="mr-2">
                                                             <div class="flex flex-row items-center gap-2">
-                                                                <span class="text-sm font-medium">
+                                                                <span class="text-xs font-medium">
                                                                     {{ $comment->user?->name ?? 'کاربر ناشناس' }} {{ $comment->user?->family }}
                                                                 </span>
                                                                 <div
@@ -2982,7 +2947,7 @@
                             <div class="w-[70px] h-0.5 bg-[var(--color-primary)] mt-2"></div>
                         </div>
                         <div class="py-3 lg:hidden flex flex-row items-center justify-between px-2">
-                            <h2 class="font-semibold leading-[2.17]">
+                            <h2 class="font-medium leading-[2.17]">
                                 پرسش و پاسخ
                             </h2>
 
@@ -3001,7 +2966,7 @@
 
                         </div>
                         <div
-                            class="mt-4 pt-4 flex flex-row items-start overflow-x-auto lg:overflow-x-clip px-2 lg:px-0">
+                            class="mt-4 pt-4 flex flex-row items-start overflow-x-auto lg:overflow-x-clip px-2 lg:px-0" style="scrollbar-width:none;">
                             <div class="w-1/5 sticky top-16 ml-12 hidden lg:block">
                                 <div class="mt-4 mb-3">
                                     <span class="text-[10px]">
@@ -3085,7 +3050,7 @@
                                                             <img class="size-full rounded-full" src="https://dkstatics-public.digikala.com/digikala-content-x-profile/79e1a2b23332632135d587ca943b5b2f8bf8ea6e_1742409752.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/quality,q_80" alt="user profile">
                                                         </div>
                                                         <div class="flex flex-row items-center gap-2">
-                                                            <span class="text-sm font-medium">
+                                                            <span class="text-xs font-medium">
 
                                                                 {{$answer->user?->name ?? 'کاربر ناشناس'}} {{$answer->user?->family}}
 
@@ -3227,14 +3192,14 @@
                         <div class="flex flex-row justify-end">
                             <div>
                                 <div class="flex flex-row items-end gap-3">
-                                    <span class="text-xs text-[var(--color-secondary-text)] line-through">919,000</span>
+                                    <span class="text-xs text-[var(--color-secondary-text)] line-through">{{$product->price->price}}</span>
                                     <span
                                         class="px-2 leading-[1.9] bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] text-xs font-medium rounded-full">
-                                        10%
+                                       {{round($persent)}}%
                                     </span>
                                 </div>
                                 <div class="flex flex-row gap-1 mt-1 items-end">
-                                    <span class="text-lg font-semibold">830,000</span>
+                                    <span class="text-lg font-semibold">{{$product->price->discount}}</span>
                                     <span class="text-xs pb-1.5">تومان</span>
                                 </div>
 
@@ -3299,7 +3264,7 @@
                             <path fill="var(--color-text)" d="M64 96c-17.7 0-32 14.3-32 32V384c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V128c0-17.7-14.3-32-32-32H64zM0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64v47.2V336.8 384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM519.4 411.3L416 354.4V317.9l118.8 65.4c.9 .5 1.9 .8 3 .8c3.4 0 6.2-2.8 6.2-6.2V134.2c0-3.4-2.8-6.2-6.2-6.2c-1 0-2.1 .3-3 .8L416 194.1V157.6l103.4-56.9c5.6-3.1 12-4.7 18.4-4.7c21.1 0 38.2 17.1 38.2 38.2V377.8c0 21.1-17.1 38.2-38.2 38.2c-6.4 0-12.8-1.6-18.4-4.7z" />
 
                         </svg>
-                        <h3 class="text-lg font-semibold leading-[180%]">
+                        <h3 class="text-md font-medium leading-[180%]">
                             ویدئو های بررسی این کالا
                         </h3>
                     </div>
@@ -3311,7 +3276,7 @@
             </div>
 
             <!-- اگه تعداد ویدئو ها زیاد باشه تگ زیر رو از کامنت دربیارین -->
-            <!-- <div class="overflow-x-auto"> -->
+            <div class="overflow-x-auto" style="scrollbar-width:none;">
             <div class="flex flex-row items-center">
                 <!-- video -->
                 <div class="w-[150px] max-w-[150px]">
@@ -3349,7 +3314,7 @@
                 </div>
                 <!-- video -->
             </div>
-            <!-- </div> -->
+            </div>
 
 
         </section>
@@ -3368,7 +3333,7 @@
                     </h3>
                 </div>
                 <div class="w-full overflow-x-auto" style="scrollbar-width:none;">
-                    <div class="flex justify-start items-center gap-2 w-full overflow-auto hide-scrollbar">
+                    <div class="flex justify-start items-center gap-2 w-full overflow-auto hide-scrollbar" style="scrollbar-width:none;">
                         <a href="#"
                             class="rounded-full px-3 whitespace-nowrap max-w-[300px] ellipsis-1 py-1 select-none leading-[180%] text-xs !flex items-center justify-center text-white bg-[var(--color-text)]">
                             کالا های مشابه
@@ -3402,7 +3367,7 @@
                                 گوشی موبایل هانوفر مدل 8210 دو سیم کارت
                             </span>
                         </div>
-                        <div class="mt-14 flex flex-row items-center gap-2">
+                        <div class="mt-5 lg:mt-14 flex flex-row items-center gap-2">
                             <span class="font-medium">
                                 1,640,000
                             </span>
@@ -3424,7 +3389,7 @@
                                 گوشی موبایل هانوفر مدل 8210 دو سیم کارت
                             </span>
                         </div>
-                        <div class="mt-14 flex flex-row items-center gap-2">
+                        <div class="mt-5 lg:mt-14 flex flex-row items-center gap-2">
                             <span class="font-medium">
                                 1,640,000
                             </span>
@@ -3446,7 +3411,7 @@
                                 گوشی موبایل هانوفر مدل 8210 دو سیم کارت
                             </span>
                         </div>
-                        <div class="mt-14 flex flex-row items-center gap-2">
+                        <div class="mt-5 lg:mt-14 flex flex-row items-center gap-2">
                             <span class="font-medium">
                                 1,640,000
                             </span>
@@ -3468,7 +3433,7 @@
                                 گوشی موبایل هانوفر مدل 8210 دو سیم کارت
                             </span>
                         </div>
-                        <div class="mt-14 flex flex-row items-center gap-2">
+                        <div class="mt-5 lg:mt-14 flex flex-row items-center gap-2">
                             <span class="font-medium">
                                 1,640,000
                             </span>
@@ -3490,7 +3455,7 @@
                                 گوشی موبایل هانوفر مدل 8210 دو سیم کارت
                             </span>
                         </div>
-                        <div class="mt-14 flex flex-row items-center gap-2">
+                        <div class="mt-5 lg:mt-14 flex flex-row items-center gap-2">
                             <span class="font-medium">
                                 1,640,000
                             </span>
@@ -3512,7 +3477,7 @@
                                 گوشی موبایل هانوفر مدل 8210 دو سیم کارت
                             </span>
                         </div>
-                        <div class="mt-14 flex flex-row items-center gap-2">
+                        <div class="mt-5 lg:mt-14 flex flex-row items-center gap-2">
                             <span class="font-medium">
                                 1,640,000
                             </span>
@@ -3534,7 +3499,7 @@
                                 گوشی موبایل هانوفر مدل 8210 دو سیم کارت
                             </span>
                         </div>
-                        <div class="mt-14 flex flex-row items-center gap-2">
+                        <div class="mt-5 lg:mt-14 flex flex-row items-center gap-2">
                             <span class="font-medium">
                                 1,640,000
                             </span>
@@ -3876,10 +3841,6 @@
         </div>
 
         <!-- login popup -->
-
-
-
-
     </main>
 
 

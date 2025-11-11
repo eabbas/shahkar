@@ -10,4 +10,7 @@ class comment extends Model
     public function user(){
         return $this->belongsTo(user::class);
     }
+    public function product(){
+        return $this->belongsTo(product::class);
+    }
 }
