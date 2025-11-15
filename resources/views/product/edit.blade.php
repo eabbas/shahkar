@@ -75,7 +75,7 @@
                                  <input type="text" value="{{ $attribute->attribute_key }}" class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]" placeholder="مقدار ویژگی" name="proAttr[{{ $i }}][value]">
                            </div>
                            <div class="flex items-end">
-                                 <button type="button" class="p-2 rounded-md bg-rose-500 hover:bg-rose-600 text-white cursor-pointer" onclick='remove("{{ $i }}")'>حذف</button>
+                                 <button type="button" class="p-2 rounded-md bg-rose-500 hover:bg-rose-600 text-white cursor-pointer" onclick='remove(this)'>حذف</button>
                            </div>
                         </div>
                      </div>
@@ -103,7 +103,7 @@
                          <div class="flex">
                             <div class="bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4] flex flex-row items-center">
                               <button type="button" class="inline-block size-7 rounded-lg bg-[#1B84FF] hover:bg-[#056EE9] cursor-pointer text-white" onclick="calculate('+')">+</button>
-                              <input type="number" min="0" value="{{ $product->price->quantity }}" class="outline-none w-14 text-center text-xs" name="quantity" id="quantity" dir="ltr">
+                              <input type="number" min="1" value="{{ $product->price->quantity }}" class="outline-none w-14 text-center text-xs" name="quantity" id="quantity" dir="ltr">
                               <button type="button" class="inline-block size-7 rounded-lg bg-[#1B84FF] hover:bg-[#056EE9] cursor-pointer text-white" onclick="calculate('-')">-</button>
                             </div>
                          </div>

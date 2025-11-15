@@ -65,7 +65,7 @@ Route::group(['prefix' => 'course', 'controller' => CourseController::class, 'as
 });
 // menu routes
 Route::group(['prefix' => 'menu', 'controller' => MenuController::class, 'as' => 'menu-'], function () {
-    Route::get('/create', 'create');
+    Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
     Route::get('/list', 'index')->name('index');
     Route::get('/show/{menu}', 'show')->name('show');

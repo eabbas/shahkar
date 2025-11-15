@@ -8,6 +8,8 @@
 </head>
 
 <body>
+   <a href="{{route('menu-create')}}">menu</a>
+   <br>
    <a href="{{route('banners-create')}}">banners</a>
    <br>
    <a href="{{route('banners-logo-create')}}">logo</a>
