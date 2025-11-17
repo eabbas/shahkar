@@ -11,7 +11,6 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FooterColumnController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
-use App\Http\Controllers\ProductAttributesController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SearchController;
@@ -20,18 +19,17 @@ use App\Http\Controllers\userController;
 use App\Http\Middleware\checkAdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
-
-Route::view('/', 'welcome');
 // category routes
-Route::group(['prefix' => 'category', 'controller' => CategoryController::class, 'as' => 'category-'], function () {
+Route::group(['prefix' => 'category', 'controller' => CategoryController::class, 'as' => 'category-', 'middleware' => checkAdminMiddleware::class], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
-    Route::get('/list', 'index')->name('index');
-    Route::get('/show/{category}', 'show')->name('show');
+    Route::get('/admin/list', 'adminIndex')->name('adminIndex');
+    Route::get('/list', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('index');
+    Route::get('/admin/show/{category}', 'adminShow')->name('adminShow');
+    Route::get('/show/{category}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->name('show');
     Route::get('/edit/{category}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{category}', 'delete')->name('delete');
-    Route::get('/{category}/products', 'products')->name('products');
 });
 // product routes
 Route::group(['prefix' => 'product', 'controller' => ProductController::class, 'as' => 'product-'], function () {
@@ -72,16 +70,6 @@ Route::group(['prefix' => 'menu', 'controller' => MenuController::class, 'as' =>
     Route::get('/edit/{menu}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{menu}', 'delete')->name('delete');
-});
-// product attributes routes
-Route::group(['prefix' => 'productAttribute', 'controller' => ProductAttributesController::class, 'as' => 'productAttribute-'], function () {
-    Route::get('/create', 'create');
-    Route::post('/store', 'store')->name('store');
-    Route::get('/list', 'index')->name('index');
-    Route::get('/show/{productAttribute}', 'show')->name('show');
-    Route::get('/edit/{productAttribute}', 'edit')->name('edit');
-    Route::post('/update', 'update')->name('update');
-    Route::get('/delete/{productAttribute}', 'delete')->name('delete');
 });
 // user routes
 Route::group([

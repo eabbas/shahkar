@@ -12,7 +12,7 @@ class userController extends Controller
 {
     public function signup()
     {
-        return view("user.signup");
+        return view("user.user.signup");
     }
     public function store(Request $request)
     {
@@ -27,7 +27,7 @@ class userController extends Controller
     }
     public function login()
     {
-        return view("user.login");
+        return view("user.user.login");
     }
     public function checkUser(Request $request)
     {
@@ -52,11 +52,11 @@ class userController extends Controller
         if (!$user) {
             $user = Auth::user();
         }
-        return view("user.profile", ["user" => $user]);
+        return view("user.user.profile", ["user" => $user]);
     }
     public function edit(User $user)
     {
-        return view("user.user_edit", ["user" => $user]);
+        return view("user.user.user_edit", ["user" => $user]);
     }
     public function update(Request $request)
     {
@@ -84,6 +84,6 @@ class userController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('user.index', ["users" => $users]);
+        return view('user.user.index', ["users" => $users]);
     }
 }

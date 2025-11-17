@@ -36,7 +36,7 @@ class AboutUsController extends Controller
     public function index()
     {
         $aboutus = aboutUs::all();
-        return view('aboutus.index', ['aboutus' => $aboutus]);
+        return view('aboutus', ['aboutus' => $aboutus]);
     }
     public function update(Request $request)
     {

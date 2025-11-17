@@ -15,7 +15,7 @@ class ContactUsController extends Controller
             return to_route('user.login');
         }
         $user = Auth::user();
-        return view('contactus.create', ['user' => $user]);
+        return view('user.contactus.create', ['user' => $user]);
     }
     public function store(Request $request)
     {
@@ -54,11 +54,11 @@ class ContactUsController extends Controller
     }
     public function usersContact(User $user)
     {
-        return view('contactus.usersContacts.usersContact', ['user' => $user]);
+        return view('user.contactus.usersContacts.usersContact', ['user' => $user]);
     }
     public function usersContactEdit(contactUs $contactUs)
     {
-        return view('contactus.usersContacts.usersContactEdit', ['cu' => $contactUs]);
+        return view('user.contactus.usersContacts.usersContactEdit', ['cu' => $contactUs]);
     }
     public function usersContactUpdate(Request $request)
     {
