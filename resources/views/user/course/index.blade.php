@@ -28,8 +28,6 @@
             <td>@if($course['courseCategory']) {{$course['courseCategory']['title']}} @endif</td>
             <td>
                <a href="{{route('course-show',[$course])}}">نمایش</a>
-               <a href="{{route('course-edit',[$course])}}">ویرایش</a>
-               <a href="{{route('course-delete',[$course])}}">حذف</a>
             </td>
          </tr>
          @endforeach

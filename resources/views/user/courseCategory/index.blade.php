@@ -26,8 +26,6 @@
             <td>@if($courseCategory->children) @foreach($courseCategory->children as $child) {{$child->title}} <br> @endforeach @endif</td>
             <td>
                <a href="{{route('courseCategory-show', [$courseCategory])}}">نمایش</a>
-               <a href="{{route('courseCategory-edit', [$courseCategory])}}">ویرایش</a>
-               <a href="{{route('courseCategory-delete', [$courseCategory])}}">حذف</a>
             </td>
          </tr>
          @endforeach

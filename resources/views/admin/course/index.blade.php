@@ -8,6 +8,8 @@
 </head>
 
 <body>
+   @extends('admin.app.dashboard')
+   @section('content')
    <h2>لیست دوره ها</h2>
    <table border="1" style="border-collapse: collapse;">
       <thead>
@@ -27,7 +29,7 @@
             <td>{{$course['description']}}</td>
             <td>@if($course['courseCategory']) {{$course['courseCategory']['title']}} @endif</td>
             <td>
-               <a href="{{route('course-show',[$course])}}">نمایش</a>
+               <a href="{{route('course-adminShow',[$course])}}">نمایش</a>
                <a href="{{route('course-edit',[$course])}}">ویرایش</a>
                <a href="{{route('course-delete',[$course])}}">حذف</a>
             </td>
@@ -35,6 +37,7 @@
          @endforeach
       </tbody>
    </table>
+   @endsection
 </body>
 
 </html>

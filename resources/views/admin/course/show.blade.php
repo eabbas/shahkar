@@ -8,6 +8,8 @@
 </head>
 
 <body>
+   @extends('admin.app.dashboard')
+   @section('content')
    <h2>نمایش دوره</h2>
    <table border="1" style="border-collapse: collapse;">
       <thead>
@@ -27,7 +29,8 @@
          </tr>
       </tbody>
    </table>
-   <a href="{{route('course-index')}}">برگشت</a>
+   <a href="{{route('course-adminIndex')}}">برگشت</a>
+   @endsection
 </body>
 
 </html>

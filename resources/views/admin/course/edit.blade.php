@@ -10,6 +10,8 @@
 </head>
 
 <body>
+   @extends('admin.app.dashboard')
+   @section('content')
    <div class="w-full h-svh bg-[url('https://keenthemes.com/static/metronic/tailwind/dist/assets/media/images/2600x1200/bg-10.png')] bg-cover bg-no-repeat">
       <h2 class="text-3xl text-center font-bold py-5 text-[#425A8B]">فرم ویرایش دوره</h2>
       <div class="w-2/3 mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white">
@@ -42,6 +44,7 @@
          </form>
       </div>
    </div>
+   @endsection
 </body>
 
 </html>
