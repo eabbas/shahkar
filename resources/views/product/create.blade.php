@@ -19,7 +19,6 @@
 </head>
 
 <body>
-
 @extends('dashboard')
 
 
@@ -80,7 +79,7 @@
                          <div class="flex">
                             <div class="bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4] flex flex-row items-center">
                               <button type="button" class="inline-block size-7 rounded-lg bg-[#1B84FF] hover:bg-[#056EE9] cursor-pointer text-white" onclick="calculate('+')">+</button>
-                              <input type="number" min="0" class="outline-none w-14 text-center text-xs" name="quantity" id="quantity" dir="ltr">
+                              <input type="number" min="1" value="1" class="outline-none w-14 text-center text-xs" name="quantity" id="quantity" dir="ltr">
                               <button type="button" class="inline-block size-7 rounded-lg bg-[#1B84FF] hover:bg-[#056EE9] cursor-pointer text-white" onclick="calculate('-')">-</button>
                             </div>
                          </div>
