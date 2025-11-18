@@ -20,72 +20,90 @@ class ProductController extends Controller
     {
         $settings = settings::all();
         $categories = category::all();
-        return view('product.create', ["categories" => $categories, 'settings'=>$settings]);
+        return view('admin.product.create', ["categories" => $categories, 'settings' => $settings]);
     }
     public function store(Request $request)
     {
-        
+
         // dd($request->all(), $request->proAttr[0]['value']);
         $type = request()->mainImage->getClientOriginalExtension();
         $originalName = request()->mainImage->getClientOriginalname();
-        $fullName = Str::uuid()."_".$originalName;
+        $fullName = Str::uuid() . "_" . $originalName;
         $mainPath = request()->file('mainImage')->storeAs('images', $fullName, 'public');
-        
-        
+
+
         $product_id = product::insertGetId([
             'title' => $request->title,
             'description' => $request->description,
             'summary' => $request->summary,
             'category_id' => $request->category_id,
-            'is_in_home'=>$request->is_in_home,
-            'brand'=>$request->brand
+            'is_in_home' => $request->is_in_home,
+            'brand' => $request->brand
         ]);
-        $products []= ['product_id'=>$product_id, 'path'=>$mainPath, 'type'=>$type, 'is_main'=>1, 'created_at' => now(), 'updated_at' => now()];
+        $products[] = ['product_id' => $product_id, 'path' => $mainPath, 'type' => $type, 'is_main' => 1, 'created_at' => now(), 'updated_at' => now()];
 
-        foreach($request->gallery as $gallery){
+        foreach ($request->gallery as $gallery) {
             $typeG = $gallery->getClientOriginalExtension();
             $originalGalleryName = $gallery->getClientOriginalname();
-            $fullNameGallery = Str::uuid()."_".$originalGalleryName;
+            $fullNameGallery = Str::uuid() . "_" . $originalGalleryName;
             $galleryPath = $gallery->storeAs('images', $fullNameGallery, 'public');
-            $products[]=['product_id'=>$product_id, 'path'=>$galleryPath, 'type'=>$typeG, 'is_main'=>0, 'created_at' => now(), 'updated_at' => now()];
+            $products[] = ['product_id' => $product_id, 'path' => $galleryPath, 'type' => $typeG, 'is_main' => 0, 'created_at' => now(), 'updated_at' => now()];
         }
         media::insert($products);
         $product_attribute_id = [];
-        foreach($request->proAttr as $attribute){
-            $product_attribute_id[]=product_attributes::insertGetId([
-                'product_id'=>$product_id,
-                'attribute_key'=>$attribute['key'],
-                'attribute_value'=>$attribute['value']
+        foreach ($request->proAttr as $attribute) {
+            $product_attribute_id[] = product_attributes::insertGetId([
+                'product_id' => $product_id,
+                'attribute_key' => $attribute['key'],
+                'attribute_value' => $attribute['value']
             ]);
         }
 
         product_price::create([
-            'product_id'=>$product_id,
-            'product_attribute'=>json_encode($product_attribute_id),
-            'price'=>$request->price,
-            'discount'=>$request->discount,
-            'quantity'=>$request->quantity
+            'product_id' => $product_id,
+            'product_attribute' => json_encode($product_attribute_id),
+            'price' => $request->price,
+            'discount' => $request->discount,
+            'quantity' => $request->quantity
         ]);
 
-        return to_route('product-index');
+        return to_route('product-adminIndex');
     }
     public function index()
     {
         $products = product::with('category')->get();
-        return view('product.index', ['products' => $products]);
+        return view('user.product.index', ['products' => $products]);
+    }
+    public function adminIndex()
+    {
+        $products = product::with('category')->get();
+        return view('admin.product.index', ['products' => $products]);
     }
     public function show(product $product)
     {
-        $campare = $product->price->price-$product->price->discount;
-        $x= $campare/$product->price->price;
-        $persent = $x*100;
+        $campare = $product->price->price - $product->price->discount;
+        $x = $campare / $product->price->price;
+        $persent = $x * 100;
         $answers = answer::all();
         $settings = settings::all();
         $product->category;
         $product->comments;
         $questions = question::all();
         $product->medias;
-        return view('product.show', ['product' => $product, 'settings' => $settings, 'questions' => $questions, 'answers' => $answers, 'persent'=>$persent]);
+        return view('user.product.show', ['product' => $product, 'settings' => $settings, 'questions' => $questions, 'answers' => $answers, 'persent' => $persent]);
+    }
+    public function adminShow(product $product)
+    {
+        $campare = $product->price->price - $product->price->discount;
+        $x = $campare / $product->price->price;
+        $persent = $x * 100;
+        $answers = answer::all();
+        $settings = settings::all();
+        $product->category;
+        $product->comments;
+        $questions = question::all();
+        $product->medias;
+        return view('admin.product.show', ['product' => $product, 'settings' => $settings, 'questions' => $questions, 'answers' => $answers, 'persent' => $persent]);
     }
     public function edit(product $product)
     {
@@ -93,76 +111,76 @@ class ProductController extends Controller
         $product->category;
         $product->medias;
         $categories = category::all();
-        return view('product.edit', ['product' => $product, 'categories' => $categories, 'settings'=>$settings]);
+        return view('admin.product.edit', ['product' => $product, 'categories' => $categories, 'settings' => $settings]);
     }
     public function update(Request $request)
     {
         $product = product::find($request->id);
         if ($request->mainImage) {
-            foreach($product->medias as $mainImage){
+            foreach ($product->medias as $mainImage) {
                 if ($mainImage->is_main == 1) {
                     Storage::disk('public')->delete($mainImage->path);
-                    $media = media::where(['product_id'=>$product->id, 'is_main'=>1])->first();
+                    $media = media::where(['product_id' => $product->id, 'is_main' => 1])->first();
                     $media->delete();
                 }
             }
             $type = request()->mainImage->getClientOriginalExtension();
             $originalName = request()->mainImage->getClientOriginalname();
-            $fullName = Str::uuid()."_".$originalName;
+            $fullName = Str::uuid() . "_" . $originalName;
             $mainPath = request()->file('mainImage')->storeAs('images', $fullName, 'public');
             media::create([
-                'product_id'=>$product->id,
-                'path'=>$mainPath,
-                'type'=>$type,
-                'is_main'=>1
+                'product_id' => $product->id,
+                'path' => $mainPath,
+                'type' => $type,
+                'is_main' => 1
             ]);
         }
         if ($request->gallery) {
-            foreach($product->medias as $galleryPath){
+            foreach ($product->medias as $galleryPath) {
                 if ($galleryPath->is_main == 0) {
                     Storage::disk('public')->delete($galleryPath->path);
-                    $mediaG = media::where(['product_id'=>$product->id, 'is_main'=>0])->get();
+                    $mediaG = media::where(['product_id' => $product->id, 'is_main' => 0])->get();
                     foreach ($mediaG as $img) {
                         $img->delete();
                     }
                 }
             }
-            foreach($request->gallery as $gallery){
+            foreach ($request->gallery as $gallery) {
                 $typeG = $gallery->getClientOriginalExtension();
                 $originalNameG = $gallery->getClientOriginalname();
-                $fullNameG = Str::uuid()."_".$originalNameG;
+                $fullNameG = Str::uuid() . "_" . $originalNameG;
                 $galleryPath = $gallery->storeAs('images', $fullNameG, 'public');
                 media::create([
-                    'product_id'=>$product->id,
-                    'path'=>$galleryPath,
-                    'type'=>$typeG,
-                    'is_main'=>0
+                    'product_id' => $product->id,
+                    'path' => $galleryPath,
+                    'type' => $typeG,
+                    'is_main' => 0
                 ]);
             }
         }
         if ($request->proAttr) {
             $productAttributes = product_attributes::where('product_id', $product->id)->get();
-            foreach($productAttributes as $productAttribute){
+            foreach ($productAttributes as $productAttribute) {
                 $productAttribute->delete();
             }
             $product_attribute_id = [];
-            foreach($request->proAttr as $attribute){
-                $product_attribute_id[]=product_attributes::insertGetId([
-                    'product_id'=>$product->id,
-                    'attribute_key'=>$attribute['key'],
-                    'attribute_value'=>$attribute['value']
+            foreach ($request->proAttr as $attribute) {
+                $product_attribute_id[] = product_attributes::insertGetId([
+                    'product_id' => $product->id,
+                    'attribute_key' => $attribute['key'],
+                    'attribute_value' => $attribute['value']
                 ]);
             }
         }
         if ($request->price) {
             $product->price->delete();
             product_price::create([
-            'product_id'=>$product->id,
-            'product_attribute'=>json_encode($product_attribute_id),
-            'price'=>$request->price,
-            'discount'=>$request->discount,
-            'quantity'=>$request->quantity
-        ]);
+                'product_id' => $product->id,
+                'product_attribute' => json_encode($product_attribute_id),
+                'price' => $request->price,
+                'discount' => $request->discount,
+                'quantity' => $request->quantity
+            ]);
         }
         $product->title = $request->title;
         $product->description = $request->description;
@@ -173,12 +191,12 @@ class ProductController extends Controller
             $product->is_in_home = $request->is_in_home;
         }
         $product->save();
-        
-        return to_route('product-index');
+
+        return to_route('product-adminIndex');
     }
     public function delete(product $product)
     {
-        foreach($product->medias as $media){
+        foreach ($product->medias as $media) {
             Storage::disk('public')->delete($media->path);
             $media->delete();
         }
@@ -187,6 +205,6 @@ class ProductController extends Controller
         }
         $product->price->delete();
         $product->delete();
-        return to_route('product-index');
+        return to_route('product-adminIndex');
     }
 }

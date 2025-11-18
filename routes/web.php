@@ -32,11 +32,13 @@ Route::group(['prefix' => 'category', 'controller' => CategoryController::class,
     Route::get('/delete/{category}', 'delete')->name('delete');
 });
 // product routes
-Route::group(['prefix' => 'product', 'controller' => ProductController::class, 'as' => 'product-'], function () {
+Route::group(['prefix' => 'product', 'controller' => ProductController::class, 'as' => 'product-', 'middleware' => checkAdminMiddleware::class], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
-    Route::get('/list', 'index')->name('index');
-    Route::get('/show/{product}', 'show')->name('show');
+    Route::get('/admin/list', 'adminIndex')->name('adminIndex');
+    Route::get('/list', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('index');
+    Route::get('/admin/show/{product}', 'adminShow')->name('adminShow');
+    Route::get('/show/{product}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->name('show');
     Route::get('/edit/{product}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{product}', 'delete')->name('delete');

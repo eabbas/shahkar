@@ -18,7 +18,8 @@
 </head>
 
 <body>
-
+    @extends('admin.app.dashboard')
+    @section('content')
     <header class="2xl:container mx-auto 2xl:px-4 w-full border-b border-[var(--color-border)] py-3">
 
         <!-- desktop header -->
@@ -939,7 +940,7 @@
                                 </div>
                                 @endif
                                 @endforeach
-                               
+
                             </div>
 
                         </div>
@@ -1011,7 +1012,7 @@
                                             <path fill="var(--color-fill)"
                                                 d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
                                         </svg>
-    
+
                                     </div>
                                     <div
                                         class="flex flex-row items-center gap-1 bg-[var(--color-primary-btn)] rounded-full px-2 py-1 cursor-pointer">
@@ -1022,7 +1023,7 @@
                                             <path fill="var(--color-fill)"
                                                 d="M52.7 267.3c-6.2-6.2-6.2-16.4 0-22.6l160-160c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6L86.6 256 235.3 404.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0l-160-160z" />
                                         </svg>
-    
+
                                     </div>
                                 </div>
                             </div>
@@ -2411,7 +2412,7 @@
                     @foreach($product->attributes as $attribute)
                     <div class="flex flex-row border-b border-[var(--color-border)]">
                         <div class="w-1/4 p-1 text-[10px] bg-[var(--color-secondary-bg)] leading-[180%]">
-                           {{ $attribute->attribute_key}}
+                            {{ $attribute->attribute_key}}
                         </div>
                         <div class="w-3/4 p-1 text-[10px] leading-[180%]">
                             {{ $attribute->attribute_value}}
@@ -3195,7 +3196,7 @@
                                     <span class="text-xs text-[var(--color-secondary-text)] line-through">{{$product->price->price}}</span>
                                     <span
                                         class="px-2 leading-[1.9] bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] text-xs font-medium rounded-full">
-                                       {{round($persent)}}%
+                                        {{round($persent)}}%
                                     </span>
                                 </div>
                                 <div class="flex flex-row gap-1 mt-1 items-end">
@@ -3277,43 +3278,43 @@
 
             <!-- اگه تعداد ویدئو ها زیاد باشه تگ زیر رو از کامنت دربیارین -->
             <div class="overflow-x-auto" style="scrollbar-width:none;">
-            <div class="flex flex-row items-center">
-                <!-- video -->
-                <div class="w-[150px] max-w-[150px]">
-                    <div class="w-full h-[210px] max-h-[210px] relative">
-                        <video class="rounded-lg size-full object-cover cursor-pointer" poster="https://dkstatics-public.digikala.com/digikala-content-x-post-media/61c709a2f5e9660d587c66c7d056ba85306a5e8d_1749458853.jpg?x-oss-process=image/resize,w_600/quality,q_80"></video>
-                        <a href="#" class="absolute inline-block size-12 rounded-full border-2 border-white -bottom-2 right-2">
-                            <img class="size-full rounded-full" src="https://dkstatics-public.digikala.com/digikala-content-x-profile/a1250500f4ecb5ad706ab578a19c235f86c83585_1716202955.jpg?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80" alt="user image">
-                        </a>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="size-12 absolute inset-[35%]"
-                            viewBox="0 0 512 512">
+                <div class="flex flex-row items-center">
+                    <!-- video -->
+                    <div class="w-[150px] max-w-[150px]">
+                        <div class="w-full h-[210px] max-h-[210px] relative">
+                            <video class="rounded-lg size-full object-cover cursor-pointer" poster="https://dkstatics-public.digikala.com/digikala-content-x-post-media/61c709a2f5e9660d587c66c7d056ba85306a5e8d_1749458853.jpg?x-oss-process=image/resize,w_600/quality,q_80"></video>
+                            <a href="#" class="absolute inline-block size-12 rounded-full border-2 border-white -bottom-2 right-2">
+                                <img class="size-full rounded-full" src="https://dkstatics-public.digikala.com/digikala-content-x-profile/a1250500f4ecb5ad706ab578a19c235f86c83585_1716202955.jpg?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80" alt="user image">
+                            </a>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-12 absolute inset-[35%]"
+                                viewBox="0 0 512 512">
 
-                            <defs>
-                                <style>
-                                    .fa-primary {
-                                        opacity: .9
-                                    }
+                                <defs>
+                                    <style>
+                                        .fa-primary {
+                                            opacity: .9
+                                        }
 
-                                    .fa-secondary {
-                                        opacity: .7
-                                    }
-                                </style>
-                            </defs>
-                            <path fill="white" class="fa-secondary" d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z" />
-                            <path fill="gray" class="fa-primary" d="M212.5 147.5c-7.4-4.5-16.7-4.7-24.3-.5s-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88z" />
-                            <path fill="white" class="fa-secondary"
-                                d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z" />
-                            <path fill="gray" class="fa-primary"
-                                d="M212.5 147.5c-7.4-4.5-16.7-4.7-24.3-.5s-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88z" />
+                                        .fa-secondary {
+                                            opacity: .7
+                                        }
+                                    </style>
+                                </defs>
+                                <path fill="white" class="fa-secondary" d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z" />
+                                <path fill="gray" class="fa-primary" d="M212.5 147.5c-7.4-4.5-16.7-4.7-24.3-.5s-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88z" />
+                                <path fill="white" class="fa-secondary"
+                                    d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z" />
+                                <path fill="gray" class="fa-primary"
+                                    d="M212.5 147.5c-7.4-4.5-16.7-4.7-24.3-.5s-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88z" />
 
-                        </svg>
+                            </svg>
+                        </div>
+                        <p class="text-xs mt-3">
+                            این گوشی ارزش خرید داره
+                        </p>
                     </div>
-                    <p class="text-xs mt-3">
-                        این گوشی ارزش خرید داره
-                    </p>
+                    <!-- video -->
                 </div>
-                <!-- video -->
-            </div>
             </div>
 
 
@@ -3878,6 +3879,7 @@
     </footer>
     <script src="{{ url('assets/js/main.js') }}"></script>
 
+    @endsection
 </body>
 
 </html>

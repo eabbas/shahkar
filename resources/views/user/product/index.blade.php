@@ -8,8 +8,6 @@
 </head>
 
 <body>
-   @extends('admin.app.dashboard')
-   @section('content')
    <div>
       <h2>لیست محصولات</h2>
       <table border="1" style="border-collapse: collapse;">
@@ -35,15 +33,12 @@
                <td>@if($product['category']) {{$product['category']['title']}} @endif</td>
                <td>
                   <a href="{{route('product-show',[$product])}}">نمایش</a>
-                  <a href="{{route('product-edit',[$product])}}">ویرایش</a>
-                  <a href="{{route('product-delete',[$product])}}">حذف</a>
                </td>
             </tr>
             @endforeach
          </tbody>
       </table>
    </div>
-   @endsection
 </body>
 
 </html>
