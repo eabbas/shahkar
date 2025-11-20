@@ -176,22 +176,22 @@ Route::group(['prefix' => 'footer', 'controller' => FooterColumnController::clas
     Route::post('/footerFormMedia/update', 'footerFormMediaUpdate')->name('footerFormMedia-update');
 });
 // about us routes
-Route::group(['prefix' => 'aboutus', 'controller' => AboutUsController::class, 'as' => 'aboutus-'], function () {
-    Route::get('/create', 'create')->middleware(checkAdminMiddleware::class)->name('create');
+Route::group(['prefix' => 'aboutus', 'controller' => AboutUsController::class, 'as' => 'aboutus-', 'middleware' => checkAdminMiddleware::class], function () {
+    Route::get('/create', 'create')->name('create');
     Route::post('/upsert', 'upsert')->name('upsert');
-    Route::get('', 'index')->name('index');
+    Route::get('', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('index');
 });
 // contact us routes
-Route::group(['prefix' => 'contactus', 'controller' => ContactUsController::class, 'as' => 'contactus-'], function () {
-    Route::get('/create', 'create')->name('create');
-    Route::get('/usersContact/{user}', 'usersContact')->name('usersContact-index');
-    Route::post('/store', 'store')->name('store');
+Route::group(['prefix' => 'contactus', 'controller' => ContactUsController::class, 'as' => 'contactus-', 'middleware' => checkAdminMiddleware::class], function () {
+    Route::get('/usersContact/{user}', 'usersContact')->withoutMiddleware(checkAdminMiddleware::class)->name('usersContact-index');
+    Route::get('/usersContact/edit/{contactUs}', 'usersContactEdit')->withoutMiddleware(checkAdminMiddleware::class)->name('usersContact-edit');
+    Route::post('/usersContact/update', 'usersContactUpdate')->withoutMiddleware(checkAdminMiddleware::class)->name('usersContact-update');
+    Route::get('/usersContact/delete/{contactUs}', 'usersContactDelete')->withoutMiddleware(checkAdminMiddleware::class)->name('usersContact-delete');
+    Route::get('/create', 'create')->withoutMiddleware(checkAdminMiddleware::class)->name('create');
+    Route::post('/store', 'store')->withoutMiddleware(checkAdminMiddleware::class)->name('store');
     Route::get('/edit/{contactUs}', 'edit')->name('edit');
-    Route::get('/usersContact/edit/{contactUs}', 'usersContactEdit')->name('usersContact-edit');
     Route::post('/update', 'update')->name('update');
-    Route::post('/usersContact/update', 'usersContactUpdate')->name('usersContact-update');
     Route::get('/show/{contactUs}', 'show')->name('show');
-    Route::get('/list', 'index')->middleware(checkAdminMiddleware::class)->name('index');
+    Route::get('/list', 'index')->name('index');
     Route::get('/delete/{contactUs}', 'delete')->name('delete');
-    Route::get('/usersContact/delete/{contactUs}', 'usersContactDelete')->name('usersContact-delete');
 });

@@ -10,7 +10,7 @@ class AboutUsController extends Controller
     public function create()
     {
         $aboutus = aboutUs::all();
-        return view('aboutus.create', ['aboutus' => $aboutus]);
+        return view('admin.aboutus.create', ['aboutus' => $aboutus]);
     }
     public function upsert(Request $request)
     {

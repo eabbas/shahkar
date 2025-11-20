@@ -12,7 +12,7 @@
    @section('content')
    @foreach($contactus as $cu)
    <p class="text-lime-500">id: <span class="text-rose-500">{{$cu['id']}}</span></p>
-   <p class="text-lime-500">user: <span class="text-rose-500">{{$cu['user']['name']}} {{$cu['user']['family']}}</span></p>
+   <p class="text-lime-500">user: <span class="text-rose-500">@if($cu['user']) {{$cu['user']['name']}} {{$cu['user']['family']}} @endif</span></p>
    <p class="text-lime-500">name: <span class="text-rose-500">{{$cu['name']}}</span></p>
    <p class="text-lime-500">family: <span class="text-rose-500">{{$cu['family']}}</span></p>
    <p class="text-lime-500">email: <span class="text-rose-500">{{$cu['email']}}</span></p>

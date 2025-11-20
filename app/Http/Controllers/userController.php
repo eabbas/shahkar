@@ -77,6 +77,7 @@ class userController extends Controller
     }
     public function delete(User $user)
     {
+        $user->contactuss()->delete();
         $user->delete();
         return to_route("user.index");
     }

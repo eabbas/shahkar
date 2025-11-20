@@ -25,15 +25,15 @@ class ContactUsController extends Controller
     public function index()
     {
         $contactus = contactUs::all();
-        return view('contactus.index', ['contactus' => $contactus]);
+        return view('admin.contactus.index', ['contactus' => $contactus]);
     }
     public function show(contactUs $contactUs)
     {
-        return view('contactus.show', ['cu' => $contactUs]);
+        return view('admin.contactus.show', ['cu' => $contactUs]);
     }
     public function edit(contactUs $contactUs)
     {
-        return view('contactus.edit', ['cu' => $contactUs]);
+        return view('admin.contactus.edit', ['cu' => $contactUs]);
     }
     public function update(Request $request)
     {
