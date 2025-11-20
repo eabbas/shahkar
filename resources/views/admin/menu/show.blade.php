@@ -8,6 +8,8 @@
 </head>
 
 <body>
+   @extends('admin.app.dashboard')
+   @section('content')
    <h2>نمایش آیتم منو</h2>
    <table border="1" style="border-collapse: collapse;">
       <thead>
@@ -37,6 +39,7 @@
       </tbody>
    </table>
    <a href="{{route('menu-index')}}">برگشت</a>
+   @endsection
 </body>
 
 </html>

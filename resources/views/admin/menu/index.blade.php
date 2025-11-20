@@ -8,6 +8,8 @@
 </head>
 
 <body>
+   @extends('admin.app.dashboard')
+   @section('content')
    <ul>
       @foreach($items as $item)
       <li>
@@ -22,6 +24,7 @@
       </li>
       @endforeach
    </ul>
+   @endsection
 </body>
 
 </html>

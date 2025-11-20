@@ -68,7 +68,7 @@ Route::group(['prefix' => 'course', 'controller' => CourseController::class, 'as
     Route::get('/delete/{course}', 'delete')->name('delete');
 });
 // menu routes
-Route::group(['prefix' => 'menu', 'controller' => MenuController::class, 'as' => 'menu-'], function () {
+Route::group(['prefix' => 'menu', 'controller' => MenuController::class, 'as' => 'menu-', 'middleware' => checkAdminMiddleware::class], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
     Route::get('/list', 'index')->name('index');
@@ -157,7 +157,7 @@ Route::group([
 // search routes
 Route::get('/search/{category}', [SearchController::class, 'index'])->name('search');
 // banners routes
-Route::group(['prefix' => 'banners', 'controller' => BannersController::class, 'as' => 'banners-'], function () {
+Route::group(['prefix' => 'banners', 'controller' => BannersController::class, 'as' => 'banners-', 'middleware' => checkAdminMiddleware::class], function () {
     Route::get('/create', 'bannersCreate')->name('create');
     Route::get('/logo/create', 'logoCreate')->name('logo-create');
     Route::get('/bigBanner/create', 'bigBannerCreate')->name('bigBanner-create');
@@ -166,16 +166,8 @@ Route::group(['prefix' => 'banners', 'controller' => BannersController::class, '
     Route::get('/footerTile/create', 'footerTileCreate')->name('footerTile-create');
     Route::post('/upsert', 'upsert')->name('upsert');
 });
-// dashboard routes
-Route::get('/dashboard', function () {
-    return view('dashboard.dashboard');
-})->middleware(checkAdminMiddleware::class)->name('dashboard');
-
-Route::view('dashboard/settings', 'dashboard.settings')->name('dashboard-settings');
-Route::view('dashboard/settings/home', 'dashboard.home')->name('dashboard-settings-home');
-Route::view('dashboard/settings/home/footer', 'dashboard.footerPartsLinks')->name('footer');
 // footer column and rows routes
-Route::group(['prefix' => 'footer', 'controller' => FooterColumnController::class, 'as' => 'footer-'], function () {
+Route::group(['prefix' => 'footer', 'controller' => FooterColumnController::class, 'as' => 'footer-', 'middleware' => checkAdminMiddleware::class], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
     Route::post('/update', 'update')->name('update');
