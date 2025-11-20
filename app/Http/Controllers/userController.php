@@ -14,6 +14,10 @@ class userController extends Controller
     {
         return view("user.user.signup");
     }
+    public function adminSignup()
+    {
+        return view("admin.user.signup");
+    }
     public function store(Request $request)
     {
         // $password = Hash::make($request->password);
@@ -84,6 +88,6 @@ class userController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('user.user.index', ["users" => $users]);
+        return view('admin.user.index', ["users" => $users]);
     }
 }

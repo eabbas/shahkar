@@ -91,8 +91,8 @@ Route::group([
     Route::get('/edit/{user}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{user}', 'delete')->name('delete');
-    Route::get('/logout', 'logout')->name('logout');
-    Route::get('/index', 'index')->name('index')->middleware(checkAdminMiddleware::class);
+    Route::get('/logout{id?}', 'logout')->name('logout');
+    Route::get('/index', 'index')->middleware(checkAdminMiddleware::class)->name('index');
 });
 // comments routes
 Route::group([
@@ -128,7 +128,7 @@ Route::view('/notAccess', 'notAccess')->name('notAccess');
 Route::view('/loginAtFirst', 'loginAtFirst')->name('loginAtFirst');
 // admin routes
 Route::controller(userController::class)->prefix('admin')->group(function () {
-    Route::get('/signupUser', 'signup')->middleware(checkAdminMiddleware::class)->name('admin_create_user');
+    Route::get('/signupUser', 'adminSignup')->middleware(checkAdminMiddleware::class)->name('admin_create_user');
     // Route::post("/store","store") -> name("user_store");
     // Route::get("/loginUser","login") -> name("user_login");
     // Route::post("/check_login","checkLogin");

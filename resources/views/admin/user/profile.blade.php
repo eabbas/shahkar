@@ -9,7 +9,8 @@
 </head>
 
 <body>
-
+    @extends('admin.app.dashboard')
+    @section('content')
     <header class="2xl:container mx-auto w-full border-b border-gray-300">
         <!-- desktop menu -->
         <div class="w-11/12 mx-auto hidden lg:flex flex-row justify-between items-center py-7">
@@ -63,7 +64,7 @@
                             <span class="text-xs font-semibold text-gray-600">حاج محمد اکبرنژاد</span>
                         </div>
                     </div>
-          
+
                     <div class="h-[537px] overflow-y-auto">
                         <ul class="w-full p-2">
                             <li class="border-b border-gray-300">
@@ -142,6 +143,7 @@
             }
         }
     </script>
+    @endsection
 </body>
 
 </html>

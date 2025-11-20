@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,10 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>signup</title>
 </head>
+
 <body>
+    @extends('admin.app.dashboard')
+    @section('content')
     <main class="w-full h-svh bg-[url('https://keenthemes.com/static/metronic/tailwind/dist/assets/media/images/2600x1200/bg-10.png')] bg-cover bg-no-repeat flex flex-row justify-center items-center">
         <div class="kt-card max-w-[370px] w-full">
             <form action="{{route('user.store')}}" method="post" class="flex flex-col gap-5 p-10 bg-white">
@@ -43,7 +47,7 @@
                     <input type="text" name="name" id="name" class="kt-input" placeholder="نام ">
                 </div>
                 <div class="flex flex-col gap-1">
-                    <label for="name" class="kt-form-label text-[#0b0809]" > نام خانوادگی</label>
+                    <label for="name" class="kt-form-label text-[#0b0809]"> نام خانوادگی</label>
                     <input type="text" name="family" id="name" class="kt-input" placeholder="نام خانوادگی">
                 </div>
                 <div class="flex flex-col gap-1">
@@ -68,5 +72,7 @@
             </form>
         </div>
     </main>
+    @endsection
 </body>
+
 </html>

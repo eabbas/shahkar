@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="{{ url('assets/css/style.css') }}" type="text/css">
     <title>login</title>
-    
+
 </head>
+
 <body>
+    @extends('admin.app.dashboard')
+    @section('content')
     <main class="w-full h-svh bg-[url('https://keenthemes.com/static/metronic/tailwind/dist/assets/media/images/2600x1200/bg-10.png')] bg-cover bg-no-repeat flex flex-row justify-center items-center">
         <div class="kt-card max-w-[370px] w-full">
             <form action="{{route('user.checkUser')}}" method="post" class="flex flex-col gap-5 p-10 bg-white">
@@ -39,16 +43,16 @@
                     <span class="text-xs text-[#1b1718] uppercase">یا</span>
                     <span class="border-t border-[#eeeaeb] w-full"></span>
                 </div>
-              
+
                 <div class="flex flex-col gap-1">
                     <label for="email" class="kt-form-label text-[#0b0809]">ایمیل</label>
                     <input type="email" name="email" id="email" class="kt-input" placeholder="test@example.com">
                 </div>
                 <div class="flex flex-col gap-1">
                     <label for="password" class="kt-form-label text-[#0b0809]">گذرواژه</label>
-                    
+
                     <input type="password" name="password" id="password" class="kt-input outline-none">
-                    
+
                 </div>
                 <div class="flex flex-row justify-start items-center">
                     <span for="accept" class="text-sm text-[#0b0809] mr-2 flex flex-row justify-start items-center">
@@ -60,5 +64,7 @@
             </form>
         </div>
     </main>
+    @endsection
 </body>
+
 </html>
