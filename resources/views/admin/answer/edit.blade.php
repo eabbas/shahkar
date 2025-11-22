@@ -8,6 +8,8 @@
 </head>
 
 <body>
+   @extends('admin.app.dashboard')
+   @section('content')
    <h2>فرم ویرایش پاسخ ها</h2>
    <form action="{{route('answer-update')}}" method="post">
       @csrf
@@ -47,6 +49,7 @@
       <br>
       <button type="submit">ثبت</button>
    </form>
+   @endsection
 </body>
 
 </html>

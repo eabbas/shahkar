@@ -8,6 +8,8 @@
 </head>
 
 <body>
+   @extends('admin.app.dashboard')
+   @section('content')
    <h2>فرم ویرایش سوال ها</h2>
    <form action="{{route('question-update')}}" method="post">
       @csrf
@@ -44,6 +46,7 @@
       </div>
       <button type="submit">ثبت</button>
    </form>
+   @endsection
 </body>
 
 </html>

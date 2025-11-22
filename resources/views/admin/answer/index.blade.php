@@ -8,6 +8,8 @@
 </head>
 
 <body>
+   @extends('admin.app.dashboard')
+   @section('content')
    <h2>لیست پاسخ ها</h2>
    <table border="1" style="border-collapse: collapse;">
       <thead>
@@ -39,6 +41,7 @@
          @endforeach
       </tbody>
    </table>
+   @endsection
 </body>
 
 </html>

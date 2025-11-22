@@ -3631,7 +3631,7 @@
                                 <div class="pt-2 border border-[var(--color-border)] rounded-lg">
 
                                     <textarea class="w-full outline-none resize-none p-3" rows="3"
-                                        placeholder="به این سوال پاسخ دهید " id="question" name="text"></textarea>
+                                        placeholder="ثبت سوال در مورد این محصول" id="question" name="text"></textarea>
                                 </div>
 
 
@@ -3753,7 +3753,7 @@
                                 </div>
                                 <div class="pt-2 border border-[var(--color-border)] rounded-lg">
                                     <textarea class="w-full outline-none resize-none p-3" rows="3"
-                                        placeholder="به این سوال پاسخ دهید"></textarea>
+                                        placeholder="ثبت سوال در مورد این محصول"></textarea>
                                 </div>
                             </div>
                         </div>

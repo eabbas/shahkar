@@ -98,15 +98,19 @@ Route::group([
 Route::group([
     'prefix' => 'comment',
     'controller' => CommentController::class,
-    'as' => 'comment.'
+    'as' => 'comment.',
+    'middleware' => checkAdminMiddleware::class
 ], function () {
-    Route::post('/store', 'store')->name('store');
+    Route::post('/store', 'store')->withoutMiddleware(checkAdminMiddleware::class)->name('store');
+    Route::get('/list', 'index')->name('index');
+    Route::get('/show/{comment}', 'show')->name('show');
+    Route::get('/edit/{comment}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
-    Route::post('/delete/{comment}', 'delete')->name('delete');
+    Route::get('/delete/{comment}', 'delete')->name('delete');
 });
 // questions routes
-Route::group(['prefix' => 'question', 'controller' => QuestionController::class, 'as' => 'question-'], function () {
-    Route::post('/store', 'store')->name('store');
+Route::group(['prefix' => 'question', 'controller' => QuestionController::class, 'as' => 'question-', 'middleware' => checkAdminMiddleware::class], function () {
+    Route::post('/store', 'store')->withoutMiddleware(checkAdminMiddleware::class)->name('store');
     Route::get('/list', 'index')->name('index');
     Route::get('/show/{question}', 'show')->name('show');
     Route::get('/edit/{question}', 'edit')->name('edit');
@@ -114,8 +118,8 @@ Route::group(['prefix' => 'question', 'controller' => QuestionController::class,
     Route::get('/delete/{question}', 'delete')->name('delete');
 });
 // answers routes
-Route::group(['prefix' => 'answer', 'controller' => AnswerController::class, 'as' => 'answer-'], function () {
-    Route::post('/store', 'store')->name('store');
+Route::group(['prefix' => 'answer', 'controller' => AnswerController::class, 'as' => 'answer-', 'middleware' => checkAdminMiddleware::class], function () {
+    Route::post('/store', 'store')->withoutMiddleware(checkAdminMiddleware::class)->name('store');
     Route::get('/list', 'index')->name('index');
     Route::get('/show/{answer}', 'show')->name('show');
     Route::get('/edit/{answer}', 'edit')->name('edit');
@@ -142,7 +146,8 @@ Route::controller(userController::class)->prefix('admin')->group(function () {
 Route::group([
     'prefix' => 'settings',
     'controller' => SettingsController::class,
-    'as' => 'settings.'
+    'as' => 'settings.',
+    'middleware' => checkAdminMiddleware::class
 ], function () {
     Route::group([
         'prefix' => 'colors',

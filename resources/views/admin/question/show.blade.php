@@ -8,6 +8,8 @@
 </head>
 
 <body>
+   @extends('admin.app.dashboard')
+   @section('content')
    <h2>نمایش سوال</h2>
    <table border="1" style="border-collapse: collapse;">
       <thead>
@@ -36,6 +38,7 @@
          </tr>
       </tbody>
    </table>
+   @endsection
 </body>
 
 </html>

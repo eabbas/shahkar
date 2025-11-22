@@ -200,10 +200,11 @@ class ProductController extends Controller
             Storage::disk('public')->delete($media->path);
             $media->delete();
         }
-        foreach ($product->attributes as $attribute) {
-            $attribute->delete();
-        }
-        $product->price->delete();
+        // foreach ($product->attributes as $attribute) {
+        //     $attribute->delete();
+        // }
+        $product->price()->delete();
+        $product->attributes()->delete();
         $product->delete();
         return to_route('product-adminIndex');
     }

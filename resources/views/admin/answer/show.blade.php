@@ -8,6 +8,8 @@
 </head>
 
 <body>
+   @extends('admin.app.dashboard')
+   @section('content')
    <h2>پاسخ</h2>
    <table border="1" style="border-collapse: collapse;">
       <thead>
@@ -32,6 +34,7 @@
       </tbody>
    </table>
    <a href="{{route('answer-index')}}">برگشت</a>
+   @endsection
 </body>
 
 </html>
