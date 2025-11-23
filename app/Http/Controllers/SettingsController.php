@@ -11,7 +11,7 @@ class SettingsController extends Controller
     public function createColor()
     {
         $settings = settings::all();
-        return view('settings.colors.createColor', ['settings' => $settings]);
+        return view('admin.settings.colors.createColor', ['settings' => $settings]);
     }
 
     public function upsertColor(Request $request)
@@ -21,7 +21,7 @@ class SettingsController extends Controller
             $finalData[] = ['meta_key' => $key, 'meta_value' => $data];
         }
         settings::upsert($finalData, ['meta_key'], ['meta_value']);
-        return to_route('home');
+        return to_route('settings.colors.createColor');
     }
 
     public function showColors()

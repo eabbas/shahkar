@@ -1,0 +1,92 @@
+[33m7cf57c1[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmr.olyafam_admin_user_seprating[m[33m)[m separating admin and user in cetegory part
+[33m7de1d2a[m detail debuging
+[33m993295a[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m product compelete
+[33mfb41a8d[m Merge pull request #40 from eabbas/mr.eft_single_product_front
+[33m256a88d[m[33m ([m[1;31morigin/mr.eft_single_product_front[m[33m, [m[1;32mmr.eft_single_product_front[m[33m)[m single product question an answer mobile
+[33m1e3f067[m Merge pull request #39 from eabbas/mr.eft_single_product_front
+[33mad46a80[m responsive front resolved
+[33m3a887a8[m single product front need refactore
+[33mc039e16[m[33m ([m[1;32mmr.olyafam_contactUs_aboutUs_v1[m[33m)[m Merge pull request #38 from eabbas/mr.olyafam_contactUs_aboutUs_v1
+[33m9fa08b1[m[33m ([m[1;31morigin/mr.olyafam_contactUs_aboutUs_v1[m[33m)[m contactUs and aboutUs with userId
+[33ma9867a2[m contactUs and aboutUs without userId
+[33m28ed285[m Merge pull request #37 from eabbas/mr.eft_product_v03
+[33mc29996d[m[33m ([m[1;31morigin/mr.eft_product_v03[m[33m)[m compelete create, store and show product
+[33maa963cb[m[33m ([m[1;32mmr.olyafam_refactor_all[m[33m)[m Merge pull request #36 from eabbas/mr.eft_product_debug
+[33m5130bfd[m[33m ([m[1;31morigin/mr.eft_product_debug[m[33m)[m product debug
+[33m28157ca[m product create
+[33m9f27752[m Merge pull request #35 from eabbas/mr.olyafam_refactor_all
+[33m0f63f4a[m[33m ([m[1;31morigin/mr.olyafam_refactor_all[m[33m)[m refactor after pull
+[33m368c79d[m Merge pull request #34 from eabbas/mr.olyafam_debug
+[33m1270a60[m Merge branch 'main' into mr.olyafam_debug
+[33ma190fac[m[33m ([m[1;31morigin/mr.olyafam_debug[m[33m, [m[1;32mmr.olyafam_debug[m[33m)[m debug
+[33mb61bd2f[m Merge pull request #33 from eabbas/mr.olyafam_footer_backend_v1
+[33me07c6ef[m[33m ([m[1;31morigin/mr.olyafam_footer_backend_v1[m[33m, [m[1;32mmr.olyafam_footer_backend_v1[m[33m)[m footer backend everything
+[33m93d646e[m Merge pull request #32 from eabbas/mr.agasht_front_v01
+[33mdba3687[m[33m ([m[1;31morigin/mr.agasht_front_v01[m[33m)[m Merge branch 'main' into mr.agasht_front_v01
+[33m5566371[m Merge pull request #31 from eabbas/mr.eft_product_v2
+[33mb6b061a[m[33m ([m[1;31morigin/mr.eft_product_v2[m[33m)[m Merge branch 'main' into mr.eft_product_v2
+[33ma9ec692[m Add_Category_page_updated-v02(version_complit)
+[33m0ce15fd[m Add_Category_page_updated-v01
+[33m8030ff4[m product form without attributes
+[33m3e0d04b[m Merge pull request #30 from eabbas/mr.olyafam_footer_frontend_v1
+[33mf186d6b[m[33m ([m[1;31morigin/mr.olyafam_footer_frontend_v1[m[33m, [m[1;32mmr.olyafam_footer_frontend_v1[m[33m)[m footer front
+[33m08c868a[m Merge pull request #29 from eabbas/mr.olyafam_logo_backAndFront_v1
+[33m208b5b9[m[33m ([m[1;31morigin/mr.olyafam_logo_backAndFront_v1[m[33m, [m[1;32mmr.olyafam_logo_backAndFront_v1[m[33m)[m logo front and back
+[33m8fbce81[m Merge pull request #28 from eabbas/mr.olyafam_bannersForms_frontend_v1
+[33m94621a8[m[33m ([m[1;31morigin/mr.olyafam_bannersForms_frontend_v1[m[33m, [m[1;32mmr.olyafam_bannersForms_frontend_v1[m[33m)[m banners and tiles front
+[33mca072e7[m Merge pull request #27 from eabbas/mr.eft_product_compelete_v1
+[33m1ce8a87[m product create v1
+[33m3048f65[m[33m ([m[1;31morigin/mr.olyafam_catProductsSearch_backend_v1[m[33m, [m[1;32mmr.olyafam_catProductsSearch_backend_v1[m[33m)[m category related products search
+[33m4f457d0[m Merge pull request #26 from eabbas/mr.olyafam_footerTile_backend_v1
+[33m29b7351[m[33m ([m[1;31morigin/mr.olyafam_footerTile_backend_v1[m[33m, [m[1;32mmr.olyafam_footerTile_backend_v1[m[33m)[m footer tile backend
+[33mcfd6301[m Merge pull request #25 from eabbas/mr.olyafam_bigTile_backend_v1
+[33m10e6c5c[m[33m ([m[1;31morigin/mr.olyafam_bigTile_backend_v1[m[33m, [m[1;32mmr.olyafam_bigTile_backend_v1[m[33m)[m big tile in header backend
+[33m6bee8cd[m Merge pull request #24 from eabbas/mr.olyafam_tiles_backend_v1
+[33md67b0e6[m[33m ([m[1;31morigin/mr.olyafam_tiles_backend_v1[m[33m, [m[1;32mmr.olyafam_tiles_backend_v1[m[33m)[m tiles banner
+[33m410bc6e[m Merge pull request #23 from eabbas/mr.olyafam_specialProducts_backend_v1
+[33m7ed97f6[m[33m ([m[1;31morigin/mr.olyafam_specialProducts_backend_v1[m[33m, [m[1;32mmr.olyafam_specialProducts_backend_v1[m[33m)[m special products
+[33md22355d[m Merge pull request #22 from eabbas/mr.olyafam_bigBanner_backend_v1
+[33m004b14a[m[33m ([m[1;31morigin/mr.olyafam_bigBanner_backend_v1[m[33m, [m[1;32mmr.olyafam_bigBanner_backend_v1[m[33m)[m big banner
+[33me0e39c9[m Merge pull request #21 from eabbas/mr.olyafam_specialDiscount_backend_v1
+[33mcf30d4c[m[33m ([m[1;31morigin/mr.olyafam_specialDiscount_backend_v1[m[33m, [m[1;32mmr.olyafam_specialDiscount_backend_v1[m[33m)[m specialDiscount products
+[33m2cde54b[m Merge pull request #20 from eabbas/mr.olyafam_banners_backend_v1
+[33ma7d4635[m[33m ([m[1;31morigin/mr.olyafam_banners_backend_v1[m[33m, [m[1;32mmr.olyafam_banners_backend_v1[m[33m)[m Merge branch 'main' into mr.olyafam_banners_backend_v1
+[33m3f539d5[m banners backend v1
+[33mfe9744d[m[33m ([m[1;31morigin/mr.eft_product_compelete_v1[m[33m)[m Merge branch 'mr.eft_product_compelete_v1' of https://github.com/eabbas/shahkar into mr.eft_product_compelete_v1
+[33md674f3c[m conflict home
+[33m54cb368[m Merge pull request #19 from eabbas/mr.eft_product_compelete_v1
+[33m1c7b78c[m Merge branch 'main' into mr.eft_product_compelete_v1
+[33ma49034e[m product v1
+[33m0aa2562[m Update web.php (debug)
+[33mdfd3cf7[m Merge pull request #18 from eabbas/mr.olyafam_home_categories
+[33m3027b07[m[33m ([m[1;31morigin/mr.olyafam_home_categories[m[33m, [m[1;32mmr.olyafam_home_categories[m[33m)[m Merge branch 'main' into mr.olyafam_home_categories
+[33m378732c[m home_cat_backend_v1
+[33m1c72d15[m[33m ([m[1;31morigin/mr.eft_search[m[33m)[m debug mr.eft
+[33m7e14502[m Merge pull request #17 from eabbas/mr.eft_search
+[33mcf63efb[m Merge branch 'main' into mr.eft_search
+[33mb7caff8[m[33m ([m[1;31morigin/mr.olyafam_answer_backend[m[33m, [m[1;32mmr.olyafam_answer_backend[m[33m)[m debug
+[33m86660b5[m search front page completed _ comment uncomplete
+[33maaf0ae0[m debug
+[33mf227b6b[m Merge pull request #16 from eabbas/mr.olyafam_answer_backend
+[33m4979a37[m Merge branch 'main' into mr.olyafam_answer_backend
+[33m6cac4b2[m answers and questions backend completion
+[33mf29a812[m[33m ([m[1;32mmr.olyafam_question_backend[m[33m)[m test
+[33mbc18261[m Merge pull request #15 from eabbas/mr.olyafam_question_backend
+[33m672e0f5[m[33m ([m[1;31morigin/mr.olyafam_question_backend[m[33m)[m Merge branch 'main' into mr.olyafam_question_backend
+[33m318fa45[m question backend
+[33m6fc879e[m Merge pull request #14 from eabbas/mr.eft_comment_front
+[33mcb58ff4[m[33m ([m[1;31morigin/mr.eft_comment_front[m[33m)[m comment and question form
+[33m8ce156a[m[33m ([m[1;31morigin/mr.eft_single_and_setting[m[33m)[m secondary debug
+[33m39c1d12[m Merge pull request #13 from eabbas/mr.eft_single_and_setting
+[33mf4b5da9[m debug
+[33mb0d6cca[m Merge pull request #12 from eabbas/mr.eft_single_and_setting
+[33mcd289e1[m Merge branch 'main' into mr.eft_single_and_setting
+[33mc571d64[m single product and color theme
+[33me3a78af[m create product  attributes
+[33m8da8d3e[m forms fronts
+[33m7923b0c[m Merge pull request #11 from eabbas/mr.olyafam_category
+[33m875998a[m Merge pull request #10 from eabbas/mr.eft_home_colors_static
+[33mbdb678c[m[33m ([m[1;31morigin/mr.olyafam_category[m[33m, [m[1;32mmr.olyafam_category[m[33m)[m Merge branch 'mr.olyafam_category' of https://github.com/eabbas/shahkar into mr.olyafam_category
+[33m31300d3[m[33m ([m[1;31morigin/mr.eft_home_colors_static[m[33m)[m css variable without backend
+[33m58d94c9[m Merge pull request #3 from eabbas/mhd_user
+[33mfb4e11e[

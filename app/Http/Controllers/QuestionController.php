@@ -26,17 +26,17 @@ class QuestionController extends Controller
     public function index()
     {
         $questions = question::all();
-        return view('question.index', ['questions' => $questions]);
+        return view('admin.question.index', ['questions' => $questions]);
     }
     public function show(question $question)
     {
-        return view('question.show', ['question' => $question]);
+        return view('admin.question.show', ['question' => $question]);
     }
     public function edit(question $question)
     {
         $products = product::select('id', 'title')->get();
         $users = User::select('id', 'name', 'family')->get();
-        return view('question.edit', ['question' => $question, 'products' => $products, 'users' => $users]);
+        return view('admin.question.edit', ['question' => $question, 'products' => $products, 'users' => $users]);
     }
     public function update(Request $request)
     {
@@ -50,6 +50,7 @@ class QuestionController extends Controller
     }
     public function delete(question $question)
     {
+        $question->answers()->delete();
         $question->delete();
         return to_route('question-index');
     }

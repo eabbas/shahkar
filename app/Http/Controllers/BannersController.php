@@ -13,32 +13,32 @@ class BannersController extends Controller
     public function bannersCreate()
     {
         $banners = banners::where('sectionName', 'banners')->get();
-        return view('dashboard.banners', ['banners' => $banners]);
+        return view('admin.homeSettings.banners', ['banners' => $banners]);
     }
     public function bigBannerCreate()
     {
         $bigBanner = banners::where('sectionName', 'bigBanner')->get();
-        return view('dashboard.bigBanner', ['bigBanner' => $bigBanner]);
+        return view('admin.homeSettings.bigBanner', ['bigBanner' => $bigBanner]);
     }
     public function tilesCreate()
     {
         $tileBanners = banners::where('sectionName', 'tileBanners')->get();
-        return view('dashboard.tileBanners', ['tileBanners' => $tileBanners]);
+        return view('admin.homeSettings.tileBanners', ['tileBanners' => $tileBanners]);
     }
     public function bigTileCreate()
     {
         $bigTile = bigTile::all();
-        return view('dashboard.bigTile', ['bigTile' => $bigTile]);
+        return view('admin.homeSettings.bigTile', ['bigTile' => $bigTile]);
     }
     public function footerTileCreate()
     {
         $footerTile = footerTile::all();
-        return view('dashboard.footerTile', ['footerTile' => $footerTile]);
+        return view('admin.homeSettings.footerTile', ['footerTile' => $footerTile]);
     }
     public function logoCreate()
     {
         $logo = logo::all();
-        return view('dashboard.logo', ['logo' => $logo]);
+        return view('admin.homeSettings.logo', ['logo' => $logo]);
     }
     public function upsert(Request $request)
     {

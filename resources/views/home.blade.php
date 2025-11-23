@@ -1069,7 +1069,7 @@
                         class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
                     <div>
                         <a href="{{route('product-show', [$specialDiscountProduct])}}" class="flex justify-center mb-1 overflow-hidden">
-                            <img src="@foreach($specialDiscountProduct->medias as $media) @if($media['is_main'] == 1) {{asset($media['path'])}} @endif @endforeach"
+                            <img src="@foreach($specialDiscountProduct->medias as $media) @if($media['is_main'] == 1) {{asset( 'storage/' . $media['path'])}} @endif @endforeach"
                                 class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
                                 alt="product">
                         </a>
@@ -1318,7 +1318,7 @@
                                 class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-[var(--color-discount-bg)] text-[var(--color-primary-text)] rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
                             <div>
                                 <a href="http://localhost/shahkar/public/product/show/{{$product->id}}" class="flex justify-center mb-1 overflow-hidden">
-                                    <img src="@foreach($product->medias as $media) @if($media['is_main'] == 1) {{asset($media['path'])}} @endif @endforeach"
+                                    <img src="@foreach($product->medias as $media) @if($media['is_main'] == 1) {{asset('storage/' . $media['path'])}} @endif @endforeach"
                                         class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
                                         alt="product">
                                 </a>

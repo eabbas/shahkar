@@ -7,10 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 class comment extends Model
 {
     protected $fillable = ['user_id', 'product_id', 'comment', 'parent_id'];
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(user::class);
     }
-    public function product(){
+    public function product()
+    {
         return $this->belongsTo(product::class);
+    }
+    public function parent()
+    {
+        return $this->belongsTo(comment::class);
+    }
+    public function children()
+    {
+        return $this->hasMany(comment::class, 'parent_id');
     }
 }

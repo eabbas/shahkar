@@ -19,20 +19,20 @@ function add() {
                 <input type="text" class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]" placeholder="مقدار ویژگی" name="proAttr[${attributeCount}][value]">
             </div>
             <div class="flex items-end">
-                <button type="button" class="p-2 rounded-md bg-rose-500 hover:bg-rose-600 text-white cursor-pointer" onclick="remove(${attributeCount})">حذف</button>
+                <button type="button" class="p-2 rounded-md bg-rose-500 hover:bg-rose-600 text-white cursor-pointer" onclick="remove(this)">حذف</button>
             </div>
         </div>
     `
     div.innerHTML = element
     attribute.appendChild(div)
-    attributeCount++;
-    console.log(attributeCount);
+    attributeCount++
+    console.log(attributeCount)
     
 }
 
-function remove(id) {
-    let element = document.getElementById(`attribute-${id}`)
-    element.remove()
+function remove(el) {
+    el.parentElement.parentElement.parentElement.remove()
+    
 }
 
 let quantity = document.getElementById('quantity')

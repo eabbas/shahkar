@@ -14,9 +14,9 @@ class FooterColumnController extends Controller
     {
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
         if (count($footer_columns) == 0) {
-            return view('footerColumns.create');
+            return view('admin.footerColumns.create');
         } else {
-            return view('footerColumns.edit', ['footerColumns' => $footer_columns]);
+            return view('admin.footerColumns.edit', ['footerColumns' => $footer_columns]);
         }
     }
     public function store(Request $request)
@@ -48,9 +48,9 @@ class FooterColumnController extends Controller
     {
         $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
         if (count($footer_form_column) == 0) {
-            return view('footerColumns.createFooterFormMedia');
+            return view('admin.footerColumns.createFooterFormMedia');
         } else {
-            return view('footerColumns.editFooterFormMedia', ['footerFormMediaColumn' => $footer_form_column]);
+            return view('admin.footerColumns.editFooterFormMedia', ['footerFormMediaColumn' => $footer_form_column]);
         }
     }
     public function footerFormMediaStore(Request $request)

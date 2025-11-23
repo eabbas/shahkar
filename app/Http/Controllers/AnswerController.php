@@ -27,11 +27,11 @@ class AnswerController extends Controller
     public function index()
     {
         $answers = answer::all();
-        return view('answer.index', ['answers' => $answers]);
+        return view('admin.answer.index', ['answers' => $answers]);
     }
     public function show(answer $answer)
     {
-        return view('answer.show', ['answer' => $answer]);
+        return view('admin.answer.show', ['answer' => $answer]);
     }
     public function edit(answer $answer)
     {
@@ -39,7 +39,7 @@ class AnswerController extends Controller
         $questions = question::select('id', 'text')->get();
         $answers = answer::select('id', 'text')->get();
         $users = User::select('id', 'name', 'family')->get();
-        return view('answer.edit', ['answer' => $answer, 'questions' => $questions, 'answers' => $answers, 'users' => $users]);
+        return view('admin.answer.edit', ['answer' => $answer, 'questions' => $questions, 'answers' => $answers, 'users' => $users]);
     }
     public function update(Request $request)
     {

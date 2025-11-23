@@ -10,7 +10,7 @@ class MenuController extends Controller
     public function create()
     {
         $items = menu::select('title', 'id')->get();
-        return view('menu.create', ['items' => $items]);
+        return view('admin.menu.create', ['items' => $items]);
     }
     public function store(Request $request)
     {
@@ -29,17 +29,17 @@ class MenuController extends Controller
     public function index()
     {
         $items = menu::all();
-        return view('menu.index', ['items' => $items]);
+        return view('admin.menu.index', ['items' => $items]);
     }
     public function show(menu $menu)
     {
         $menu->parent;
-        return view('menu.show', ['menu' => $menu]);
+        return view('admin.menu.show', ['menu' => $menu]);
     }
     public function edit(menu $menu)
     {
         $items = menu::select('title', 'id')->get();
-        return view('menu.edit', ['menu' => $menu, 'items' => $items]);
+        return view('admin.menu.edit', ['menu' => $menu, 'items' => $items]);
     }
     public function update(Request $request)
     {

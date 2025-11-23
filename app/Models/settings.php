@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class settings extends Model
 {
-    protected $fillabel = ['meta_key', 'meta_value'];
+    protected $fillable = ['meta_key', 'meta_value'];
 }

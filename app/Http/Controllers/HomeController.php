@@ -30,6 +30,20 @@ class HomeController extends Controller
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
         $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
         $user = Auth::user();
-        return view('home', ['settings' => $settings, 'products' => $products, 'categories' => $cats, 'banners' => $banners, 'specialDiscounts' => $specialDiscounts, 'bigBanner' => $bigBanner, 'tileBanners' => $tileBanners, 'bigTile' => $bigTile, 'footerTile' => $footerTile, 'logo' => $logo, 'footerColumns' => $footer_columns, 'footer_form_column' => $footer_form_column, 'user' => $user]);
+        return view('home', [
+            'settings' => $settings,
+            'products' => $products,
+            'categories' => $cats,
+            'banners' => $banners,
+            'specialDiscounts' => $specialDiscounts,
+            'bigBanner' => $bigBanner,
+            'tileBanners' => $tileBanners,
+            'bigTile' => $bigTile,
+            'footerTile' => $footerTile,
+            'logo' => $logo,
+            'footerColumns' => $footer_columns,
+            'footer_form_column' => $footer_form_column,
+            'user' => $user
+        ]);
     }
 }
