@@ -15,9 +15,10 @@
     <div class="2xl:container mx-auto flex flex-row">
         <!-- <div class=""> -->
         <div class="hidden lg:block lg:w-3/12 bg-[#0D0E12] fixed right-0 top-0 h-dvh px-5">
-            <div class="flex justify-center">
+            <div class="flex justify-center pt-5">
                 <a href="#" class="right-0 mr-[15px]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="269" height="56" viewBox="0 0 269 56" fill="none"
+                    <img src="{{asset('storage/images/1762612102download (1).png')}}" alt="logo" class="w-40 h-15">
+                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="269" height="56" viewBox="0 0 269 56" fill="none"
                         class="w-[130px] ">
 
                         <path
@@ -56,7 +57,7 @@
                                 <stop offset="0.911458" stop-color="white" stop-opacity="0" />
                             </linearGradient>
                         </defs>
-                    </svg>
+                    </svg> -->
                 </a>
             </div>
             <hr class="text-[darkslategray] mt-2.5">
@@ -128,6 +129,10 @@
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
                                 <a href="{{route('settings.colors.createColor')}}" class=" text-white py-1">تنظیمات رنگ ها</a>
+                            </li>
+                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
+                                <span class="size-1 bg-white rounded-sm"></span>
+                                <a href="{{route('homeForm-index')}}" class=" text-white py-1">راه های ارتباطی با کاربران</a>
                             </li>
                         </ul>
                     </div>
@@ -391,7 +396,8 @@
         <!-- </div> -->
         <!-- کد های سپهر -->
         <div class="w-full">
-            <div class="w-full fixed top-0 right-0 z-10">
+            <!-- اون قسمت منو مانند بالا که هیچ کاربردی نداشت -->
+            <!-- <div class="w-full fixed top-0 right-0 z-10">
                 <div class="w-full float-end lg:w-9/12 py-3 flex flex-row-reverse px-5 backdrop-blur-sm shadowHeader relative z-20">
                     <div class="w-6/12 flex flex-row-reverse items-center">
                         <div class="">
@@ -483,10 +489,9 @@
                         </ul>
                     </div>
                 </div>
-
-
-            </div>
-            <div class="w-9/12 float-end mt-20 px-5 overflow-y-auto" style="scrollbar-width:none;">
+            </div> -->
+            <!-- انتهای اون قسمت منو مانند -->
+            <div class="w-9/12 float-end p-5 overflow-y-auto" style="scrollbar-width:none;">
                 @yield('content')
             </div>
         </div>
