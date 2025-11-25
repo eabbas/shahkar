@@ -10,6 +10,7 @@ use App\Http\Controllers\CourseCategoryController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FooterColumnController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HomeFormsController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\QuestionController;
@@ -130,6 +131,7 @@ Route::group(['prefix' => 'answer', 'controller' => AnswerController::class, 'as
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::view('/notAccess', 'notAccess')->name('notAccess');
 Route::view('/loginAtFirst', 'loginAtFirst')->name('loginAtFirst');
+Route::view('/dashboard', 'admin.app.dashboard')->middleware(checkAdminMiddleware::class)->name('dashboard');
 // admin routes
 Route::controller(userController::class)->prefix('admin')->group(function () {
     Route::get('/signupUser', 'adminSignup')->middleware(checkAdminMiddleware::class)->name('admin_create_user');
@@ -199,4 +201,13 @@ Route::group(['prefix' => 'contactus', 'controller' => ContactUsController::clas
     Route::get('/show/{contactUs}', 'show')->name('show');
     Route::get('/list', 'index')->name('index');
     Route::get('/delete/{contactUs}', 'delete')->name('delete');
+});
+// home forms routes
+Route::group(['prefix' => 'homeForm', 'controller' => HomeFormsController::class, 'as' => 'homeForm-', 'middleware' => checkAdminMiddleware::class], function () {
+    Route::post('/store', 'store')->withoutMiddleware(checkAdminMiddleware::class)->name('store');
+    Route::get('/edit/{homeForms}', 'edit')->name('edit');
+    Route::post('/update', 'update')->name('update');
+    Route::get('/show/{homeForms}', 'show')->name('show');
+    Route::get('/list', 'index')->name('index');
+    Route::get('/delete/{homeForms}', 'delete')->name('delete');
 });

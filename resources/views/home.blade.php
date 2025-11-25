@@ -1427,13 +1427,14 @@
                             </p>
                         </div>
                         <div class="w-full bg-white rounded-[10px] p-3">
-                            <form action="" method="post">
+                            <form action="{{route('homeForm-store')}}" method="post">
+                                @csrf
                                 <div class="rounded-[8px] 2xl:border-none border border-gray-300 relative">
                                     <input type="email"
                                         class="block w-full 2xl:w-2/3 2xl:mx-auto outline-none p-5 2xl:mb-4 rounded-[8px]"
-                                        placeholder="ایمیل خود را وارد کنید" name="" id="">
-                                    <button
-                                        class="absolute left-3 top-2 2xl:static py-3 px-8 rounded-[8px] 2xl:mx-auto 2xl:block bg-[var(--color-btn-contact)] text-(--color-primary-text) hover:bg-[var(--color-btn-contact-hover)] transition-all duration-300">ثبت
+                                        placeholder="ایمیل خود را وارد کنید" name="contactMethod" id="">
+                                    <button type="submit"
+                                        class="absolute left-3 top-2 2xl:static py-3 px-8 rounded-[8px] 2xl:mx-auto 2xl:block bg-[var(--color-btn-contact)] text-[var(--color-primary-text)] hover:bg-[var(--color-btn-contact-hover)] transition-all duration-300">ثبت
                                         نام</button>
 
                                 </div>
@@ -1476,11 +1477,12 @@
                     @endforeach
                 </div>
                 <div class="">
-                    <form action="" class="flex flex-col gap-4">
+                    <form action="{{route('homeForm-store')}}" method="post" class="flex flex-col gap-4">
+                        @csrf
                         <label for="" class="">{{$ffc['texts'][0]['text']}}</label>
                         <div class="flex gap-4">
-                            <input type="email" class="w-3/4 outline-none py-2 px-9 bg-[#F9F9F9] rounded-xl focus:border-1" name="" id="" placeholder="{{$ffc['texts'][0]['placeholder']}}" required>
-                            <button type="submit" class="w-1/4 py-2 px-7 rounded-[10px] bg-[var(--color-btn-contact)] text-(--color-primary-text) hover:bg-[var(--color-btn-contact-hover)] transition-all duration-300 text-white cursor-pointer">ثبت</button>
+                            <input type="string" class="w-3/4 outline-none py-2 px-9 bg-[#F9F9F9] rounded-[12px] focus:border-1" name="contactMethod" id="" placeholder="{{$ffc['texts'][0]['placeholder']}}" required>
+                            <button type="submit" class="w-1/4 py-2 px-7 rounded-[10px] bg-[var(--color-btn-contact)] text-[var(--color-primary-text)] hover:bg-[var(--color-btn-contact-hover)] transition-all duration-300 text-white cursor-pointer">ثبت</button>
                         </div>
                     </form>
                 </div>
