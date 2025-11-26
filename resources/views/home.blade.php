@@ -786,7 +786,7 @@
             <!-- title section -->
 
             {{-- grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 --}}
-            <div class="flex flex-row items-center gap-5 overflow-x-auto p-5">
+            <div class="flex flex-row items-center gap-5 overflow-x-auto p-5" style="scrollbar-width: thin; scrollbar-color: var(--color-primary) var(--color-primary-text);">
                 @foreach($categories as $category)
                 <div class="p-4 border border-(--color-border) rounded-[10px]">
                     <a href="{{route('search', [$category])}}" class="block mb-1 w-[137px]" target="_blank">
@@ -825,7 +825,7 @@
             </div>
             <!-- title section -->
 
-            <div class="grid 2xl:grid-cols-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 lg:gap-5">
+            <div class="grid 2xl:grid-cols-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2.5 lg:gap-5">
                 <!-- 12 -->
 
                 <!-- <div class="p-2 md:p-3 lg:p-4 xl:p-5 border border-(--color-border) rounded-[10px] relative productItem productItemNone">
@@ -1070,9 +1070,15 @@
                         class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-(--color-discount-bg) text-(--color-primary-text) rounded-full text-[8px] lg:text-[12px] text-center z-11">18%</span>
                     <div>
                         <a href="{{route('product-show', [$specialDiscountProduct])}}" class="flex justify-center mb-1 overflow-hidden">
+                            @if($specialDiscountProduct->medias)
                             <img src="@foreach($specialDiscountProduct->medias as $media) @if($media['is_main'] == 1) {{asset( 'storage/' . $media['path'])}} @endif @endforeach"
-                                class="w-full h-80 transition-all duration-500 hover:scale-[1.04] relative z-10"
+                                class="w-full transition-all duration-500 hover:scale-[1.04] relative z-10 max-h-[276px] lg:max-h-[186px] md:max-h-[348px] xl:max-h-[254px]"
                                 alt="product">
+                            @else
+                            <img src="{{asset('assets/img/noImage.png')}}"
+                                class="w-full transition-all duration-500 hover:scale-[1.04] relative z-10 max-h-[276px] lg:max-h-[186px] md:max-h-[348px] xl:max-h-[254px]"
+                                alt="product">
+                            @endif
                         </a>
                     </div>
                     <div>
@@ -1154,7 +1160,7 @@
 
         <!-- offers -->
         <section class="text-(--color-text) pt-3">
-            <div class="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-[30px] py-10">
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-[30px] py-10">
                 @foreach($banners as $banner)
                 <div class="bg-(--color-primary-btn) p-2.5 rounded-[10px] flex flex-col lg:flex-row items-center gap-2.5">
                     <div class="lg:w-5/12">
@@ -1216,7 +1222,7 @@
                 <div class="w-full children xl:w-3/4">
                     <div class="w-full flex flex-row justify-between items-center pb-3">
                         {{-- [&::-webkit-scrollbar]:w-0 --}}
-                        <div class="w-full flex flex-row justify-between items-center gap-5 font-bold overflow-x-auto p-5">
+                        <div class="w-full flex flex-row justify-between items-center gap-5 font-bold overflow-x-auto p-5" style="scrollbar-width: thin; scrollbar-color: var(--color-primary) var(--color-primary-text);">
                             <a href="#" class="text-(--color-text)">
                                 <span class="inline-block w-[100px]">
                                     همه دسته ها
@@ -1263,21 +1269,21 @@
                                     </svg>
                                 </button>
                                 {{-- <button
-                                    class="size-8 border border-(--color-border) buttonProduct bg-white rounded-sm flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[50ms]">
+                                    class="size-8 border border-(--color-border) buttonProduct bg-white rounded-sm flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-50">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
                                         <path fill="var(--color-fill)"
                                             d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
                                     </svg>
                                 </button>
                                 <button
-                                    class="size-8 border border-(--color-border) buttonProduct bg-white rounded-sm flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[100ms]">
+                                    class="size-8 border border-(--color-border) buttonProduct bg-white rounded-sm flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-100">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
                                         <path fill="var(--color-fill)"
                                             d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
                                     </svg>
                                 </button> --}}
                                 <button
-                                    class="size-8 border border-(--color-border) buttonProduct bg-white rounded-sm flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[150ms]">
+                                    class="size-8 border border-(--color-border) buttonProduct bg-white rounded-sm flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-150">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 576 512">
                                         <path fill="var(--color-fill)"
                                             d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
@@ -1323,11 +1329,11 @@
 
                             </div>
                             <span
-                                class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-(--color-discount-bg) text-(--color-primary-text) rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
+                                class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-(--color-discount-bg) text-(--color-primary-text) rounded-full text-[8px] lg:text-[12px] text-center z-11">18%</span>
                             <div>
                                 <a href="http://localhost/shahkar/public/product/show/{{$product->id}}" class="flex justify-center mb-1 overflow-hidden">
                                     <img src="@foreach($product->medias as $media) @if($media['is_main'] == 1) {{asset('storage/' . $media['path'])}} @endif @endforeach"
-                                        class="w-full h-80 transition-all duration-500 hover:scale-[1.04] relative z-10"
+                                        class="w-full transition-all duration-500 hover:scale-[1.04] relative z-10 max-h-[276px] lg:max-h-[186px] md:max-h-[348px] xl:max-h-[171px]"
                                         alt="product">
                                 </a>
                             </div>
@@ -1416,7 +1422,7 @@
             @foreach($footerTile as $ft)
             <div class="py-10">
                 <div
-                    class="flex flex-col xl:flex-row items-stretch gap-5 rounded-[10px] bg-[var(--color-bg-contact-section)] bg-[url({{$ft['bg_img']}})] bg-cover bg-no-repeat bg-center">
+                    class="flex flex-col xl:flex-row items-stretch gap-5 rounded-[10px] bg-(--color-bg-contact-section) bg-[url({{$ft['bg_img']}})] bg-cover bg-no-repeat bg-center">
                     <div class="w-full xl:w-1/2 px-[50px] pt-[60px] pb-[70px] flex flex-col justify-start gap-5">
                         <div>
                             <h2 class="text-(--color-primary-text) sm:text-3xl lg:text-[50px] 2xl:leading-[75px] font-bold mb-1">
@@ -1429,12 +1435,12 @@
                         <div class="w-full bg-white rounded-[10px] p-3">
                             <form action="{{route('homeForm-store')}}" method="post">
                                 @csrf
-                                <div class="rounded-[8px] 2xl:border-none border border-gray-300 relative">
+                                <div class="rounded-lg 2xl:border-none border border-gray-300 relative">
                                     <input type="email"
-                                        class="block w-full 2xl:w-2/3 2xl:mx-auto outline-none p-5 2xl:mb-4 rounded-[8px]"
+                                        class="block w-full 2xl:w-2/3 2xl:mx-auto outline-none p-5 2xl:mb-4 rounded-lg"
                                         placeholder="ایمیل خود را وارد کنید" name="contactMethod" id="">
                                     <button type="submit"
-                                        class="absolute left-3 top-2 2xl:static py-3 px-8 rounded-[8px] 2xl:mx-auto 2xl:block bg-[var(--color-btn-contact)] text-[var(--color-primary-text)] hover:bg-[var(--color-btn-contact-hover)] transition-all duration-300">ثبت
+                                        class="absolute left-3 top-2 2xl:static py-3 px-8 rounded-lg 2xl:mx-auto 2xl:block bg-(--color-btn-contact) text-(--color-primary-text) hover:bg-(--color-btn-contact-hover) transition-all duration-300">ثبت
                                         نام</button>
 
                                 </div>
@@ -1481,8 +1487,8 @@
                         @csrf
                         <label for="" class="">{{$ffc['texts'][0]['text']}}</label>
                         <div class="flex gap-4">
-                            <input type="string" class="w-3/4 outline-none py-2 px-9 bg-[#F9F9F9] rounded-[12px] focus:border-1" name="contactMethod" id="" placeholder="{{$ffc['texts'][0]['placeholder']}}" required>
-                            <button type="submit" class="w-1/4 py-2 px-7 rounded-[10px] bg-[var(--color-btn-contact)] text-[var(--color-primary-text)] hover:bg-[var(--color-btn-contact-hover)] transition-all duration-300 text-white cursor-pointer">ثبت</button>
+                            <input type="string" class="w-3/4 outline-none py-2 px-9 bg-[#F9F9F9] rounded-xl focus:border" name="contactMethod" id="" placeholder="{{$ffc['texts'][0]['placeholder']}}" required>
+                            <button type="submit" class="w-1/4 py-2 px-7 rounded-[10px] bg-(--color-btn-contact) text-(--color-primary-text) hover:bg-(--color-btn-contact-hover) transition-all duration-300 text-white cursor-pointer">ثبت</button>
                         </div>
                     </form>
                 </div>
