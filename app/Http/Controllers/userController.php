@@ -64,12 +64,14 @@ class userController extends Controller
         if (!$user) {
             $user = Auth::user();
         }
+        $settings = settings::all();
         $cats = category::all();
         $logo = logo::all();
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
         $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
         return view('user.user.profile', [
             'user' => $user,
+            'settings' => $settings,
             'categories' => $cats,
             'logo' => $logo,
             'footerColumns' => $footer_columns,

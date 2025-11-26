@@ -21,7 +21,7 @@
 <body>
 
     <!-- ads -->
-    {{-- <div class="w-full h-10 bg-(--color-primary) flex flex-row justify-around">
+    <!-- <div class="w-full h-10 bg-(--color-primary) flex flex-row justify-around">
         <span class="text-(--color-primary-text) py-2 px-4 font-medium flex justify-start items-center">
             <img src="https://s.w.org/images/core/emoji/16.0.1/svg/1f6d2.svg" class="size-4 mx-2" alt="">
             ارسال رایگان برای سفارش‌های بالای ۵۰ دلار
@@ -34,7 +34,7 @@
             <img src="https://s.w.org/images/core/emoji/16.0.1/svg/1f6d2.svg" class="size-4 mx-2" alt="">
             ارسال رایگان برای سفارش‌های بالای ۵۰ دلار
         </span>
-    </div> --}}
+    </div>  -->
     <!-- ads -->
 
     <header class="2xl:container 2xl:px-4 mx-auto w-full border-b border-(--color-border) py-3">
@@ -46,27 +46,33 @@
                 <!-- logo -->
                 <div class="w-1/12 h-[33px]">
                     @foreach ($logo as $l)
-                        <a href="{{ $l['link_href'] }}" class="inline-block size-full">
-                            <img src="{{ $l['logo'] }}" class="size-full" alt="{{ $l['alt_text'] }}">
-                        </a>
+                    <a href="{{ $l['link_href'] }}" class="inline-block size-full">
+                        <img src="{{ asset($l['logo']) }}" class="size-full" alt="{{ $l['alt_text'] }}">
+                    </a>
                     @endforeach
                 </div>
                 <!-- logo -->
 
                 <div class="2xl:w-5/12 xl:w-6/12 ">
-                    <form action="" method=""
+                    <form action="{{route('search-search')}}" method="post"
                         class="border border-(--color-border) rounded-full min-w-[395px] w-[395px] p-1 text-sm flex flex-row">
+                        @csrf
                         <select name="category" class="min-w-[150px] text-(--color-text)" id="">
                             <option value="all">
                                 همه دسته ها
                             </option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category['id'] }}">{{ $category['title'] }}</option>
+                            <option value="{{ $category['id'] }}">{{ $category['title'] }}</option>
                             @endforeach
                         </select>
-                        <input type="text"
+                        <input type="text" required
                             class="w-full border-r border-(--color-border) pr-1.5 mr-1.5 text-(--color-text) text-sm py-1 outline-none rounded-l-full"
-                            placeholder="جست و جوی دسته بندی، محصول ..." name="" id="">
+                            placeholder="جست و جوی دسته بندی، محصول ..." name="searchedValue" id="">
+                        <button type="submit" class="cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-4 h-5">
+                                <path fill="black" d="M368 208A160 160 0 1 0 48 208a160 160 0 1 0 320 0zM337.1 371.1C301.7 399.2 256.8 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208c0 48.8-16.8 93.7-44.9 129.1L505 471c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L337.1 371.1z" />
+                            </svg>
+                        </button>
                     </form>
                 </div>
 
@@ -356,20 +362,20 @@
                             </svg>
                         </div>
                         @if ($user)
-                            <div>
-                                <span
-                                    class="block text-(--color-text) leading-[22px] font-medium text-sm">{{ $user['name'] }}
-                                    {{ $user['family'] }}</span>
-                                <a href="{{ route('user.profile', [$user->id]) }}"
-                                    class="block text-(--color-text) leading-[22px] text-xs">مشاهده پروفایل</a>
-                            </div>
+                        <div>
+                            <span
+                                class="block text-(--color-text) leading-[22px] font-medium text-sm">{{ $user['name'] }}
+                                {{ $user['family'] }}</span>
+                            <a href="{{ route('user.profile', [$user->id]) }}"
+                                class="block text-(--color-text) leading-[22px] text-xs">مشاهده پروفایل</a>
+                        </div>
                         @else
-                            <div>
-                                <a class="block text-(--color-text) leading-[22px] font-medium text-sm"
-                                    href="{{ route('user.login') }}">ورود</a>
-                                <a class="block text-(--color-text) leading-[22px] text-xs"
-                                    href="{{ route('user.signup') }}">ثبت نام</a>
-                            </div>
+                        <div>
+                            <a class="block text-(--color-text) leading-[22px] font-medium text-sm"
+                                href="{{ route('user.login') }}">ورود</a>
+                            <a class="block text-(--color-text) leading-[22px] text-xs"
+                                href="{{ route('user.signup') }}">ثبت نام</a>
+                        </div>
                         @endif
                     </div>
                     {{-- <a href="#" class="inline-block w-8 h-6 relative">
@@ -418,9 +424,9 @@
             <!-- logo -->
             <div class="h-[33px]">
                 @foreach ($logo as $l)
-                    <a href="{{ $l['link_href'] }}" class="inline-block size-full">
-                        <img src="{{ $l['logo'] }}" class="size-full" alt="{{ $l['alt_text'] }}">
-                    </a>
+                <a href="{{ $l['link_href'] }}" class="inline-block size-full">
+                    <img src="{{ $l['logo'] }}" class="size-full" alt="{{ $l['alt_text'] }}">
+                </a>
                 @endforeach
             </div>
             <!-- logo -->
@@ -777,43 +783,43 @@
     <footer class="text-(--color-text) pt-3 bg-(--color-primary-btn) 2xl:container mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-4">
             @foreach ($footerColumns as $footerColumn)
-                <div class="p-6">
-                    <p class="text-gray-700 font-bold mb-4">{{ $footerColumn['section_title'] }}</p>
-                    @foreach ($footerColumn['rows'] as $row)
-                        <p>
-                            <a href="{{ $row['row_href'] }}">{{ $row['row_content'] }}</a>
-                        </p>
-                    @endforeach
-                </div>
+            <div class="p-6">
+                <p class="text-gray-700 font-bold mb-4">{{ $footerColumn['section_title'] }}</p>
+                @foreach ($footerColumn['rows'] as $row)
+                <p>
+                    <a href="{{ $row['row_href'] }}">{{ $row['row_content'] }}</a>
+                </p>
+                @endforeach
+            </div>
             @endforeach
             @foreach ($footer_form_column as $ffc)
-                <div class="p-6 flex flex-col gap-10">
-                    <div class="">
-                        <p class="text-gray-700 font-bold mb-4">{{ $ffc['section_title'] }}</p>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        @foreach ($ffc['images'] as $image)
-                            <a href="{{ $image['link'] }}">
-                                <img src="{{ asset('storage/' . $image['path']) }}" alt="{{ $image['alt'] }}"
-                                    class="size-10 rounded-full">
-                            </a>
-                        @endforeach
-                    </div>
-                    <div class="">
-                        <form action="{{ route('homeForm-store') }}" method="post" class="flex flex-col gap-4">
-                            @csrf
-                            <label for="" class="">{{ $ffc['texts'][0]['text'] }}</label>
-                            <div class="flex gap-4">
-                                <input type="string"
-                                    class="w-3/4 outline-none py-2 px-9 bg-[#F9F9F9] rounded-xl focus:border"
-                                    name="contactMethod" id=""
-                                    placeholder="{{ $ffc['texts'][0]['placeholder'] }}" required>
-                                <button type="submit"
-                                    class="w-1/4 py-2 px-7 rounded-[10px] bg-(--color-btn-contact) text-(--color-primary-text) hover:bg-(--color-btn-contact-hover) transition-all duration-300 text-white cursor-pointer">ثبت</button>
-                            </div>
-                        </form>
-                    </div>
+            <div class="p-6 flex flex-col gap-10">
+                <div class="">
+                    <p class="text-gray-700 font-bold mb-4">{{ $ffc['section_title'] }}</p>
                 </div>
+                <div class="flex justify-between items-center">
+                    @foreach ($ffc['images'] as $image)
+                    <a href="{{ $image['link'] }}">
+                        <img src="{{ asset('storage/' . $image['path']) }}" alt="{{ $image['alt'] }}"
+                            class="size-10 rounded-full">
+                    </a>
+                    @endforeach
+                </div>
+                <div class="">
+                    <form action="{{ route('homeForm-store') }}" method="post" class="flex flex-col gap-4">
+                        @csrf
+                        <label for="" class="">{{ $ffc['texts'][0]['text'] }}</label>
+                        <div class="flex gap-4">
+                            <input type="string" required
+                                class="w-3/4 outline-none py-2 px-9 bg-[#F9F9F9] rounded-xl focus:border"
+                                name="contactMethod" id=""
+                                placeholder="{{ $ffc['texts'][0]['placeholder'] }}" required>
+                            <button type="submit"
+                                class="w-1/4 py-2 px-7 rounded-[10px] bg-(--color-btn-contact) text-(--color-primary-text) hover:bg-(--color-btn-contact-hover) transition-all duration-300 text-white cursor-pointer">ثبت</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
             @endforeach
         </div>
         <hr>
