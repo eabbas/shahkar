@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\category;
+use App\Models\footer_column;
+use App\Models\logo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -12,6 +15,7 @@ class CategoryController extends Controller
         $categories = category::select('id', 'title')->get();
         return view('admin.category.create', ['categories' => $categories]);
     }
+
     public function store(Request $request)
     {
         if ($request['image']) {
@@ -21,7 +25,7 @@ class CategoryController extends Controller
                 'title' => $request->title,
                 'description' => $request->description,
                 'parent_id' => $request->parent_id,
-                'image' => "storage/" . $path
+                'image' => 'storage/' . $path
             ]);
             return to_route('category-adminIndex');
         }
@@ -33,29 +37,55 @@ class CategoryController extends Controller
         ]);
         return to_route('category-adminIndex');
     }
+
     public function adminIndex()
     {
         $cats = category::all();
         return view('admin.category.index', ['categories' => $cats]);
     }
+
     public function index()
     {
+        $logo = logo::all();
+        $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
+        $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
+        $user = Auth::user();
         $cats = category::all();
-        return view('user.category.index', ['categories' => $cats]);
+        return view('user.category.index', [
+            'categories' => $cats,
+            'logo' => $logo,
+            'footerColumns' => $footer_columns,
+            'footer_form_column' => $footer_form_column,
+            'user' => $user
+        ]);
     }
+
     public function adminShow(category $category)
     {
         return view('admin.category.show', ['category' => $category]);
     }
+
     public function show(category $category)
     {
-        return view('user.category.show', ['category' => $category]);
+        $logo = logo::all();
+        $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
+        $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
+        $user = Auth::user();
+        return view('user.category.show', [
+            'category' => $category,
+            'logo' => $logo,
+            'footerColumns' => $footer_columns,
+            'footer_form_column' => $footer_form_column,
+            'user' => $user
+        ]);
     }
+
     public function edit(category $category)
     {
         $cats = category::all();
         return view('admin.category.edit', ['cat' => $category, 'categories' => $cats]);
     }
+
     public function update(Request $request)
     {
         $category = category::find($request->category_id);
@@ -65,7 +95,7 @@ class CategoryController extends Controller
         if ($request['image']) {
             $originalName = request()->image->getClientOriginalName();
             $path = $request->file('image')->storeAs('images', time() . $originalName, 'public');
-            $category->image = "storage/" .  $path;
+            $category->image = 'storage/' . $path;
         }
         if (!$request['image']) {
             $category->image = null;
@@ -73,6 +103,7 @@ class CategoryController extends Controller
         $category->save();
         return to_route('category-adminIndex');
     }
+
     public function delete(category $category)
     {
         $category->delete();

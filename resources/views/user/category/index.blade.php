@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>category list</title>
-</head>
-
-<body>
+@extends('app.document')
+@section('title', 'دسته بندی ها')
+    @section('content')
    <div>
       <h2> لیست دسته بندی ها</h2>
       <table border="1" style="border-collapse: collapse;">
@@ -37,6 +30,4 @@
          </tbody>
       </table>
    </div>
-</body>
-
-</html>
+@endsection

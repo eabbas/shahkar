@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\category;
 use App\Models\contactUs;
+use App\Models\footer_column;
+use App\Models\logo;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,26 +18,41 @@ class ContactUsController extends Controller
             return to_route('user.login');
         }
         $user = Auth::user();
-        return view('user.contactus.create', ['user' => $user]);
+        $cats = category::all();
+        $logo = logo::all();
+        $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
+        $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
+        return view('user.contactus.create', [
+            'user' => $user,
+            'categories' => $cats,
+            'logo' => $logo,
+            'footerColumns' => $footer_columns,
+            'footer_form_column' => $footer_form_column,
+        ]);
     }
+
     public function store(Request $request)
     {
         contactUs::create($request->all());
         return to_route('contactus-create');
     }
+
     public function index()
     {
         $contactus = contactUs::all();
         return view('admin.contactus.index', ['contactus' => $contactus]);
     }
+
     public function show(contactUs $contactUs)
     {
         return view('admin.contactus.show', ['cu' => $contactUs]);
     }
+
     public function edit(contactUs $contactUs)
     {
         return view('admin.contactus.edit', ['cu' => $contactUs]);
     }
+
     public function update(Request $request)
     {
         $contactUs = contactUs::find($request->id);
@@ -47,19 +65,45 @@ class ContactUsController extends Controller
         $contactUs->save();
         return to_route('contactus-index');
     }
+
     public function delete(contactUs $contactUs)
     {
         $contactUs->delete();
         return to_route('contactus-index');
     }
+
     public function usersContact(User $user)
     {
-        return view('user.contactus.usersContacts.usersContact', ['user' => $user]);
+        $cats = category::all();
+        $logo = logo::all();
+        $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
+        $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
+        return view('user.contactus.usersContacts.usersContact', [
+            'user' => $user,
+            'categories' => $cats,
+            'logo' => $logo,
+            'footerColumns' => $footer_columns,
+            'footer_form_column' => $footer_form_column,
+        ]);
     }
+
     public function usersContactEdit(contactUs $contactUs)
     {
-        return view('user.contactus.usersContacts.usersContactEdit', ['cu' => $contactUs]);
+        $cats = category::all();
+        $logo = logo::all();
+        $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
+        $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
+        $user = Auth::user();
+        return view('user.contactus.usersContacts.usersContactEdit', [
+            'cu' => $contactUs,
+            'categories' => $cats,
+            'logo' => $logo,
+            'footerColumns' => $footer_columns,
+            'footer_form_column' => $footer_form_column,
+            'user' => $user
+        ]);
     }
+
     public function usersContactUpdate(Request $request)
     {
         $contactUs = contactUs::find($request->id);
@@ -73,6 +117,7 @@ class ContactUsController extends Controller
         $user = Auth::user();
         return to_route('contactus-usersContact-index', [$user]);
     }
+
     public function usersContactDelete(contactUs $contactUs)
     {
         $user = Auth::user();

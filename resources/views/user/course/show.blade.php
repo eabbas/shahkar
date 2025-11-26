@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>course single</title>
-</head>
-
-<body>
+@extends('app.document')
+@section('title', 'دوره')
+    @section('content')
+        
    <h2>نمایش دوره</h2>
    <table border="1" style="border-collapse: collapse;">
       <thead>
@@ -28,6 +22,4 @@
       </tbody>
    </table>
    <a href="{{route('course-index')}}">برگشت</a>
-</body>
-
-</html>
+@endsection

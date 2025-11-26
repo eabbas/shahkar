@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\answer;
 use App\Models\category;
-use App\Models\product;
-use App\Models\question;
-use App\Models\settings;
+use App\Models\footer_column;
+use App\Models\logo;
 use App\Models\media;
+use App\Models\product;
 use App\Models\product_attributes;
 use App\Models\product_price;
+use App\Models\question;
+use App\Models\settings;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -20,17 +23,16 @@ class ProductController extends Controller
     {
         $settings = settings::all();
         $categories = category::all();
-        return view('admin.product.create', ["categories" => $categories, 'settings' => $settings]);
+        return view('admin.product.create', ['categories' => $categories, 'settings' => $settings]);
     }
+
     public function store(Request $request)
     {
-
         // dd($request->all(), $request->proAttr[0]['value']);
         $type = request()->mainImage->getClientOriginalExtension();
         $originalName = request()->mainImage->getClientOriginalname();
-        $fullName = Str::uuid() . "_" . $originalName;
+        $fullName = Str::uuid() . '_' . $originalName;
         $mainPath = request()->file('mainImage')->storeAs('images', $fullName, 'public');
-
 
         $product_id = product::insertGetId([
             'title' => $request->title,
@@ -45,7 +47,7 @@ class ProductController extends Controller
         foreach ($request->gallery as $gallery) {
             $typeG = $gallery->getClientOriginalExtension();
             $originalGalleryName = $gallery->getClientOriginalname();
-            $fullNameGallery = Str::uuid() . "_" . $originalGalleryName;
+            $fullNameGallery = Str::uuid() . '_' . $originalGalleryName;
             $galleryPath = $gallery->storeAs('images', $fullNameGallery, 'public');
             $products[] = ['product_id' => $product_id, 'path' => $galleryPath, 'type' => $typeG, 'is_main' => 0, 'created_at' => now(), 'updated_at' => now()];
         }
@@ -69,16 +71,31 @@ class ProductController extends Controller
 
         return to_route('product-adminIndex');
     }
+
     public function index()
     {
+        $cats = category::all();
+        $logo = logo::all();
+        $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
+        $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
+        $user = Auth::user();
         $products = product::with('category')->get();
-        return view('user.product.index', ['products' => $products]);
+        return view('user.product.index', [
+            'products' => $products,
+            'categories' => $cats,
+            'logo' => $logo,
+            'footerColumns' => $footer_columns,
+            'footer_form_column' => $footer_form_column,
+            'user' => $user
+        ]);
     }
+
     public function adminIndex()
     {
         $products = product::with('category')->get();
         return view('admin.product.index', ['products' => $products]);
     }
+
     public function show(product $product)
     {
         $campare = $product->price->price - $product->price->discount;
@@ -90,8 +107,25 @@ class ProductController extends Controller
         $product->comments;
         $questions = question::all();
         $product->medias;
-        return view('user.product.show', ['product' => $product, 'settings' => $settings, 'questions' => $questions, 'answers' => $answers, 'persent' => $persent]);
+        $cats = category::all();
+        $logo = logo::all();
+        $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
+        $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
+        $user = Auth::user();
+        return view('user.product.show', [
+            'product' => $product,
+            'settings' => $settings,
+            'questions' => $questions,
+            'answers' => $answers,
+            'persent' => $persent,
+            'categories' => $cats,
+            'logo' => $logo,
+            'footerColumns' => $footer_columns,
+            'footer_form_column' => $footer_form_column,
+            'user' => $user
+        ]);
     }
+
     public function adminShow(product $product)
     {
         $campare = $product->price->price - $product->price->discount;
@@ -105,6 +139,7 @@ class ProductController extends Controller
         $product->medias;
         return view('admin.product.show', ['product' => $product, 'settings' => $settings, 'questions' => $questions, 'answers' => $answers, 'persent' => $persent]);
     }
+
     public function edit(product $product)
     {
         $settings = settings::all();
@@ -113,6 +148,7 @@ class ProductController extends Controller
         $categories = category::all();
         return view('admin.product.edit', ['product' => $product, 'categories' => $categories, 'settings' => $settings]);
     }
+
     public function update(Request $request)
     {
         $product = product::find($request->id);
@@ -126,7 +162,7 @@ class ProductController extends Controller
             }
             $type = request()->mainImage->getClientOriginalExtension();
             $originalName = request()->mainImage->getClientOriginalname();
-            $fullName = Str::uuid() . "_" . $originalName;
+            $fullName = Str::uuid() . '_' . $originalName;
             $mainPath = request()->file('mainImage')->storeAs('images', $fullName, 'public');
             media::create([
                 'product_id' => $product->id,
@@ -148,7 +184,7 @@ class ProductController extends Controller
             foreach ($request->gallery as $gallery) {
                 $typeG = $gallery->getClientOriginalExtension();
                 $originalNameG = $gallery->getClientOriginalname();
-                $fullNameG = Str::uuid() . "_" . $originalNameG;
+                $fullNameG = Str::uuid() . '_' . $originalNameG;
                 $galleryPath = $gallery->storeAs('images', $fullNameG, 'public');
                 media::create([
                     'product_id' => $product->id,
@@ -194,6 +230,7 @@ class ProductController extends Controller
 
         return to_route('product-adminIndex');
     }
+
     public function delete(product $product)
     {
         foreach ($product->medias as $media) {

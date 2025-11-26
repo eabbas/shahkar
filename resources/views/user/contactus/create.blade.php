@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="{{ url('assets/css/style.css') }}" type="text/css">
-   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-   <title>create contact us</title>
-</head>
-
-<body>
+@extends('app.document')
+@section('title', 'فرم تماس با ما')
+    @section('content')
+        
    @if(count($user['contactuss']) > 0)
    <a href="{{route('contactus-usersContact-index',[$user])}}">درخواست هایی که قبلا داشته اید</a>
    @endif
@@ -66,6 +58,4 @@
          </form>
       </div>
    </div>
-</body>
-
-</html>
+@endsection

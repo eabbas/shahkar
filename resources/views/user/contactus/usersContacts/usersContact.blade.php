@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Document</title>
-</head>
-
-<body>
+@extends('app.document')
+@section('title', ' لیست درخواست های تماس با مای شما')
+    @section('content')
+        
    لیست درخواست های تماس با مای شما
    @foreach($user->contactuss as $contactus)
    <p>id: <span>{{$contactus['id']}}</span></p>
@@ -26,6 +20,4 @@
    <hr><br>
    @endforeach
    <a href="{{route('contactus-create')}}">درخواست تماس با مای جدید</a>
-</body>
-
-</html>
+@endsection
