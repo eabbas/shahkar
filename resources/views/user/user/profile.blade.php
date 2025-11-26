@@ -20,10 +20,6 @@
                     <a href="{{ route('user.index') }}" class="inline-block w-full py-3 px-4 text-sm">نمایش کاربران</a>
                 </li>
             @endif
-
-            <li class="border-b border-gray-300">
-                <a href="#" class="inline-block w-full py-3 px-4 text-sm">تست</a>
-            </li>
         </ul>
     </aside>
 

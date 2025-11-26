@@ -162,7 +162,10 @@ Route::group([
     });
 });
 // search routes
-Route::get('/search/{category}', [SearchController::class, 'index'])->name('search');
+Route::group(['controller' => SearchController::class, 'as' => 'search-'], function () {
+    Route::post('/search', 'search')->name('search');
+    Route::get('/show/products/category/{category}', 'index')->name('cat-products');
+});
 // banners routes
 Route::group(['prefix' => 'banners', 'controller' => BannersController::class, 'as' => 'banners-', 'middleware' => checkAdminMiddleware::class], function () {
     Route::get('/create', 'bannersCreate')->name('create');
