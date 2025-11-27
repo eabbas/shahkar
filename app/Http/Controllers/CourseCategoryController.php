@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\category;
+use App\Models\product;
 use App\Models\courseCategory;
 use App\Models\footer_column;
 use App\Models\logo;
@@ -26,6 +27,7 @@ class CourseCategoryController extends Controller
 
     public function index()
     {
+                $products = product::all();
         $settings = settings::all();
         $cats = category::all();
         $logo = logo::all();
@@ -34,6 +36,7 @@ class CourseCategoryController extends Controller
         $user = Auth::user();
         $courseCategories = courseCategory::all();
         return view('user.courseCategory.index', [
+                        'products' => $products,
             'settings' => $settings,
             'courseCategories' => $courseCategories,
             'categories' => $cats,
@@ -52,6 +55,7 @@ class CourseCategoryController extends Controller
 
     public function show(courseCategory $courseCategory)
     {
+                $products = product::all();
         $settings = settings::all();
         $cats = category::all();
         $logo = logo::all();
@@ -59,6 +63,7 @@ class CourseCategoryController extends Controller
         $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
         $user = Auth::user();
         return view('user.courseCategory.show', [
+                        'products' => $products,
             'settings' => $settings,
             'courseCategory' => $courseCategory,
             'categories' => $cats,

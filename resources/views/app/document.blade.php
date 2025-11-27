@@ -46,15 +46,15 @@
                 <!-- logo -->
                 <div class="w-1/12 h-[33px]">
                     @foreach ($logo as $l)
-                    <a href="{{ $l['link_href'] }}" class="inline-block size-full">
-                        <img src="{{ asset($l['logo']) }}" class="size-full" alt="{{ $l['alt_text'] }}">
-                    </a>
+                        <a href="{{ $l['link_href'] }}" class="inline-block size-full">
+                            <img src="{{ asset($l['logo']) }}" class="size-full" alt="{{ $l['alt_text'] }}">
+                        </a>
                     @endforeach
                 </div>
                 <!-- logo -->
 
                 <div class="2xl:w-5/12 xl:w-6/12 ">
-                    <form action="{{route('search-search')}}" method="post"
+                    <form action="{{ route('search-search') }}" method="post"
                         class="border border-(--color-border) rounded-full min-w-[395px] w-[395px] p-1 text-sm flex flex-row">
                         @csrf
                         <select name="category" class="min-w-[150px] text-(--color-text)" id="">
@@ -62,7 +62,7 @@
                                 همه دسته ها
                             </option>
                             @foreach ($categories as $category)
-                            <option value="{{ $category['id'] }}">{{ $category['title'] }}</option>
+                                <option value="{{ $category['id'] }}">{{ $category['title'] }}</option>
                             @endforeach
                         </select>
                         <input type="text" required
@@ -70,14 +70,14 @@
                             placeholder="جست و جوی دسته بندی، محصول ..." name="searchedValue" id="">
                         <button type="submit" class="cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-4 h-5">
-                                <path fill="black" d="M368 208A160 160 0 1 0 48 208a160 160 0 1 0 320 0zM337.1 371.1C301.7 399.2 256.8 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208c0 48.8-16.8 93.7-44.9 129.1L505 471c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L337.1 371.1z" />
+                                <path fill="black"
+                                    d="M368 208A160 160 0 1 0 48 208a160 160 0 1 0 320 0zM337.1 371.1C301.7 399.2 256.8 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208c0 48.8-16.8 93.7-44.9 129.1L505 471c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L337.1 371.1z" />
                             </svg>
                         </button>
                     </form>
                 </div>
 
                 <!-- chocolate menu -->
-
                 <div class="size-9 p-2 hidden 2xl:hidden lg:flex flex-col gap-1 bg-(--color-primary-btn) rounded-sm cursor-pointer"
                     id="chocIcon">
                     <div class="flex flex-row justify-between items-center">
@@ -96,20 +96,12 @@
                         <span class="size-1 bg-(--color-text) rounded-full"></span>
                     </div>
                 </div>
-
-
-
                 <!-- chocolate menu -->
 
                 <!-- 2xl menu -->
                 <ul class="w-6/12 hidden 2xl:flex flex-row justify-start items-center gap-4 text-(--color-text)">
-                    <li>
-                        <a href="#" class="font-semibold text-sm gap-1 transition-all duration-300 py-4 menuLink">
-                            خانه
-                        </a>
-                    </li>
                     <li class="menuItemParent">
-                        <a href="#"
+                        <a href="{{ route('category-index') }}"
                             class="font-semibold text-sm flex flex-row items-center gap-1 transition-all duration-300 py-4 menuLink">
                             <span>
                                 دسته بندی
@@ -121,139 +113,50 @@
                         </a>
                         <div
                             class="absolute w-full py-5 max-h-0 border border-(--color-border) bg-white opacity-0 mt-8 right-0 invisible z-9999 transition-all duration-500">
-                            <div class="w-11/12 mx-auto flex flex-row items-start gap-10">
-                                <div class="w-1/5 flex flex-col justify-start gap-4">
-                                    <button
-                                        class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transitin-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer activeSubMenuCat subMenuCat">عنوان
-                                        تستی</button>
-                                    <button
-                                        class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transitin-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">عنوان
-                                        تستی</button>
-                                    <button
-                                        class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transitin-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">عنوان
-                                        تستی</button>
-                                    <button
-                                        class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transitin-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">عنوان
-                                        تستی</button>
-                                    <button
-                                        class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transitin-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">عنوان
-                                        تستی</button>
+                            <div class="h-100 w-11/12 mx-auto flex flex-row items-start gap-10">
+                                <div class="h-90 w-1/5 flex flex-col justify-start gap-4 overflow-y-auto">
+                                    @foreach ($categories as $category)
+                                        <a href="{{ route('search-cat-products', [$category]) }}"
+                                            class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">{{ $category->title }}</a>
+                                    @endforeach
                                 </div>
                                 <div class="w-4/5">
                                     <!-- contents -->
-                                    <div class="grid grid-cols-4 gap-4 max-h-[575px] overflow-y-auto">
-                                        <div class="p-4 border border-(--color-border) rounded-[10px]">
-                                            <a href="#" class="block mb-1">
-                                                <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                                                    class="w-[85px] h-20 mx-auto" alt="product">
-                                                <span class="inline-block w-full text-center pt-3">محصول تستی</span>
-                                            </a>
-                                            <span
-                                                class="block text-center text-[14px] text-(--color-secondary-text)">تست
-                                                آیتم</span>
-                                            <span class="block text-center text-[12px] text-(--color-secondary-text)">10
-                                                آیتم</span>
-                                        </div>
-                                        <div class="p-4 border border-(--color-border) rounded-[10px]">
-                                            <a href="#" class="block mb-1">
-                                                <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                                                    class="w-[85px] h-20 mx-auto" alt="product">
-                                                <span class="inline-block w-full text-center pt-3">محصول تستی</span>
-                                            </a>
-                                            <span
-                                                class="block text-center text-[14px] text-(--color-secondary-text)">تست
-                                                آیتم</span>
-                                            <span class="block text-center text-[12px] text-(--color-secondary-text)">10
-                                                آیتم</span>
-                                        </div>
-                                        <div class="p-4 border border-(--color-border) rounded-[10px]">
-                                            <a href="#" class="block mb-1">
-                                                <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                                                    class="w-[85px] h-20 mx-auto" alt="product">
-                                                <span class="inline-block w-full text-center pt-3">محصول تستی</span>
-                                            </a>
-                                            <span
-                                                class="block text-center text-[14px] text-(--color-secondary-text)">تست
-                                                آیتم</span>
-                                            <span class="block text-center text-[12px] text-(--color-secondary-text)">10
-                                                آیتم</span>
-                                        </div>
-                                        <div class="p-4 border border-(--color-border) rounded-[10px]">
-                                            <a href="#" class="block mb-1">
-                                                <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                                                    class="w-[85px] h-20 mx-auto" alt="product">
-                                                <span class="inline-block w-full text-center pt-3">محصول تستی</span>
-                                            </a>
-                                            <span
-                                                class="block text-center text-[14px] text-(--color-secondary-text)">تست
-                                                آیتم</span>
-                                            <span
-                                                class="block text-center text-[12px] text-(--color-secondary-text)">10
-                                                آیتم</span>
-                                        </div>
-                                        <div class="p-4 border border-(--color-border) rounded-[10px]">
-                                            <a href="#" class="block mb-1">
-                                                <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                                                    class="w-[85px] h-20 mx-auto" alt="product">
-                                                <span class="inline-block w-full text-center pt-3">محصول تستی</span>
-                                            </a>
-                                            <span
-                                                class="block text-center text-[14px] text-(--color-secondary-text)">تست
-                                                آیتم</span>
-                                            <span
-                                                class="block text-center text-[12px] text-(--color-secondary-text)">10
-                                                آیتم</span>
-                                        </div>
-                                        <div class="p-4 border border-(--color-border) rounded-[10px]">
-                                            <a href="#" class="block mb-1">
-                                                <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                                                    class="w-[85px] h-20 mx-auto" alt="product">
-                                                <span class="inline-block w-full text-center pt-3">محصول تستی</span>
-                                            </a>
-                                            <span
-                                                class="block text-center text-[14px] text-(--color-secondary-text)">تست
-                                                آیتم</span>
-                                            <span
-                                                class="block text-center text-[12px] text-(--color-secondary-text)">10
-                                                آیتم</span>
-                                        </div>
-                                        <div class="p-4 border border-(--color-border) rounded-[10px]">
-                                            <a href="#" class="block mb-1">
-                                                <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                                                    class="w-[85px] h-20 mx-auto" alt="product">
-                                                <span class="inline-block w-full text-center pt-3">محصول تستی</span>
-                                            </a>
-                                            <span
-                                                class="block text-center text-[14px] text-(--color-secondary-text)">تست
-                                                آیتم</span>
-                                            <span
-                                                class="block text-center text-[12px] text-(--color-secondary-text)">10
-                                                آیتم</span>
-                                        </div>
-                                        <div class="p-4 border border-(--color-border) rounded-[10px]">
-                                            <a href="#" class="block mb-1">
-                                                <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                                                    class="w-[85px] h-20 mx-auto" alt="product">
-                                                <span class="inline-block w-full text-center pt-3">محصول تستی</span>
-                                            </a>
-                                            <span
-                                                class="block text-center text-[14px] text-(--color-secondary-text)">تست
-                                                آیتم</span>
-                                            <span
-                                                class="block text-center text-[12px] text-(--color-secondary-text)">10
-                                                آیتم</span>
-                                        </div>
+                                    <div class="h-90 grid grid-cols-4 gap-4 max-h-[575px] overflow-y-auto">
+                                        @foreach ($products as $product)
+                                            <div class="p-4 border border-(--color-border) rounded-[10px] h-1/2">
+                                                <a href="http://localhost/shahkar/public/product/show/{{ $product->id }}"
+                                                    class="block mb-1">
+                                                    @if ($product->medias)
+                                                        @foreach ($product->medias as $media)
+                                                            @if ($media['is_main'] == 1)
+                                                                <img src=" {{ asset('storage/' . $media['path']) }}  "
+                                                                    class="w-[85px] h-20 mx-auto" alt="product">
+                                                                @break
 
-
-
+                                                            @else
+                                                                <img src="{{ asset('assets/img/noImage.png') }}"
+                                                                    class="w-[85px] h-20 mx-auto" alt="product">
+                                                                @break
+                                                            @endif
+                                                        @endforeach
+                                                    @else
+                                                        <img src="{{ asset('assets/img/noImage.png') }}"
+                                                            class="w-[85px] h-20 mx-auto" alt="product">
+                                                    @endif
+                                                    <span
+                                                        class="inline-block w-full text-center pt-3">{{ $product->title }}</span>
+                                                    <span
+                                                        class="block text-center text-[14px] text-(--color-secondary-text)">{{ $product->description }}</span>
+                                                </a>
+                                            </div>
+                                        @endforeach
                                     </div>
                                     <!-- contents -->
                                 </div>
                             </div>
                         </div>
                     </li>
-
-
                     <li class="relative menuItemParent">
                         <a href="#"
                             class="text-(--color-text) font-semibold text-sm flex flex-row items-center gap-1 transition-all duration-300 py-4 menuLink">
@@ -271,40 +174,38 @@
                             class="absolute min-w-[250px] py-4 px-6 border border-(--color-border) bg-white top-full opacity-0 mt-8 right-0 invisible z-9999 transition-all duration-500 menuItemChild">
                             <li>
                                 <a href="#"
-                                    class="block py-2.5 text-sm font-semibold transitin-all duration-300 hover:text-(--color-primary)">عنوان
+                                    class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">عنوان
                                     تستی</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="block py-2.5 text-sm font-semibold transitin-all duration-300 hover:text-(--color-primary)">عنوان
+                                    class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">عنوان
                                     تستی</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="block py-2.5 text-sm font-semibold transitin-all duration-300 hover:text-(--color-primary)">عنوان
+                                    class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">عنوان
                                     تستی</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="block py-2.5 text-sm font-semibold transitin-all duration-300 hover:text-(--color-primary)">عنوان
+                                    class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">عنوان
                                     تستی</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="block py-2.5 text-sm font-semibold transitin-all duration-300 hover:text-(--color-primary)">عنوان
+                                    class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">عنوان
                                     تستی</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="block py-2.5 text-sm font-semibold transitin-all duration-300 hover:text-(--color-primary)">عنوان
+                                    class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">عنوان
                                     تستی</a>
                             </li>
                         </ul>
 
 
                     </li>
-
-
                     <li class="relative menuItemParent">
                         <a href="#"
                             class="text-(--color-text) font-semibold text-sm flex flex-row items-center gap-1 transition-all duration-300 py-4 menuLink">
@@ -320,17 +221,17 @@
                             class="absolute min-w-[250px] py-4 px-6 border border-(--color-border) bg-white top-full opacity-0 mt-8 right-0 invisible z-9999 transition-all duration-500 menuItemChild">
                             <li>
                                 <a href="#"
-                                    class="block py-2.5 text-sm font-semibold transitin-all duration-300 hover:text-(--color-primary)">عنوان
+                                    class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">عنوان
                                     تستی</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="block py-2.5 text-sm font-semibold transitin-all duration-300 hover:text-(--color-primary)">عنوان
+                                    class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">عنوان
                                     تستی</a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="block py-2.5 text-sm font-semibold transitin-all duration-300 hover:text-(--color-primary)">عنوان
+                                    class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">عنوان
                                     تستی</a>
                             </li>
 
@@ -346,7 +247,6 @@
                             class="text-(--color-text) font-semibold text-sm gap-1 transition-all duration-300 py-4 menuLink">تماس
                             با ما</a>
                     </li>
-
                 </ul>
                 <!-- 2xl menu -->
 
@@ -362,20 +262,20 @@
                             </svg>
                         </div>
                         @if ($user)
-                        <div>
-                            <span
-                                class="block text-(--color-text) leading-[22px] font-medium text-sm">{{ $user['name'] }}
-                                {{ $user['family'] }}</span>
-                            <a href="{{ route('user.profile', [$user->id]) }}"
-                                class="block text-(--color-text) leading-[22px] text-xs">مشاهده پروفایل</a>
-                        </div>
+                            <div>
+                                <span
+                                    class="block text-(--color-text) leading-[22px] font-medium text-sm">{{ $user['name'] }}
+                                    {{ $user['family'] }}</span>
+                                <a href="{{ route('user.profile', [$user->id]) }}"
+                                    class="block text-(--color-text) leading-[22px] text-xs">مشاهده پروفایل</a>
+                            </div>
                         @else
-                        <div>
-                            <a class="block text-(--color-text) leading-[22px] font-medium text-sm"
-                                href="{{ route('user.login') }}">ورود</a>
-                            <a class="block text-(--color-text) leading-[22px] text-xs"
-                                href="{{ route('user.signup') }}">ثبت نام</a>
-                        </div>
+                            <div>
+                                <a class="block text-(--color-text) leading-[22px] font-medium text-sm"
+                                    href="{{ route('user.login') }}">ورود</a>
+                                <a class="block text-(--color-text) leading-[22px] text-xs"
+                                    href="{{ route('user.signup') }}">ثبت نام</a>
+                            </div>
                         @endif
                     </div>
                     {{-- <a href="#" class="inline-block w-8 h-6 relative">
@@ -424,9 +324,9 @@
             <!-- logo -->
             <div class="h-[33px]">
                 @foreach ($logo as $l)
-                <a href="{{ $l['link_href'] }}" class="inline-block size-full">
-                    <img src="{{ $l['logo'] }}" class="size-full" alt="{{ $l['alt_text'] }}">
-                </a>
+                    <a href="{{ $l['link_href'] }}" class="inline-block size-full">
+                        <img src="{{ $l['logo'] }}" class="size-full" alt="{{ $l['alt_text'] }}">
+                    </a>
                 @endforeach
             </div>
             <!-- logo -->
@@ -449,7 +349,6 @@
                         class="flex justify-center items-center -top-2 -left-2 absolute size-4 bg-(--color-primary) rounded-full text-(--color-primary-text) text-sm">0</span>
                 </a>
                 <!-- chocolate menu -->
-
                 <div class="size-7 p-1 flex flex-col gap-1 bg-(--color-primary-btn) rounded-sm cursor-pointer"
                     id="chocIconMobile">
                     <div class="flex flex-row justify-between items-center">
@@ -468,9 +367,6 @@
                         <span class="size-1 bg-(--color-text) rounded-full"></span>
                     </div>
                 </div>
-
-
-
                 <!-- chocolate menu -->
             </div>
         </div>
@@ -493,15 +389,10 @@
                 </button>
                 <ul class="w-full h-[444px] overflow-y-auto">
                     <li class="my-1">
-                        <a href="#"
-                            class="inline-block w-full text-(--color-text) font-semibold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
-                            خانه
-                        </a>
-                    </li>
-                    <li class="my-1">
                         <div
                             class="flex flex-row justify-between items-center gap-1 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
-                            <a href="#" class="inline-block w-11/12 text-(--color-text) font-semibold py-3 ">
+                            <a href="{{ route('category-index') }}"
+                                class="inline-block w-11/12 text-(--color-text) font-semibold py-3 ">
                                 دسته بندی
                             </a>
                             <div class="w-1/12 flex items-center justify-end subMenuActive">
@@ -513,163 +404,50 @@
                             </div>
                         </div>
                         <div class="w-full max-h-0 overflow-hidden transition-all duration-500 mt-2 subItem">
-
-
-
-
-
-
-                            <div class="w-full flex flex-col xl:flex-row items-start gap-10">
+                            <div class="h-100 w-full flex flex-col xl:flex-row items-start gap-10">
                                 <div
-                                    class="w-full xl:w-1/4 flex flex-row xl:flex-col justify-between gap-4 overflow-x-auto px-3 xl:px-0">
-                                    <button
-                                        class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transitin-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer activeSubMenuCat subMenuCat">عنوان
-                                        تستی</button>
-                                    <button
-                                        class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transitin-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">عنوان
-                                        تستی</button>
-                                    <button
-                                        class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transitin-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">عنوان
-                                        تستی</button>
-                                    <button
-                                        class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transitin-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">عنوان
-                                        تستی</button>
-                                    <button
-                                        class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transitin-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">عنوان
-                                        تستی</button>
+                                    class="h-90 overflow-y-auto w-full xl:w-1/4 flex flex-row xl:flex-col justify-between gap-4 overflow-x-auto px-3 xl:px-0">
+                                    @foreach ($categories as $category)
+                                        <a href="{{ route('search-cat-products', [$category]) }}"
+                                            class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">{{ $category->title }}</a>
+                                    @endforeach
                                 </div>
                                 <div class="w-full xl:w-3/4 xl:overflow-y-auto">
                                     <!-- contents -->
                                     <div
-                                        class="grid sm:grid-cols-2 grid-cols-1 gap-4 max-h-[575px] overflow-y-auto text-(--color-text)">
-                                        <div class="p-4 border border-(--color-border) rounded-[10px]">
-                                            <a href="#" class="block mb-1">
-                                                <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                                                    class="w-[85px] h-20 mx-auto" alt="product">
-                                                <span class="inline-block w-full text-center pt-3">محصول
-                                                    تستی</span>
-                                            </a>
-                                            <span
-                                                class="block text-center text-[14px] text-(--color-secondary-text)">تست
-                                                آیتم</span>
-                                            <span
-                                                class="block text-center text-[12px] text-(--color-secondary-text)">10
-                                                آیتم</span>
-                                        </div>
-                                        <div class="p-4 border border-(--color-border) rounded-[10px]">
-                                            <a href="#" class="block mb-1">
-                                                <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                                                    class="w-[85px] h-20 mx-auto" alt="product">
-                                                <span class="inline-block w-full text-center pt-3">محصول
-                                                    تستی</span>
-                                            </a>
-                                            <span
-                                                class="block text-center text-[14px] text-(--color-secondary-text)">تست
-                                                آیتم</span>
-                                            <span
-                                                class="block text-center text-[12px] text-(--color-secondary-text)">10
-                                                آیتم</span>
-                                        </div>
-                                        <div class="p-4 border border-(--color-border) rounded-[10px]">
-                                            <a href="#" class="block mb-1">
-                                                <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                                                    class="w-[85px] h-20 mx-auto" alt="product">
-                                                <span class="inline-block w-full text-center pt-3">محصول
-                                                    تستی</span>
-                                            </a>
-                                            <span
-                                                class="block text-center text-[14px] text-(--color-secondary-text)">تست
-                                                آیتم</span>
-                                            <span
-                                                class="block text-center text-[12px] text-(--color-secondary-text)">10
-                                                آیتم</span>
-                                        </div>
-                                        <div class="p-4 border border-(--color-border) rounded-[10px]">
-                                            <a href="#" class="block mb-1">
-                                                <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                                                    class="w-[85px] h-20 mx-auto" alt="product">
-                                                <span class="inline-block w-full text-center pt-3">محصول
-                                                    تستی</span>
-                                            </a>
-                                            <span
-                                                class="block text-center text-[14px] text-(--color-secondary-text)">تست
-                                                آیتم</span>
-                                            <span
-                                                class="block text-center text-[12px] text-(--color-secondary-text)">10
-                                                آیتم</span>
-                                        </div>
-                                        <div class="p-4 border border-(--color-border) rounded-[10px]">
-                                            <a href="#" class="block mb-1">
-                                                <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                                                    class="w-[85px] h-20 mx-auto" alt="product">
-                                                <span class="inline-block w-full text-center pt-3">محصول
-                                                    تستی</span>
-                                            </a>
-                                            <span
-                                                class="block text-center text-[14px] text-(--color-secondary-text)">تست
-                                                آیتم</span>
-                                            <span
-                                                class="block text-center text-[12px] text-(--color-secondary-text)">10
-                                                آیتم</span>
-                                        </div>
-                                        <div class="p-4 border border-(--color-border) rounded-[10px]">
-                                            <a href="#" class="block mb-1">
-                                                <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                                                    class="w-[85px] h-20 mx-auto" alt="product">
-                                                <span class="inline-block w-full text-center pt-3">محصول
-                                                    تستی</span>
-                                            </a>
-                                            <span
-                                                class="block text-center text-[14px] text-(--color-secondary-text)">تست
-                                                آیتم</span>
-                                            <span
-                                                class="block text-center text-[12px] text-(--color-secondary-text)">10
-                                                آیتم</span>
-                                        </div>
-                                        <div class="p-4 border border-(--color-border) rounded-[10px]">
-                                            <a href="#" class="block mb-1">
-                                                <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                                                    class="w-[85px] h-20 mx-auto" alt="product">
-                                                <span class="inline-block w-full text-center pt-3">محصول
-                                                    تستی</span>
-                                            </a>
-                                            <span
-                                                class="block text-center text-[14px] text-(--color-secondary-text)">تست
-                                                آیتم</span>
-                                            <span
-                                                class="block text-center text-[12px] text-(--color-secondary-text)">10
-                                                آیتم</span>
-                                        </div>
-                                        <div class="p-4 border border-(--color-border) rounded-[10px]">
-                                            <a href="#" class="block mb-1">
-                                                <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/category-1.png"
-                                                    class="w-[85px] h-20 mx-auto" alt="product">
-                                                <span class="inline-block w-full text-center pt-3">محصول
-                                                    تستی</span>
-                                            </a>
-                                            <span
-                                                class="block text-center text-[14px] text-(--color-secondary-text)">تست
-                                                آیتم</span>
-                                            <span
-                                                class="block text-center text-[12px] text-(--color-secondary-text)">10
-                                                آیتم</span>
-                                        </div>
+                                        class="h-90 grid sm:grid-cols-2 grid-cols-1 gap-4 max-h-[575px] overflow-y-auto text-(--color-text)">
+                                        @foreach ($products as $product)
+                                            <div class="p-4 border border-(--color-border) rounded-[10px]">
+                                                <a href="http://localhost/shahkar/public/product/show/{{ $product->id }}"
+                                                    class="block mb-1">
+                                                    @if ($product->medias)
+                                                        @foreach ($product->medias as $media)
+                                                            @if ($media['is_main'] == 1)
+                                                                <img src=" {{ asset('storage/' . $media['path']) }}  "
+                                                                    class="w-[85px] h-20 mx-auto" alt="product">
+                                                                @break
 
-
-
+                                                            @else
+                                                                <img src="{{ asset('assets/img/noImage.png') }}"
+                                                                    class="w-[85px] h-20 mx-auto" alt="product">
+                                                                @break
+                                                            @endif
+                                                        @endforeach
+                                                    @else
+                                                        <img src="{{ asset('assets/img/noImage.png') }}"
+                                                            class="w-[85px] h-20 mx-auto" alt="product">
+                                                    @endif
+                                                    <span
+                                                        class="inline-block w-full text-center pt-3">{{ $product->title }}</span>
+                                                    <span
+                                                        class="block text-center text-[14px] text-(--color-secondary-text)">{{ $product->description }}</span>
+                                                </a>
+                                            </div>
+                                        @endforeach
                                     </div>
                                     <!-- contents -->
                                 </div>
                             </div>
-
-
-
-
-
-
-
-
-
                         </div>
                     </li>
                     <li class="my-1">
@@ -754,7 +532,6 @@
                             </li>
                         </ul>
                     </li>
-
                     <li class="my-1">
                         <a href="#"
                             class="inline-block w-full text-(--color-text) font-semibold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover) ">
@@ -763,7 +540,6 @@
                             </span>
                         </a>
                     </li>
-
                 </ul>
             </div>
         </div>
@@ -783,43 +559,43 @@
     <footer class="text-(--color-text) pt-3 bg-(--color-primary-btn) 2xl:container mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-4">
             @foreach ($footerColumns as $footerColumn)
-            <div class="p-6">
-                <p class="text-gray-700 font-bold mb-4">{{ $footerColumn['section_title'] }}</p>
-                @foreach ($footerColumn['rows'] as $row)
-                <p>
-                    <a href="{{ $row['row_href'] }}">{{ $row['row_content'] }}</a>
-                </p>
-                @endforeach
-            </div>
-            @endforeach
-            @foreach ($footer_form_column as $ffc)
-            <div class="p-6 flex flex-col gap-10">
-                <div class="">
-                    <p class="text-gray-700 font-bold mb-4">{{ $ffc['section_title'] }}</p>
-                </div>
-                <div class="flex justify-between items-center">
-                    @foreach ($ffc['images'] as $image)
-                    <a href="{{ $image['link'] }}">
-                        <img src="{{ asset('storage/' . $image['path']) }}" alt="{{ $image['alt'] }}"
-                            class="size-10 rounded-full">
-                    </a>
+                <div class="p-6">
+                    <p class="text-gray-700 font-bold mb-4">{{ $footerColumn['section_title'] }}</p>
+                    @foreach ($footerColumn['rows'] as $row)
+                        <p>
+                            <a href="{{ $row['row_href'] }}">{{ $row['row_content'] }}</a>
+                        </p>
                     @endforeach
                 </div>
-                <div class="">
-                    <form action="{{ route('homeForm-store') }}" method="post" class="flex flex-col gap-4">
-                        @csrf
-                        <label for="" class="">{{ $ffc['texts'][0]['text'] }}</label>
-                        <div class="flex gap-4">
-                            <input type="string" required
-                                class="w-3/4 outline-none py-2 px-9 bg-[#F9F9F9] rounded-xl focus:border"
-                                name="contactMethod" id=""
-                                placeholder="{{ $ffc['texts'][0]['placeholder'] }}" required>
-                            <button type="submit"
-                                class="w-1/4 py-2 px-7 rounded-[10px] bg-(--color-btn-contact) text-(--color-primary-text) hover:bg-(--color-btn-contact-hover) transition-all duration-300 text-white cursor-pointer">ثبت</button>
-                        </div>
-                    </form>
+            @endforeach
+            @foreach ($footer_form_column as $ffc)
+                <div class="p-6 flex flex-col gap-10">
+                    <div class="">
+                        <p class="text-gray-700 font-bold mb-4">{{ $ffc['section_title'] }}</p>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        @foreach ($ffc['images'] as $image)
+                            <a href="{{ $image['link'] }}">
+                                <img src="{{ asset('storage/' . $image['path']) }}" alt="{{ $image['alt'] }}"
+                                    class="size-10 rounded-full">
+                            </a>
+                        @endforeach
+                    </div>
+                    <div class="">
+                        <form action="{{ route('homeForm-store') }}" method="post" class="flex flex-col gap-4">
+                            @csrf
+                            <label for="" class="">{{ $ffc['texts'][0]['text'] }}</label>
+                            <div class="flex gap-4">
+                                <input type="string" required
+                                    class="w-3/4 outline-none py-2 px-9 bg-[#F9F9F9] rounded-xl focus:border"
+                                    name="contactMethod" id=""
+                                    placeholder="{{ $ffc['texts'][0]['placeholder'] }}" required>
+                                <button type="submit"
+                                    class="w-1/4 py-2 px-7 rounded-[10px] bg-(--color-btn-contact) text-(--color-primary-text) hover:bg-(--color-btn-contact-hover) transition-all duration-300 text-white cursor-pointer">ثبت</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
             @endforeach
         </div>
         <hr>

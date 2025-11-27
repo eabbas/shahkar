@@ -100,6 +100,7 @@ class ProductController extends Controller
 
     public function show(product $product)
     {
+        $products = product::all();
         $campare = $product->price->price - $product->price->discount;
         $x = $campare / $product->price->price;
         $persent = $x * 100;
@@ -107,8 +108,8 @@ class ProductController extends Controller
         $settings = settings::all();
         $product->category;
         $product->comments;
-        $questions = question::all();
         $product->medias;
+        $questions = question::all();
         $settings = settings::all();
         $cats = category::all();
         $logo = logo::all();
@@ -117,6 +118,7 @@ class ProductController extends Controller
         $user = Auth::user();
         return view('user.product.show', [
             'settings' => $settings,
+            'products' => $products,
             'product' => $product,
             'settings' => $settings,
             'questions' => $questions,

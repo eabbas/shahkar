@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\aboutUs;
 use App\Models\category;
+use App\Models\product;
 use App\Models\footer_column;
 use App\Models\settings;
 use App\Models\logo;
@@ -43,6 +44,7 @@ class AboutUsController extends Controller
 
     public function index()
     {
+        $products = product::all();
         $settings = settings::all();
         $cats = category::all();
         $logo = logo::all();
@@ -51,6 +53,7 @@ class AboutUsController extends Controller
         $user = Auth::user();
         $aboutus = aboutUs::all();
         return view('aboutus', [
+            'products' => $products,
             'settings' => $settings,
             'aboutus' => $aboutus,
             'categories' => $cats,

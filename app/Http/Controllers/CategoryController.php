@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\category;
 use App\Models\footer_column;
 use App\Models\logo;
+use App\Models\product;
 use Illuminate\Http\Request;
 use App\Models\settings;
 use Illuminate\Support\Facades\Auth;
@@ -47,6 +48,7 @@ class CategoryController extends Controller
 
     public function index()
     {
+                $products = product::all();
         $settings = settings::all();
         $logo = logo::all();
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
@@ -54,6 +56,7 @@ class CategoryController extends Controller
         $user = Auth::user();
         $cats = category::all();
         return view('user.category.index', [
+                        'products' => $products,
             'settings' => $settings,
             'categories' => $cats,
             'logo' => $logo,
@@ -70,12 +73,16 @@ class CategoryController extends Controller
 
     public function show(category $category)
     {
+        $products = product::all();
+        $cats = category::all();
         $settings = settings::all();
         $logo = logo::all();
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
         $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
         $user = Auth::user();
         return view('user.category.show', [
+            'products' => $products,
+            'categories' => $cats,
             'settings' => $settings,
             'category' => $category,
             'logo' => $logo,

@@ -41,6 +41,7 @@ class SearchController extends Controller
     }
     public function index(category $category)
     {
+        $products = product::all();
         $settings = settings::all();
         $user = Auth::user();
         $cats = category::all();
@@ -48,6 +49,7 @@ class SearchController extends Controller
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
         $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
         return view('relatedProductsToCategory', [
+            'products' => $products,
             'settings' => $settings,
             'category' => $category,
             'user' => $user,
