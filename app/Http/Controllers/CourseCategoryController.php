@@ -8,6 +8,7 @@ use App\Models\footer_column;
 use App\Models\logo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\settings;
 
 class CourseCategoryController extends Controller
 {
@@ -25,6 +26,7 @@ class CourseCategoryController extends Controller
 
     public function index()
     {
+        $settings = settings::all();
         $cats = category::all();
         $logo = logo::all();
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
@@ -32,6 +34,7 @@ class CourseCategoryController extends Controller
         $user = Auth::user();
         $courseCategories = courseCategory::all();
         return view('user.courseCategory.index', [
+            'settings' => $settings,
             'courseCategories' => $courseCategories,
             'categories' => $cats,
             'logo' => $logo,
@@ -49,12 +52,14 @@ class CourseCategoryController extends Controller
 
     public function show(courseCategory $courseCategory)
     {
+        $settings = settings::all();
         $cats = category::all();
         $logo = logo::all();
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
         $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
         $user = Auth::user();
         return view('user.courseCategory.show', [
+            'settings' => $settings,
             'courseCategory' => $courseCategory,
             'categories' => $cats,
             'logo' => $logo,

@@ -74,6 +74,7 @@ class ProductController extends Controller
 
     public function index()
     {
+        $settings = settings::all();
         $cats = category::all();
         $logo = logo::all();
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
@@ -81,6 +82,7 @@ class ProductController extends Controller
         $user = Auth::user();
         $products = product::with('category')->get();
         return view('user.product.index', [
+            'settings' => $settings,
             'products' => $products,
             'categories' => $cats,
             'logo' => $logo,
@@ -107,12 +109,14 @@ class ProductController extends Controller
         $product->comments;
         $questions = question::all();
         $product->medias;
+        $settings = settings::all();
         $cats = category::all();
         $logo = logo::all();
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
         $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
         $user = Auth::user();
         return view('user.product.show', [
+            'settings' => $settings,
             'product' => $product,
             'settings' => $settings,
             'questions' => $questions,

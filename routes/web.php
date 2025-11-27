@@ -128,10 +128,12 @@ Route::group(['prefix' => 'answer', 'controller' => AnswerController::class, 'as
     Route::get('/delete/{answer}', 'delete')->name('delete');
 });
 // home routes
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::view('/notAccess', 'notAccess')->name('notAccess');
-Route::view('/loginAtFirst', 'loginAtFirst')->name('loginAtFirst');
-Route::view('/dashboard', 'admin.app.dashboard')->middleware(checkAdminMiddleware::class)->name('dashboard');
+Route::group(['controller' => HomeController::class], function () {
+    Route::get('/home', 'index')->name('home');
+    Route::get('/notAccess', 'notAccess')->name('notAccess');
+    Route::get('/loginAtFirst', 'loginAtFirst')->name('loginAtFirst');
+    Route::get('/dashboard', 'dashboard')->middleware(checkAdminMiddleware::class)->name('dashboard');
+});
 // admin routes
 Route::controller(userController::class)->prefix('admin')->group(function () {
     Route::get('/signupUser', 'adminSignup')->middleware(checkAdminMiddleware::class)->name('admin_create_user');

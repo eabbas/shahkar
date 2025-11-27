@@ -46,4 +46,55 @@ class HomeController extends Controller
             'user' => $user
         ]);
     }
+    public function notAccess()
+    {
+        $settings = settings::all();
+        $cats = category::all();
+        $logo = logo::all();
+        $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
+        $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
+        $user = Auth::user();
+        return view('notAccess', [
+            'settings' => $settings,
+            'categories' => $cats,
+            'logo' => $logo,
+            'footerColumns' => $footer_columns,
+            'footer_form_column' => $footer_form_column,
+            'user' => $user
+        ]);
+    }
+    public function loginAtFirst()
+    {
+        $settings = settings::all();
+        $cats = category::all();
+        $logo = logo::all();
+        $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
+        $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
+        $user = Auth::user();
+        return view('loginAtFirst', [
+            'settings' => $settings,
+            'categories' => $cats,
+            'logo' => $logo,
+            'footerColumns' => $footer_columns,
+            'footer_form_column' => $footer_form_column,
+            'user' => $user
+        ]);
+    }
+    public function dashboard()
+    {
+        $settings = settings::all();
+        $cats = category::all();
+        $logo = logo::all();
+        $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
+        $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
+        $user = Auth::user();
+        return view('admin.app.dashboard', [
+            'settings' => $settings,
+            'categories' => $cats,
+            'logo' => $logo,
+            'footerColumns' => $footer_columns,
+            'footer_form_column' => $footer_form_column,
+            'user' => $user
+        ]);
+    }
 }
