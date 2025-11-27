@@ -9,6 +9,7 @@ use App\Models\logo;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\settings;
 
 class ContactUsController extends Controller
 {
@@ -17,12 +18,14 @@ class ContactUsController extends Controller
         if (!Auth::check()) {
             return to_route('user.login');
         }
+        $settings = settings::all();
         $user = Auth::user();
         $cats = category::all();
         $logo = logo::all();
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
         $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
         return view('user.contactus.create', [
+            'settings' => $settings,
             'user' => $user,
             'categories' => $cats,
             'logo' => $logo,
@@ -74,11 +77,13 @@ class ContactUsController extends Controller
 
     public function usersContact(User $user)
     {
+        $settings = settings::all();
         $cats = category::all();
         $logo = logo::all();
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
         $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
         return view('user.contactus.usersContacts.usersContact', [
+            'settings' => $settings,
             'user' => $user,
             'categories' => $cats,
             'logo' => $logo,
@@ -89,12 +94,14 @@ class ContactUsController extends Controller
 
     public function usersContactEdit(contactUs $contactUs)
     {
+        $settings = settings::all();
         $cats = category::all();
         $logo = logo::all();
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
         $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
         $user = Auth::user();
         return view('user.contactus.usersContacts.usersContactEdit', [
+            'settings' => $settings,
             'cu' => $contactUs,
             'categories' => $cats,
             'logo' => $logo,

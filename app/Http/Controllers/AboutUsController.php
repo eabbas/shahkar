@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\aboutUs;
 use App\Models\category;
 use App\Models\footer_column;
-use App\Models\footerTile;
+use App\Models\settings;
 use App\Models\logo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +43,7 @@ class AboutUsController extends Controller
 
     public function index()
     {
+        $settings = settings::all();
         $cats = category::all();
         $logo = logo::all();
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
@@ -50,6 +51,7 @@ class AboutUsController extends Controller
         $user = Auth::user();
         $aboutus = aboutUs::all();
         return view('aboutus', [
+            'settings' => $settings,
             'aboutus' => $aboutus,
             'categories' => $cats,
             'logo' => $logo,

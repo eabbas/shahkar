@@ -81,16 +81,18 @@ class userController extends Controller
 
     public function edit(User $user)
     {
-        $cats = category::all();
-        $logo = logo::all();
-        $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
-        $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
+        // $settings = settings::all();
+        // $cats = category::all();
+        // $logo = logo::all();
+        // $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
+        // $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
         return view('user.user.user_edit', [
             'user' => $user,
-            'categories' => $cats,
-            'logo' => $logo,
-            'footerColumns' => $footer_columns,
-            'footer_form_column' => $footer_form_column,
+            // 'settings' => $settings,
+            // 'categories' => $cats,
+            // 'logo' => $logo,
+            // 'footerColumns' => $footer_columns,
+            // 'footer_form_column' => $footer_form_column,
         ]);
     }
 

@@ -6,6 +6,7 @@ use App\Models\category;
 use App\Models\footer_column;
 use App\Models\logo;
 use Illuminate\Http\Request;
+use App\Models\settings;
 use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
@@ -46,12 +47,14 @@ class CategoryController extends Controller
 
     public function index()
     {
+        $settings = settings::all();
         $logo = logo::all();
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
         $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
         $user = Auth::user();
         $cats = category::all();
         return view('user.category.index', [
+            'settings' => $settings,
             'categories' => $cats,
             'logo' => $logo,
             'footerColumns' => $footer_columns,
@@ -67,11 +70,13 @@ class CategoryController extends Controller
 
     public function show(category $category)
     {
+        $settings = settings::all();
         $logo = logo::all();
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
         $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
         $user = Auth::user();
         return view('user.category.show', [
+            'settings' => $settings,
             'category' => $category,
             'logo' => $logo,
             'footerColumns' => $footer_columns,
