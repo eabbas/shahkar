@@ -7,9 +7,11 @@ use App\Models\bigTile;
 use Illuminate\Http\Request;
 use App\Models\settings;
 use App\Models\category;
+use App\Models\course;
 use App\Models\footer_column;
 use App\Models\footerTile;
 use App\Models\logo;
+use App\Models\menu;
 use App\Models\product;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,6 +19,7 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $courses = course::all();
         $products = product::where('is_in_home', 1)->get();
         $settings = settings::all();
         $cats = category::all();
@@ -31,6 +34,7 @@ class HomeController extends Controller
         $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
         $user = Auth::user();
         return view('home', [
+            'courses' => $courses,
             'settings' => $settings,
             'products' => $products,
             'categories' => $cats,

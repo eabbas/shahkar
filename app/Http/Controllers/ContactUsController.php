@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\category;
+use App\Models\course;
+use App\Models\product;
 use App\Models\contactUs;
 use App\Models\footer_column;
 use App\Models\logo;
@@ -18,6 +20,8 @@ class ContactUsController extends Controller
         if (!Auth::check()) {
             return to_route('user.login');
         }
+        $courses = course::all();
+        $products = product::all();
         $settings = settings::all();
         $user = Auth::user();
         $cats = category::all();
@@ -25,6 +29,8 @@ class ContactUsController extends Controller
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
         $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
         return view('user.contactus.create', [
+            'courses' => $courses,
+            'products' => $products,
             'settings' => $settings,
             'user' => $user,
             'categories' => $cats,
@@ -77,12 +83,16 @@ class ContactUsController extends Controller
 
     public function usersContact(User $user)
     {
+        $courses = course::all();
+        $products = product::all();
         $settings = settings::all();
         $cats = category::all();
         $logo = logo::all();
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
         $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
         return view('user.contactus.usersContacts.usersContact', [
+            'courses' => $courses,
+            'products' => $products,
             'settings' => $settings,
             'user' => $user,
             'categories' => $cats,
@@ -94,6 +104,7 @@ class ContactUsController extends Controller
 
     public function usersContactEdit(contactUs $contactUs)
     {
+        $courses = course::all();
         $settings = settings::all();
         $cats = category::all();
         $logo = logo::all();
@@ -101,6 +112,7 @@ class ContactUsController extends Controller
         $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
         $user = Auth::user();
         return view('user.contactus.usersContacts.usersContactEdit', [
+            'courses' => $courses,
             'settings' => $settings,
             'cu' => $contactUs,
             'categories' => $cats,

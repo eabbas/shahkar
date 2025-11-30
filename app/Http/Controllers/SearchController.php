@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\category;
+use App\Models\course;
 use App\Models\footer_column;
 use App\Models\logo;
 use App\Models\product;
@@ -14,6 +15,7 @@ class SearchController extends Controller
 {
     public function search(Request $request)
     {
+        $courses = course::all();
         $settings = settings::all();
         $user = Auth::user();
         $cats = category::all();
@@ -29,6 +31,7 @@ class SearchController extends Controller
             $products = product::where('category_id', $request->category)->where('title', $request->searchedValue)->get();
         }
         return view('search', [
+            'courses' => $courses,
             'products' => $products,
             'settings' => $settings,
             'category' => $category,
@@ -41,6 +44,8 @@ class SearchController extends Controller
     }
     public function index(category $category)
     {
+        $courses = course::all();
+        $products = product::all();
         $settings = settings::all();
         $user = Auth::user();
         $cats = category::all();
@@ -48,6 +53,8 @@ class SearchController extends Controller
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
         $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
         return view('relatedProductsToCategory', [
+            'courses' => $courses,
+            'products' => $products,
             'settings' => $settings,
             'category' => $category,
             'user' => $user,
