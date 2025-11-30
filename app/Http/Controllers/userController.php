@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\category;
+use App\Models\course;
 use App\Models\product;
 use App\Models\footer_column;
 use App\Models\logo;
@@ -65,6 +66,7 @@ class userController extends Controller
         if (!$user) {
             $user = Auth::user();
         }
+        $courses = course::all();
         $products = product::all();
         $settings = settings::all();
         $cats = category::all();
@@ -72,6 +74,7 @@ class userController extends Controller
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
         $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
         return view('user.user.profile', [
+            'courses' => $courses,
             'products' => $products,
             'user' => $user,
             'settings' => $settings,

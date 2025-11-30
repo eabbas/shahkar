@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\answer;
+use App\Models\course;
 use App\Models\category;
 use App\Models\footer_column;
 use App\Models\logo;
@@ -74,6 +75,7 @@ class ProductController extends Controller
 
     public function index()
     {
+        $courses = course::all();
         $settings = settings::all();
         $cats = category::all();
         $logo = logo::all();
@@ -82,6 +84,7 @@ class ProductController extends Controller
         $user = Auth::user();
         $products = product::with('category')->get();
         return view('user.product.index', [
+            'courses' => $courses,
             'settings' => $settings,
             'products' => $products,
             'categories' => $cats,
@@ -100,6 +103,7 @@ class ProductController extends Controller
 
     public function show(product $product)
     {
+        $courses = course::all();
         $products = product::all();
         $campare = $product->price->price - $product->price->discount;
         $x = $campare / $product->price->price;
@@ -117,6 +121,7 @@ class ProductController extends Controller
         $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
         $user = Auth::user();
         return view('user.product.show', [
+            'courses' => $courses,
             'settings' => $settings,
             'products' => $products,
             'product' => $product,

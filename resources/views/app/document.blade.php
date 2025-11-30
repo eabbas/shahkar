@@ -158,85 +158,76 @@
                         </div>
                     </li>
                     <li class="relative menuItemParent">
-                        <a href="#"
+                        <a href="{{ route('course-index') }}"
                             class="text-(--color-text) font-semibold text-sm flex flex-row items-center gap-1 transition-all duration-300 py-4 menuLink">
                             <span>
-                                فروشگاه
+                                دوره ها
                             </span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 448 512">
                                 <path fill="var(--color-fill)"
                                     d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z" />
                             </svg>
                         </a>
-
-
                         <ul
                             class="absolute min-w-[250px] py-4 px-6 border border-(--color-border) bg-white top-full opacity-0 mt-8 right-0 invisible z-9999 transition-all duration-500 menuItemChild">
-                            <li>
-                                <a href="#"
-                                    class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">عنوان
-                                    تستی</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">عنوان
-                                    تستی</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">عنوان
-                                    تستی</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">عنوان
-                                    تستی</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">عنوان
-                                    تستی</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">عنوان
-                                    تستی</a>
-                            </li>
+                            @foreach ($courses as $course)
+                                <li>
+                                    <a href="{{ route('course-show', [$course]) }}"
+                                        class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">{{ $course['title'] }}</a>
+                                </li>
+                            @endforeach
                         </ul>
-
-
                     </li>
                     <li class="relative menuItemParent">
-                        <a href="#"
+                        <a href="{{ route('product-index') }}"
                             class="text-(--color-text) font-semibold text-sm flex flex-row items-center gap-1 transition-all duration-300 py-4 menuLink">
                             <span>
-                                دست فروش
+                                محصولات
                             </span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 448 512">
+                            {{-- <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 448 512">
                                 <path fill="var(--color-fill)"
                                     d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z" />
-                            </svg>
+                            </svg> --}}
                         </a>
-                        <ul
+                        {{-- <ul
                             class="absolute min-w-[250px] py-4 px-6 border border-(--color-border) bg-white top-full opacity-0 mt-8 right-0 invisible z-9999 transition-all duration-500 menuItemChild">
                             <li>
-                                <a href="#"
-                                    class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">عنوان
-                                    تستی</a>
+                                <a href=""
+                                    class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)"></a>
                             </li>
-                            <li>
-                                <a href="#"
-                                    class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">عنوان
-                                    تستی</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">عنوان
-                                    تستی</a>
-                            </li>
-
-                        </ul>
+                        </ul> --}}
                     </li>
+                    {{-- @foreach ($menuItems as $menuItem)
+                        @if ($menuItem['active'] && $menuItem['parent_id'] == 0)
+                            <li class="relative menuItemParent">
+                                <a href="{{ $menuItem['link'] }}"
+                                    class="text-(--color-text) font-semibold text-sm flex flex-row items-center gap-1 transition-all duration-300 py-4 menuLink">
+                                    <span>
+                                        {{ $menuItem['title'] }}
+                                    </span>
+                                    @if (count($menuItem['children']) != 0)
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 448 512">
+                                            <path fill="var(--color-fill)"
+                                                d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z" />
+                                        </svg>
+                                    @endif
+                                </a>
+                                @if (count($menuItem['children']) != 0)
+                                    <ul
+                                        class="absolute min-w-[250px] py-4 px-6 border border-(--color-border) bg-white top-full opacity-0 mt-8 right-0 invisible z-9999 transition-all duration-500 menuItemChild">
+                                        @foreach ($menuItem['children'] as $child)
+                                            @if ($child['active'])
+                                                <li>
+                                                    <a href="{{ $child['link'] }}"
+                                                        class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">{{ $child['title'] }}</a>
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </li>
+                        @endif
+                    @endforeach --}}
                     <li>
                         <a href="{{ route('aboutus-index') }}"
                             class="text-(--color-text) font-semibold text-sm gap-1 transition-all duration-300 py-4 menuLink">درباره
@@ -453,8 +444,9 @@
                     <li class="my-1">
                         <div
                             class="flex flex-row justify-between items-center gap-1 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
-                            <a href="#" class="inline-block w-11/12 text-(--color-text) font-semibold py-3 ">
-                                فروشگاه
+                            <a href="{{ route('course-index') }}"
+                                class="inline-block w-11/12 text-(--color-text) font-semibold py-3 ">
+                                دوره ها
                             </a>
                             <div class="w-1/12 flex items-center justify-end subMenuActive">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="size-5 transition-all duration-150"
@@ -465,47 +457,32 @@
                             </div>
                         </div>
                         <ul class="w-full max-h-0 overflow-hidden transition-all duration-500 pr-5 mt-2 subItem">
-                            <li>
-                                <a href="#"
-                                    class="inline-block w-full text-(--color-text) font-semibold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
-                                    asiodfhkjaldshf
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="inline-block w-full text-(--color-text) font-semibold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
-                                    asiodfhkjaldshf
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="inline-block w-full text-(--color-text) font-semibold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
-                                    asiodfhkjaldshf
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="inline-block w-full text-(--color-text) font-semibold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
-                                    asiodfhkjaldshf
-                                </a>
-                            </li>
+                            @foreach ($courses as $course)
+                                <li>
+                                    <a href="{{ route('course-show', [$course]) }}"
+                                        class="inline-block w-full text-(--color-text) font-semibold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
+                                        {{ $course['title'] }}
+                                    </a>
+                                </li>
+                            @endforeach
                         </ul>
                     </li>
                     <li class="my-1">
                         <div
                             class="flex flex-row justify-between items-center gap-1 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
-                            <a href="#" class="inline-block w-11/12 text-(--color-text) font-semibold py-3 ">
-                                تست
+                            <a href="{{ route('product-index') }}"
+                                class="inline-block w-11/12 text-(--color-text) font-semibold py-3 ">
+                                محصولات
                             </a>
-                            <div class="w-1/12 flex items-center justify-end subMenuActive">
+                            {{-- <div class="w-1/12 flex items-center justify-end subMenuActive">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="size-5 transition-all duration-150"
                                     viewBox="0 0 448 512">
                                     <path fill="var(--color-fill)"
                                         d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z" />
                                 </svg>
-                            </div>
+                            </div> --}}
                         </div>
-                        <ul class="w-full max-h-0 overflow-hidden transition-all duration-500 pr-5 mt-2 subItem">
+                        {{-- <ul class="w-full max-h-0 overflow-hidden transition-all duration-500 pr-5 mt-2 subItem">
                             <li>
                                 <a href="#"
                                     class="inline-block w-full text-(--color-text) font-semibold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
@@ -530,14 +507,18 @@
                                     asiodfhkjaldshf
                                 </a>
                             </li>
-                        </ul>
+                        </ul> --}}
                     </li>
                     <li class="my-1">
-                        <a href="#"
+                        <a href="{{ route('aboutus-index') }}"
                             class="inline-block w-full text-(--color-text) font-semibold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover) ">
-                            <span>
-                                ارتباط با ما
-                            </span>
+                            درباره ما
+                        </a>
+                    </li>
+                    <li class="my-1">
+                        <a href="{{ route('contactus-create') }}"
+                            class="inline-block w-full text-(--color-text) font-semibold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover) ">
+                            تماس با ما
                         </a>
                     </li>
                 </ul>

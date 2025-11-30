@@ -32,7 +32,8 @@ class CourseController extends Controller
 
     public function index()
     {
-                $products = product::all();
+        $courses = course::all();
+        $products = product::all();
         $settings = settings::all();
         $cats = category::all();
         $logo = logo::all();
@@ -41,7 +42,8 @@ class CourseController extends Controller
         $user = Auth::user();
         $courses = course::with('courseCategory')->get();
         return view('user.course.index', [
-                        'products' => $products,
+            'courses' => $courses,
+            'products' => $products,
             'settings' => $settings,
             'courses' => $courses,
             'categories' => $cats,
@@ -61,7 +63,8 @@ class CourseController extends Controller
     public function show(course $course)
     {
         $course->courseCategory;
-                $products = product::all();
+        $courses = course::all();
+        $products = product::all();
         $settings = settings::all();
         $cats = category::all();
         $logo = logo::all();
@@ -69,7 +72,8 @@ class CourseController extends Controller
         $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
         $user = Auth::user();
         return view('user.course.show', [
-                        'products' => $products,
+            'courses' => $courses,
+            'products' => $products,
             'settings' => $settings,
             'course' => $course,
             'categories' => $cats,
