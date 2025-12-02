@@ -245,27 +245,43 @@
             </div>
             <div class="xl:w-4/12 w-full">
                 <div class="flex flex-row md:justify-center xl:justify-end items-center gap-5">
-                    <div class="flex items-center gap-5">
-                        <div class="size-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-full" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M320 128a96 96 0 1 0 -192 0 96 96 0 1 0 192 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM32 480H416c-1.2-79.7-66.2-144-146.3-144H178.3c-80 0-145 64.3-146.3 144zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z" />
-                            </svg>
-                        </div>
+                    <div class="relative menuItemParent flex items-center gap-5 cursor-pointer">
                         @if ($user)
-                            <div>
-                                <span
-                                    class="block text-(--color-text) leading-[22px] font-medium text-sm">{{ $user['name'] }}
-                                    {{ $user['family'] }}</span>
-                                <a href="{{ route('user.profile', [$user->id]) }}"
-                                    class="block text-(--color-text) leading-[22px] text-xs">مشاهده پروفایل</a>
+                            <div class="size-6">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="size-full" viewBox="0 0 448 512">
+                                    <path fill="var(--color-fill)"
+                                        d="M320 128a96 96 0 1 0 -192 0 96 96 0 1 0 192 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM32 480H416c-1.2-79.7-66.2-144-146.3-144H178.3c-80 0-145 64.3-146.3 144zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z" />
+                                </svg>
+                            </div>
+                            <div
+                                class="absolute min-w-[250px] py-4 px-6 border border-(--color-border) bg-white top-10 opacity-0 -left-full invisible z-9999 transition-all duration-500 mt-10">
+                                <ul class="text-(--color-text)">
+                                    <li class="flex justify-between items-center">
+                                        <a href="{{ route('user.profile', [$user]) }}"
+                                            class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">{{ $user['name'] }}
+                                            {{ $user['family'] }}</a>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 320 512">
+                                            <path fill="var(--color-fill)"
+                                                d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z">
+                                            </path>
+                                        </svg>
+                                    </li>
+                                    <li><a href="{{ route('user.edit', [$user]) }}"
+                                            class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">ویرایش
+                                            پروفایل</a></li>
+                                    <li><a href="{{ route('user.logout') }}"
+                                            class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">خروج
+                                            از حساب کاربری</a></li>
+                                    <li><a href="#"
+                                            class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">دیدگاه
+                                            ها و پرسش ها</a></li>
+                                </ul>
                             </div>
                         @else
-                            <div>
-                                <a class="block text-(--color-text) leading-[22px] font-medium text-sm"
-                                    href="{{ route('user.login') }}">ورود</a>
-                                <a class="block text-(--color-text) leading-[22px] text-xs"
-                                    href="{{ route('user.signup') }}">ثبت نام</a>
+                            <div class="border border-(--color-border) py-2 px-6 rounded-md">
+                                <a href="{{ route('user.login') }}"
+                                    class="block text-(--color-text) leading-[22px] font-medium text-sm">ورود | ثبت
+                                    نام</a>
                             </div>
                         @endif
                     </div>
