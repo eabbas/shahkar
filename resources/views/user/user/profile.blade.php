@@ -5,7 +5,7 @@
     <aside class="hidden w-3/12 lg:h-[500px] border-l border-gray-300 lg:block">
         <ul class="w-full p-2">
             <li class="border-b border-gray-300">
-                <a href="{{ route('user.edit', [$user]) }}" class="inline-block w-full py-3 px-4 text-sm">ادیت پروفایل</a>
+                <a href="{{ route('user.edit', [$user]) }}" class="inline-block w-full py-3 px-4 text-sm">ویرایش پروفایل</a>
             </li>
             <li class="border-b border-gray-300">
                 <a href="{{ route('user.delete', [$user]) }}" class="inline-block w-full py-3 px-4 text-sm">حذف حساب
@@ -13,6 +13,9 @@
             </li>
             <li class="border-b border-gray-300">
                 <a href="{{ route('user.logout') }}" class="inline-block w-full py-3 px-4 text-sm">خروج از حساب کاربری</a>
+            </li>
+            <li class="border-b border-gray-300">
+                <a href="#" class="inline-block w-full py-3 px-4 text-sm">دیدگاه ها و پرسش ها</a>
             </li>
 
             @if ($user->is_admin)
