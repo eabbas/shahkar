@@ -311,7 +311,8 @@
                             <span id="shoppingCartNumber"
                                 class="flex justify-center items-center -top-2.5 -left-2.5 absolute size-5 bg-(--color-primary) rounded-full text-(--color-primary-text) text-sm">0</span>
                         </a>
-                        <div
+                        {{-- shopping cart hover box by mr.olyafam --}}
+                        {{-- <div
                             class="absolute left-5 top-10 w-90 bg-white p-2 border border-(--color-border) mt-10 z-9999 transition-all duration-500 invisible opacity-0">
                             <div class="text-(--color-text) font-light text-sm">
                                 <span>1</span>
@@ -319,7 +320,6 @@
                             </div>
 
                             <div class="max-h-80 overflow-y-auto my-8">
-                                {{-- @foreach ($shoppingCart as $sc) --}}
                                 <a href="#">
                                     <div class="w-full flex gap-3 mb-10">
                                         <div class="w-1/3">
@@ -339,7 +339,6 @@
                                         </div>
                                     </div>
                                 </a>
-                                {{-- @endforeach --}}
                             </div>
 
                             <div class="flex justify-between items-center">
@@ -358,7 +357,8 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
+                        {{-- end shopping cart hover box by mr.olyafam --}}
                     </div>
                     {{-- <div
                         class="flex flex-row items-center gap-5 p-2 border border-(--color-border) rounded-full cursor-pointer">
