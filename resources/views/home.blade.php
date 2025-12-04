@@ -100,20 +100,20 @@
         <div class="flex flex-col lg:flex-row justify-between gap-8 lg:gap-0 lg:items-center py-5 lg:py-10">
             <h2 class="font-bold lg:text-[24px] leading-8">تخفیفات ویژه</h2>
             <!-- <div
-                                                            class="flex flex-row flex-wrap lg:justify-end items-center text-xs lg:text-base gap-5 font-semibold">
-                                                            <a href="#" class="text-(--color-text)">
-                                                                همه دسته ها
-                                                            </a>
-                                                            <a href="#" class="text-(--color-secondary-text)">
-                                                                تست 1
-                                                            </a>
-                                                            <a href="#" class="text-(--color-secondary-text)">
-                                                                تست 2
-                                                            </a>
-                                                            <a href="#" class="text-(--color-secondary-text)">
-                                                                تست 3
-                                                            </a>
-                                                        </div> -->
+                                                                                                class="flex flex-row flex-wrap lg:justify-end items-center text-xs lg:text-base gap-5 font-semibold">
+                                                                                                <a href="#" class="text-(--color-text)">
+                                                                                                    همه دسته ها
+                                                                                                </a>
+                                                                                                <a href="#" class="text-(--color-secondary-text)">
+                                                                                                    تست 1
+                                                                                                </a>
+                                                                                                <a href="#" class="text-(--color-secondary-text)">
+                                                                                                    تست 2
+                                                                                                </a>
+                                                                                                <a href="#" class="text-(--color-secondary-text)">
+                                                                                                    تست 3
+                                                                                                </a>
+                                                                                            </div> -->
         </div>
         <!-- title section -->
 
@@ -121,173 +121,173 @@
             <!-- 12 -->
 
             <!-- <div class="p-2 md:p-3 lg:p-4 xl:p-5 border border-(--color-border) rounded-[10px] relative productItem productItemNone">
-                                                            <div
-                                                                class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-555 overflow-hidden">
-                                                                <button
-                                                                    class="size-8 border border-(--color-border) buttonProduct bg-white rounded-sm flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[50ms]">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
-                                                                        <path fill="var(--color-fill)"
-                                                                            d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                                                                    </svg>
-                                                                </button>
-                                                                <button
-                                                                    class="size-8 border border-(--color-border) buttonProduct bg-white rounded-sm flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[100ms]">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
-                                                                        <path fill="var(--color-fill)"
-                                                                            d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                                                                    </svg>
-                                                                </button>
+                                                                                                <div
+                                                                                                    class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-555 overflow-hidden">
+                                                                                                    <button
+                                                                                                        class="size-8 border border-(--color-border) buttonProduct bg-white rounded-sm flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[50ms]">
+                                                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
+                                                                                                            <path fill="var(--color-fill)"
+                                                                                                                d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
+                                                                                                        </svg>
+                                                                                                    </button>
+                                                                                                    <button
+                                                                                                        class="size-8 border border-(--color-border) buttonProduct bg-white rounded-sm flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[100ms]">
+                                                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 448 512">
+                                                                                                            <path fill="var(--color-fill)"
+                                                                                                                d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
+                                                                                                        </svg>
+                                                                                                    </button>
 
 
 
-                                                                <button
-                                                                    class="size-8 border border-(--color-border) buttonProduct bg-white rounded-sm flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[150ms]"">
-                                                                    <svg xmlns=" http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 576 512">
-                                                                    <path fill="var(--color-fill)"
-                                                                        d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                                                                    </svg>
-                                                                </button>
+                                                                                                    <button
+                                                                                                        class="size-8 border border-(--color-border) buttonProduct bg-white rounded-sm flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-[150ms]"">
+                                                                                                        <svg xmlns=" http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 576 512">
+                                                                                                        <path fill="var(--color-fill)"
+                                                                                                            d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
+                                                                                                        </svg>
+                                                                                                    </button>
 
 
-                                                            </div>
-                                                            <div
-                                                                class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 md:hidden flex flex-col gap-2 z-555 overflow-hidden">
+                                                                                                </div>
+                                                                                                <div
+                                                                                                    class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 md:hidden flex flex-col gap-2 z-555 overflow-hidden">
 
-                                                                <button
-                                                                    class="size-5 sm:size-7 border border-(--color-border) bg-white rounded-sm flex justify-center items-center cursor-pointer productAnimation">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
-                                                                        <path fill="var(--color-fill)"
-                                                                            d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
-                                                                    </svg>
-                                                                </button>
-                                                                <button
-                                                                    class="size-5 sm:size-7 border border-(--color-border) bg-white rounded-sm flex justify-center items-center cursor-pointer">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 512 512">
-                                                                        <path fill="var(--color-fill)"
-                                                                            d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
-                                                                    </svg>
-                                                                </button>
-                                                                <button
-                                                                    class="size-5 sm:size-7 border border-(--color-border) bg-white rounded-sm flex justify-center items-center cursor-pointer">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
-                                                                        <path fill="var(--color-fill)"
-                                                                            d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
-                                                                    </svg>
-                                                                </button>
-                                                                <button
-                                                                    class="size-5 sm:size-7 border border-(--color-border) bg-white rounded-sm flex justify-center items-center cursor-pointer">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 576 512">
-                                                                        <path fill="var(--color-fill)"
-                                                                            d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-                                                                    </svg>
-                                                                </button>
+                                                                                                    <button
+                                                                                                        class="size-5 sm:size-7 border border-(--color-border) bg-white rounded-sm flex justify-center items-center cursor-pointer productAnimation">
+                                                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
+                                                                                                            <path fill="var(--color-fill)"
+                                                                                                                d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
+                                                                                                        </svg>
+                                                                                                    </button>
+                                                                                                    <button
+                                                                                                        class="size-5 sm:size-7 border border-(--color-border) bg-white rounded-sm flex justify-center items-center cursor-pointer">
+                                                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 512 512">
+                                                                                                            <path fill="var(--color-fill)"
+                                                                                                                d="M244 130.6l-12-13.5-4.2-4.7c-26-29.2-65.3-42.8-103.8-35.8c-53.3 9.7-92 56.1-92 110.3v3.5c0 32.3 13.4 63.1 37.1 85.1L253 446.8c.8 .7 1.9 1.2 3 1.2s2.2-.4 3-1.2L443 275.5c23.6-22 37-52.8 37-85.1v-3.5c0-54.2-38.7-100.6-92-110.3c-38.5-7-77.8 6.6-103.8 35.8l-4.2 4.7-12 13.5c-3 3.4-7.4 5.4-12 5.4s-8.9-2-12-5.4zm34.9-57.1C311 48.4 352.7 37.7 393.7 45.1C462.2 57.6 512 117.3 512 186.9v3.5c0 36-13.1 70.6-36.6 97.5c-3.4 3.8-6.9 7.5-10.7 11l-184 171.3c-.8 .8-1.7 1.5-2.6 2.2c-6.3 4.9-14.1 7.5-22.1 7.5c-9.2 0-18-3.5-24.8-9.7L47.2 299c-3.8-3.5-7.3-7.2-10.7-11C13.1 261 0 226.4 0 190.4v-3.5C0 117.3 49.8 57.6 118.3 45.1c40.9-7.4 82.6 3.2 114.7 28.4c6.7 5.3 13 11.1 18.7 17.6l4.2 4.7 4.2-4.7c4.2-4.7 8.6-9.1 13.3-13.1c1.8-1.5 3.6-3 5.4-4.5z" />
+                                                                                                        </svg>
+                                                                                                    </button>
+                                                                                                    <button
+                                                                                                        class="size-5 sm:size-7 border border-(--color-border) bg-white rounded-sm flex justify-center items-center cursor-pointer">
+                                                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 448 512">
+                                                                                                            <path fill="var(--color-fill)"
+                                                                                                                d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
+                                                                                                        </svg>
+                                                                                                    </button>
+                                                                                                    <button
+                                                                                                        class="size-5 sm:size-7 border border-(--color-border) bg-white rounded-sm flex justify-center items-center cursor-pointer">
+                                                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 576 512">
+                                                                                                            <path fill="var(--color-fill)"
+                                                                                                                d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
+                                                                                                        </svg>
+                                                                                                    </button>
 
-                                                            </div>
-                                                            <span
-                                                                class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-(--color-discount-bg) text-(--color-primary-text) rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
-                                                            <div>
-                                                                <a href="#" class="flex justify-center mb-1 overflow-hidden">
-                                                                    <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/onion-pro-1.jpg"
-                                                                        class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
-                                                                        alt="product">
-                                                                </a>
-                                                            </div>
-                                                            <div>
-                                                                <div class="mb-1">
-                                                                    <a href="#" class="text-[12px] lg:text-[14px] text-(--color-text)">تست آیتم</a>
-                                                                </div>
-
-
-
-
-
-                                                                <div class="relative">
-                                                                    <div class="absolute w-3/4 h-3/4 bg-(--color-primary-btn) bottom-0 right-0 p-3 hidden showMetric">
-                                                                        <div class="flex flex-row flex-wrap gap-1 text-(--color-text)">
-                                                                            <button type="button" class="px-[5px] py-[3px] text-xs rounded-sm border border-(--color-border) translate-all duration-300 hover:border-black cursor-pointer">
-                                                                                1 کیلو گرم
-                                                                            </button>
-                                                                            <button type="button" class="px-[5px] py-[3px] text-xs rounded-sm border border-(--color-border) translate-all duration-300 hover:border-black cursor-pointer">
-                                                                                2 کیلو گرم
-                                                                            </button>
-                                                                            <button type="button" class="px-[5px] py-[3px] text-xs rounded-sm border border-(--color-border) translate-all duration-300 hover:border-black cursor-pointer">
-                                                                                250 گرم
-                                                                            </button>
-                                                                            <button type="button" class="px-[5px] py-[3px] text-xs rounded-sm border border-(--color-border) translate-all duration-300 hover:border-black cursor-pointer">
-                                                                                500 گرم
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="mb-2 font-semibold text-[14px] lg:text-base">
-                                                                        <a href="#">توضیحات محصول تستی محصول تستی محصول </a>
-                                                                    </div>
-                                                                    <div class="flex flex-row items-center mb-3 gap-2">
-                                                                        <div class="w-1/2 flex flex-row items-center text-[12px]">
-                                                                            <div class="text-(--color-secondary-text) flex flex-row items-center">
-                                                                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                                                                    <path fill="#8C9EC5"
-                                                                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                                                                </svg>
-                                                                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                                                                    <path fill="#8C9EC5"
-                                                                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                                                                </svg>
-                                                                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                                                                    <path fill="#8C9EC5"
-                                                                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                                                                </svg>
-                                                                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                                                                    <path fill="#8C9EC5"
-                                                                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                                                                </svg>
-                                                                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
-                                                                                    <path fill="#8C9EC5"
-                                                                                        d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                                                                </svg>
-                                                                            </div>
-                                                                            <span>(0)</span>
-                                                                        </div>
-                                                                        <div>
-                                                                            <span
-                                                                                class="lg:py-[3px] py-px px-0.5 lg:px-[5px] bg-(--color-secondary) text-(--color-primary-text) rounded-full text-[10px]">
-                                                                                تستی
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="hidden lg:flex flex-row items-center gap-2 text-(--color-text) mb-3 text-[18px] font-bold">
-                                                                        <span>$15.22</span>
-                                                                        <span>-</span>
-                                                                        <span>$140.00</span>
-                                                                    </div>
-                                                                </div>
+                                                                                                </div>
+                                                                                                <span
+                                                                                                    class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-(--color-discount-bg) text-(--color-primary-text) rounded-full text-[8px] lg:text-[12px] text-center z-[11]">18%</span>
+                                                                                                <div>
+                                                                                                    <a href="#" class="flex justify-center mb-1 overflow-hidden">
+                                                                                                        <img src="https://elango.steelthemes.com/ecom/el2/wp-content/uploads/2025/07/onion-pro-1.jpg"
+                                                                                                            class="size-full transition-all duration-500 hover:scale-[1.04] relative z-10"
+                                                                                                            alt="product">
+                                                                                                    </a>
+                                                                                                </div>
+                                                                                                <div>
+                                                                                                    <div class="mb-1">
+                                                                                                        <a href="#" class="text-[12px] lg:text-[14px] text-(--color-text)">تست آیتم</a>
+                                                                                                    </div>
 
 
 
 
 
-                                                                <div class="flex lg:hidden flex-row items-start gap-2 text-(--color-text) mb-3 font-bold">
-                                                                    <span>$15.22</span>
+                                                                                                    <div class="relative">
+                                                                                                        <div class="absolute w-3/4 h-3/4 bg-(--color-primary-btn) bottom-0 right-0 p-3 hidden showMetric">
+                                                                                                            <div class="flex flex-row flex-wrap gap-1 text-(--color-text)">
+                                                                                                                <button type="button" class="px-[5px] py-[3px] text-xs rounded-sm border border-(--color-border) translate-all duration-300 hover:border-black cursor-pointer">
+                                                                                                                    1 کیلو گرم
+                                                                                                                </button>
+                                                                                                                <button type="button" class="px-[5px] py-[3px] text-xs rounded-sm border border-(--color-border) translate-all duration-300 hover:border-black cursor-pointer">
+                                                                                                                    2 کیلو گرم
+                                                                                                                </button>
+                                                                                                                <button type="button" class="px-[5px] py-[3px] text-xs rounded-sm border border-(--color-border) translate-all duration-300 hover:border-black cursor-pointer">
+                                                                                                                    250 گرم
+                                                                                                                </button>
+                                                                                                                <button type="button" class="px-[5px] py-[3px] text-xs rounded-sm border border-(--color-border) translate-all duration-300 hover:border-black cursor-pointer">
+                                                                                                                    500 گرم
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="mb-2 font-semibold text-[14px] lg:text-base">
+                                                                                                            <a href="#">توضیحات محصول تستی محصول تستی محصول </a>
+                                                                                                        </div>
+                                                                                                        <div class="flex flex-row items-center mb-3 gap-2">
+                                                                                                            <div class="w-1/2 flex flex-row items-center text-[12px]">
+                                                                                                                <div class="text-(--color-secondary-text) flex flex-row items-center">
+                                                                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
+                                                                                                                        <path fill="#8C9EC5"
+                                                                                                                            d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
+                                                                                                                    </svg>
+                                                                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
+                                                                                                                        <path fill="#8C9EC5"
+                                                                                                                            d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
+                                                                                                                    </svg>
+                                                                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
+                                                                                                                        <path fill="#8C9EC5"
+                                                                                                                            d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
+                                                                                                                    </svg>
+                                                                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
+                                                                                                                        <path fill="#8C9EC5"
+                                                                                                                            d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
+                                                                                                                    </svg>
+                                                                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4" viewBox="0 0 576 512">
+                                                                                                                        <path fill="#8C9EC5"
+                                                                                                                            d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
+                                                                                                                    </svg>
+                                                                                                                </div>
+                                                                                                                <span>(0)</span>
+                                                                                                            </div>
+                                                                                                            <div>
+                                                                                                                <span
+                                                                                                                    class="lg:py-[3px] py-px px-0.5 lg:px-[5px] bg-(--color-secondary) text-(--color-primary-text) rounded-full text-[10px]">
+                                                                                                                    تستی
+                                                                                                                </span>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="hidden lg:flex flex-row items-center gap-2 text-(--color-text) mb-3 text-[18px] font-bold">
+                                                                                                            <span>$15.22</span>
+                                                                                                            <span>-</span>
+                                                                                                            <span>$140.00</span>
+                                                                                                        </div>
+                                                                                                    </div>
 
-                                                                    <del class="text-xs text-(--color-secondary-text)">$140.00</del>
-                                                                </div>
-                                                                <div class="flex flex-col lg:flex-row gap-2 lg:gap-4 relative">
-                                                                    <div class="absolute size-full bg-white/70 cursor-not-allowed"></div>
-                                                                    <div
-                                                                        class="w-full lg:w-1/2 flex flex-row justify-between items-center border border-(--color-border) rounded-[10px] p-1">
-                                                                        <button
-                                                                            class="bg-(--color-primary-btn) rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer" disabled>-</button>
-                                                                        <input type="text" class="w-[30px] outline-none text-center text-xs" value="1" min="0"
-                                                                            name="" id="" disabled>
-                                                                        <button
-                                                                            class="bg-(--color-primary-btn) rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer" disabled>+</button>
-                                                                    </div>
-                                                                    <div class="w-full lg:w-1/2">
-                                                                        <button
-                                                                            class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-(--color-primary-text) bg-(--color-bg-card-btn) leading-5 rounded-[10px] cursor-pointer" disabled>ناموجود</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div> -->
+
+
+
+
+                                                                                                    <div class="flex lg:hidden flex-row items-start gap-2 text-(--color-text) mb-3 font-bold">
+                                                                                                        <span>$15.22</span>
+
+                                                                                                        <del class="text-xs text-(--color-secondary-text)">$140.00</del>
+                                                                                                    </div>
+                                                                                                    <div class="flex flex-col lg:flex-row gap-2 lg:gap-4 relative">
+                                                                                                        <div class="absolute size-full bg-white/70 cursor-not-allowed"></div>
+                                                                                                        <div
+                                                                                                            class="w-full lg:w-1/2 flex flex-row justify-between items-center border border-(--color-border) rounded-[10px] p-1">
+                                                                                                            <button
+                                                                                                                class="bg-(--color-primary-btn) rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer" disabled>-</button>
+                                                                                                            <input type="text" class="w-[30px] outline-none text-center text-xs" value="1" min="0"
+                                                                                                                name="" id="" disabled>
+                                                                                                            <button
+                                                                                                                class="bg-(--color-primary-btn) rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer" disabled>+</button>
+                                                                                                        </div>
+                                                                                                        <div class="w-full lg:w-1/2">
+                                                                                                            <button
+                                                                                                                class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-(--color-primary-text) bg-(--color-bg-card-btn) leading-5 rounded-[10px] cursor-pointer" disabled>ناموجود</button>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div> -->
 
             @foreach ($specialDiscounts[0]['products'] as $specialDiscountProduct)
                 @if ($specialDiscountProduct['is_in_home'] == 1)
@@ -458,8 +458,9 @@
                                         class="bg-(--color-primary-btn) rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">+</button>
                                 </div>
                                 <div class="w-full lg:w-1/2">
-                                    <button
-                                        class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-(--color-primary-text) bg-(--color-bg-card-btn) leading-5 rounded-[10px] cursor-pointer">خرید</button>
+                                    <button onclick="addToShoppingCart()"
+                                        class="w-full h-full py-3 lg:py-1 text-[12px] text-(--color-primary-text) bg-(--color-bg-card-btn) leading-5 rounded-[10px] cursor-pointer">افزودن
+                                        به سبد خرید</button>
                                 </div>
                             </div>
                         </div>
@@ -739,7 +740,8 @@
                                 </div>
                                 <div class="w-full lg:w-1/2">
                                     <button
-                                        class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-(--color-primary-text) bg-(--color-bg-card-btn) leading-5 rounded-[10px] cursor-pointer">خرید</button>
+                                        class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-(--color-primary-text) bg-(--color-bg-card-btn) leading-5 rounded-[10px] cursor-pointer">افزودن
+                                        به سبد خرید</button>
                                 </div>
                             </div>
                         </div>

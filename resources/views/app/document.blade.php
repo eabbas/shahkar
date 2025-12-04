@@ -301,15 +301,66 @@
                         <span
                             class="flex justify-center items-center -top-2.5 -left-2.5 absolute size-5 bg-(--color-primary) rounded-full text-(--color-primary-text) text-sm">0</span>
                     </a> --}}
-                    <a href="#" class="inline-block w-8 h-6 relative">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="size-6 rotate-y-180" viewBox="0 0 576 512">
-                            <path fill="var(--color-fill)"
-                                d="M24 0C10.7 0 0 10.7 0 24S10.7 48 24 48H69.5c3.8 0 7.1 2.7 7.9 6.5l51.6 271c6.5 34 36.2 58.5 70.7 58.5H488c13.3 0 24-10.7 24-24s-10.7-24-24-24H199.7c-11.5 0-21.4-8.2-23.6-19.5L170.7 288H459.2c32.6 0 61.1-21.8 69.5-53.3l41-152.3C576.6 57 557.4 32 531.1 32h-411C111 12.8 91.6 0 69.5 0H24zM131.1 80H520.7L482.4 222.2c-2.8 10.5-12.3 17.8-23.2 17.8H161.6L131.1 80zM176 512a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm336-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0z" />
-                        </svg>
-                        <span
-                            class="flex justify-center items-center -top-2.5 -left-2.5 absolute size-5 bg-(--color-primary) rounded-full text-(--color-primary-text) text-sm">0</span>
-                    </a>
-                    <div
+                    <div class="relative menuItemParent">
+                        <a href="#" class="inline-block w-8 h-6 relative">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 rotate-y-180"
+                                viewBox="0 0 576 512">
+                                <path fill="var(--color-fill)"
+                                    d="M24 0C10.7 0 0 10.7 0 24S10.7 48 24 48H69.5c3.8 0 7.1 2.7 7.9 6.5l51.6 271c6.5 34 36.2 58.5 70.7 58.5H488c13.3 0 24-10.7 24-24s-10.7-24-24-24H199.7c-11.5 0-21.4-8.2-23.6-19.5L170.7 288H459.2c32.6 0 61.1-21.8 69.5-53.3l41-152.3C576.6 57 557.4 32 531.1 32h-411C111 12.8 91.6 0 69.5 0H24zM131.1 80H520.7L482.4 222.2c-2.8 10.5-12.3 17.8-23.2 17.8H161.6L131.1 80zM176 512a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm336-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0z" />
+                            </svg>
+                            <span id="shoppingCartNumber"
+                                class="flex justify-center items-center -top-2.5 -left-2.5 absolute size-5 bg-(--color-primary) rounded-full text-(--color-primary-text) text-sm">0</span>
+                        </a>
+                        {{-- shopping cart hover box by mr.olyafam --}}
+                        {{-- <div
+                            class="absolute left-5 top-10 w-90 bg-white p-2 border border-(--color-border) mt-10 z-9999 transition-all duration-500 invisible opacity-0">
+                            <div class="text-(--color-text) font-light text-sm">
+                                <span>1</span>
+                                <span>کالا</span>
+                            </div>
+
+                            <div class="max-h-80 overflow-y-auto my-8">
+                                <a href="#">
+                                    <div class="w-full flex gap-3 mb-10">
+                                        <div class="w-1/3">
+                                            <img src="{{ asset('storage/images/6d170732-57e2-44e3-997b-a5ad762330aa_Parse2.jpg') }}"
+                                                class="size-full" alt="">
+                                        </div>
+                                        <div class="flex flex-col gap-2 w-2/3">
+                                            <span class="font-bold text-(--color-text)">محصول دوزایش</span>
+                                            <span class="text-sm font-light text-(--color-secondary-text)">بو محصول
+                                                فرق
+                                                الی
+                                                بتی بیزاد دی حتما آلون</span>
+                                            <span class="text-sm font-light text-(--color-secondary-text)">
+                                                <span>4000000</span>
+                                                <span>تومان</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="flex justify-between items-center">
+                                <div class="flex flex-col gap-2">
+                                    <span class="text-(--color-text) font-light text-sm">مبلغ
+                                        قابل پرداخت</span>
+                                    <span>
+                                        <span class="font-bold text-lg">40000000</span>
+                                        <span class="text-sm">تومان</span>
+                                    </span>
+                                </div>
+                                <div>
+                                    <a href="#"
+                                        class="bg-(--color-subheader-btn) rounded-[10px] text-base py-2 px-5 text-(--color-primary-text) font-semibold transition-all duration-500 ease-in-out hover:bg-(--color-bg-hover-btn) buttonLink">
+                                        <span>ثبت سفارش</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div> --}}
+                        {{-- end shopping cart hover box by mr.olyafam --}}
+                    </div>
+                    {{-- <div
                         class="flex flex-row items-center gap-5 p-2 border border-(--color-border) rounded-full cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 384 512">
                             <path fill="var(--color-fill)"
@@ -318,7 +369,7 @@
                         <span class="text-sm text-(--color-text)">
                             بناب
                         </span>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
