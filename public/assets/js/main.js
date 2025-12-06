@@ -197,7 +197,18 @@ function login(state) {
 //     console.log(shoppingCartNumber);
 // }
 
-// related products for per category by mr.olyafam
+// related products to per category by mr.olyafam
+
+let categoryTitles = document.querySelectorAll('.category-title')
+categoryTitles.forEach((item) => {
+    item.addEventListener('click', () => {
+        categoryTitles.forEach((el) => {
+            el.classList.remove('text-(--color-text)')
+            el.classList.add('text-(--color-secondary-text)')
+        })
+        item.classList.add('text-(--color-text)')
+    })
+})
 
 function getRelatedProducts(param) {
     $.ajaxSetup({
@@ -208,7 +219,7 @@ function getRelatedProducts(param) {
     $.ajax({
         url: route,
         type: "POST",
-        datatype: "json",
+        dataType: "json",
         data: {
             'id': param
         },
@@ -216,7 +227,7 @@ function getRelatedProducts(param) {
             console.log(data);
         },
         error: function () {
-            console.log('error👍');
+            alert('error')
         }
     })
 }
