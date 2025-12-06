@@ -101,4 +101,14 @@ class HomeController extends Controller
             'user' => $user
         ]);
     }
+    public function relatedProducts(Request $request)
+    {
+        if ($request['id'] == 'all') {
+            $products = product::where('is_in_home', 1)->get();
+        }
+        if ($request['id'] != 'all') {
+            $products = product::where('category_id', $request['id'])->where('is_in_home', 1)->get();
+        }
+        return response()->json($products);
+    }
 }

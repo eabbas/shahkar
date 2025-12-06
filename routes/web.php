@@ -132,6 +132,7 @@ Route::group(['controller' => HomeController::class], function () {
     Route::get('/home', 'index')->name('home');
     Route::get('/notAccess', 'notAccess')->name('notAccess');
     Route::get('/loginAtFirst', 'loginAtFirst')->name('loginAtFirst');
+    Route::post('/relatedProducts', 'relatedProducts')->name('relatedProducts');
     Route::get('/dashboard', 'dashboard')->middleware(checkAdminMiddleware::class)->name('dashboard');
 });
 // admin routes

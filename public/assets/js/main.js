@@ -192,7 +192,31 @@ function login(state) {
 
 // add to shopping cart by mr.olyafam
 
-let shoppingCartNumber = document.getElementById('shoppingCartNumber');
-function addToShoppingCart() {
-    console.log(shoppingCartNumber);
+// let shoppingCartNumber = document.getElementById('shoppingCartNumber');
+// function addToShoppingCart() {
+//     console.log(shoppingCartNumber);
+// }
+
+// related products for per category by mr.olyafam
+
+function getRelatedProducts(param) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': csrfToken
+        }
+    })
+    $.ajax({
+        url: route,
+        type: "POST",
+        datatype: "json",
+        data: {
+            'id': param
+        },
+        success: function (data) {
+            console.log(data);
+        },
+        error: function () {
+            console.log('error👍');
+        }
+    })
 }
