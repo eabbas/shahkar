@@ -45,29 +45,29 @@ Route::group(['prefix' => 'product', 'controller' => ProductController::class, '
     Route::get('/delete/{product}', 'delete')->name('delete');
 });
 // course category routes
-Route::group(['prefix' => 'courseCategory', 'controller' => CourseCategoryController::class, 'as' => 'courseCategory-', 'middleware' => checkAdminMiddleware::class], function () {
-    Route::get('/create', 'create')->name('create');
-    Route::post('/store', 'store')->name('store');
-    Route::get('/admin/list', 'adminIndex')->name('adminIndex');
-    Route::get('/list', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('index');
-    Route::get('/admin/show/{courseCategory}', 'adminShow')->name('adminShow');
-    Route::get('/show/{courseCategory}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->name('show');
-    Route::get('/edit/{courseCategory}', 'edit')->name('edit');
-    Route::post('/update', 'update')->name('update');
-    Route::get('/delete/{courseCategory}', 'delete')->name('delete');
-});
+// Route::group(['prefix' => 'courseCategory', 'controller' => CourseCategoryController::class, 'as' => 'courseCategory-', 'middleware' => checkAdminMiddleware::class], function () {
+//     Route::get('/create', 'create')->name('create');
+//     Route::post('/store', 'store')->name('store');
+//     Route::get('/admin/list', 'adminIndex')->name('adminIndex');
+//     Route::get('/list', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('index');
+//     Route::get('/admin/show/{courseCategory}', 'adminShow')->name('adminShow');
+//     Route::get('/show/{courseCategory}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->name('show');
+//     Route::get('/edit/{courseCategory}', 'edit')->name('edit');
+//     Route::post('/update', 'update')->name('update');
+//     Route::get('/delete/{courseCategory}', 'delete')->name('delete');
+// });
 // course routes
-Route::group(['prefix' => 'course', 'controller' => CourseController::class, 'as' => 'course-', 'middleware' => checkAdminMiddleware::class], function () {
-    Route::get('/create', 'create')->name('create');
-    Route::post('/store', 'store')->name('store');
-    Route::get('/admin/list', 'adminIndex')->name('adminIndex');
-    Route::get('/list', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('index');
-    Route::get('/admin/show/{course}', 'adminShow')->name('adminShow');
-    Route::get('/show/{course}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->name('show');
-    Route::get('/edit/{course}', 'edit')->name('edit');
-    Route::post('/update', 'update')->name('update');
-    Route::get('/delete/{course}', 'delete')->name('delete');
-});
+// Route::group(['prefix' => 'course', 'controller' => CourseController::class, 'as' => 'course-', 'middleware' => checkAdminMiddleware::class], function () {
+//     Route::get('/create', 'create')->name('create');
+//     Route::post('/store', 'store')->name('store');
+//     Route::get('/admin/list', 'adminIndex')->name('adminIndex');
+//     Route::get('/list', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('index');
+//     Route::get('/admin/show/{course}', 'adminShow')->name('adminShow');
+//     Route::get('/show/{course}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->name('show');
+//     Route::get('/edit/{course}', 'edit')->name('edit');
+//     Route::post('/update', 'update')->name('update');
+//     Route::get('/delete/{course}', 'delete')->name('delete');
+// });
 // menu routes
 Route::group(['prefix' => 'menu', 'controller' => MenuController::class, 'as' => 'menu-', 'middleware' => checkAdminMiddleware::class], function () {
     Route::get('/create', 'create')->name('create');
@@ -132,6 +132,7 @@ Route::group(['controller' => HomeController::class], function () {
     Route::get('/home', 'index')->name('home');
     Route::get('/notAccess', 'notAccess')->name('notAccess');
     Route::get('/loginAtFirst', 'loginAtFirst')->name('loginAtFirst');
+    Route::post('/relatedProducts', 'relatedProducts')->name('relatedProducts');
     Route::get('/dashboard', 'dashboard')->middleware(checkAdminMiddleware::class)->name('dashboard');
 });
 // admin routes

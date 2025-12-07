@@ -192,7 +192,42 @@ function login(state) {
 
 // add to shopping cart by mr.olyafam
 
-let shoppingCartNumber = document.getElementById('shoppingCartNumber');
-function addToShoppingCart() {
-    console.log(shoppingCartNumber);
+// let shoppingCartNumber = document.getElementById('shoppingCartNumber');
+// function addToShoppingCart() {
+//     console.log(shoppingCartNumber);
+// }
+
+// related products to per category by mr.olyafam
+
+let categoryTitles = document.querySelectorAll('.category-title')
+categoryTitles.forEach((item) => {
+    item.addEventListener('click', () => {
+        categoryTitles.forEach((el) => {
+            el.classList.remove('text-(--color-text)')
+            el.classList.add('text-(--color-secondary-text)')
+        })
+        item.classList.add('text-(--color-text)')
+    })
+})
+
+function getRelatedProducts(param) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': csrfToken
+        }
+    })
+    $.ajax({
+        url: route,
+        type: "POST",
+        dataType: "json",
+        data: {
+            'id': param
+        },
+        success: function (data) {
+            console.log(data);
+        },
+        error: function () {
+            alert('error')
+        }
+    })
 }

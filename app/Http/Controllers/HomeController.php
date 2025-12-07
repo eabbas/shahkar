@@ -7,7 +7,6 @@ use App\Models\bigTile;
 use Illuminate\Http\Request;
 use App\Models\settings;
 use App\Models\category;
-use App\Models\course;
 use App\Models\footer_column;
 use App\Models\footerTile;
 use App\Models\logo;
@@ -100,5 +99,15 @@ class HomeController extends Controller
             'footer_form_column' => $footer_form_column,
             'user' => $user
         ]);
+    }
+    public function relatedProducts(Request $request)
+    {
+        if ($request['id'] == 'all') {
+            $products = product::where('is_in_home', 1)->get();
+        }
+        if ($request['id'] != 'all') {
+            $products = product::where('category_id', $request['id'])->where('is_in_home', 1)->get();
+        }
+        return response()->json($products);
     }
 }
