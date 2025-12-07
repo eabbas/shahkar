@@ -7,7 +7,7 @@ use App\Models\coursecategory;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class coursecategoryController extends Controller
+class CourscategoryController extends Controller
 {
     public function create(){
         $categories=coursecategory::all();

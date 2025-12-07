@@ -20,7 +20,7 @@ use App\Http\Middleware\checkAdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Middleware\checklogin;
-use App\Http\Controllers\coursecategoryController;
+use App\Http\Controllers\CourscategoryController;
 
 
 
@@ -229,11 +229,11 @@ Route::group(['prefix' => 'homeForm', 'controller' => HomeFormsController::class
 
 // akbarnezhad
 
-///////categorycourse
+////categorycourse   
 
 Route::group([
     'prefix'=>'coursecategory',
-    'controller'=>coursecategoryController::class,
+    'controller'=>CourscategoryController::class,
     'as'=>'coursecategory.',
     'middleware' => checklogin::class
 ], function(){
@@ -244,4 +244,20 @@ Route::group([
     Route::get('/edit/{coursecategory}','edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{coursecategory}', 'delete')->name('delete');
+});
+
+////////teacher
+Route::group([
+    'prefix'=>'teacher',
+    'controller'=>teacherController::class,
+    'as'=>'teacher.',
+    'middleware' => checklogin::class
+], function(){
+    Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/show/{teacher}', 'show')->name('show');
+    Route::get('/teachers', 'index')->name('list');
+    Route::get('/edit/{teacher}','edit')->name('edit');
+    Route::post('/update/{teacher}', 'update')->name('update');
+    Route::get('/delete/{teacher}', 'delete')->name('delete');
 });
