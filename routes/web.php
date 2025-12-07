@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Middleware\checklogin;
 use App\Http\Controllers\CourscategoryController;
+use App\Http\Controllers\CourseStatusController;
 
 
 
@@ -260,4 +261,21 @@ Route::group([
     Route::get('/edit/{teacher}','edit')->name('edit');
     Route::post('/update/{teacher}', 'update')->name('update');
     Route::get('/delete/{teacher}', 'delete')->name('delete');
+});
+
+
+//////status
+Route::group([
+    'prefix'=>'courseStatus',
+    'controller'=>CourseStatusController::class,
+    'as'=>'status.',
+    'middleware' => checklogin::class
+], function(){
+    Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/show/{status}', 'show')->name('show');
+    Route::get('/statuses', 'index')->name('list');
+    Route::get('/edit/{status}','edit')->name('edit');
+    Route::post('/update', 'update')->name('update');
+    Route::get('/delete/{status}', 'delete')->name('delete');
 });
