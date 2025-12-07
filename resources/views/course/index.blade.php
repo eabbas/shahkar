@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fa">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +27,7 @@
             background: #fff;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
         }
 
         thead {
@@ -35,7 +36,8 @@
             font-size: 17px;
         }
 
-        th, td {
+        th,
+        td {
             padding: 14px 12px;
             border-bottom: 1px solid #eee;
             text-align: center;
@@ -91,56 +93,58 @@
     </style>
 
 </head>
+
 <body>
 
-<h1>لیست دوره‌ها</h1>
+    <h1>لیست دوره‌ها</h1>
 
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>عنوان</th>
-            <th>توضیحات</th>
-            <th>خلاصه</th>
-            <td>تعداد شرکت کننده </td>
-            <th>نمایش در صفحه اصلی</th>
-            <th>عملیات</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($courses as $course)
-        <tr>
-            <td>{{ $course->id }}</td>
-            <td>{{ $course->title }}</td>
-            <td>{{ $course->description }}</td>
-            <td>{{ $course->summary }}</td>
-            <td> {{count($course -> users)}}</td>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>عنوان</th>
+                <th>توضیحات</th>
+                <th>خلاصه</th>
+                <td>تعداد شرکت کننده </td>
+                <th>نمایش در صفحه اصلی</th>
+                <th>عملیات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($courses as $course)
+                <tr>
+                    <td>{{ $course->id }}</td>
+                    <td>{{ $course->title }}</td>
+                    <td>{{ $course->description }}</td>
+                    <td>{{ $course->summary }}</td>
+                    {{-- <td> {{ count($course->users) }}</td> --}}
 
-            <td>
-                @if($course->show_in_home)
-                    <span class="status-yes">✔ در صفحه اول وجود دارد</span>
-                @else
-                    <span class="status-no">✘ مربوط به صفحه اول نیست</span>
-                @endif
-            </td>
-            @php
-                $roles = auth()->user()->roles->pluck('id')->toArray();
-            @endphp
+                    <td>
+                        @if ($course->show_in_home)
+                            <span class="status-yes">✔ در صفحه اول وجود دارد</span>
+                        @else
+                            <span class="status-no">✘ مربوط به صفحه اول نیست</span>
+                        @endif
+                    </td>
+                    @php
+                        $roles = auth()->user()->roles->pluck('id')->toArray();
+                    @endphp
 
-            <td class="actions">
-                <a href="{{ route('course.show', [$course])}}">نمایش</a>
-                @if(in_array(1, $roles) || in_array(2, $roles)) 
-                <a href="{{ route('course.users', [$course]) }}" class="btn btn-edit">
-                    شرکت کنندگان
-                </a>
-                <a href="{{ route('course.edit', [$course])}}">ویرایش</a>
-                <a href="{{ route('course.delete', [$course])}}" class="delete-btn">حذف</a>
-                @endif
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+                    <td class="actions">
+                        <a href="{{ route('course.show', [$course]) }}">نمایش</a>
+                        @if (in_array(1, $roles) || in_array(2, $roles))
+                            <a href="{{ route('course.users', [$course]) }}" class="btn btn-edit">
+                                شرکت کنندگان
+                            </a>
+                            <a href="{{ route('course.edit', [$course]) }}">ویرایش</a>
+                            <a href="{{ route('course.delete', [$course]) }}" class="delete-btn">حذف</a>
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 
 </body>
+
 </html>
