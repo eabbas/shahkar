@@ -228,16 +228,16 @@ Route::group([
 });
 // status
 Route::group([
-    'prefix'=>'courseStatus',
-    'controller'=>CourseStatusController::class,
-    'as'=>'status.',
+    'prefix' => 'courseStatus',
+    'controller' => CourseStatusController::class,
+    'as' => 'status.',
     'middleware' => checklogin::class
-], function(){
+], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
     Route::get('/show/{coursestatus}', 'show')->name('show');
     Route::get('/statuses', 'index')->name('list');
-    Route::get('/edit/{coursestatus}','edit')->name('edit');
+    Route::get('/edit/{coursestatus}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{coursestatus}', 'delete')->name('delete');
 });
