@@ -18,9 +18,9 @@
            <tr>
             <td   style="background-color:white" >{{$level->title}}</td>
             <td style="background-color:white">
-                    <a href="{{ route('level.show', [$level])}}">show</a>
-                    <a href="{{ route('level.edit', [$level])}}">edit</a>
-                    <a href="{{ route('level.delete', [$level])}}" >delete</a>
+                    <a href="{{ route('courseLevel.show', [$level])}}">show</a>
+                    <a href="{{ route('courseLevel.edit', [$level])}}">edit</a>
+                    <a href="{{ route('courseLevel.delete', [$level])}}" >delete</a>
                 </td>
         </tr>
         </tr>

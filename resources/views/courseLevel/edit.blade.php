@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action ="{{route('level.update')}}" method="POST"> 
+    <form action ="{{route('courseLevel.update')}}" method="POST"> 
         @csrf
             <input type ="hidden" id="id" name="id" value="{{$level->id}}">
         <div>

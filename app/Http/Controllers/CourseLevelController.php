@@ -9,30 +9,30 @@ class CourseLevelController extends Controller
 {
     public function create()
     {
-        return view("level.create");
+        return view("courseLevel.create");
     }
     public function store(Request $request)
     {
-            courselevel::create([
-                'title'=>$request->title , 
-            ]);
-        return redirect('/level/levels');
-        }
-        
+        courselevel::create([
+            'title' => $request->title,
+        ]);
+        return to_route('courseLevel.list');
+    }
+
     public function index()
     {
         $levels = courselevel::all();
-        return view("level.index" , ['levels'=>$levels]);
+        return view("courseLevel.index", ['levels' => $levels]);
     }
 
-    public function show(courselevel $level)
+    public function show(courselevel $courseLevel)
     {
-        return view("level.single" , ['level'=>$level]);
+        return view("courseLevel.single", ['level' => $courseLevel]);
     }
 
-    public function edit(courselevel $courselevel)
+    public function edit(courselevel $courseLevel)
     {
-        return view('level.edit' , ['level'=>$courselevel]);
+        return view('courseLevel.edit', ['level' => $courseLevel]);
     }
 
     public function update(Request $request)
@@ -40,15 +40,12 @@ class CourseLevelController extends Controller
         $level = courselevel::find($request->id);
         $level->title = $request->title;
         $level->save();
-        return redirect('/level/levels');
-
-
+        return to_route('courseLevel.list');
     }
 
-    public function delete(courselevel $courselevel)
+    public function delete(courselevel $courseLevel)
     {
-        $courselevel->delete();
-        return redirect('/level/levels');
-
+        $courseLevel->delete();
+        return to_route('courseLevel.list');
     }
 }
