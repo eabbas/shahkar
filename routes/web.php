@@ -273,9 +273,9 @@ Route::group([
 ], function(){
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
-    Route::get('/show/{status}', 'show')->name('show');
+    Route::get('/show/{coursestatus}', 'show')->name('show');
     Route::get('/statuses', 'index')->name('list');
-    Route::get('/edit/{status}','edit')->name('edit');
+    Route::get('/edit/{coursestatus}','edit')->name('edit');
     Route::post('/update', 'update')->name('update');
-    Route::get('/delete/{status}', 'delete')->name('delete');
+    Route::get('/delete/{coursestatus}', 'delete')->name('delete');
 });

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\status;
+use App\Models\coursestatus;
 
 class CourseStatusController extends Controller
 {
@@ -13,7 +13,7 @@ class CourseStatusController extends Controller
     }
     public function store(Request $request)
     {
-            status::create([
+            coursestatus::create([
                 'title'=>$request->title , 
             ]);
         return redirect('/status/statuses');
@@ -21,31 +21,31 @@ class CourseStatusController extends Controller
         
     public function index()
     {
-        $statuses = status::all();
+        $statuses = coursestatus::all();
         return view("status.index" , ['statuses'=>$statuses]);
     }
 
-    public function show(status $status)
+    public function show(coursestatus $status)
     {
         return view("status.single" , ['status'=>$status]);
     }
 
-    public function edit(status $status)
+    public function edit(coursestatus $status)
     {
         return view('status.edit' , ['status'=>$status]);
     }
 
     public function update(Request $request)
     {
-        $status = status::find($request->id);
+        $status = coursestatus::find($request->id);
         $status->title = $request->title;
         $status->save();
         return redirect('/status/statuses');
     }
 
-    public function delete(status $status)
+    public function delete(coursestatus $coursestatus)
     {
-        $status->delete();
+        $coursestatus->delete();
         return redirect('/status/statuses');
     }
 }
