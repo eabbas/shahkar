@@ -25,10 +25,10 @@ class course extends Model
         return $this->belongsToMany(teacher::class,'teacher_courses');
     }
     public function levels(){
-        return $this->belongsTo(level::class,'level_id');
+        return $this->belongsTo(courselevel::class,'level_id');
     }
     public function statuses(){
-        return $this->belongsTo(status::class,'status_id');
+        return $this->belongsTo(coursestatus::class,'status_id');
     }
 
     public function users(){

@@ -258,18 +258,18 @@ Route::group([
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{courseLevel}', 'delete')->name('delete');
 });
-//course
+// course
 Route::group([
-    'prefix'=>'course',
-    'controller'=>courseController::class,
-    'as'=>'course.',
+    'prefix' => 'course',
+    'controller' => courseController::class,
+    'as' => 'course.',
     'middleware' => checklogin::class
-], function(){
+], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
     Route::get('/show/{course}', 'show')->name('show');
     Route::get('/courses', 'index')->name('list');
-    Route::get('/edit/{course}','edit')->name('edit');
+    Route::get('/edit/{course}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{course}', 'delete')->name('delete');
     Route::get('/users/{course}', 'users')->name('users');
