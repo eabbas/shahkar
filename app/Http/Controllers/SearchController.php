@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\category;
-use App\Models\course;
 use App\Models\footer_column;
 use App\Models\logo;
 use App\Models\product;

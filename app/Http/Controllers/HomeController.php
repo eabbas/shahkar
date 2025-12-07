@@ -7,7 +7,6 @@ use App\Models\bigTile;
 use Illuminate\Http\Request;
 use App\Models\settings;
 use App\Models\category;
-use App\Models\course;
 use App\Models\footer_column;
 use App\Models\footerTile;
 use App\Models\logo;
