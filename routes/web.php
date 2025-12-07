@@ -22,6 +22,7 @@ use App\Http\Controllers\CourscategoryController;
 use App\Http\Controllers\CourseStatusController;
 use App\Http\Controllers\CourseLevelController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\courseController;
 
 // category routes
 Route::group(['prefix' => 'category', 'controller' => CategoryController::class, 'as' => 'category-', 'middleware' => checkAdminMiddleware::class], function () {
@@ -256,4 +257,21 @@ Route::group([
     Route::get('/edit/{courseLevel}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{courseLevel}', 'delete')->name('delete');
+});
+//course
+Route::group([
+    'prefix'=>'course',
+    'controller'=>courseController::class,
+    'as'=>'course.',
+    'middleware' => checklogin::class
+], function(){
+    Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/show/{course}', 'show')->name('show');
+    Route::get('/courses', 'index')->name('list');
+    Route::get('/edit/{course}','edit')->name('edit');
+    Route::post('/update', 'update')->name('update');
+    Route::get('/delete/{course}', 'delete')->name('delete');
+    Route::get('/users/{course}', 'users')->name('users');
+    Route::get('/seasons/{course}', 'seasons')->name('seasons');
 });
