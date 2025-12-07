@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\checklogin;
 use App\Http\Controllers\CourscategoryController;
 use App\Http\Controllers\CourseStatusController;
+use App\Http\Controllers\CourseLevelController;
 use App\Http\Controllers\TeacherController;
 
 // category routes
@@ -240,4 +241,20 @@ Route::group([
     Route::get('/edit/{coursestatus}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{coursestatus}', 'delete')->name('delete');
+});
+
+
+Route::group([
+    'prefix'=>'courseLevel',
+    'controller'=>CourseLevelController::class,
+    'as'=>'level.',
+    'middleware' => checklogin::class
+], function(){
+    Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/show/{level}', 'show')->name('show');
+    Route::get('/levels', 'index')->name('list');
+    Route::get('/edit/{level}','edit')->name('edit');
+    Route::post('/update', 'update')->name('update');
+    Route::get('/delete/{level}', 'delete')->name('delete');
 });
