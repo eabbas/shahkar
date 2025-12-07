@@ -18,12 +18,10 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\userController;
 use App\Http\Middleware\checkAdminMiddleware;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Middleware\checklogin;
 use App\Http\Controllers\CourscategoryController;
 use App\Http\Controllers\CourseStatusController;
-
-
+use App\Http\Controllers\CourseLevelController;
 
 // category routes
 Route::group(['prefix' => 'category', 'controller' => CategoryController::class, 'as' => 'category-', 'middleware' => checkAdminMiddleware::class], function () {
@@ -49,30 +47,6 @@ Route::group(['prefix' => 'product', 'controller' => ProductController::class, '
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{product}', 'delete')->name('delete');
 });
-// course category routes
-// Route::group(['prefix' => 'courseCategory', 'controller' => CourseCategoryController::class, 'as' => 'courseCategory-', 'middleware' => checkAdminMiddleware::class], function () {
-//     Route::get('/create', 'create')->name('create');
-//     Route::post('/store', 'store')->name('store');
-//     Route::get('/admin/list', 'adminIndex')->name('adminIndex');
-//     Route::get('/list', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('index');
-//     Route::get('/admin/show/{courseCategory}', 'adminShow')->name('adminShow');
-//     Route::get('/show/{courseCategory}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->name('show');
-//     Route::get('/edit/{courseCategory}', 'edit')->name('edit');
-//     Route::post('/update', 'update')->name('update');
-//     Route::get('/delete/{courseCategory}', 'delete')->name('delete');
-// });
-// course routes
-// Route::group(['prefix' => 'course', 'controller' => CourseController::class, 'as' => 'course-', 'middleware' => checkAdminMiddleware::class], function () {
-//     Route::get('/create', 'create')->name('create');
-//     Route::post('/store', 'store')->name('store');
-//     Route::get('/admin/list', 'adminIndex')->name('adminIndex');
-//     Route::get('/list', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('index');
-//     Route::get('/admin/show/{course}', 'adminShow')->name('adminShow');
-//     Route::get('/show/{course}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->name('show');
-//     Route::get('/edit/{course}', 'edit')->name('edit');
-//     Route::post('/update', 'update')->name('update');
-//     Route::get('/delete/{course}', 'delete')->name('delete');
-// });
 // menu routes
 Route::group(['prefix' => 'menu', 'controller' => MenuController::class, 'as' => 'menu-', 'middleware' => checkAdminMiddleware::class], function () {
     Route::get('/create', 'create')->name('create');
@@ -278,4 +252,20 @@ Route::group([
     Route::get('/edit/{coursestatus}','edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{coursestatus}', 'delete')->name('delete');
+});
+
+
+Route::group([
+    'prefix'=>'courseLevel',
+    'controller'=>CourseLevelController::class,
+    'as'=>'level.',
+    'middleware' => checklogin::class
+], function(){
+    Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/show/{level}', 'show')->name('show');
+    Route::get('/levels', 'index')->name('list');
+    Route::get('/edit/{level}','edit')->name('edit');
+    Route::post('/update', 'update')->name('update');
+    Route::get('/delete/{level}', 'delete')->name('delete');
 });
