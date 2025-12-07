@@ -13,26 +13,26 @@ class CourseStatusController extends Controller
     }
     public function store(Request $request)
     {
-            coursestatus::create([
-                'title'=>$request->title , 
-            ]);
-        return redirect('/status/statuses');
-        }
-        
+        coursestatus::create([
+            'title' => $request->title,
+        ]);
+        return to_route('status.list');
+    }
+
     public function index()
     {
         $statuses = coursestatus::all();
-        return view("status.index" , ['statuses'=>$statuses]);
+        return view("status.index", ['statuses' => $statuses]);
     }
 
-    public function show(coursestatus $status)
+    public function show(coursestatus $coursestatus)
     {
-        return view("status.single" , ['status'=>$status]);
+        return view("status.single", ['status' => $coursestatus]);
     }
 
-    public function edit(coursestatus $status)
+    public function edit(coursestatus $coursestatus)
     {
-        return view('status.edit' , ['status'=>$status]);
+        return view('status.edit', ['status' => $coursestatus]);
     }
 
     public function update(Request $request)
@@ -40,12 +40,12 @@ class CourseStatusController extends Controller
         $status = coursestatus::find($request->id);
         $status->title = $request->title;
         $status->save();
-        return redirect('/status/statuses');
+        return to_route('status.list');
     }
 
     public function delete(coursestatus $coursestatus)
     {
         $coursestatus->delete();
-        return redirect('/status/statuses');
+        return to_route('status.list');
     }
 }

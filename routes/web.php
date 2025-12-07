@@ -6,7 +6,6 @@ use App\Http\Controllers\BannersController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactUsController;
-use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FooterColumnController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomeFormsController;
@@ -22,6 +21,7 @@ use App\Http\Middleware\checklogin;
 use App\Http\Controllers\CourscategoryController;
 use App\Http\Controllers\CourseStatusController;
 use App\Http\Controllers\CourseLevelController;
+use App\Http\Controllers\TeacherController;
 
 // category routes
 Route::group(['prefix' => 'category', 'controller' => CategoryController::class, 'as' => 'category-', 'middleware' => checkAdminMiddleware::class], function () {
@@ -196,60 +196,49 @@ Route::group(['prefix' => 'homeForm', 'controller' => HomeFormsController::class
     Route::get('/list', 'index')->name('index');
     Route::get('/delete/{homeForms}', 'delete')->name('delete');
 });
-
-
-
-
-
-
-// akbarnezhad
-
-////categorycourse   
-
+// akbarnezhad courses
+// courseCategory
 Route::group([
-    'prefix'=>'coursecategory',
-    'controller'=>CourscategoryController::class,
-    'as'=>'coursecategory.',
+    'prefix' => 'coursecategory',
+    'controller' => CourscategoryController::class,
+    'as' => 'coursecategory.',
     'middleware' => checklogin::class
-], function(){
+], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
     Route::get('/show/{coursecategory}', 'show')->name('show');
     Route::get('/categories', 'index')->name('list');
-    Route::get('/edit/{coursecategory}','edit')->name('edit');
+    Route::get('/edit/{coursecategory}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{coursecategory}', 'delete')->name('delete');
 });
-
-////////teacher
+// teacher
 Route::group([
-    'prefix'=>'teacher',
-    'controller'=>teacherController::class,
-    'as'=>'teacher.',
+    'prefix' => 'teacher',
+    'controller' => teacherController::class,
+    'as' => 'teacher.',
     'middleware' => checklogin::class
-], function(){
+], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
     Route::get('/show/{teacher}', 'show')->name('show');
     Route::get('/teachers', 'index')->name('list');
-    Route::get('/edit/{teacher}','edit')->name('edit');
+    Route::get('/edit/{teacher}', 'edit')->name('edit');
     Route::post('/update/{teacher}', 'update')->name('update');
     Route::get('/delete/{teacher}', 'delete')->name('delete');
 });
-
-
-//////status
+// status
 Route::group([
-    'prefix'=>'courseStatus',
-    'controller'=>CourseStatusController::class,
-    'as'=>'status.',
+    'prefix' => 'courseStatus',
+    'controller' => CourseStatusController::class,
+    'as' => 'status.',
     'middleware' => checklogin::class
-], function(){
+], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
     Route::get('/show/{coursestatus}', 'show')->name('show');
     Route::get('/statuses', 'index')->name('list');
-    Route::get('/edit/{coursestatus}','edit')->name('edit');
+    Route::get('/edit/{coursestatus}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{coursestatus}', 'delete')->name('delete');
 });
