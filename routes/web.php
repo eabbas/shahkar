@@ -6,7 +6,6 @@ use App\Http\Controllers\BannersController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactUsController;
-use App\Http\Controllers\CourseCategoryController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FooterColumnController;
 use App\Http\Controllers\HomeController;
@@ -19,6 +18,11 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\userController;
 use App\Http\Middleware\checkAdminMiddleware;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Middleware\checklogin;
+use App\Http\Controllers\coursecategoryController;
+
+
 
 // category routes
 Route::group(['prefix' => 'category', 'controller' => CategoryController::class, 'as' => 'category-', 'middleware' => checkAdminMiddleware::class], function () {
@@ -216,4 +220,28 @@ Route::group(['prefix' => 'homeForm', 'controller' => HomeFormsController::class
     Route::get('/show/{homeForms}', 'show')->name('show');
     Route::get('/list', 'index')->name('index');
     Route::get('/delete/{homeForms}', 'delete')->name('delete');
+});
+
+
+
+
+
+
+// akbarnezhad
+
+///////categorycourse
+
+Route::group([
+    'prefix'=>'coursecategory',
+    'controller'=>coursecategoryController::class,
+    'as'=>'coursecategory.',
+    'middleware' => checklogin::class
+], function(){
+    Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/show/{coursecategory}', 'show')->name('show');
+    Route::get('/categories', 'index')->name('list');
+    Route::get('/edit/{coursecategory}','edit')->name('edit');
+    Route::post('/update', 'update')->name('update');
+    Route::get('/delete/{coursecategory}', 'delete')->name('delete');
 });
