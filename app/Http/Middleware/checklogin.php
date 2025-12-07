@@ -16,8 +16,8 @@ class checklogin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!Auth::user()){
-            return to_route("user_login");
+        if (!Auth::user()) {
+            return to_route("user.login");
         }
         return $next($request);
     }
