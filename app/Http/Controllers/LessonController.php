@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\lesson;  
 use App\Models\course;  
-use App\Models\season;  
+use App\Models\courseseason;  
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -16,9 +16,9 @@ class LessonController extends Controller
         return view("lesson.lesson");
     }
 
-    public function create(season $season , course $course){
+    public function create(courseseason $season , course $course){
         $courses = course::all();
-        $seasons = season::all();
+        $seasons = courseseason::all();
         return view("lesson.create" ,["courses" => $courses ,"seasons" => $seasons , "season" => $season,"course"  => $course]);
     }
 

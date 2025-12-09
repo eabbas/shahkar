@@ -30,7 +30,7 @@ class UserCourseController extends Controller
             return view("course.userCourse.signup", ['course' => $course, 'cat_course' => $cat_course, 'levels' => $levels, 'statuses' => $statuses]);
         }
 
-        return to_route("user_courses", ["user" => auth()->id()]);
+        return to_route("user.courses", ["user" => auth()->id()]);
     }
 
 
@@ -71,13 +71,13 @@ class UserCourseController extends Controller
         $userCourse->status = $request->status;
         $userCourse->save();
         $user  = $userCourse->user;
-        return to_route("user_courses", ["user" => $user]);
+        return to_route("user.courses", ["user" => $user]);
     }
     public function delete(userCourse $userCourse)
     {
         $userCourse->delete();
         $user  = $userCourse->user;
-        return to_route("user_courses", ["user" => $user]);
+        return to_route("user.courses", ["user" => $user]);
     }
     public function comments(userCourse $userCourse)
     {

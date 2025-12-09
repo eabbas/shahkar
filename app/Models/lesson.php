@@ -8,7 +8,7 @@ use App\Models\lessoncomments;
 use App\Models\Error;   
 use App\Models\Suggestion; 
 use App\Models\question; 
-use App\Models\season; 
+use App\Models\courseseason; 
 
 class lesson extends Model
 {
@@ -46,7 +46,7 @@ class lesson extends Model
     }
 
     public function season(){
-        return $this -> belongsTo(season::class);
+        return $this -> belongsTo(courseseason::class, 'season_id');
     }
 
 }
