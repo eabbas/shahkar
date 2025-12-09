@@ -1,0 +1,52 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use App\Models\attachment;  
+use App\Models\lessoncomments;   
+use App\Models\Error;   
+use App\Models\Suggestion; 
+use App\Models\question; 
+use App\Models\season; 
+
+class lesson extends Model
+{
+    protected $fillable=[
+        "course_id",
+        "title",
+        "description",
+        "price",
+        "order",
+        "free",
+        "season_id",
+        "duration" ,
+        "video_path",
+        "video_type"
+    ];
+
+    public function attachments(){
+        return $this->hasMany(Attachment::class);
+    }
+
+    public function lessoncomments(){
+        return $this->hasMany(lessoncomments::class);
+    }
+
+    public function errors(){
+        return $this->hasMany(Error::class);
+    }
+
+    public function suggestions(){
+        return $this->hasMany(Suggestion::class);
+    }
+
+    public function questions(){
+        return $this->hasMany(Question::class);
+    }
+
+    public function season(){
+        return $this -> belongsTo(season::class);
+    }
+
+}
