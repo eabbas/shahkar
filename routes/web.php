@@ -24,6 +24,12 @@ use App\Http\Controllers\CourseLevelController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\courseController;
 use App\Http\Controllers\userCourseController;
+<<<<<<< HEAD
+=======
+use App\Http\Controllers\UserpaymentsController;
+use App\Http\Controllers\LessonController;
+use App\Http\Controllers\CourseSeasonController;
+>>>>>>> ca8300a687c466edcd961b4308b32c4ea13a0fd6
 use App\Http\Controllers\MetaController;
 
 // category routes
@@ -292,6 +298,55 @@ Route::group([
     Route::get('/delete/{userCourse}', 'delete')->name('delete');
     Route::get('/comments/{userCourse}', 'comments')->name('comments');
 });
+
+
+// userPayment
+Route::group([
+    'prefix'=>'payment',
+    'controller'=>UserpaymentsController::class,
+    'as'=>'payment_',
+    'middleware' => checklogin::class
+], function(){
+    Route::post('/course/{course}', 'buyCourse')->name('course');
+});
+// course season
+Route::group([
+    'prefix'=>'season',
+    'controller'=>CourseSeasonController::class,
+    'as'=>'season.',
+    'middleware' => checklogin::class
+], function(){
+    Route::get('/create/{course?}', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/show/{season}', 'show')->name('show');
+    // Route::get('/seasons/{course}', 'index')->name('list');
+    Route::get('/edit/{season}','edit')->name('edit');
+    Route::post('/update', 'update')->name('update');
+    Route::get('/delete/{season}', 'delete')->name('delete');
+    Route::get('/lessons/{season}', 'lessons')->name('lessons');
+});
+//course lessons
+Route::group([
+    'prefix'=>'lesson',
+    'controller'=>LessonController::class,
+    'as'=>'lesson_' ,
+    'middleware' => checklogin::class
+], function(){
+    Route::get("/create/{season?}/{course?}","create")->name("create");
+    Route::post("/store","store") -> name("store");
+    Route::get("/edit/{lesson}","edit") ->name("edit");
+    Route::post("/updata/{lesson}","update") -> name("update");
+    Route::get("/delete/{lesson}","delete") -> name("delete");
+    Route::get("/show/{lesson}","show") -> name("show");
+    Route::get("/index","index") -> name("index");
+    Route::get("/attachfile/{lesson}","attachfile") -> name("attachfile");
+    Route::post("/attachfile","storattachment") -> name("update");
+    Route::get("/showerrors/{lesson}","errors") -> name("errors");
+    Route::get("/showSuggestions/{lesson}","suggestions") -> name("suggestions");
+    Route::get("/showQuestion/{lesson}","questions") -> name("questions");
+    Route::get("/attachments/{lesson}","showLessonAttachments") -> name("attachments");
+});
+
 // meta
 Route::group([
     'prefix'=>'meta',
