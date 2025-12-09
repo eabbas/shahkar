@@ -24,6 +24,7 @@ use App\Http\Controllers\CourseLevelController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\courseController;
 use App\Http\Controllers\userCourseController;
+use App\Http\Controllers\MetaController;
 
 // category routes
 Route::group(['prefix' => 'category', 'controller' => CategoryController::class, 'as' => 'category-', 'middleware' => checkAdminMiddleware::class], function () {
@@ -290,4 +291,19 @@ Route::group([
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{userCourse}', 'delete')->name('delete');
     Route::get('/comments/{userCourse}', 'comments')->name('comments');
+});
+// meta
+Route::group([
+    'prefix'=>'meta',
+    'controller'=>MetaController::class,
+    'as'=>'meta_',
+    'middleware' => checklogin::class
+], function(){
+    Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/meta', 'index')->name('index');
+    Route::get('/edit/{meta}','edit')->name('edit');
+    Route::get('/delete/{meta}','delete')->name('delete');
+    Route::get('/show/{meta}','show')->name('show');
+    Route::post('/update/{meta}', 'update')->name('update');
 });

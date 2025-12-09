@@ -9,7 +9,7 @@ use App\Models\level;
 use App\Models\status;
 use App\Models\User;
 use App\Models\userCourse;
-use App\Models\season;
+use App\Models\courseseason;
 
 
 class course extends Model
@@ -43,8 +43,8 @@ class course extends Model
         return $this->hasMany(userCourse::class);
     }
 
-    public function seasons()
-    {
-        return $this->hasMany(season::class);
-    }
+
+    public function seasons(){
+        return $this -> hasMany(courseseason::class);
+  
 }
