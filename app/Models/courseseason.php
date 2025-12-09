@@ -14,6 +14,6 @@ class courseseason extends Model
         return $this -> belongsTo(course::class);
     }
     public function lessons(){
-        return $this -> hasMany(lesson::class);
+        return $this -> hasMany(lesson::class, 'season_id');
     }
 }

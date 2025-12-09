@@ -20,7 +20,6 @@ class course extends Model
     {
         return $this->belongsTo(coursecategory::class, 'category_id');
     }
-
     public function teachers()
     {
         return $this->belongsToMany(teacher::class, 'teacher_courses');
@@ -33,18 +32,16 @@ class course extends Model
     {
         return $this->belongsTo(coursestatus::class, 'status_id');
     }
-
     public function users()
     {
-        return $this->belongsToMany(User::class, 'user_courses');
+        return $this->belongsToMany(User::class, 'user_courses')->withPivot(['id', 'user_id', 'course_id']);
     }
     public function userCourses()
     {
         return $this->hasMany(userCourse::class);
     }
-
-
-    public function seasons(){
-        return $this -> hasMany(courseseason::class);
-  
+    public function seasons()
+    {
+        return $this->hasMany(courseseason::class);
+    }
 }

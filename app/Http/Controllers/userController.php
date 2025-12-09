@@ -133,4 +133,11 @@ class userController extends Controller
         $users = User::all();
         return view('admin.user.index', ['users' => $users]);
     }
+
+    public function courses(User $user)
+    {
+        $courses = $user->load('userCourses.course');
+        $userCourses = $courses->toArray();
+        return view('course.userCourse.courses', ['userCourses' => $userCourses, 'user' => $user]);
+    }
 }

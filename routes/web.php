@@ -24,12 +24,9 @@ use App\Http\Controllers\CourseLevelController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\courseController;
 use App\Http\Controllers\userCourseController;
-<<<<<<< HEAD
-=======
 use App\Http\Controllers\UserpaymentsController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\CourseSeasonController;
->>>>>>> ca8300a687c466edcd961b4308b32c4ea13a0fd6
 use App\Http\Controllers\MetaController;
 
 // category routes
@@ -82,6 +79,7 @@ Route::group([
     Route::get('/delete/{user}', 'delete')->name('delete');
     Route::get('/logout{id?}', 'logout')->name('logout');
     Route::get('/index', 'index')->middleware(checkAdminMiddleware::class)->name('index');
+    Route::get('/courses/{user}', 'courses')->middleware(checklogin::class)->name('courses');
 });
 // comments routes
 Route::group([
@@ -206,7 +204,7 @@ Route::group(['prefix' => 'homeForm', 'controller' => HomeFormsController::class
     Route::get('/delete/{homeForms}', 'delete')->name('delete');
 });
 // akbarnezhad courses
-// courseCategory
+// course category
 Route::group([
     'prefix' => 'coursecategory',
     'controller' => CourscategoryController::class,
@@ -221,7 +219,7 @@ Route::group([
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{coursecategory}', 'delete')->name('delete');
 });
-// teacher
+// course teacher
 Route::group([
     'prefix' => 'teacher',
     'controller' => teacherController::class,
@@ -236,7 +234,7 @@ Route::group([
     Route::post('/update/{teacher}', 'update')->name('update');
     Route::get('/delete/{teacher}', 'delete')->name('delete');
 });
-// status
+// course status
 Route::group([
     'prefix' => 'courseStatus',
     'controller' => CourseStatusController::class,
@@ -283,82 +281,79 @@ Route::group([
     Route::get('/users/{course}', 'users')->name('users');
     Route::get('/seasons/{course}', 'seasons')->name('seasons');
 });
-//userCourse
+//user_course
 Route::group([
-    'prefix'=>'userCourse',
-    'controller'=>userCourseController::class,
-    'as'=>'userCourse.',
+    'prefix' => 'userCourse',
+    'controller' => userCourseController::class,
+    'as' => 'userCourse.',
     'middleware' => checklogin::class
-], function(){
+], function () {
     Route::get('/singup/{course}', 'store')->name('store');
     // Route::post('/store', 'store')->name('store');
     Route::get('/show/{userCourse}', 'show')->name('show');
-    Route::get('/edit/{userCourse}','edit')->name('edit');
+    Route::get('/edit/{userCourse}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{userCourse}', 'delete')->name('delete');
     Route::get('/comments/{userCourse}', 'comments')->name('comments');
 });
-
-
-// userPayment
+// user payment
 Route::group([
-    'prefix'=>'payment',
-    'controller'=>UserpaymentsController::class,
-    'as'=>'payment_',
+    'prefix' => 'payment',
+    'controller' => UserpaymentsController::class,
+    'as' => 'payment_',
     'middleware' => checklogin::class
-], function(){
+], function () {
     Route::post('/course/{course}', 'buyCourse')->name('course');
 });
 // course season
 Route::group([
-    'prefix'=>'season',
-    'controller'=>CourseSeasonController::class,
-    'as'=>'season.',
+    'prefix' => 'season',
+    'controller' => CourseSeasonController::class,
+    'as' => 'season.',
     'middleware' => checklogin::class
-], function(){
+], function () {
     Route::get('/create/{course?}', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
-    Route::get('/show/{season}', 'show')->name('show');
+    Route::get('/show/{courseseason}', 'show')->name('show');
     // Route::get('/seasons/{course}', 'index')->name('list');
-    Route::get('/edit/{season}','edit')->name('edit');
+    Route::get('/edit/{courseseason}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
-    Route::get('/delete/{season}', 'delete')->name('delete');
-    Route::get('/lessons/{season}', 'lessons')->name('lessons');
+    Route::get('/delete/{courseseason}', 'delete')->name('delete');
+    Route::get('/lessons/{courseseason}', 'lessons')->name('lessons');
 });
-//course lessons
+// course lessons
 Route::group([
-    'prefix'=>'lesson',
-    'controller'=>LessonController::class,
-    'as'=>'lesson_' ,
+    'prefix' => 'lesson',
+    'controller' => LessonController::class,
+    'as' => 'lesson_',
     'middleware' => checklogin::class
-], function(){
-    Route::get("/create/{season?}/{course?}","create")->name("create");
-    Route::post("/store","store") -> name("store");
-    Route::get("/edit/{lesson}","edit") ->name("edit");
-    Route::post("/updata/{lesson}","update") -> name("update");
-    Route::get("/delete/{lesson}","delete") -> name("delete");
-    Route::get("/show/{lesson}","show") -> name("show");
-    Route::get("/index","index") -> name("index");
-    Route::get("/attachfile/{lesson}","attachfile") -> name("attachfile");
-    Route::post("/attachfile","storattachment") -> name("update");
-    Route::get("/showerrors/{lesson}","errors") -> name("errors");
-    Route::get("/showSuggestions/{lesson}","suggestions") -> name("suggestions");
-    Route::get("/showQuestion/{lesson}","questions") -> name("questions");
-    Route::get("/attachments/{lesson}","showLessonAttachments") -> name("attachments");
+], function () {
+    Route::get("/create/{season?}/{course?}", "create")->name("create");
+    Route::post("/store", "store")->name("store");
+    Route::get("/edit/{lesson}", "edit")->name("edit");
+    Route::post("/updata/{lesson}", "update")->name("update");
+    Route::get("/delete/{lesson}", "delete")->name("delete");
+    Route::get("/show/{lesson}", "show")->name("show");
+    Route::get("/index", "index")->name("index");
+    Route::get("/attachfile/{lesson}", "attachfile")->name("attachfile");
+    Route::post("/attachfile", "storattachment")->name("update");
+    Route::get("/showerrors/{lesson}", "errors")->name("errors");
+    Route::get("/showSuggestions/{lesson}", "suggestions")->name("suggestions");
+    Route::get("/showQuestion/{lesson}", "questions")->name("questions");
+    Route::get("/attachments/{lesson}", "showLessonAttachments")->name("attachments");
 });
-
 // meta
 Route::group([
-    'prefix'=>'meta',
-    'controller'=>MetaController::class,
-    'as'=>'meta_',
+    'prefix' => 'meta',
+    'controller' => MetaController::class,
+    'as' => 'meta_',
     'middleware' => checklogin::class
-], function(){
+], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
     Route::get('/meta', 'index')->name('index');
-    Route::get('/edit/{meta}','edit')->name('edit');
-    Route::get('/delete/{meta}','delete')->name('delete');
-    Route::get('/show/{meta}','show')->name('show');
+    Route::get('/edit/{meta}', 'edit')->name('edit');
+    Route::get('/delete/{meta}', 'delete')->name('delete');
+    Route::get('/show/{meta}', 'show')->name('show');
     Route::post('/update/{meta}', 'update')->name('update');
 });
