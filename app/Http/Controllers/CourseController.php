@@ -180,7 +180,6 @@ class CourseController extends Controller
     public function seasons(course $course)
     {
         $seasons = $course->seasons;
-
         return view("season.index", ["seasons" => $seasons, "course" => $course]);
     }
 }
