@@ -24,6 +24,7 @@ use App\Http\Controllers\CourseLevelController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\courseController;
 use App\Http\Controllers\userCourseController;
+use App\Http\Controllers\UserpaymentsController;
 
 // category routes
 Route::group(['prefix' => 'category', 'controller' => CategoryController::class, 'as' => 'category-', 'middleware' => checkAdminMiddleware::class], function () {
@@ -291,3 +292,13 @@ Route::group([
     Route::get('/delete/{userCourse}', 'delete')->name('delete');
     Route::get('/comments/{userCourse}', 'comments')->name('comments');
 });
+// userPayment
+Route::group([
+    'prefix'=>'payment',
+    'controller'=>UserpaymentsController::class,
+    'as'=>'payment_',
+    'middleware' => checklogin::class
+], function(){
+    Route::post('/course/{course}', 'buyCourse')->name('course');
+});
+
