@@ -383,7 +383,7 @@ Route::group([
 ], function(){
     Route::post("/attachfile","store") -> name("store");
     Route::post("/attachfile/{courseattachment}","update") -> name("update") ;
-    Route::get("/{courseattachment}/edit","edit") -> name("edit");
+    // Route::get("/{courseattachment}/edit","edit") -> name("edit");
     Route::get("/{courseattachment}/delete","delete") -> name("delete");
 });
 //course question
