@@ -28,6 +28,8 @@ use App\Http\Controllers\UserpaymentsController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\CourseSeasonController;
 use App\Http\Controllers\MetaController;
+use App\Http\Controllers\LessoncommentsController;
+use App\Http\Controllers\CourseAttachmentController;
 
 // category routes
 Route::group(['prefix' => 'category', 'controller' => CategoryController::class, 'as' => 'category-', 'middleware' => checkAdminMiddleware::class], function () {
@@ -370,4 +372,16 @@ Route::group([
     Route::get("/lesson/{lesson}/comment/{lessoncomments}/edit","edit") -> name("edit");
     Route::post("/update/{lessoncomments}","update") -> name("updata");
     Route::get("/lesson/{lesson}/comment/{lessoncomments}/delete","delete") -> name("delete");
+});
+//course attachments
+Route::group([
+    'prefix'=>'attachments',
+    'controller'=>CourseAttachmentController::class,
+    'as'=>'attachment_',
+    'middleware' => checklogin::class
+], function(){
+    Route::post("/attachfile","store") -> name("store");
+    Route::post("/attachfile/{attachment}","update") -> name("update") ;
+    Route::get("/{attachment}/edit","edit") -> name("edit");
+    Route::get("/{attachment}/delete","delete") -> name("delete");
 });
