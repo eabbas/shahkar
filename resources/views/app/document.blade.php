@@ -159,7 +159,7 @@
                         </div>
                     </li>
                     <li class="relative menuItemParent">
-                        <a href="{{ route('course-index') }}"
+                        <a href="{{ route('course.list') }}"
                             class="text-(--color-text) font-semibold text-sm flex flex-row items-center gap-1 transition-all duration-300 py-4 menuLink">
                             <span>
                                 دوره ها
@@ -173,7 +173,7 @@
                             class="absolute min-w-[250px] py-4 px-6 border border-(--color-border) bg-white top-full opacity-0 mt-8 right-0 invisible z-9999 transition-all duration-500 menuItemChild">
                             @foreach ($courses as $course)
                                 <li>
-                                    <a href="{{ route('course-show', [$course]) }}"
+                                    <a href="{{ route('course.show', [$course]) }}"
                                         class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">{{ $course['title'] }}</a>
                                 </li>
                             @endforeach
@@ -512,7 +512,7 @@
                     <li class="my-1">
                         <div
                             class="flex flex-row justify-between items-center gap-1 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
-                            <a href="{{ route('course-index') }}"
+                            <a href="{{ route('course.list') }}"
                                 class="inline-block w-11/12 text-(--color-text) font-semibold py-3 ">
                                 دوره ها
                             </a>
@@ -527,7 +527,7 @@
                         <ul class="w-full max-h-0 overflow-hidden transition-all duration-500 pr-5 mt-2 subItem">
                             @foreach ($courses as $course)
                                 <li>
-                                    <a href="{{ route('course-show', [$course]) }}"
+                                    <a href="{{ route('course.show', [$course]) }}"
                                         class="inline-block w-full text-(--color-text) font-semibold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
                                         {{ $course['title'] }}
                                     </a>

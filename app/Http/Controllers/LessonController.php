@@ -54,7 +54,7 @@ class LessonController extends Controller
 
     public function edit(lesson $lesson){
         $courses = course::all();
-        $seasons = season::all();
+        $seasons = courseseason::all();
         return view("lesson.edit" ,["courses" => $courses , "lesson"  =>$lesson,"seasons" => $seasons]);
     }
 

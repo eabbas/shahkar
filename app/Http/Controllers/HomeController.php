@@ -12,6 +12,7 @@ use App\Models\footerTile;
 use App\Models\logo;
 use App\Models\menu;
 use App\Models\product;
+use App\Models\course;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
