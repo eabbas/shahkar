@@ -7,7 +7,7 @@ use App\Models\courseattachment;
 use App\Models\lessoncomments;   
 use App\Models\Error;   
 use App\Models\Suggestion; 
-use App\Models\question; 
+use App\Models\coursequestion; 
 use App\Models\courseseason; 
 
 class lesson extends Model
@@ -42,7 +42,7 @@ class lesson extends Model
     }
 
     public function questions(){
-        return $this->hasMany(Question::class);
+        return $this->hasMany(coursequestion::class);
     }
 
     public function season(){
