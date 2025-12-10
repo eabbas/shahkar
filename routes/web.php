@@ -30,6 +30,7 @@ use App\Http\Controllers\CourseSeasonController;
 use App\Http\Controllers\MetaController;
 use App\Http\Controllers\LessoncommentsController;
 use App\Http\Controllers\CourseAttachmentController;
+use App\Http\Controllers\courseQuestionController;
 
 // category routes
 Route::group(['prefix' => 'category', 'controller' => CategoryController::class, 'as' => 'category-', 'middleware' => checkAdminMiddleware::class], function () {
@@ -384,4 +385,18 @@ Route::group([
     Route::post("/attachfile/{courseattachment}","update") -> name("update") ;
     Route::get("/{courseattachment}/edit","edit") -> name("edit");
     Route::get("/{courseattachment}/delete","delete") -> name("delete");
+});
+//course question
+Route::group([
+    'prefix'=>'courseQuestion',
+    'controller'=>courseQuestionController::class,
+    'as'=>'question_',
+    'middleware' => checklogin::class
+], function(){
+    Route::get("/create/{lesson}","create") -> name("create");
+    Route::post("/store/{lesson}","store") -> name("store");
+    Route::get("/lesson/{lesson}/question/{coursequestion}/edit","edit") -> name("edit");
+    Route::get("/lesson/{lesson}/question/{coursequestion}/delete","delete") -> name("delete");
+    Route::post("/update/{coursequestion}","update") -> name("update");
+    Route::get("/answers/{coursequestion}","answers") -> name("answers");
 });
