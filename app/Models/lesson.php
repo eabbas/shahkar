@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\attachment;  
+use App\Models\courseattachment;  
 use App\Models\lessoncomments;   
 use App\Models\Error;   
 use App\Models\Suggestion; 
@@ -26,7 +26,7 @@ class lesson extends Model
     ];
 
     public function attachments(){
-        return $this->hasMany(Attachment::class);
+        return $this->hasMany(courseattachment::class);
     }
 
     public function lessoncomments(){
