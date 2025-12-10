@@ -25,7 +25,7 @@ class CourseAttachmentController extends Controller
     }
 
     public function update(Request $request , courseattachment $courseattachment){
-
+        
         if(Storage::disk('public')->exists($courseattachment->file_path)) {
             Storage::disk('public')->delete($courseattachment->file_path);
         }

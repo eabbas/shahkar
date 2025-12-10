@@ -375,13 +375,13 @@ Route::group([
 });
 //course attachments
 Route::group([
-    'prefix'=>'attachments',
+    'prefix'=>'courseAttachments',
     'controller'=>CourseAttachmentController::class,
     'as'=>'attachment_',
     'middleware' => checklogin::class
 ], function(){
     Route::post("/attachfile","store") -> name("store");
-    Route::post("/attachfile/{attachment}","update") -> name("update") ;
-    Route::get("/{attachment}/edit","edit") -> name("edit");
-    Route::get("/{attachment}/delete","delete") -> name("delete");
+    Route::post("/attachfile/{courseattachment}","update") -> name("update") ;
+    Route::get("/{courseattachment}/edit","edit") -> name("edit");
+    Route::get("/{courseattachment}/delete","delete") -> name("delete");
 });
