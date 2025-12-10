@@ -7,6 +7,7 @@ use App\Models\footer_column;
 use App\Models\logo;
 use App\Models\product;
 use App\Models\settings;
+use App\Models\course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

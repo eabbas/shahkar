@@ -11,6 +11,7 @@ use App\Models\product;
 use App\Models\product_attributes;
 use App\Models\product_price;
 use App\Models\question;
+use App\Models\course;
 use App\Models\settings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
