@@ -191,11 +191,18 @@ function login(state) {
 }
 
 //! add to shopping cart by mr.olyafam
-function addToShoppingCart(param) {
-    document.cookie = param
+function addToShoppingCart(id, title, description, image, price) {
+    document.cookie = "id=" + id
+    document.cookie = "title=" + title
+    document.cookie = "description=" + description
+    document.cookie = "image=" + image
+    document.cookie = "price=" + price
     let allCookies = document.cookie
     let allCookiesArr = allCookies.split(';')
     console.log(allCookiesArr);
+    allCookiesArr.forEach((item) => {
+        console.log(item);
+    })
 }
 
 //! related products to per category by mr.olyafam
