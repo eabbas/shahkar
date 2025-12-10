@@ -357,3 +357,17 @@ Route::group([
     Route::get('/show/{meta}', 'show')->name('show');
     Route::post('/update/{meta}', 'update')->name('update');
 });
+//lesson comments
+Route::group([
+    'prefix'=>'lessoncomments',
+    'controller'=>LessoncommentsController::class,
+    'as'=>'lessonComments_',
+    'middleware' => checklogin::class
+], function(){
+    Route::get("/create/{lesson}","create") -> name("create");
+    Route::post("/store/{lesson}","store") -> name("store");
+    Route::get("/index/{lesson}","index") -> name("index");
+    Route::get("/lesson/{lesson}/comment/{lessoncomments}/edit","edit") -> name("edit");
+    Route::post("/update/{lessoncomments}","update") -> name("updata");
+    Route::get("/lesson/{lesson}/comment/{lessoncomments}/delete","delete") -> name("delete");
+});
