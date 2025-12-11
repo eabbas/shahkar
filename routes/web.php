@@ -429,3 +429,13 @@ Route::group([
     Route::get("/lesson/{lesson}/Suggestion/{lessonsuggestion}/delete", "delete")->name("delete");
     Route::post("/update/{lessonsuggestion}", "update")->name("update");
 });
+//answer reaction
+Route::group([
+    'prefix'=>'answerReaction',
+    'controller'=>couresAnswerreactionController::class,
+    'as'=>'answerReaction_',
+    'middleware' => checklogin::class
+], function(){
+   // Route::get("/create/{answer}","create") -> name("create");
+    Route::post("/store/{courseanswer}","store") -> name("store");
+});
