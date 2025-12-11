@@ -36,14 +36,14 @@ class courseAnswerController extends Controller
         $courseanswer->status = $request->has('status') ? $request->status : 0;
         $courseanswer->save();
         $question = $courseanswer->question;
-        return to_route('question_answers', ['question' => $question->id]);
+        return to_route('question_answers', ['coursequestion' => $question->id]);
     }
 
     public function delete(courseanswer $courseanswer)
     {
         $courseanswer->delete();
         $question = $courseanswer->question;
-        return to_route('question_answers', ['question' => $question->id]);
+        return to_route('question_answers', ['coursequestion' => $question->id]);
     }
 
     public function reactions(courseanswer $courseanswer)

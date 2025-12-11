@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
-use App\Models\answerreaction;
 
 class courseanswer extends Model
 {
@@ -28,12 +27,12 @@ class courseanswer extends Model
 
     public function parent()
     {
-        return $this->belongsTo(answer::class, 'parent_id');
+        return $this->belongsTo(courseanswer::class, 'parent_id');
     }
 
     public function children()
     {
-        return $this->hasMany(answer::class, 'parent_id');
+        return $this->hasMany(courseanswer::class, 'parent_id');
     }
 
     public function reactions()

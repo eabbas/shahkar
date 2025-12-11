@@ -78,10 +78,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(courseanswer::class, 'answer_id');
     }
-    public function Suggestions(){
-        return $this -> hasMany(lessonsuggestion::class);
+    public function Suggestions()
+    {
+        return $this->hasMany(lessonsuggestion::class);
     }
-     public function answerreactions(){
-        return $this -> hasMany(courseanswerreaction::class);
+    public function answerreactions()
+    {
+        return $this->hasMany(courseanswerreaction::class);
     }
 }
