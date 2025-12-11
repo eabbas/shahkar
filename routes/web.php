@@ -444,28 +444,28 @@ Route::group([
 });
 // course error title
 Route::group([
-    'prefix'=>'lessonErrortitle',
-    'controller'=>lessonErrortitleController::class,
-    'as'=>'errortitle_',
+    'prefix' => 'lessonErrortitle',
+    'controller' => lessonErrortitleController::class,
+    'as' => 'errortitle_',
     'middleware' => checklogin::class
-], function(){
+], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
     Route::get('/errortitles', 'index')->name('index');
-    Route::get('/edit/{lessonerrortitle}','edit')->name('edit');
-    Route::get('/delete/{lessonerrortitle}','delete')->name('delete');
+    Route::get('/edit/{lessonerrortitle}', 'edit')->name('edit');
+    Route::get('/delete/{lessonerrortitle}', 'delete')->name('delete');
     Route::post('/update/{lessonerrortitle}', 'update')->name('update');
 });
 // lesson error 
 Route::group([
-    'prefix'=>'lesson-error',
-    'controller'=>lessonErrorController::class,
-    'as'=>'error_',
+    'prefix' => 'lesson-error',
+    'controller' => lessonErrorController::class,
+    'as' => 'error_',
     'middleware' => checklogin::class
-], function(){
-    Route::get("/create/{lesson}","create") -> name("create");
-    Route::post("/store/{lesson}","store") -> name("store");
-    Route::get("/lesson/{lesson}/error/{lessonerror}/edit","edit") -> name("edit");
-    Route::get("/lesson/{lesson}/error/{lessonerror}/delet","delete") -> name("delete");
-    Route::post("/update/{error}","update") -> name("update");
+], function () {
+    Route::get("/create/{lesson}", "create")->name("create");
+    Route::post("/store/{lesson}", "store")->name("store");
+    Route::get("/lesson/{lesson}/error/{lessonerror}/edit", "edit")->name("edit");
+    Route::get("/lesson/{lesson}/error/{lessonerror}/delet", "delete")->name("delete");
+    Route::post("/update/{lessonerror}", "update")->name("update");
 });

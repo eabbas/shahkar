@@ -5,8 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\courseattachment;
 use App\Models\lessoncomments;
-use App\Models\Error;
-use App\Models\Suggestion;
 use App\Models\coursequestion;
 use App\Models\courseseason;
 
@@ -37,7 +35,7 @@ class lesson extends Model
 
     public function errors()
     {
-        return $this->hasMany(Error::class);
+        return $this->hasMany(lessonerror::class);
     }
 
     public function suggestions()

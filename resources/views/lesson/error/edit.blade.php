@@ -11,10 +11,10 @@
         <h3>در آینده بعد از ایجاد تیبل برای این قسمت</h3>
         <select name="errortype" id="errortitle" style="width:100%; padding:6px;">
             <option value="0">یک عنوان انتخاب کنید</option>
-            <option value="1" @if($Error->errortitle == 1) selected @endif>اشکال تایپی</option>
-            <option value="2" @if($Error->errortitle == 2) selected @endif>اشکال محتوایی</option>
-            <option value="3" @if($Error->errortitle == 3) selected @endif>فنی</option>
-            <option value="4" @if($Error->errortitle == 4) selected @endif>نویز دارد</option>
+            @foreach ($errortitles as $errortitle)
+                <option value="{{ $errortitle->id }}" @if ($Error->errortype == $errortitle->id) selected @endif>
+                    {{ $errortitle->title }}</option>
+            @endforeach
         </select>
     </div>
 
@@ -27,8 +27,7 @@
     <div style="margin-bottom:15px;">
         <label style="cursor:pointer;">
             <h3>این قسمت برای آدمین های سایت هست 0 یعنی تایید نشده و 1 تایید شده</h3>
-            <input type="checkbox" name="status" value="1"
-                @if($Error->status == 1) checked @endif>
+            <input type="checkbox" name="status" value="1" @if ($Error->status == 1) checked @endif>
             وضعیت (فعال / تایید شده)
         </label>
     </div>

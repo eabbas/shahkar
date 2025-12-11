@@ -3,28 +3,31 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\lesson; 
-use App\Models\lessonerrortitle; 
+use App\Models\lesson;
+use App\Models\lessonerrortitle;
 
 class lessonerror extends Model
 {
-    protected $fillable =[
+    protected $fillable = [
         "user_id",
         "lesson_id",
         "error",
-        "errortype",
         "status",
+        "errortype",
     ];
 
-    public function lesson(){
+    public function lesson()
+    {
         return $this->belongsTo(Lesson::class);
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function errortitle(){
-        return $this->belongsTo(lessonerrortitle::class ,"errortype");
+    public function errortitle()
+    {
+        return $this->belongsTo(lessonerrortitle::class, "errortype");
     }
 }
