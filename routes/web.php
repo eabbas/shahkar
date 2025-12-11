@@ -35,6 +35,7 @@ use App\Http\Controllers\courseAnswerController;
 use App\Http\Controllers\lessonSuggestionController;
 use App\Http\Controllers\couresAnswerreactionController;
 use App\Http\Controllers\lessonErrortitleController;
+use App\Http\Controllers\lessonErrorController;
 
 // category routes
 Route::group(['prefix' => 'category', 'controller' => CategoryController::class, 'as' => 'category-', 'middleware' => checkAdminMiddleware::class], function () {
@@ -454,4 +455,17 @@ Route::group([
     Route::get('/edit/{lessonerrortitle}','edit')->name('edit');
     Route::get('/delete/{lessonerrortitle}','delete')->name('delete');
     Route::post('/update/{lessonerrortitle}', 'update')->name('update');
+});
+// lesson error 
+Route::group([
+    'prefix'=>'lesson-error',
+    'controller'=>lessonErrorController::class,
+    'as'=>'error_',
+    'middleware' => checklogin::class
+], function(){
+    Route::get("/create/{lesson}","create") -> name("create");
+    Route::post("/store/{lesson}","store") -> name("store");
+    Route::get("/lesson/{lesson}/error/{lessonerror}/edit","edit") -> name("edit");
+    Route::get("/lesson/{lesson}/error/{lessonerror}/delet","delete") -> name("delete");
+    Route::post("/update/{error}","update") -> name("update");
 });

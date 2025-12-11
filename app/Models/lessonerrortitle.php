@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Error;   
+use App\Models\lessonerror;   
 
 class lessonerrortitle extends Model
 {
     protected $fillable=["title"];
     
     public function errors(){
-        return $this->hasMany(Error::class);
+        return $this->hasMany(lessonerror::class);
     }
 }
