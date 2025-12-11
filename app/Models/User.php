@@ -86,4 +86,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(courseanswerreaction::class);
     }
+    public function Errors()
+    {
+        return $this -> hasMany(lessonerror::class);
+    }
 }
