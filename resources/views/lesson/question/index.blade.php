@@ -2,9 +2,9 @@
     لیست سوالات برای درس: {{ $lesson->title }}
 </h2>
 
-@if($questions->count() > 0)
+@if ($questions->count() > 0)
     <ul style="list-style:none; padding:0;">
-        @foreach($questions as $question)
+        @foreach ($questions as $question)
             <li style="margin-bottom:15px; padding:12px; border:1px solid #ccc; border-radius:8px; background:#fafafa;">
 
                 <div style="margin-bottom:6px;">
@@ -19,24 +19,24 @@
 
                 <div style="display:flex; gap:10px;">
 
-                    <a href="{{ route('question_edit',['lesson'=>$lesson->id ,'coursequestion' => $question -> id]) }}"
+                    <a href="{{ route('question_edit', ['lesson' => $lesson->id, 'coursequestion' => $question->id]) }}"
                         style="background:#ffc107; color:#000; padding:6px 12px; border-radius:5px; text-decoration:none;">
                         ویرایش
                     </a>
-                    <a href="{{ route('question_delete',['lesson'=>$lesson->id ,'coursequestion' => $question -> id]) }}"
+                    <a href="{{ route('question_delete', ['lesson' => $lesson->id, 'coursequestion' => $question->id]) }}"
                         style="background:#ffc107; color:red; padding:6px 12px; border-radius:5px; text-decoration:none;">
                         حذف
                     </a>
-                    <a href="{{ route('answer_create',['coursequestion' => $question -> id])}}"
+                    <a href="{{ route('answer_create', ['coursequestion' => $question->id]) }}"
                         style="background:green; color:white; padding:6px 12px; border-radius:5px; text-decoration:none;">
                         ایجاد جواب
                     </a>
-                    <a href="{{ route('question_answers',['coursequestion' => $question -> id])}}"
+                    <a href="{{ route('question_answers', ['coursequestion' => $question->id]) }}"
                         style="background:green; color:white; padding:6px 12px; border-radius:5px; text-decoration:none;">
-                        نمایش  جواب ها
+                        نمایش جواب ها
                     </a>
 
-                  
+
 
                 </div>
 
