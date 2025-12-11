@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('lessonerrors', function (Blueprint $table) {
             $table->id();
-            $table -> integer("user_id");
-            $table -> integer("lesson_id");
-            $table -> text("error");
-            $table -> string("status") -> default("0");
-            $table -> integer("errortype");
+            $table->integer("user_id");
+            $table->integer("lesson_id");
+            $table->text("error");
+            $table->integer("errortype");
+            $table->string("status")->default("0");
             $table->timestamps();
         });
     }

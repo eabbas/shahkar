@@ -8,7 +8,7 @@
     لیست پاسخ‌ها برای سؤال:
     <span style="color:#007bff;">{{ $question->question }}</span>
     <div style="font-size:16px; margin-top:6px; color:#777;">
-        درس: {{ $question->lesson->tilt }}
+        درس: {{ $question->lesson->title }}
     </div>
 </h2>
 
