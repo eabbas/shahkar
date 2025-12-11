@@ -34,6 +34,7 @@ use App\Http\Controllers\courseQuestionController;
 use App\Http\Controllers\courseAnswerController;
 use App\Http\Controllers\lessonSuggestionController;
 use App\Http\Controllers\couresAnswerreactionController;
+use App\Http\Controllers\lessonErrortitleController;
 
 // category routes
 Route::group(['prefix' => 'category', 'controller' => CategoryController::class, 'as' => 'category-', 'middleware' => checkAdminMiddleware::class], function () {
@@ -439,4 +440,18 @@ Route::group([
 ], function () {
     // Route::get("/create/{answer}","create") -> name("create");
     Route::post("/store/{courseanswer}", "store")->name("store");
+});
+// course error title
+Route::group([
+    'prefix'=>'lessonErrortitle',
+    'controller'=>lessonErrortitleController::class,
+    'as'=>'errortitle_',
+    'middleware' => checklogin::class
+], function(){
+    Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/errortitles', 'index')->name('index');
+    Route::get('/edit/{lessonerrortitle}','edit')->name('edit');
+    Route::get('/delete/{lessonerrortitle}','delete')->name('delete');
+    Route::post('/update/{lessonerrortitle}', 'update')->name('update');
 });
