@@ -190,15 +190,22 @@ function login(state) {
 
 }
 
-// add to shopping cart by mr.olyafam
+//! add to shopping cart by mr.olyafam
+function addToShoppingCart(id, title, description, image, price) {
+    document.cookie = "id=" + id
+    document.cookie = "title=" + title
+    document.cookie = "description=" + description
+    document.cookie = "image=" + image
+    document.cookie = "price=" + price
+    let allCookies = document.cookie
+    let allCookiesArr = allCookies.split(';')
+    console.log(allCookiesArr);
+    allCookiesArr.forEach((item) => {
+        console.log(item);
+    })
+}
 
-// let shoppingCartNumber = document.getElementById('shoppingCartNumber');
-// function addToShoppingCart() {
-//     console.log(shoppingCartNumber);
-// }
-
-// related products to per category by mr.olyafam
-
+//! related products to per category by mr.olyafam
 let categoryTitles = document.querySelectorAll('.category-title')
 categoryTitles.forEach((item) => {
     item.addEventListener('click', () => {
