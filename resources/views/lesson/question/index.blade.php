@@ -19,19 +19,19 @@
 
                 <div style="display:flex; gap:10px;">
 
-                    <a href="{{ route('question_edit',['lesson'=>$lesson->id ,'question' => $question -> id]) }}"
+                    <a href="{{ route('question_edit',['lesson'=>$lesson->id ,'coursequestion' => $question -> id]) }}"
                         style="background:#ffc107; color:#000; padding:6px 12px; border-radius:5px; text-decoration:none;">
                         ویرایش
                     </a>
-                    <a href="{{ route('question_delete',['lesson'=>$lesson->id ,'question' => $question -> id]) }}"
+                    <a href="{{ route('question_delete',['lesson'=>$lesson->id ,'coursequestion' => $question -> id]) }}"
                         style="background:#ffc107; color:red; padding:6px 12px; border-radius:5px; text-decoration:none;">
                         حذف
                     </a>
-                    <a href="{{ route('answer_create',['question' => $question -> id])}}"
+                    <a href="{{ route('answer_create',['coursequestion' => $question -> id])}}"
                         style="background:green; color:white; padding:6px 12px; border-radius:5px; text-decoration:none;">
                         ایجاد جواب
                     </a>
-                    <a href="{{ route('question_answers',['question' => $question -> id])}}"
+                    <a href="{{ route('question_answers',['coursequestion' => $question -> id])}}"
                         style="background:green; color:white; padding:6px 12px; border-radius:5px; text-decoration:none;">
                         نمایش  جواب ها
                     </a>
