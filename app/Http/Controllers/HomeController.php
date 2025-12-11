@@ -52,6 +52,8 @@ class HomeController extends Controller
     }
     public function notAccess()
     {
+        $courses = course::all();
+        $products = product::where('is_in_home', 1)->get();
         $settings = settings::all();
         $cats = category::all();
         $logo = logo::all();
@@ -59,6 +61,8 @@ class HomeController extends Controller
         $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
         $user = Auth::user();
         return view('notAccess', [
+            'courses' => $courses,
+            'products' => $products,
             'settings' => $settings,
             'categories' => $cats,
             'logo' => $logo,
@@ -69,6 +73,8 @@ class HomeController extends Controller
     }
     public function loginAtFirst()
     {
+        $courses = course::all();
+        $products = product::where('is_in_home', 1)->get();
         $settings = settings::all();
         $cats = category::all();
         $logo = logo::all();
@@ -76,6 +82,8 @@ class HomeController extends Controller
         $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
         $user = Auth::user();
         return view('loginAtFirst', [
+            'courses' => $courses,
+            'products' => $products,
             'settings' => $settings,
             'categories' => $cats,
             'logo' => $logo,
