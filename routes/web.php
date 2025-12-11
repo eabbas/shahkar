@@ -361,37 +361,37 @@ Route::group([
     Route::get('/show/{meta}', 'show')->name('show');
     Route::post('/update/{meta}', 'update')->name('update');
 });
-//lesson comments
+// lesson comments
 Route::group([
-    'prefix'=>'lessoncomments',
-    'controller'=>LessoncommentsController::class,
-    'as'=>'lessonComments_',
+    'prefix' => 'lessoncomments',
+    'controller' => LessoncommentsController::class,
+    'as' => 'lessonComments_',
     'middleware' => checklogin::class
-], function(){
-    Route::get("/create/{lesson}","create") -> name("create");
-    Route::post("/store/{lesson}","store") -> name("store");
-    Route::get("/index/{lesson}","index") -> name("index");
-    Route::get("/lesson/{lesson}/comment/{lessoncomments}/edit","edit") -> name("edit");
-    Route::post("/update/{lessoncomments}","update") -> name("updata");
-    Route::get("/lesson/{lesson}/comment/{lessoncomments}/delete","delete") -> name("delete");
+], function () {
+    Route::get("/create/{lesson}", "create")->name("create");
+    Route::post("/store/{lesson}", "store")->name("store");
+    Route::get("/index/{lesson}", "index")->name("index");
+    Route::get("/lesson/{lesson}/comment/{lessoncomments}/edit", "edit")->name("edit");
+    Route::post("/update/{lessoncomments}", "update")->name("updata");
+    Route::get("/lesson/{lesson}/comment/{lessoncomments}/delete", "delete")->name("delete");
 });
-//course attachments
+// course attachments
 Route::group([
-    'prefix'=>'courseAttachments',
-    'controller'=>CourseAttachmentController::class,
-    'as'=>'attachment_',
+    'prefix' => 'courseAttachments',
+    'controller' => CourseAttachmentController::class,
+    'as' => 'attachment_',
     'middleware' => checklogin::class
-], function(){
-    Route::post("/attachfile","store") -> name("store");
-    Route::post("/attachfile/{courseattachment}","update") -> name("update") ;
+], function () {
+    Route::post("/attachfile", "store")->name("store");
+    Route::post("/attachfile/{courseattachment}", "update")->name("update");
     // Route::get("/{courseattachment}/edit","edit") -> name("edit");
-    Route::get("/{courseattachment}/delete","delete") -> name("delete");
+    Route::get("/{courseattachment}/delete", "delete")->name("delete");
 });
-//course question
+// course question
 Route::group([
-    'prefix'=>'courseQuestion',
-    'controller'=>courseQuestionController::class,
-    'as'=>'question_',
+    'prefix' => 'courseQuestion',
+    'controller' => courseQuestionController::class,
+    'as' => 'question_',
     'middleware' => checklogin::class
 ], function(){
     Route::get("/create/{lesson}","create") -> name("create");
@@ -415,3 +415,4 @@ Route::group([
     Route::post("/update/{courseanswer}","update") -> name("update");
     Route::get("/reactions/{courseanswer}","reactions") -> name("reactions");
 });
+
