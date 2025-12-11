@@ -32,7 +32,7 @@ use App\Http\Controllers\LessoncommentsController;
 use App\Http\Controllers\CourseAttachmentController;
 use App\Http\Controllers\courseQuestionController;
 use App\Http\Controllers\courseAnswerController;
-use App\Http\Controllers\courseSuggestionController;
+use App\Http\Controllers\lessonSuggestionController;
 
 // category routes
 Route::group(['prefix' => 'category', 'controller' => CategoryController::class, 'as' => 'category-', 'middleware' => checkAdminMiddleware::class], function () {
@@ -418,15 +418,14 @@ Route::group([
 });
 //lesson suggestion
 Route::group([
-    'prefix'=>'lessonSuggestion',
-    'controller'=>courseSuggestionController::class,
-    'as'=>'suggestion_',
+    'prefix' => 'lessonSuggestion',
+    'controller' => lessonSuggestionController::class,
+    'as' => 'suggestion_',
     'middleware' => checklogin::class
-], function(){
-    Route::get("/create/{lesson}","create") -> name("create");
-    Route::post("/store/{lesson}","store") -> name("store");
-    Route::get("/lesson/{lesson}/Suggestion/{lessonSuggestion}/edit","edit") -> name("edit");
-    Route::get("/lesson/{lesson}/Suggestion/{lessonSuggestion}/delete","delete") -> name("delete");
-    Route::post("/update/{lessonSuggestion}","update") -> name("update");
+], function () {
+    Route::get("/create/{lesson}", "create")->name("create");
+    Route::post("/store/{lesson}", "store")->name("store");
+    Route::get("/lesson/{lesson}/Suggestion/{lessonsuggestion}/edit", "edit")->name("edit");
+    Route::get("/lesson/{lesson}/Suggestion/{lessonsuggestion}/delete", "delete")->name("delete");
+    Route::post("/update/{lessonsuggestion}", "update")->name("update");
 });
-

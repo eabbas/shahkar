@@ -79,6 +79,6 @@ class User extends Authenticatable
         return $this->hasMany(courseanswer::class, 'answer_id');
     }
     public function Suggestions(){
-        return $this -> hasMany(lessonSuggestion::class);
+        return $this -> hasMany(lessonsuggestion::class);
     }
 }

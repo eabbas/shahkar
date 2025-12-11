@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\lesson; 
 use App\Models\User; 
 
-class lessonSuggestion extends Model
+class lessonsuggestion extends Model
 {
    
     protected $fillable=[
