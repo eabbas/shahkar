@@ -17,26 +17,25 @@
 <hr style="margin:20px 0;">
 
 {{-- 📜 لیست نظرات --}}
-@if($lessoncomments->count() > 0)
-    <h2>بعد از کامل شدن یوزر ها فقط نظرات تایید شده می اد</h2>
+@if ($lessoncomments->count() > 0)
+    {{-- <h2>بعد از کامل شدن یوزر ها فقط نظرات تایید شده می اد</h2> --}}
     <h3 style="font-size:18px; margin-bottom:10px;">تمام نظرات:</h3>
 
-    @foreach($lessoncomments as $comment)
+    @foreach ($lessoncomments as $comment)
         <div style="border:1px solid #ddd; padding:10px; border-radius:8px; margin-bottom:10px;">
             <p style="margin:5px 0;">{{ $comment->comment }}</p>
 
             {{-- 🔗 لینک‌های ویرایش و حذف --}}
             <div style="margin-top:8px;">
-                <a href="{{ route('lessonComments_edit', ['lesson' => $lesson->id, 'lessoncomments' => $comment->id]) }}" 
-                   style="color:#007bff; text-decoration:none; margin-right:10px;">✏️   مشاهده و ویرایش</a>
-                <a href="{{ route('lessonComments_delete', ['lesson' => $lesson->id, 'lessoncomments' => $comment->id]) }}" 
-                   style="color:red; text-decoration:none; margin-right:10px;">حذف</a>
+                <a href="{{ route('lessonComments_edit', ['lesson' => $lesson->id, 'lessoncomments' => $comment->id]) }}"
+                    style="color:#007bff; text-decoration:none; margin-right:10px;">✏️ مشاهده و ویرایش</a>
+                <a href="{{ route('lessonComments_delete', ['lesson' => $lesson->id, 'lessoncomments' => $comment->id]) }}"
+                    style="color:red; text-decoration:none; margin-right:10px;">حذف</a>
 
-                
+
             </div>
         </div>
     @endforeach
-
 @else
     <p>هنوز نظری ثبت نشده است.</p>
 @endif

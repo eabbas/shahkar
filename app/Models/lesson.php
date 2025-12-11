@@ -3,16 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\attachment;  
-use App\Models\lessoncomments;   
-use App\Models\Error;   
-use App\Models\Suggestion; 
-use App\Models\question; 
-use App\Models\courseseason; 
+use App\Models\courseattachment;
+use App\Models\lessoncomments;
+use App\Models\coursequestion;
+use App\Models\courseseason;
 
 class lesson extends Model
 {
-    protected $fillable=[
+    protected $fillable = [
         "course_id",
         "title",
         "description",
@@ -20,33 +18,38 @@ class lesson extends Model
         "order",
         "free",
         "season_id",
-        "duration" ,
+        "duration",
         "video_path",
         "video_type"
     ];
 
-    public function attachments(){
-        return $this->hasMany(Attachment::class);
+    public function attachments()
+    {
+        return $this->hasMany(courseattachment::class);
     }
 
-    public function lessoncomments(){
+    public function lessoncomments()
+    {
         return $this->hasMany(lessoncomments::class);
     }
 
-    public function errors(){
-        return $this->hasMany(Error::class);
+    public function errors()
+    {
+        return $this->hasMany(lessonerror::class);
     }
 
-    public function suggestions(){
-        return $this->hasMany(Suggestion::class);
+    public function suggestions()
+    {
+        return $this->hasMany(lessonsuggestion::class);
     }
 
-    public function questions(){
-        return $this->hasMany(Question::class);
+    public function questions()
+    {
+        return $this->hasMany(coursequestion::class);
     }
 
-    public function season(){
-        return $this -> belongsTo(courseseason::class, 'season_id');
+    public function season()
+    {
+        return $this->belongsTo(courseseason::class, 'season_id');
     }
-
 }
