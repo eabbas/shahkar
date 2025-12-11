@@ -38,6 +38,6 @@ class courseanswer extends Model
 
     public function reactions()
     {
-        return $this->hasMany(answerreaction::class);
+        return $this->hasMany(courseanswerreaction::class);
     }
 }

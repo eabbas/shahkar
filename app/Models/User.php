@@ -81,4 +81,7 @@ class User extends Authenticatable
     public function Suggestions(){
         return $this -> hasMany(lessonsuggestion::class);
     }
+     public function answerreactions(){
+        return $this -> hasMany(courseanswerreaction::class);
+    }
 }
