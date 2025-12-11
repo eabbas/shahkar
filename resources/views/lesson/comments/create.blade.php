@@ -1,4 +1,4 @@
-<form action="{{ route('lessonComments_store',$lesson -> id) }}" method="POST" style="max-width:600px; margin:auto;">
+<form action="{{ route('lessonComments_store', $lesson->id) }}" method="POST" style="max-width:600px; margin:auto;">
     @csrf
 
     <h2 style="font-size:22px; margin-bottom:15px;">افزودن نظر برای درس {{ $lesson->title }}</h2>

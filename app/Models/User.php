@@ -66,10 +66,16 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(course::class, 'user_courses')->withPivot(['id', 'user_id', 'course_id']);
     }
-    public function lessoncomments(){
-        return $this -> hasMany(lessoncomments::class);
+    public function lessoncomments()
+    {
+        return $this->hasMany(lessoncomments::class);
     }
-    public function questions(){
-        return $this -> hasMany(coursequestion::class);
+    public function questions()
+    {
+        return $this->hasMany(coursequestion::class);
+    }
+    public function answers()
+    {
+        return $this->hasMany(courseanswer::class, 'answer_id');
     }
 }

@@ -134,17 +134,17 @@
                 {{-- دکمه‌های اصلی --}}
                 <div style="display:flex; gap:10px; margin-top:15px;">
 
-                    <a href="{{ route('answer_edit',['answer' => $answer->id]) }}"
+                    <a href="{{ route('answer_edit',['courseanswer' => $answer->id]) }}"
                         style="background:#ffe08a; padding:8px 14px; border-radius:6px; text-decoration:none; color:#000;">
                         ویرایش
                     </a>
 
-                    <a href="{{ route('answer_delete',['answer' => $answer->id]) }}"
+                    <a href="{{ route('answer_delete',['courseanswer' => $answer->id]) }}"
                         style="background:#ffcece; padding:8px 14px; border-radius:6px; text-decoration:none; color:#c40000;">
                         حذف
                     </a>
 
-                    <a href="{{ route('answer_reactions',['answer' => $answer->id]) }}"
+                    <a href="{{ route('answer_reactions',['courseanswer' => $answer->id]) }}"
                         style="background:blue; padding:8px 14px; border-radius:6px; text-decoration:none; color:yellow;">
                         مشاهده ریکشن ها
                     </a>

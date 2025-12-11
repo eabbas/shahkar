@@ -393,26 +393,25 @@ Route::group([
     'controller' => courseQuestionController::class,
     'as' => 'question_',
     'middleware' => checklogin::class
-], function(){
-    Route::get("/create/{lesson}","create") -> name("create");
-    Route::post("/store/{lesson}","store") -> name("store");
-    Route::get("/lesson/{lesson}/question/{coursequestion}/edit","edit") -> name("edit");
-    Route::get("/lesson/{lesson}/question/{coursequestion}/delete","delete") -> name("delete");
-    Route::post("/update/{coursequestion}","update") -> name("update");
-    Route::get("/answers/{coursequestion}","answers") -> name("answers");
+], function () {
+    Route::get("/create/{lesson}", "create")->name("create");
+    Route::post("/store/{lesson}", "store")->name("store");
+    Route::get("/lesson/{lesson}/question/{coursequestion}/edit", "edit")->name("edit");
+    Route::get("/lesson/{lesson}/question/{coursequestion}/delete", "delete")->name("delete");
+    Route::post("/update/{coursequestion}", "update")->name("update");
+    Route::get("/answers/{coursequestion}", "answers")->name("answers");
 });
 // course answer
 Route::group([
-    'prefix'=>'courseAnswer',
-    'controller'=>courseAnswerController::class,
-    'as'=>'answer_',
+    'prefix' => 'courseAnswer',
+    'controller' => courseAnswerController::class,
+    'as' => 'answer_',
     'middleware' => checklogin::class
-], function(){
-    Route::get("/create/{coursequestion}","create") -> name("create");
-    Route::post("/store/{coursequestion}","store") -> name("store");
-    Route::get("/{courseanswer}/edit","edit") -> name("edit");
-    Route::get("/{courseanswer}/delete","delete") -> name("delete");
-    Route::post("/update/{courseanswer}","update") -> name("update");
-    Route::get("/reactions/{courseanswer}","reactions") -> name("reactions");
+], function () {
+    Route::get("/create/{coursequestion}", "create")->name("create");
+    Route::post("/store/{coursequestion}", "store")->name("store");
+    Route::get("/{courseanswer}/edit", "edit")->name("edit");
+    Route::get("/{courseanswer}/delete", "delete")->name("delete");
+    Route::post("/update/{courseanswer}", "update")->name("update");
+    Route::get("/reactions/{courseanswer}", "reactions")->name("reactions");
 });
-
