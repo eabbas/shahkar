@@ -33,6 +33,7 @@ use App\Http\Controllers\CourseAttachmentController;
 use App\Http\Controllers\courseQuestionController;
 use App\Http\Controllers\courseAnswerController;
 use App\Http\Controllers\lessonSuggestionController;
+use App\Http\Controllers\couresAnswerreactionController;
 
 // category routes
 Route::group(['prefix' => 'category', 'controller' => CategoryController::class, 'as' => 'category-', 'middleware' => checkAdminMiddleware::class], function () {
@@ -416,7 +417,7 @@ Route::group([
     Route::post("/update/{courseanswer}", "update")->name("update");
     Route::get("/reactions/{courseanswer}", "reactions")->name("reactions");
 });
-//lesson suggestion
+// lesson suggestion
 Route::group([
     'prefix' => 'lessonSuggestion',
     'controller' => lessonSuggestionController::class,
@@ -429,13 +430,13 @@ Route::group([
     Route::get("/lesson/{lesson}/Suggestion/{lessonsuggestion}/delete", "delete")->name("delete");
     Route::post("/update/{lessonsuggestion}", "update")->name("update");
 });
-//answer reaction
+// answer reaction
 Route::group([
-    'prefix'=>'answerReaction',
-    'controller'=>couresAnswerreactionController::class,
-    'as'=>'answerReaction_',
+    'prefix' => 'answerReaction',
+    'controller' => couresAnswerreactionController::class,
+    'as' => 'answerReaction_',
     'middleware' => checklogin::class
-], function(){
-   // Route::get("/create/{answer}","create") -> name("create");
-    Route::post("/store/{courseanswer}","store") -> name("store");
+], function () {
+    // Route::get("/create/{answer}","create") -> name("create");
+    Route::post("/store/{courseanswer}", "store")->name("store");
 });
