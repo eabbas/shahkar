@@ -192,17 +192,74 @@ function login(state) {
 
 //! add to shopping cart by mr.olyafam
 function addToShoppingCart(id, title, description, image, price) {
-    document.cookie = "id=" + id
-    document.cookie = "title=" + title
-    document.cookie = "description=" + description
-    document.cookie = "image=" + image
-    document.cookie = "price=" + price
-    let allCookies = document.cookie
-    let allCookiesArr = allCookies.split(';')
-    console.log(allCookiesArr);
-    allCookiesArr.forEach((item) => {
-        console.log(item);
+    let productCountInCookie = 0;
+    let allCookies = document.cookie;
+    let allCookiesArr = allCookies.split(';');
+    allCookiesArr.forEach((cookie) => {
+        if (cookie.indexOf('shahkarProduct') !== -1) {
+            productCountInCookie++;
+        }
     })
+    let productCartInfo = 'shahkarProduct' + (productCountInCookie + 1) + 'title=' + title + '&&shahkarProduct' + (productCountInCookie + 1) + 'price=' + price + '&&shahkarProduct' + (productCountInCookie + 1) + 'description=' + description + '&&shahkarProduct' + (productCountInCookie + 1) + 'image=' + image + '&&shahkarProduct' + (productCountInCookie + 1) + 'id=' + id;
+    document.cookie = productCartInfo;
+}
+
+let shoppingCartProducts = document.getElementById('shoppingCartProducts');
+function getCookies() {
+    shoppingCartProducts.innerHTML = '';
+    let allCookies = document.cookie;
+    let i = 1
+    allCookies.split(';').forEach((cookie) => {
+        if (cookie.indexOf('shahkarProduct') !== -1) {
+            let div = document.createElement('div')
+            let array = []
+            cookie.split('&&').forEach((part) => {
+                part.trim().split('=').forEach((info, index) => {
+                    if (index == 0) key = info;
+                    if (index == 1) array[key] = info;
+                    if (index == 1) {
+                        let element = `
+                        <a href="#">
+                        <input type="hidden" value="${array['shahkarProduct' + i + 'id']}">
+                            <div class="w-full flex gap-3 mb-10">
+                                <div class="w-1/3">
+                                    <img src="${array['shahkarProduct' + i + 'image']}" class="size-full" alt="">
+                                </div>
+                                <div class="flex flex-col gap-2 w-2/3">
+                                    <span class="font-bold text-(--color-text)">${array['shahkarProduct' + i + 'title']}</span>
+                                    <span class="text-sm font-light text-(--color-secondary-text)">${array['shahkarProduct' + i + 'description']}</span>
+                                    <span class="text-sm font-light text-(--color-secondary-text)">
+                                        <span>${array['shahkarProduct' + i + 'price']}</span>
+                                        <span>تومان</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        `
+                        div.innerHTML = element
+                    }
+                })
+            })
+            i++
+            shoppingCartProducts.appendChild(div)
+        }
+    })
+}
+
+let shoppingCartContent = document.getElementById('shoppingCartContent')
+function showCartContent() {
+    if (shoppingCartContent.classList.contains('invisible') && shoppingCartContent.classList.contains('opacity-0')) {
+        getCookies()
+        shoppingCartContent.classList.remove('invisible');
+        shoppingCartContent.classList.remove('opacity-0');
+    } else {
+        shoppingCartContent.classList.add('invisible');
+        shoppingCartContent.classList.add('opacity-0');
+    }
+}
+function closeCart() {
+    shoppingCartContent.classList.add('invisible');
+    shoppingCartContent.classList.add('opacity-0');
 }
 
 //! related products to per category by mr.olyafam
