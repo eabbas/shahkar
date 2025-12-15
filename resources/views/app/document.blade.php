@@ -302,8 +302,8 @@
                         <span
                             class="flex justify-center items-center -top-2.5 -left-2.5 absolute size-5 bg-(--color-primary) rounded-full text-(--color-primary-text) text-sm">0</span>
                     </a> --}}
-                    <div class="relative menuItemParent">
-                        <a href="#" class="inline-block w-8 h-6 relative">
+                    <div class="relative ">
+                        <span class="inline-block w-8 h-6 relative cursor-pointer" onclick="showCartContent()">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-6 rotate-y-180"
                                 viewBox="0 0 576 512">
                                 <path fill="var(--color-fill)"
@@ -311,11 +311,23 @@
                             </svg>
                             <span
                                 class="flex justify-center items-center -top-2.5 -left-2.5 absolute size-5 bg-(--color-primary) rounded-full text-(--color-primary-text) text-sm">0</span>
-                        </a>
+                        </span>
                         {{-- shopping cart hover box by mr.olyafam --}}
-                        <div
-                            class="absolute left-5 top-10 w-90 bg-white p-2 border border-(--color-border) mt-10 z-9999 transition-all duration-500 invisible opacity-0">
+                        <div id="shoppingCartContent"
+                            class="absolute left-4 top-2 w-90 bg-white p-2 border border-(--color-border) mt-10 z-9999 transition-all duration-500 invisible opacity-0">
                             <div class="text-(--color-text) font-light text-sm">
+                                <div class="relative" onclick="closeCart()">
+                                    <button
+                                        class="absolute top-0 left-0 w-4 h-4 flex items-center justify-center cursor-pointer">
+
+                                        <span
+                                            class="absolute w-full h-[1.5px] bg-(--color-text) rotate-45 rounded-full"></span>
+                                        <span
+                                            class="absolute w-full h-[1.5px] bg-(--color-text) -rotate-45 rounded-full"></span>
+
+                                    </button>
+                                </div>
+
                                 <span>1</span>
                                 <span>کالا</span>
                             </div>
@@ -329,8 +341,7 @@
                                         </div>
                                         <div class="flex flex-col gap-2 w-2/3">
                                             <span class="font-bold text-(--color-text)">محصول دوزایش</span>
-                                            <span class="text-sm font-light text-(--color-secondary-text)">بو محصول
-                                                فرق
+                                            <span class="text-sm font-light text-(--color-secondary-text)">بو محصول فرق
                                                 الی
                                                 بتی بیزاد دی حتما آلون</span>
                                             <span class="text-sm font-light text-(--color-secondary-text)">

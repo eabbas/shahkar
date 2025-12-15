@@ -192,17 +192,47 @@ function login(state) {
 
 //! add to shopping cart by mr.olyafam
 function addToShoppingCart(id, title, description, image, price) {
-    document.cookie = "id=" + id
-    document.cookie = "title=" + title
-    document.cookie = "description=" + description
-    document.cookie = "image=" + image
-    document.cookie = "price=" + price
-    let allCookies = document.cookie
-    let allCookiesArr = allCookies.split(';')
-    console.log(allCookiesArr);
-    allCookiesArr.forEach((item) => {
-        console.log(item);
+    let productCountInCookie = 0;
+    let allCookies = document.cookie;
+    let allCookiesArr = allCookies.split(';');
+    allCookiesArr.forEach((cookie) => {
+        if (cookie.indexOf('shahkarProduct') !== -1) {
+            productCountInCookie++;
+        }
     })
+    let productCartInfo = 'shahkarProduct' + (productCountInCookie + 1) + 'title=' + title + '&&shahkarProduct' + (productCountInCookie + 1) + 'price=' + price + '&&shahkarProduct' + (productCountInCookie + 1) + 'description=' + description + '&&shahkarProduct' + (productCountInCookie + 1) + 'image=' + image + '&&shahkarProduct' + (productCountInCookie + 1) + 'id=' + id;
+    document.cookie = productCartInfo;
+}
+
+function getCookies() {
+    let allCookies = document.cookie;
+    allCookies.split(';').forEach((cookie) => {
+        if (cookie.indexOf('shahkarProduct') !== -1) {
+            cookie.split('&&').forEach((part) => {
+                part.split('=').forEach((info, index) => {
+                    if (index == 1) {
+                        console.log(info);
+                    }
+                })
+            })
+        }
+    })
+}
+
+let shoppingCartContent = document.getElementById('shoppingCartContent')
+function showCartContent() {
+    getCookies()
+    if (shoppingCartContent.classList.contains('invisible') && shoppingCartContent.classList.contains('opacity-0')) {
+        shoppingCartContent.classList.remove('invisible');
+        shoppingCartContent.classList.remove('opacity-0');
+    } else {
+        shoppingCartContent.classList.add('invisible');
+        shoppingCartContent.classList.add('opacity-0');
+    }
+}
+function closeCart() {
+    shoppingCartContent.classList.add('invisible');
+    shoppingCartContent.classList.add('opacity-0');
 }
 
 //! related products to per category by mr.olyafam

@@ -211,7 +211,7 @@ Route::group(['prefix' => 'homeForm', 'controller' => HomeFormsController::class
     Route::get('/list', 'index')->name('index');
     Route::get('/delete/{homeForms}', 'delete')->name('delete');
 });
-// akbarnezhad courses
+//! akbarnezhad courses
 // course category
 Route::group([
     'prefix' => 'coursecategory',
@@ -469,3 +469,4 @@ Route::group([
     Route::get("/lesson/{lesson}/error/{lessonerror}/delet", "delete")->name("delete");
     Route::post("/update/{lessonerror}", "update")->name("update");
 });
+//! end akbarnezhad courses
