@@ -332,8 +332,8 @@
                                 <span>کالا</span>
                             </div>
 
-                            <div class="max-h-80 overflow-y-auto my-8">
-                                <a href="#">
+                            <div class="max-h-80 overflow-y-auto my-8" id="shoppingCartProducts">
+                                {{-- <a href="#">
                                     <div class="w-full flex gap-3 mb-10">
                                         <div class="w-1/3">
                                             <img src="{{ asset('storage/images/6d170732-57e2-44e3-997b-a5ad762330aa_Parse2.jpg') }}"
@@ -350,7 +350,7 @@
                                             </span>
                                         </div>
                                     </div>
-                                </a>
+                                </a> --}}
                             </div>
 
                             <div class="flex justify-between items-center">

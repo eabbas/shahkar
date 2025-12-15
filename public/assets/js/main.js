@@ -204,25 +204,52 @@ function addToShoppingCart(id, title, description, image, price) {
     document.cookie = productCartInfo;
 }
 
+let shoppingCartProducts = document.getElementById('shoppingCartProducts');
 function getCookies() {
+    shoppingCartProducts.innerHTML = '';
     let allCookies = document.cookie;
+    let i = 1
     allCookies.split(';').forEach((cookie) => {
         if (cookie.indexOf('shahkarProduct') !== -1) {
+            let div = document.createElement('div')
+            let array = []
             cookie.split('&&').forEach((part) => {
-                part.split('=').forEach((info, index) => {
+                part.trim().split('=').forEach((info, index) => {
+                    if (index == 0) key = info;
+                    if (index == 1) array[key] = info;
                     if (index == 1) {
-                        console.log(info);
+                        let element = `
+                        <a href="#">
+                        <input type="hidden" value="${array['shahkarProduct' + i + 'id']}">
+                            <div class="w-full flex gap-3 mb-10">
+                                <div class="w-1/3">
+                                    <img src="${array['shahkarProduct' + i + 'image']}" class="size-full" alt="">
+                                </div>
+                                <div class="flex flex-col gap-2 w-2/3">
+                                    <span class="font-bold text-(--color-text)">${array['shahkarProduct' + i + 'title']}</span>
+                                    <span class="text-sm font-light text-(--color-secondary-text)">${array['shahkarProduct' + i + 'description']}</span>
+                                    <span class="text-sm font-light text-(--color-secondary-text)">
+                                        <span>${array['shahkarProduct' + i + 'price']}</span>
+                                        <span>تومان</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        `
+                        div.innerHTML = element
                     }
                 })
             })
+            i++
+            shoppingCartProducts.appendChild(div)
         }
     })
 }
 
 let shoppingCartContent = document.getElementById('shoppingCartContent')
 function showCartContent() {
-    getCookies()
     if (shoppingCartContent.classList.contains('invisible') && shoppingCartContent.classList.contains('opacity-0')) {
+        getCookies()
         shoppingCartContent.classList.remove('invisible');
         shoppingCartContent.classList.remove('opacity-0');
     } else {
