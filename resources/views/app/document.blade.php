@@ -107,56 +107,60 @@
                             <span>
                                 دسته بندی
                             </span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z" />
-                            </svg>
+                            @if ($categories->isNotEmpty())
+                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 448 512">
+                                    <path fill="var(--color-fill)"
+                                        d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z" />
+                                </svg>
+                            @endif
                         </a>
-                        <div
-                            class="absolute w-full py-5 max-h-0 border border-(--color-border) bg-white opacity-0 mt-8 right-0 invisible z-9999 transition-all duration-500">
-                            <div class="h-100 w-11/12 mx-auto flex flex-row items-start gap-10">
-                                <div class="h-90 w-1/5 flex flex-col justify-start gap-4 overflow-y-auto">
-                                    @foreach ($categories as $category)
-                                        <a href="{{ route('search-cat-products', [$category]) }}"
-                                            class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">{{ $category->title }}</a>
-                                    @endforeach
-                                </div>
-                                <div class="w-4/5">
-                                    <!-- contents -->
-                                    <div class="h-90 grid grid-cols-4 gap-4 max-h-[575px] overflow-y-auto">
-                                        @foreach ($products as $product)
-                                            <div class="p-4 border border-(--color-border) rounded-[10px] h-1/2">
-                                                <a href="http://localhost/shahkar/public/product/show/{{ $product->id }}"
-                                                    class="block mb-1">
-                                                    @if ($product->medias)
-                                                        @foreach ($product->medias as $media)
-                                                            @if ($media['is_main'] == 1)
-                                                                <img src=" {{ asset('storage/' . $media['path']) }}  "
-                                                                    class="w-[85px] h-20 mx-auto" alt="product">
-                                                                @break
-
-                                                            @else
-                                                                <img src="{{ asset('assets/img/noImage.png') }}"
-                                                                    class="w-[85px] h-20 mx-auto" alt="product">
-                                                                @break
-                                                            @endif
-                                                        @endforeach
-                                                    @else
-                                                        <img src="{{ asset('assets/img/noImage.png') }}"
-                                                            class="w-[85px] h-20 mx-auto" alt="product">
-                                                    @endif
-                                                    <span
-                                                        class="inline-block w-full text-center pt-3">{{ $product->title }}</span>
-                                                    <span
-                                                        class="block text-center text-[14px] text-(--color-secondary-text)">{{ $product->description }}</span>
-                                                </a>
-                                            </div>
+                        @if ($categories->isNotEmpty())
+                            <div
+                                class="absolute w-full py-5 max-h-0 border border-(--color-border) bg-white opacity-0 mt-8 right-0 invisible z-9999 transition-all duration-500">
+                                <div class="h-100 w-11/12 mx-auto flex flex-row items-start gap-10">
+                                    <div class="h-90 w-1/5 flex flex-col justify-start gap-4 overflow-y-auto">
+                                        @foreach ($categories as $category)
+                                            <a href="{{ route('search-cat-products', [$category]) }}"
+                                                class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">{{ $category->title }}</a>
                                         @endforeach
                                     </div>
-                                    <!-- contents -->
+                                    <div class="w-4/5">
+                                        <!-- contents -->
+                                        <div class="h-90 grid grid-cols-4 gap-4 max-h-[575px] overflow-y-auto">
+                                            @foreach ($products as $product)
+                                                <div class="p-4 border border-(--color-border) rounded-[10px] h-1/2">
+                                                    <a href="http://localhost/shahkar/public/product/show/{{ $product->id }}"
+                                                        class="block mb-1">
+                                                        @if ($product->medias)
+                                                            @foreach ($product->medias as $media)
+                                                                @if ($media['is_main'] == 1)
+                                                                    <img src=" {{ asset('storage/' . $media['path']) }}  "
+                                                                        class="w-[85px] h-20 mx-auto" alt="product">
+                                                                    @break
+
+                                                                @else
+                                                                    <img src="{{ asset('assets/img/noImage.png') }}"
+                                                                        class="w-[85px] h-20 mx-auto" alt="product">
+                                                                    @break
+                                                                @endif
+                                                            @endforeach
+                                                        @else
+                                                            <img src="{{ asset('assets/img/noImage.png') }}"
+                                                                class="w-[85px] h-20 mx-auto" alt="product">
+                                                        @endif
+                                                        <span
+                                                            class="inline-block w-full text-center pt-3">{{ $product->title }}</span>
+                                                        <span
+                                                            class="block text-center text-[14px] text-(--color-secondary-text)">{{ $product->description }}</span>
+                                                    </a>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <!-- contents -->
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                     </li>
                     <li class="relative menuItemParent">
                         <a href="{{ route('course.list') }}"
@@ -164,20 +168,24 @@
                             <span>
                                 دوره ها
                             </span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 448 512">
-                                <path fill="var(--color-fill)"
-                                    d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z" />
-                            </svg>
+                            @if ($courses->isNotEmpty())
+                                <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 448 512">
+                                    <path fill="var(--color-fill)"
+                                        d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z" />
+                                </svg>
+                            @endif
                         </a>
-                        <ul
-                            class="absolute min-w-[250px] py-4 px-6 border border-(--color-border) bg-white top-full opacity-0 mt-8 right-0 invisible z-9999 transition-all duration-500 menuItemChild">
-                            @foreach ($courses as $course)
-                                <li>
-                                    <a href="{{ route('course.show', [$course]) }}"
-                                        class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">{{ $course['title'] }}</a>
-                                </li>
-                            @endforeach
-                        </ul>
+                        @if ($courses->isNotEmpty())
+                            <ul
+                                class="absolute min-w-[250px] py-4 px-6 border border-(--color-border) bg-white top-full opacity-0 mt-8 right-0 invisible z-9999 transition-all duration-500 menuItemChild">
+                                @foreach ($courses as $course)
+                                    <li>
+                                        <a href="{{ route('course.show', [$course]) }}"
+                                            class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">{{ $course['title'] }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
                     </li>
                     <li class="relative menuItemParent">
                         <a href="{{ route('product-index') }}"
@@ -319,15 +327,12 @@
                                 <div class="relative" onclick="closeCart()">
                                     <button
                                         class="absolute top-0 left-0 w-4 h-4 flex items-center justify-center cursor-pointer">
-
                                         <span
                                             class="absolute w-full h-[1.5px] bg-(--color-text) rotate-45 rounded-full"></span>
                                         <span
                                             class="absolute w-full h-[1.5px] bg-(--color-text) -rotate-45 rounded-full"></span>
-
                                     </button>
                                 </div>
-
                                 <span>1</span>
                                 <span>کالا</span>
                             </div>
@@ -402,22 +407,95 @@
             <!-- logo -->
 
             <div class="flex flex-row justify-end items-center gap-5">
-                <a href="#" class="inline-block w-8 h-6 relative">
+                {{-- <a href="#" class="inline-block w-8 h-6 relative">
                     <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 512 512">
                         <path fill="var(--color-fill)"
                             d="M225.8 468.2l-2.5-2.3L48.1 303.2C17.4 274.7 0 234.7 0 192.8v-3.3c0-70.4 50-130.8 119.2-144C158.6 37.9 198.9 47 231 69.6c9 6.4 17.4 13.8 25 22.3c4.2-4.8 8.7-9.2 13.5-13.3c3.7-3.2 7.5-6.2 11.5-9c0 0 0 0 0 0C313.1 47 353.4 37.9 392.8 45.4C462 58.6 512 119.1 512 189.5v3.3c0 41.9-17.4 81.9-48.1 110.4L288.7 465.9l-2.5 2.3c-8.2 7.6-19 11.9-30.2 11.9s-22-4.2-30.2-11.9zM239.1 145c-.4-.3-.7-.7-1-1.1l-17.8-20c0 0-.1-.1-.1-.1c0 0 0 0 0 0c-23.1-25.9-58-37.7-92-31.2C81.6 101.5 48 142.1 48 189.5v3.3c0 28.5 11.9 55.8 32.8 75.2L256 430.7 431.2 268c20.9-19.4 32.8-46.7 32.8-75.2v-3.3c0-47.3-33.6-88-80.1-96.9c-34-6.5-69 5.4-92 31.2c0 0 0 0-.1 .1s0 0-.1 .1l-17.8 20c-.3 .4-.7 .7-1 1.1c-4.5 4.5-10.6 7-16.9 7s-12.4-2.5-16.9-7z" />
                     </svg>
                     <span
                         class="flex justify-center items-center -top-2 -left-2 absolute size-4 bg-(--color-primary) rounded-full text-(--color-primary-text) text-sm">0</span>
-                </a>
-                <a href="#" class="inline-block w-8 h-6 relative">
+                </a> --}}
+                {{-- <a href="#" class="inline-block w-8 h-6 relative">
                     <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 448 512">
                         <path fill="var(--color-fill)"
                             d="M103 497c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-55-55L424 408c13.3 0 24-10.7 24-24s-10.7-24-24-24L81.9 360l55-55c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L7 367c-9.4 9.4-9.4 24.6 0 33.9l96 96zM441 145c9.4-9.4 9.4-24.6 0-33.9L345 15c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l55 55L24 104c-13.3 0-24 10.7-24 24s10.7 24 24 24l342.1 0-55 55c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l96-96z" />
                     </svg>
                     <span
                         class="flex justify-center items-center -top-2 -left-2 absolute size-4 bg-(--color-primary) rounded-full text-(--color-primary-text) text-sm">0</span>
+                </a> --}}
+                {{-- اینجا قراره پاپ آپ سرچ باکس باکس بذاریم --}}
+                <a href="#" class="inline-block w-8 h-6 relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="size-5 rotate-y-180">
+                        <path fill="var(--color-fill)"
+                            d="M368 208A160 160 0 1 0 48 208a160 160 0 1 0 320 0zM337.1 371.1C301.7 399.2 256.8 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208c0 48.8-16.8 93.7-44.9 129.1L505 471c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L337.1 371.1z" />
+                    </svg>
                 </a>
+                <div class="relative ">
+                    <span class="inline-block w-8 h-6 relative cursor-pointer" onclick="showCartContent()">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-6 rotate-y-180" viewBox="0 0 576 512">
+                            <path fill="var(--color-fill)"
+                                d="M24 0C10.7 0 0 10.7 0 24S10.7 48 24 48H69.5c3.8 0 7.1 2.7 7.9 6.5l51.6 271c6.5 34 36.2 58.5 70.7 58.5H488c13.3 0 24-10.7 24-24s-10.7-24-24-24H199.7c-11.5 0-21.4-8.2-23.6-19.5L170.7 288H459.2c32.6 0 61.1-21.8 69.5-53.3l41-152.3C576.6 57 557.4 32 531.1 32h-411C111 12.8 91.6 0 69.5 0H24zM131.1 80H520.7L482.4 222.2c-2.8 10.5-12.3 17.8-23.2 17.8H161.6L131.1 80zM176 512a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm336-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0z" />
+                        </svg>
+                        <span
+                            class="flex justify-center items-center -top-2.5 -left-2.5 absolute size-5 bg-(--color-primary) rounded-full text-(--color-primary-text) text-sm">0</span>
+                    </span>
+                    {{-- shopping cart hover box by mr.olyafam --}}
+                    <div id="mobileShoppingCartContent"
+                        class="absolute -left-10 top-2 w-90 bg-white p-2 border border-(--color-border) mt-10 z-9999 transition-all duration-500 invisible opacity-0">
+                        <div class="text-(--color-text) font-light text-sm">
+                            <div class="relative" onclick="closeCart()">
+                                <button
+                                    class="absolute top-0 left-0 w-4 h-4 flex items-center justify-center cursor-pointer">
+                                    <span
+                                        class="absolute w-full h-[1.5px] bg-(--color-text) rotate-45 rounded-full"></span>
+                                    <span
+                                        class="absolute w-full h-[1.5px] bg-(--color-text) -rotate-45 rounded-full"></span>
+                                </button>
+                            </div>
+                            <span>1</span>
+                            <span>کالا</span>
+                        </div>
+
+                        <div class="max-h-80 overflow-y-auto my-8" id="shoppingCartProducts">
+                            {{-- <a href="#">
+                                    <div class="w-full flex gap-3 mb-10">
+                                        <div class="w-1/3">
+                                            <img src="{{ asset('storage/images/6d170732-57e2-44e3-997b-a5ad762330aa_Parse2.jpg') }}"
+                                                class="size-full" alt="">
+                                        </div>
+                                        <div class="flex flex-col gap-2 w-2/3">
+                                            <span class="font-bold text-(--color-text)">محصول دوزایش</span>
+                                            <span class="text-sm font-light text-(--color-secondary-text)">بو محصول فرق
+                                                الی
+                                                بتی بیزاد دی حتما آلون</span>
+                                            <span class="text-sm font-light text-(--color-secondary-text)">
+                                                <span>4000000</span>
+                                                <span>تومان</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a> --}}
+                        </div>
+
+                        <div class="flex justify-between items-center">
+                            <div class="flex flex-col gap-2">
+                                <span class="text-(--color-text) font-light text-sm">مبلغ
+                                    قابل پرداخت</span>
+                                <span>
+                                    <span class="font-bold text-lg">40000000</span>
+                                    <span class="text-sm">تومان</span>
+                                </span>
+                            </div>
+                            <div>
+                                <a href="#"
+                                    class="bg-(--color-subheader-btn) rounded-[10px] text-base py-2 px-5 text-(--color-primary-text) font-semibold transition-all duration-500 ease-in-out hover:bg-(--color-bg-hover-btn) buttonLink">
+                                    <span>ثبت سفارش</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- end shopping cart hover box by mr.olyafam --}}
+                </div>
                 <!-- chocolate menu -->
                 <div class="size-7 p-1 flex flex-col gap-1 bg-(--color-primary-btn) rounded-sm cursor-pointer"
                     id="chocIconMobile">
@@ -465,60 +543,64 @@
                                 class="inline-block w-11/12 text-(--color-text) font-semibold py-3 ">
                                 دسته بندی
                             </a>
-                            <div class="w-1/12 flex items-center justify-end subMenuActive">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-5 transition-all duration-150"
-                                    viewBox="0 0 448 512">
-                                    <path fill="var(--color-fill)"
-                                        d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="w-full max-h-0 overflow-hidden transition-all duration-500 mt-2 subItem">
-                            <div class="h-100 w-full flex flex-col xl:flex-row items-start gap-10">
-                                <div
-                                    class="h-90 overflow-y-auto w-full xl:w-1/4 flex flex-row xl:flex-col justify-between gap-4 overflow-x-auto px-3 xl:px-0">
-                                    @foreach ($categories as $category)
-                                        <a href="{{ route('search-cat-products', [$category]) }}"
-                                            class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">{{ $category->title }}</a>
-                                    @endforeach
+                            @if ($categories->isNotEmpty())
+                                <div class="w-1/12 flex items-center justify-end subMenuActive">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5 transition-all duration-150"
+                                        viewBox="0 0 448 512">
+                                        <path fill="var(--color-fill)"
+                                            d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z" />
+                                    </svg>
                                 </div>
-                                <div class="w-full xl:w-3/4 xl:overflow-y-auto">
-                                    <!-- contents -->
+                            @endif
+                        </div>
+                        @if ($categories->isNotEmpty())
+                            <div class="w-full max-h-0 overflow-hidden transition-all duration-500 mt-2 subItem">
+                                <div class="h-100 w-full flex flex-col xl:flex-row items-start gap-10">
                                     <div
-                                        class="h-90 grid sm:grid-cols-2 grid-cols-1 gap-4 max-h-[575px] overflow-y-auto text-(--color-text)">
-                                        @foreach ($products as $product)
-                                            <div class="p-4 border border-(--color-border) rounded-[10px]">
-                                                <a href="http://localhost/shahkar/public/product/show/{{ $product->id }}"
-                                                    class="block mb-1">
-                                                    @if ($product->medias)
-                                                        @foreach ($product->medias as $media)
-                                                            @if ($media['is_main'] == 1)
-                                                                <img src=" {{ asset('storage/' . $media['path']) }}  "
-                                                                    class="w-[85px] h-20 mx-auto" alt="product">
-                                                                @break
-
-                                                            @else
-                                                                <img src="{{ asset('assets/img/noImage.png') }}"
-                                                                    class="w-[85px] h-20 mx-auto" alt="product">
-                                                                @break
-                                                            @endif
-                                                        @endforeach
-                                                    @else
-                                                        <img src="{{ asset('assets/img/noImage.png') }}"
-                                                            class="w-[85px] h-20 mx-auto" alt="product">
-                                                    @endif
-                                                    <span
-                                                        class="inline-block w-full text-center pt-3">{{ $product->title }}</span>
-                                                    <span
-                                                        class="block text-center text-[14px] text-(--color-secondary-text)">{{ $product->description }}</span>
-                                                </a>
-                                            </div>
+                                        class="h-90 overflow-y-auto w-full xl:w-1/4 flex flex-row xl:flex-col justify-between gap-4 overflow-x-auto px-3 xl:px-0">
+                                        @foreach ($categories as $category)
+                                            <a href="{{ route('search-cat-products', [$category]) }}"
+                                                class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">{{ $category->title }}</a>
                                         @endforeach
                                     </div>
-                                    <!-- contents -->
+                                    <div class="w-full xl:w-3/4 xl:overflow-y-auto">
+                                        <!-- contents -->
+                                        <div
+                                            class="h-90 grid sm:grid-cols-2 grid-cols-1 gap-4 max-h-[575px] overflow-y-auto text-(--color-text)">
+                                            @foreach ($products as $product)
+                                                <div class="p-4 border border-(--color-border) rounded-[10px]">
+                                                    <a href="http://localhost/shahkar/public/product/show/{{ $product->id }}"
+                                                        class="block mb-1">
+                                                        @if ($product->medias)
+                                                            @foreach ($product->medias as $media)
+                                                                @if ($media['is_main'] == 1)
+                                                                    <img src=" {{ asset('storage/' . $media['path']) }}  "
+                                                                        class="w-[85px] h-20 mx-auto" alt="product">
+                                                                    @break
+
+                                                                @else
+                                                                    <img src="{{ asset('assets/img/noImage.png') }}"
+                                                                        class="w-[85px] h-20 mx-auto" alt="product">
+                                                                    @break
+                                                                @endif
+                                                            @endforeach
+                                                        @else
+                                                            <img src="{{ asset('assets/img/noImage.png') }}"
+                                                                class="w-[85px] h-20 mx-auto" alt="product">
+                                                        @endif
+                                                        <span
+                                                            class="inline-block w-full text-center pt-3">{{ $product->title }}</span>
+                                                        <span
+                                                            class="block text-center text-[14px] text-(--color-secondary-text)">{{ $product->description }}</span>
+                                                    </a>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <!-- contents -->
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                     </li>
                     <li class="my-1">
                         <div
@@ -527,24 +609,28 @@
                                 class="inline-block w-11/12 text-(--color-text) font-semibold py-3 ">
                                 دوره ها
                             </a>
-                            <div class="w-1/12 flex items-center justify-end subMenuActive">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-5 transition-all duration-150"
-                                    viewBox="0 0 448 512">
-                                    <path fill="var(--color-fill)"
-                                        d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z" />
-                                </svg>
-                            </div>
+                            @if ($courses->isNotEmpty())
+                                <div class="w-1/12 flex items-center justify-end subMenuActive">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5 transition-all duration-150"
+                                        viewBox="0 0 448 512">
+                                        <path fill="var(--color-fill)"
+                                            d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z" />
+                                    </svg>
+                                </div>
+                            @endif
                         </div>
-                        <ul class="w-full max-h-0 overflow-hidden transition-all duration-500 pr-5 mt-2 subItem">
-                            @foreach ($courses as $course)
-                                <li>
-                                    <a href="{{ route('course.show', [$course]) }}"
-                                        class="inline-block w-full text-(--color-text) font-semibold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
-                                        {{ $course['title'] }}
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
+                        @if ($courses->isNotEmpty())
+                            <ul class="w-full max-h-0 overflow-hidden transition-all duration-500 pr-5 mt-2 subItem">
+                                @foreach ($courses as $course)
+                                    <li>
+                                        <a href="{{ route('course.show', [$course]) }}"
+                                            class="inline-block w-full text-(--color-text) font-semibold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
+                                            {{ $course['title'] }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
                     </li>
                     <li class="my-1">
                         <div

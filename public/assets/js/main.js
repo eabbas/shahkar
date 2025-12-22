@@ -247,19 +247,18 @@ function getCookies() {
 }
 
 let shoppingCartContent = document.getElementById('shoppingCartContent')
+let mobileShoppingCartContent = document.getElementById('mobileShoppingCartContent')
 function showCartContent() {
-    if (shoppingCartContent.classList.contains('invisible') && shoppingCartContent.classList.contains('opacity-0')) {
-        getCookies()
-        shoppingCartContent.classList.remove('invisible');
-        shoppingCartContent.classList.remove('opacity-0');
-    } else {
-        shoppingCartContent.classList.add('invisible');
-        shoppingCartContent.classList.add('opacity-0');
-    }
+    shoppingCartContent.classList.toggle('invisible');
+    shoppingCartContent.classList.toggle('opacity-0');
+    mobileShoppingCartContent.classList.toggle('invisible');
+    mobileShoppingCartContent.classList.toggle('opacity-0');
 }
 function closeCart() {
     shoppingCartContent.classList.add('invisible');
     shoppingCartContent.classList.add('opacity-0');
+    mobileShoppingCartContent.classList.add('invisible');
+    mobileShoppingCartContent.classList.add('opacity-0');
 }
 
 //! related products to per category by mr.olyafam
