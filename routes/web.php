@@ -123,7 +123,7 @@ Route::group(['prefix' => 'answer', 'controller' => AnswerController::class, 'as
 });
 // home routes
 Route::group(['controller' => HomeController::class], function () {
-    Route::get('/home', 'index')->name('home');
+    Route::get('/', 'index')->name('home');
     Route::get('/notAccess', 'notAccess')->name('notAccess');
     Route::get('/loginAtFirst', 'loginAtFirst')->name('loginAtFirst');
     Route::post('/relatedProducts', 'relatedProducts')->name('relatedProducts');
@@ -194,7 +194,7 @@ Route::group(['prefix' => 'contactus', 'controller' => ContactUsController::clas
     Route::get('/usersContact/edit/{contactUs}', 'usersContactEdit')->withoutMiddleware(checkAdminMiddleware::class)->name('usersContact-edit');
     Route::post('/usersContact/update', 'usersContactUpdate')->withoutMiddleware(checkAdminMiddleware::class)->name('usersContact-update');
     Route::get('/usersContact/delete/{contactUs}', 'usersContactDelete')->withoutMiddleware(checkAdminMiddleware::class)->name('usersContact-delete');
-    Route::get('/create', 'create')->withoutMiddleware(checkAdminMiddleware::class)->name('create');
+    Route::get('/create', 'create')->withoutMiddleware(checkAdminMiddleware::class)->middleware(checklogin::class)->name('create');
     Route::post('/store', 'store')->withoutMiddleware(checkAdminMiddleware::class)->name('store');
     Route::get('/edit/{contactUs}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
