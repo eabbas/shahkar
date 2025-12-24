@@ -17,9 +17,6 @@ class ContactUsController extends Controller
 {
     public function create()
     {
-        if (!Auth::check()) {
-            return to_route('user.login');
-        }
         $courses = course::all();
         $products = product::all();
         $settings = settings::all();

@@ -249,6 +249,7 @@ function getCookies() {
 let shoppingCartContent = document.getElementById('shoppingCartContent')
 let mobileShoppingCartContent = document.getElementById('mobileShoppingCartContent')
 function showCartContent() {
+    // getCookies()
     shoppingCartContent.classList.toggle('invisible');
     shoppingCartContent.classList.toggle('opacity-0');
     mobileShoppingCartContent.classList.toggle('invisible');

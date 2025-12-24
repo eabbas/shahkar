@@ -13,59 +13,20 @@
 
 
     <div class="2xl:container mx-auto flex flex-row">
-        <!-- <div class=""> -->
         <div class="hidden lg:block lg:w-3/12 bg-[#0D0E12] fixed right-0 top-0 h-dvh px-5">
             <div class="flex justify-center pt-5">
-                <a href="#" class="right-0 mr-[15px]">
-                    <img src="{{asset('storage/images/1762612102download (1).png')}}" alt="logo" class="w-40 h-15">
-                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="269" height="56" viewBox="0 0 269 56" fill="none"
-                        class="w-[130px] ">
-
-                        <path
-                            d="M93.0855 42H98.5035L99.7635 25.326C99.8895 23.352 99.8055 20.664 99.8055 20.664H99.8895C99.8895 20.664 100.813 23.604 101.527 25.326L106.315 36.876H111.061L115.891 25.326C116.605 23.604 117.487 20.706 117.487 20.706H117.571C117.571 20.706 117.487 23.352 117.613 25.326L118.873 42H124.249L121.855 12.18H116.059L110.221 26.922C109.549 28.686 108.751 31.29 108.751 31.29H108.667C108.667 31.29 107.827 28.686 107.155 26.922L101.317 12.18H95.5215L93.0855 42ZM128.531 31.29C128.531 37.38 132.941 42.504 140.039 42.504C145.373 42.504 148.649 39.438 148.649 39.438L146.591 35.616C146.591 35.616 143.861 37.968 140.417 37.968C137.225 37.968 134.327 36.036 133.991 32.298H148.775C148.775 32.298 148.901 30.87 148.901 30.24C148.901 24.57 145.583 20.076 139.409 20.076C133.025 20.076 128.531 24.696 128.531 31.29ZM134.159 28.644C134.663 25.872 136.553 24.192 139.283 24.192C141.635 24.192 143.441 25.746 143.525 28.644H134.159ZM154.222 34.146C154.222 41.328 160.144 42.21 163.126 42.21C164.134 42.21 164.764 42.084 164.764 42.084V37.422C164.764 37.422 164.386 37.506 163.798 37.506C162.328 37.506 159.556 37.002 159.556 33.474V25.158H164.428V20.916H159.556V14.742H154.348V20.916H151.45V25.158H154.222V34.146ZM169.13 42H174.464V33.516C174.464 32.256 174.59 31.08 174.926 30.03C175.934 26.838 178.496 25.536 180.764 25.536C181.478 25.536 182.024 25.62 182.024 25.62V20.37C182.024 20.37 181.562 20.286 181.058 20.286C177.782 20.286 175.22 22.722 174.254 25.788H174.17C174.17 25.788 174.254 25.074 174.254 24.276V20.58H169.13V42ZM184.023 31.29C184.023 37.884 189.273 42.504 195.825 42.504C202.335 42.504 207.585 37.884 207.585 31.29C207.585 24.738 202.335 20.076 195.783 20.076C189.273 20.076 184.023 24.738 184.023 31.29ZM189.441 31.29C189.441 27.342 192.339 24.612 195.825 24.612C199.269 24.612 202.167 27.342 202.167 31.29C202.167 35.28 199.269 37.968 195.825 37.968C192.339 37.968 189.441 35.28 189.441 31.29ZM211.869 42H217.203V32.172C217.203 31.164 217.287 30.198 217.581 29.316C218.379 26.754 220.479 24.948 223.335 24.948C226.065 24.948 226.737 26.712 226.737 29.316V42H232.029V28.224C232.029 22.554 229.341 20.076 224.595 20.076C220.269 20.076 217.917 22.722 216.993 24.528H216.909C216.909 24.528 216.993 23.856 216.993 23.058V20.58H211.869V42ZM237.627 16.926H242.919V12.18H237.627V16.926ZM237.627 42H242.961V20.58H237.627V42ZM247.27 31.29C247.27 37.506 251.806 42.504 258.904 42.504C264.658 42.504 267.724 39.018 267.724 39.018L265.666 35.238C265.666 35.238 262.978 37.968 259.366 37.968C255.292 37.968 252.688 34.86 252.688 31.248C252.688 27.594 255.25 24.612 259.198 24.612C262.558 24.612 264.784 26.922 264.784 26.922L267.136 23.268C267.136 23.268 264.49 20.076 258.904 20.076C251.806 20.076 247.27 25.2 247.27 31.29Z"
-                            fill="white" />
-                        <path
-                            d="M61.114 2.77686L76.3225 50.1304C77.1517 52.7123 75.2258 55.3535 72.5141 55.3535H61.3307C59.5879 55.3535 58.0457 54.2251 57.5183 52.5641L42.4827 5.21052C41.6637 2.63121 43.5889 0 46.2951 0H57.3056C59.0435 0 60.5826 1.12219 61.114 2.77686Z"
-                            fill="#EF305E" />
-                        <g filter="url(#filter0_i)">
-                            <path
-                                d="M46.5485 37.8L35.8243 3.44919C35.1837 1.39729 33.2837 0 31.1341 0C28.5177 0 26.3602 2.05036 26.227 4.66341L24.9187 30.3392C24.8723 31.2511 24.9823 32.1643 25.244 33.0391L31.0656 52.4999C31.5722 54.1934 33.1302 55.3535 34.8978 55.3535H40.3093C42.0503 55.3535 43.5914 54.2274 44.1203 52.5686L46.5267 45.0214C47.2752 42.6736 47.2828 40.1523 46.5485 37.8Z"
-                                fill="white" />
-                            <path
-                                d="M46.5485 37.8L35.8243 3.44919C35.1837 1.39729 33.2837 0 31.1341 0C28.5177 0 26.3602 2.05036 26.227 4.66341L24.9187 30.3392C24.8723 31.2511 24.9823 32.1643 25.244 33.0391L31.0656 52.4999C31.5722 54.1934 33.1302 55.3535 34.8978 55.3535H40.3093C42.0503 55.3535 43.5914 54.2274 44.1203 52.5686L46.5267 45.0214C47.2752 42.6736 47.2828 40.1523 46.5485 37.8Z"
-                                fill="url(#paint0_linear)" />
-                        </g>
-                        <path
-                            d="M20.317 0H31.3316C34.0288 0 35.9529 2.61489 35.1505 5.18995L20.2695 52.9475C19.7487 54.619 18.2014 55.7576 16.4506 55.7576H5.43606C2.73888 55.7576 0.814784 53.1427 1.61716 50.5676L16.4981 2.81005C17.019 1.13856 18.5663 0 20.317 0Z"
-                            fill="#EF305E" />
-                        <defs>
-                            <filter id="filter0_i" x="24.9083" y="0" width="22.1854" height="55.3535"
-                                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                                <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-                                <feColorMatrix in="SourceAlpha" type="matrix"
-                                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                                <feOffset dx="-4" dy="3" />
-                                <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
-                                <feColorMatrix type="matrix"
-                                    values="0 0 0 0 0.904167 0 0 0 0 0.892865 0 0 0 0 0.892865 0 0 0 0.4 0" />
-                                <feBlend mode="normal" in2="shape" result="effect1_innerShadow" />
-                            </filter>
-                            <linearGradient id="paint0_linear" x1="29" y1="24.5" x2="40.5" y2="27.5"
-                                gradientUnits="userSpaceOnUse">
-                                <stop stop-opacity="0.25" />
-                                <stop offset="0.911458" stop-color="white" stop-opacity="0" />
-                            </linearGradient>
-                        </defs>
-                    </svg> -->
-                </a>
+                @foreach ($logo as $l)
+                    <a href="{{ $l['link_href'] }}" class="right-0 mr-[15px]">
+                        <img src="{{ asset($l['logo']) }}" alt="{{ $l['alt_text'] }}" class="w-40 h-15">
+                    </a>
+                @endforeach
             </div>
             <hr class="text-[darkslategray] mt-2.5">
             <div class="py-5 h-[80%] overflow-y-auto flex flex-col gap-5" style="scrollbar-width: none;">
                 <div class="border-b border-gray-500">
                     <div class="flex justify-between flex-row-reverse">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="size-6 fill-white w-[15px]">
+                            class="arrow-down size-6 fill-white w-[15px] cursor-pointer rotate-180 transition-all duration-300">
                             <path fill-rule="evenodd"
                                 d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                 clip-rule="evenodd" />
@@ -84,55 +45,62 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="dashbord ">
+                    <div class="max-h-0 invisible opacity-0 transition-all duration-300" style="scrollbar-width: none;">
                         <ul class="gap-2.5 mt-2.5 mb-2.5 pr-3">
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{route('menu-index')}}" class=" text-white py-1">منو</a>
+                                <a href="{{ route('menu-index') }}" class=" text-white py-1">منو</a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{route('menu-create')}}" class=" text-white py-1">ایجاد منوی جدید</a>
+                                <a href="{{ route('menu-create') }}" class=" text-white py-1">ایجاد منوی جدید</a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{route('banners-logo-create')}}" class=" text-white py-1">لوگو</a>
+                                <a href="{{ route('banners-logo-create') }}" class=" text-white py-1">لوگو</a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{route('banners-create')}}" class=" text-white py-1">بنر ها</a>
+                                <a href="{{ route('banners-create') }}" class=" text-white py-1">بنر ها</a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{route('banners-bigBanner-create')}}" class=" text-white py-1">بنر بزرگ</a>
+                                <a href="{{ route('banners-bigBanner-create') }}" class=" text-white py-1">بنر
+                                    بزرگ</a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{route('banners-tiles-create')}}" class=" text-white py-1">کاشی ها</a>
+                                <a href="{{ route('banners-tiles-create') }}" class=" text-white py-1">کاشی ها</a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{route('banners-bigTile-create')}}" class=" text-white py-1">کاشی بزرگ</a>
+                                <a href="{{ route('banners-bigTile-create') }}" class=" text-white py-1">کاشی
+                                    بزرگ</a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{route('banners-footerTile-create')}}" class=" text-white py-1">کاشی فوتر</a>
+                                <a href="{{ route('banners-footerTile-create') }}" class=" text-white py-1">کاشی
+                                    فوتر</a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{route('footer-create')}}" class=" text-white py-1">ستون های فوتر</a>
+                                <a href="{{ route('footer-create') }}" class=" text-white py-1">ستون های فوتر</a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{route('footer-footerFormMedia-create')}}" class=" text-white py-1">فرم فوتر</a>
+                                <a href="{{ route('footer-footerFormMedia-create') }}" class=" text-white py-1">فرم
+                                    فوتر</a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{route('settings.colors.createColor')}}" class=" text-white py-1">تنظیمات رنگ ها</a>
+                                <a href="{{ route('settings.colors.createColor') }}" class=" text-white py-1">تنظیمات
+                                    رنگ ها</a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{route('homeForm-index')}}" class=" text-white py-1">راه های ارتباطی با کاربران</a>
+                                <a href="{{ route('homeForm-index') }}" class=" text-white py-1">راه های ارتباطی
+                                    با
+                                    کاربران</a>
                             </li>
                         </ul>
                     </div>
@@ -140,7 +108,7 @@
                 <div class="border-b border-gray-500">
                     <div class="flex justify-between flex-row-reverse">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="size-6 fill-white w-[15px]">
+                            class="arrow-down size-6 fill-white w-[15px] cursor-pointer rotate-180 transition-all duration-300">
                             <path fill-rule="evenodd"
                                 d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                 clip-rule="evenodd" />
@@ -159,15 +127,17 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="dashbord ">
+                    <div class="max-h-0 invisible opacity-0 transition-all duration-300">
                         <ul class="gap-2.5 mt-2.5 mb-2.5 pr-3">
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{ route('product-adminIndex') }}" class=" text-white py-1">همه محصولات</a>
+                                <a href="{{ route('product-adminIndex') }}" class=" text-white py-1">همه
+                                    محصولات</a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{ route('product-create') }}" class=" text-white py-1">ایجاد محصول جدید</a>
+                                <a href="{{ route('product-create') }}" class=" text-white py-1">ایجاد محصول
+                                    جدید</a>
                             </li>
                         </ul>
                     </div>
@@ -175,7 +145,7 @@
                 <div class="border-b border-gray-500">
                     <div class="flex justify-between flex-row-reverse">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="size-6 fill-white w-[15px]">
+                            class="arrow-down size-6 fill-white w-[15px] cursor-pointer rotate-180 transition-all duration-300">
                             <path fill-rule="evenodd"
                                 d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                 clip-rule="evenodd" />
@@ -194,15 +164,17 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="dashbord ">
+                    <div class="max-h-0 invisible opacity-0 transition-all duration-300">
                         <ul class="gap-2.5 mt-2.5 mb-2.5 pr-3">
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{route('category-adminIndex')}}" class=" text-white py-1">همه دسته ها</a>
+                                <a href="{{ route('category-adminIndex') }}" class=" text-white py-1">همه دسته
+                                    ها</a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{route('category-create')}}" class=" text-white py-1">ایجاد دسته جدید</a>
+                                <a href="{{ route('category-create') }}" class=" text-white py-1">ایجاد دسته
+                                    جدید</a>
                             </li>
                         </ul>
                     </div>
@@ -210,7 +182,7 @@
                 <div class="border-b border-gray-500">
                     <div class="flex justify-between flex-row-reverse">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="size-6 fill-white w-[15px]">
+                            class="arrow-down size-6 fill-white w-[15px] cursor-pointer rotate-180 transition-all duration-300">
                             <path fill-rule="evenodd"
                                 d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                 clip-rule="evenodd" />
@@ -229,15 +201,16 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="dashbord ">
+                    <div class="max-h-0 invisible opacity-0 transition-all duration-300">
                         <ul class="gap-2.5 mt-2.5 mb-2.5 pr-3">
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{ route('course-adminIndex') }}" class=" text-white py-1">همه دوره ها</a>
+                                <a href="{{ route('course.list') }}" class=" text-white py-1">همه دوره ها</a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{ route('course-create') }}" class=" text-white py-1">ایجاد دوره جدید</a>
+                                <a href="{{ route('course.create') }}" class=" text-white py-1">ایجاد دوره
+                                    جدید</a>
                             </li>
                         </ul>
                     </div>
@@ -245,7 +218,7 @@
                 <div class="border-b border-gray-500">
                     <div class="flex justify-between flex-row-reverse">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="size-6 fill-white w-[15px]">
+                            class="arrow-down size-6 fill-white w-[15px] cursor-pointer rotate-180 transition-all duration-300">
                             <path fill-rule="evenodd"
                                 d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                 clip-rule="evenodd" />
@@ -264,15 +237,19 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="dashbord ">
+                    <div class="max-h-0 invisible opacity-0 transition-all duration-300">
                         <ul class="gap-2.5 mt-2.5 mb-2.5 pr-3">
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{route('courseCategory-adminIndex')}}" class=" text-white py-1">همه دسته بندی دوره ها</a>
+                                <a href="{{ route('coursecategory.list') }}" class=" text-white py-1">همه دسته
+                                    بندی
+                                    دوره ها</a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{route('courseCategory-create')}}" class=" text-white py-1">ایجاد دسته بندی دوره جدید</a>
+                                <a href="{{ route('coursecategory.create') }}" class=" text-white py-1">ایجاد
+                                    دسته
+                                    بندی دوره جدید</a>
                             </li>
                         </ul>
                     </div>
@@ -280,7 +257,7 @@
                 <div class="border-b border-gray-500">
                     <div class="flex justify-between flex-row-reverse">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="size-6 fill-white w-[15px]">
+                            class="arrow-down size-6 fill-white w-[15px] cursor-pointer rotate-180 transition-all duration-300">
                             <path fill-rule="evenodd"
                                 d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                 clip-rule="evenodd" />
@@ -299,19 +276,20 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="dashbord ">
+                    <div class="max-h-0 invisible opacity-0 transition-all duration-300">
                         <ul class="gap-2.5 mt-2.5 mb-2.5 pr-3">
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{route('user.index')}}" class=" text-white py-1">همه کاربران</a>
+                                <a href="{{ route('user.index') }}" class=" text-white py-1">همه کاربران</a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{route('admin_create_user')}}" class=" text-white py-1">ایجاد کاربر جدید</a>
+                                <a href="{{ route('admin_create_user') }}" class=" text-white py-1">ایجاد کاربر
+                                    جدید</a>
                             </li>
                             <!-- <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{route('user.login')}}" class=" text-white py-1">ایجاد ادمین جدید</a>
+                                <a href="{{ route('user.login') }}" class=" text-white py-1">ایجاد ادمین جدید</a>
                             </li> -->
                         </ul>
                     </div>
@@ -319,7 +297,7 @@
                 <div class="border-b border-gray-500">
                     <div class="flex justify-between flex-row-reverse">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="size-6 fill-white w-[15px]">
+                            class="arrow-down size-6 fill-white w-[15px] cursor-pointer rotate-180 transition-all duration-300">
                             <path fill-rule="evenodd"
                                 d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                 clip-rule="evenodd" />
@@ -338,15 +316,18 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="dashbord ">
+                    <div class="max-h-0 invisible opacity-0 transition-all duration-300">
                         <ul class="gap-2.5 mt-2.5 mb-2.5 pr-3">
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{route('aboutus-create')}}" class=" text-white py-1">فرم درباره ما</a>
+                                <a href="{{ route('aboutus-create') }}" class=" text-white py-1">فرم درباره
+                                    ما</a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{route('contactus-index')}}" class=" text-white py-1">لیست درخواست های تماس با ما</a>
+                                <a href="{{ route('contactus-index') }}" class=" text-white py-1">لیست درخواست
+                                    های
+                                    تماس با ما</a>
                             </li>
                         </ul>
                     </div>
@@ -354,7 +335,7 @@
                 <div class="border-b border-gray-500">
                     <div class="flex justify-between flex-row-reverse">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="size-6 fill-white w-[15px]">
+                            class="arrow-down size-6 fill-white w-[15px] cursor-pointer rotate-180 transition-all duration-300">
                             <path fill-rule="evenodd"
                                 d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                 clip-rule="evenodd" />
@@ -373,19 +354,19 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="dashbord ">
+                    <div class="max-h-0 invisible opacity-0 transition-all duration-300">
                         <ul class="gap-2.5 mt-2.5 mb-2.5 pr-3">
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{route('comment.index')}}" class=" text-white py-1">همه نظرات</a>
+                                <a href="{{ route('comment.index') }}" class=" text-white py-1">همه نظرات</a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{route('question-index')}}" class=" text-white py-1">همه پرسش ها</a>
+                                <a href="{{ route('question-index') }}" class=" text-white py-1">همه پرسش ها</a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{route('answer-index')}}" class=" text-white py-1">همه پاسخ ها</a>
+                                <a href="{{ route('answer-index') }}" class=" text-white py-1">همه پاسخ ها</a>
                             </li>
                         </ul>
                     </div>
@@ -393,7 +374,206 @@
             </div>
         </div>
 
-        <!-- </div> -->
+        <!-- responsive menu -->
+        {{-- <div class="lg:hidden flex fixed z-[1000] -right-full w-full h-dvh transition-all duration-500 opacity-0"
+            id="menu">
+            <div class="responsive-menu-shadow w-5/12 pr-5 pt-10 bg-black">
+                <div class="relative" onclick="responsive_menu('close')">
+                    <button
+                        class="absolute -top-7 left-3 w-5 h-5 flex flex-col justify-center items-center cursor-pointer">
+                        <span class="w-full h-[1.5px] bg-white rotate-45 translate-y-1/2"></span>
+                        <span class="w-full h-[1.5px] bg-white -rotate-45 -translate-y-1/2"></span>
+                    </button>
+                </div>
+                <div class="w-30 mt-5 mb-10">
+                    <a href="#">
+                        <img src="assets/image/logo.png" alt="logo">
+                    </a>
+                </div>
+                <nav class="">
+                    <ul class="flex flex-col gap-8 text-white">
+                        <li><a href="#">خانه</a></li>
+                        <li class="flex items-center gap-2 relative menu-li">
+                            <a href="#" class="menu-a">دسته بندی ها</a>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3.5 mt-1" viewBox="0 0 448 512">
+                                <path fill="white"
+                                    d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
+                            </svg>
+                            <!-- <div
+                     class="w-160 h-80 bg-white flex justify-between items-stretch p-4 absolute top-11 invisible menu-li-dropdown transition-all duration-300ms">
+                     <div class="w-7/12 flex justify-between items-stretch text-black">
+                        <div class="">
+                           <h2 class="font-bold text-gray-800 mb-2"><a href="">VARIATION1</a></h2>
+                           <ul class="h-5/6 flex flex-col justify-between">
+                              <li class="">test test</li>
+                              <li class="">Lorem, ipsum dolor.</li>
+                              <li class="">test test</li>
+                              <li class="">test test</li>
+                              <li class="">test lorem</li>
+                              <li class="">test test</li>
+                              <li class="">test test</li>
+                           </ul>
+                        </div>
+                        <div>
+                           <h2 class="font-bold text-gray-800 mb-2"><a href="">VARIATION2</a></h2>
+                           <ul class="h-5/6 flex flex-col justify-between">
+                              <li>test test</li>
+                              <li>test test</li>
+                              <li>test test</li>
+                              <li>test test</li>
+                              <li>test test</li>
+                              <li>test test</li>
+                              <li>test test</li>
+                           </ul>
+                        </div>
+                     </div>
+                     <figure class="w-4/12 relative">
+                        <img src="assets/image/menu-banner.jpg" class="h-full">
+                        <h4 class="text-rose-500 absolute bottom-40 left-2">
+                           <span class="text-3xl font-bold text-gray-600">UP TO</span><br>
+                           <span class="text-3xl font-bold text-[#f4762a]">50%</span>
+                           <span class="inline-block rotate-90 font-bold text-gray-600">OFF</span>
+                        </h4>
+                        <button
+                           class="bg-gray-800 py-2 px-3 text-xs cursor-pointer absolute bottom-20 left-5 rounded-sm">shop
+                           now</button>
+                     </figure>
+                  </div> -->
+                        </li>
+                        <li class="flex items-center gap-2 menu-li">
+                            <a href="#">محصولات</a>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3.5 mt-1" viewBox="0 0 448 512">
+                                <path fill="white"
+                                    d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
+                            </svg>
+                            <!-- <div
+                     class="w-160 h-80 bg-white flex justify-between items-stretch p-4 absolute top-15 invisible menu-li-dropdown transition-all duration-300ms">
+                     <div class="w-7/12 flex justify-between items-stretch text-black">
+                        <div class="">
+                           <h2 class="font-bold text-gray-800 mb-2"><a href="">VARIATION1</a></h2>
+                           <ul class="h-5/6 flex flex-col justify-between">
+                              <li class="">test test</li>
+                              <li class="">Lorem, ipsum dolor.</li>
+                              <li class="">test test</li>
+                              <li class="">test test</li>
+                              <li class="">test lorem</li>
+                              <li class="">test test</li>
+                              <li class="">test test</li>
+                           </ul>
+                        </div>
+                        <div>
+                           <h2 class="font-bold text-gray-800 mb-2"><a href="">VARIATION2</a></h2>
+                           <ul class="h-5/6 flex flex-col justify-between">
+                              <li>test test</li>
+                              <li>test test</li>
+                              <li>test test</li>
+                              <li>test test</li>
+                              <li>test test</li>
+                              <li>test test</li>
+                              <li>test test</li>
+                           </ul>
+                        </div>
+                     </div>
+                     <figure class="w-4/12 relative">
+                        <img src="assets/image/menu-banner-1.jpg" class="size-full object-cover">
+                        <h4 class="absolute top-0 right-0 text-end">
+                           <span class="text-3xl font-bold text-gray-600">UP TO</span><br>
+                           <span class="text-3xl font-bold text-gray-900">50%</span>
+                           <span class="inline-block -rotate-90 absolute -left-40 top-10 text-8xl font-bold">OFF</span>
+                        </h4>
+                        <button
+                           class="bg-gray-800 py-2 px-6 text-xs cursor-pointer absolute bottom-5 left-2 rounded-sm">shop
+                           now</button>
+                     </figure>
+                  </div> -->
+                        </li>
+                        <li class="flex items-center gap-2 menu-li">
+                            <a href="#">صفحات</a>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3.5 mt-1" viewBox="0 0 448 512">
+                                <path fill="white"
+                                    d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
+                            </svg>
+                            <!-- <ul
+                     class="w-50 h-79 bg-white flex flex-col justify-between items-end p-3 absolute top-15 invisible menu-li-dropdown transition-all duration-300ms text-black">
+                     <li><a href="#">Wishlist</a></li>
+                     <li><a href="#">Shopping Cart</a></li>
+                     <li><a href="#">Checkout</a></li>
+                     <li><a href="#">Dashboard</a></li>
+                     <li><a href="#">About Us</a></li>
+                     <li class="w-full flex flex-row-reverse justify-between cursor-pointer relative menu-li-child">
+                        <a href="#">Blog</a>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3.5 mt-1" viewBox="0 0 320 512">
+                           <path
+                              d="M267.3 244.7c6.2 6.2 6.2 16.4 0 22.6l-160 160c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6L233.4 256 84.7 107.3c-6.2-6.2-6.2-16.4 0-22.6s16.4-6.2 22.6 0l160 160z" />
+                        </svg>
+                        <ul
+                           class="absolute left-full w-40 text-end ml-3 bg-white menu-li-dropdown-child invisible transition-all duration-300ms">
+                           <li class="p-2">Blog</li>
+                           <li class="p-2">Blog Post</li>
+                        </ul>
+                     </li>
+                     <li><a href="#">Contact Us</a></li>
+                     <li><a href="#">Login</a></li>
+                     <li><a href="#">Forgot Password</a></li>
+                  </ul> -->
+                        </li>
+                        <li class="flex items-center gap-2 menu-li">
+                            <a href="#" class="submenu-a">USD</a>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3.5 mt-1" viewBox="0 0 448 512">
+                                <path fill="white"
+                                    d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
+                            </svg>
+                            <!-- <ul class="px-2 flex flex-col justify-between bg-white absolute top-11 invisible submenu-a-ul
+                  transition-all duration-300ms">
+                     <li class="w-full hover:bg-gray-100 transition-all duration-300ms">
+                        <a href="#" class="text-xs text-black">USD</a>
+                     </li>
+                     <li class="w-full hover:bg-gray-100 transition-all duration-300ms">
+                        <a href="#" class="text-xs text-black">EUR</a>
+                     </li>
+                  </ul> -->
+                        </li>
+                        <li class="flex items-center gap-2 menu-li">
+                            <a href="#" class="submenu-a">FA</a>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3.5 mt-1" viewBox="0 0 448 512">
+                                <path fill="white"
+                                    d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
+                            </svg>
+                            <!-- <ul
+                     class="px-2 flex flex-col justify-between bg-white absolute top-11 invisible submenu-a-ul transition-all duration-300ms">
+                     <li class="w-full hover:bg-gray-100 transition-all duration-300ms">
+                        <a href="#" class="text-xs text-black">FA</a>
+                     </li>
+                     <li class="w-full hover:bg-gray-100 transition-all duration-300ms">
+                        <a href="#" class="text-xs text-black">ENG</a>
+                     </li>
+                  </ul> -->
+                        </li>
+                        <li class="flex items-center gap-2 menu-li">
+                            <a href="#" class="submenu-a">لینک ها</a>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3.5 mt-1" viewBox="0 0 448 512">
+                                <path fill="white"
+                                    d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
+                            </svg>
+                            <ul
+                                class="px-2 flex flex-col justify-between bg-white absolute top-11 invisible submenu-a-ul transition-all duration-300ms">
+                                <li class="w-full hover:bg-gray-100 transition-all duration-300ms">
+                                    <a href="#" class="text-xs text-black">درباره ما</a>
+                                </li>
+                                <li class="w-full hover:bg-gray-100 transition-all duration-300ms">
+                                    <a href="#" class="text-xs text-black">تماس با ما</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#">وبلاگ</a></li>
+                        <li><a href="#">BUY PORTO!</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="w-7/12 bg-black/50" onclick="responsive_menu('close')"></div>
+        </div> --}}
+        <!-- end responsive menu -->
+
         <!-- کد های سپهر -->
         <div class="w-full">
             <!-- اون قسمت منو مانند بالا که هیچ کاربردی نداشت -->
@@ -499,7 +679,7 @@
 
 
 
-
+    <script src="{{ asset('assets/js/app.js') }}" defer></script>
 </body>
 
 </html>
