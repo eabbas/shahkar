@@ -17,7 +17,11 @@ class AboutUsController extends Controller
     public function create()
     {
         $aboutus = aboutUs::all();
-        return view('admin.aboutus.create', ['aboutus' => $aboutus]);
+        $logo = logo::all();
+        return view('admin.aboutus.create', [
+            'aboutus' => $aboutus,
+            'logo' => $logo
+        ]);
     }
 
     public function upsert(Request $request)
@@ -25,11 +29,10 @@ class AboutUsController extends Controller
         $aboutus = aboutUs::all();
         if (count($aboutus) == 1) {
             $this->update($request);
-            return to_route('aboutus-index');
         } else {
             $this->store($request);
-            return to_route('aboutus-index');
         }
+        return redirect()->back();
     }
 
     public function store(Request $request)

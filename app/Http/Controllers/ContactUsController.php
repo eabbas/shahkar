@@ -46,7 +46,11 @@ class ContactUsController extends Controller
     public function index()
     {
         $contactus = contactUs::all();
-        return view('admin.contactus.index', ['contactus' => $contactus]);
+        $logo = logo::all();
+        return view('admin.contactus.index', [
+            'contactus' => $contactus,
+            'logo' => $logo
+        ]);
     }
 
     public function show(contactUs $contactUs)

@@ -12,7 +12,7 @@
         :root {
             <?php
             foreach ($settings as $setting) {
-                echo '--color-' . $setting->meta_key . ': ' . $setting->meta_value . ';';
+                echo $setting->meta_key . ': ' . $setting->meta_value . ';';
             }
             ?>
         }

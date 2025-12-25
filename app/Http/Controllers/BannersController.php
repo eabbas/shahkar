@@ -13,27 +13,47 @@ class BannersController extends Controller
     public function bannersCreate()
     {
         $banners = banners::where('sectionName', 'banners')->get();
-        return view('admin.homeSettings.banners', ['banners' => $banners]);
+        $logo = logo::all();
+        return view('admin.homeSettings.banners', [
+            'banners' => $banners,
+            'logo' => $logo
+        ]);
     }
     public function bigBannerCreate()
     {
         $bigBanner = banners::where('sectionName', 'bigBanner')->get();
-        return view('admin.homeSettings.bigBanner', ['bigBanner' => $bigBanner]);
+        $logo = logo::all();
+        return view('admin.homeSettings.bigBanner', [
+            'bigBanner' => $bigBanner,
+            'logo' => $logo
+        ]);
     }
     public function tilesCreate()
     {
         $tileBanners = banners::where('sectionName', 'tileBanners')->get();
-        return view('admin.homeSettings.tileBanners', ['tileBanners' => $tileBanners]);
+        $logo = logo::all();
+        return view('admin.homeSettings.tileBanners', [
+            'tileBanners' => $tileBanners,
+            'logo' => $logo
+        ]);
     }
     public function bigTileCreate()
     {
         $bigTile = bigTile::all();
-        return view('admin.homeSettings.bigTile', ['bigTile' => $bigTile]);
+        $logo = logo::all();
+        return view('admin.homeSettings.bigTile', [
+            'bigTile' => $bigTile,
+            'logo' => $logo
+        ]);
     }
     public function footerTileCreate()
     {
         $footerTile = footerTile::all();
-        return view('admin.homeSettings.footerTile', ['footerTile' => $footerTile]);
+        $logo = logo::all();
+        return view('admin.homeSettings.footerTile', [
+            'footerTile' => $footerTile,
+            'logo' => $logo
+        ]);
     }
     public function logoCreate()
     {
@@ -46,11 +66,10 @@ class BannersController extends Controller
             $logo = logo::all();
             if (count($logo) == 1) {
                 $this->updateLogo($request);
-                return to_route('home');
             } else {
                 $this->storeLogo($request);
-                return to_route('home');
             }
+            return redirect()->back();
         }
         if (array_key_exists('footerTile', $request->all())) {
             $footerTile = footerTile::all();

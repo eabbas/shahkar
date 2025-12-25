@@ -202,3 +202,7 @@ input[type="checkbox"]:checked::after {
 .shadowHeader{
   box-shadow: -5px 2px 5px rgb(216 217 229);
 }
+
+.responsive-menu-shadow {
+   box-shadow: 0px 0px 8px #888888;
+}

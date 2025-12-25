@@ -24,7 +24,12 @@ class ProductController extends Controller
     {
         $settings = settings::all();
         $categories = category::all();
-        return view('admin.product.create', ['categories' => $categories, 'settings' => $settings]);
+        $logo = logo::all();
+        return view('admin.product.create', [
+            'categories' => $categories,
+             'settings' => $settings,
+             'logo' => $logo
+            ]);
     }
 
     public function store(Request $request)
@@ -98,7 +103,11 @@ class ProductController extends Controller
     public function adminIndex()
     {
         $products = product::with('category')->get();
-        return view('admin.product.index', ['products' => $products]);
+        $logo = logo::all();
+        return view('admin.product.index', [
+            'products' => $products,
+            'logo' => $logo
+        ]);
     }
 
     public function show(product $product)

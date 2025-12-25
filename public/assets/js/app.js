@@ -119,3 +119,17 @@ arrowDowns.forEach((arrowDown) => {
       arrowDown.parentElement.nextElementSibling.classList.toggle('opacity-0')
    })
 })
+
+let menu = document.getElementById('menu');
+function responsive_menu(state) {
+   if (state == 'open') {
+      menu.classList.remove('opacity-0');
+      menu.classList.remove('-right-full');
+      menu.classList.add('right-0');
+   }
+   if (state == 'close') {
+      menu.classList.add('opacity-0');
+      menu.classList.add('-right-full');
+      menu.classList.remove('right-0');
+   }
+}

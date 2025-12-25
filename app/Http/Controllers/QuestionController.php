@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\product;
 use App\Models\question;
 use App\Models\User;
+use App\Models\logo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +27,11 @@ class QuestionController extends Controller
     public function index()
     {
         $questions = question::all();
-        return view('admin.question.index', ['questions' => $questions]);
+        $logo = logo::all();
+        return view('admin.question.index', [
+            'questions' => $questions,
+            'logo' => $logo
+        ]);
     }
     public function show(question $question)
     {

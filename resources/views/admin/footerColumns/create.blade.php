@@ -42,7 +42,7 @@
                         <input class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4] w-full" type="text" name="linkHref[1][]" required>
                      </div>
                      <div class="text-center" onclick="removeDiv(this)">
-                        <span class="cursor-pointer text-[10px] my-2">حذف تصویر
+                        <span class="cursor-pointer text-[10px] my-2">حذف ردیف
                            <span class="text-rose-500 text-sm">×</span>
                         </span>
                      </div>
@@ -77,7 +77,7 @@
                         <input class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4] w-full" type="text" name="linkHref[2][]" required>
                      </div>
                      <div class="text-center" onclick="removeDiv(this)">
-                        <span class="cursor-pointer text-[10px] my-2">حذف تصویر
+                        <span class="cursor-pointer text-[10px] my-2">حذف ردیف
                            <span class="text-rose-500 text-sm">×</span>
                         </span>
                      </div>
@@ -112,7 +112,7 @@
                         <input class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4] w-full" type="text" name="linkHref[3][]" required>
                      </div>
                      <div class="text-center" onclick="removeDiv(this)">
-                        <span class="cursor-pointer text-[10px] my-2">حذف تصویر
+                        <span class="cursor-pointer text-[10px] my-2">حذف ردیف
                            <span class="text-rose-500 text-sm">×</span>
                         </span>
                      </div>

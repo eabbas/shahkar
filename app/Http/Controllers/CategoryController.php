@@ -16,7 +16,11 @@ class CategoryController extends Controller
     public function create()
     {
         $categories = category::select('id', 'title')->get();
-        return view('admin.category.create', ['categories' => $categories]);
+        $logo = logo::all();
+        return view('admin.category.create', [
+            'categories' => $categories,
+            'logo' => $logo
+        ]);
     }
 
     public function store(Request $request)
@@ -44,7 +48,11 @@ class CategoryController extends Controller
     public function adminIndex()
     {
         $cats = category::all();
-        return view('admin.category.index', ['categories' => $cats]);
+        $logo = logo::all();
+        return view('admin.category.index', [
+            'categories' => $cats,
+            'logo' => $logo
+        ]);
     }
 
     public function index()
