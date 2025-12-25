@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\footer_column;
 use App\Models\footer_row;
+use App\Models\logo;
 use App\Models\footerFormMedia;
 use App\Models\footerFormText;
 use Illuminate\Http\Request;
@@ -13,10 +14,14 @@ class FooterColumnController extends Controller
     public function create()
     {
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
+        $logo = logo::all();
         if (count($footer_columns) == 0) {
-            return view('admin.footerColumns.create');
+            return view('admin.footerColumns.create', ['logo' => $logo]);
         } else {
-            return view('admin.footerColumns.edit', ['footerColumns' => $footer_columns]);
+            return view('admin.footerColumns.edit', [
+                'footerColumns' => $footer_columns,
+                'logo' => $logo
+            ]);
         }
     }
     public function store(Request $request)
@@ -47,10 +52,14 @@ class FooterColumnController extends Controller
     public function footerFormMediaCreate()
     {
         $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
+        $logo = logo::all();
         if (count($footer_form_column) == 0) {
-            return view('admin.footerColumns.createFooterFormMedia');
+            return view('admin.footerColumns.createFooterFormMedia', ['logo' => $logo]);
         } else {
-            return view('admin.footerColumns.editFooterFormMedia', ['footerFormMediaColumn' => $footer_form_column]);
+            return view('admin.footerColumns.editFooterFormMedia', [
+                'footerFormMediaColumn' => $footer_form_column,
+                'logo' => $logo
+            ]);
         }
     }
     public function footerFormMediaStore(Request $request)

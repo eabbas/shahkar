@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\homeForms;
+use App\Models\logo;
 use Illuminate\Http\Request;
 
 class HomeFormsController extends Controller
@@ -15,7 +16,11 @@ class HomeFormsController extends Controller
     public function index()
     {
         $homeForms = homeForms::all();
-        return view('admin.homeForm.index', ['homeForms' => $homeForms]);
+        $logo = logo::all();
+        return view('admin.homeForm.index', [
+            'homeForms' => $homeForms,
+            'logo' => $logo
+        ]);
     }
     public function edit(homeForms $homeForms)
     {

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\comment;
 use App\Models\User;
+use App\Models\logo;
 use App\Models\product;
 
 class CommentController extends Controller
@@ -26,7 +27,11 @@ class CommentController extends Controller
     public function index()
     {
         $comments = comment::all();
-        return view('admin.comment.index', ['comments' => $comments]);
+        $logo = logo::all();
+        return view('admin.comment.index', [
+            'comments' => $comments,
+            'logo' => $logo
+        ]);
     }
     public function show(comment $comment)
     {

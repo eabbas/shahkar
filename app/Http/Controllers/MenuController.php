@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\menu;
+use App\Models\logo;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -10,7 +11,11 @@ class MenuController extends Controller
     public function create()
     {
         $items = menu::select('title', 'id')->get();
-        return view('admin.menu.create', ['items' => $items]);
+        $logo = logo::all();
+        return view('admin.menu.create', [
+            'items' => $items,
+            'logo' => $logo,
+        ]);
     }
     public function store(Request $request)
     {
@@ -29,17 +34,30 @@ class MenuController extends Controller
     public function index()
     {
         $items = menu::all();
-        return view('admin.menu.index', ['items' => $items]);
+        $logo = logo::all();
+        return view('admin.menu.index', [
+            'items' => $items,
+            'logo' => $logo,
+        ]);
     }
     public function show(menu $menu)
     {
         $menu->parent;
-        return view('admin.menu.show', ['menu' => $menu]);
+        $logo = logo::all();
+        return view('admin.menu.show', [
+            'menu' => $menu,
+            'logo' => $logo,
+        ]);
     }
     public function edit(menu $menu)
     {
         $items = menu::select('title', 'id')->get();
-        return view('admin.menu.edit', ['menu' => $menu, 'items' => $items]);
+        $logo = logo::all();
+        return view('admin.menu.edit', [
+            'menu' => $menu,
+            'items' => $items,
+            'logo' => $logo,
+        ]);
     }
     public function update(Request $request)
     {

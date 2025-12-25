@@ -22,7 +22,8 @@ class userController extends Controller
 
     public function adminSignup()
     {
-        return view('admin.user.signup');
+        $logo = logo::all();
+        return view('admin.user.signup', ['logo' => $logo]);
     }
 
     public function store(Request $request)
@@ -60,9 +61,6 @@ class userController extends Controller
 
     public function profile($user = null)
     {
-        if (!Auth::check()) {
-            return to_route('user.login');
-        }
         if (!$user) {
             $user = Auth::user();
         }
@@ -132,7 +130,11 @@ class userController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('admin.user.index', ['users' => $users]);
+        $logo = logo::all();
+        return view('admin.user.index', [
+            'users' => $users,
+            'logo' => $logo
+        ]);
     }
 
     public function courses(User $user)

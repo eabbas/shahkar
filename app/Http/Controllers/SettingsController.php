@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\settings;
+use App\Models\logo;
 use App\Models\product;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,11 @@ class SettingsController extends Controller
     public function createColor()
     {
         $settings = settings::all();
-        return view('admin.settings.colors.createColor', ['settings' => $settings]);
+        $logo = logo::all();
+        return view('admin.settings.colors.createColor', [
+            'settings' => $settings,
+            'logo' => $logo,
+        ]);
     }
 
     public function upsertColor(Request $request)

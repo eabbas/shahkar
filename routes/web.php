@@ -81,7 +81,7 @@ Route::group([
     Route::post('/store', 'store')->name('store');
     Route::get('/login', 'login')->name('login');
     Route::post('/check_user', 'checkUser')->name('checkUser');
-    Route::get('/profile/{user?}', 'profile')->name('profile');
+    Route::get('/profile/{user?}', 'profile')->middleware(checklogin::class)->name('profile');
     Route::get('/edit/{user}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{user}', 'delete')->name('delete');
@@ -114,7 +114,7 @@ Route::group(['prefix' => 'question', 'controller' => QuestionController::class,
 });
 // answers routes
 Route::group(['prefix' => 'answer', 'controller' => AnswerController::class, 'as' => 'answer-', 'middleware' => checkAdminMiddleware::class], function () {
-    Route::post('/store', 'store')->withoutMiddleware(checkAdminMiddleware::class)->name('store');
+    Route::post('/store', 'store')->withoutMiddleware(checkAdminMiddleware::class)->middleware(checklogin::class)->name('store');
     Route::get('/list', 'index')->name('index');
     Route::get('/show/{answer}', 'show')->name('show');
     Route::get('/edit/{answer}', 'edit')->name('edit');

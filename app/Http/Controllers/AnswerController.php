@@ -6,6 +6,7 @@ use App\Models\answer;
 use App\Models\product;
 use App\Models\question;
 use App\Models\User;
+use App\Models\logo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,9 +14,6 @@ class AnswerController extends Controller
 {
     public function store(Request $request)
     {
-        if (!Auth::check()) {
-            return to_route('user_login');
-        }
         answer::create([
             'text' => $request->answer,
             'question_id' => $request->question_id,
@@ -27,7 +25,11 @@ class AnswerController extends Controller
     public function index()
     {
         $answers = answer::all();
-        return view('admin.answer.index', ['answers' => $answers]);
+        $logo = logo::all();
+        return view('admin.answer.index', [
+            'answers' => $answers,
+            'logo' => $logo
+        ]);
     }
     public function show(answer $answer)
     {
