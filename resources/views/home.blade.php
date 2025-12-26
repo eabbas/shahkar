@@ -777,7 +777,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="w-full xl:w-1/2 bg-[url({{ $ft['img'] }})] bg-cover bg-center bg-no-repeat">
+                    <div class="w-full xl:w-1/2 bg-[url({{ $ft['img'] }})] bg-cover bg-center bg-no-repeat rounded-l-[10px]">
                     </div>
                 </div>
             </div>
