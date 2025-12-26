@@ -75,51 +75,46 @@ class BannersController extends Controller
             $footerTile = footerTile::all();
             if (count($footerTile) == 1) {
                 $this->updateFooterTile($request);
-                return to_route('home');
             } else {
                 $this->storeFooterTile($request);
-                return to_route('home');
             }
+            return redirect()->back();
         }
         if (array_key_exists('bigTile', $request->all())) {
             $bigTile = bigTile::all();
             if (count($bigTile) == 1) {
                 $this->updateBigTile($request);
-                return to_route('home');
             } else {
                 $this->storeBigTile($request);
-                return to_route('home');
             }
+            return redirect()->back();
         }
         if ($request->sectionName == 'tileBanners') {
             $tileBanners = banners::where('sectionName', 'tileBanners')->get();
             if (count($tileBanners) == 2) {
                 $this->updateTileBanner($request);
-                return to_route('home');
             } else {
                 $this->storeTileBanner($request);
-                return to_route('home');
             }
+            return redirect()->back();
         }
         if ($request->sectionName == 'bigBanner') {
             $bigBanner = banners::where('sectionName', 'bigBanner')->get();
             if (count($bigBanner) == 1) {
                 $this->updateBigBanner($request);
-                return to_route('home');
             } else {
                 $this->storeBigBanner($request);
-                return to_route('home');
             }
+            return redirect()->back();
         }
         if ($request->sectionName == 'banners') {
             $banners = banners::where('sectionName', 'banners')->get();
             if (count($banners) == 4) {
                 $this->updateBanners($request);
-                return to_route('home');
             } else {
                 $this->storeBanners($request);
-                return to_route('home');
             }
+            return redirect()->back();
         }
     }
     public function updateLogo(Request $request)

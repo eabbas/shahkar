@@ -55,12 +55,20 @@ class ContactUsController extends Controller
 
     public function show(contactUs $contactUs)
     {
-        return view('admin.contactus.show', ['cu' => $contactUs]);
+        $logo = logo::all();
+        return view('admin.contactus.show', [
+            'cu' => $contactUs,
+            'logo' => $logo
+        ]);
     }
 
     public function edit(contactUs $contactUs)
     {
-        return view('admin.contactus.edit', ['cu' => $contactUs]);
+        $logo = logo::all();
+        return view('admin.contactus.edit', [
+            'cu' => $contactUs,
+            'logo' => $logo
+        ]);
     }
 
     public function update(Request $request)

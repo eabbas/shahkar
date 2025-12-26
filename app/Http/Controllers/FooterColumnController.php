@@ -41,7 +41,8 @@ class FooterColumnController extends Controller
                 }
             }
         }
-        return to_route('home');
+        // return to_route('home');
+        return redirect()->back();
     }
     public function update(Request $request)
     {
@@ -87,7 +88,7 @@ class FooterColumnController extends Controller
                 }
             }
         }
-        return to_route('home');
+        return redirect()->back();
     }
     public function footerFormMediaUpdate(Request $request)
     {

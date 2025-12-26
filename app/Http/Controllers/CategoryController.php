@@ -34,7 +34,7 @@ class CategoryController extends Controller
                 'parent_id' => $request->parent_id,
                 'image' => 'storage/' . $path
             ]);
-            return to_route('category-adminIndex');
+            return redirect()->back();
         }
         category::create([
             'title' => $request->title,
@@ -42,7 +42,7 @@ class CategoryController extends Controller
             'parent_id' => $request->parent_id,
             'image' => null
         ]);
-        return to_route('category-adminIndex');
+        return redirect()->back();
     }
 
     public function adminIndex()
