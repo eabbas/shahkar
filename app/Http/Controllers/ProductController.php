@@ -27,9 +27,9 @@ class ProductController extends Controller
         $logo = logo::all();
         return view('admin.product.create', [
             'categories' => $categories,
-             'settings' => $settings,
-             'logo' => $logo
-            ]);
+            'settings' => $settings,
+            'logo' => $logo
+        ]);
     }
 
     public function store(Request $request)
@@ -75,7 +75,8 @@ class ProductController extends Controller
             'quantity' => $request->quantity
         ]);
 
-        return to_route('product-adminIndex');
+        // return to_route('product-adminIndex');
+        return redirect()->back();
     }
 
     public function index()

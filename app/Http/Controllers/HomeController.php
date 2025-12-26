@@ -39,7 +39,7 @@ class HomeController extends Controller
             'products' => $products,
             'categories' => $cats,
             'banners' => $banners,
-            'specialDiscounts' => $specialDiscounts,
+            'specialDiscounts' => $specialDiscounts[0]['products'],
             'bigBanner' => $bigBanner,
             'tileBanners' => $tileBanners,
             'bigTile' => $bigTile,
@@ -102,10 +102,10 @@ class HomeController extends Controller
     public function relatedProducts(Request $request)
     {
         if ($request['id'] == 'all') {
-            $products = product::where('is_in_home', 1)->get();
+            $products = product::where('is_in_home', 1)->with('medias')->with('price')->get();
         }
         if ($request['id'] != 'all') {
-            $products = product::where('category_id', $request['id'])->where('is_in_home', 1)->get();
+            $products = product::where('category_id', $request['id'])->where('is_in_home', 1)->with('medias')->with('price')->get();
         }
         return response()->json($products);
     }

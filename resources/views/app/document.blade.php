@@ -128,7 +128,7 @@
                                         <!-- contents -->
                                         <div class="h-90 grid grid-cols-4 gap-4 max-h-[575px] overflow-y-auto">
                                             @foreach ($products as $product)
-                                                <div class="p-4 border border-(--color-border) rounded-[10px] h-1/2">
+                                                <div class="p-4 border border-(--color-border) rounded-[10px]">
                                                     <a href="http://localhost/shahkar/public/product/show/{{ $product->id }}"
                                                         class="block mb-1">
                                                         @if ($product->medias)

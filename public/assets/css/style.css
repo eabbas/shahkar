@@ -135,7 +135,7 @@ input[type="checkbox"]:checked {
 
 input[type="checkbox"]:checked::after {
   content: "✔";
-  color: white;
+  color: var(--color-primary-text);
   position: absolute;
   left: 3px;
   top: 0;
