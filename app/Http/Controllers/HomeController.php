@@ -14,6 +14,7 @@ use App\Models\menu;
 use App\Models\product;
 use App\Models\course;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -21,6 +22,19 @@ class HomeController extends Controller
     {
         $courses = course::all();
         $products = product::where('is_in_home', 1)->get();
+        foreach ($products as $product) {
+            $product->load(['medias' => function ($query) {
+                $query->where('is_main', 1);
+            }]);
+            foreach ($product->medias as $media) {
+                $product['img'] = asset('storage/images/noImage.png');
+                if ($media['path']) {
+                    if (Storage::disk('public')->exists($media['path'])) {
+                        $product['img'] = asset('storage/' . $media['path']);
+                    }
+                }
+            }
+        }
         $settings = settings::all();
         $cats = category::all();
         $banners = banners::where('sectionName', 'banners')->get();
@@ -39,7 +53,7 @@ class HomeController extends Controller
             'products' => $products,
             'categories' => $cats,
             'banners' => $banners,
-            'specialDiscounts' => $specialDiscounts,
+            'specialDiscounts' => $specialDiscounts[0]['products'],
             'bigBanner' => $bigBanner,
             'tileBanners' => $tileBanners,
             'bigTile' => $bigTile,
@@ -102,10 +116,23 @@ class HomeController extends Controller
     public function relatedProducts(Request $request)
     {
         if ($request['id'] == 'all') {
-            $products = product::where('is_in_home', 1)->get();
+            $products = product::where('is_in_home', 1)->with('price')->get();
         }
         if ($request['id'] != 'all') {
-            $products = product::where('category_id', $request['id'])->where('is_in_home', 1)->get();
+            $products = product::where('category_id', $request['id'])->where('is_in_home', 1)->with('price')->get();
+        }
+        foreach ($products as $product) {
+            $product->load(['medias' => function ($query) {
+                $query->where('is_main', 1);
+            }]);
+            foreach ($product->medias as $media) {
+                $product['img'] = asset('storage/images/noImage.png');
+                if ($media['path']) {
+                    if (Storage::disk('public')->exists($media['path'])) {
+                        $product['img'] = asset('storage/' . $media['path']);
+                    }
+                }
+            }
         }
         return response()->json($products);
     }
