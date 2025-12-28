@@ -24,7 +24,7 @@ class product extends Model
     }
     public function medias()
     {
-        return $this->hasMany(media::class)->chaperone();
+        return $this->hasMany(media::class);
     }
     public function price()
     {

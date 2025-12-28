@@ -641,29 +641,9 @@
                             <div>
                                 <a href="http://localhost/shahkar/public/product/show/{{ $product->id }}"
                                     class="flex justify-center mb-1 overflow-hidden">
-                                    @if ($product->medias)
-                                        @foreach ($product->medias as $media)
-                                            @if ($media['is_main'] == 1)
-                                                @php
-                                                    $img = asset('storage/' . $media['path']);
-                                                @endphp
-                                                <img src=" {{ $img }}  "
-                                                    class="w-full transition-all duration-500 hover:scale-[1.04] relative z-10 max-h-[276px] lg:max-h-[186px] md:max-h-[348px] xl:max-h-[171px]"
-                                                    alt="product">
-                                                @break
-
-                                            @else
-                                                <img src="{{ asset('assets/img/noImage.png') }}"
-                                                    class="w-full transition-all duration-500 hover:scale-[1.04] relative z-10 max-h-[276px] lg:max-h-[186px] md:max-h-[348px] xl:max-h-[171px]"
-                                                    alt="product">
-                                                @break
-                                            @endif
-                                        @endforeach
-                                    @else
-                                        <img src="{{ asset('assets/img/noImage.png') }}"
-                                            class="w-full transition-all duration-500 hover:scale-[1.04] relative z-10 max-h-[276px] lg:max-h-[186px] md:max-h-[348px] xl:max-h-[171px]"
-                                            alt="product">
-                                    @endif
+                                    <img src="{{ $product['img'] }}"
+                                        class="w-full transition-all duration-500 hover:scale-[1.04] relative z-10 max-h-[276px] lg:max-h-[186px] md:max-h-[348px] xl:max-h-[171px]"
+                                        alt="product">
                                 </a>
                             </div>
                             <div class="mb-2 font-semibold text-[14px] lg:text-base">
@@ -733,7 +713,7 @@
                                 </div>
                                 <div class="w-full lg:w-1/2">
                                     <button
-                                        onclick="addToShoppingCart('{{ $product->id }}', '{{ $product->title }}', '{{ $product->description }}', '{{ $img }}', '{{ $product->price['price'] }}')"
+                                        onclick="addToShoppingCart('{{ $product->id }}', '{{ $product->title }}', '{{ $product->description }}', '{{ $product['img'] }}', '{{ $product->price['price'] }}')"
                                         class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-(--color-primary-text) bg-(--color-bg-card-btn) leading-5 rounded-[10px] cursor-pointer">افزودن
                                         به سبد خرید</button>
                                 </div>
