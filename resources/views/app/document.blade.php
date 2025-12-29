@@ -46,11 +46,9 @@
             <div class="xl:w-8/12 w-full flex flex-row justify-center gap-5 xl:justify-start items-center">
                 <!-- logo -->
                 <div class="w-1/12 h-[33px]">
-                    @foreach ($logo as $l)
-                        <a href="{{ $l['link_href'] }}" class="inline-block size-full">
-                            <img src="{{ asset($l['logo']) }}" class="size-full" alt="{{ $l['alt_text'] }}">
-                        </a>
-                    @endforeach
+                    <a href="{{ $logo['link_href'] }}" class="inline-block size-full">
+                        <img src="{{ asset($logo['logo']) }}" class="size-full" alt="{{ $logo['alt_text'] }}">
+                    </a>
                 </div>
                 <!-- logo -->
 
@@ -398,11 +396,9 @@
         <div class="w-11/12 mx-auto lg:hidden flex flex-row justify-between items-center py-4">
             <!-- logo -->
             <div class="h-[33px]">
-                @foreach ($logo as $l)
-                    <a href="{{ $l['link_href'] }}" class="inline-block size-full">
-                        <img src="{{ $l['logo'] }}" class="size-full" alt="{{ $l['alt_text'] }}">
-                    </a>
-                @endforeach
+                <a href="{{ $logo['link_href'] }}" class="inline-block size-full">
+                    <img src="{{ $logo['logo'] }}" class="size-full" alt="{{ $logo['alt_text'] }}">
+                </a>
             </div>
             <!-- logo -->
 
@@ -714,35 +710,33 @@
                     @endforeach
                 </div>
             @endforeach
-            @foreach ($footer_form_column as $ffc)
-                <div class="p-6 flex flex-col gap-10">
-                    <div class="">
-                        <p class="text-gray-700 font-bold mb-4">{{ $ffc['section_title'] }}</p>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        @foreach ($ffc['images'] as $image)
-                            <a href="{{ $image['link'] }}">
-                                <img src="{{ asset('storage/' . $image['path']) }}" alt="{{ $image['alt'] }}"
-                                    class="size-10 rounded-full">
-                            </a>
-                        @endforeach
-                    </div>
-                    <div class="">
-                        <form action="{{ route('homeForm-store') }}" method="post" class="flex flex-col gap-4">
-                            @csrf
-                            <label for="" class="">{{ $ffc['texts'][0]['text'] }}</label>
-                            <div class="flex gap-4">
-                                <input type="string" required
-                                    class="w-3/4 outline-none py-2 px-9 bg-[#F9F9F9] rounded-xl focus:border"
-                                    name="contactMethod" id=""
-                                    placeholder="{{ $ffc['texts'][0]['placeholder'] }}" required>
-                                <button type="submit"
-                                    class="w-1/4 py-2 px-7 rounded-[10px] bg-(--color-btn-contact) text-(--color-primary-text) hover:bg-(--color-btn-contact-hover) transition-all duration-300 text-white cursor-pointer">ثبت</button>
-                            </div>
-                        </form>
-                    </div>
+            <div class="p-6 flex flex-col gap-10">
+                <div class="">
+                    <p class="text-gray-700 font-bold mb-4">{{ $footer_form_column['section_title'] }}</p>
                 </div>
-            @endforeach
+                <div class="flex justify-between items-center">
+                    @foreach ($footer_form_column['images'] as $image)
+                        <a href="{{ $image['link'] }}">
+                            <img src="{{ asset('storage/' . $image['path']) }}" alt="{{ $image['alt'] }}"
+                                class="size-10 rounded-full">
+                        </a>
+                    @endforeach
+                </div>
+                <div class="">
+                    <form action="{{ route('homeForm-store') }}" method="post" class="flex flex-col gap-4">
+                        @csrf
+                        <label for="" class="">{{ $footer_form_column['texts'][0]['text'] }}</label>
+                        <div class="flex gap-4">
+                            <input type="string" required
+                                class="w-3/4 outline-none py-2 px-9 bg-[#F9F9F9] rounded-xl focus:border"
+                                name="contactMethod" id=""
+                                placeholder="{{ $footer_form_column['texts'][0]['placeholder'] }}" required>
+                            <button type="submit"
+                                class="w-1/4 py-2 px-7 rounded-[10px] bg-(--color-btn-contact) text-(--color-primary-text) hover:bg-(--color-btn-contact-hover) transition-all duration-300 text-white cursor-pointer">ثبت</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
         <hr>
         <div class="py-8">

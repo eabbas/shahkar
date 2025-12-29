@@ -17,7 +17,7 @@ class AboutUsController extends Controller
     public function create()
     {
         $aboutus = aboutUs::all();
-        $logo = logo::all();
+        $logo = logo::first();
         return view('admin.aboutus.create', [
             'aboutus' => $aboutus,
             'logo' => $logo
@@ -52,9 +52,9 @@ class AboutUsController extends Controller
         $products = product::all();
         $settings = settings::all();
         $cats = category::all();
-        $logo = logo::all();
+        $logo = logo::first();
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
-        $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
+        $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
         $user = Auth::user();
         $aboutus = aboutUs::all();
         return view('aboutus', [

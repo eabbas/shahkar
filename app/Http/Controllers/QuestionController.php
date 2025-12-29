@@ -27,7 +27,7 @@ class QuestionController extends Controller
     public function index()
     {
         $questions = question::all();
-        $logo = logo::all();
+        $logo = logo::first();
         return view('admin.question.index', [
             'questions' => $questions,
             'logo' => $logo

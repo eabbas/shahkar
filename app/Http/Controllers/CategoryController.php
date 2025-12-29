@@ -16,7 +16,7 @@ class CategoryController extends Controller
     public function create()
     {
         $categories = category::select('id', 'title')->get();
-        $logo = logo::all();
+        $logo = logo::first();
         return view('admin.category.create', [
             'categories' => $categories,
             'logo' => $logo
@@ -48,7 +48,7 @@ class CategoryController extends Controller
     public function adminIndex()
     {
         $cats = category::all();
-        $logo = logo::all();
+        $logo = logo::first();
         return view('admin.category.index', [
             'categories' => $cats,
             'logo' => $logo
@@ -60,9 +60,9 @@ class CategoryController extends Controller
         $courses = course::all();
         $products = product::all();
         $settings = settings::all();
-        $logo = logo::all();
+        $logo = logo::first();
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
-        $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
+        $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
         $user = Auth::user();
         $cats = category::all();
         return view('user.category.index', [
@@ -88,9 +88,9 @@ class CategoryController extends Controller
         $products = product::all();
         $cats = category::all();
         $settings = settings::all();
-        $logo = logo::all();
+        $logo = logo::first();
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
-        $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
+        $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
         $user = Auth::user();
         return view('user.category.show', [
             'courses' => $courses,

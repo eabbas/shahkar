@@ -13,7 +13,7 @@ class BannersController extends Controller
     public function bannersCreate()
     {
         $banners = banners::where('sectionName', 'banners')->get();
-        $logo = logo::all();
+        $logo = logo::first();
         return view('admin.homeSettings.banners', [
             'banners' => $banners,
             'logo' => $logo
@@ -21,8 +21,9 @@ class BannersController extends Controller
     }
     public function bigBannerCreate()
     {
-        $bigBanner = banners::where('sectionName', 'bigBanner')->get();
-        $logo = logo::all();
+        $bigBanner = banners::where('sectionName', 'bigBanner')->first();
+
+        $logo = logo::first();
         return view('admin.homeSettings.bigBanner', [
             'bigBanner' => $bigBanner,
             'logo' => $logo
@@ -31,7 +32,7 @@ class BannersController extends Controller
     public function tilesCreate()
     {
         $tileBanners = banners::where('sectionName', 'tileBanners')->get();
-        $logo = logo::all();
+        $logo = logo::first();
         return view('admin.homeSettings.tileBanners', [
             'tileBanners' => $tileBanners,
             'logo' => $logo
@@ -39,8 +40,8 @@ class BannersController extends Controller
     }
     public function bigTileCreate()
     {
-        $bigTile = bigTile::all();
-        $logo = logo::all();
+        $bigTile = bigTile::first();
+        $logo = logo::first();
         return view('admin.homeSettings.bigTile', [
             'bigTile' => $bigTile,
             'logo' => $logo
@@ -48,8 +49,9 @@ class BannersController extends Controller
     }
     public function footerTileCreate()
     {
-        $footerTile = footerTile::all();
-        $logo = logo::all();
+        $footerTile = footerTile::first();
+
+        $logo = logo::first();
         return view('admin.homeSettings.footerTile', [
             'footerTile' => $footerTile,
             'logo' => $logo
@@ -57,13 +59,13 @@ class BannersController extends Controller
     }
     public function logoCreate()
     {
-        $logo = logo::all();
+        $logo = logo::first();
         return view('admin.homeSettings.logo', ['logo' => $logo]);
     }
     public function upsert(Request $request)
     {
         if (array_key_exists('logo', $request->all())) {
-            $logo = logo::all();
+            $logo = logo::first();
             if (count($logo) == 1) {
                 $this->updateLogo($request);
             } else {
@@ -72,7 +74,8 @@ class BannersController extends Controller
             return redirect()->back();
         }
         if (array_key_exists('footerTile', $request->all())) {
-            $footerTile = footerTile::all();
+            $footerTile = footerTile::first();
+
             if (count($footerTile) == 1) {
                 $this->updateFooterTile($request);
             } else {
@@ -81,7 +84,7 @@ class BannersController extends Controller
             return redirect()->back();
         }
         if (array_key_exists('bigTile', $request->all())) {
-            $bigTile = bigTile::all();
+            $bigTile = bigTile::first();
             if (count($bigTile) == 1) {
                 $this->updateBigTile($request);
             } else {
@@ -99,7 +102,8 @@ class BannersController extends Controller
             return redirect()->back();
         }
         if ($request->sectionName == 'bigBanner') {
-            $bigBanner = banners::where('sectionName', 'bigBanner')->get();
+            $bigBanner = banners::where('sectionName', 'bigBanner')->first();
+
             if (count($bigBanner) == 1) {
                 $this->updateBigBanner($request);
             } else {

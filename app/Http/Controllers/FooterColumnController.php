@@ -14,7 +14,7 @@ class FooterColumnController extends Controller
     public function create()
     {
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
-        $logo = logo::all();
+        $logo = logo::first();
         if (count($footer_columns) == 0) {
             return view('admin.footerColumns.create', ['logo' => $logo]);
         } else {
@@ -52,8 +52,8 @@ class FooterColumnController extends Controller
     }
     public function footerFormMediaCreate()
     {
-        $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
-        $logo = logo::all();
+        $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
+        $logo = logo::first();
         if (count($footer_form_column) == 0) {
             return view('admin.footerColumns.createFooterFormMedia', ['logo' => $logo]);
         } else {

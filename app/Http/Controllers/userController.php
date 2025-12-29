@@ -22,7 +22,7 @@ class userController extends Controller
 
     public function adminSignup()
     {
-        $logo = logo::all();
+        $logo = logo::first();
         return view('admin.user.signup', ['logo' => $logo]);
     }
 
@@ -68,9 +68,9 @@ class userController extends Controller
         $products = product::all();
         $settings = settings::all();
         $cats = category::all();
-        $logo = logo::all();
+        $logo = logo::first();
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
-        $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
+        $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
         return view('user.user.profile', [
             'courses' => $courses,
             'products' => $products,
@@ -87,9 +87,9 @@ class userController extends Controller
     {
         // $settings = settings::all();
         // $cats = category::all();
-        // $logo = logo::all();
+        // $logo = logo::first();
         // $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
-        // $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
+        // $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
         return view('user.user.user_edit', [
             'user' => $user,
             // 'settings' => $settings,
@@ -130,7 +130,7 @@ class userController extends Controller
     public function index()
     {
         $users = User::all();
-        $logo = logo::all();
+        $logo = logo::first();
         return view('admin.user.index', [
             'users' => $users,
             'logo' => $logo

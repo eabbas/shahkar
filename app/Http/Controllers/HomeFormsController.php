@@ -16,7 +16,7 @@ class HomeFormsController extends Controller
     public function index()
     {
         $homeForms = homeForms::all();
-        $logo = logo::all();
+        $logo = logo::first();
         return view('admin.homeForm.index', [
             'homeForms' => $homeForms,
             'logo' => $logo

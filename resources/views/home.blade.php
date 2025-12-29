@@ -4,27 +4,25 @@
 
     <!-- sub header -->
     <section class="flex flex-col lg:flex-row gap-5 text-(--color-text)">
-        @foreach ($bigTile as $bt)
-            <div
-                class="lg:w-2/3 w-full rounded-md bg-(--color-primary-btn) bg-center bg-[url({{ $bt['bg_img'] }})] bg-cover bg-no-repeat p-8 lg:py-12 lg:px-20 relative overflow-hidden h-[440px] lg:h-auto max-h-[501px]">
-                <div class="w-2/3 flex flex-col gap-5">
-                    <span class="font-medium mb-4 text-xs md:text-base leading-5">{{ $bt['header'] }}</span>
-                    <div
-                        class="2xl:text-[60px] xl:text-[48px] lg:text-[42px] md:text-[36px] text-base 2xl:leading-[60px] font-bold mb-4">
-                        {{ $bt['title'] }}
-                    </div>
-                    <p class="w-fit mb-6">{{ $bt['text'] }}</p>
-                    <div class="flex flex-row justify-start items-center gap-5">
-                        <a href="{{ $bt['btn1_href'] }}"
-                            class="bg-(--color-subheader-btn) text-sm lg:text-base rounded-[10px] py-2 px-5 text-(--color-primary-text) font-semibold transition-all duration-500 ease-in-out hover:bg-(--color-bg-hover-btn)">{{ $bt['btn1_content'] }}</a>
-                        <a href="{{ $bt['btn2_href'] }}"
-                            class="py-1 leading-6 text-sm lg:text-base transition-all duration-[0.25s] ease-in-out hover:-translate-y-0.5">{{ $bt['btn2_content'] }}</a>
-                    </div>
+        <div
+            class="lg:w-2/3 w-full rounded-md bg-(--color-primary-btn) bg-center bg-[url({{ $bigTile['bg_img'] }})] bg-cover bg-no-repeat p-8 lg:py-12 lg:px-20 relative overflow-hidden h-[440px] lg:h-auto max-h-[501px]">
+            <div class="w-2/3 flex flex-col gap-5">
+                <span class="font-medium mb-4 text-xs md:text-base leading-5">{{ $bigTile['header'] }}</span>
+                <div
+                    class="2xl:text-[60px] xl:text-[48px] lg:text-[42px] md:text-[36px] text-base 2xl:leading-[60px] font-bold mb-4">
+                    {{ $bigTile['title'] }}
                 </div>
-                <img src="{{ asset($bt['img']) }}" class="w-full sm:w-8/12 absolute bottom-0 -left-10 sm:-left-[109px]"
-                    alt="this is image">
+                <p class="w-fit mb-6">{{ $bigTile['text'] }}</p>
+                <div class="flex flex-row justify-start items-center gap-5">
+                    <a href="{{ $bigTile['btn1_href'] }}"
+                        class="bg-(--color-subheader-btn) text-sm lg:text-base rounded-[10px] py-2 px-5 text-(--color-primary-text) font-semibold transition-all duration-500 ease-in-out hover:bg-(--color-bg-hover-btn)">{{ $bigTile['btn1_content'] }}</a>
+                    <a href="{{ $bigTile['btn2_href'] }}"
+                        class="py-1 leading-6 text-sm lg:text-base transition-all duration-[0.25s] ease-in-out hover:-translate-y-0.5">{{ $bigTile['btn2_content'] }}</a>
+                </div>
             </div>
-        @endforeach
+            <img src="{{ asset($bigTile['img']) }}" class="w-full sm:w-8/12 absolute bottom-0 -left-10 sm:-left-[109px]"
+                alt="this is image">
+        </div>
         <div class="lg:w-1/3 w-full flex flex-col sm:flex-row lg:flex-col gap-5">
             @foreach ($tileBanners as $tileBanner)
                 <div
@@ -501,26 +499,24 @@
 
 
             <!-- height problem -->
-            @foreach ($bigBanner as $bb)
-                <div
-                    class="w-full children hidden xl:block xl:w-1/4 p-[30px] rounded-xl bg-[url({{ $bb->image }})] bg-bottom-right bg-cover bg-no-repeat rotate-y-180">
-                    <div class="rotate-y-180 h-[415px]">
-                        <h2 class="text-[28px] leading-12 font-bold">
-                            {{ $bb->title }}
-                        </h2>
-                        <div class="flex mt-3">
-                            <a href="{{ $bb->link_href }}"
-                                class="flex flex-row items-center gap-2 bg-(--color-primary) rounded-[10px] py-2 px-5 text-(--color-primary-text) font-semibold">
-                                <span>{{ $bb->link_content }}</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
-                                    <path fill="#fff"
-                                        d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z" />
-                                </svg>
-                            </a>
-                        </div>
+            <div
+                class="w-full children hidden xl:block xl:w-1/4 p-[30px] rounded-xl bg-[url({{ $bigBanner->image }})] bg-bottom-right bg-cover bg-no-repeat rotate-y-180">
+                <div class="rotate-y-180 h-[415px]">
+                    <h2 class="text-[28px] leading-12 font-bold">
+                        {{ $bigBanner->title }}
+                    </h2>
+                    <div class="flex mt-3">
+                        <a href="{{ $bigBanner->link_href }}"
+                            class="flex flex-row items-center gap-2 bg-(--color-primary) rounded-[10px] py-2 px-5 text-(--color-primary-text) font-semibold">
+                            <span>{{ $bigBanner->link_content }}</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
+                                <path fill="#fff"
+                                    d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z" />
+                            </svg>
+                        </a>
                     </div>
                 </div>
-            @endforeach
+            </div>
 
             <!-- height problem -->
 
@@ -727,41 +723,39 @@
     <!-- related products -->
 
     <section class="text-(--color-text) pt-3">
-        @foreach ($footerTile as $ft)
-            <div class="py-10">
-                <div
-                    class="flex flex-col xl:flex-row items-stretch gap-5 rounded-[10px] bg-(--color-bg-contact-section) bg-[url({{ $ft['bg_img'] }})] bg-cover bg-no-repeat bg-center">
-                    <div class="w-full xl:w-1/2 px-[50px] pt-[60px] pb-[70px] flex flex-col justify-start gap-5">
-                        <div>
-                            <h2
-                                class="text-(--color-primary-text) sm:text-3xl lg:text-[50px] 2xl:leading-[75px] font-bold mb-1">
-                                {{ $ft['title'] }}
-                            </h2>
-                            <p class="text-(--color-primary-text) py-5">
-                                {{ $ft['text'] }}
-                            </p>
-                        </div>
-                        <div class="w-full bg-white rounded-[10px] p-3">
-                            <form action="{{ route('homeForm-store') }}" method="post">
-                                @csrf
-                                <div class="rounded-lg 2xl:border-none border border-gray-300 relative">
-                                    <input type="email" required
-                                        class="block w-full 2xl:w-2/3 2xl:mx-auto outline-none p-5 2xl:mb-4 rounded-lg"
-                                        placeholder="ایمیل خود را وارد کنید" name="contactMethod" id="">
-                                    <button type="submit"
-                                        class="absolute left-3 top-2 2xl:static py-3 px-8 rounded-lg 2xl:mx-auto 2xl:block bg-(--color-btn-contact) text-(--color-primary-text) hover:bg-(--color-btn-contact-hover) transition-all duration-300">ثبت
-                                        نام</button>
-
-                                </div>
-                            </form>
-                        </div>
+        <div class="py-10">
+            <div
+                class="flex flex-col xl:flex-row items-stretch gap-5 rounded-[10px] bg-(--color-bg-contact-section) bg-[url({{ $footerTile['bg_img'] }})] bg-cover bg-no-repeat bg-center">
+                <div class="w-full xl:w-1/2 px-[50px] pt-[60px] pb-[70px] flex flex-col justify-start gap-5">
+                    <div>
+                        <h2
+                            class="text-(--color-primary-text) sm:text-3xl lg:text-[50px] 2xl:leading-[75px] font-bold mb-1">
+                            {{ $footerTile['title'] }}
+                        </h2>
+                        <p class="text-(--color-primary-text) py-5">
+                            {{ $footerTile['text'] }}
+                        </p>
                     </div>
-                    <div
-                        class="w-full xl:w-1/2 bg-[url({{ $ft['img'] }})] bg-cover bg-center bg-no-repeat rounded-l-[10px]">
+                    <div class="w-full bg-white rounded-[10px] p-3">
+                        <form action="{{ route('homeForm-store') }}" method="post">
+                            @csrf
+                            <div class="rounded-lg 2xl:border-none border border-gray-300 relative">
+                                <input type="email" required
+                                    class="block w-full 2xl:w-2/3 2xl:mx-auto outline-none p-5 2xl:mb-4 rounded-lg"
+                                    placeholder="ایمیل خود را وارد کنید" name="contactMethod" id="">
+                                <button type="submit"
+                                    class="absolute left-3 top-2 2xl:static py-3 px-8 rounded-lg 2xl:mx-auto 2xl:block bg-(--color-btn-contact) text-(--color-primary-text) hover:bg-(--color-btn-contact-hover) transition-all duration-300">ثبت
+                                    نام</button>
+
+                            </div>
+                        </form>
                     </div>
                 </div>
+                <div
+                    class="w-full xl:w-1/2 bg-[url({{ $footerTile['img'] }})] bg-cover bg-center bg-no-repeat rounded-l-[10px]">
+                </div>
             </div>
-        @endforeach
+        </div>
     </section>
 
 
