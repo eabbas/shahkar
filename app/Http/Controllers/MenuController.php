@@ -11,7 +11,7 @@ class MenuController extends Controller
     public function create()
     {
         $items = menu::select('title', 'id')->get();
-        $logo = logo::all();
+        $logo = logo::first();
         return view('admin.menu.create', [
             'items' => $items,
             'logo' => $logo,
@@ -34,7 +34,7 @@ class MenuController extends Controller
     public function index()
     {
         $items = menu::all();
-        $logo = logo::all();
+        $logo = logo::first();
         return view('admin.menu.index', [
             'items' => $items,
             'logo' => $logo,
@@ -43,7 +43,7 @@ class MenuController extends Controller
     public function show(menu $menu)
     {
         $menu->parent;
-        $logo = logo::all();
+        $logo = logo::first();
         return view('admin.menu.show', [
             'menu' => $menu,
             'logo' => $logo,
@@ -52,7 +52,7 @@ class MenuController extends Controller
     public function edit(menu $menu)
     {
         $items = menu::select('title', 'id')->get();
-        $logo = logo::all();
+        $logo = logo::first();
         return view('admin.menu.edit', [
             'menu' => $menu,
             'items' => $items,

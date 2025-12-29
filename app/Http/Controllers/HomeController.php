@@ -15,37 +15,41 @@ use App\Models\product;
 use App\Models\course;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use DB;
 
 class HomeController extends Controller
 {
+    public function getProductMedias($products)
+    {
+        foreach ($products as $product) {
+            $product->load(['medias' => function ($query) {
+                $query->select('product_id', DB::raw("IFNULL(path , 'images/noImage.png') path"))->where('is_main', 1);
+            }]);
+            foreach ($product->medias as $media) {
+                $product['img'] = asset('storage/images/noImage.png');
+                if (Storage::disk('public')->exists($media['path'])) {
+                    $product['img'] = asset('storage/' . $media['path']);
+                }
+            }
+        }
+        return $products;
+    }
     public function index()
     {
         $courses = course::all();
         $products = product::where('is_in_home', 1)->get();
-        foreach ($products as $product) {
-            $product->load(['medias' => function ($query) {
-                $query->where('is_main', 1);
-            }]);
-            foreach ($product->medias as $media) {
-                $product['img'] = asset('storage/images/noImage.png');
-                if ($media['path']) {
-                    if (Storage::disk('public')->exists($media['path'])) {
-                        $product['img'] = asset('storage/' . $media['path']);
-                    }
-                }
-            }
-        }
+        $products = $this->getProductMedias($products);
         $settings = settings::all();
         $cats = category::all();
         $banners = banners::where('sectionName', 'banners')->get();
-        $bigBanner = banners::where('sectionName', 'bigBanner')->get();
+        $bigBanner = banners::where('sectionName', 'bigBanner')->first();
         $tileBanners = banners::where('sectionName', 'tileBanners')->get();
-        $specialDiscounts = category::where('title', 'تخفیفات ویژه')->with('products')->get();
-        $bigTile = bigTile::all();
-        $footerTile = footerTile::all();
-        $logo = logo::all();
+        $specialDiscounts = category::where('title', 'تخفیفات ویژه')->with('products')->first();
+        $bigTile = bigTile::first();
+        $footerTile = footerTile::first();
+        $logo = logo::first();
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
-        $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
+        $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
         $user = Auth::user();
         return view('home', [
             'courses' => $courses,
@@ -53,7 +57,7 @@ class HomeController extends Controller
             'products' => $products,
             'categories' => $cats,
             'banners' => $banners,
-            'specialDiscounts' => $specialDiscounts[0]['products'],
+            'specialDiscounts' => $specialDiscounts['products'],
             'bigBanner' => $bigBanner,
             'tileBanners' => $tileBanners,
             'bigTile' => $bigTile,
@@ -70,9 +74,9 @@ class HomeController extends Controller
         $products = product::where('is_in_home', 1)->get();
         $settings = settings::all();
         $cats = category::all();
-        $logo = logo::all();
+        $logo = logo::first();
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
-        $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
+        $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
         $user = Auth::user();
         return view('notAccess', [
             'courses' => $courses,
@@ -91,9 +95,9 @@ class HomeController extends Controller
         $products = product::where('is_in_home', 1)->get();
         $settings = settings::all();
         $cats = category::all();
-        $logo = logo::all();
+        $logo = logo::first();
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
-        $footer_form_column = footer_column::whereIn('section_number', [4])->with('images')->with('texts')->get();
+        $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
         $user = Auth::user();
         return view('loginAtFirst', [
             'courses' => $courses,
@@ -108,7 +112,7 @@ class HomeController extends Controller
     }
     public function dashboard()
     {
-        $logo = logo::all();
+        $logo = logo::first();
         return view('admin.app.dashboard', [
             'logo' => $logo,
         ]);
@@ -121,19 +125,7 @@ class HomeController extends Controller
         if ($request['id'] != 'all') {
             $products = product::where('category_id', $request['id'])->where('is_in_home', 1)->with('price')->get();
         }
-        foreach ($products as $product) {
-            $product->load(['medias' => function ($query) {
-                $query->where('is_main', 1);
-            }]);
-            foreach ($product->medias as $media) {
-                $product['img'] = asset('storage/images/noImage.png');
-                if ($media['path']) {
-                    if (Storage::disk('public')->exists($media['path'])) {
-                        $product['img'] = asset('storage/' . $media['path']);
-                    }
-                }
-            }
-        }
+        $products = $this->getProductMedias($products);
         return response()->json($products);
     }
 }

@@ -27,7 +27,7 @@ class CommentController extends Controller
     public function index()
     {
         $comments = comment::all();
-        $logo = logo::all();
+        $logo = logo::first();
         return view('admin.comment.index', [
             'comments' => $comments,
             'logo' => $logo

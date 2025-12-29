@@ -25,7 +25,7 @@ class AnswerController extends Controller
     public function index()
     {
         $answers = answer::all();
-        $logo = logo::all();
+        $logo = logo::first();
         return view('admin.answer.index', [
             'answers' => $answers,
             'logo' => $logo

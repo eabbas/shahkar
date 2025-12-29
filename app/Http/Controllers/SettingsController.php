@@ -12,7 +12,7 @@ class SettingsController extends Controller
     public function createColor()
     {
         $settings = settings::all();
-        $logo = logo::all();
+        $logo = logo::first();
         return view('admin.settings.colors.createColor', [
             'settings' => $settings,
             'logo' => $logo,
