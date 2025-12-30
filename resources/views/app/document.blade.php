@@ -117,9 +117,13 @@
                                 class="absolute w-full py-5 max-h-0 border border-(--color-border) bg-white opacity-0 mt-8 right-0 invisible z-9999 transition-all duration-500">
                                 <div class="h-100 w-11/12 mx-auto flex flex-row items-start gap-10">
                                     <div class="h-90 w-1/5 flex flex-col justify-start gap-4 overflow-y-auto">
+                                        <p onclick="getRelatedProducts('all', 'header')"
+                                            class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">
+                                            همه دسته ها</p>
                                         @foreach ($categories as $category)
-                                            <a href="{{ route('search-cat-products', [$category]) }}"
-                                                class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">{{ $category->title }}</a>
+                                            <p onclick="getRelatedProducts({{ $category->id }}, 'header')"
+                                                class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">
+                                                {{ $category->title }}</p>
                                         @endforeach
                                     </div>
                                     <div class="w-4/5">
@@ -129,23 +133,9 @@
                                                 <div class="p-4 border border-(--color-border) rounded-[10px]">
                                                     <a href="http://localhost/shahkar/public/product/show/{{ $product->id }}"
                                                         class="block mb-1">
-                                                        @if ($product->medias)
-                                                            @foreach ($product->medias as $media)
-                                                                @if ($media['is_main'] == 1)
-                                                                    <img src=" {{ asset('storage/' . $media['path']) }}  "
-                                                                        class="w-[85px] h-20 mx-auto" alt="product">
-                                                                    @break
-
-                                                                @else
-                                                                    <img src="{{ asset('assets/img/noImage.png') }}"
-                                                                        class="w-[85px] h-20 mx-auto" alt="product">
-                                                                    @break
-                                                                @endif
-                                                            @endforeach
-                                                        @else
-                                                            <img src="{{ asset('assets/img/noImage.png') }}"
-                                                                class="w-[85px] h-20 mx-auto" alt="product">
-                                                        @endif
+                                                        <img src="{{ $product['img'] }}"
+                                                            class="w-full transition-all duration-500 hover:scale-[1.04] relative z-10 max-h-[276px] lg:max-h-[186px] md:max-h-[348px] xl:max-h-[171px]"
+                                                            alt="product">
                                                         <span
                                                             class="inline-block w-full text-center pt-3">{{ $product->title }}</span>
                                                         <span
@@ -419,7 +409,7 @@
                     <span
                         class="flex justify-center items-center -top-2 -left-2 absolute size-4 bg-(--color-primary) rounded-full text-(--color-primary-text) text-sm">0</span>
                 </a> --}}
-                {{-- اینجا قراره پاپ آپ سرچ باکس باکس بذاریم --}}
+                {{-- اینجا قراره پاپ آپ سرچ باکس بذاریم --}}
                 <a href="#" class="inline-block w-8 h-6 relative">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="size-5 rotate-y-180">
                         <path fill="var(--color-fill)"
@@ -554,9 +544,13 @@
                                 <div class="h-100 w-full flex flex-col xl:flex-row items-start gap-10">
                                     <div
                                         class="h-90 overflow-y-auto w-full xl:w-1/4 flex flex-row xl:flex-col justify-between gap-4 overflow-x-auto px-3 xl:px-0">
+                                        <p onclick="getRelatedProducts('all', 'header')"
+                                            class="header-category-title block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">
+                                            همه دسته ها</p>
                                         @foreach ($categories as $category)
-                                            <a href="{{ route('search-cat-products', [$category]) }}"
-                                                class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">{{ $category->title }}</a>
+                                            <p onclick="getRelatedProducts({{ $category->id }}, 'header')"
+                                                class="header-category-title block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">
+                                                {{ $category->title }}</p>
                                         @endforeach
                                     </div>
                                     <div class="w-full xl:w-3/4 xl:overflow-y-auto">
@@ -567,23 +561,9 @@
                                                 <div class="p-4 border border-(--color-border) rounded-[10px]">
                                                     <a href="http://localhost/shahkar/public/product/show/{{ $product->id }}"
                                                         class="block mb-1">
-                                                        @if ($product->medias)
-                                                            @foreach ($product->medias as $media)
-                                                                @if ($media['is_main'] == 1)
-                                                                    <img src=" {{ asset('storage/' . $media['path']) }}  "
-                                                                        class="w-[85px] h-20 mx-auto" alt="product">
-                                                                    @break
-
-                                                                @else
-                                                                    <img src="{{ asset('assets/img/noImage.png') }}"
-                                                                        class="w-[85px] h-20 mx-auto" alt="product">
-                                                                    @break
-                                                                @endif
-                                                            @endforeach
-                                                        @else
-                                                            <img src="{{ asset('assets/img/noImage.png') }}"
-                                                                class="w-[85px] h-20 mx-auto" alt="product">
-                                                        @endif
+                                                        <img src="{{ $product->img }}"
+                                                            class="w-full transition-all duration-500 hover:scale-[1.04] relative z-10 max-h-[276px] lg:max-h-[186px] md:max-h-[348px] xl:max-h-[171px]"
+                                                            alt="product">
                                                         <span
                                                             class="inline-block w-full text-center pt-3">{{ $product->title }}</span>
                                                         <span

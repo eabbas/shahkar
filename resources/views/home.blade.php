@@ -352,29 +352,9 @@
                         <div>
                             <a href="{{ route('product-show', [$specialDiscountProduct]) }}"
                                 class="flex justify-center mb-1 overflow-hidden">
-                                @if ($specialDiscountProduct->medias)
-                                    @foreach ($specialDiscountProduct->medias as $media)
-                                        @if ($media['is_main'] == 1)
-                                            @php
-                                                $img = asset('storage/' . $media['path']);
-                                            @endphp
-                                            <img src=" {{ $img }}  "
-                                                class="w-full transition-all duration-500 hover:scale-[1.04] relative z-10 max-h-[276px] lg:max-h-[186px] md:max-h-[348px] xl:max-h-[254px]"
-                                                alt="product">
-                                            @break
-
-                                        @else
-                                            <img src="{{ asset('assets/img/noImage.png') }}"
-                                                class="w-full transition-all duration-500 hover:scale-[1.04] relative z-10 max-h-[276px] lg:max-h-[186px] md:max-h-[348px] xl:max-h-[254px]"
-                                                alt="product">
-                                            @break
-                                        @endif
-                                    @endforeach
-                                @else
-                                    <img src="{{ asset('assets/img/noImage.png') }}"
-                                        class="w-full transition-all duration-500 hover:scale-[1.04] relative z-10 max-h-[276px] lg:max-h-[186px] md:max-h-[348px] xl:max-h-[254px]"
-                                        alt="product">
-                                @endif
+                                <img src=" {{ $specialDiscountProduct['img'] }}  "
+                                    class="w-full transition-all duration-500 hover:scale-[1.04] relative z-10 max-h-[276px] lg:max-h-[186px] md:max-h-[348px] xl:max-h-[254px]"
+                                    alt="product">
                             </a>
                         </div>
                         <div>
@@ -447,7 +427,7 @@
                                 </div>
                                 <div class="w-full lg:w-1/2">
                                     <button
-                                        onclick="addToShoppingCart('{{ $specialDiscountProduct->id }}', '{{ $specialDiscountProduct->title }}', '{{ $specialDiscountProduct->description }}', '{{ $img }}', '{{ $specialDiscountProduct->price['price'] }}')"
+                                        onclick="addToShoppingCart('{{ $specialDiscountProduct->id }}', '{{ $specialDiscountProduct->title }}', '{{ $specialDiscountProduct->description }}', '{{ $specialDiscountProduct['img'] }}', '{{ $specialDiscountProduct->price['price'] }}')"
                                         class="w-full h-full py-3 lg:py-1 text-[12px] text-(--color-primary-text) bg-(--color-bg-card-btn) leading-5 rounded-[10px] cursor-pointer">افزودن
                                         به سبد خرید</button>
                                 </div>
@@ -525,14 +505,15 @@
                     {{-- [&::-webkit-scrollbar]:w-0 --}}
                     <div class="w-full flex flex-row justify-between items-center gap-5 font-bold overflow-x-auto p-5"
                         style="scrollbar-width: thin; scrollbar-color: var(--color-primary) var(--color-primary-text);">
-                        <p class="category-title cursor-pointer text-(--color-text)" onclick="getRelatedProducts('all')">
+                        <p class="category-title cursor-pointer text-(--color-text)"
+                            onclick="getRelatedProducts('all', 'home')">
                             <span class="inline-block w-[100px]">
                                 همه دسته ها
                             </span>
                         </p>
                         @foreach ($categories as $category)
                             <p class="category-title cursor-pointer text-(--color-secondary-text)"
-                                onclick="getRelatedProducts({{ $category->id }})">
+                                onclick="getRelatedProducts({{ $category->id }}, 'home')">
                                 <span class="inline-block text-center w-[110px]">
                                     {{ $category['title'] }}
                                 </span>
