@@ -273,6 +273,19 @@ categoryTitles.forEach((item) => {
         item.classList.add('text-(--color-text)')
     })
 })
+let headerCategoryTitles = document.querySelectorAll('.header-category-title')
+headerCategoryTitles.forEach((item) => {
+    item.addEventListener('click', () => {
+        headerCategoryTitles.forEach((el) => {
+            el.classList.remove('bg-(--color-primary-btn)')
+            el.classList.remove('text-(--color-text)')
+            el.classList.add('bg-(--color-bg-hover-btn)')
+            el.classList.add('text-(--color-primary-text)')
+        })
+        item.classList.add('bg-(--color-primary-btn)')
+        item.classList.add('text-(--color-text)')
+    })
+})
 
 let relatedProducts = document.getElementById('relatedProducts');
 function getRelatedProducts(param) {
