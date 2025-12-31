@@ -38,7 +38,7 @@
     </div>  -->
     <!-- ads -->
 
-    <header class="2xl:container 2xl:px-4 mx-auto w-full border-b border-(--color-border) py-3">
+    <header class="2xl:container 2xl:px-4 mx-auto w-full border-b border-(--color-border) py-3 relative">
 
         <!-- desktop header -->
 
@@ -114,11 +114,11 @@
                         </a>
                         @if ($categories->isNotEmpty())
                             <div
-                                class="absolute w-full py-5 max-h-0 border border-(--color-border) bg-white opacity-0 mt-8 right-0 invisible z-9999 transition-all duration-500">
+                                class="absolute container py-5 max-h-0 border-y border-(--color-border) bg-white opacity-0 mt-8 right-0 invisible z-9999 transition-all duration-500">
                                 <div class="h-100 w-11/12 mx-auto flex flex-row items-start gap-10">
                                     <div class="h-90 w-1/5 flex flex-col justify-start gap-4 overflow-y-auto">
                                         <p onclick="getRelatedProducts('all', 'header')"
-                                            class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">
+                                            class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat activeSubMenuCat">
                                             همه دسته ها</p>
                                         @foreach ($categories as $category)
                                             <p onclick="getRelatedProducts({{ $category->id }}, 'header')"
@@ -128,7 +128,8 @@
                                     </div>
                                     <div class="w-4/5">
                                         <!-- contents -->
-                                        <div class="h-90 grid grid-cols-4 gap-4 max-h-[575px] overflow-y-auto">
+                                        <div
+                                            class="headerRelatedProducts h-90 grid grid-cols-4 gap-4 max-h-[575px] overflow-y-auto">
                                             @foreach ($products as $product)
                                                 <div class="p-4 border border-(--color-border) rounded-[10px]">
                                                     <a href="http://localhost/shahkar/public/product/show/{{ $product->id }}"
@@ -321,12 +322,12 @@
                                             class="absolute w-full h-[1.5px] bg-(--color-text) -rotate-45 rounded-full"></span>
                                     </button>
                                 </div>
-                                <span>1</span>
+                                <span id="shoppingCartProductCount"></span>
                                 <span>کالا</span>
                             </div>
 
                             <div class="max-h-80 overflow-y-auto my-8" id="shoppingCartProducts">
-                                {{-- <a href="#">
+                                <a href="#">
                                     <div class="w-full flex gap-3 mb-10">
                                         <div class="w-1/3">
                                             <img src="{{ asset('storage/images/6d170732-57e2-44e3-997b-a5ad762330aa_Parse2.jpg') }}"
@@ -343,7 +344,7 @@
                                             </span>
                                         </div>
                                     </div>
-                                </a> --}}
+                                </a>
                             </div>
 
                             <div class="flex justify-between items-center">
@@ -545,18 +546,18 @@
                                     <div
                                         class="h-90 overflow-y-auto w-full xl:w-1/4 flex flex-row xl:flex-col justify-between gap-4 overflow-x-auto px-3 xl:px-0">
                                         <p onclick="getRelatedProducts('all', 'header')"
-                                            class="header-category-title block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">
+                                            class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat activeSubMenuCat">
                                             همه دسته ها</p>
                                         @foreach ($categories as $category)
                                             <p onclick="getRelatedProducts({{ $category->id }}, 'header')"
-                                                class="header-category-title block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">
+                                                class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">
                                                 {{ $category->title }}</p>
                                         @endforeach
                                     </div>
                                     <div class="w-full xl:w-3/4 xl:overflow-y-auto">
                                         <!-- contents -->
                                         <div
-                                            class="h-90 grid sm:grid-cols-2 grid-cols-1 gap-4 max-h-[575px] overflow-y-auto text-(--color-text)">
+                                            class="headerRelatedProducts h-90 grid sm:grid-cols-2 grid-cols-1 gap-4 max-h-[575px] overflow-y-auto text-(--color-text)">
                                             @foreach ($products as $product)
                                                 <div class="p-4 border border-(--color-border) rounded-[10px]">
                                                     <a href="http://localhost/shahkar/public/product/show/{{ $product->id }}"
