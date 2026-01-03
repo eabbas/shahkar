@@ -88,6 +88,8 @@ Route::group([
     Route::get('/logout{id?}', 'logout')->name('logout');
     Route::get('/index', 'index')->middleware(checkAdminMiddleware::class)->name('index');
     Route::get('/courses/{user}', 'courses')->middleware(checklogin::class)->name('courses');
+    Route::post('/sendSMS', 'send_code')->name('sendSMS');
+    Route::post('/checkAuth', 'checkAuth')->name('checkAuth');
 });
 // comments routes
 Route::group([
