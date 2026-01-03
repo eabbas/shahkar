@@ -38,7 +38,7 @@
     </div>  -->
     <!-- ads -->
 
-    <header class="2xl:container 2xl:px-4 mx-auto w-full border-b border-(--color-border) py-3">
+    <header class="2xl:container 2xl:px-4 mx-auto w-full border-b border-(--color-border) py-3 relative">
 
         <!-- desktop header -->
 
@@ -114,21 +114,22 @@
                         </a>
                         @if ($categories->isNotEmpty())
                             <div
-                                class="absolute w-full py-5 max-h-0 border border-(--color-border) bg-white opacity-0 mt-8 right-0 invisible z-9999 transition-all duration-500">
+                                class="absolute container py-5 max-h-0 border-y border-(--color-border) bg-white opacity-0 mt-8 right-0 invisible z-9999 transition-all duration-500">
                                 <div class="h-100 w-11/12 mx-auto flex flex-row items-start gap-10">
-                                    <div class="h-90 w-1/5 flex flex-col justify-start gap-4 overflow-y-auto">
+                                    <div class="h-90 w-1/6 flex flex-col justify-start gap-2 overflow-y-auto">
                                         <p onclick="getRelatedProducts('all', 'header')"
-                                            class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">
+                                            class="block rounded-sm text-(--color-text) py-3 px-4 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat activeSubMenuCat">
                                             همه دسته ها</p>
                                         @foreach ($categories as $category)
                                             <p onclick="getRelatedProducts({{ $category->id }}, 'header')"
-                                                class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">
+                                                class="block rounded-sm text-(--color-text) py-3 px-4 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">
                                                 {{ $category->title }}</p>
                                         @endforeach
                                     </div>
-                                    <div class="w-4/5">
+                                    <div class="w-5/6">
                                         <!-- contents -->
-                                        <div class="h-90 grid grid-cols-4 gap-4 max-h-[575px] overflow-y-auto">
+                                        <div
+                                            class="headerRelatedProducts h-90 grid grid-cols-4 gap-4 max-h-[575px] overflow-y-auto">
                                             @foreach ($products as $product)
                                                 <div class="p-4 border border-(--color-border) rounded-[10px]">
                                                     <a href="http://localhost/shahkar/public/product/show/{{ $product->id }}"
@@ -306,7 +307,7 @@
                                     d="M24 0C10.7 0 0 10.7 0 24S10.7 48 24 48H69.5c3.8 0 7.1 2.7 7.9 6.5l51.6 271c6.5 34 36.2 58.5 70.7 58.5H488c13.3 0 24-10.7 24-24s-10.7-24-24-24H199.7c-11.5 0-21.4-8.2-23.6-19.5L170.7 288H459.2c32.6 0 61.1-21.8 69.5-53.3l41-152.3C576.6 57 557.4 32 531.1 32h-411C111 12.8 91.6 0 69.5 0H24zM131.1 80H520.7L482.4 222.2c-2.8 10.5-12.3 17.8-23.2 17.8H161.6L131.1 80zM176 512a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm336-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0z" />
                             </svg>
                             <span
-                                class="flex justify-center items-center -top-2.5 -left-2.5 absolute size-5 bg-(--color-primary) rounded-full text-(--color-primary-text) text-sm">0</span>
+                                class="product-count-in-shoppingCart flex justify-center items-center -top-2.5 -left-2.5 absolute size-5 bg-(--color-primary) rounded-full text-(--color-primary-text) text-sm">0</span>
                         </span>
                         {{-- shopping cart hover box by mr.olyafam --}}
                         <div id="shoppingCartContent"
@@ -321,37 +322,18 @@
                                             class="absolute w-full h-[1.5px] bg-(--color-text) -rotate-45 rounded-full"></span>
                                     </button>
                                 </div>
-                                <span>1</span>
+                                <span id="shoppingCartProductCount"></span>
                                 <span>کالا</span>
                             </div>
 
-                            <div class="max-h-80 overflow-y-auto my-8" id="shoppingCartProducts">
-                                {{-- <a href="#">
-                                    <div class="w-full flex gap-3 mb-10">
-                                        <div class="w-1/3">
-                                            <img src="{{ asset('storage/images/6d170732-57e2-44e3-997b-a5ad762330aa_Parse2.jpg') }}"
-                                                class="size-full" alt="">
-                                        </div>
-                                        <div class="flex flex-col gap-2 w-2/3">
-                                            <span class="font-bold text-(--color-text)">محصول دوزایش</span>
-                                            <span class="text-sm font-light text-(--color-secondary-text)">بو محصول فرق
-                                                الی
-                                                بتی بیزاد دی حتما آلون</span>
-                                            <span class="text-sm font-light text-(--color-secondary-text)">
-                                                <span>4000000</span>
-                                                <span>تومان</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a> --}}
-                            </div>
+                            <div class="max-h-80 overflow-y-auto my-8" id="shoppingCartProducts"></div>
 
                             <div class="flex justify-between items-center">
                                 <div class="flex flex-col gap-2">
                                     <span class="text-(--color-text) font-light text-sm">مبلغ
                                         قابل پرداخت</span>
                                     <span>
-                                        <span class="font-bold text-lg">40000000</span>
+                                        <span id="shoppingCartTotalPrice" class="font-bold text-lg"></span>
                                         <span class="text-sm">تومان</span>
                                     </span>
                                 </div>
@@ -423,7 +405,7 @@
                                 d="M24 0C10.7 0 0 10.7 0 24S10.7 48 24 48H69.5c3.8 0 7.1 2.7 7.9 6.5l51.6 271c6.5 34 36.2 58.5 70.7 58.5H488c13.3 0 24-10.7 24-24s-10.7-24-24-24H199.7c-11.5 0-21.4-8.2-23.6-19.5L170.7 288H459.2c32.6 0 61.1-21.8 69.5-53.3l41-152.3C576.6 57 557.4 32 531.1 32h-411C111 12.8 91.6 0 69.5 0H24zM131.1 80H520.7L482.4 222.2c-2.8 10.5-12.3 17.8-23.2 17.8H161.6L131.1 80zM176 512a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm336-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0z" />
                         </svg>
                         <span
-                            class="flex justify-center items-center -top-2.5 -left-2.5 absolute size-5 bg-(--color-primary) rounded-full text-(--color-primary-text) text-sm">0</span>
+                            class="product-count-in-shoppingCart flex justify-center items-center -top-2.5 -left-2.5 absolute size-5 bg-(--color-primary) rounded-full text-(--color-primary-text) text-sm">0</span>
                     </span>
                     {{-- shopping cart hover box by mr.olyafam --}}
                     <div id="mobileShoppingCartContent"
@@ -438,37 +420,18 @@
                                         class="absolute w-full h-[1.5px] bg-(--color-text) -rotate-45 rounded-full"></span>
                                 </button>
                             </div>
-                            <span>1</span>
+                            <span id="mobileShoppingCartProductCount"></span>
                             <span>کالا</span>
                         </div>
 
-                        <div class="max-h-80 overflow-y-auto my-8" id="shoppingCartProducts">
-                            {{-- <a href="#">
-                                    <div class="w-full flex gap-3 mb-10">
-                                        <div class="w-1/3">
-                                            <img src="{{ asset('storage/images/6d170732-57e2-44e3-997b-a5ad762330aa_Parse2.jpg') }}"
-                                                class="size-full" alt="">
-                                        </div>
-                                        <div class="flex flex-col gap-2 w-2/3">
-                                            <span class="font-bold text-(--color-text)">محصول دوزایش</span>
-                                            <span class="text-sm font-light text-(--color-secondary-text)">بو محصول فرق
-                                                الی
-                                                بتی بیزاد دی حتما آلون</span>
-                                            <span class="text-sm font-light text-(--color-secondary-text)">
-                                                <span>4000000</span>
-                                                <span>تومان</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a> --}}
-                        </div>
+                        <div class="max-h-80 overflow-y-auto my-8" id="mobileShoppingCartProducts"></div>
 
                         <div class="flex justify-between items-center">
                             <div class="flex flex-col gap-2">
                                 <span class="text-(--color-text) font-light text-sm">مبلغ
                                     قابل پرداخت</span>
                                 <span>
-                                    <span class="font-bold text-lg">40000000</span>
+                                    <span id="mobileShoppingCartTotalPrice" class="font-bold text-lg"></span>
                                     <span class="text-sm">تومان</span>
                                 </span>
                             </div>
@@ -545,18 +508,18 @@
                                     <div
                                         class="h-90 overflow-y-auto w-full xl:w-1/4 flex flex-row xl:flex-col justify-between gap-4 overflow-x-auto px-3 xl:px-0">
                                         <p onclick="getRelatedProducts('all', 'header')"
-                                            class="header-category-title block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">
+                                            class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat activeSubMenuCat">
                                             همه دسته ها</p>
                                         @foreach ($categories as $category)
                                             <p onclick="getRelatedProducts({{ $category->id }}, 'header')"
-                                                class="header-category-title block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">
+                                                class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">
                                                 {{ $category->title }}</p>
                                         @endforeach
                                     </div>
                                     <div class="w-full xl:w-3/4 xl:overflow-y-auto">
                                         <!-- contents -->
                                         <div
-                                            class="h-90 grid sm:grid-cols-2 grid-cols-1 gap-4 max-h-[575px] overflow-y-auto text-(--color-text)">
+                                            class="headerRelatedProducts h-90 grid sm:grid-cols-2 grid-cols-1 gap-4 max-h-[575px] overflow-y-auto text-(--color-text)">
                                             @foreach ($products as $product)
                                                 <div class="p-4 border border-(--color-border) rounded-[10px]">
                                                     <a href="http://localhost/shahkar/public/product/show/{{ $product->id }}"

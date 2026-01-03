@@ -26,7 +26,6 @@ subMenuActive.forEach((item) => {
             item.parentElement.nextElementSibling.classList.remove("max-h-0")
             item.parentElement.nextElementSibling.classList.add("max-h-[2000px]")
             item.children[0].classList.add('rotate-180');
-
             subMenuActive.forEach((close) => {
                 if (close.parentElement.nextElementSibling != item.parentElement.nextElementSibling) {
                     close.parentElement.nextElementSibling.classList.add("max-h-0")
@@ -155,10 +154,9 @@ sidebarFeatures.forEach((item) => {
             item.children[1].classList.add('max-h-svh')
             item.children[0].children[0].children[1].classList.add('rotate-180')
             sidebarFeatures.forEach((subItem) => {
-                console.log(item);
-                console.log(subItem);
+                // console.log(item);
+                // console.log(subItem);
                 if (subItem.children[1] != item.children[1]) {
-
                     subItem.children[1].classList.remove('max-h-svh')
                     subItem.children[0].children[0].children[1].classList.remove('rotate-180')
                     subItem.children[1].classList.add('max-h-0')
@@ -202,54 +200,98 @@ function addToShoppingCart(id, title, description, image, price) {
     })
     let productCartInfo = 'shahkarProduct' + (productCountInCookie + 1) + 'title=' + title + '&&shahkarProduct' + (productCountInCookie + 1) + 'price=' + price + '&&shahkarProduct' + (productCountInCookie + 1) + 'description=' + description + '&&shahkarProduct' + (productCountInCookie + 1) + 'image=' + image + '&&shahkarProduct' + (productCountInCookie + 1) + 'id=' + id;
     document.cookie = productCartInfo;
+    proNumber()
 }
+// product count in top of shopping cart icon
+function proNumber() {
+    let productCount = 0
+    document.cookie.split(';').forEach((cookie) => {
+        if (cookie.indexOf('shahkarProduct') !== -1) {
+            productCount++
+        }
+    })
+    document.querySelectorAll('.product-count-in-shoppingCart').forEach((proCount) => {
+        proCount.innerHTML = productCount;
+    })
+}
+proNumber()
 
 let shoppingCartProducts = document.getElementById('shoppingCartProducts');
+let mobileShoppingCartProducts = document.getElementById('mobileShoppingCartProducts');
 function getCookies() {
     shoppingCartProducts.innerHTML = '';
+    mobileShoppingCartProducts.innerHTML = '';
     let allCookies = document.cookie;
     let i = 1
+    let count = 0
+    let totalPrice = 0
+    let finalCountOfArray = 0
     allCookies.split(';').forEach((cookie) => {
         if (cookie.indexOf('shahkarProduct') !== -1) {
             let div = document.createElement('div')
+            count++
             let array = []
             cookie.split('&&').forEach((part) => {
                 part.trim().split('=').forEach((info, index) => {
                     if (index == 0) key = info;
                     if (index == 1) array[key] = info;
                     if (index == 1) {
-                        let element = `
-                        <a href="#">
-                        <input type="hidden" value="${array['shahkarProduct' + i + 'id']}">
-                            <div class="w-full flex gap-3 mb-10">
-                                <div class="w-1/3">
-                                    <img src="${array['shahkarProduct' + i + 'image']}" class="size-full" alt="">
+                        finalCountOfArray++
+                        if (finalCountOfArray == 5) {
+                            let element = `
+                                <div class="relative mb-10">
+                                        <input type="hidden" value="${array['shahkarProduct' + i + 'id']}">
+                                        <div class="cursor-pointer" onclick="removeProductFromShoppingCart(this,${array['shahkarProduct' + i + 'id']})">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                                class="size-4.5 absolute left-1 top-1">
+                                                <path fill="var(--color-fill)"
+                                                    d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z" />
+                                            </svg>
+                                        </div>
+                                        <div class="w-full flex gap-3">
+                                            <div class="w-1/3 h-20">
+                                                <img src="${array['shahkarProduct' + i + 'image']}" class="size-full" alt="">
+                                            </div>
+                                            <div class="flex flex-col gap-2 w-2/3">
+                                                <span class="font-bold text-(--color-text)">${array['shahkarProduct' + i + 'title']}</span>
+                                                <span class="text-sm font-light text-(--color-secondary-text)">${array['shahkarProduct' + i + 'description']}</span>
+                                                <span class="text-sm font-light text-(--color-secondary-text)">
+                                                    <span>${array['shahkarProduct' + i + 'price']}</span>
+                                                    <span>تومان</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="absolute left-1 bottom-0 text-[10px] font-light text-(--color-secondary-text)">
+                                            <span>تعداد:</span>
+                                            <span>1</span>
+                                        </div>
                                 </div>
-                                <div class="flex flex-col gap-2 w-2/3">
-                                    <span class="font-bold text-(--color-text)">${array['shahkarProduct' + i + 'title']}</span>
-                                    <span class="text-sm font-light text-(--color-secondary-text)">${array['shahkarProduct' + i + 'description']}</span>
-                                    <span class="text-sm font-light text-(--color-secondary-text)">
-                                        <span>${array['shahkarProduct' + i + 'price']}</span>
-                                        <span>تومان</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </a>
-                        `
-                        div.innerHTML = element
+                                `
+                            div.innerHTML = element
+                            totalPrice += parseInt(array['shahkarProduct' + i + 'price'])
+                            finalCountOfArray = 0
+                        }
                     }
                 })
             })
             i++
-            shoppingCartProducts.appendChild(div)
+            // Assuming 'div' is already created
+            mobileShoppingCartProducts.appendChild(div); // Append to the first parent
+            // Clone the div for the second parent
+            const clonedDiv = div.cloneNode(true); // 'true' means a deep clone
+            shoppingCartProducts.appendChild(clonedDiv); // Append the cloned div to the second parent
         }
     })
+    document.getElementById('shoppingCartProductCount').innerHTML = count
+    document.getElementById('mobileShoppingCartProductCount').innerHTML = count
+    document.getElementById('shoppingCartTotalPrice').innerHTML = totalPrice
+    document.getElementById('mobileShoppingCartTotalPrice').innerHTML = totalPrice
 }
 
 let shoppingCartContent = document.getElementById('shoppingCartContent')
 let mobileShoppingCartContent = document.getElementById('mobileShoppingCartContent')
 function showCartContent() {
-    // getCookies()
+    getCookies()
     shoppingCartContent.classList.toggle('invisible');
     shoppingCartContent.classList.toggle('opacity-0');
     mobileShoppingCartContent.classList.toggle('invisible');
@@ -260,6 +302,11 @@ function closeCart() {
     shoppingCartContent.classList.add('opacity-0');
     mobileShoppingCartContent.classList.add('invisible');
     mobileShoppingCartContent.classList.add('opacity-0');
+}
+//! remove product from shopping cart
+function removeProductFromShoppingCart(el, id) {
+    console.log(id);
+    console.log(el.parentElement);
 }
 
 //! related products to per category by mr.olyafam
@@ -273,23 +320,10 @@ categoryTitles.forEach((item) => {
         item.classList.add('text-(--color-text)')
     })
 })
-let headerCategoryTitles = document.querySelectorAll('.header-category-title')
-headerCategoryTitles.forEach((item) => {
-    item.addEventListener('click', () => {
-        headerCategoryTitles.forEach((el) => {
-            el.classList.remove('bg-(--color-primary-btn)')
-            el.classList.remove('text-(--color-text)')
-            el.classList.add('bg-(--color-bg-hover-btn)')
-            el.classList.add('text-(--color-primary-text)')
-        })
-        item.classList.add('bg-(--color-primary-btn)')
-        item.classList.add('text-(--color-text)')
-    })
-})
 
 let relatedProducts = document.getElementById('relatedProducts');
-function getRelatedProducts(param) {
-    relatedProducts.innerHTML = '';
+let headerRelatedProducts = document.querySelectorAll('.headerRelatedProducts');
+function getRelatedProducts(param, section) {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': csrfToken
@@ -303,16 +337,17 @@ function getRelatedProducts(param) {
             'id': param
         },
         success: function (data) {
-            data.forEach((product) => {
-                console.log(product);
-                let id = product.id;
-                let title = product.title;
-                let description = product.description;
-                let price = product.price.price;
-                let image = product.img;
-                let div = document.createElement('div');
-                div.classList = 'p-2 md:p-3 lg:p-4 xl:p-5 border border-(--color-border) rounded-[10px] relative productItem'
-                let element = `
+            if (section == "home") {
+                relatedProducts.innerHTML = '';
+                data.forEach((product) => {
+                    let id = product.id;
+                    let title = product.title;
+                    let description = product.description;
+                    let price = product.price.price;
+                    let image = product.img;
+                    let div = document.createElement('div');
+                    div.classList = 'p-2 min-w-55 border border-(--color-border) rounded-[10px] relative flex flex-col justify-between productItem'
+                    let element = `
                             <div
                                 class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-555 overflow-hidden">
                                 <button
@@ -350,20 +385,22 @@ function getRelatedProducts(param) {
                                 </button>
                             </div>
                             <div>
-                                <a href="http://localhost/shahkar/public/product/show/${product.id}"
+                                <a href="http://localhost/shahkar/public/product/show/${id}"
                                     class="flex justify-center mb-1 overflow-hidden">
                                     <img src="${image}"
                                         class="w-full transition-all duration-500 hover:scale-[1.04] relative z-10 max-h-[276px] lg:max-h-[186px] md:max-h-[348px] xl:max-h-[171px]"
                                         alt="product">
                                 </a>
                             </div>
-                            <div class="mb-2 font-semibold text-[14px] lg:text-base">
-                                <a href="http://localhost/shahkar/public/product/show/${product.id}"
-                                    class="text-[12px] lg:text-[14px] text-(--color-text)">${product.title}</a>
-                            </div>
-                            <div class="mb-1">
-                                <a
-                                    href="http://localhost/shahkar/public/product/show/${product.id}">${product.description}</a>
+                            <div class="flex flex-col">
+                                <div class="mb-2 font-semibold text-[14px] lg:text-base">
+                                    <a href="http://localhost/shahkar/public/product/show/${id}"
+                                        class="text-[12px] lg:text-[14px] text-(--color-text)">${title}</a>
+                                </div>
+                                <div class="mb-1">
+                                    <a
+                                        href="http://localhost/shahkar/public/product/show/${id}">${description}</a>
+                                </div>
                             </div>
                             <div class="flex flex-row items-center mb-3 gap-3">
                                 <div class="lg:w-1/2 flex flex-row items-center text-[12px]">
@@ -397,26 +434,19 @@ function getRelatedProducts(param) {
                                     <span>(0)</span>
                                 </div>
                             </div>
-                            <div
-                                class="hidden lg:flex flex-row items-center gap-2 text-(--color-text) mb-3 text-[18px] font-bold">
-                                <span class="font-bold text-lg">${price}</span>
-                                <span class="text-sm">تومان</span>
-                            </div>
-                            <div class="flex lg:hidden flex-row items-start gap-2 text-(--color-text) mb-3 font-bold">
-                                <span class="font-bold text-lg">${price}</span>
-                                <span class="text-sm">تومان</span>
+                            <div class="">
+                                <div
+                                    class="hidden lg:flex flex-row items-center gap-2 text-(--color-text) mb-3 text-[18px] font-bold">
+                                    <span class="font-bold text-lg">${price}</span>
+                                    <span class="text-sm">تومان</span>
+                                </div>
+                                <div class="flex lg:hidden flex-row items-start gap-2 text-(--color-text) mb-3 font-bold">
+                                    <span class="font-bold text-lg">${price}</span>
+                                    <span class="text-sm">تومان</span>
+                                </div>
                             </div>
                             <div class="flex flex-col lg:flex-row gap-2 lg:gap-4">
-                                <div
-                                    class="w-full lg:w-1/2 flex flex-row justify-between items-center border border-(--color-border) rounded-[10px] p-1">
-                                    <button
-                                        class="bg-(--color-primary-btn) rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">-</button>
-                                    <input type="text" class="w-[30px] outline-none text-center text-xs"
-                                        value="1" min="0" name="" id="">
-                                    <button
-                                        class="bg-(--color-primary-btn) rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">+</button>
-                                </div>
-                                <div class="w-full lg:w-1/2">
+                                <div class="w-full h-12">
                                     <button
                                         onclick="addToShoppingCart('${id}', '${title}', '${description}', '${image}', '${price}')"
                                         class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-(--color-primary-text) bg-(--color-bg-card-btn) leading-5 rounded-[10px] cursor-pointer">افزودن
@@ -424,9 +454,33 @@ function getRelatedProducts(param) {
                                 </div>
                             </div>
                 `
-                div.innerHTML = element;
-                relatedProducts.appendChild(div)
-            })
+                    div.innerHTML = element;
+                    relatedProducts.appendChild(div)
+                })
+            }
+            if (section == "header") {
+                headerRelatedProducts.forEach((headerRelatedProduct) => {
+                    headerRelatedProduct.innerHTML = '';
+                    data.forEach((product) => {
+                        let div = document.createElement('div');
+                        div.classList = 'p-4 border border-(--color-border) rounded-[10px]'
+                        let element = `
+                            <a href="http://localhost/shahkar/public/product/show/${product.id}"
+                                class="block mb-1">
+                                <img src="${product.img}"
+                                    class="w-full transition-all duration-500 hover:scale-[1.04] relative z-10 max-h-[276px] lg:max-h-[186px] md:max-h-[348px] xl:max-h-[171px]"
+                                    alt="product">
+                                    <span
+                                        class="inline-block w-full text-center pt-3">${product.title}</span>
+                                    <span
+                                        class="block text-center text-[14px] text-(--color-secondary-text)">${product.description}</span>
+                            </a>
+                        `
+                        div.innerHTML = element;
+                        headerRelatedProduct.appendChild(div)
+                    })
+                })
+            }
         },
         error: function () {
             alert('error')

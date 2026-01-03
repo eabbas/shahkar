@@ -9,6 +9,7 @@ use App\Models\logo;
 use App\Models\settings;
 use App\Models\User;
 use App\Models\course;
+use App\Models\phoneCode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -32,7 +33,7 @@ class userController extends Controller
         User::create([
             'name' => $request?->name,
             'family' => $request?->family,
-            'email' => $request->email,
+            'phoneNumber' => $request->phoneNumber,
             'password' => $request->password,
         ]);
         return to_route('user.login');
@@ -45,7 +46,7 @@ class userController extends Controller
 
     public function checkUser(Request $request)
     {
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('phoneNumber', $request->phoneNumber)->first();
         if (!$user) {
             return to_route('user.signup');
         }
@@ -105,7 +106,7 @@ class userController extends Controller
         $user = User::find($request->id);
         $user->name = $request->name;
         $user->family = $request->family;
-        $user->email = $request->email;
+        $user->phoneNumber = $request->phoneNumber;
         if ($request->password) {
             $password = Hash::make($request->password);
             $user->password = $password;
@@ -142,5 +143,34 @@ class userController extends Controller
         $courses = $user->load('userCourses.course');
         $userCourses = $courses->toArray();
         return view('course.userCourse.courses', ['userCourses' => $userCourses, 'user' => $user]);
+    }
+
+    public function send_code(Request $request)
+    {
+        $code = rand(1000, 10000);
+        phoneCode::upsert(['phoneNumber' => $request->phoneNumber, 'code' => $code], ['phoneNumber'], ['code']);
+        $apiKey = 'YTBhZjhlNDAtZGI1Zi00ZWQ1LTkwNmYtZWU2MWFhYTkzY2M0NTcxZGQ3ZjY2Yzk1MmNjZmFiM2M2ZjVmNjBhMDg2MTQ=';
+        $client = new \IPPanel\Client($apiKey);
+        $patternValues = [
+            'activation_code' => $code,
+        ];
+        $bulkID = $client->sendPattern(
+            '7fvdx77gveizxqn',  // pattern code
+            '+983000505',  // originator
+            $request->phoneNumber,  // recipient
+            $patternValues,  // pattern values
+        );
+        return response()->json('ok');
+    }
+
+    public function checkAuth(Request $request)
+    {
+        $data['validate'] = User::where('phoneNumber', $request->phoneNumber)->first();
+        $data['checkCode'] = false;
+        $phoneCode = phoneCode::where('phoneNumber', $request->phoneNumber)->first();
+        if ($phoneCode->code == $request->code) {
+            $data['checkCode'] = true;
+        }
+        return response()->json($data);
     }
 }
