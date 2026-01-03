@@ -303,7 +303,7 @@ function closeCart() {
     mobileShoppingCartContent.classList.add('invisible');
     mobileShoppingCartContent.classList.add('opacity-0');
 }
-// ! remove product from shopping cart
+//! remove product from shopping cart
 function removeProductFromShoppingCart(el, id) {
     console.log(id);
     console.log(el.parentElement);
@@ -346,7 +346,7 @@ function getRelatedProducts(param, section) {
                     let price = product.price.price;
                     let image = product.img;
                     let div = document.createElement('div');
-                    div.classList = 'p-2 md:p-3 lg:p-4 xl:p-5 border border-(--color-border) rounded-[10px] relative productItem'
+                    div.classList = 'p-2 min-w-55 border border-(--color-border) rounded-[10px] relative flex flex-col justify-between productItem'
                     let element = `
                             <div
                                 class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-555 overflow-hidden">
@@ -392,13 +392,15 @@ function getRelatedProducts(param, section) {
                                         alt="product">
                                 </a>
                             </div>
-                            <div class="mb-2 font-semibold text-[14px] lg:text-base">
-                                <a href="http://localhost/shahkar/public/product/show/${id}"
-                                    class="text-[12px] lg:text-[14px] text-(--color-text)">${title}</a>
-                            </div>
-                            <div class="mb-1">
-                                <a
-                                    href="http://localhost/shahkar/public/product/show/${id}">${description}</a>
+                            <div class="flex flex-col">
+                                <div class="mb-2 font-semibold text-[14px] lg:text-base">
+                                    <a href="http://localhost/shahkar/public/product/show/${id}"
+                                        class="text-[12px] lg:text-[14px] text-(--color-text)">${title}</a>
+                                </div>
+                                <div class="mb-1">
+                                    <a
+                                        href="http://localhost/shahkar/public/product/show/${id}">${description}</a>
+                                </div>
                             </div>
                             <div class="flex flex-row items-center mb-3 gap-3">
                                 <div class="lg:w-1/2 flex flex-row items-center text-[12px]">
@@ -432,26 +434,19 @@ function getRelatedProducts(param, section) {
                                     <span>(0)</span>
                                 </div>
                             </div>
-                            <div
-                                class="hidden lg:flex flex-row items-center gap-2 text-(--color-text) mb-3 text-[18px] font-bold">
-                                <span class="font-bold text-lg">${price}</span>
-                                <span class="text-sm">تومان</span>
-                            </div>
-                            <div class="flex lg:hidden flex-row items-start gap-2 text-(--color-text) mb-3 font-bold">
-                                <span class="font-bold text-lg">${price}</span>
-                                <span class="text-sm">تومان</span>
+                            <div class="">
+                                <div
+                                    class="hidden lg:flex flex-row items-center gap-2 text-(--color-text) mb-3 text-[18px] font-bold">
+                                    <span class="font-bold text-lg">${price}</span>
+                                    <span class="text-sm">تومان</span>
+                                </div>
+                                <div class="flex lg:hidden flex-row items-start gap-2 text-(--color-text) mb-3 font-bold">
+                                    <span class="font-bold text-lg">${price}</span>
+                                    <span class="text-sm">تومان</span>
+                                </div>
                             </div>
                             <div class="flex flex-col lg:flex-row gap-2 lg:gap-4">
-                                <div
-                                    class="w-full lg:w-1/2 flex flex-row justify-between items-center border border-(--color-border) rounded-[10px] p-1">
-                                    <button
-                                        class="bg-(--color-primary-btn) rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">-</button>
-                                    <input type="text" class="w-[30px] outline-none text-center text-xs"
-                                        value="1" min="0" name="" id="">
-                                    <button
-                                        class="bg-(--color-primary-btn) rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">+</button>
-                                </div>
-                                <div class="w-full lg:w-1/2">
+                                <div class="w-full h-12">
                                     <button
                                         onclick="addToShoppingCart('${id}', '${title}', '${description}', '${image}', '${price}')"
                                         class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-(--color-primary-text) bg-(--color-bg-card-btn) leading-5 rounded-[10px] cursor-pointer">افزودن

@@ -116,17 +116,17 @@
                             <div
                                 class="absolute container py-5 max-h-0 border-y border-(--color-border) bg-white opacity-0 mt-8 right-0 invisible z-9999 transition-all duration-500">
                                 <div class="h-100 w-11/12 mx-auto flex flex-row items-start gap-10">
-                                    <div class="h-90 w-1/5 flex flex-col justify-start gap-4 overflow-y-auto">
+                                    <div class="h-90 w-1/6 flex flex-col justify-start gap-2 overflow-y-auto">
                                         <p onclick="getRelatedProducts('all', 'header')"
-                                            class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat activeSubMenuCat">
+                                            class="block rounded-sm text-(--color-text) py-3 px-4 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat activeSubMenuCat">
                                             همه دسته ها</p>
                                         @foreach ($categories as $category)
                                             <p onclick="getRelatedProducts({{ $category->id }}, 'header')"
-                                                class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">
+                                                class="block rounded-sm text-(--color-text) py-3 px-4 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">
                                                 {{ $category->title }}</p>
                                         @endforeach
                                     </div>
-                                    <div class="w-4/5">
+                                    <div class="w-5/6">
                                         <!-- contents -->
                                         <div
                                             class="headerRelatedProducts h-90 grid grid-cols-4 gap-4 max-h-[575px] overflow-y-auto">

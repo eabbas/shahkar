@@ -113,7 +113,7 @@
         @endif
         <!-- title section -->
 
-        <div class="grid 2xl:grid-cols-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2.5 lg:gap-5">
+        <div class="grid 2xl:grid-cols-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2.5 lg:gap-4">
             <!-- 12 -->
 
             {{-- <div
@@ -283,7 +283,7 @@
             @foreach ($specialDiscounts as $specialDiscountProduct)
                 @if ($specialDiscountProduct['is_in_home'] == 1)
                     <div
-                        class="p-2 md:p-3 lg:p-4 xl:p-5 border border-(--color-border) rounded-[10px] relative productItem">
+                        class="p-2 border border-(--color-border) rounded-[10px] relative flex flex-col justify-between productItem">
                         <div
                             class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-555 overflow-hidden">
                             <button
@@ -416,16 +416,7 @@
                                 <span class="text-sm">تومان</span>
                             </div>
                             <div class="flex flex-col lg:flex-row gap-2 lg:gap-4">
-                                <div
-                                    class="w-full lg:w-1/2 flex flex-row justify-between items-center border border-(--color-border) rounded-[10px] p-1">
-                                    <button
-                                        class="bg-(--color-primary-btn) rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">-</button>
-                                    <input type="text" class="w-[30px] outline-none text-center text-xs"
-                                        value="1" min="0" name="" id="">
-                                    <button
-                                        class="bg-(--color-primary-btn) rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">+</button>
-                                </div>
-                                <div class="w-full lg:w-1/2">
+                                <div class="w-full h-12">
                                     <button
                                         onclick="addToShoppingCart('{{ $specialDiscountProduct->id }}', '{{ $specialDiscountProduct->title }}', '{{ $specialDiscountProduct->description }}', '{{ $specialDiscountProduct['img'] }}', '{{ $specialDiscountProduct->price['price'] }}')"
                                         class="w-full h-full py-3 lg:py-1 text-[12px] text-(--color-primary-text) bg-(--color-bg-card-btn) leading-5 rounded-[10px] cursor-pointer">افزودن
@@ -538,11 +529,11 @@
                     </div>
                 </div>
 
-                <div class="flex flex-row items-stretch justify-start overflow-x-scroll gap-5 p-5" id="relatedProducts"
+                <div class="flex flex-row items-stretch justify-start overflow-x-scroll gap-4 p-5" id="relatedProducts"
                     style="scrollbar-width: thin; scrollbar-color: var(--color-primary) var(--color-primary-text);">
                     @foreach ($products as $product)
                         <div
-                            class="p-2 md:p-3 lg:p-4 xl:p-5 border border-(--color-border) rounded-[10px] relative productItem">
+                            class="p-2 min-w-55 border border-(--color-border) rounded-[10px] relative flex flex-col justify-between productItem">
                             <div
                                 class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-555 overflow-hidden">
 
@@ -623,13 +614,15 @@
                                         alt="product">
                                 </a>
                             </div>
-                            <div class="mb-2 font-semibold text-[14px] lg:text-base">
-                                <a href="http://localhost/shahkar/public/product/show/{{ $product->id }}"
-                                    class="text-[12px] lg:text-[14px] text-(--color-text)">{{ $product->title }}</a>
-                            </div>
-                            <div class="mb-1">
-                                <a
-                                    href="http://localhost/shahkar/public/product/show/{{ $product->id }}">{{ $product->description }}</a>
+                            <div class="flex flex-col">
+                                <div class="mb-2 font-semibold text-[14px] lg:text-base">
+                                    <a href="http://localhost/shahkar/public/product/show/{{ $product->id }}"
+                                        class="text-[12px] lg:text-[14px] text-(--color-text)">{{ $product->title }}</a>
+                                </div>
+                                <div class="mb-1">
+                                    <a
+                                        href="http://localhost/shahkar/public/product/show/{{ $product->id }}">{{ $product->description }}</a>
+                                </div>
                             </div>
                             <div class="flex flex-row items-center mb-3 gap-3">
                                 <div class="lg:w-1/2 flex flex-row items-center text-[12px]">
@@ -669,26 +662,19 @@
                                     </span>
                                 </div> --}}
                             </div>
-                            <div
-                                class="hidden lg:flex flex-row items-center gap-2 text-(--color-text) mb-3 text-[18px] font-bold">
-                                <span class="font-bold text-lg">{{ $product->price['price'] }}</span>
-                                <span class="text-sm">تومان</span>
-                            </div>
-                            <div class="flex lg:hidden flex-row items-start gap-2 text-(--color-text) mb-3 font-bold">
-                                <span class="font-bold text-lg">{{ $product->price['price'] }}</span>
-                                <span class="text-sm">تومان</span>
+                            <div class="">
+                                <div
+                                    class="hidden lg:flex flex-row items-center gap-2 text-(--color-text) mb-3 text-[18px] font-bold">
+                                    <span class="font-bold text-lg">{{ $product->price['price'] }}</span>
+                                    <span class="text-sm">تومان</span>
+                                </div>
+                                <div class="flex lg:hidden flex-row items-start gap-2 text-(--color-text) mb-3 font-bold">
+                                    <span class="font-bold text-lg">{{ $product->price['price'] }}</span>
+                                    <span class="text-sm">تومان</span>
+                                </div>
                             </div>
                             <div class="flex flex-col lg:flex-row gap-2 lg:gap-4">
-                                <div
-                                    class="w-full lg:w-1/2 flex flex-row justify-between items-center border border-(--color-border) rounded-[10px] p-1">
-                                    <button
-                                        class="bg-(--color-primary-btn) rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">-</button>
-                                    <input type="text" class="w-[30px] outline-none text-center text-xs"
-                                        value="1" min="0" name="" id="">
-                                    <button
-                                        class="bg-(--color-primary-btn) rounded-[10px] size-9 lg:size-[27px] flex items-center justify-center cursor-pointer">+</button>
-                                </div>
-                                <div class="w-full lg:w-1/2">
+                                <div class="w-full h-12">
                                     <button
                                         onclick="addToShoppingCart('{{ $product->id }}', '{{ $product->title }}', '{{ $product->description }}', '{{ $product['img'] }}', '{{ $product->price['price'] }}')"
                                         class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-(--color-primary-text) bg-(--color-bg-card-btn) leading-5 rounded-[10px] cursor-pointer">افزودن
