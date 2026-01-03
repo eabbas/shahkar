@@ -333,7 +333,7 @@
                                     <span class="text-(--color-text) font-light text-sm">مبلغ
                                         قابل پرداخت</span>
                                     <span>
-                                        <span class="font-bold text-lg">40000000</span>
+                                        <span id="shoppingCartTotalPrice" class="font-bold text-lg"></span>
                                         <span class="text-sm">تومان</span>
                                     </span>
                                 </div>
@@ -420,37 +420,18 @@
                                         class="absolute w-full h-[1.5px] bg-(--color-text) -rotate-45 rounded-full"></span>
                                 </button>
                             </div>
-                            <span>1</span>
+                            <span id="mobileShoppingCartProductCount"></span>
                             <span>کالا</span>
                         </div>
 
-                        <div class="max-h-80 overflow-y-auto my-8" id="shoppingCartProducts">
-                            {{-- <a href="#">
-                                    <div class="w-full flex gap-3 mb-10">
-                                        <div class="w-1/3">
-                                            <img src="{{ asset('storage/images/6d170732-57e2-44e3-997b-a5ad762330aa_Parse2.jpg') }}"
-                                                class="size-full" alt="">
-                                        </div>
-                                        <div class="flex flex-col gap-2 w-2/3">
-                                            <span class="font-bold text-(--color-text)">محصول دوزایش</span>
-                                            <span class="text-sm font-light text-(--color-secondary-text)">بو محصول فرق
-                                                الی
-                                                بتی بیزاد دی حتما آلون</span>
-                                            <span class="text-sm font-light text-(--color-secondary-text)">
-                                                <span>4000000</span>
-                                                <span>تومان</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a> --}}
-                        </div>
+                        <div class="max-h-80 overflow-y-auto my-8" id="mobileShoppingCartProducts"></div>
 
                         <div class="flex justify-between items-center">
                             <div class="flex flex-col gap-2">
                                 <span class="text-(--color-text) font-light text-sm">مبلغ
                                     قابل پرداخت</span>
                                 <span>
-                                    <span class="font-bold text-lg">40000000</span>
+                                    <span id="mobileShoppingCartTotalPrice" class="font-bold text-lg"></span>
                                     <span class="text-sm">تومان</span>
                                 </span>
                             </div>
