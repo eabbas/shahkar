@@ -173,4 +173,25 @@ class userController extends Controller
         }
         return response()->json($data);
     }
+
+    public function forgetPassword()
+    {
+        return view('user.user.forgetPassword');
+    }
+
+    public function setPassword(Request $request)
+    {
+        // dd($request->all());
+        $user = User::where('phoneNumber', $request->phoneNumber)->first();
+        // dd($user);
+        return view('user.user.setPassword', ['user' => $user]);
+    }
+
+    public function savePassword(Request $request)
+    {
+        $user = User::find($request->user_id);
+        $user->password = $request->password;
+        $user->save();
+        return to_route('user.login');
+    }
 }
