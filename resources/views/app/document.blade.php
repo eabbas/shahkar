@@ -311,7 +311,7 @@
                         </span>
                         {{-- shopping cart hover box by mr.olyafam --}}
                         <div id="shoppingCartContent"
-                            class="absolute left-4 top-2 w-90 bg-white p-2 border border-(--color-border) mt-10 z-9999 transition-all duration-500 invisible opacity-0">
+                            class="absolute -left-1 top-2 w-90 bg-white p-2 border border-(--color-border) mt-10 z-9999 transition-all duration-500 invisible opacity-0">
                             <div class="text-(--color-text) font-light text-sm">
                                 <div class="relative" onclick="closeCart()">
                                     <button
@@ -326,7 +326,7 @@
                                 <span>کالا</span>
                             </div>
 
-                            <div class="max-h-80 overflow-y-auto my-8" id="shoppingCartProducts"></div>
+                            <div class="max-h-80 overflow-y-auto [&::-webkit-scrollbar]:hidden mt-5" id="shoppingCartProducts"></div>
 
                             <div class="flex justify-between items-center">
                                 <div class="flex flex-col gap-2">
@@ -409,7 +409,7 @@
                     </span>
                     {{-- shopping cart hover box by mr.olyafam --}}
                     <div id="mobileShoppingCartContent"
-                        class="absolute -left-10 top-2 w-90 bg-white p-2 border border-(--color-border) mt-10 z-9999 transition-all duration-500 invisible opacity-0">
+                        class="absolute -left-10 top-2 w-100 bg-white p-2 border border-(--color-border) mt-10 z-9999 transition-all duration-500 invisible opacity-0">
                         <div class="text-(--color-text) font-light text-sm">
                             <div class="relative" onclick="closeCart()">
                                 <button
@@ -424,7 +424,7 @@
                             <span>کالا</span>
                         </div>
 
-                        <div class="max-h-80 overflow-y-auto my-8" id="mobileShoppingCartProducts"></div>
+                        <div class="max-h-80 overflow-y-auto [&::-webkit-scrollbar]:hidden mt-5" id="mobileShoppingCartProducts"></div>
 
                         <div class="flex justify-between items-center">
                             <div class="flex flex-col gap-2">
