@@ -218,19 +218,23 @@ proNumber()
 
 let shoppingCartProducts = document.getElementById('shoppingCartProducts');
 let mobileShoppingCartProducts = document.getElementById('mobileShoppingCartProducts');
+let i = 1
+let array = []
+let count = 0
+let totalPrice = 0
 function getCookies() {
     shoppingCartProducts.innerHTML = '';
     mobileShoppingCartProducts.innerHTML = '';
     let allCookies = document.cookie;
-    let i = 1
-    let count = 0
-    let totalPrice = 0
+    i = 1
+    count = 0
+    totalPrice = 0
     let finalCountOfArray = 0
     allCookies.split(';').forEach((cookie) => {
         if (cookie.indexOf('shahkarProduct') !== -1) {
             let div = document.createElement('div')
             count++
-            let array = []
+            array = []
             cookie.split('&&').forEach((part) => {
                 part.trim().split('=').forEach((info, index) => {
                     if (index == 0) key = info;
@@ -239,20 +243,13 @@ function getCookies() {
                         finalCountOfArray++
                         if (finalCountOfArray == 5) {
                             let element = `
-                                <div class="relative mb-10">
+                                <div class="relative mb-5 w-full h-25 border-b border-(--color-border) pb-5">
                                         <input type="hidden" value="${array['shahkarProduct' + i + 'id']}">
-                                        <div class="cursor-pointer" onclick="removeProductFromShoppingCart(this,${array['shahkarProduct' + i + 'id']})">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                                                class="size-4.5 absolute left-1 top-1">
-                                                <path fill="var(--color-fill)"
-                                                    d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z" />
-                                            </svg>
-                                        </div>
-                                        <div class="w-full flex gap-3">
-                                            <div class="w-1/3 h-20">
+                                        <div class="size-full flex gap-2">
+                                            <div class="w-1/3 h-full">
                                                 <img src="${array['shahkarProduct' + i + 'image']}" class="size-full" alt="">
                                             </div>
-                                            <div class="flex flex-col gap-2 w-2/3">
+                                            <div class="flex flex-col gap-2 w-2/3 h-full">
                                                 <span class="font-bold text-(--color-text)">${array['shahkarProduct' + i + 'title']}</span>
                                                 <span class="text-sm font-light text-(--color-secondary-text)">${array['shahkarProduct' + i + 'description']}</span>
                                                 <span class="text-sm font-light text-(--color-secondary-text)">
@@ -261,9 +258,23 @@ function getCookies() {
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="absolute left-1 bottom-0 text-[10px] font-light text-(--color-secondary-text)">
-                                            <span>تعداد:</span>
-                                            <span>1</span>
+                                        <div class="absolute left-0 bottom-3 font-light text-(--color-secondary-text)">
+                                            <div
+                                                class="w-18 flex flex-row justify-between items-center border border-(--color-border) rounded-md p-0.5">
+                                                <button class="rounded-md w-5 h-7 flex items-center justify-center cursor-pointer" onclick="changeProductCount(this, 'minus')">
+                                                    <div class="cursor-pointer" onclick="removeProductFromShoppingCart(this,${array['shahkarProduct' + i + 'id']})">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                                            class="size-full">
+                                                            <path fill="var(--color-fill)"
+                                                                d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z" />
+                                                        </svg>
+                                                    </div>
+                                                </button>
+                                                <input type="number" class="w-7 outline-none text-center"
+                                                    value="1" min="0" name="" id="">
+                                                <button
+                                                    class="bg-(--color-primary-btn) rounded-md w-5 h-7 flex items-center justify-center cursor-pointer" onclick="changeProductCount(this, 'plus')">+</button>
+                                            </div>
                                         </div>
                                 </div>
                                 `
@@ -307,6 +318,43 @@ function closeCart() {
 function removeProductFromShoppingCart(el, id) {
     console.log(id);
     console.log(el.parentElement);
+}
+
+function changeProductCount(el, state) {
+    if (state == "plus") {
+        count++
+        document.getElementById('shoppingCartProductCount').innerHTML = count
+        document.getElementById('mobileShoppingCartProductCount').innerHTML = count
+        document.getElementById('shoppingCartTotalPrice').innerHTML = totalPrice
+        document.getElementById('mobileShoppingCartTotalPrice').innerHTML = totalPrice
+        el.parentElement.children[1].value++
+        if (el.parentElement.children[1].value > 1) {
+            el.parentElement.children[0].classList.add('bg-(--color-primary-btn)')
+            el.parentElement.children[0].innerHTML = '-'
+        }
+    }
+    if (state == "minus") {
+        count--
+        document.getElementById('shoppingCartProductCount').innerHTML = count
+        document.getElementById('mobileShoppingCartProductCount').innerHTML = count
+        document.getElementById('shoppingCartTotalPrice').innerHTML = totalPrice
+        document.getElementById('mobileShoppingCartTotalPrice').innerHTML = totalPrice
+        if (el.parentElement.children[1].value > 1) {
+            el.parentElement.children[1].value--
+        }
+        if (el.parentElement.children[1].value == 1) {
+            el.parentElement.children[0].classList.remove('bg-(--color-primary-btn)')
+            el.parentElement.children[0].innerHTML = `
+                                                    <div class="cursor-pointer" onclick="removeProductFromShoppingCart(this,${array['shahkarProduct' + i + 'id']})">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                                            class="size-full">
+                                                            <path fill="var(--color-fill)"
+                                                                d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z" />
+                                                        </svg>
+                                                    </div>
+            `
+        }
+    }
 }
 
 //! related products to per category by mr.olyafam
