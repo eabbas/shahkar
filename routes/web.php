@@ -90,6 +90,9 @@ Route::group([
     Route::get('/courses/{user}', 'courses')->middleware(checklogin::class)->name('courses');
     Route::post('/sendSMS', 'send_code')->name('sendSMS');
     Route::post('/checkAuth', 'checkAuth')->name('checkAuth');
+    Route::post('/setPassword', 'setPassword')->name('setPassword');
+    Route::post('/savePassword', 'savePassword')->name('savePassword');
+    Route::get('/forgetPassword', 'forgetPassword')->name('forgetPassword');
 });
 // comments routes
 Route::group([
