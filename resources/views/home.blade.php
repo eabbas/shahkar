@@ -15,7 +15,7 @@
                 <p class="w-fit mb-6">{{ $bigTile['text'] }}</p>
                 <div class="flex flex-row justify-start items-center gap-5">
                     <a href="{{ $bigTile['btn1_href'] }}"
-                        class="bg-(--color-subheader-btn) text-sm lg:text-base rounded-[10px] py-2 px-5 text-(--color-primary-text) font-semibold transition-all duration-500 ease-in-out hover:bg-(--color-bg-hover-btn)">{{ $bigTile['btn1_content'] }}</a>
+                        class="bg-(--color-subheader-btn) text-sm lg:text-base rounded-[10px] py-2 px-5 text-(--color-primary-text) font-bold transition-all duration-500 ease-in-out hover:bg-(--color-bg-hover-btn)">{{ $bigTile['btn1_content'] }}</a>
                     <a href="{{ $bigTile['btn2_href'] }}"
                         class="py-1 leading-6 text-sm lg:text-base transition-all duration-[0.25s] ease-in-out hover:-translate-y-0.5">{{ $bigTile['btn2_content'] }}</a>
                 </div>
@@ -33,7 +33,7 @@
                         </h2>
                         <div class="flex">
                             <a href="{{ $tileBanner->link_href }}"
-                                class="bg-(--color-subheader-btn) rounded-[10px] text-sm lg:text-base py-2 px-5 text-(--color-primary-text) font-semibold transition-all duration-500 ease-in-out hover:bg-(--color-bg-hover-btn) flex items-center gap-2 buttonLink">
+                                class="bg-(--color-subheader-btn) rounded-[10px] text-sm lg:text-base py-2 px-5 text-(--color-primary-text) font-bold transition-all duration-500 ease-in-out hover:bg-(--color-bg-hover-btn) flex items-center gap-2 buttonLink">
                                 <span>{{ $tileBanner->link_content }}</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-2.5 h-5" viewBox="0 0 320 512">
                                     <path fill="white"
@@ -95,7 +95,7 @@
         @if ($specialDiscounts->isNotEmpty())
             <div class="flex flex-col lg:flex-row justify-between gap-8 lg:gap-0 lg:items-center py-5 lg:py-10">
                 <h2 class="font-bold lg:text-[24px] leading-8">تخفیفات ویژه</h2>
-                {{-- <div class="flex flex-row flex-wrap lg:justify-end items-center text-xs lg:text-base gap-5 font-semibold">
+                {{-- <div class="flex flex-row flex-wrap lg:justify-end items-center text-xs lg:text-base gap-5 font-bold">
                 <a href="#" class="text-(--color-text)">
                     همه دسته ها
                 </a>
@@ -206,7 +206,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="mb-2 font-semibold text-[14px] lg:text-base">
+                        <div class="mb-2 font-bold text-[14px] lg:text-base">
                             <a href="#">توضیحات محصول تستی محصول تستی محصول </a>
                         </div>
                         <div class="flex flex-row items-center mb-3 gap-2">
@@ -358,7 +358,7 @@
                             </a>
                         </div>
                         <div>
-                            <div class="mb-2 font-semibold text-[14px] lg:text-base">
+                            <div class="mb-2 font-bold text-[14px] lg:text-base">
                                 <a href="{{ route('product-show', [$specialDiscountProduct]) }}"
                                     class="text-[12px] lg:text-[14px] text-(--color-text)">{{ $specialDiscountProduct->title }}</a>
                             </div>
@@ -443,14 +443,14 @@
                     </div>
                     <div class="lg:w-7/12 p-2.5">
                         <div class="mb-1">
-                            <h2 class="text-lg font-semibold leading-8">
+                            <h2 class="text-lg font-bold leading-8">
                                 {{ $banner->title }}
                             </h2>
                         </div>
                         <div>
                             <a href="{{ $banner->link_href }}"
                                 class="flex flex-row items-center gap-2 transitin-all duration-[.25s] hover:-translate-y-0.5">
-                                <span class="leading-10 text-sm font-semibold">{{ $banner->link_content }}</span>
+                                <span class="leading-10 text-sm font-bold">{{ $banner->link_content }}</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
                                     <path fill="var(--color-fill)"
                                         d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z" />
@@ -478,7 +478,7 @@
                     </h2>
                     <div class="flex mt-3">
                         <a href="{{ $bigBanner->link_href }}"
-                            class="flex flex-row items-center gap-2 bg-(--color-primary) rounded-[10px] py-2 px-5 text-(--color-primary-text) font-semibold">
+                            class="flex flex-row items-center gap-2 bg-(--color-primary) rounded-[10px] py-2 px-5 text-(--color-primary-text) font-bold">
                             <span>{{ $bigBanner->link_content }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
                                 <path fill="#fff"
@@ -615,7 +615,7 @@
                                 </a>
                             </div>
                             <div class="flex flex-col">
-                                <div class="mb-2 font-semibold text-[14px] lg:text-base">
+                                <div class="mb-2 font-bold text-[14px] lg:text-base">
                                     <a href="http://localhost/shahkar/public/product/show/{{ $product->id }}"
                                         class="text-[12px] lg:text-[14px] text-(--color-text)">{{ $product->title }}</a>
                                 </div>
