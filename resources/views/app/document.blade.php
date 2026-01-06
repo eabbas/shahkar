@@ -101,7 +101,7 @@
                 <ul class="w-6/12 hidden 2xl:flex flex-row justify-start items-center gap-4 text-(--color-text)">
                     <li class="menuItemParent">
                         <a href="{{ route('category-index') }}"
-                            class="font-semibold text-sm flex flex-row items-center gap-1 transition-all duration-300 py-4 menuLink">
+                            class="font-bold text-sm flex flex-row items-center gap-1 transition-all duration-300 py-4 menuLink">
                             <span>
                                 دسته بندی
                             </span>
@@ -153,7 +153,7 @@
                     </li>
                     <li class="relative menuItemParent">
                         <a href="{{ route('course.list') }}"
-                            class="text-(--color-text) font-semibold text-sm flex flex-row items-center gap-1 transition-all duration-300 py-4 menuLink">
+                            class="text-(--color-text) font-bold text-sm flex flex-row items-center gap-1 transition-all duration-300 py-4 menuLink">
                             <span>
                                 دوره ها
                             </span>
@@ -170,7 +170,7 @@
                                 @foreach ($courses as $course)
                                     <li>
                                         <a href="{{ route('course.show', [$course]) }}"
-                                            class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">{{ $course['title'] }}</a>
+                                            class="block py-2.5 text-sm font-bold transition-all duration-300 hover:text-(--color-primary)">{{ $course['title'] }}</a>
                                     </li>
                                 @endforeach
                             </ul>
@@ -178,7 +178,7 @@
                     </li>
                     <li class="relative menuItemParent">
                         <a href="{{ route('product-index') }}"
-                            class="text-(--color-text) font-semibold text-sm flex flex-row items-center gap-1 transition-all duration-300 py-4 menuLink">
+                            class="text-(--color-text) font-bold text-sm flex flex-row items-center gap-1 transition-all duration-300 py-4 menuLink">
                             <span>
                                 محصولات
                             </span>
@@ -191,7 +191,7 @@
                             class="absolute min-w-[250px] py-4 px-6 border border-(--color-border) bg-white top-full opacity-0 mt-8 right-0 invisible z-9999 transition-all duration-500 menuItemChild">
                             <li>
                                 <a href=""
-                                    class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)"></a>
+                                    class="block py-2.5 text-sm font-bold transition-all duration-300 hover:text-(--color-primary)"></a>
                             </li>
                         </ul> --}}
                     </li>
@@ -199,7 +199,7 @@
                         @if ($menuItem['active'] && $menuItem['parent_id'] == 0)
                             <li class="relative menuItemParent">
                                 <a href="{{ $menuItem['link'] }}"
-                                    class="text-(--color-text) font-semibold text-sm flex flex-row items-center gap-1 transition-all duration-300 py-4 menuLink">
+                                    class="text-(--color-text) font-bold text-sm flex flex-row items-center gap-1 transition-all duration-300 py-4 menuLink">
                                     <span>
                                         {{ $menuItem['title'] }}
                                     </span>
@@ -217,7 +217,7 @@
                                             @if ($child['active'])
                                                 <li>
                                                     <a href="{{ $child['link'] }}"
-                                                        class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">{{ $child['title'] }}</a>
+                                                        class="block py-2.5 text-sm font-bold transition-all duration-300 hover:text-(--color-primary)">{{ $child['title'] }}</a>
                                                 </li>
                                             @endif
                                         @endforeach
@@ -228,12 +228,12 @@
                     @endforeach --}}
                     <li>
                         <a href="{{ route('aboutus-index') }}"
-                            class="text-(--color-text) font-semibold text-sm gap-1 transition-all duration-300 py-4 menuLink">درباره
+                            class="text-(--color-text) font-bold text-sm gap-1 transition-all duration-300 py-4 menuLink">درباره
                             ما</a>
                     </li>
                     <li>
                         <a href="{{ route('contactus-create') }}"
-                            class="text-(--color-text) font-semibold text-sm gap-1 transition-all duration-300 py-4 menuLink">تماس
+                            class="text-(--color-text) font-bold text-sm gap-1 transition-all duration-300 py-4 menuLink">تماس
                             با ما</a>
                     </li>
                 </ul>
@@ -256,7 +256,7 @@
                                 <ul class="text-(--color-text)">
                                     <li class="flex justify-between items-center">
                                         <a href="{{ route('user.profile', [$user]) }}"
-                                            class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">{{ $user['name'] }}
+                                            class="block py-2.5 text-sm font-bold transition-all duration-300 hover:text-(--color-primary)">{{ $user['name'] }}
                                             {{ $user['family'] }}</a>
                                         <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 320 512">
                                             <path fill="var(--color-fill)"
@@ -265,13 +265,13 @@
                                         </svg>
                                     </li>
                                     <li><a href="{{ route('user.edit', [$user]) }}"
-                                            class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">ویرایش
+                                            class="block py-2.5 text-sm font-bold transition-all duration-300 hover:text-(--color-primary)">ویرایش
                                             پروفایل</a></li>
                                     <li><a href="{{ route('user.logout') }}"
-                                            class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">خروج
+                                            class="block py-2.5 text-sm font-bold transition-all duration-300 hover:text-(--color-primary)">خروج
                                             از حساب کاربری</a></li>
                                     <li><a href="#"
-                                            class="block py-2.5 text-sm font-semibold transition-all duration-300 hover:text-(--color-primary)">دیدگاه
+                                            class="block py-2.5 text-sm font-bold transition-all duration-300 hover:text-(--color-primary)">دیدگاه
                                             ها و پرسش ها</a></li>
                                 </ul>
                             </div>
@@ -339,7 +339,7 @@
                                 </div>
                                 <div>
                                     <a href="#"
-                                        class="bg-(--color-subheader-btn) rounded-[10px] text-base py-2 px-5 text-(--color-primary-text) font-semibold transition-all duration-500 ease-in-out hover:bg-(--color-bg-hover-btn) buttonLink">
+                                        class="bg-(--color-subheader-btn) rounded-[10px] text-base py-2 px-5 text-(--color-primary-text) font-bold transition-all duration-500 ease-in-out hover:bg-(--color-bg-hover-btn) buttonLink">
                                         <span>ثبت سفارش</span>
                                     </a>
                                 </div>
@@ -437,7 +437,7 @@
                             </div>
                             <div>
                                 <a href="#"
-                                    class="bg-(--color-subheader-btn) rounded-[10px] text-base py-2 px-5 text-(--color-primary-text) font-semibold transition-all duration-500 ease-in-out hover:bg-(--color-bg-hover-btn) buttonLink">
+                                    class="bg-(--color-subheader-btn) rounded-[10px] text-base py-2 px-5 text-(--color-primary-text) font-bold transition-all duration-500 ease-in-out hover:bg-(--color-bg-hover-btn) buttonLink">
                                     <span>ثبت سفارش</span>
                                 </a>
                             </div>
@@ -489,7 +489,7 @@
                         <div
                             class="flex flex-row justify-between items-center gap-1 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
                             <a href="{{ route('category-index') }}"
-                                class="inline-block w-11/12 text-(--color-text) font-semibold py-3 ">
+                                class="inline-block w-11/12 text-(--color-text) font-bold py-3 ">
                                 دسته بندی
                             </a>
                             @if ($categories->isNotEmpty())
@@ -545,7 +545,7 @@
                         <div
                             class="flex flex-row justify-between items-center gap-1 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
                             <a href="{{ route('course.list') }}"
-                                class="inline-block w-11/12 text-(--color-text) font-semibold py-3 ">
+                                class="inline-block w-11/12 text-(--color-text) font-bold py-3 ">
                                 دوره ها
                             </a>
                             @if ($courses->isNotEmpty())
@@ -563,7 +563,7 @@
                                 @foreach ($courses as $course)
                                     <li>
                                         <a href="{{ route('course.show', [$course]) }}"
-                                            class="inline-block w-full text-(--color-text) font-semibold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
+                                            class="inline-block w-full text-(--color-text) font-bold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
                                             {{ $course['title'] }}
                                         </a>
                                     </li>
@@ -575,7 +575,7 @@
                         <div
                             class="flex flex-row justify-between items-center gap-1 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
                             <a href="{{ route('product-index') }}"
-                                class="inline-block w-11/12 text-(--color-text) font-semibold py-3 ">
+                                class="inline-block w-11/12 text-(--color-text) font-bold py-3 ">
                                 محصولات
                             </a>
                             {{-- <div class="w-1/12 flex items-center justify-end subMenuActive">
@@ -589,25 +589,25 @@
                         {{-- <ul class="w-full max-h-0 overflow-hidden transition-all duration-500 pr-5 mt-2 subItem">
                             <li>
                                 <a href="#"
-                                    class="inline-block w-full text-(--color-text) font-semibold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
+                                    class="inline-block w-full text-(--color-text) font-bold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
                                     asiodfhkjaldshf
                                 </a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="inline-block w-full text-(--color-text) font-semibold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
+                                    class="inline-block w-full text-(--color-text) font-bold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
                                     asiodfhkjaldshf
                                 </a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="inline-block w-full text-(--color-text) font-semibold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
+                                    class="inline-block w-full text-(--color-text) font-bold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
                                     asiodfhkjaldshf
                                 </a>
                             </li>
                             <li>
                                 <a href="#"
-                                    class="inline-block w-full text-(--color-text) font-semibold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
+                                    class="inline-block w-full text-(--color-text) font-bold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover)">
                                     asiodfhkjaldshf
                                 </a>
                             </li>
@@ -615,13 +615,13 @@
                     </li>
                     <li class="my-1">
                         <a href="{{ route('aboutus-index') }}"
-                            class="inline-block w-full text-(--color-text) font-semibold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover) ">
+                            class="inline-block w-full text-(--color-text) font-bold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover) ">
                             درباره ما
                         </a>
                     </li>
                     <li class="my-1">
                         <a href="{{ route('contactus-create') }}"
-                            class="inline-block w-full text-(--color-text) font-semibold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover) ">
+                            class="inline-block w-full text-(--color-text) font-bold py-3 transition-all duration-300 px-3 rounded-lg hover:bg-(--color-primary-btn-hover) ">
                             تماس با ما
                         </a>
                     </li>
