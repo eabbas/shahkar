@@ -9,6 +9,6 @@ class contactUs extends Model
     protected $fillable = ['user_id', 'name', 'family', 'email', 'phoneNum', 'description'];
     public function user()
     {
-        return $this->belongsTo(user::class);
+        return $this->belongsTo(User::class);
     }
 }

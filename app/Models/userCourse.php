@@ -8,21 +8,25 @@ use App\Models\course;
 
 class userCourse extends Model
 {
-    protected $fillable=['title',
-    'user_id',
-    'course_id',
-    'progress',
-    'status'];
-    public function comments(){
-          return $this->hasMany(comment::class)->chaperOne();
+    protected $fillable = [
+        'title',
+        'user_id',
+        'course_id',
+        'progress',
+        'status'
+    ];
+    public function comments()
+    {
+        return $this->hasMany(comment::class)->chaperOne();
     }
 
-    public function user(){
-        return $this -> belongsTo(user::class);
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
-    public function course(){
-        return $this -> belongsTo(course::class);
+    public function course()
+    {
+        return $this->belongsTo(course::class);
     }
-   
 }
