@@ -24,7 +24,11 @@ class HomeFormsController extends Controller
     }
     public function edit(homeForms $homeForms)
     {
-        return view('admin.homeForm.edit', ['homeForms' => $homeForms]);
+        $logo = logo::first();
+        return view('admin.homeForm.edit', [
+            'homeForms' => $homeForms,
+            'logo' => $logo
+        ]);
     }
     public function update(Request $request)
     {

@@ -65,7 +65,7 @@ class BannersController extends Controller
     public function upsert(Request $request)
     {
         if (array_key_exists('logo', $request->all())) {
-            $logo = logo::first();
+            $logo = logo::all();
             if (count($logo) == 1) {
                 $this->updateLogo($request);
             } else {
@@ -74,8 +74,7 @@ class BannersController extends Controller
             return redirect()->back();
         }
         if (array_key_exists('footerTile', $request->all())) {
-            $footerTile = footerTile::first();
-
+            $footerTile = footerTile::all();
             if (count($footerTile) == 1) {
                 $this->updateFooterTile($request);
             } else {
@@ -84,7 +83,7 @@ class BannersController extends Controller
             return redirect()->back();
         }
         if (array_key_exists('bigTile', $request->all())) {
-            $bigTile = bigTile::first();
+            $bigTile = bigTile::all();
             if (count($bigTile) == 1) {
                 $this->updateBigTile($request);
             } else {
@@ -102,8 +101,7 @@ class BannersController extends Controller
             return redirect()->back();
         }
         if ($request->sectionName == 'bigBanner') {
-            $bigBanner = banners::where('sectionName', 'bigBanner')->first();
-
+            $bigBanner = banners::where('sectionName', 'bigBanner')->get();
             if (count($bigBanner) == 1) {
                 $this->updateBigBanner($request);
             } else {
