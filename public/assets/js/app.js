@@ -112,11 +112,11 @@ function removeDiv(el) {
 let arrowDowns = document.querySelectorAll(".arrow-down");
 arrowDowns.forEach((arrowDown) => {
    arrowDown.addEventListener('click', () => {
-      arrowDown.classList.toggle('rotate-180')
-      arrowDown.parentElement.nextElementSibling.classList.toggle('max-h-100')
-      arrowDown.parentElement.nextElementSibling.classList.toggle('overflow-y-auto')
-      arrowDown.parentElement.nextElementSibling.classList.toggle('invisible')
-      arrowDown.parentElement.nextElementSibling.classList.toggle('opacity-0')
+      arrowDown.children[0].classList.toggle('rotate-180')
+      arrowDown.nextElementSibling.classList.toggle('max-h-100')
+      arrowDown.nextElementSibling.classList.toggle('overflow-y-auto')
+      arrowDown.nextElementSibling.classList.toggle('invisible')
+      arrowDown.nextElementSibling.classList.toggle('opacity-0')
    })
 })
 

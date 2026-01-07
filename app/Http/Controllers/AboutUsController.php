@@ -11,9 +11,26 @@ use App\Models\logo;
 use App\Models\course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use DB;
 
 class AboutUsController extends Controller
 {
+    public function getProductMedias($products)
+    {
+        foreach ($products as $product) {
+            $product->load(['medias' => function ($query) {
+                $query->select('product_id', DB::raw("IFNULL(path , 'images/noImage.png') path"))->where('is_main', 1);
+            }]);
+            foreach ($product->medias as $media) {
+                $product['img'] = asset('storage/images/noImage.png');
+                if (Storage::disk('public')->exists($media['path'])) {
+                    $product['img'] = asset('storage/' . $media['path']);
+                }
+            }
+        }
+        return $products;
+    }
     public function create()
     {
         $aboutus = aboutUs::all();
@@ -50,6 +67,7 @@ class AboutUsController extends Controller
     {
         $courses = course::all();
         $products = product::all();
+        $products = $this->getProductMedias($products);
         $settings = settings::all();
         $cats = category::all();
         $logo = logo::first();
