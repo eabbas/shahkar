@@ -17,9 +17,25 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use DB;
 
 class ProductController extends Controller
 {
+    public function getProductMedias($products)
+    {
+        foreach ($products as $product) {
+            $product->load(['medias' => function ($query) {
+                $query->select('product_id', DB::raw("IFNULL(path , 'images/noImage.png') path"))->where('is_main', 1);
+            }]);
+            foreach ($product->medias as $media) {
+                $product['img'] = asset('storage/images/noImage.png');
+                if (Storage::disk('public')->exists($media['path'])) {
+                    $product['img'] = asset('storage/' . $media['path']);
+                }
+            }
+        }
+        return $products;
+    }
     public function create()
     {
         $settings = settings::all();
@@ -89,6 +105,7 @@ class ProductController extends Controller
         $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
         $user = Auth::user();
         $products = product::with('category')->get();
+        $products = $this->getProductMedias($products);
         return view('user.product.index', [
             'courses' => $courses,
             'settings' => $settings,
@@ -104,6 +121,7 @@ class ProductController extends Controller
     public function adminIndex()
     {
         $products = product::with('category')->get();
+        $products = $this->getProductMedias($products);
         $logo = logo::first();
         return view('admin.product.index', [
             'products' => $products,
@@ -115,6 +133,7 @@ class ProductController extends Controller
     {
         $courses = course::all();
         $products = product::all();
+        $products = $this->getProductMedias($products);
         $campare = $product->price->price - $product->price->discount;
         $x = $campare / $product->price->price;
         $persent = $x * 100;

@@ -10,9 +10,26 @@ use App\Models\product;
 use Illuminate\Http\Request;
 use App\Models\settings;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use DB;
 
 class CategoryController extends Controller
 {
+    public function getProductMedias($products)
+    {
+        foreach ($products as $product) {
+            $product->load(['medias' => function ($query) {
+                $query->select('product_id', DB::raw("IFNULL(path , 'images/noImage.png') path"))->where('is_main', 1);
+            }]);
+            foreach ($product->medias as $media) {
+                $product['img'] = asset('storage/images/noImage.png');
+                if (Storage::disk('public')->exists($media['path'])) {
+                    $product['img'] = asset('storage/' . $media['path']);
+                }
+            }
+        }
+        return $products;
+    }
     public function create()
     {
         $categories = category::select('id', 'title')->get();
@@ -59,6 +76,7 @@ class CategoryController extends Controller
     {
         $courses = course::all();
         $products = product::all();
+        $products = $this->getProductMedias($products);
         $settings = settings::all();
         $logo = logo::first();
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
@@ -86,6 +104,7 @@ class CategoryController extends Controller
     {
         $courses = course::all();
         $products = product::all();
+        $products = $this->getProductMedias($products);
         $cats = category::all();
         $settings = settings::all();
         $logo = logo::first();

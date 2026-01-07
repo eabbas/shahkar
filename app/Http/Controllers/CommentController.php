@@ -8,9 +8,26 @@ use App\Models\comment;
 use App\Models\User;
 use App\Models\logo;
 use App\Models\product;
+use Illuminate\Support\Facades\Storage;
+use DB;
 
 class CommentController extends Controller
 {
+    public function getProductMedias($products)
+    {
+        foreach ($products as $product) {
+            $product->load(['medias' => function ($query) {
+                $query->select('product_id', DB::raw("IFNULL(path , 'images/noImage.png') path"))->where('is_main', 1);
+            }]);
+            foreach ($product->medias as $media) {
+                $product['img'] = asset('storage/images/noImage.png');
+                if (Storage::disk('public')->exists($media['path'])) {
+                    $product['img'] = asset('storage/' . $media['path']);
+                }
+            }
+        }
+        return $products;
+    }
     public function store(Request $request)
     {
         if (!Auth::check()) {
@@ -40,6 +57,7 @@ class CommentController extends Controller
     public function edit(comment $comment)
     {
         $products = product::select('id', 'title')->get();
+        $products = $this->getProductMedias($products);
         $users = User::select('id', 'name', 'family')->get();
         $comments = comment::all();
         return view('admin.comment.edit', ['comments' => $comments, 'comment' => $comment, 'products' => $products, 'users' => $users]);

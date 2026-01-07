@@ -73,6 +73,7 @@ class HomeController extends Controller
     {
         $courses = course::all();
         $products = product::where('is_in_home', 1)->get();
+        $products = $this->getProductMedias($products);
         $settings = settings::all();
         $cats = category::all();
         $logo = logo::first();
@@ -94,6 +95,7 @@ class HomeController extends Controller
     {
         $courses = course::all();
         $products = product::where('is_in_home', 1)->get();
+        $products = $this->getProductMedias($products);
         $settings = settings::all();
         $cats = category::all();
         $logo = logo::first();

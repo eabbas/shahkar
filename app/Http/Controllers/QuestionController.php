@@ -8,9 +8,26 @@ use App\Models\User;
 use App\Models\logo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use DB;
 
 class QuestionController extends Controller
 {
+    public function getProductMedias($products)
+    {
+        foreach ($products as $product) {
+            $product->load(['medias' => function ($query) {
+                $query->select('product_id', DB::raw("IFNULL(path , 'images/noImage.png') path"))->where('is_main', 1);
+            }]);
+            foreach ($product->medias as $media) {
+                $product['img'] = asset('storage/images/noImage.png');
+                if (Storage::disk('public')->exists($media['path'])) {
+                    $product['img'] = asset('storage/' . $media['path']);
+                }
+            }
+        }
+        return $products;
+    }
     public function store(Request $request)
     {
         if (!Auth::check()) {
@@ -40,6 +57,7 @@ class QuestionController extends Controller
     public function edit(question $question)
     {
         $products = product::select('id', 'title')->get();
+        $products = $this->getProductMedias($products);
         $users = User::select('id', 'name', 'family')->get();
         return view('admin.question.edit', ['question' => $question, 'products' => $products, 'users' => $users]);
     }

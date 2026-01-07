@@ -12,13 +12,31 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\settings;
+use Illuminate\Support\Facades\Storage;
+use DB;
 
 class ContactUsController extends Controller
 {
+    public function getProductMedias($products)
+    {
+        foreach ($products as $product) {
+            $product->load(['medias' => function ($query) {
+                $query->select('product_id', DB::raw("IFNULL(path , 'images/noImage.png') path"))->where('is_main', 1);
+            }]);
+            foreach ($product->medias as $media) {
+                $product['img'] = asset('storage/images/noImage.png');
+                if (Storage::disk('public')->exists($media['path'])) {
+                    $product['img'] = asset('storage/' . $media['path']);
+                }
+            }
+        }
+        return $products;
+    }
     public function create()
     {
         $courses = course::all();
         $products = product::all();
+        $products = $this->getProductMedias($products);
         $settings = settings::all();
         $user = Auth::user();
         $cats = category::all();
@@ -94,6 +112,7 @@ class ContactUsController extends Controller
     {
         $courses = course::all();
         $products = product::all();
+        $products = $this->getProductMedias($products);
         $settings = settings::all();
         $cats = category::all();
         $logo = logo::first();
