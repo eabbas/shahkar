@@ -441,7 +441,7 @@ function getRelatedProducts(param, section) {
                                 </a>
                             </div>
                             <div class="flex flex-col">
-                                <div class="mb-2 font-semibold text-[14px] lg:text-base">
+                                <div class="mb-2 font-bold text-[14px] lg:text-base">
                                     <a href="http://localhost/shahkar/public/product/show/${id}"
                                         class="text-[12px] lg:text-[14px] text-(--color-text)">${title}</a>
                                 </div>

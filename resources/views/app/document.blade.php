@@ -8,6 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="{{ url('assets/css/style.css') }}" type="text/css">
     <title>@yield('title')</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/IMG_20251225_131334_688.png') }}">
     <style>
         :root {
             <?php
@@ -326,7 +327,8 @@
                                 <span>کالا</span>
                             </div>
 
-                            <div class="max-h-80 overflow-y-auto [&::-webkit-scrollbar]:hidden mt-5" id="shoppingCartProducts"></div>
+                            <div class="max-h-80 overflow-y-auto [&::-webkit-scrollbar]:hidden mt-5"
+                                id="shoppingCartProducts"></div>
 
                             <div class="flex justify-between items-center">
                                 <div class="flex flex-col gap-2">
@@ -424,7 +426,8 @@
                             <span>کالا</span>
                         </div>
 
-                        <div class="max-h-80 overflow-y-auto [&::-webkit-scrollbar]:hidden mt-5" id="mobileShoppingCartProducts"></div>
+                        <div class="max-h-80 overflow-y-auto [&::-webkit-scrollbar]:hidden mt-5"
+                            id="mobileShoppingCartProducts"></div>
 
                         <div class="flex justify-between items-center">
                             <div class="flex flex-col gap-2">
