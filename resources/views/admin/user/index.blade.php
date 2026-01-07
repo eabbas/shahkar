@@ -17,7 +17,7 @@
         <section class="2xl:container mx-auto">
             <div class="w-11/12 mx-auto">
                 <div class="my-10">
-                    <h1 class="lg:text-3xl md:text-2xl text-md font-semibold text-center text-gray-700">لیست کاربران</h1>
+                    <h1 class="lg:text-3xl md:text-2xl text-md font-bold text-center text-gray-700">لیست کاربران</h1>
                 </div>
 
 
@@ -25,7 +25,7 @@
 
                     <div class="w-[890px] xl:w-full mx-auto">
                         <ul
-                            class="grid grid-cols-7 gap-3 md:gap-5 lg:gap-10 text-center text-gray-700 font-semibold xl:text-lg border-b-2 border-gray-400 pb-3 mb-3">
+                            class="grid grid-cols-7 gap-3 md:gap-5 lg:gap-10 text-center text-gray-700 font-bold xl:text-lg border-b-2 border-gray-400 pb-3 mb-3">
 
 
                             <li class="w-full">آیدی</li>

@@ -62,6 +62,7 @@ class SearchController extends Controller
     }
     public function index(category $category)
     {
+        $foundProduct = $this->getProductMedias($category->products);
         $courses = course::all();
         $products = product::all();
         $products = $this->getProductMedias($products);
@@ -72,10 +73,11 @@ class SearchController extends Controller
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
         $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
         return view('relatedProductsToCategory', [
+            'category' => $category,
             'courses' => $courses,
             'products' => $products,
             'settings' => $settings,
-            'category' => $category,
+            'foundProduct' => $foundProduct,
             'user' => $user,
             'categories' => $cats,
             'logo' => $logo,
