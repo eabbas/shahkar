@@ -58,7 +58,7 @@ class User extends Authenticatable
     }
     public function users()
     {
-        return $this->belongsToMany(user::class, 'user_roles');
+        return $this->belongsToMany(User::class, 'user_roles');
     }
     public function userCourses()
     {
@@ -90,6 +90,6 @@ class User extends Authenticatable
     }
     public function Errors()
     {
-        return $this -> hasMany(lessonerror::class);
+        return $this->hasMany(lessonerror::class);
     }
 }
