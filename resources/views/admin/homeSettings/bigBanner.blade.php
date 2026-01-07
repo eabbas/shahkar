@@ -19,30 +19,30 @@
             @csrf
             <input type="hidden" name="sectionName" value="bigBanner">
             <div class="flex flex-col w-full p-6">
-               <input type="hidden" name="bigBanner" value="@if(count($bigBanner)==1){{$bigBanner[0]->id}}@endif">
+               <input type="hidden" name="bigBanner" value="{{$bigBanner->id}}">
                <div class="py-4">
                   <label for="img">تصویر :
                      <span class="text-rose-500">*</span>
                   </label>
-                  <input class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4] w-full" type="file" name="img" id="img" required value="@if(count($bigBanner)==1){{$bigBanner[0]->image}}@endif">
+                  <input class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4] w-full" type="file" name="img" id="img" required value="{{$bigBanner->image}}">
                </div>
                <div class="py-4">
                   <label for="title">عنوان :
                      <span class="text-rose-500">*</span>
                   </label>
-                  <input class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4] w-full" type="text" name="title" id="title" required value="@if(count($bigBanner)==1){{$bigBanner[0]->title}}@endif">
+                  <input class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4] w-full" type="text" name="title" id="title" required value="{{$bigBanner->title}}">
                </div>
                <div class="py-4">
                   <label for="linkContent">محتوای لینک :
                      <span class="text-rose-500">*</span>
                   </label>
-                  <input class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4] w-full" type="text" name="linkContent" id="linkContent" required value="@if(count($bigBanner)==1){{$bigBanner[0]->link_content}}@endif">
+                  <input class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4] w-full" type="text" name="linkContent" id="linkContent" required value="{{$bigBanner->link_content}}">
                </div>
                <div class="py-4">
                   <label for="linkHref">مقصد لینک :
                      <span class="text-rose-500">*</span>
                   </label>
-                  <input class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4] w-full" type="text" name="linkHref" id="linkHref" required value="@if(count($bigBanner)==1){{$bigBanner[0]->link_href}}@endif">
+                  <input class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4] w-full" type="text" name="linkHref" id="linkHref" required value="{{$bigBanner->link_href}}">
                </div>
             </div>
             <div class="pt-8 text-center">

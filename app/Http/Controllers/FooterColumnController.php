@@ -52,7 +52,7 @@ class FooterColumnController extends Controller
     }
     public function footerFormMediaCreate()
     {
-        $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
+        $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->get();
         $logo = logo::first();
         if (count($footer_form_column) == 0) {
             return view('admin.footerColumns.createFooterFormMedia', ['logo' => $logo]);

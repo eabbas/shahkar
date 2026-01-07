@@ -20,19 +20,16 @@
         </div>
         <div class="hidden lg:block lg:w-3/12 bg-[#0D0E12] fixed right-0 top-0 h-dvh px-5">
             <div class="flex justify-center pt-5">
-                @foreach ($logo as $l)
-                    {{-- <a href="{{ $l['link_href'] }}" class="right-0 mr-[15px]"> --}}
-                    <a href="http://localhost/shahkar/public/dashboard" class="right-0 mr-[15px]">
-                        <img src="{{ asset($l['logo']) }}" alt="{{ $l['alt_text'] }}" class="w-40 h-15">
-                    </a>
-                @endforeach
+                <a href="http://shahkar.art/dashboard" class="right-0 mr-[15px]">
+                    <img src="{{ asset($logo['logo']) }}" alt="{{ $logo['alt_text'] }}" class="w-40 h-15">
+                </a>
             </div>
             <hr class="text-[darkslategray] mt-2.5">
             <div class="py-5 h-[80%] overflow-y-auto flex flex-col gap-5" style="scrollbar-width: none;">
                 <div class="border-b border-gray-500">
                     <div class="flex justify-between flex-row-reverse">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="arrow-down size-6 fill-white w-[15px] cursor-pointer rotate-180 transition-all duration-300">
+                            class="arrow-down size-6 fill-white w-[15px] cursor-pointer transition-all duration-300">
                             <path fill-rule="evenodd"
                                 d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                 clip-rule="evenodd" />
@@ -58,14 +55,14 @@
                                 <a href="{{ route('settings.colors.createColor') }}" class=" text-white py-1">تنظیمات
                                     رنگ ها</a>
                             </li>
-                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
+                            {{-- <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
                                 <a href="{{ route('menu-index') }}" class=" text-white py-1">منو</a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
                                 <a href="{{ route('menu-create') }}" class=" text-white py-1">ایجاد منوی جدید</a>
-                            </li>
+                            </li> --}}
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                 <span class="size-1 bg-white rounded-sm"></span>
                                 <a href="{{ route('banners-logo-create') }}" class=" text-white py-1">لوگو</a>
@@ -114,7 +111,7 @@
                 <div class="border-b border-gray-500">
                     <div class="flex justify-between flex-row-reverse">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="arrow-down size-6 fill-white w-[15px] cursor-pointer rotate-180 transition-all duration-300">
+                            class="arrow-down size-6 fill-white w-[15px] cursor-pointer transition-all duration-300">
                             <path fill-rule="evenodd"
                                 d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                 clip-rule="evenodd" />
@@ -151,7 +148,7 @@
                 <div class="border-b border-gray-500">
                     <div class="flex justify-between flex-row-reverse">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="arrow-down size-6 fill-white w-[15px] cursor-pointer rotate-180 transition-all duration-300">
+                            class="arrow-down size-6 fill-white w-[15px] cursor-pointer transition-all duration-300">
                             <path fill-rule="evenodd"
                                 d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                 clip-rule="evenodd" />
@@ -188,7 +185,7 @@
                 <div class="border-b border-gray-500">
                     <div class="flex justify-between flex-row-reverse">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="arrow-down size-6 fill-white w-[15px] cursor-pointer rotate-180 transition-all duration-300">
+                            class="arrow-down size-6 fill-white w-[15px] cursor-pointer transition-all duration-300">
                             <path fill-rule="evenodd"
                                 d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                 clip-rule="evenodd" />
@@ -224,7 +221,7 @@
                 <div class="border-b border-gray-500">
                     <div class="flex justify-between flex-row-reverse">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="arrow-down size-6 fill-white w-[15px] cursor-pointer rotate-180 transition-all duration-300">
+                            class="arrow-down size-6 fill-white w-[15px] cursor-pointer transition-all duration-300">
                             <path fill-rule="evenodd"
                                 d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                 clip-rule="evenodd" />
@@ -263,7 +260,7 @@
                 <div class="border-b border-gray-500">
                     <div class="flex justify-between flex-row-reverse">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="arrow-down size-6 fill-white w-[15px] cursor-pointer rotate-180 transition-all duration-300">
+                            class="arrow-down size-6 fill-white w-[15px] cursor-pointer transition-all duration-300">
                             <path fill-rule="evenodd"
                                 d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                 clip-rule="evenodd" />
@@ -303,7 +300,7 @@
                 <div class="border-b border-gray-500">
                     <div class="flex justify-between flex-row-reverse">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="arrow-down size-6 fill-white w-[15px] cursor-pointer rotate-180 transition-all duration-300">
+                            class="arrow-down size-6 fill-white w-[15px] cursor-pointer transition-all duration-300">
                             <path fill-rule="evenodd"
                                 d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                 clip-rule="evenodd" />
@@ -341,7 +338,7 @@
                 <div class="border-b border-gray-500">
                     <div class="flex justify-between flex-row-reverse">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="arrow-down size-6 fill-white w-[15px] cursor-pointer rotate-180 transition-all duration-300">
+                            class="arrow-down size-6 fill-white w-[15px] cursor-pointer transition-all duration-300">
                             <path fill-rule="evenodd"
                                 d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                 clip-rule="evenodd" />
@@ -390,18 +387,16 @@
                     </button>
                 </div>
                 <div class="flex justify-center pt-5">
-                    @foreach ($logo as $l)
-                        <a href="{{ $l['link_href'] }}" class="right-0 mr-[15px]">
-                            <img src="{{ asset($l['logo']) }}" alt="{{ $l['alt_text'] }}" class="w-40 h-15">
-                        </a>
-                    @endforeach
+                    <a href="http://shahkar.art/dashboard" class="right-0 mr-[15px]">
+                        <img src="{{ asset($logo['logo']) }}" alt="{{ $logo['alt_text'] }}" class="w-40 h-15">
+                    </a>
                 </div>
                 <hr class="text-[darkslategray] mt-2.5">
                 <div class="py-5 h-[80%] overflow-y-auto flex flex-col gap-5" style="scrollbar-width: none;">
                     <div class="border-b border-gray-500">
                         <div class="flex justify-between flex-row-reverse">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="arrow-down size-6 fill-white w-[15px] cursor-pointer rotate-180 transition-all duration-300">
+                                class="arrow-down size-6 fill-white w-[15px] cursor-pointer transition-all duration-300">
                                 <path fill-rule="evenodd"
                                     d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                     clip-rule="evenodd" />
@@ -429,14 +424,14 @@
                                         class=" text-white py-1">تنظیمات
                                         رنگ ها</a>
                                 </li>
-                                <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
+                                {{-- <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                     <span class="size-1 bg-white rounded-sm"></span>
                                     <a href="{{ route('menu-index') }}" class=" text-white py-1">منو</a>
                                 </li>
                                 <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                     <span class="size-1 bg-white rounded-sm"></span>
                                     <a href="{{ route('menu-create') }}" class=" text-white py-1">ایجاد منوی جدید</a>
-                                </li>
+                                </li> --}}
                                 <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5">
                                     <span class="size-1 bg-white rounded-sm"></span>
                                     <a href="{{ route('banners-logo-create') }}" class=" text-white py-1">لوگو</a>
@@ -487,7 +482,7 @@
                     <div class="border-b border-gray-500">
                         <div class="flex justify-between flex-row-reverse">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="arrow-down size-6 fill-white w-[15px] cursor-pointer rotate-180 transition-all duration-300">
+                                class="arrow-down size-6 fill-white w-[15px] cursor-pointer transition-all duration-300">
                                 <path fill-rule="evenodd"
                                     d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                     clip-rule="evenodd" />
@@ -524,7 +519,7 @@
                     <div class="border-b border-gray-500">
                         <div class="flex justify-between flex-row-reverse">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="arrow-down size-6 fill-white w-[15px] cursor-pointer rotate-180 transition-all duration-300">
+                                class="arrow-down size-6 fill-white w-[15px] cursor-pointer transition-all duration-300">
                                 <path fill-rule="evenodd"
                                     d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                     clip-rule="evenodd" />
@@ -561,7 +556,7 @@
                     <div class="border-b border-gray-500">
                         <div class="flex justify-between flex-row-reverse">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="arrow-down size-6 fill-white w-[15px] cursor-pointer rotate-180 transition-all duration-300">
+                                class="arrow-down size-6 fill-white w-[15px] cursor-pointer transition-all duration-300">
                                 <path fill-rule="evenodd"
                                     d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                     clip-rule="evenodd" />
@@ -597,7 +592,7 @@
                     <div class="border-b border-gray-500">
                         <div class="flex justify-between flex-row-reverse">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="arrow-down size-6 fill-white w-[15px] cursor-pointer rotate-180 transition-all duration-300">
+                                class="arrow-down size-6 fill-white w-[15px] cursor-pointer transition-all duration-300">
                                 <path fill-rule="evenodd"
                                     d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                     clip-rule="evenodd" />
@@ -636,7 +631,7 @@
                     <div class="border-b border-gray-500">
                         <div class="flex justify-between flex-row-reverse">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="arrow-down size-6 fill-white w-[15px] cursor-pointer rotate-180 transition-all duration-300">
+                                class="arrow-down size-6 fill-white w-[15px] cursor-pointer transition-all duration-300">
                                 <path fill-rule="evenodd"
                                     d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                     clip-rule="evenodd" />
@@ -676,7 +671,7 @@
                     <div class="border-b border-gray-500">
                         <div class="flex justify-between flex-row-reverse">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="arrow-down size-6 fill-white w-[15px] cursor-pointer rotate-180 transition-all duration-300">
+                                class="arrow-down size-6 fill-white w-[15px] cursor-pointer transition-all duration-300">
                                 <path fill-rule="evenodd"
                                     d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                     clip-rule="evenodd" />
@@ -714,7 +709,7 @@
                     <div class="border-b border-gray-500">
                         <div class="flex justify-between flex-row-reverse">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="arrow-down size-6 fill-white w-[15px] cursor-pointer rotate-180 transition-all duration-300">
+                                class="arrow-down size-6 fill-white w-[15px] cursor-pointer transition-all duration-300">
                                 <path fill-rule="evenodd"
                                     d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                     clip-rule="evenodd" />
