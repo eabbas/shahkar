@@ -411,7 +411,7 @@
                     </span>
                     {{-- shopping cart hover box by mr.olyafam --}}
                     <div id="mobileShoppingCartContent"
-                        class="absolute -left-10 top-2 w-100 bg-white p-2 border border-(--color-border) mt-10 z-9999 transition-all duration-500 invisible opacity-0">
+                        class="absolute -left-16 top-0 w-100 bg-white p-2 border border-(--color-border) mt-10 z-9999 transition-all duration-500 invisible opacity-0">
                         <div class="text-(--color-text) font-light text-sm">
                             <div class="relative" onclick="closeCart()">
                                 <button
