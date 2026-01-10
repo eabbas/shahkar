@@ -8,6 +8,7 @@ use App\Models\coursecategory;
 use App\Models\teacher;
 use App\Models\courselevel;
 use App\Models\coursestatus;
+use App\Models\logo;
 use App\Models\teacher_course;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,7 +20,14 @@ class CourseController extends Controller
         $teachers = teacher::all();
         $levels = courselevel::all();
         $statuses = coursestatus::all();
-        return view("course.create", ['categories' => $categories, 'teachers' => $teachers, 'levels' => $levels, 'statuses' => $statuses]);
+        $logo = logo::first();
+        return view("course.create", [
+            'categories' => $categories,
+            'teachers' => $teachers,
+            'levels' => $levels,
+            'statuses' => $statuses,
+            'logo' => $logo
+        ]);
     }
 
     public function store(Request $request)
@@ -108,7 +116,11 @@ class CourseController extends Controller
     public function index()
     {
         $courses = course::all();
-        return view("course.index", ['courses' => $courses]);
+        $logo = logo::first();
+        return view("course.index", [
+            'courses' => $courses,
+            'logo' => $logo
+        ]);
     }
 
     public function show(course $course)

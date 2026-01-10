@@ -43,7 +43,7 @@
             @foreach ($tileBanners as $tileBanner)
                 <div
                     class="relative before:absolute before:content-[''] before:size-full before:top-0 before:right-0 before:bg-black/50 before:rounded-[10px] md:before:bg-black/0 sm:w-1/2 lg:w-full bg-(--color-primary-btn) bg-[url({{ $tileBanner->image }})] bg-cover rotate-y-180 bg-bottom-right bg-no-repeat min-h-[225px] rounded-[10px] p-[30px]">
-                    <div class="rotate-y-180 flex flex-col gap-5 text-white md:text-(--color-text-) z-50">
+                    <div class="rotate-y-180 flex flex-col gap-5 text-white md:text-(--color-text) z-50">
                         <h2 class="font-bold xl:text-[28px] 2xl:text-[24px] leading-8">
                             {{ $tileBanner->title }}
                         </h2>

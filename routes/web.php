@@ -18,7 +18,7 @@ use App\Http\Controllers\userController;
 use App\Http\Middleware\checkAdminMiddleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\checklogin;
-use App\Http\Controllers\CourscategoryController;
+use App\Http\Controllers\CoursecategoryController;
 use App\Http\Controllers\CourseStatusController;
 use App\Http\Controllers\CourseLevelController;
 use App\Http\Controllers\TeacherController;
@@ -220,7 +220,7 @@ Route::group(['prefix' => 'homeForm', 'controller' => HomeFormsController::class
 // course category
 Route::group([
     'prefix' => 'coursecategory',
-    'controller' => CourscategoryController::class,
+    'controller' => CoursecategoryController::class,
     'as' => 'coursecategory.',
     'middleware' => checklogin::class
 ], function () {

@@ -74,7 +74,8 @@
 	font-family: "DimaShekasteh";
 	font-style: normal;
 	font-weight: normal;
-	src: url('../fonts/woff/DimaShekasteh.woff') format('woff'),
+	src:
+		/* url('../fonts/woff/DimaShekasteh.woff') format('woff'), */
 		url('../fonts/woff2/DimaShekasteh.woff2') format('woff2');
 }
 

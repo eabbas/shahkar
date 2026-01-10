@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ url('assets/css/style.css') }}" type="text/css">
     <title>@yield('title')</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/IMG_20251225_131334_688.png') }}">
+    <script src="{{ asset('assets/js/tailwind.js') }}"></script>
     <style>
         :root {
             <?php

@@ -95,7 +95,8 @@
 </head>
 
 <body>
-
+   @extends('admin.app.dashboard')
+   @section('content')
     <h1>لیست دوره‌ها</h1>
 
     <table>
@@ -145,6 +146,7 @@
         </tbody>
     </table>
 
+    @endsection
 </body>
 
 </html>
