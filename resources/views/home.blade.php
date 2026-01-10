@@ -128,7 +128,9 @@
         @endif
         <!-- title section -->
 
-        <div class="grid 2xl:grid-cols-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2.5 lg:gap-4">
+        {{-- <div class="grid 2xl:grid-cols-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2.5 lg:gap-4"> --}}
+        <div class="w-full flex gap-5 overflow-x-auto pb-5"
+            style="scrollbar-width: thin; scrollbar-color: var(--color-primary) var(--color-primary-text);">
             <!-- 12 -->
 
             {{-- <div
@@ -297,7 +299,7 @@
             </div> --}}
             @foreach ($specialDiscounts as $specialDiscountProduct)
                 <div
-                    class="p-2 border border-(--color-border) rounded-[10px] relative flex flex-col justify-between productItem">
+                    class="min-w-50 lg:min-w-[300px] p-2 border border-(--color-border) rounded-[10px] relative flex flex-col justify-between productItem">
                     <div
                         class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-555 overflow-hidden">
                         <button
@@ -432,7 +434,7 @@
                         <div class="flex flex-col lg:flex-row gap-2 lg:gap-4">
                             <div class="w-full h-12">
                                 <button
-                                    onclick="addToShoppingCart('{{ $specialDiscountProduct->id }}', '{{ $specialDiscountProduct->title }}', '{{ $specialDiscountProduct->description }}', '{{ $specialDiscountProduct['img'] }}', '{{ $specialDiscountProduct->price['price'] }}')"
+                                    onclick="addToShoppingCart(this,'{{ $specialDiscountProduct->id }}', '{{ $specialDiscountProduct->title }}', '{{ $specialDiscountProduct->description }}', '{{ $specialDiscountProduct['img'] }}', '{{ $specialDiscountProduct->price['price'] }}')"
                                     class="w-full h-full py-3 lg:py-1 text-[12px] text-(--color-primary-text) bg-(--color-bg-card-btn) leading-5 rounded-[10px] cursor-pointer">افزودن
                                     به سبد خرید</button>
                             </div>
@@ -688,7 +690,7 @@
                             <div class="flex flex-col lg:flex-row gap-2 lg:gap-4">
                                 <div class="w-full h-12">
                                     <button
-                                        onclick="addToShoppingCart('{{ $product->id }}', '{{ $product->title }}', '{{ $product->description }}', '{{ $product['img'] }}', '{{ $product->price['price'] }}')"
+                                        onclick="addToShoppingCart(this,'{{ $product->id }}', '{{ $product->title }}', '{{ $product->description }}', '{{ $product['img'] }}', '{{ $product->price['price'] }}')"
                                         class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-(--color-primary-text) bg-(--color-bg-card-btn) leading-5 rounded-[10px] cursor-pointer">افزودن
                                         به سبد خرید</button>
                                 </div>

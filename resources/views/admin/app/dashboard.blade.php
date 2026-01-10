@@ -14,12 +14,13 @@
 
 <body>
     <div class="2xl:container mx-auto flex flex-row">
-        <div class="lg:hidden size-15 border rounded-full flex justify-center items-center cursor-pointer fixed bottom-2 right-2"
+        <div class="lg:hidden bg-white size-10 border rounded-md flex justify-center items-center cursor-pointer fixed top-2 right-2"
             onclick="responsive_menu('open')">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="size-8">
-                <path fill="black"
-                    d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
-            </svg>
+            <div class="w-7 h-6 flex flex-col justify-between items-center">
+                <span class="inline-block w-full h-1/5 bg-black rounded-md"></span>
+                <span class="inline-block w-full h-1/5 bg-black rounded-md"></span>
+                <span class="inline-block w-full h-1/5 bg-black rounded-md"></span>
+            </div>
         </div>
         <div class="hidden lg:block lg:w-3/12 bg-[#0D0E12] fixed right-0 top-0 h-dvh px-5">
             <div class="flex justify-center pt-5">

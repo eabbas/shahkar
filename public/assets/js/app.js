@@ -115,15 +115,15 @@ arrowDowns.forEach((arrowDown) => {
       if (arrowDown.nextElementSibling.classList.contains('max-h-0')) {
          arrowDowns.forEach((arrow) => {
             arrow.children[0].classList.remove('rotate-180')
-            arrow.nextElementSibling.classList.remove('max-h-500')
+            arrow.nextElementSibling.classList.remove('max-h-100')
             arrow.nextElementSibling.classList.add('max-h-0')
          })
          arrowDown.children[0].classList.add('rotate-180')
          arrowDown.nextElementSibling.classList.remove('max-h-0')
-         arrowDown.nextElementSibling.classList.add('max-h-500')
+         arrowDown.nextElementSibling.classList.add('max-h-100')
       } else {
          arrowDown.children[0].classList.remove('rotate-180')
-         arrowDown.nextElementSibling.classList.remove('max-h-500')
+         arrowDown.nextElementSibling.classList.remove('max-h-100')
          arrowDown.nextElementSibling.classList.add('max-h-0')
       }
    })
