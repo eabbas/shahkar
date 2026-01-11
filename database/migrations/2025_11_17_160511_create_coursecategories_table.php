@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('coursecategories', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description');
-            $table->string('parent_id') -> default("0");
-            $table->string('img') -> nullable();
-            $table->string('show_in_home') -> default("0");
+            $table->string('description')->nullable();
+            $table->string('parent_id')->default("0");
+            $table->string('img')->nullable();
+            $table->boolean('show_in_home')->nullable()->default("0");
             $table->timestamps();
         });
     }

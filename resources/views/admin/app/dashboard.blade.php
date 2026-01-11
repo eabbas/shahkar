@@ -290,8 +290,8 @@
                         <ul class="gap-2.5 pr-3">
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{ route('coursecategory.list') }}"
-                                    class="py-1 @if (Route::is('coursecategory.list')) text-[#FF0000] @endif">همه
+                                <a href="{{ route('coursecategory.adminList') }}"
+                                    class="py-1 @if (Route::is('coursecategory.adminList')) text-[#FF0000] @endif">همه
                                     دسته
                                     بندی
                                     دوره ها</a>
@@ -719,8 +719,8 @@
                             <ul class="gap-2.5 pr-3">
                                 <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                     <span class="size-1 bg-white rounded-sm"></span>
-                                    <a href="{{ route('coursecategory.list') }}"
-                                        class="py-1 @if (Route::is('coursecategory.list')) text-[#FF0000] @endif">همه
+                                    <a href="{{ route('coursecategory.adminList') }}"
+                                        class="py-1 @if (Route::is('coursecategory.adminList')) text-[#FF0000] @endif">همه
                                         دسته
                                         بندی
                                         دوره ها</a>

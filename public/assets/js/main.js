@@ -288,11 +288,9 @@ function getCookies() {
                 })
             })
             i++
-            // Assuming 'div' is already created
-            mobileShoppingCartProducts.appendChild(div); // Append to the first parent
-            // Clone the div for the second parent
-            const clonedDiv = div.cloneNode(true); // 'true' means a deep clone
-            shoppingCartProducts.appendChild(clonedDiv); // Append the cloned div to the second parent
+            mobileShoppingCartProducts.appendChild(div);
+            const clonedDiv = div.cloneNode(true);
+            shoppingCartProducts.appendChild(clonedDiv);
         }
     })
     document.getElementById('shoppingCartProductCount').innerHTML = count
@@ -389,6 +387,7 @@ function getRelatedProducts(param, section) {
         },
         success: function (data) {
             if (section == "home") {
+                document.getElementById('relatedProductsCount').innerHTML = data.length
                 relatedProducts.innerHTML = '';
                 data.forEach((product) => {
                     let id = product.id;

@@ -68,7 +68,9 @@
     <section class="text-(--color-text) pt-3">
         <!-- title section -->
         <div class="flex flex-row justify-between items-center py-10">
-            <h2 class="font-bold text-[24px] leading-8">دسته بندی ها</h2>
+            <h2 class="font-bold text-[24px] leading-8">
+                <a href="{{ route('category-index') }}">دسته بندی ها</a>
+            </h2>
             <div class="flex flex-row justify-end items-center gap-5">
                 <span class="size-[35px] rounded-xl border border-(--color-border) flex justify-center items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 320 512">
@@ -90,6 +92,11 @@
         <div class="flex flex-row items-center gap-5 overflow-x-auto p-5"
             style="scrollbar-width: thin; scrollbar-color: var(--color-primary) var(--color-primary-text);">
             @foreach ($categories as $category)
+                @if ($category->title == 'تخفیفات ویژه')
+                    @php
+                        $cat = $category;
+                    @endphp
+                @endif
                 <div class="p-4 border border-(--color-border) rounded-[10px]">
                     <a href="{{ route('search-cat-products', [$category]) }}" class="block mb-1 w-[137px]" target="_blank">
                         <img src="{{ $category->image }}" class="w-[85px] h-20 mx-auto" alt="">
@@ -109,7 +116,9 @@
         <!-- title section -->
         @if ($specialDiscounts->isNotEmpty())
             <div class="flex flex-col lg:flex-row justify-between gap-8 lg:gap-0 lg:items-center py-5 lg:py-10">
-                <h2 class="font-bold lg:text-[24px] leading-8">تخفیفات ویژه</h2>
+                <h2 class="font-bold lg:text-[24px] leading-8">
+                    <a href="{{ route('search-cat-products', [$cat]) }}">تخفیفات ویژه</a>
+                </h2>
                 {{-- <div class="flex flex-row flex-wrap lg:justify-end items-center text-xs lg:text-base gap-5 font-bold">
                 <a href="#" class="text-(--color-text)">
                     همه دسته ها
@@ -129,7 +138,7 @@
         <!-- title section -->
 
         {{-- <div class="grid 2xl:grid-cols-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2.5 lg:gap-4"> --}}
-        <div class="w-full flex gap-5 overflow-x-auto pb-5"
+        <div class="w-full flex gap-5 overflow-x-auto p-5"
             style="scrollbar-width: thin; scrollbar-color: var(--color-primary) var(--color-primary-text);">
             <!-- 12 -->
 
@@ -299,7 +308,7 @@
             </div> --}}
             @foreach ($specialDiscounts as $specialDiscountProduct)
                 <div
-                    class="min-w-50 lg:min-w-[300px] p-2 border border-(--color-border) rounded-[10px] relative flex flex-col justify-between productItem">
+                    class="min-w-50 lg:min-w-65 p-2 border border-(--color-border) rounded-[10px] relative flex flex-col justify-between productItem">
                     <div
                         class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-555 overflow-hidden">
                         <button
@@ -507,7 +516,7 @@
             <!-- height problem -->
 
             <div class="w-full children xl:w-3/4">
-                <div class="w-full flex flex-row justify-between items-center pb-3">
+                <div class="w-full flex flex-col gap-5">
                     {{-- [&::-webkit-scrollbar]:w-0 --}}
                     <div class="w-full flex flex-row justify-between items-center gap-5 font-bold overflow-x-auto pb-5 px-5"
                         style="scrollbar-width: thin; scrollbar-color: var(--color-primary) var(--color-primary-text);">
@@ -526,29 +535,36 @@
                             </p>
                         @endforeach
                     </div>
-                    <div class="flex flex-row justify-end items-center gap-5 pb-3">
-                        <span
-                            class="size-[35px] rounded-xl border border-(--color-border) flex justify-center items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 320 512">
-                                <path fill="#8C9EC5"
-                                    d="M273 239c9.4 9.4 9.4 24.6 0 33.9L113 433c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l143-143L79 113c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0L273 239z" />
-                            </svg>
-                        </span>
-                        <span
-                            class="size-[35px] rounded-xl border border-(--color-border) flex justify-center items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 320 512">
-                                <path fill="#8C9EC5"
-                                    d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z" />
-                            </svg>
-                        </span>
+
+                    <div class="w-full flex flex-row justify-between items-center">
+                        <div class="text-[14px] text-(--color-secondary-text)">
+                            <span id="relatedProductsCount">{{ count($products) }}</span>
+                            <span>محصول</span>
+                        </div>
+                        <div class="flex flex-row justify-end items-center gap-5">
+                            <span
+                                class="size-[35px] rounded-xl border border-(--color-border) flex justify-center items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 320 512">
+                                    <path fill="#8C9EC5"
+                                        d="M273 239c9.4 9.4 9.4 24.6 0 33.9L113 433c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l143-143L79 113c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0L273 239z" />
+                                </svg>
+                            </span>
+                            <span
+                                class="size-[35px] rounded-xl border border-(--color-border) flex justify-center items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 320 512">
+                                    <path fill="#8C9EC5"
+                                        d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z" />
+                                </svg>
+                            </span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="flex flex-row items-stretch justify-start overflow-x-scroll gap-4 p-5" id="relatedProducts"
+                <div class="flex flex-row items-stretch justify-start overflow-x-scroll gap-4 py-5" id="relatedProducts"
                     style="scrollbar-width: thin; scrollbar-color: var(--color-primary) var(--color-primary-text);">
                     @foreach ($products as $product)
                         <div
-                            class="p-2 min-w-55 border border-(--color-border) rounded-[10px] relative flex flex-col justify-between productItem">
+                            class="p-2 min-w-65 h-100 border border-(--color-border) rounded-[10px] relative flex flex-col justify-between productItem">
                             <div
                                 class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-555 overflow-hidden">
 

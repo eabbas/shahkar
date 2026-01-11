@@ -72,7 +72,7 @@
                            <a href="{{ route('coursecategory.delete', $cat->id) }}"
                                style="color:#d00; font-weight:bold;">حذف</a>
 
-                           <a href="{{ route('coursecategory.show', $cat->id) }}"
+                           <a href="{{ route('coursecategory.adminShow', $cat->id) }}"
                                style="color:green; font-weight:bold;">سینگل</a>
                        </div>
 

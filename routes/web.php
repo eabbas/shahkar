@@ -222,12 +222,14 @@ Route::group([
     'prefix' => 'coursecategory',
     'controller' => CoursecategoryController::class,
     'as' => 'coursecategory.',
-    'middleware' => checklogin::class
+    'middleware' => checkAdminMiddleware::class
 ], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
-    Route::get('/show/{coursecategory}', 'show')->name('show');
-    Route::get('/categories', 'index')->name('list');
+    Route::get('/admin/show/{coursecategory}', 'adminShow')->name('adminShow');
+    Route::get('/show/{coursecategory}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->name('show');
+    Route::get('/admin/categories', 'adminIndex')->name('adminList');
+    Route::get('/categories', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('list');
     Route::get('/edit/{coursecategory}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{coursecategory}', 'delete')->name('delete');
