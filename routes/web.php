@@ -237,9 +237,9 @@ Route::group([
 // course teacher
 Route::group([
     'prefix' => 'teacher',
-    'controller' => teacherController::class,
+    'controller' => TeacherController::class,
     'as' => 'teacher.',
-    'middleware' => checklogin::class
+    'middleware' => checkAdminMiddleware::class
 ], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
