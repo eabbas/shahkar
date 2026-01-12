@@ -268,9 +268,8 @@
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{ route('course.list') }}"
-                                    class="py-1 @if (Route::is('course.list')) text-[#FF0000] @endif">همه
-                                    دوره ها</a>
+                                <a href="{{ route('course.adminList') }}"
+                                    class="py-1 @if (Route::is('course.adminList')) text-[#FF0000] @endif">همه دوره ها</a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                 <span class="size-1 bg-white rounded-sm"></span>
@@ -706,9 +705,8 @@
                                 </li>
                                 <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                     <span class="size-1 bg-white rounded-sm"></span>
-                                    <a href="{{ route('course.list') }}"
-                                        class="py-1 @if (Route::is('course.list')) text-[#FF0000] @endif">همه
-                                        دوره ها</a>
+                                    <a href="{{ route('course.adminList') }}"
+                                        class="py-1 @if (Route::is('course.adminList')) text-[#FF0000] @endif">همه دوره ها</a>
                                 </li>
                                 <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                     <span class="size-1 bg-white rounded-sm"></span>

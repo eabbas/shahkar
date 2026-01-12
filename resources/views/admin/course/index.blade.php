@@ -132,7 +132,7 @@
                     @endphp
 
                     <td class="actions">
-                        <a href="{{ route('course.show', [$course]) }}">نمایش</a>
+                        <a href="{{ route('course.adminShow', [$course]) }}">نمایش</a>
                         @if (in_array(1, $roles) || in_array(2, $roles))
                             <a href="{{ route('course.users', [$course]) }}" class="btn btn-edit">
                                 شرکت کنندگان

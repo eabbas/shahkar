@@ -288,8 +288,10 @@ Route::group([
 ], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
-    Route::get('/show/{course}', 'show')->name('show');
-    Route::get('/courses', 'index')->name('list');
+    Route::get('/admin/show/{course}', 'adminShow')->name('adminShow');
+    Route::get('/show/{course}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->name('show');
+    Route::get('/admin/courses', 'adminIndex')->name('adminList');
+    Route::get('/courses', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('list');
     Route::get('/edit/{course}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{course}', 'delete')->name('delete');
