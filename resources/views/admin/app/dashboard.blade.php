@@ -48,9 +48,9 @@
                     </a>
                 </div>
                 <div class="border-b border-gray-500 pb-3">
-                    <div class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md @if (Route::is('settings.colors.createColor') || Route::is('menu-index') || Route::is('banners-*') || Route::is('footer-*') || Route::is('homeForm-*')) bg-[#383c4d] @endif">
+                    <div class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md @if (Route::is('settings.colors.createColor') || Route::is('menu-*') || Route::is('banners-*') || Route::is('footer-*') || Route::is('homeForm-*')) bg-[#383c4d] @endif">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="size-6 fill-white w-[15px] transition-all duration-300 @if (Route::is('settings.colors.createColor') || Route::is('menu-index') || Route::is('banners-*') || Route::is('footer-*') || Route::is('homeForm-*')) rotate-180 @endif">
+                            class="size-6 fill-white w-[15px] transition-all duration-300 @if (Route::is('settings.colors.createColor') || Route::is('menu-*') || Route::is('banners-*') || Route::is('footer-*') || Route::is('homeForm-*')) rotate-180 @endif">
                             <path fill-rule="evenodd"
                                 d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                 clip-rule="evenodd" />
@@ -69,7 +69,7 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="overflow-y-auto transition-all duration-300 @if (Route::is('settings.colors.createColor') || Route::is('menu-index') || Route::is('banners-*') || Route::is('footer-*') || Route::is('homeForm-*')) max-h-100 @else max-h-0 @endif" style="scrollbar-width: none;">
+                    <div class="overflow-y-auto transition-all duration-300 @if (Route::is('settings.colors.createColor') || Route::is('menu-*') || Route::is('banners-*') || Route::is('footer-*') || Route::is('homeForm-*')) max-h-100 @else max-h-0 @endif" style="scrollbar-width: none;">
                         <ul class="gap-2.5 pr-3">
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                 <span class="size-1 bg-white rounded-sm"></span>
@@ -165,7 +165,8 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="overflow-y-auto transition-all duration-300 @if (Route::is('product-*')) max-h-100 @else max-h-0 @endif">
+                    <div class="overflow-y-auto transition-all duration-300 @if (Route::is('product-*')) max-h-100 @else max-h-0 @endif"
+                    style="scrollbar-width: none;">
                         <ul class="gap-2.5 pr-3">
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                 <span class="size-1 bg-white rounded-sm"></span>
@@ -205,7 +206,8 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="overflow-y-auto transition-all duration-300 @if (Route::is('category-*')) max-h-100 @else max-h-0 @endif">
+                    <div class="overflow-y-auto transition-all duration-300 @if (Route::is('category-*')) max-h-100 @else max-h-0 @endif"
+                    style="scrollbar-width: none;">
                         <ul class="gap-2.5 pr-3">
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                 <span class="size-1 bg-white rounded-sm"></span>
@@ -225,9 +227,9 @@
                     </div>
                 </div>
                 <div class="border-b border-gray-500 pb-3">
-                    <div class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md  @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*')) bg-[#383c4d] @endif">
+                    <div class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md  @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*') || Route::is('status.*') || Route::is('courseLevel.*')) bg-[#383c4d] @endif">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="size-6 fill-white w-[15px] transition-all duration-300  @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*')) rotate-180 @endif">
+                            class="size-6 fill-white w-[15px] transition-all duration-300  @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*') || Route::is('status.*') || Route::is('courseLevel.*')) rotate-180 @endif">
                             <path fill-rule="evenodd"
                                 d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                 clip-rule="evenodd" />
@@ -246,7 +248,8 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="overflow-y-auto transition-all duration-300 @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*')) max-h-100 @else max-h-0 @endif">
+                    <div class="overflow-y-auto transition-all duration-300 @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*') || Route::is('status.*') || Route::is('courseLevel.*')) max-h-100 @else max-h-0 @endif"
+                    style="scrollbar-width: none;">
                         <ul class="gap-2.5 pr-3">
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                 <span class="size-1 bg-white rounded-sm"></span>
@@ -286,6 +289,26 @@
                                 <a href="{{ route('teacher.create') }}"
                                     class="py-1 @if (Route::is('teacher.create')) text-[#FF0000] @endif">ایجاد مدرس جدید</a>
                             </li>
+                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                <span class="size-1 bg-white rounded-sm"></span>
+                                <a href="{{ route('status.list') }}"
+                                    class="py-1 @if (Route::is('status.list')) text-[#FF0000] @endif">همه وضعیت ها</a>
+                            </li>
+                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                <span class="size-1 bg-white rounded-sm"></span>
+                                <a href="{{ route('status.create') }}"
+                                    class="py-1 @if (Route::is('status.create')) text-[#FF0000] @endif">ایجاد وضعیت جدید</a>
+                            </li>
+                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                <span class="size-1 bg-white rounded-sm"></span>
+                                <a href="{{ route('courseLevel.list') }}"
+                                    class="py-1 @if (Route::is('courseLevel.list')) text-[#FF0000] @endif">همه سطوح</a>
+                            </li>
+                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                <span class="size-1 bg-white rounded-sm"></span>
+                                <a href="{{ route('courseLevel.create') }}"
+                                    class="py-1 @if (Route::is('courseLevel.create')) text-[#FF0000] @endif">ایجاد سطح جدید</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -311,7 +334,8 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="overflow-y-auto transition-all duration-300 @if (Route::is('user.*') || Route::is('admin_create_user')) max-h-100 @else max-h-0 @endif">
+                    <div class="overflow-y-auto transition-all duration-300 @if (Route::is('user.*') || Route::is('admin_create_user')) max-h-100 @else max-h-0 @endif"
+                    style="scrollbar-width: none;">
                         <ul class="gap-2.5 pr-3">
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                 <span class="size-1 bg-white rounded-sm"></span>
@@ -357,7 +381,8 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="overflow-y-auto transition-all duration-300  @if (Route::is('aboutus-*') || Route::is('contactus-*')) max-h-100 @else max-h-0 @endif">
+                    <div class="overflow-y-auto transition-all duration-300 @if (Route::is('aboutus-*') || Route::is('contactus-*')) max-h-100 @else max-h-0 @endif"
+                    style="scrollbar-width: none;">
                         <ul class="gap-2.5 pr-3">
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                 <span class="size-1 bg-white rounded-sm"></span>
@@ -399,7 +424,8 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="overflow-y-auto transition-all duration-300 @if (Route::is('comment.*') || Route::is('answer-*') || Route::is('question-*')) max-h-100 @else max-h-0 @endif">
+                    <div class="overflow-y-auto transition-all duration-300 @if (Route::is('comment.*') || Route::is('answer-*') || Route::is('question-*')) max-h-100 @else max-h-0 @endif"
+                    style="scrollbar-width: none;">
                         <ul class="gap-2.5 pr-3">
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                 <span class="size-1 bg-white rounded-sm"></span>
@@ -459,9 +485,9 @@
                         </a>
                     </div>
                     <div class="border-b border-gray-500 pb-3">
-                        <div class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md @if (Route::is('settings.colors.createColor') || Route::is('menu-index') || Route::is('banners-*') || Route::is('footer-*') || Route::is('homeForm-*')) bg-[#383c4d] @endif">
+                        <div class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md @if (Route::is('settings.colors.createColor') || Route::is('menu-*') || Route::is('banners-*') || Route::is('footer-*') || Route::is('homeForm-*')) bg-[#383c4d] @endif">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="size-6 fill-white w-[15px] transition-all duration-300 @if (Route::is('settings.colors.createColor') || Route::is('menu-index') || Route::is('banners-*') || Route::is('footer-*') || Route::is('homeForm-*')) rotate-180 @endif">
+                                class="size-6 fill-white w-[15px] transition-all duration-300 @if (Route::is('settings.colors.createColor') || Route::is('menu-*') || Route::is('banners-*') || Route::is('footer-*') || Route::is('homeForm-*')) rotate-180 @endif">
                                 <path fill-rule="evenodd"
                                     d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                     clip-rule="evenodd" />
@@ -480,7 +506,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="overflow-y-auto transition-all duration-300  @if (Route::is('settings.colors.createColor') || Route::is('menu-index') || Route::is('banners-*') || Route::is('footer-*') || Route::is('homeForm-*')) max-h-100 @else max-h-0 @endif"
+                        <div class="overflow-y-auto transition-all duration-300 @if (Route::is('settings.colors.createColor') || Route::is('menu-*') || Route::is('banners-*') || Route::is('footer-*') || Route::is('homeForm-*')) max-h-100 @else max-h-0 @endif"
                             style="scrollbar-width: none;">
                             <ul class="gap-2.5 pr-3">
                                 <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
@@ -577,7 +603,8 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="overflow-y-auto transition-all duration-300 @if (Route::is('product-*')) max-h-100 @else max-h-0 @endif">
+                        <div class="overflow-y-auto transition-all duration-300 @if (Route::is('product-*')) max-h-100 @else max-h-0 @endif"
+                        style="scrollbar-width: none;">
                             <ul class="gap-2.5 pr-3">
                                 <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                     <span class="size-1 bg-white rounded-sm"></span>
@@ -617,7 +644,8 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="overflow-y-auto transition-all duration-300 @if (Route::is('category-*')) max-h-100 @else max-h-0 @endif">
+                        <div class="overflow-y-auto transition-all duration-300 @if (Route::is('category-*')) max-h-100 @else max-h-0 @endif"
+                        style="scrollbar-width: none;">
                             <ul class="gap-2.5 pr-3">
                                 <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                     <span class="size-1 bg-white rounded-sm"></span>
@@ -637,9 +665,9 @@
                         </div>
                     </div>
                     <div class="border-b border-gray-500 pb-3">
-                        <div class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*')) bg-[#383c4d] @endif">
+                        <div class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*') || Route::is('status.*') || Route::is('courseLevel.*')) bg-[#383c4d] @endif">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="size-6 fill-white w-[15px] transition-all duration-300 @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*')) rotate-180 @endif">
+                                class="size-6 fill-white w-[15px] transition-all duration-300 @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*') || Route::is('status.*') || Route::is('courseLevel.*')) rotate-180 @endif">
                                 <path fill-rule="evenodd"
                                     d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                     clip-rule="evenodd" />
@@ -658,7 +686,8 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="overflow-y-auto transition-all duration-300 @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*')) max-h-100 @else max-h-0 @endif">
+                        <div class="overflow-y-auto transition-all duration-300 @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*') || Route::is('status.*') || Route::is('courseLevel.*')) max-h-100 @else max-h-0 @endif"
+                        style="scrollbar-width: none;">
                             <ul class="gap-2.5 pr-3">
                                 <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                     <span class="size-1 bg-white rounded-sm"></span>
@@ -698,6 +727,26 @@
                                     <a href="{{ route('teacher.create') }}"
                                         class="py-1 @if (Route::is('teacher.create')) text-[#FF0000] @endif">ایجاد مدرس جدید</a>
                                 </li>
+                                <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                    <span class="size-1 bg-white rounded-sm"></span>
+                                    <a href="{{ route('status.list') }}"
+                                        class="py-1 @if (Route::is('status.list')) text-[#FF0000] @endif">همه وضعیت ها</a>
+                                </li>
+                                <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                    <span class="size-1 bg-white rounded-sm"></span>
+                                    <a href="{{ route('status.create') }}"
+                                        class="py-1 @if (Route::is('status.create')) text-[#FF0000] @endif">ایجاد وضعیت جدید</a>
+                                </li>
+                                <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                    <span class="size-1 bg-white rounded-sm"></span>
+                                    <a href="{{ route('courseLevel.list') }}"
+                                        class="py-1 @if (Route::is('courseLevel.list')) text-[#FF0000] @endif">همه سطوح</a>
+                                </li>
+                                <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                    <span class="size-1 bg-white rounded-sm"></span>
+                                    <a href="{{ route('courseLevel.create') }}"
+                                        class="py-1 @if (Route::is('courseLevel.create')) text-[#FF0000] @endif">ایجاد سطح جدید</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -723,7 +772,8 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="overflow-y-auto transition-all duration-300 @if (Route::is('user.*') || Route::is('admin_create_user')) max-h-100 @else max-h-0 @endif">
+                        <div class="overflow-y-auto transition-all duration-300 @if (Route::is('user.*') || Route::is('admin_create_user')) max-h-100 @else max-h-0 @endif"
+                        style="scrollbar-width: none;">
                             <ul class="gap-2.5 pr-3">
                                 <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                     <span class="size-1 bg-white rounded-sm"></span>
@@ -767,7 +817,8 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="overflow-y-auto transition-all duration-300 @if (Route::is('aboutus-*') || Route::is('contactus-*')) max-h-100 @else max-h-0 @endif">
+                        <div class="overflow-y-auto transition-all duration-300 @if (Route::is('aboutus-*') || Route::is('contactus-*')) max-h-100 @else max-h-0 @endif"
+                        style="scrollbar-width: none;">
                             <ul class="gap-2.5 pr-3">
                                 <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                     <span class="size-1 bg-white rounded-sm"></span>
@@ -809,7 +860,8 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="overflow-y-auto transition-all duration-300 @if (Route::is('comment.*') || Route::is('answer-*') || Route::is('question-*')) max-h-100 @else max-h-0 @endif">
+                        <div class="overflow-y-auto transition-all duration-300 @if (Route::is('comment.*') || Route::is('answer-*') || Route::is('question-*')) max-h-100 @else max-h-0 @endif"
+                        style="scrollbar-width: none;">
                             <ul class="gap-2.5 pr-3">
                                 <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                     <span class="size-1 bg-white rounded-sm"></span>

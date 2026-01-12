@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\courselevel;
+use App\Models\logo;
 
 class CourseLevelController extends Controller
 {
     public function create()
     {
-        return view("courseLevel.create");
+        $logo = logo::first();
+        return view("admin.courseLevel.create", ['logo' => $logo]);
     }
     public function store(Request $request)
     {
@@ -22,17 +24,29 @@ class CourseLevelController extends Controller
     public function index()
     {
         $levels = courselevel::all();
-        return view("courseLevel.index", ['levels' => $levels]);
+        $logo = logo::first();
+        return view("admin.courseLevel.index", [
+            'levels' => $levels,
+            'logo' => $logo
+        ]);
     }
 
     public function show(courselevel $courseLevel)
     {
-        return view("courseLevel.single", ['level' => $courseLevel]);
+        $logo = logo::first();
+        return view("admin.courseLevel.single", [
+            'level' => $courseLevel,
+            'logo' => $logo
+        ]);
     }
 
     public function edit(courselevel $courseLevel)
     {
-        return view('courseLevel.edit', ['level' => $courseLevel]);
+        $logo = logo::first();
+        return view('admin.courseLevel.edit', [
+            'level' => $courseLevel,
+            'logo' => $logo
+        ]);
     }
 
     public function update(Request $request)

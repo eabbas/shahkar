@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\coursestatus;
+use App\Models\logo;
 
 class CourseStatusController extends Controller
 {
     public function create()
     {
-        return view("status.create");
+        $logo = logo::first();
+        return view("admin.courseStatus.create", ['logo' => $logo]);
     }
     public function store(Request $request)
     {
@@ -22,17 +24,29 @@ class CourseStatusController extends Controller
     public function index()
     {
         $statuses = coursestatus::all();
-        return view("status.index", ['statuses' => $statuses]);
+        $logo = logo::first();
+        return view("admin.courseStatus.index", [
+            'statuses' => $statuses,
+            'logo' => $logo
+        ]);
     }
 
     public function show(coursestatus $coursestatus)
     {
-        return view("status.single", ['status' => $coursestatus]);
+        $logo = logo::first();
+        return view("admin.courseStatus.single", [
+            'status' => $coursestatus,
+            'logo' => $logo
+        ]);
     }
 
     public function edit(coursestatus $coursestatus)
     {
-        return view('status.edit', ['status' => $coursestatus]);
+        $logo = logo::first();
+        return view('admin.courseStatus.edit', [
+            'status' => $coursestatus,
+            'logo' => $logo
+        ]);
     }
 
     public function update(Request $request)

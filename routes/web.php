@@ -254,7 +254,7 @@ Route::group([
     'prefix' => 'courseStatus',
     'controller' => CourseStatusController::class,
     'as' => 'status.',
-    'middleware' => checklogin::class
+    'middleware' => checkAdminMiddleware::class
 ], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
@@ -269,7 +269,7 @@ Route::group([
     'prefix' => 'courseLevel',
     'controller' => CourseLevelController::class,
     'as' => 'courseLevel.',
-    'middleware' => checklogin::class
+    'middleware' => checkAdminMiddleware::class
 ], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
@@ -284,7 +284,7 @@ Route::group([
     'prefix' => 'course',
     'controller' => courseController::class,
     'as' => 'course.',
-    'middleware' => checklogin::class
+    'middleware' => checkAdminMiddleware::class
 ], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
