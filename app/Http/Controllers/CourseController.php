@@ -160,7 +160,6 @@ class CourseController extends Controller
             'courses' => $courses,
             'logo' => $logo,
             'categories' => $categories,
-            'logo' => $logo,
             'courses' => $courses,
             'products' => $products,
             'settings' => $settings,

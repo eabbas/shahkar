@@ -118,7 +118,7 @@
                     <td>{{ $course->title }}</td>
                     <td>{{ $course->description }}</td>
                     <td>{{ $course->summary }}</td>
-                    {{-- <td> {{ count($course->users) }}</td> --}}
+                    <td> {{ count($course->users) }}</td>
 
                     <td>
                         @if ($course->show_in_home)

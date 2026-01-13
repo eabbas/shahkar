@@ -303,10 +303,9 @@ Route::group([
     'prefix' => 'userCourse',
     'controller' => userCourseController::class,
     'as' => 'userCourse.',
-    'middleware' => checklogin::class
+    'middleware' => checkAdminMiddleware::class
 ], function () {
-    Route::get('/singup/{course}', 'store')->name('store');
-    // Route::post('/store', 'store')->name('store');
+    Route::get('/signup/{course}', 'store')->withoutMiddleware(checkAdminMiddleware::class)->name('store');
     Route::get('/show/{userCourse}', 'show')->name('show');
     Route::get('/edit/{userCourse}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');

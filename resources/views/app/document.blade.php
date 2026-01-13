@@ -275,6 +275,9 @@
                                     <li><a href="#"
                                             class="block py-2.5 text-sm font-bold transition-all duration-300 hover:text-(--color-primary)">دیدگاه
                                             ها و پرسش ها</a></li>
+                                    <li><a href="{{ route('user.courses', [$user]) }}"
+                                            class="block py-2.5 text-sm font-bold transition-all duration-300 hover:text-(--color-primary)">دوره
+                                            های ثبت نام شده</a></li>
                                 </ul>
                             </div>
                         @else
