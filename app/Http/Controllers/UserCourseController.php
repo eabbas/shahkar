@@ -103,8 +103,13 @@ class UserCourseController extends Controller
 
     public function edit(userCourse $userCourse)
     {
+        $logo = logo::first();
         $courses = course::all();
-        return view('user.course.userCourse.edit', ['userCourse' => $userCourse, 'courses' => $courses]);
+        return view('admin.course.userCourse.edit', [
+            'userCourse' => $userCourse,
+            'courses' => $courses,
+            'logo' => $logo
+        ]);
     }
     public function update(Request $request)
     {
@@ -114,13 +119,14 @@ class UserCourseController extends Controller
         $userCourse->status = $request->status;
         $userCourse->save();
         $user  = $userCourse->user;
-        return to_route("user.courses", ["user" => $user]);
+        return to_route("user.adminCourses", ["user" => $user]);
     }
     public function delete(userCourse $userCourse)
     {
         $userCourse->delete();
         $user  = $userCourse->user;
-        return to_route("user.courses", ["user" => $user]);
+        return redirect()->back();
+        // return to_route("user.courses", ["user" => $user]);
     }
     public function comments(userCourse $userCourse)
     {

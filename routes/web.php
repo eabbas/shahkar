@@ -88,6 +88,7 @@ Route::group([
     Route::get('/logout{id?}', 'logout')->name('logout');
     Route::get('/index', 'index')->middleware(checkAdminMiddleware::class)->name('index');
     Route::get('/courses/{user}', 'courses')->middleware(checklogin::class)->name('courses');
+    Route::get('/admin/courses/{user}', 'adminCourses')->middleware(checklogin::class)->name('adminCourses');
     Route::post('/sendSMS', 'send_code')->name('sendSMS');
     Route::post('/checkAuth', 'checkAuth')->name('checkAuth');
     Route::post('/setPassword', 'setPassword')->name('setPassword');
@@ -296,7 +297,8 @@ Route::group([
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{course}', 'delete')->name('delete');
     Route::get('/users/{course}', 'users')->name('users');
-    Route::get('/seasons/{course}', 'seasons')->name('seasons');
+    Route::get('/admin/seasons/{course}', 'adminSeasons')->name('adminSeasons');
+    Route::get('/seasons/{course}', 'seasons')->withoutMiddleware(checkAdminMiddleware::class)->name('seasons');
 });
 //user_course
 Route::group([
@@ -326,16 +328,17 @@ Route::group([
     'prefix' => 'season',
     'controller' => CourseSeasonController::class,
     'as' => 'season.',
-    'middleware' => checklogin::class
+    'middleware' => checkAdminMiddleware::class
 ], function () {
     Route::get('/create/{course?}', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
-    Route::get('/show/{courseseason}', 'show')->name('show');
+    Route::get('/admin/show/{courseseason}', 'adminShow')->name('adminShow');
+    Route::get('/show/{courseseason}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->name('show');
     // Route::get('/seasons/{course}', 'index')->name('list');
     Route::get('/edit/{courseseason}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{courseseason}', 'delete')->name('delete');
-    Route::get('/lessons/{courseseason}', 'lessons')->name('lessons');
+    Route::get('/lessons/{courseseason}', 'lessons')->withoutMiddleware(checkAdminMiddleware::class)->name('lessons');
 });
 // course lessons
 Route::group([

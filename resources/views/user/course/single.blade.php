@@ -183,8 +183,11 @@
                     </td>
 
                     @php
-                        $roles = auth()->user()->roles->pluck('id')->toArray();
-                        $userCourse = auth()->user()->courses->pluck('id')->toArray();
+                        $userCourse = [];
+                        if (auth()->user()) {
+                            $roles = auth()->user()->roles->pluck('id')->toArray();
+                            $userCourse = auth()->user()->courses->pluck('id')->toArray();
+                        }
                     @endphp
                     @if (!in_array($course->id, $userCourse))
                         <a href="{{ route('userCourse.store', [$course->id]) }}" class="btn btn-register">

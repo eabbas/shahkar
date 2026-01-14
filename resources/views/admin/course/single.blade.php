@@ -206,7 +206,7 @@
                         <P class="btn btn-register">شما شرکت کردین</P>
                     @endif
 
-                    <a href="{{ route('course.seasons', [$course]) }}" class="btn btn-edit">
+                    <a href="{{ route('course.adminSeasons', [$course]) }}" class="btn btn-edit">
                         فصل ها
                     </a>
 

@@ -227,17 +227,53 @@ class CourseController extends Controller
     public function delete(course $course)
     {
         $course->delete();
-        return to_route('course.adminList');
+        // return to_route('course.adminList');
+        return redirect()->back();
     }
 
     public function users(course $course)
     {
         $courseUsers = $course->users;
-        return view("user.courseUsers", ["courseUsers" => $courseUsers, "course" => $course]);
+        $logo = logo::first();
+        return view("admin.course.courseUsers", [
+            "courseUsers" => $courseUsers,
+            "course" => $course,
+            'logo' => $logo
+        ]);
+    }
+    public function adminSeasons(course $course)
+    {
+        $seasons = $course->seasons;
+        $logo = logo::first();
+        return view("admin.season.index", [
+            "seasons" => $seasons,
+            "course" => $course,
+            'logo' => $logo
+        ]);
     }
     public function seasons(course $course)
     {
         $seasons = $course->seasons;
-        return view("season.index", ["seasons" => $seasons, "course" => $course]);
+        $courses = course::all();
+        $logo = logo::first();
+        $products = product::all();
+        $products = $this->getProductMedias($products);
+        $settings = settings::all();
+        $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
+        $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
+        $user = Auth::user();
+        $categories = category::all();
+        return view("user.season.index", [
+            "seasons" => $seasons,
+            "course" => $course,
+            'courses' => $courses,
+            'logo' => $logo,
+            'categories' => $categories,
+            'products' => $products,
+            'settings' => $settings,
+            'footerColumns' => $footer_columns,
+            'footer_form_column' => $footer_form_column,
+            'user' => $user
+        ]);
     }
 }

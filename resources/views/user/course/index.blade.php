@@ -128,7 +128,7 @@
                             @endif
                         </td>
                         @php
-                            $roles = auth()->user()->roles->pluck('id')->toArray();
+                            $roles = auth()->user()?->roles->pluck('id')->toArray();
                         @endphp
                         <td class="actions">
                             <a href="{{ route('course.show', [$course]) }}">نمایش</a>

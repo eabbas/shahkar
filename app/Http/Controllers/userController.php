@@ -156,6 +156,17 @@ class userController extends Controller
         ]);
     }
 
+    public function adminCourses(User $user)
+    {
+        $courses = $user->load('userCourses.course');
+        $userCourses = $courses->toArray();
+        $logo = logo::first();
+        return view('admin.course.userCourse.courses', [
+            'userCourses' => $userCourses,
+            'courses' => $courses,
+            'logo' => $logo,
+        ]);
+    }
     public function courses(User $user)
     {
         $courses = $user->load('userCourses.course');

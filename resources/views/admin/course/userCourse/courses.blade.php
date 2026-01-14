@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="fa">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>userCourses</title>
-
     <style>
         body {
             font-family: sans-serif;
@@ -27,7 +26,7 @@
             background: #fff;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
         }
 
         thead {
@@ -36,7 +35,8 @@
             font-size: 17px;
         }
 
-        th, td {
+        th,
+        td {
             padding: 14px 12px;
             border-bottom: 1px solid #eee;
             text-align: center;
@@ -90,43 +90,50 @@
             }
         }
     </style>
-
 </head>
-<table>
-    <thead>
-        <tr>
-            <th>نام دوره</th>
-            <th>لینک جزئیات دوره</th>
-            <th>پیشرفت</th>
-            <th>وضعیت</th>
-            <th>عملیات</th>
-        </tr>
-    </thead>
-    <tbody>
-        @php
-            $roles = auth()->user()->roles->pluck('id')->toArray();
-        @endphp
-        @foreach($userCourses['user_courses'] as $course)
-        <tr>
-            <td>{{ $course['course']['title'] ?? '-' }}</td>
-            <td>
-                <a href="{{ route('course.show', [$course['course']['id'] ?? 0]) }}">
-                    مشاهده جزئیات
-                </a>
-            </td>
-            <td>{{ $course['progress'] }}%</td>
-            <td>{{ $course['status'] == 1 ? 'فعال' : 'غیرفعال' }}</td>
-            <td class="actions">
-                @if(in_array(1, $roles) || in_array(2, $roles)) 
-                    <a href="{{ route('userCourse.edit',  [$course['id']]) }}" class="btn btn-edit">
-                        ✏️ ویرایش دوره کاربر
-                    </a>
-                    <a href="{{ route('userCourse.delete', [$course['id']]) }}" class="btn btn-edit">
-                        ✏️ حذف دوره کاربر
-                    </a>
-                @endif
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+
+<body>
+    @extends('admin.app.dashboard')
+    @section('content')
+        <table>
+            <thead>
+                <tr>
+                    <th>نام دوره</th>
+                    <th>لینک جزئیات دوره</th>
+                    <th>پیشرفت</th>
+                    <th>وضعیت</th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php
+                    $roles = auth()->user()->roles->pluck('id')->toArray();
+                @endphp
+                @foreach ($userCourses['user_courses'] as $course)
+                    <tr>
+                        <td>{{ $course['course']['title'] ?? '-' }}</td>
+                        <td>
+                            <a href="{{ route('course.show', [$course['course']['id'] ?? 0]) }}">
+                                مشاهده جزئیات
+                            </a>
+                        </td>
+                        <td>{{ $course['progress'] }}%</td>
+                        <td>{{ $course['status'] == 1 ? 'فعال' : 'غیرفعال' }}</td>
+                        <td class="actions">
+                            @if (in_array(1, $roles) || in_array(2, $roles))
+                                <a href="{{ route('userCourse.edit', [$course['id']]) }}" class="btn btn-edit">
+                                    ✏️ ویرایش دوره کاربر
+                                </a>
+                                <a href="{{ route('userCourse.delete', [$course['id']]) }}" class="btn btn-edit">
+                                    ✏️ حذف دوره کاربر
+                                </a>
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    @endsection
+</body>
+
+</html>
