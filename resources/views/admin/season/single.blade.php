@@ -49,7 +49,7 @@
                             </td>
                         @endif
                         <td class="px-6 py-4">
-                            <a href="{{ route('season.lessons', [$season]) }}" style="color:red;"> نمایش درس ها </a>
+                            <a href="{{ route('season.adminLessons', [$season]) }}" style="color:red;"> نمایش درس ها </a>
                         </td>
 
                         <td class="px-6 py-4">

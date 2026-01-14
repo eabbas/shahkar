@@ -99,9 +99,9 @@ class CourseSeasonController extends Controller
         $logo = logo::first();
         return view('admin.season.edit', [
             'season' => $courseseason,
-             'courses' => $courses,
-             'logo' => $logo
-            ]);
+            'courses' => $courses,
+            'logo' => $logo
+        ]);
     }
 
     public function update(Request $request)
@@ -121,14 +121,35 @@ class CourseSeasonController extends Controller
     {
         $courseseason->delete();
         return redirect()->back();
-        // return to_route("course.seasons", ["course" => $courseseason->course]);
-        // return redirect('/season/seasons');
+    }
+    public function adminLessons(courseseason $courseseason)
+    {
+        $lessons = $courseseason->lessons;
+        $logo = logo::first();
+        return view("admin.lesson.index", ["lessons" => $lessons, 'logo' => $logo]);
     }
     public function lessons(courseseason $courseseason)
     {
         $lessons = $courseseason->lessons;
-        return view("lesson.index", ["lessons" => $lessons]);
-        // return to_route("course.seasons" , ["course" => $season -> course ]);
-        // // return redirect('/season/seasons');
+        $courses = course::all();
+        $logo = logo::first();
+        $products = product::all();
+        $products = $this->getProductMedias($products);
+        $settings = settings::all();
+        $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
+        $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
+        $user = Auth::user();
+        $categories = category::all();
+        return view("user.lesson.index", [
+            "lessons" => $lessons,
+            'courses' => $courses,
+            'logo' => $logo,
+            'categories' => $categories,
+            'products' => $products,
+            'settings' => $settings,
+            'footerColumns' => $footer_columns,
+            'footer_form_column' => $footer_form_column,
+            'user' => $user
+        ]);
     }
 }

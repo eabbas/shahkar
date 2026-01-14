@@ -29,7 +29,6 @@
         transform: translateY(-2px);
     }
 
-    /* موبایل */
     @media (max-width: 600px) {
         .action-box a {
             width: 100%;
@@ -41,9 +40,7 @@
 
 <div style="max-width:900px; margin:auto; padding:20px; font-family:sans-serif;">
 
-    <h2 style="font-size:24px; margin-bottom:20px;">لیست درس‌ها</h2>
 
-    @forelse($lessons as $lesson)
 
         <div style="
             background:#fff;
@@ -106,8 +103,6 @@
            <div class="action-box">
 
             <a href="{{ route('lesson_edit', $lesson->id) }}" class="action-blue">ویرایش</a>
-            <a href="{{ route('lesson_show', $lesson->id) }}" class="action-green">سینگل</a>
-
             <a href="{{ route('lesson_delete', $lesson->id) }}" class="action-red">حذف</a>
 
             <a href="{{ route('lesson_attachfile', $lesson->id) }}" class="action-gray">فایل پیوست ایجاد</a>
@@ -132,11 +127,4 @@
         </div>
 
         </div>
-
-    @empty
-        <p style="text-align:center; padding:20px; background:#fff; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.05);">
-            هیچ درسی ثبت نشده است.
-        </p>
-    @endforelse
-
 </div>

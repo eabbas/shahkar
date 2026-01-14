@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\lesson;
 use App\Models\course;
 use App\Models\courseseason;
+use App\Models\logo;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -21,7 +22,14 @@ class LessonController extends Controller
     {
         $courses = course::all();
         $seasons = courseseason::all();
-        return view("lesson.create", ["courses" => $courses, "seasons" => $seasons, "season" => $season, "course"  => $course]);
+        $logo = logo::first();
+        return view("admin.lesson.create", [
+            'logo' => $logo,
+            "courses" => $courses,
+            "seasons" => $seasons,
+            "season" => $season,
+            "course"  => $course,
+        ]);
     }
 
     public function store(Request $request)
@@ -39,14 +47,18 @@ class LessonController extends Controller
         unset($data["_token"]);
         unset($data["video"]);
         $lesson_id = lesson::insertGetId($data);
-        return to_route("lesson_show", ["lesson" => $lesson_id]);
+        return to_route("lesson_index", ["lesson" => $lesson_id]);
     }
 
 
     public function index()
     {
         $lessons = lesson::all();
-        return view("lesson.index", ["lessons" => $lessons]);
+        $logo = logo::first();
+        return view("admin.lesson.index", [
+            "lessons" => $lessons,
+            'logo' => $logo
+        ]);
     }
 
     public function delete(lesson $lesson)
@@ -65,9 +77,13 @@ class LessonController extends Controller
     }
 
 
+    public function adminShow(lesson $lesson)
+    {
+        return view('user.lesson.single', ["lesson" => $lesson]);
+    }
     public function show(lesson $lesson)
     {
-        return view('lesson.single', ["lesson" => $lesson]);
+        return view('user.lesson.single', ["lesson" => $lesson]);
     }
 
     public function update(Request $request, lesson $lesson)

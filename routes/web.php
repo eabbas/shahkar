@@ -338,6 +338,7 @@ Route::group([
     Route::get('/edit/{courseseason}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{courseseason}', 'delete')->name('delete');
+    Route::get('/admin/lessons/{courseseason}', 'adminLessons')->name('adminLessons');
     Route::get('/lessons/{courseseason}', 'lessons')->withoutMiddleware(checkAdminMiddleware::class)->name('lessons');
 });
 // course lessons
@@ -345,14 +346,15 @@ Route::group([
     'prefix' => 'lesson',
     'controller' => LessonController::class,
     'as' => 'lesson_',
-    'middleware' => checklogin::class
+    'middleware' => checkAdminMiddleware::class
 ], function () {
     Route::get("/create/{season?}/{course?}", "create")->name("create");
     Route::post("/store", "store")->name("store");
     Route::get("/edit/{lesson}", "edit")->name("edit");
-    Route::post("/updata/{lesson}", "update")->name("update");
+    Route::post("/update/{lesson}", "update")->name("update");
     Route::get("/delete/{lesson}", "delete")->name("delete");
-    Route::get("/show/{lesson}", "show")->name("show");
+    Route::get("/admin/show/{lesson}", "adminShow")->name("adminShow");
+    Route::get("/show/{lesson}", "show")->withoutMiddleware(checkAdminMiddleware::class)->name("show");
     Route::get("/index", "index")->name("index");
     Route::get("/attachfile/{lesson}", "attachfile")->name("attachfile");
     Route::post("/attachfile", "storattachment")->name("update");
@@ -387,7 +389,7 @@ Route::group([
     Route::post("/store/{lesson}", "store")->name("store");
     Route::get("/index/{lesson}", "index")->name("index");
     Route::get("/lesson/{lesson}/comment/{lessoncomments}/edit", "edit")->name("edit");
-    Route::post("/update/{lessoncomments}", "update")->name("updata");
+    Route::post("/update/{lessoncomments}", "update")->name("update");
     Route::get("/lesson/{lesson}/comment/{lessoncomments}/delete", "delete")->name("delete");
 });
 // course attachments
