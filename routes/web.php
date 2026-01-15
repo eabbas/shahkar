@@ -357,18 +357,19 @@ Route::group([
     Route::get("/show/{lesson}", "show")->withoutMiddleware(checkAdminMiddleware::class)->name("show");
     Route::get("/index", "index")->name("index");
     Route::get("/attachfile/{lesson}", "attachfile")->name("attachfile");
-    Route::post("/attachfile", "storattachment")->name("update");
     Route::get("/showerrors/{lesson}", "errors")->name("errors");
     Route::get("/showSuggestions/{lesson}", "suggestions")->name("suggestions");
-    Route::get("/showQuestion/{lesson}", "questions")->name("questions");
-    Route::get("/attachments/{lesson}", "showLessonAttachments")->name("attachments");
+    Route::get("/admin/showQuestion/{lesson}", "adminQuestions")->name("adminQuestions");
+    Route::get("/showQuestion/{lesson}", "questions")->withoutMiddleware(checkAdminMiddleware::class)->name("questions");
+    Route::get("/admin/attachments/{lesson}", "adminShowLessonAttachments")->name("adminAttachments");
+    Route::get("/attachments/{lesson}", "showLessonAttachments")->withoutMiddleware(checkAdminMiddleware::class)->name("attachments");
 });
 // meta
 Route::group([
     'prefix' => 'meta',
     'controller' => MetaController::class,
     'as' => 'meta_',
-    'middleware' => checklogin::class
+    'middleware' => checkAdminMiddleware::class
 ], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
@@ -397,11 +398,10 @@ Route::group([
     'prefix' => 'courseAttachments',
     'controller' => CourseAttachmentController::class,
     'as' => 'attachment_',
-    'middleware' => checklogin::class
+    'middleware' => checkAdminMiddleware::class
 ], function () {
     Route::post("/attachfile", "store")->name("store");
     Route::post("/attachfile/{courseattachment}", "update")->name("update");
-    // Route::get("/{courseattachment}/edit","edit") -> name("edit");
     Route::get("/{courseattachment}/delete", "delete")->name("delete");
 });
 // course question

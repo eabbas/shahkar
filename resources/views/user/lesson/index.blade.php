@@ -133,8 +133,6 @@
 
                     <a href="{{ route('lesson_show', $lesson->id) }}" class="action-green">سینگل</a>
 
-                    <a href="{{ route('lesson_attachfile', $lesson->id) }}" class="action-gray">فایل پیوست ایجاد</a>
-                    
                     <a href="{{ route('lesson_attachments', $lesson->id) }}" class="action-gray">نمایش پیوست ها</a>
 
                     <a href="{{ route('lessonComments_create', $lesson->id) }}" class="action-green">افزودن نظر</a>
@@ -143,11 +141,7 @@
 
                     <a href="{{ route('error_create', $lesson->id) }}" class="action-red">گزارش خطا</a>
 
-                    <a href="{{ route('lesson_errors', $lesson->id) }}" class="action-red">نمایش خطاها</a>
-
                     <a href="{{ route('suggestion_create', $lesson->id) }}" class="action-teal">ایجاد پیشنهاد</a>
-
-                    <a href="{{ route('lesson_suggestions', $lesson->id) }}" class="action-green">نمایش پیشنهادها</a>
 
                     <a href="{{ route('question_create', $lesson->id) }}" class="action-brown">ایجاد سوال</a>
 

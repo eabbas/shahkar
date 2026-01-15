@@ -48,6 +48,44 @@
                     </a>
                 </div>
                 <div class="border-b border-gray-500 pb-3">
+                    <div class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md @if (Route::is('meta_*')) bg-[#383c4d] @endif">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                            class="size-6 fill-white w-[15px] transition-all duration-300 @if (Route::is('meta_*')) rotate-180 @endif">
+                            <path fill-rule="evenodd"
+                                d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <div class="flex flex-row-reverse items-center gap-2 text-white">
+                            <span class="flex justify-end">متا ها</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="800px" height="800px"
+                                class="w-[30px] h-[30px] fill-white " viewBox="0 0 100 100"
+                                enable-background="new 0 0 100 100" xml:space="preserve">
+                                <path
+                                    d="M22.5,19.7h20c1.4,0,2.5,1.1,2.5,2.5v54.9c0,1.4-1.1,2.5-2.5,2.5h-20c-1.4,0-2.5-1.1-2.5-2.5V22.2  C20,20.8,21.1,19.7,22.5,19.7z" />
+                                <path
+                                    d="M57.5,19.6h20c1.4,0,2.5,1.1,2.5,2.5V42c0,1.4-1.1,2.5-2.5,2.5h-20c-1.4,0-2.5-1.1-2.5-2.5V22.1  C55,20.7,56.1,19.6,57.5,19.6z" />
+                                <path
+                                    d="M57.5,54.6h20c1.4,0,2.5,1.1,2.5,2.5v19.9c0,1.4-1.1,2.5-2.5,2.5h-20c-1.4,0-2.5-1.1-2.5-2.5V57.1  C55,55.8,56.1,54.6,57.5,54.6z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="overflow-y-auto transition-all duration-300 @if (Route::is('meta_*')) max-h-100 @else max-h-0 @endif"
+                    style="scrollbar-width: none;">
+                        <ul class="gap-2.5 pr-3">
+                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                <span class="size-1 bg-white rounded-sm"></span>
+                                <a href="{{ route('meta_index') }}"
+                                    class="py-1 @if (Route::is('meta_index')) text-[#FF0000] @endif">همه متا ها</a>
+                            </li>
+                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                <span class="size-1 bg-white rounded-sm"></span>
+                                <a href="{{ route('meta_create') }}"
+                                    class="py-1 @if (Route::is('meta_create')) text-[#FF0000] @endif">ایجاد متای جدید</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="border-b border-gray-500 pb-3">
                     <div class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md @if (Route::is('settings.colors.createColor') || Route::is('menu-*') || Route::is('banners-*') || Route::is('footer-*') || Route::is('homeForm-*')) bg-[#383c4d] @endif">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                             class="size-6 fill-white w-[15px] transition-all duration-300 @if (Route::is('settings.colors.createColor') || Route::is('menu-*') || Route::is('banners-*') || Route::is('footer-*') || Route::is('homeForm-*')) rotate-180 @endif">
@@ -481,6 +519,44 @@
                                 </svg>
                             </div>
                         </a>
+                    </div>
+                    <div class="border-b border-gray-500 pb-3">
+                        <div class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md @if (Route::is('meta_*')) bg-[#383c4d] @endif">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="size-6 fill-white w-[15px] transition-all duration-300 @if (Route::is('meta_*')) rotate-180 @endif">
+                                <path fill-rule="evenodd"
+                                    d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <div class="flex flex-row-reverse items-center gap-2 text-white">
+                                <span class="flex justify-end">متا ها</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="800px" height="800px"
+                                    class="w-[30px] h-[30px] fill-white " viewBox="0 0 100 100"
+                                    enable-background="new 0 0 100 100" xml:space="preserve">
+                                    <path
+                                        d="M22.5,19.7h20c1.4,0,2.5,1.1,2.5,2.5v54.9c0,1.4-1.1,2.5-2.5,2.5h-20c-1.4,0-2.5-1.1-2.5-2.5V22.2  C20,20.8,21.1,19.7,22.5,19.7z" />
+                                    <path
+                                        d="M57.5,19.6h20c1.4,0,2.5,1.1,2.5,2.5V42c0,1.4-1.1,2.5-2.5,2.5h-20c-1.4,0-2.5-1.1-2.5-2.5V22.1  C55,20.7,56.1,19.6,57.5,19.6z" />
+                                    <path
+                                        d="M57.5,54.6h20c1.4,0,2.5,1.1,2.5,2.5v19.9c0,1.4-1.1,2.5-2.5,2.5h-20c-1.4,0-2.5-1.1-2.5-2.5V57.1  C55,55.8,56.1,54.6,57.5,54.6z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="overflow-y-auto transition-all duration-300 @if (Route::is('meta_*')) max-h-100 @else max-h-0 @endif"
+                        style="scrollbar-width: none;">
+                            <ul class="gap-2.5 pr-3">
+                                <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                    <span class="size-1 bg-white rounded-sm"></span>
+                                    <a href="{{ route('meta_index') }}"
+                                        class="py-1 @if (Route::is('meta_index')) text-[#FF0000] @endif">همه متا ها</a>
+                                </li>
+                                <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                    <span class="size-1 bg-white rounded-sm"></span>
+                                    <a href="{{ route('meta_create') }}"
+                                        class="py-1 @if (Route::is('meta_create')) text-[#FF0000] @endif">ایجاد متای جدید</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="border-b border-gray-500 pb-3">
                         <div class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md @if (Route::is('settings.colors.createColor') || Route::is('menu-*') || Route::is('banners-*') || Route::is('footer-*') || Route::is('homeForm-*')) bg-[#383c4d] @endif">

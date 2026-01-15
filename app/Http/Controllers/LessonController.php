@@ -2,17 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\category;
 use Illuminate\Http\Request;
 
 use App\Models\lesson;
 use App\Models\course;
 use App\Models\courseseason;
+use App\Models\footer_column;
 use App\Models\logo;
+use App\Models\product;
+use App\Models\settings;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use DB;
+use Illuminate\Support\Facades\Auth;
 
 class LessonController extends Controller
 {
+    public function getProductMedias($products)
+    {
+        foreach ($products as $product) {
+            $product->load(['medias' => function ($query) {
+                $query->select('product_id', DB::raw("IFNULL(path , 'images/noImage.png') path"))->where('is_main', 1);
+            }]);
+            foreach ($product->medias as $media) {
+                $product['img'] = asset('storage/images/noImage.png');
+                if (Storage::disk('public')->exists($media['path'])) {
+                    $product['img'] = asset('storage/' . $media['path']);
+                }
+            }
+        }
+        return $products;
+    }
     public function lesson()
     {
         return view("lesson.lesson");
@@ -66,24 +87,53 @@ class LessonController extends Controller
         $lesson->delete();
         $season = $lesson->season;
         $lessons = $season->lessons;
-        return view("lesson.index", ["lessons" => $lessons]);
+        return to_route('lesson_index', ["lessons" => $lessons]);
     }
 
     public function edit(lesson $lesson)
     {
         $courses = course::all();
         $seasons = courseseason::all();
-        return view("lesson.edit", ["courses" => $courses, "lesson"  => $lesson, "seasons" => $seasons]);
+        $logo = logo::first();
+        return view("admin.lesson.edit", [
+            "courses" => $courses,
+            "lesson"  => $lesson,
+            "seasons" => $seasons,
+            'logo' => $logo
+        ]);
     }
 
 
     public function adminShow(lesson $lesson)
     {
-        return view('user.lesson.single', ["lesson" => $lesson]);
+        $logo = logo::first();
+        return view('admin.lesson.single', [
+            "lesson" => $lesson,
+            'logo' => $logo
+        ]);
     }
     public function show(lesson $lesson)
     {
-        return view('user.lesson.single', ["lesson" => $lesson]);
+        $courses = course::all();
+        $logo = logo::first();
+        $products = product::all();
+        $products = $this->getProductMedias($products);
+        $settings = settings::all();
+        $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
+        $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
+        $user = Auth::user();
+        $categories = category::all();
+        return view('user.lesson.single', [
+            "lesson" => $lesson,
+            'logo' => $logo,
+            'categories' => $categories,
+            'courses' => $courses,
+            'products' => $products,
+            'settings' => $settings,
+            'footerColumns' => $footer_columns,
+            'footer_form_column' => $footer_form_column,
+            'user' => $user
+        ]);
     }
 
     public function update(Request $request, lesson $lesson)
@@ -110,37 +160,110 @@ class LessonController extends Controller
         }
 
         $lesson->save();
-        return to_route("lesson_show", [$lesson]);
+        return to_route("lesson_adminShow", [$lesson]);
     }
 
     public function attachfile(lesson $lesson)
     {
-        return view("lesson.attachments.create", ["lesson" => $lesson]);
+        $logo = logo::first();
+        return view("admin.lesson.attachments.create", [
+            "lesson" => $lesson,
+            'logo' => $logo
+        ]);
     }
 
     public function errors(lesson $lesson)
     {
         // $errors = $lesson->load('errors');
         $lessoErrors = $lesson->errors;
-
-        return view("lesson.error.index", ["lessoErrors" => $lessoErrors, "lesson" => $lesson]);
+        $logo = logo::first();
+        return view("admin.lesson.error.index", [
+            "lessoErrors" => $lessoErrors,
+            "lesson" => $lesson,
+            'logo' => $logo
+        ]);
     }
 
     public function suggestions(lesson $lesson)
     {
         $suggestions = $lesson->suggestions;
-        return view("lesson.suggestion.index", ["suggestions" => $suggestions, "lesson" => $lesson]);
+        $logo = logo::first();
+        return view("admin.lesson.suggestion.index", [
+            "suggestions" => $suggestions,
+            "lesson" => $lesson,
+            'logo' => $logo
+        ]);
     }
 
+    public function adminQuestions(lesson $lesson)
+    {
+        $questions = $lesson->questions;
+        $logo = logo::first();
+        return view("admin.lesson.question.index", [
+            "questions" => $questions,
+            "lesson" => $lesson,
+            'logo' => $logo,
+        ]);
+    }
     public function questions(lesson $lesson)
     {
         $questions = $lesson->questions;
-        return view("lesson.question.index", ["questions" => $questions, "lesson" => $lesson]);
+        $courses = course::all();
+        $logo = logo::first();
+        $products = product::all();
+        $products = $this->getProductMedias($products);
+        $settings = settings::all();
+        $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
+        $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
+        $user = Auth::user();
+        $categories = category::all();
+        return view("user.lesson.question.index", [
+            "questions" => $questions,
+            "lesson" => $lesson,
+            'categories' => $categories,
+            'logo' => $logo,
+            'courses' => $courses,
+            'products' => $products,
+            'settings' => $settings,
+            'footerColumns' => $footer_columns,
+            'footer_form_column' => $footer_form_column,
+            'user' => $user
+        ]);
     }
 
+    public function adminShowLessonAttachments(lesson $lesson)
+    {
+        $attachments = $lesson->attachments;
+        $logo = logo::first();
+        return view("admin.lesson.attachments.index", [
+            "lesson" => $lesson,
+            "attachments" => $attachments,
+            'logo' => $logo
+        ]);
+    }
     public function showLessonAttachments(lesson $lesson)
     {
         $attachments = $lesson->attachments;
-        return view("lesson.attachments.index", ["lesson" => $lesson, "attachments" => $attachments]);
+        $courses = course::all();
+        $logo = logo::first();
+        $products = product::all();
+        $products = $this->getProductMedias($products);
+        $settings = settings::all();
+        $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
+        $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
+        $user = Auth::user();
+        $categories = category::all();
+        return view("user.lesson.attachments.index", [
+            "lesson" => $lesson,
+            "attachments" => $attachments,
+            'categories' => $categories,
+            'logo' => $logo,
+            'courses' => $courses,
+            'products' => $products,
+            'settings' => $settings,
+            'footerColumns' => $footer_columns,
+            'footer_form_column' => $footer_form_column,
+            'user' => $user
+        ]);
     }
 }

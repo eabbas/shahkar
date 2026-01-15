@@ -136,7 +136,7 @@
                     <a href="{{ route('lesson_delete', $lesson->id) }}" class="action-red">حذف</a>
 
                     <a href="{{ route('lesson_attachfile', $lesson->id) }}" class="action-gray">فایل پیوست ایجاد</a>
-                    <a href="{{ route('lesson_attachments', $lesson->id) }}" class="action-gray">نمایش پیوست ها</a>
+                    <a href="{{ route('lesson_adminAttachments', $lesson->id) }}" class="action-gray">نمایش پیوست ها</a>
 
                     <a href="{{ route('lessonComments_create', $lesson->id) }}" class="action-green">افزودن نظر</a>
 
@@ -152,7 +152,7 @@
 
                     <a href="{{ route('question_create', $lesson->id) }}" class="action-brown">ایجاد سوال</a>
 
-                    <a href="{{ route('lesson_questions', $lesson->id) }}" class="action-blue">نمایش همه سوال</a>
+                    <a href="{{ route('lesson_adminQuestions', $lesson->id) }}" class="action-blue">نمایش همه سوال</a>
 
                 </div>
 

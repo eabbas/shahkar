@@ -5,7 +5,7 @@
         padding: 20px;
         background: #f9f9f9;
         border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         font-family: Arial, sans-serif;
     }
 
@@ -29,7 +29,7 @@
 
     form textarea:focus {
         border-color: #007BFF;
-        box-shadow: 0 0 5px rgba(0,123,255,0.3);
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
         outline: none;
     }
 
@@ -62,14 +62,16 @@
     }
 </style>
 
+@extends('admin.app.dashboard')
+@section('content')
+    <form action="{{ route('meta_store') }}" method="post">
+        @csrf
 
-<form action="{{ route('meta_store') }}" method="post">
-    @csrf
-
-    <label for="meta">createMeta:</label>
-    <input type="text" name="title" style="width:100%; height:60px;">
-    <br><br>
+        <label for="meta">createMeta:</label>
+        <input type="text" name="title" style="width:100%; height:60px;">
+        <br><br>
 
 
-    <button type="submit">Submit</button>
-</form>
+        <button type="submit">Submit</button>
+    </form>
+@endsection
