@@ -113,7 +113,7 @@
                     <tr>
                         <td>{{ $course['course']['title'] ?? '-' }}</td>
                         <td>
-                            <a href="{{ route('course.show', [$course['course']['id'] ?? 0]) }}">
+                            <a href="{{ route('course.adminShow', [$course['course']['id'] ?? 0]) }}">
                                 مشاهده جزئیات
                             </a>
                         </td>

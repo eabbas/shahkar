@@ -138,9 +138,9 @@
                     <a href="{{ route('lesson_attachfile', $lesson->id) }}" class="action-gray">فایل پیوست ایجاد</a>
                     <a href="{{ route('lesson_adminAttachments', $lesson->id) }}" class="action-gray">نمایش پیوست ها</a>
 
-                    <a href="{{ route('lessonComments_create', $lesson->id) }}" class="action-green">افزودن نظر</a>
+                    <a href="{{ route('lessonComments_adminCreate', $lesson->id) }}" class="action-green">افزودن نظر</a>
 
-                    <a href="{{ route('lessonComments_index', $lesson->id) }}" class="action-green">نظرات</a>
+                    <a href="{{ route('lessonComments_adminIndex', $lesson->id) }}" class="action-green">نظرات</a>
 
                     <a href="{{ route('error_create', $lesson->id) }}" class="action-red">گزارش خطا</a>
 
