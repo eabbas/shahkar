@@ -16,7 +16,7 @@
                        </div>
                        <div style="margin-bottom:6px;">
                            <strong>نوع خطا:</strong>
-                           {{ $error->errortitle->title }}
+                           {{ $error->errortitle->title ?? 'بدون عنوان' }}
                        </div>
 
                        <div style="color:gray; font-size:13px; margin-bottom:10px;">

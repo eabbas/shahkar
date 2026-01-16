@@ -265,9 +265,9 @@
                     </div>
                 </div>
                 <div class="border-b border-gray-500 pb-3">
-                    <div class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md  @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*') || Route::is('status.*') || Route::is('courseLevel.*') || Route::is('season.*') || Route::is('lesson_*') || Route::is('lessonComments_*')) bg-[#383c4d] @endif">
+                    <div class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md  @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*') || Route::is('status.*') || Route::is('courseLevel.*') || Route::is('season.*') || Route::is('lesson_*') || Route::is('lessonComments_*') || Route::is('question_*') || Route::is('answer_*') || Route::is('suggestion_*') || Route::is('error_*') || Route::is('errortitle_*')) bg-[#383c4d] @endif">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="size-6 fill-white w-[15px] transition-all duration-300  @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*') || Route::is('status.*') || Route::is('courseLevel.*') || Route::is('season.*') || Route::is('lesson_*') || Route::is('lessonComments_*')) rotate-180 @endif">
+                            class="size-6 fill-white w-[15px] transition-all duration-300  @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*') || Route::is('status.*') || Route::is('courseLevel.*') || Route::is('season.*') || Route::is('lesson_*') || Route::is('lessonComments_*') || Route::is('question_*') || Route::is('answer_*') || Route::is('suggestion_*') || Route::is('error_*') || Route::is('errortitle_*')) rotate-180 @endif">
                             <path fill-rule="evenodd"
                                 d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                 clip-rule="evenodd" />
@@ -286,7 +286,7 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="overflow-y-auto transition-all duration-300 @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*') || Route::is('status.*') || Route::is('courseLevel.*') || Route::is('season.*') || Route::is('lesson_*') || Route::is('lessonComments_*')) max-h-100 @else max-h-0 @endif"
+                    <div class="overflow-y-auto transition-all duration-300 @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*') || Route::is('status.*') || Route::is('courseLevel.*') || Route::is('season.*') || Route::is('lesson_*') || Route::is('lessonComments_*') || Route::is('question_*') || Route::is('answer_*') || Route::is('suggestion_*') || Route::is('error_*') || Route::is('errortitle_*')) max-h-100 @else max-h-0 @endif"
                     style="scrollbar-width: none;">
                         <ul class="gap-2.5 pr-3">
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
@@ -345,6 +345,16 @@
                                 <span class="size-1 bg-white rounded-sm"></span>
                                 <a href="{{ route('courseLevel.create') }}"
                                     class="py-1 @if (Route::is('courseLevel.create')) text-[#FF0000] @endif">ایجاد سطح جدید</a>
+                            </li>
+                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                <span class="size-1 bg-white rounded-sm"></span>
+                                <a href="{{ route('errortitle_index') }}"
+                                    class="py-1 @if (Route::is('errortitle_index')) text-[#FF0000] @endif">همه خطا ها</a>
+                            </li>
+                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                <span class="size-1 bg-white rounded-sm"></span>
+                                <a href="{{ route('errortitle_create') }}"
+                                    class="py-1 @if (Route::is('errortitle_create')) text-[#FF0000] @endif">ایجاد عنوان خطای جدید</a>
                             </li>
                         </ul>
                     </div>
@@ -739,9 +749,9 @@
                         </div>
                     </div>
                     <div class="border-b border-gray-500 pb-3">
-                        <div class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*') || Route::is('status.*') || Route::is('courseLevel.*') || Route::is('season.*') || Route::is('lesson_*') || Route::is('lessonComments_*')) bg-[#383c4d] @endif">
+                        <div class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*') || Route::is('status.*') || Route::is('courseLevel.*') || Route::is('season.*') || Route::is('lesson_*') || Route::is('lessonComments_*') || Route::is('question_*') || Route::is('answer_*') || Route::is('suggestion_*') || Route::is('error_*') || Route::is('errortitle_*')) bg-[#383c4d] @endif">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                class="size-6 fill-white w-[15px] transition-all duration-300 @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*') || Route::is('status.*') || Route::is('courseLevel.*') || Route::is('season.*') || Route::is('lesson_*') || Route::is('lessonComments_*')) rotate-180 @endif">
+                                class="size-6 fill-white w-[15px] transition-all duration-300 @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*') || Route::is('status.*') || Route::is('courseLevel.*') || Route::is('season.*') || Route::is('lesson_*') || Route::is('lessonComments_*') || Route::is('question_*') || Route::is('answer_*') || Route::is('suggestion_*') || Route::is('error_*') || Route::is('errortitle_*')) rotate-180 @endif">
                                 <path fill-rule="evenodd"
                                     d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                     clip-rule="evenodd" />
@@ -760,7 +770,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="overflow-y-auto transition-all duration-300 @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*') || Route::is('status.*') || Route::is('courseLevel.*') || Route::is('season.*') || Route::is('lesson_*') || Route::is('lessonComments_*')) max-h-100 @else max-h-0 @endif"
+                        <div class="overflow-y-auto transition-all duration-300 @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*') || Route::is('status.*') || Route::is('courseLevel.*') || Route::is('season.*') || Route::is('lesson_*') || Route::is('lessonComments_*') || Route::is('question_*') || Route::is('answer_*') || Route::is('suggestion_*') || Route::is('error_*') || Route::is('errortitle_*')) max-h-100 @else max-h-0 @endif"
                         style="scrollbar-width: none;">
                             <ul class="gap-2.5 pr-3">
                                 <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
@@ -819,6 +829,16 @@
                                     <span class="size-1 bg-white rounded-sm"></span>
                                     <a href="{{ route('courseLevel.create') }}"
                                         class="py-1 @if (Route::is('courseLevel.create')) text-[#FF0000] @endif">ایجاد سطح جدید</a>
+                                </li>
+                                <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                    <span class="size-1 bg-white rounded-sm"></span>
+                                    <a href="{{ route('errortitle_index') }}"
+                                        class="py-1 @if (Route::is('errortitle_index')) text-[#FF0000] @endif">همه خطا ها</a>
+                                </li>
+                                <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                    <span class="size-1 bg-white rounded-sm"></span>
+                                    <a href="{{ route('errortitle_create') }}"
+                                        class="py-1 @if (Route::is('errortitle_create')) text-[#FF0000] @endif">ایجاد عنوان خطای جدید</a>
                                 </li>
                             </ul>
                         </div>

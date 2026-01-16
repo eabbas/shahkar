@@ -30,11 +30,11 @@
                                style="background:#ffc107; color:red; padding:6px 12px; border-radius:5px; text-decoration:none;">
                                حذف
                            </a>
-                           <a href="{{ route('answer_create', ['coursequestion' => $question->id]) }}"
+                           <a href="{{ route('answer_adminCreate', ['coursequestion' => $question->id]) }}"
                                style="background:green; color:white; padding:6px 12px; border-radius:5px; text-decoration:none;">
                                ایجاد جواب
                            </a>
-                           <a href="{{ route('question_answers', ['coursequestion' => $question->id]) }}"
+                           <a href="{{ route('question_adminAnswers', ['coursequestion' => $question->id]) }}"
                                style="background:green; color:white; padding:6px 12px; border-radius:5px; text-decoration:none;">
                                نمایش جواب ها
                            </a>

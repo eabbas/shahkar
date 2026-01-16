@@ -55,6 +55,7 @@ class LessonController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $data = $request->all();
         $data['free'] = $request->has('free') ? 1 : 0;
         if ($request->hasFile('video')) {

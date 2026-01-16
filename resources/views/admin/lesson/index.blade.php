@@ -142,15 +142,15 @@
 
                     <a href="{{ route('lessonComments_adminIndex', $lesson->id) }}" class="action-green">نظرات</a>
 
-                    <a href="{{ route('error_create', $lesson->id) }}" class="action-red">گزارش خطا</a>
+                    <a href="{{ route('error_adminCreate', $lesson->id) }}" class="action-red">گزارش خطا</a>
 
                     <a href="{{ route('lesson_errors', $lesson->id) }}" class="action-red">نمایش خطاها</a>
 
-                    <a href="{{ route('suggestion_create', $lesson->id) }}" class="action-teal">ایجاد پیشنهاد</a>
+                    <a href="{{ route('suggestion_adminCreate', $lesson->id) }}" class="action-teal">ایجاد پیشنهاد</a>
 
                     <a href="{{ route('lesson_suggestions', $lesson->id) }}" class="action-green">نمایش پیشنهادها</a>
 
-                    <a href="{{ route('question_create', $lesson->id) }}" class="action-brown">ایجاد سوال</a>
+                    <a href="{{ route('question_adminCreate', $lesson->id) }}" class="action-brown">ایجاد سوال</a>
 
                     <a href="{{ route('lesson_adminQuestions', $lesson->id) }}" class="action-blue">نمایش همه سوال</a>
 
