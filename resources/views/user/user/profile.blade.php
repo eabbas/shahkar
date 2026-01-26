@@ -17,6 +17,10 @@
             <li class="border-b border-gray-300">
                 <a href="#" class="inline-block w-full py-3 px-4 text-sm">دیدگاه ها و پرسش ها</a>
             </li>
+            <li class="border-b border-gray-300">
+                <a href="{{ route('user.courses', [$user]) }}" class="inline-block w-full py-3 px-4 text-sm">دوره های ثبت
+                    نام شده</a>
+            </li>
 
             @if ($user->is_admin)
                 <li class="border-b border-gray-300">

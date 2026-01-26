@@ -189,7 +189,7 @@ function login(state) {
 }
 
 //! add to shopping cart by mr.olyafam
-function addToShoppingCart(id, title, description, image, price) {
+function addToShoppingCart(element, id, title, description, image, price) {
     let productCountInCookie = 0;
     let allCookies = document.cookie;
     let allCookiesArr = allCookies.split(';');
@@ -220,6 +220,7 @@ let shoppingCartProducts = document.getElementById('shoppingCartProducts');
 let mobileShoppingCartProducts = document.getElementById('mobileShoppingCartProducts');
 let i = 1
 let array = []
+let x = []
 let count = 0
 let totalPrice = 0
 function getCookies() {
@@ -239,6 +240,7 @@ function getCookies() {
                 part.trim().split('=').forEach((info, index) => {
                     if (index == 0) key = info;
                     if (index == 1) array[key] = info;
+                    if (index == 1) x[key] = info;
                     if (index == 1) {
                         finalCountOfArray++
                         if (finalCountOfArray == 5) {
@@ -286,17 +288,16 @@ function getCookies() {
                 })
             })
             i++
-            // Assuming 'div' is already created
-            mobileShoppingCartProducts.appendChild(div); // Append to the first parent
-            // Clone the div for the second parent
-            const clonedDiv = div.cloneNode(true); // 'true' means a deep clone
-            shoppingCartProducts.appendChild(clonedDiv); // Append the cloned div to the second parent
+            mobileShoppingCartProducts.appendChild(div);
+            const clonedDiv = div.cloneNode(true);
+            shoppingCartProducts.appendChild(clonedDiv);
         }
     })
     document.getElementById('shoppingCartProductCount').innerHTML = count
     document.getElementById('mobileShoppingCartProductCount').innerHTML = count
     document.getElementById('shoppingCartTotalPrice').innerHTML = totalPrice
     document.getElementById('mobileShoppingCartTotalPrice').innerHTML = totalPrice
+    console.log(x);
 }
 
 let shoppingCartContent = document.getElementById('shoppingCartContent')
@@ -386,6 +387,7 @@ function getRelatedProducts(param, section) {
         },
         success: function (data) {
             if (section == "home") {
+                document.getElementById('relatedProductsCount').innerHTML = data.length
                 relatedProducts.innerHTML = '';
                 data.forEach((product) => {
                     let id = product.id;

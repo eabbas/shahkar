@@ -19,10 +19,7 @@
 </head>
 
 <body>
-
    @extends('admin.app.dashboard')
-
-
    @section('content')
    <div class="w-full h-full pb-10">
       <h2 class="text-3xl text-center font-bold py-5 text-[#425A8B]">فرم ایجاد محصول</h2>

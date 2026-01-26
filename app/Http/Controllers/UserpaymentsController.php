@@ -12,7 +12,7 @@ class UserpaymentsController extends Controller
     public function buyCourse(Request $request, course $course)
     {
         // in method baray pardkht marbot beh doreh hast 
-        $meta = 6;
+        $meta = 1;
         /** متا کی مربوط به دوره ها  در آینده با تنضیمات داینامیک میکنیم  */
 
         if (userpayments::where('user_id', auth()->id())->where('value', $course->id)->where("meta_id", 6)->first()) {

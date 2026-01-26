@@ -156,11 +156,41 @@ class userController extends Controller
         ]);
     }
 
+    public function adminCourses(User $user)
+    {
+        $courses = $user->load('userCourses.course');
+        $userCourses = $courses->toArray();
+        $logo = logo::first();
+        return view('admin.course.userCourse.courses', [
+            'userCourses' => $userCourses,
+            'courses' => $courses,
+            'logo' => $logo,
+        ]);
+    }
     public function courses(User $user)
     {
         $courses = $user->load('userCourses.course');
         $userCourses = $courses->toArray();
-        return view('course.userCourse.courses', ['userCourses' => $userCourses, 'user' => $user]);
+        $courses = course::all();
+        $logo = logo::first();
+        $products = product::all();
+        $products = $this->getProductMedias($products);
+        $settings = settings::all();
+        $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
+        $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
+        $categories = category::all();
+        return view('user.course.userCourse.courses', [
+            'userCourses' => $userCourses,
+            'user' => $user,
+            'courses' => $courses,
+            'logo' => $logo,
+            'categories' => $categories,
+            'courses' => $courses,
+            'products' => $products,
+            'settings' => $settings,
+            'footerColumns' => $footer_columns,
+            'footer_form_column' => $footer_form_column,
+        ]);
     }
 
     public function send_code(Request $request)

@@ -48,6 +48,10 @@
                                 <li class="w-full"> {{ $user->email }}</li>
                                 <li class="w-full col-span-2 grid grid-cols-3 gap-3 xl:gap-5">
                                     <div class="w-full">
+                                        <a href="{{ route('user.adminCourses', [$user]) }}"
+                                            class="px-3 xl:px-5 py-1 border border-gray-300 rounded-md transition-all duration-150 hover:bg-gray-400 hover:text-white">دوره ها</a>
+                                    </div>
+                                    <div class="w-full">
                                         <a href="{{ route('user.profile', [$user]) }}"
                                             class="px-3 xl:px-5 py-1 border border-gray-300 rounded-md transition-all duration-150 hover:bg-gray-400 hover:text-white">نمایش</a>
                                     </div>

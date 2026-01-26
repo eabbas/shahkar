@@ -23,6 +23,7 @@ class couresAnswerreactionController extends Controller
 
         $question = $courseanswer->question;
 
-        return to_route('question_answers', ['coursequestion' => $question->id]);
+        return redirect()->back();
+        // return to_route('question_answers', ['coursequestion' => $question->id]);
     }
 }

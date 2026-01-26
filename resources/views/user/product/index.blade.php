@@ -1,36 +1,40 @@
 @extends('app.document')
 @section('title', ' همه محصولات ')
-    @section('content')
-        
-   <div>
-      <h2>لیست محصولات</h2>
-      <table border="1" style="border-collapse: collapse;">
-         <thead>
-            <tr>
-               <th>آیدی</th>
-               <th>عنوان محصول</th>
-               <th>توضیحات محصول</th>
-               <th>عکس محصول</th>
-               <th>خلاصه محصول</th>
-               <th>دسته بندی محصول</th>
-               <th>عملیات</th>
-            </tr>
-         </thead>
-         <tbody>
-            @foreach($products as $product)
-            <tr>
-               <td>{{$product['id']}}</td>
-               <td>{{$product['title']}}</td>
-               <td>{{$product['description']}}</td>
-               <td>{{$product['image']}}</td>
-               <td>{{$product['summary']}}</td>
-               <td>@if($product['category']) {{$product['category']['title']}} @endif</td>
-               <td>
-                  <a href="{{route('product-show',[$product])}}">نمایش</a>
-               </td>
-            </tr>
-            @endforeach
-         </tbody>
-      </table>
-   </div>
+@section('content')
+
+    <div>
+        <h2>لیست محصولات</h2>
+        <table border="1" style="border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>آیدی</th>
+                    <th>عنوان محصول</th>
+                    <th>توضیحات محصول</th>
+                    <th>عکس محصول</th>
+                    <th>خلاصه محصول</th>
+                    <th>دسته بندی محصول</th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($products as $product)
+                    <tr>
+                        <td>{{ $product['id'] }}</td>
+                        <td>{{ $product['title'] }}</td>
+                        <td>{{ $product['description'] }}</td>
+                        <td>{{ $product['image'] }}</td>
+                        <td>{{ $product['summary'] }}</td>
+                        <td>
+                            @if ($product['category'])
+                                {{ $product['category']['title'] }}
+                            @endif
+                        </td>
+                        <td>
+                            <a href="{{ route('product-show', [$product]) }}">نمایش</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 @endsection

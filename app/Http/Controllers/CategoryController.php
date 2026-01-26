@@ -127,7 +127,12 @@ class CategoryController extends Controller
     public function edit(category $category)
     {
         $cats = category::all();
-        return view('admin.category.edit', ['cat' => $category, 'categories' => $cats]);
+        $logo = logo::first();
+        return view('admin.category.edit', [
+            'cat' => $category,
+            'categories' => $cats,
+            'logo' => $logo
+        ]);
     }
 
     public function update(Request $request)

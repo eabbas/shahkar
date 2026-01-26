@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('bio');
-            $table->string('profile_img') -> nullable();
-            $table->string('expertise');
-            $table->string('phone');
-            $table->string('social_media') -> nullable();
+            $table->string('bio')->nullable();
+            $table->string('profile_img')->nullable();
+            $table->string('expertise')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('social_media')->nullable();
             $table->timestamps();
         });
     }

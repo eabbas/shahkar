@@ -18,7 +18,7 @@ use App\Http\Controllers\userController;
 use App\Http\Middleware\checkAdminMiddleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\checklogin;
-use App\Http\Controllers\CourscategoryController;
+use App\Http\Controllers\CoursecategoryController;
 use App\Http\Controllers\CourseStatusController;
 use App\Http\Controllers\CourseLevelController;
 use App\Http\Controllers\TeacherController;
@@ -88,6 +88,7 @@ Route::group([
     Route::get('/logout{id?}', 'logout')->name('logout');
     Route::get('/index', 'index')->middleware(checkAdminMiddleware::class)->name('index');
     Route::get('/courses/{user}', 'courses')->middleware(checklogin::class)->name('courses');
+    Route::get('/admin/courses/{user}', 'adminCourses')->middleware(checklogin::class)->name('adminCourses');
     Route::post('/sendSMS', 'send_code')->name('sendSMS');
     Route::post('/checkAuth', 'checkAuth')->name('checkAuth');
     Route::post('/setPassword', 'setPassword')->name('setPassword');
@@ -220,14 +221,16 @@ Route::group(['prefix' => 'homeForm', 'controller' => HomeFormsController::class
 // course category
 Route::group([
     'prefix' => 'coursecategory',
-    'controller' => CourscategoryController::class,
+    'controller' => CoursecategoryController::class,
     'as' => 'coursecategory.',
-    'middleware' => checklogin::class
+    'middleware' => checkAdminMiddleware::class
 ], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
-    Route::get('/show/{coursecategory}', 'show')->name('show');
-    Route::get('/categories', 'index')->name('list');
+    Route::get('/admin/show/{coursecategory}', 'adminShow')->name('adminShow');
+    Route::get('/show/{coursecategory}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->name('show');
+    Route::get('/admin/categories', 'adminIndex')->name('adminList');
+    Route::get('/categories', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('list');
     Route::get('/edit/{coursecategory}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{coursecategory}', 'delete')->name('delete');
@@ -235,9 +238,9 @@ Route::group([
 // course teacher
 Route::group([
     'prefix' => 'teacher',
-    'controller' => teacherController::class,
+    'controller' => TeacherController::class,
     'as' => 'teacher.',
-    'middleware' => checklogin::class
+    'middleware' => checkAdminMiddleware::class
 ], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
@@ -252,7 +255,7 @@ Route::group([
     'prefix' => 'courseStatus',
     'controller' => CourseStatusController::class,
     'as' => 'status.',
-    'middleware' => checklogin::class
+    'middleware' => checkAdminMiddleware::class
 ], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
@@ -267,7 +270,7 @@ Route::group([
     'prefix' => 'courseLevel',
     'controller' => CourseLevelController::class,
     'as' => 'courseLevel.',
-    'middleware' => checklogin::class
+    'middleware' => checkAdminMiddleware::class
 ], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
@@ -282,27 +285,29 @@ Route::group([
     'prefix' => 'course',
     'controller' => courseController::class,
     'as' => 'course.',
-    'middleware' => checklogin::class
+    'middleware' => checkAdminMiddleware::class
 ], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
-    Route::get('/show/{course}', 'show')->name('show');
-    Route::get('/courses', 'index')->name('list');
+    Route::get('/admin/show/{course}', 'adminShow')->name('adminShow');
+    Route::get('/show/{course}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->middleware(checklogin::class)->name('show');
+    Route::get('/admin/courses', 'adminIndex')->name('adminList');
+    Route::get('/courses', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('list');
     Route::get('/edit/{course}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{course}', 'delete')->name('delete');
     Route::get('/users/{course}', 'users')->name('users');
-    Route::get('/seasons/{course}', 'seasons')->name('seasons');
+    Route::get('/admin/seasons/{course}', 'adminSeasons')->name('adminSeasons');
+    Route::get('/seasons/{course}', 'seasons')->withoutMiddleware(checkAdminMiddleware::class)->middleware(checklogin::class)->name('seasons');
 });
 //user_course
 Route::group([
     'prefix' => 'userCourse',
     'controller' => userCourseController::class,
     'as' => 'userCourse.',
-    'middleware' => checklogin::class
+    'middleware' => [checkAdminMiddleware::class, checklogin::class]
 ], function () {
-    Route::get('/singup/{course}', 'store')->name('store');
-    // Route::post('/store', 'store')->name('store');
+    Route::get('/signup/{course}', 'store')->withoutMiddleware(checkAdminMiddleware::class)->name('store');
     Route::get('/show/{userCourse}', 'show')->name('show');
     Route::get('/edit/{userCourse}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
@@ -323,44 +328,48 @@ Route::group([
     'prefix' => 'season',
     'controller' => CourseSeasonController::class,
     'as' => 'season.',
-    'middleware' => checklogin::class
+    'middleware' => checkAdminMiddleware::class
 ], function () {
     Route::get('/create/{course?}', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
-    Route::get('/show/{courseseason}', 'show')->name('show');
+    Route::get('/admin/show/{courseseason}', 'adminShow')->name('adminShow');
+    Route::get('/show/{courseseason}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->middleware(checklogin::class)->name('show');
     // Route::get('/seasons/{course}', 'index')->name('list');
     Route::get('/edit/{courseseason}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{courseseason}', 'delete')->name('delete');
-    Route::get('/lessons/{courseseason}', 'lessons')->name('lessons');
+    Route::get('/admin/lessons/{courseseason}', 'adminLessons')->name('adminLessons');
+    Route::get('/lessons/{courseseason}', 'lessons')->withoutMiddleware(checkAdminMiddleware::class)->middleware(checklogin::class)->name('lessons');
 });
 // course lessons
 Route::group([
     'prefix' => 'lesson',
     'controller' => LessonController::class,
     'as' => 'lesson_',
-    'middleware' => checklogin::class
+    'middleware' => checkAdminMiddleware::class
 ], function () {
     Route::get("/create/{season?}/{course?}", "create")->name("create");
     Route::post("/store", "store")->name("store");
     Route::get("/edit/{lesson}", "edit")->name("edit");
-    Route::post("/updata/{lesson}", "update")->name("update");
+    Route::post("/update/{lesson}", "update")->name("update");
     Route::get("/delete/{lesson}", "delete")->name("delete");
-    Route::get("/show/{lesson}", "show")->name("show");
+    Route::get("/admin/show/{lesson}", "adminShow")->name("adminShow");
+    Route::get("/show/{lesson}", "show")->withoutMiddleware(checkAdminMiddleware::class)->middleware(checklogin::class)->name("show");
     Route::get("/index", "index")->name("index");
     Route::get("/attachfile/{lesson}", "attachfile")->name("attachfile");
-    Route::post("/attachfile", "storattachment")->name("update");
     Route::get("/showerrors/{lesson}", "errors")->name("errors");
     Route::get("/showSuggestions/{lesson}", "suggestions")->name("suggestions");
-    Route::get("/showQuestion/{lesson}", "questions")->name("questions");
-    Route::get("/attachments/{lesson}", "showLessonAttachments")->name("attachments");
+    Route::get("/admin/showQuestion/{lesson}", "adminQuestions")->name("adminQuestions");
+    Route::get("/showQuestion/{lesson}", "questions")->withoutMiddleware(checkAdminMiddleware::class)->name("questions");
+    Route::get("/admin/attachments/{lesson}", "adminShowLessonAttachments")->name("adminAttachments");
+    Route::get("/attachments/{lesson}", "showLessonAttachments")->withoutMiddleware(checkAdminMiddleware::class)->middleware(checklogin::class)->name("attachments");
 });
 // meta
 Route::group([
     'prefix' => 'meta',
     'controller' => MetaController::class,
     'as' => 'meta_',
-    'middleware' => checklogin::class
+    'middleware' => checkAdminMiddleware::class
 ], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
@@ -377,11 +386,13 @@ Route::group([
     'as' => 'lessonComments_',
     'middleware' => checklogin::class
 ], function () {
+    Route::get("/admin/create/{lesson}", "adminCreate")->middleware(checkAdminMiddleware::class)->name("adminCreate");
     Route::get("/create/{lesson}", "create")->name("create");
     Route::post("/store/{lesson}", "store")->name("store");
+    Route::get("/admin/index/{lesson}", "adminIndex")->middleware(checkAdminMiddleware::class)->name("adminIndex");
     Route::get("/index/{lesson}", "index")->name("index");
-    Route::get("/lesson/{lesson}/comment/{lessoncomments}/edit", "edit")->name("edit");
-    Route::post("/update/{lessoncomments}", "update")->name("updata");
+    Route::get("/lesson/{lesson}/comment/{lessoncomments}/edit", "edit")->middleware(checkAdminMiddleware::class)->name("edit");
+    Route::post("/update/{lessoncomments}", "update")->middleware(checkAdminMiddleware::class)->name("update");
     Route::get("/lesson/{lesson}/comment/{lessoncomments}/delete", "delete")->name("delete");
 });
 // course attachments
@@ -389,11 +400,10 @@ Route::group([
     'prefix' => 'courseAttachments',
     'controller' => CourseAttachmentController::class,
     'as' => 'attachment_',
-    'middleware' => checklogin::class
+    'middleware' => checkAdminMiddleware::class
 ], function () {
     Route::post("/attachfile", "store")->name("store");
     Route::post("/attachfile/{courseattachment}", "update")->name("update");
-    // Route::get("/{courseattachment}/edit","edit") -> name("edit");
     Route::get("/{courseattachment}/delete", "delete")->name("delete");
 });
 // course question
@@ -403,11 +413,13 @@ Route::group([
     'as' => 'question_',
     'middleware' => checklogin::class
 ], function () {
+    Route::get("/admin/create/{lesson}", "adminCreate")->middleware(checkAdminMiddleware::class)->name("adminCreate");
     Route::get("/create/{lesson}", "create")->name("create");
     Route::post("/store/{lesson}", "store")->name("store");
-    Route::get("/lesson/{lesson}/question/{coursequestion}/edit", "edit")->name("edit");
-    Route::get("/lesson/{lesson}/question/{coursequestion}/delete", "delete")->name("delete");
-    Route::post("/update/{coursequestion}", "update")->name("update");
+    Route::get("/lesson/{lesson}/question/{coursequestion}/edit", "edit")->middleware(checkAdminMiddleware::class)->name("edit");
+    Route::get("/lesson/{lesson}/question/{coursequestion}/delete", "delete")->middleware(checkAdminMiddleware::class)->name("delete");
+    Route::post("/update/{coursequestion}", "update")->middleware(checkAdminMiddleware::class)->name("update");
+    Route::get("/admin/answers/{coursequestion}", "adminAnswers")->middleware(checkAdminMiddleware::class)->name("adminAnswers");
     Route::get("/answers/{coursequestion}", "answers")->name("answers");
 });
 // course answer
@@ -417,11 +429,13 @@ Route::group([
     'as' => 'answer_',
     'middleware' => checklogin::class
 ], function () {
+    Route::get("/admin/create/{coursequestion}", "adminCreate")->middleware(checkAdminMiddleware::class)->name("adminCreate");
     Route::get("/create/{coursequestion}", "create")->name("create");
     Route::post("/store/{coursequestion}", "store")->name("store");
-    Route::get("/{courseanswer}/edit", "edit")->name("edit");
-    Route::get("/{courseanswer}/delete", "delete")->name("delete");
-    Route::post("/update/{courseanswer}", "update")->name("update");
+    Route::get("/{courseanswer}/edit", "edit")->middleware(checkAdminMiddleware::class)->name("edit");
+    Route::get("/{courseanswer}/delete", "delete")->middleware(checkAdminMiddleware::class)->name("delete");
+    Route::post("/update/{courseanswer}", "update")->middleware(checkAdminMiddleware::class)->name("update");
+    Route::get("/admin/reactions/{courseanswer}", "adminReactions")->middleware(checkAdminMiddleware::class)->name("adminReactions");
     Route::get("/reactions/{courseanswer}", "reactions")->name("reactions");
 });
 // lesson suggestion
@@ -431,11 +445,12 @@ Route::group([
     'as' => 'suggestion_',
     'middleware' => checklogin::class
 ], function () {
+    Route::get("/admin/create/{lesson}", "adminCreate")->middleware(checkAdminMiddleware::class)->name("adminCreate");
     Route::get("/create/{lesson}", "create")->name("create");
     Route::post("/store/{lesson}", "store")->name("store");
-    Route::get("/lesson/{lesson}/Suggestion/{lessonsuggestion}/edit", "edit")->name("edit");
-    Route::get("/lesson/{lesson}/Suggestion/{lessonsuggestion}/delete", "delete")->name("delete");
-    Route::post("/update/{lessonsuggestion}", "update")->name("update");
+    Route::get("/lesson/{lesson}/Suggestion/{lessonsuggestion}/edit", "edit")->middleware(checkAdminMiddleware::class)->name("edit");
+    Route::get("/lesson/{lesson}/Suggestion/{lessonsuggestion}/delete", "delete")->middleware(checkAdminMiddleware::class)->name("delete");
+    Route::post("/update/{lessonsuggestion}", "update")->middleware(checkAdminMiddleware::class)->name("update");
 });
 // answer reaction
 Route::group([
@@ -444,7 +459,6 @@ Route::group([
     'as' => 'answerReaction_',
     'middleware' => checklogin::class
 ], function () {
-    // Route::get("/create/{answer}","create") -> name("create");
     Route::post("/store/{courseanswer}", "store")->name("store");
 });
 // course error title
@@ -452,7 +466,7 @@ Route::group([
     'prefix' => 'lessonErrortitle',
     'controller' => lessonErrortitleController::class,
     'as' => 'errortitle_',
-    'middleware' => checklogin::class
+    'middleware' => checkAdminMiddleware::class
 ], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
@@ -468,10 +482,11 @@ Route::group([
     'as' => 'error_',
     'middleware' => checklogin::class
 ], function () {
+    Route::get("/admin/create/{lesson}", "adminCreate")->middleware(checkAdminMiddleware::class)->name("adminCreate");
     Route::get("/create/{lesson}", "create")->name("create");
     Route::post("/store/{lesson}", "store")->name("store");
-    Route::get("/lesson/{lesson}/error/{lessonerror}/edit", "edit")->name("edit");
-    Route::get("/lesson/{lesson}/error/{lessonerror}/delet", "delete")->name("delete");
-    Route::post("/update/{lessonerror}", "update")->name("update");
+    Route::get("/lesson/{lesson}/error/{lessonerror}/edit", "edit")->middleware(checkAdminMiddleware::class)->name("edit");
+    Route::get("/lesson/{lesson}/error/{lessonerror}/delet", "delete")->middleware(checkAdminMiddleware::class)->name("delete");
+    Route::post("/update/{lessonerror}", "update")->middleware(checkAdminMiddleware::class)->name("update");
 });
 //! end akbarnezhad courses
