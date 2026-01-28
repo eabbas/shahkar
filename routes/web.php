@@ -22,7 +22,7 @@ use App\Http\Controllers\CoursecategoryController;
 use App\Http\Controllers\CourseStatusController;
 use App\Http\Controllers\CourseLevelController;
 use App\Http\Controllers\TeacherController;
-use App\Http\Controllers\courseController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\userCourseController;
 use App\Http\Controllers\UserpaymentsController;
 use App\Http\Controllers\LessonController;
@@ -283,7 +283,7 @@ Route::group([
 // course
 Route::group([
     'prefix' => 'course',
-    'controller' => courseController::class,
+    'controller' => CourseController::class,
     'as' => 'course.',
     'middleware' => checkAdminMiddleware::class
 ], function () {
