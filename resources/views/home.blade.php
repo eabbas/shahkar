@@ -103,7 +103,7 @@
                         <span class="inline-block w-full text-center pt-2">{{ $category->title }}</span>
                     </a>
                     <span
-                        class="block text-center text-[14px] text-(--color-secondary-text) max-h-[42px] h-[42px]">{{ $category->description }}</span>
+                        class="block text-center text-[10px] text-(--color-secondary-text) max-h-[42px] h-[42px]">{{ $category->description }}</span>
                 </div>
             @endforeach
         </div>
@@ -378,7 +378,7 @@
                         <a href="{{ route('product-show', [$specialDiscountProduct]) }}"
                             class="flex justify-center mb-1 overflow-hidden">
                             <img src=" {{ $specialDiscountProduct['img'] }}  "
-                                class="w-full transition-all duration-500 hover:scale-[1.04] relative z-10 max-h-[276px] lg:max-h-[186px] md:max-h-[348px] xl:max-h-[254px]"
+                                class="w-full transition-all duration-500 hover:scale-[1.04] relative z-10 max-h-[276px] lg:max-h-[186px] md:max-h-[348px] xl:max-h-[254px] h-[254px] object-cover"
                                 alt="product">
                         </a>
                     </div>
