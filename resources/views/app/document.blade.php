@@ -279,6 +279,11 @@
                                     <li><a href="{{ route('user.courses', [$user]) }}"
                                             class="block py-2.5 text-sm font-bold transition-all duration-300 hover:text-(--color-primary)">دوره
                                             های ثبت نام شده</a></li>
+                                    @if ($user->is_admin)
+                                        <li><a href="{{ route('dashboard') }}" target="_blank"
+                                                class="block py-2.5 text-sm font-bold transition-all duration-300 hover:text-(--color-primary)">پنل
+                                                ادمین</a></li>
+                                    @endif
                                 </ul>
                             </div>
                         @else
