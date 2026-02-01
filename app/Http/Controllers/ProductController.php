@@ -182,11 +182,12 @@ class ProductController extends Controller
 
     public function edit(product $product)
     {
+        $logo = logo::first();
         $settings = settings::all();
         $product->category;
         $product->medias;
         $categories = category::all();
-        return view('admin.product.edit', ['product' => $product, 'categories' => $categories, 'settings' => $settings]);
+        return view('admin.product.edit', ['product' => $product, 'categories' => $categories, 'settings' => $settings, 'logo' => $logo]);
     }
 
     public function update(Request $request)
