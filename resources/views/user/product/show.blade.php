@@ -1,7 +1,8 @@
 @extends('app.document')
-@section('title', 'صفحه محصول')
+@section('title')
+    شاهکار |  {{ $product->title }}
+@endsection
 @section('content')
-
     <!-- address navbar -->
     <section
         class="w-full px-2 lg:px-0 lg:mb-5 py-5 flex flex-row justify-between items-center text-(--color-secondary-text) text-xs lg:text-sm">
@@ -193,7 +194,7 @@
                                 @if (!$media->is_main)
                                     <div class="cursor-pointer rounded border border-(--color-border) p-1 ml-2">
                                         <div class="w-[72px] h-[72px]">
-                                            <img class="w-full" src="{{ asset('/storage/' . $media->path) }}"
+                                            <img class="size-full object-cover" src="{{ asset('storage/' . $media->path) }}"
                                                 alt="">
                                         </div>
                                     </div>
@@ -245,12 +246,12 @@
                                     d="M288.1 0l86.5 164 182.7 31.6L428 328.5 454.4 512 288.1 430.2 121.7 512l26.4-183.5L18.9 195.6 201.5 164 288.1 0z" />
                             </svg>
                             <span>3.8</span>
-                            <span class="text-(--color-secondary-text)">
+                            <span class="text-(--color-secondary-text) inline-block w-[100px]">
                                 (امتیاز 307 خریدار)
                             </span>
                         </div>
                         <div class="w-full overflow-x-auto" style="scrollbar-width: none;">
-                            <div class="flex flex-row items-center gap-1 text-xs mb-3">
+                            <div class="flex flex-row items-center gap-1 text-xs mb-3 lg:mb-0">
                                 <div
                                     class="flex flex-row items-center gap-1 bg-(--color-primary-btn) rounded-full px-2 py-1 cursor-pointer">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
@@ -326,7 +327,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col-reverse lg:flex-col">
-                        <div class="mb-4 lg:mb-2  px-2 lg:px-0">
+                        {{-- <div class="mb-4 lg:mb-2  px-2 lg:px-0">
                             <p class="py-3 text-md font-bold text-(--color-text)">بیمه</p>
                             <div class="flex flex-row items-center border border-(--color-border) rounded-md">
                                 <div>
@@ -374,7 +375,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div
                             class="w-full lg:pt-2 pb-3 lg:pb-0 border-b border-(--color-border) lg:border-none text-(--color-text)  px-2 lg:px-0">
                             <h3 class="text-lg font-bold py-3 hidden lg:block">
@@ -472,7 +473,7 @@
                             <div class="w-full flex flex-col gap-2 py-4 border-b border-(--color-border)">
                                 <div class="flex flex-row items-center">
                                     <span class="text-sm font-bold">
-                                        دیجی کالا
+                                        شاهکار
                                     </span>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 320 512">
                                         <path fill="var(--color-fill)"
@@ -619,7 +620,7 @@
 
                     <hr class="w-full border-none h-2 bg-[var(--color-border)] lg:hidden">
 
-                    <div class="lg:px-0 px-2 pt-5 pb-5 lg:pb-0">
+                    {{-- <div class="lg:px-0 px-2 pt-5 pb-5 lg:pb-0">
                         <h3 class="text-md font-bold leading-[180%] pb-3">
                             خدمات پرداخت و ارسال
                         </h3>
@@ -659,7 +660,7 @@
                                     </li>
                                     <li
                                         class="text-xs text-(--color-secondary-text) lg:py-1 leading-[1.7] lg:leading-[2.17] lg:relative lg:before:absolute lg:before:content-[''] lg:before:w-1.5 lg:before:h-1.5 lg:before:rounded-full lg:before:bg-(--color-primary) lg:before:-right-[22px] lg:before:top-[38%]">
-                                        ارسال سریع و رایگان دیجی کالا (فقط تهران و کرج)
+                                        ارسال سریع و رایگان شاهکار (فقط تهران و کرج)
                                     </li>
                                 </ul>
 
@@ -694,13 +695,13 @@
 
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <hr class="w-full border-none h-2 bg-[var(--color-border)] lg:hidden">
 
                     <div class="py-5 px-2 lg:hidden">
                         <h3 class="text-base font-bold leading-[180%] mb-5">
-                            دیگر سرویس های دیجی کالا
+                            دیگر سرویس های شاهکار
                         </h3>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
 
@@ -714,7 +715,7 @@
                                 </div>
                                 <div>
                                     <h4 class="text-sm font-medium leading-[180%] mb-1">
-                                        مشاوره رایگان با دیجی کالا
+                                        مشاوره رایگان با شاهکار
                                     </h4>
                                     <span
                                         class="text-xs text-(--color-secondary-text) font-medium inline-block mb-2 leading-[180%] max-h-[45px] sm:h-[45px]">
@@ -1088,7 +1089,7 @@
                                                 d="M480 256A224 224 0 1 1 32 256a224 224 0 1 1 448 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM240 112V256c0 5.3 2.7 10.3 7.1 13.3l96 64c7.4 4.9 17.3 2.9 22.2-4.4s2.9-17.3-4.4-22.2L272 247.4V112c0-8.8-7.2-16-16-16s-16 7.2-16 16z" />
                                         </svg>
                                         <span class="mr-2 text-xs font-normal text-(--color-secondary-text)">
-                                            ارسال سریع و رایگان دیجی کالا
+                                            ارسال سریع و رایگان شاهکار
                                         </span>
                                     </div>
 
@@ -1206,7 +1207,7 @@
     <!-- single product -->
 
     <!-- related product desktop -->
-    <section class="text-(--color-text) ">
+    {{-- <section class="text-(--color-text) ">
         <div class="hidden lg:block pt-2 pb-3 mt-4 rounded-lg border border-b-4 border-(--color-border) px-2">
             <div class="py-3">
                 <h2 class="font-bold leading-[2.17]">
@@ -1241,7 +1242,7 @@
                                             d="M480 256A224 224 0 1 1 32 256a224 224 0 1 1 448 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM240 112V256c0 5.3 2.7 10.3 7.1 13.3l96 64c7.4 4.9 17.3 2.9 22.2-4.4s2.9-17.3-4.4-22.2L272 247.4V112c0-8.8-7.2-16-16-16s-16 7.2-16 16z" />
                                     </svg>
                                     <span class="text-xs text-[var(--colo-secondary)]">
-                                        ارسال سریع دیجی کالا
+                                        ارسال سریع شاهکار
                                     </span>
                                 </div>
                                 <div class="flex flex-row items-center justify-between">
@@ -1289,7 +1290,7 @@
                                             d="M480 256A224 224 0 1 1 32 256a224 224 0 1 1 448 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM240 112V256c0 5.3 2.7 10.3 7.1 13.3l96 64c7.4 4.9 17.3 2.9 22.2-4.4s2.9-17.3-4.4-22.2L272 247.4V112c0-8.8-7.2-16-16-16s-16 7.2-16 16z" />
                                     </svg>
                                     <span class="text-xs text-[var(--colo-secondary)]">
-                                        ارسال سریع دیجی کالا
+                                        ارسال سریع شاهکار
                                     </span>
                                 </div>
                                 <div class="flex flex-row items-center justify-between">
@@ -1337,7 +1338,7 @@
                                             d="M480 256A224 224 0 1 1 32 256a224 224 0 1 1 448 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM240 112V256c0 5.3 2.7 10.3 7.1 13.3l96 64c7.4 4.9 17.3 2.9 22.2-4.4s2.9-17.3-4.4-22.2L272 247.4V112c0-8.8-7.2-16-16-16s-16 7.2-16 16z" />
                                     </svg>
                                     <span class="text-xs text-[var(--colo-secondary)]">
-                                        ارسال سریع دیجی کالا
+                                        ارسال سریع شاهکار
                                     </span>
                                 </div>
                                 <div class="flex flex-row items-center justify-between">
@@ -1385,7 +1386,7 @@
                                             d="M480 256A224 224 0 1 1 32 256a224 224 0 1 1 448 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM240 112V256c0 5.3 2.7 10.3 7.1 13.3l96 64c7.4 4.9 17.3 2.9 22.2-4.4s2.9-17.3-4.4-22.2L272 247.4V112c0-8.8-7.2-16-16-16s-16 7.2-16 16z" />
                                     </svg>
                                     <span class="text-xs text-[var(--colo-secondary)]">
-                                        ارسال سریع دیجی کالا
+                                        ارسال سریع شاهکار
                                     </span>
                                 </div>
                                 <div class="flex flex-row items-center justify-between">
@@ -1433,7 +1434,7 @@
                                             d="M480 256A224 224 0 1 1 32 256a224 224 0 1 1 448 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM240 112V256c0 5.3 2.7 10.3 7.1 13.3l96 64c7.4 4.9 17.3 2.9 22.2-4.4s2.9-17.3-4.4-22.2L272 247.4V112c0-8.8-7.2-16-16-16s-16 7.2-16 16z" />
                                     </svg>
                                     <span class="text-xs text-[var(--colo-secondary)]">
-                                        ارسال سریع دیجی کالا
+                                        ارسال سریع شاهکار
                                     </span>
                                 </div>
                                 <div class="flex flex-row items-center justify-between">
@@ -1481,7 +1482,7 @@
                                             d="M480 256A224 224 0 1 1 32 256a224 224 0 1 1 448 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM240 112V256c0 5.3 2.7 10.3 7.1 13.3l96 64c7.4 4.9 17.3 2.9 22.2-4.4s2.9-17.3-4.4-22.2L272 247.4V112c0-8.8-7.2-16-16-16s-16 7.2-16 16z" />
                                     </svg>
                                     <span class="text-xs text-[var(--colo-secondary)]">
-                                        ارسال سریع دیجی کالا
+                                        ارسال سریع شاهکار
                                     </span>
                                 </div>
                                 <div class="flex flex-row items-center justify-between">
@@ -1529,7 +1530,7 @@
                                             d="M480 256A224 224 0 1 1 32 256a224 224 0 1 1 448 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM240 112V256c0 5.3 2.7 10.3 7.1 13.3l96 64c7.4 4.9 17.3 2.9 22.2-4.4s2.9-17.3-4.4-22.2L272 247.4V112c0-8.8-7.2-16-16-16s-16 7.2-16 16z" />
                                     </svg>
                                     <span class="text-xs text-[var(--colo-secondary)]">
-                                        ارسال سریع دیجی کالا
+                                        ارسال سریع شاهکار
                                     </span>
                                 </div>
                                 <div class="flex flex-row items-center justify-between">
@@ -1559,14 +1560,14 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- related product desktop -->
 
 
 
     <!-- related video desktop -->
 
-    <section class="text-(--color-text) ">
+    {{-- <section class="text-(--color-text) ">
         <div class="hidden lg:block pt-2 pb-3 mt-4 rounded-lg border border-b-4 border-(--color-border) px-2">
             <div class="py-3">
                 <h2 class="font-bold leading-[2.17]">
@@ -1606,7 +1607,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- related video desktop -->
 
@@ -1668,13 +1669,13 @@
         <div class="hidden lg:block sticky top-0 bg-white z-[555]">
             <ul class="flex flex-row border-b border-(--color-border)">
                 <li
-                    class="text-sm font-medium leading-[180%] py-2 px-4 text-(--color-primary) border-b-4 border-(--color-primary) rounded-b-sm">
+                    class="text-sm font-medium leading-[180%] py-2 px-4 text-(--color-primary) border-b-4 border-(--color-primary) rounded-b-sm cursor-pointer">
                     مشخصات
                 </li>
-                <li class="text-sm font-medium leading-[180%] py-2 px-4">
+                <li class="text-sm font-medium leading-[180%] py-2 px-4 cursor-pointer">
                     دیدگاه ها
                 </li>
-                <li class="text-sm font-medium leading-[180%] py-2 px-4">
+                <li class="text-sm font-medium leading-[180%] py-2 px-4 cursor-pointer">
                     پرسش ها
                 </li>
             </ul>
@@ -2033,7 +2034,7 @@
                                                                 d="M0 185.8c0-6.4 1.6-12.7 4.7-18.3L82.4 25C90.8 9.6 106.9 0 124.5 0h391c17.6 0 33.7 9.6 42.1 25l77.7 142.4c3.1 5.6 4.7 11.9 4.7 18.3c0 21.1-17.1 38.2-38.2 38.2H576V496c0 8.8-7.2 16-16 16s-16-7.2-16-16V224H96V352H352V272 256h32v16V464c0 26.5-21.5 48-48 48H112c-26.5 0-48-21.5-48-48V224H38.2C17.1 224 0 206.9 0 185.8zM80 192H560h41.8c3.4 0 6.2-2.8 6.2-6.2c0-1-.3-2.1-.8-3L529.6 40.3c-2.8-5.1-8.2-8.3-14-8.3h-391c-5.9 0-11.2 3.2-14 8.3L32.8 182.8c-.5 .9-.8 1.9-.8 3c0 3.4 2.8 6.2 6.2 6.2H80zM96 464c0 8.8 7.2 16 16 16H336c8.8 0 16-7.2 16-16V384H96v80z" />
                                                         </svg>
                                                         <span class="text-xs text-(--color-secondary-text)">
-                                                            دیجی کالا
+                                                            شاهکار
                                                         </span>
                                                         <div
                                                             class="size-1.5 rounded-full bg-[var(--color-secondary-text)]/30">
@@ -2094,7 +2095,7 @@
                                                                                                             d="M0 185.8c0-6.4 1.6-12.7 4.7-18.3L82.4 25C90.8 9.6 106.9 0 124.5 0h391c17.6 0 33.7 9.6 42.1 25l77.7 142.4c3.1 5.6 4.7 11.9 4.7 18.3c0 21.1-17.1 38.2-38.2 38.2H576V496c0 8.8-7.2 16-16 16s-16-7.2-16-16V224H96V352H352V272 256h32v16V464c0 26.5-21.5 48-48 48H112c-26.5 0-48-21.5-48-48V224H38.2C17.1 224 0 206.9 0 185.8zM80 192H560h41.8c3.4 0 6.2-2.8 6.2-6.2c0-1-.3-2.1-.8-3L529.6 40.3c-2.8-5.1-8.2-8.3-14-8.3h-391c-5.9 0-11.2 3.2-14 8.3L32.8 182.8c-.5 .9-.8 1.9-.8 3c0 3.4 2.8 6.2 6.2 6.2H80zM96 464c0 8.8 7.2 16 16 16H336c8.8 0 16-7.2 16-16V384H96v80z" />
                                                                                                     </svg>
                                                                                                     <span class="text-xs text-(--color-secondary-text)">
-                                                                                                        دیجی کالا
+                                                                                                        شاهکار
                                                                                                     </span>
                                                                                                     <div
                                                                                                         class="size-1.5 rounded-full bg-[var(--color-secondary-text)]/30">
@@ -2397,7 +2398,7 @@
                     <div class="flex flex-row items-center gap-2 mb-2">
                         <div class="size-6 rounded-full bg-(--color-primary)"></div>
                         <span class="text-xs leading-[2.17]">
-                            دیجی کالا
+                            شاهکار
                         </span>
                     </div>
                     <div class="flex flex-row items-center gap-2">
@@ -3026,60 +3027,53 @@
                 </svg>
             </div>
             <div class="kt-card max-w-[370px] m-auto transition-all duration-300 opacity-0 scale-75">
-                <form action="{{ route('user.checkUser') }}" method="post"
-                    class="flex flex-col gap-5 p-10 bg-white rounded-lg">
-                    @csrf
-                    <div class="text-center mb-2.5">
-                        <h3 class="text-lg font-medium text-mono leading-none mb-2.5">
-                            ورود
-                        </h3>
-                        <div class="flex items-center justify-center">
-                            <span class="text-sm text-secondary-foreground me-1.5">
-                                اکانت ندارید؟
-                            </span>
-                            <a href="{{ route('user.signup') }}" class="text-sm">ثبت نام</a>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-2.5">
-                        <a href="#" class="kt-btn kt-btn-outline flex items-center justify-center">
-                            <img src="https://keenthemes.com/static/metronic/tailwind/dist/assets/media/brand-logos/google.svg"
-                                class="size-3.5 shrink-0" alt="google logo">
-                            استفاده از گوگل
-                        </a>
-                        <a href="#" class="kt-btn kt-btn-outline flex items-center justify-center">
-                            <img src="https://keenthemes.com/static/metronic/tailwind/dist/assets/media/brand-logos/apple-black.svg"
-                                class="size-3.5 shrink-0" alt="google logo">
-                            استفاده از اپل
-                        </a>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <span class="border-t border-[#eeeaeb] w-full"></span>
-                        <span class="text-xs text-[#1b1718] uppercase">یا</span>
-                        <span class="border-t border-[#eeeaeb] w-full"></span>
-                    </div>
-
-                    <div class="flex flex-col gap-1">
-                        <label for="email" class="kt-form-label text-[#0b0809]">ایمیل</label>
-                        <input type="email" name="email" id="email" class="kt-input"
-                            placeholder="test@example.com">
-                    </div>
-                    <div class="flex flex-col gap-1">
-                        <label for="password" class="kt-form-label text-[#0b0809]">گذرواژه</label>
-
-                        <input type="password" name="password" id="password" class="kt-input outline-none">
-
-                    </div>
-                    <div class="flex flex-row justify-start items-center">
-                        <span for="accept"
-                            class="text-sm text-[#0b0809] mr-2 flex flex-row justify-start items-center">
-                            گذرواژه خود را
-                            <a href="#" class="text-blue-500 mr-1"> فراموش کردم </a>
+                <form action="{{route('user.checkUser')}}" method="post" class="flex flex-col gap-5 p-10 bg-white">
+                @csrf
+                <div class="text-center mb-2.5">
+                    <h3 class="text-lg font-medium text-mono leading-none mb-2.5">
+                        ورود
+                    </h3>
+                    <div class="flex items-center justify-center">
+                        <span class="text-sm text-secondary-foreground me-1.5">
+                            اکانت ندارید؟
                         </span>
+                        <a href="{{ route('user.signup') }}" class="text-sm">ثبت نام</a>
                     </div>
-                    <button
-                        class="py-1.5 rounded-md text-white text-sm font-bold bg-[#2b7fff] cursor-pointer hover:bg-[#2b7fff]/90">ورود
-                    </button>
-                </form>
+                </div>
+                <div class="grid grid-cols-2 gap-2.5">
+                    <a href="#" class="kt-btn kt-btn-outline flex items-center justify-center">
+                        <img src="https://keenthemes.com/static/metronic/tailwind/dist/assets/media/brand-logos/google.svg" class="size-3.5 shrink-0" alt="google logo">
+                        استفاده از گوگل
+                    </a>
+                    <a href="#" class="kt-btn kt-btn-outline flex items-center justify-center">
+                        <img src="https://keenthemes.com/static/metronic/tailwind/dist/assets/media/brand-logos/apple-black.svg" class="size-3.5 shrink-0" alt="google logo">
+                        استفاده از اپل
+                    </a>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="border-t border-[#eeeaeb] w-full"></span>
+                    <span class="text-xs text-[#1b1718] uppercase">یا</span>
+                    <span class="border-t border-[#eeeaeb] w-full"></span>
+                </div>
+              
+                <div class="flex flex-col gap-1">
+                    <label for="phoneNumber" class="kt-form-label text-[#0b0809]">شماره تلفن</label>
+                    <input type="number" name="phoneNumber" id="phoneNumber" class="kt-input" placeholder="09141234567">
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="password" class="kt-form-label text-[#0b0809]">گذرواژه</label>
+                    
+                    <input type="password" name="password" id="password" class="kt-input outline-none">
+                    
+                </div>
+                <div class="flex flex-row justify-start items-center">
+                    <span for="accept" class="text-sm text-[#0b0809] mr-2 flex flex-row justify-start items-center">
+                        گذرواژه خود را
+                        <a href="{{route('user.forgetPassword')}}" class="text-blue-500 mr-1"> فراموش کردم </a>
+                    </span>
+                </div>
+                <button class="py-1.5 rounded-md text-white text-sm font-bold bg-[#2b7fff] cursor-pointer hover:bg-[#2b7fff]/90">ورود </button>
+            </form>
             </div>
         </div>
     </div>
