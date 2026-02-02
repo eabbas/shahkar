@@ -381,7 +381,7 @@
             <!-- logo -->
             <div class="h-[33px]">
                 <a href="{{ $logo['link_href'] }}" class="inline-block size-full">
-                    <img src="{{ $logo['logo'] }}" class="size-full" alt="{{ $logo['alt_text'] }}">
+                    <img src="{{ asset($logo['logo']) }}" class="size-full" alt="{{ $logo['alt_text'] }}">
                 </a>
             </div>
             <!-- logo -->
@@ -519,14 +519,16 @@
                             <div class="w-full max-h-0 overflow-hidden transition-all duration-500 mt-2 subItem">
                                 <div class="h-100 w-full flex flex-col xl:flex-row items-start gap-10">
                                     <div
-                                        class="h-90 overflow-y-auto w-full xl:w-1/4 flex flex-row xl:flex-col justify-between gap-4 overflow-x-auto px-3 xl:px-0">
+                                        class="min-h-[71px] overflow-x-auto xl:overflow-y-auto w-full xl:w-1/4 flex flex-row xl:flex-col justify-between gap-4 px-3 xl:px-0">
                                         <p onclick="getRelatedProducts('all', 'header')"
                                             class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat activeSubMenuCat">
-                                            همه دسته ها</p>
+                                           <span class="text-sm block w-20 text-center xl:w-full"> همه دسته ها</span>
+                                        </p>
                                         @foreach ($categories as $category)
                                             <p onclick="getRelatedProducts({{ $category->id }}, 'header')"
-                                                class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">
-                                                {{ $category->title }}</p>
+                                                class="block text-center rounded-[10px] text-(--color-text) py-4 px-4 xl:px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">
+                                                <span class="block text-sm text-center w-22 xl:w-full">{{ $category->title }}</span>
+                                            </p>
                                         @endforeach
                                     </div>
                                     <div class="w-full xl:w-3/4 xl:overflow-y-auto">
@@ -655,7 +657,7 @@
 
 
     <footer class="text-(--color-text) pt-3 bg-(--color-primary-btn) 2xl:container mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-3">
             @foreach ($footerColumns as $footerColumn)
                 <div class="p-6">
                     <p class="text-gray-700 font-bold mb-4">{{ $footerColumn['section_title'] }}</p>

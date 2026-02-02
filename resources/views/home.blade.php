@@ -99,7 +99,7 @@
                 @endif
                 <div class="p-4 border border-(--color-border) rounded-[10px]">
                     <a href="{{ route('search-cat-products', [$category]) }}" class="block mb-1 w-[137px]" target="_blank">
-                        <img src="{{ $category->image }}" class="w-[85px] h-20 mx-auto" alt="">
+                        <img src="{{ $category->image }}" class="w-[115px] max-h-20 mx-auto" alt="">
                         <span class="inline-block w-full text-center pt-2">{{ $category->title }}</span>
                     </a>
                     <span
@@ -308,7 +308,7 @@
             </div> --}}
             @foreach ($specialDiscounts as $specialDiscountProduct)
                 <div
-                    class="min-w-50 lg:min-w-65 p-2 border border-(--color-border) rounded-[10px] relative flex flex-col justify-between productItem">
+                    class="min-w-64 p-2 border border-(--color-border) rounded-[10px] relative flex flex-col justify-between productItem">
                     <div
                         class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-555 overflow-hidden">
                         <button
@@ -641,7 +641,7 @@
                                 <a href="{{ route('product-show', [$product]) }}"
                                     class="flex justify-center mb-1 overflow-hidden">
                                     <img src="{{ $product['img'] }}"
-                                        class="w-full transition-all duration-500 hover:scale-[1.04] relative z-10 max-h-[276px] lg:max-h-[186px] md:max-h-[348px] xl:max-h-[171px]"
+                                        class="w-full transition-all duration-500 hover:scale-[1.04] relative z-10 max-h-[182px] lg:max-h-[186px] md:max-h-[348px] xl:max-h-[171px]"
                                         alt="product">
                                 </a>
                             </div>
