@@ -381,7 +381,7 @@
             <!-- logo -->
             <div class="h-[33px]">
                 <a href="{{ $logo['link_href'] }}" class="inline-block size-full">
-                    <img src="{{ $logo['logo'] }}" class="size-full" alt="{{ $logo['alt_text'] }}">
+                    <img src="{{ asset($logo['logo']) }}" class="size-full" alt="{{ $logo['alt_text'] }}">
                 </a>
             </div>
             <!-- logo -->
@@ -657,7 +657,7 @@
 
 
     <footer class="text-(--color-text) pt-3 bg-(--color-primary-btn) 2xl:container mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-3">
             @foreach ($footerColumns as $footerColumn)
                 <div class="p-6">
                     <p class="text-gray-700 font-bold mb-4">{{ $footerColumn['section_title'] }}</p>
