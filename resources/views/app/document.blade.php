@@ -519,14 +519,16 @@
                             <div class="w-full max-h-0 overflow-hidden transition-all duration-500 mt-2 subItem">
                                 <div class="h-100 w-full flex flex-col xl:flex-row items-start gap-10">
                                     <div
-                                        class="h-90 overflow-y-auto w-full xl:w-1/4 flex flex-row xl:flex-col justify-between gap-4 overflow-x-auto px-3 xl:px-0">
+                                        class="min-h-[71px] overflow-x-auto xl:overflow-y-auto w-full xl:w-1/4 flex flex-row xl:flex-col justify-between gap-4 px-3 xl:px-0">
                                         <p onclick="getRelatedProducts('all', 'header')"
                                             class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat activeSubMenuCat">
-                                            همه دسته ها</p>
+                                           <span class="text-sm block w-20 text-center xl:w-full"> همه دسته ها</span>
+                                        </p>
                                         @foreach ($categories as $category)
                                             <p onclick="getRelatedProducts({{ $category->id }}, 'header')"
-                                                class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">
-                                                {{ $category->title }}</p>
+                                                class="block text-center rounded-[10px] text-(--color-text) py-4 px-4 xl:px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">
+                                                <span class="block text-sm text-center w-22 xl:w-full">{{ $category->title }}</span>
+                                            </p>
                                         @endforeach
                                     </div>
                                     <div class="w-full xl:w-3/4 xl:overflow-y-auto">
