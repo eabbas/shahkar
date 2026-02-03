@@ -210,6 +210,7 @@ Route::group(['prefix' => 'contactus', 'controller' => ContactUsController::clas
     Route::get('/show/{contactUs}', 'show')->name('show');
     Route::get('/list', 'index')->name('index');
     Route::get('/delete/{contactUs}', 'delete')->name('delete');
+    Route::post('/deleteAllUser', 'deleteAllUser')->name('deleteAllUser');
 });
 // home forms routes
 Route::group(['prefix' => 'homeForm', 'controller' => HomeFormsController::class, 'as' => 'homeForm-', 'middleware' => checkAdminMiddleware::class], function () {
