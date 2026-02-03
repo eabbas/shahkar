@@ -303,6 +303,7 @@ Route::group([
     Route::get('/users/{course}', 'users')->name('users');
     Route::get('/admin/seasons/{course}', 'adminSeasons')->name('adminSeasons');
     Route::get('/seasons/{course}', 'seasons')->withoutMiddleware(checkAdminMiddleware::class)->middleware(checklogin::class)->name('seasons');
+    Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
 });
 //user_course
 Route::group([
