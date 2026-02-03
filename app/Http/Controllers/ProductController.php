@@ -177,7 +177,8 @@ class ProductController extends Controller
         $product->comments;
         $questions = question::all();
         $product->medias;
-        return view('admin.product.show', ['product' => $product, 'settings' => $settings, 'questions' => $questions, 'answers' => $answers, 'persent' => $persent]);
+        $logo = logo::first();
+        return view('admin.product.show', ['product' => $product, 'settings' => $settings, 'questions' => $questions, 'answers' => $answers, 'persent' => $persent, 'logo'=>$logo]);
     }
 
     public function edit(product $product)
