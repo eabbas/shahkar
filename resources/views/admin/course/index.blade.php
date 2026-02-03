@@ -1,56 +1,6 @@
 @extends('admin.app.dashboard')
 @section('title', 'شاهکار | دوره ها')
 @section('content')
-    {{-- <h1>لیست دوره‌ها</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>عنوان</th>
-                <th>توضیحات</th>
-                <th>خلاصه</th>
-                <td>تعداد شرکت کننده </td>
-                <th>نمایش در صفحه اصلی</th>
-                <th>عملیات</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($courses as $course)
-                <tr>
-                    <td>{{ $course->id }}</td>
-                    <td>{{ $course->title }}</td>
-                    <td>{{ $course->description }}</td>
-                    <td>{{ $course->summary }}</td>
-                    <td> {{ count($course->users) }}</td>
-
-                    <td>
-                        @if ($course->show_in_home)
-                            <span class="status-yes">✔ در صفحه اول وجود دارد</span>
-                        @else
-                            <span class="status-no">✘ مربوط به صفحه اول نیست</span>
-                        @endif
-                    </td>
-                    @php
-                        $roles = auth()->user()->roles->pluck('id')->toArray();
-                    @endphp
-
-                    <td class="actions">
-                        <a href="{{ route('course.adminShow', [$course]) }}">نمایش</a>
-                        @if (in_array(1, $roles) || in_array(2, $roles))
-                            <a href="{{ route('course.users', [$course]) }}" class="btn btn-edit">
-                                شرکت کنندگان
-                            </a>
-                            <a href="{{ route('course.edit', [$course]) }}">ویرایش</a>
-                            <a href="{{ route('course.delete', [$course]) }}" class="delete-btn">حذف</a>
-                        @endif
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table> --}}
-
-
     <div class="w-full flex flex-col pb-4">
         <div class="bg-white rounded-lg">
             <h2 class="text-lg font-bold text-gray-800 p-4 text-center">لیست دوره ها</h2>

@@ -253,6 +253,7 @@ Route::group([
     Route::get('/edit/{teacher}', 'edit')->name('edit');
     Route::post('/update/{teacher}', 'update')->name('update');
     Route::get('/delete/{teacher}', 'delete')->name('delete');
+    Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
 });
 // course status
 Route::group([
