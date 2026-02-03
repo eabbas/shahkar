@@ -242,4 +242,16 @@ class userController extends Controller
         $user->save();
         return to_route('user.login');
     }
+
+    public function deleteAll(Request $request){
+        dd($request->all());
+        if (!isset($request->users)) {
+            return redirect()->back();
+        }
+        foreach($request->users as $user_id){
+            $user = User::find($user_id);
+            $user->delete();
+        }
+        return redirect()->back();
+    }
 }

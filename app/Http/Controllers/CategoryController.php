@@ -158,4 +158,15 @@ class CategoryController extends Controller
         $category->delete();
         return to_route('category-adminIndex');
     }
+
+    public function deleteAll(Request $request){
+        if(!isset($request->categories)){
+            return redirect()->back();
+        }
+        foreach($request->categories as $category_id){
+            $category = category::find($category_id);
+            $category->delete();
+        }
+        return redirect()->back();
+    }
 }

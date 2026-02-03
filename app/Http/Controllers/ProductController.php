@@ -286,4 +286,15 @@ class ProductController extends Controller
         $product->delete();
         return to_route('product-adminIndex');
     }
+
+    public function deleteAll(Request $request){
+        if (!isset($request->products)) {
+            return redirect()->back();
+        }
+        foreach($request->products as $product_id){
+            $product = product::find($product_id);
+            $product->delete();
+        }
+        return redirect()->back();
+    }
 }
