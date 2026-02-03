@@ -41,7 +41,7 @@
     </div>  -->
     <!-- ads -->
 
-    <header class="2xl:container 2xl:px-4 mx-auto w-full border-b border-(--color-border) py-3 relative">
+    <header class="2xl:container 2xl:px-4 mx-auto w-full border-b border-(--color-border) lg:py-3 relative">
 
         <!-- desktop header -->
 
@@ -410,7 +410,7 @@
                             d="M368 208A160 160 0 1 0 48 208a160 160 0 1 0 320 0zM337.1 371.1C301.7 399.2 256.8 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208c0 48.8-16.8 93.7-44.9 129.1L505 471c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L337.1 371.1z" />
                     </svg>
                 </a>
-                <div class="relative ">
+                <div class="">
                     <span class="inline-block w-8 h-6 relative cursor-pointer" onclick="showCartContent()">
                         <svg xmlns="http://www.w3.org/2000/svg" class="size-6 rotate-y-180" viewBox="0 0 576 512">
                             <path fill="var(--color-fill)"
@@ -421,8 +421,8 @@
                     </span>
                     {{-- shopping cart hover box by mr.olyafam --}}
                     <div id="mobileShoppingCartContent"
-                        class="absolute -left-16 top-0 w-100 bg-white p-2 border border-(--color-border) mt-10 z-9999 transition-all duration-500 invisible opacity-0">
-                        <div class="text-(--color-text) font-light text-sm">
+                        class="absolute left-0 lg:-left-16 top-0 w-full bg-white p-2 border border-(--color-border) mt-10 z-9999 transition-all duration-500 invisible opacity-0">
+                        <div class="text-(--color-text) font-light text-sm relative">
                             <div class="relative" onclick="closeCart()">
                                 <button
                                     class="absolute top-0 left-0 w-4 h-4 flex items-center justify-center cursor-pointer">
