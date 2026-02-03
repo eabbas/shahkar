@@ -1,40 +1,6 @@
-
-   @extends('admin.app.dashboard')
-   @section('title', 'شاهکار | همه دسته یندی ها')
-
-   @section('content')
-   {{-- <div>
-      <h2> لیست دسته بندی ها</h2>
-      <table border="1" style="border-collapse: collapse;">
-         <thead>
-            <tr>
-               <th>آیدی</th>
-               <th>عنوان دسته بندی</th>
-               <th>توضیحات دسته بندی</th>
-               <th>دسته بندی فرزند</th>
-               <th>تصویر</th>
-               <th>عملیات</th>
-            </tr>
-         </thead>
-         <tbody>
-            @foreach($categories as $category)
-            <tr>
-               <td>{{$category->id}}</td>
-               <td>{{$category->title}}</td>
-               <td>{{$category->description}}</td>
-               <td>@if($category->children) @foreach($category->children as $child) {{$child->title}} <br> @endforeach @endif</td>
-               <td>{{$category->image}}</td>
-               <td>
-                  <a href="{{route('category-adminShow', [$category])}}">نمایش</a>
-                  <a href="{{route('category-edit', [$category])}}">ویرایش</a>
-                  <a href="{{route('category-delete', [$category])}}">حذف</a>
-               </td>
-            </tr>
-            @endforeach
-         </tbody>
-      </table>
-   </div> --}}
-
+@extends('admin.app.dashboard')
+@section('title', 'شاهکار | همه دسته یندی ها')
+@section('content')
     <div class="w-full flex flex-col pb-4">
         <div class="bg-white rounded-lg">
             <h2 class="text-lg font-bold text-gray-800 p-4 text-center">لیست دسته بندی ها</h2>
@@ -76,16 +42,15 @@
                             <span class="block w-30 lg:w-full">زیر دسته ها</span>
                         </div>
                         <div class="px-1 lg:px-6 py-3 text-center text-xs font-medium text-gray-600 bg-gray-100 col-span-2">
-                            <span class="block w-[320px] lg:w-full">عملیات</span>
+                            <span class="block w-[180px] lg:w-full">عملیات</span>
                         </div>
                     </div>
                     <div class="bg-white divide-y divide-[#f1f1f4]">
                         @php
                             $i = 1;
                         @endphp
-                        @foreach($categories as $category)
-                            <div
-                                class="w-full flex flex-row lg:grid lg:grid-cols-9 items-center divide-x divide-[#f1f1f4]">
+                        @foreach ($categories as $category)
+                            <div class="w-full flex flex-row lg:grid lg:grid-cols-9 items-center divide-x divide-[#f1f1f4]">
                                 <div
                                     class="p-1 lg:p-3 text-xs lg:text-sm h-full flex items-center justify-center text-gray-900 text-center">
                                     <div class="w-10 lg:w-full">
@@ -109,19 +74,22 @@
                                 </div>
                                 <div
                                     class="p-1 lg:p-3 text-xs lg:text-sm h-full flex items-center justify-center text-gray-900 text-center col-span-2 relative">
-                                    @if(count($category->children))
-                                       <span class="block w-30 lg:w-full font-bold text-blue-500 hover:text-blue-600 cursor-pointer subCats">مشاهده</span>
-                                       <ul class="absolute w-full -bottom-24 bg-white right-0 overflow-hidden max-h-0 transition-all duration-300 flex flex-col items-center divide-y divide-gray-300 opacity-0 border border-gray-300 rounded-sm z-555">
-                                          @foreach($category->children as $child) 
-                                             <li class="w-full py-2">{{$child->title}}</li>
-                                          @endforeach
-                                       </ul>
+                                    @if (count($category->children))
+                                        <span
+                                            class="block w-30 lg:w-full font-bold text-blue-500 hover:text-blue-600 cursor-pointer subCats">مشاهده</span>
+                                        <ul
+                                            class="absolute w-full -bottom-24 bg-white right-0 overflow-hidden max-h-0 transition-all duration-300 flex flex-col items-center divide-y divide-gray-300 opacity-0 border border-gray-300 rounded-sm z-555">
+                                            @foreach ($category->children as $child)
+                                                <li class="w-full py-2">{{ $child->title }}</li>
+                                            @endforeach
+                                        </ul>
                                     @else
-                                       <span class="block w-30 lg:w-full font-bold text-blue-500 hover:text-blue-600 cursor-pointer">-</span>
+                                        <span
+                                            class="block w-30 lg:w-full font-bold text-blue-500 hover:text-blue-600 cursor-pointer">-</span>
                                     @endif
                                 </div>
                                 <div class="col-span-2">
-                                    <ul class="w-[320px] lg:w-full text-sm mt-1 rounded-sm p-1 grid grid-cols-3">
+                                    <ul class="w-[180px] lg:w-full text-sm mt-1 rounded-sm p-1 grid grid-cols-3">
                                         <li class="flex justify-center">
                                             <a href="{{ route('category-adminShow', [$category]) }}"
                                                 class="w-fit flex flex-row items-center justify-center bg-sky-500 hover:bg-sky-600 p-1 rounded-sm"
@@ -159,7 +127,7 @@
                                 </div>
                             </div>
                             @php
-                                $i++
+                                $i++;
                             @endphp
                         @endforeach
                     </div>
@@ -167,6 +135,6 @@
             </form>
         </div>
     </div>
-    <script src="{{ asset('assets/js/category.js') }}"></script>
     <script src="{{ asset('assets/js/checkAll.js') }}"></script>
-   @endsection
+    <script src="{{ asset('assets/js/category.js') }}"></script>
+@endsection

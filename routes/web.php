@@ -96,6 +96,7 @@ Route::group([
     Route::post('/setPassword', 'setPassword')->name('setPassword');
     Route::post('/savePassword', 'savePassword')->name('savePassword');
     Route::get('/forgetPassword', 'forgetPassword')->name('forgetPassword');
+    Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
 });
 // comments routes
 Route::group([
