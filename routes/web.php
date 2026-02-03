@@ -48,6 +48,7 @@ Route::group(['prefix' => 'category', 'controller' => CategoryController::class,
     Route::get('/edit/{category}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{category}', 'delete')->name('delete');
+    Route::post('/admin/deleteAll', 'deleteAll')->name('deleteAll');
 });
 // product routes
 Route::group(['prefix' => 'product', 'controller' => ProductController::class, 'as' => 'product-', 'middleware' => checkAdminMiddleware::class], function () {
@@ -60,6 +61,7 @@ Route::group(['prefix' => 'product', 'controller' => ProductController::class, '
     Route::get('/edit/{product}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{product}', 'delete')->name('delete');
+    Route::post('/admin/deleteAll', 'deleteAll')->name('deleteAll');
 });
 // menu routes
 Route::group(['prefix' => 'menu', 'controller' => MenuController::class, 'as' => 'menu-', 'middleware' => checkAdminMiddleware::class], function () {

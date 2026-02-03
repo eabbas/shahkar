@@ -1713,10 +1713,6 @@
                                         </div>
                                     </div>
                                 @endforeach
-
-
-
-
                             </div>
                         </div>
                         <div class="mt-10">
@@ -2338,7 +2334,7 @@
                 </div>
             </div>
 
-            <div class="lg:hidden px-2 mt-7 px-2 pb-2">
+            <div class="lg:hidden px-2 mt-7 pb-2">
                 <div class="flex flex-row justify-between items-start">
                     <div class="flex flex-row items-start gap-3">
                         <div class="w-full flex justify-center items-center gap-3">
