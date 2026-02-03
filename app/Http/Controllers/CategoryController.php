@@ -97,7 +97,8 @@ class CategoryController extends Controller
 
     public function adminShow(category $category)
     {
-        return view('admin.category.show', ['category' => $category]);
+        $logo = logo::first();
+        return view('admin.category.show', ['category' => $category, 'logo'=>$logo]);
     }
 
     public function show(category $category)

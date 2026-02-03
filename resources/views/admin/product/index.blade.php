@@ -1,5 +1,5 @@
 @extends('admin.app.dashboard')
-@section('title', 'شاهکار | همه محسولات')
+@section('title', 'شاهکار | همه محصولات')
 @section('content')
     <div class="w-full flex flex-col pb-4">
         <div class="bg-white rounded-lg">
@@ -69,7 +69,7 @@
                                     class="p-1 lg:p-3 text-xs lg:text-sm h-full flex items-center justify-center text-gray-900">
                                     <div class="w-20 lg:w-full">
                                         <img class="max-w-[50px] max-h-[50px] mx-auto size-12 object-cover rounded-md"
-                                            src={{ asset($product['image']) }}>
+                                            src={{ asset($product['img']) }}>
                                     </div>
                                 </div>
                                 <div
