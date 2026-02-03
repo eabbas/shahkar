@@ -62,15 +62,12 @@
     </div>
     <section class="text-(--color-text) pt-3">
         <!-- title section -->
-       
             <div class="flex flex-col lg:flex-row justify-between gap-8 lg:gap-0 lg:items-center py-5 lg:py-10">
                 <h2 class="font-bold lg:text-[24px] leading-8">
                     محصولات {{ $category->title }}
                 </h2>
             </div>
-       
         <!-- title section -->
-
         <div class="w-full flex gap-5 overflow-x-auto p-5"
             style="scrollbar-width: thin; scrollbar-color: var(--color-primary) var(--color-primary-text);">
             @foreach ($products as $product)
