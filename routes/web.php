@@ -269,6 +269,7 @@ Route::group([
     Route::get('/edit/{coursestatus}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{coursestatus}', 'delete')->name('delete');
+    Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
 });
 // course levels
 Route::group([
