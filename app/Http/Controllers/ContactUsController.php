@@ -171,4 +171,15 @@ class ContactUsController extends Controller
         $contactUs->delete();
         return to_route('contactus-usersContact-index', [$user]);
     }
+
+    public function deleteAllUser(Request $request){
+        if (!isset($request->contacts)) {
+            return redirect()->back();
+        }
+        foreach($request->contacts as $contactUs_id){
+            $contactUs = contactUs::find($contactUs_id);
+            $contactUs->delete();
+        }
+        return redirect()->back();
+    }
 }

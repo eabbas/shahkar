@@ -104,7 +104,7 @@ class CategoryController extends Controller
     public function show(category $category)
     {
         $courses = course::all();
-        $products = product::all();
+        $products = product::where('category_id', $category->id)->get();
         $products = $this->getProductMedias($products);
         $cats = category::all();
         $settings = settings::all();

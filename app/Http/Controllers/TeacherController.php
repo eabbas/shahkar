@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\logo;
+use App\Models\teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use App\Models\teacher;
 use Illuminate\Support\Str;
 
 class TeacherController extends Controller
@@ -13,8 +13,9 @@ class TeacherController extends Controller
     public function create()
     {
         $logo = logo::first();
-        return view("admin.courseTeacher.create", ['logo' => $logo]);
+        return view('admin.courseTeacher.create', ['logo' => $logo]);
     }
+
     public function store(Request $request)
     {
         $path = null;
@@ -34,11 +35,12 @@ class TeacherController extends Controller
         ]);
         return to_route('teacher.list');
     }
+
     public function index()
     {
         $teachers = teacher::all();
         $logo = logo::first();
-        return view("admin.courseTeacher.index", [
+        return view('admin.courseTeacher.index', [
             'teachers' => $teachers,
             'logo' => $logo
         ]);
@@ -48,7 +50,7 @@ class TeacherController extends Controller
     {
         $logo = logo::first();
         $teacher->social_media = json_decode($teacher->social_media);
-        return view("admin.courseTeacher.single", [
+        return view('admin.courseTeacher.single', [
             'teacher' => $teacher,
             'logo' => $logo
         ]);
@@ -89,5 +91,17 @@ class TeacherController extends Controller
     {
         $teacher->delete();
         return to_route('teacher.list');
+    }
+
+    public function deleteAll(Request $request)
+    {
+        if (!isset($request->teachers)) {
+            return redirect()->back();
+        }
+        foreach ($request->teachers as $teacher_id) {
+            $teacher = teacher::find($teacher_id);
+            $teacher->delete();
+        }
+        return redirect()->back();
     }
 }

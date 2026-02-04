@@ -210,6 +210,7 @@ Route::group(['prefix' => 'contactus', 'controller' => ContactUsController::clas
     Route::get('/show/{contactUs}', 'show')->name('show');
     Route::get('/list', 'index')->name('index');
     Route::get('/delete/{contactUs}', 'delete')->name('delete');
+    Route::post('/deleteAllUser', 'deleteAllUser')->name('deleteAllUser');
 });
 // home forms routes
 Route::group(['prefix' => 'homeForm', 'controller' => HomeFormsController::class, 'as' => 'homeForm-', 'middleware' => checkAdminMiddleware::class], function () {
@@ -252,6 +253,7 @@ Route::group([
     Route::get('/edit/{teacher}', 'edit')->name('edit');
     Route::post('/update/{teacher}', 'update')->name('update');
     Route::get('/delete/{teacher}', 'delete')->name('delete');
+    Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
 });
 // course status
 Route::group([
@@ -267,6 +269,7 @@ Route::group([
     Route::get('/edit/{coursestatus}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{coursestatus}', 'delete')->name('delete');
+    Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
 });
 // course levels
 Route::group([
@@ -282,6 +285,7 @@ Route::group([
     Route::get('/edit/{courseLevel}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{courseLevel}', 'delete')->name('delete');
+    Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
 });
 // course
 Route::group([
@@ -302,6 +306,7 @@ Route::group([
     Route::get('/users/{course}', 'users')->name('users');
     Route::get('/admin/seasons/{course}', 'adminSeasons')->name('adminSeasons');
     Route::get('/seasons/{course}', 'seasons')->withoutMiddleware(checkAdminMiddleware::class)->middleware(checklogin::class)->name('seasons');
+    Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
 });
 //user_course
 Route::group([
@@ -477,6 +482,7 @@ Route::group([
     Route::get('/edit/{lessonerrortitle}', 'edit')->name('edit');
     Route::get('/delete/{lessonerrortitle}', 'delete')->name('delete');
     Route::post('/update/{lessonerrortitle}', 'update')->name('update');
+    Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
 });
 // lesson error 
 Route::group([

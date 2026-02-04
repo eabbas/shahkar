@@ -276,4 +276,15 @@ class CourseController extends Controller
             'user' => $user
         ]);
     }
+
+    public function deleteAll(Request $request){
+        if(!isset($request->courses)){
+            return redirect()->back();
+        }
+        foreach($request->courses as $course_id){
+            $course = course::find($course_id);
+            $course->delete();
+        }
+        return redirect()->back();
+    }
 }

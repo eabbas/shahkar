@@ -62,4 +62,15 @@ class CourseStatusController extends Controller
         $coursestatus->delete();
         return to_route('status.list');
     }
+
+     public function deleteAll(Request $request){
+        if(!isset($request->statuses)){
+            return redirect()->back();
+        }
+        foreach($request->statuses as $status_id){
+            $status = coursestatus::find($status_id);
+            $status->delete();
+        }
+        return redirect()->back();
+    }
 }
