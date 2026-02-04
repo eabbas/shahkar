@@ -62,4 +62,15 @@ class CourseLevelController extends Controller
         $courseLevel->delete();
         return to_route('courseLevel.list');
     }
+
+    public function deleteAll(Request $request){
+        if(!isset($request->levels)){
+            return redirect()->back();
+        }
+        foreach($request->levels as $level_id){
+            $level = courseLevel::find($level_id);
+            $level->delete();
+        }
+        return redirect()->back();
+    }
 }

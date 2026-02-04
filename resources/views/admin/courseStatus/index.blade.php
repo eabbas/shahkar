@@ -5,7 +5,7 @@
     <div class="w-full flex flex-col pb-4">
         <div class="bg-white rounded-lg">
             <h2 class="text-lg font-bold text-gray-800 p-4 text-center">وضعیت ها</h2>
-            <form class="flex flex-col gap-5" action="{{ route('category-deleteAll') }}" method="post">
+            <form class="flex flex-col gap-5" action="{{ route('status.deleteAll') }}" method="post">
                 @csrf
                 <div class="w-11/12 lg:w-3/4 mx-auto flex flex-row justify-between items-center">
                     <div class="flex flex-row items-center gap-3">

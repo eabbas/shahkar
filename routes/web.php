@@ -285,6 +285,7 @@ Route::group([
     Route::get('/edit/{courseLevel}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{courseLevel}', 'delete')->name('delete');
+    Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
 });
 // course
 Route::group([
