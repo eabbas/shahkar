@@ -482,6 +482,7 @@ Route::group([
     Route::get('/edit/{lessonerrortitle}', 'edit')->name('edit');
     Route::get('/delete/{lessonerrortitle}', 'delete')->name('delete');
     Route::post('/update/{lessonerrortitle}', 'update')->name('update');
+    Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
 });
 // lesson error 
 Route::group([

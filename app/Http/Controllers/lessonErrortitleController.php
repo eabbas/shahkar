@@ -45,4 +45,15 @@ class lessonErrortitleController extends Controller
         $lessonerrortitle->delete();
         return to_route("errortitle_index");
     }
+
+    public function deleteAll(Request $request){
+        if(!isset($request->errors)){
+            return redirect()->back();
+        }
+        foreach($request->errors as $error_id){
+            $error = lessonerrortitle::find($error_id);
+            $error->delete();
+        }
+        return redirect()->back();
+    }
 }
