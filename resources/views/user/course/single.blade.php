@@ -1,102 +1,8 @@
-<!DOCTYPE html>
-<html lang="fa">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Info</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            background: #f5f5f5;
-            padding: 20px;
-            direction: rtl;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        thead {
-            background: #2563eb;
-            color: white;
-        }
-
-        th,
-        td {
-            padding: 12px;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-        }
-
-        tr:hover {
-            background: #f9fafb;
-        }
-
-        img.thumb {
-            width: 70px;
-            height: 70px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 8px 14px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            margin: 3px;
-            color: white;
-            transition: 0.2s;
-        }
-
-        .btn-edit {
-            background: #0ea5e9;
-        }
-
-        .btn-edit:hover {
-            background: #0284c7;
-        }
-
-        .btn-register {
-            background: #22c55e;
-        }
-
-        .btn-register:hover {
-            background: #16a34a;
-        }
-
-        .teachers-box span {
-            background: #e2e8f0;
-            padding: 4px 8px;
-            margin: 2px;
-            border-radius: 6px;
-            display: inline-block;
-            font-size: 12px;
-        }
-
-        .tag-yes {
-            color: #16a34a;
-            font-weight: bold;
-        }
-
-        .tag-no {
-            color: #dc2626;
-            font-weight: bold;
-        }
-    </style>
-</head>
-
-<body>
     @extends('app.document')
-    @section('title', 'دوره')
+    @section('title')
+        شاهکار | {{ $course->title }}
+    @endsection
     @section('content')
         <table>
             <thead>
@@ -207,6 +113,4 @@
             </tbody>
         </table>
     @endsection
-</body>
 
-</html>
