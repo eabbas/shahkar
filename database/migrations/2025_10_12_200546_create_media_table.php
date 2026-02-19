@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('media', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('product_id');
-            $table->string('path');
-            $table->string('type');
-            $table->boolean('is_main');
+            $table->string('path')->nullable();
+            $table->string('type')->nullable();
+            $table->boolean('is_main')->nullable();
             $table->timestamps();
         });
     }

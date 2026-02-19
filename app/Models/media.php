@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class media extends Model
 {
     protected $fillable = ['product_id', 'path', 'type', 'is_main'];
-    public function product(){
+    public function product()
+    {
         return $this->belongsTo(product::class);
     }
 }
