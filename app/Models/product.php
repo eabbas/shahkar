@@ -9,10 +9,10 @@ class product extends Model
     protected $fillable = [
         'title',
         'description',
-        'is_in_home',
         'summary',
         'category_id',
-        'brand'
+        'brand',
+        'is_in_home',
     ];
     public function category()
     {
