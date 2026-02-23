@@ -12,13 +12,13 @@
 <body>
    @extends('admin.app.dashboard')
    @section('content')
-   <div class="w-full pb-5 bg-[url('https://keenthemes.com/static/metronic/tailwind/dist/assets/media/images/2600x1200/bg-10.png')] bg-cover bg-no-repeat">
+   <div class="w-full pb-5">
       <h2 class="text-3xl text-center font-bold py-5 text-[#425A8B]">فرم ایجاد ستون های فوتر</h2>
-      <div class="w-2/3 mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white">
+      <div class="w-full border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white">
          <form action="{{route('footer-store')}}" method="post">
             @csrf
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-               <div class="flex flex-col w-full p-6 border border-[#D5DFE4] rounded-[10px]">
+               <div class="flex flex-col w-full p-2 lg:p-6 border border-[#D5DFE4] rounded-[10px]">
                   <div class="py-4 text-center">
                      <h4 class="text-2xl font-bold">بخش اول</h4>
                   </div>
@@ -53,7 +53,7 @@
                      <span class="text-green-500 text-sm">+</span>
                   </div>
                </div>
-               <div class="flex flex-col w-full p-6 border border-[#D5DFE4] rounded-[10px]">
+               <div class="flex flex-col w-full p-2 lg:p-6 border border-[#D5DFE4] rounded-[10px]">
                   <div class="py-4 text-center">
                      <h4 class="text-2xl font-bold">بخش دوم</h4>
                   </div>
@@ -88,7 +88,7 @@
                      <span class="text-green-500 text-sm">+</span>
                   </div>
                </div>
-               <div class="flex flex-col w-full p-6 border border-[#D5DFE4] rounded-[10px]">
+               <div class="flex flex-col w-full p-2 lg:p-6 border border-[#D5DFE4] rounded-[10px]">
                   <div class="py-4 text-center">
                      <h4 class="text-2xl font-bold">بخش سوم</h4>
                   </div>
@@ -124,7 +124,7 @@
                   </div>
                </div>
             </div>
-            <div class="pt-8 text-center">
+            <div class="pt-4 text-center">
                <button type="submit" class="py-3 px-10 rounded-[10px] bg-[#1B84FF] hover:bg-[#056EE9] text-white cursor-pointer">ثبت</button>
             </div>
          </form>

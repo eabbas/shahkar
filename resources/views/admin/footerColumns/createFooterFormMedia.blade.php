@@ -17,7 +17,7 @@
       <div class="w-2/3 mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white">
          <form action="{{route('footer-footerFormMedia-store')}}" method="post" enctype="multipart/form-data">
             @csrf
-            <div class="flex flex-col w-full p-6 border border-[#D5DFE4] rounded-[10px]">
+            <div class="flex flex-col w-full p-2 lg:p-6 border border-[#D5DFE4] rounded-[10px]">
                <div class="pt-2 pb-5">
                   <label for="title">عنوان ستون :
                      <span class="text-rose-500">*</span>

@@ -220,6 +220,7 @@ Route::group(['prefix' => 'homeForm', 'controller' => HomeFormsController::class
     Route::get('/show/{homeForms}', 'show')->name('show');
     Route::get('/list', 'index')->name('index');
     Route::get('/delete/{homeForms}', 'delete')->name('delete');
+    Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
 });
 //! akbarnezhad courses
 // course category

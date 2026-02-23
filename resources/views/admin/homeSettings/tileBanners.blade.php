@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html lang="en" dir="rtl">
 
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="{{ url('assets/css/style.css') }}" type="text/css">
-   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-   <title>create tiles</title>
-</head>
-
-<body>
    @extends('admin.app.dashboard')
+   @section('title', 'شاهکار | ایجاد کاشی ها')
    @section('content')
    <div class="w-full pb-5 bg-[url('https://keenthemes.com/static/metronic/tailwind/dist/assets/media/images/2600x1200/bg-10.png')] bg-cover bg-no-repeat">
       <h2 class="text-3xl text-center font-bold py-5 text-[#425A8B]">فرم ایجاد کاشی ها</h2>
-      <div class="w-2/3 mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white">
+      <div class="w-full border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white">
          <form action="{{route('banners-upsert')}}" method="post" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="sectionName" value="tileBanners">
@@ -87,6 +77,3 @@
       </div>
    </div>
    @endsection
-</body>
-
-</html>
