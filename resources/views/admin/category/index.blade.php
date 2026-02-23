@@ -54,7 +54,7 @@
                                 <div
                                     class="p-1 lg:p-3 text-xs lg:text-sm h-full flex items-center justify-center text-gray-900 text-center">
                                     <div class="w-10 lg:w-full">
-                                        <input type="checkbox" class="check" name="products[]" value="{{ $category->id }}">
+                                        <input type="checkbox" class="check" name="categories[]" value="{{ $category->id }}">
                                     </div>
                                 </div>
                                 <div

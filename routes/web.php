@@ -386,6 +386,7 @@ Route::group([
     Route::get('/delete/{meta}', 'delete')->name('delete');
     Route::get('/show/{meta}', 'show')->name('show');
     Route::post('/update/{meta}', 'update')->name('update');
+    Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
 });
 // lesson comments
 Route::group([

@@ -60,4 +60,15 @@ class MetaController extends Controller
             'logo' => $logo
         ]);
     }
+
+    public function deleteAll(Request $request){
+        if (!isset($request->metas)) {
+            return redirect()->back();
+        }
+        foreach($request->metas as $meta_id){
+            $meta = meta::find($meta_id);
+            $meta->delete();
+        }
+        return redirect()->back();
+    }
 }
