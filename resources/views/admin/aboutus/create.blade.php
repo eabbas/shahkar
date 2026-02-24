@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
 
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="{{ url('assets/css/style.css') }}" type="text/css">
-   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-   <title>create about us</title>
-</head>
-
-
-<body>
    @extends('admin.app.dashboard')
+   @section('title', 'شاهکار | ایجاد درباره ما')
    @section('content')
    <div class="w-full h-full pb-10">
       <h2 class="text-3xl text-center font-bold py-10 text-[#425A8B]">فرم ایجاد درباره ما</h2>
@@ -33,6 +22,3 @@
       </div>
    </div>
    @endsection
-</body>
-
-</html>

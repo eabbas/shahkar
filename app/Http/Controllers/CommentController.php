@@ -77,4 +77,14 @@ class CommentController extends Controller
         $comment->delete();
         return to_route('comment.index');
     }
+    public function deleteAll(Request $request){
+        if(!isset($request->comments)){
+            return redirect()->back();
+        }
+        foreach($request->comments as $comment_id){
+            $comment = comment::find($comment_id);
+            $comment->delete();
+        }
+        return redirect()->back();
+    }
 }

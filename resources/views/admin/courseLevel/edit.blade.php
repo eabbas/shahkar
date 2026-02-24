@@ -1,27 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
     @extends('admin.app.dashboard')
-    @section('content')
-        <form action ="{{ route('courseLevel.update') }}" method="POST">
-            @csrf
-            <input type ="hidden" id="id" name="id" value="{{ $level->id }}">
-            <div>
-                <labl for="name">title:</label>
-                    <input style="background-color:pink" type ="text" id="title" name="title"
-                        value="{{ $level->title }}">
-            </div>
-
-            <button style="background-color:pink; margin-top:50px" type="submit">submit</button>
-        </form>
+    @section('title')
+        شاهکار | ویرایش {{ $level->title }}
     @endsection
-</body>
-
-</html>
+    @section('content')
+        <h2 class="text-3xl text-center font-bold py-10 text-[#425A8B]">{{ $level->title }}</h2>
+        <div class="lg:w-2/3 w-full mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white">
+            <form action="{{ route('courseLevel.update') }}" method="post">
+                @csrf
+                <input type ="hidden" id="id" name="id" value="{{ $level->id }}">
+                <div class="w-full flex flex-col">
+                    <label for="title" class="mb-2 flex flex-row items-center">
+                        <span>
+                            عنوان :
+                            <span class="text-rose-500">*</span>
+                        </span>
+                    </label>
+                    <input type="text" class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]"
+                        name="title" id="title" placeholder="عنوان را وارد کنید" required value="{{ $level->title }}">
+                </div>
+                <div class="mt-5 text-center">
+                    <button type="submit"
+                        class="py-3 px-10 rounded-[10px] bg-[#1B84FF] hover:bg-[#056EE9] text-white cursor-pointer">ثبت</button>
+                </div>
+            </form>
+        </div>
+    @endsection

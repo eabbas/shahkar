@@ -1,28 +1,12 @@
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
     @extends('admin.app.dashboard')
-    @section('content')
-        <table border="1" style="background-color:teal;color:olive ">
-            <thead>
-                <tr>
-                    <th style="color:black">level</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td style="background-color:white">{{ $level->title }}</td>
-                </tr>
-                </tr>
-        </table>
+    @section('title')
+        شاهکار | {{ $level->title }}
     @endsection
-</body>
+    @section('content')
 
-</html>
+         <div class="w-1/2 mx-auto flex flex-row items-center justify-center gap-5 mt-10 py-3 border border-gray-300 rounded-sm">
+        <span class="text-sm font-bold text-gray-600">سطح: </span>
+        <h2 class="lg:text-lg font-bold">{{ $level->title }}</h2>
+    </div>
+    @endsection

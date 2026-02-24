@@ -77,4 +77,15 @@ class QuestionController extends Controller
         $question->delete();
         return to_route('question-index');
     }
+
+    public function deleteAll(Request $request){
+        if(!isset($request->questions)){
+            return redirect()->back();
+        }
+        foreach($request->questions as $question_id){
+            $question = question::find($question_id);
+            $question->delete();
+        }
+        return redirect()->back();
+    }
 }

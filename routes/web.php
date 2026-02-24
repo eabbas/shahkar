@@ -111,6 +111,7 @@ Route::group([
     Route::get('/edit/{comment}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{comment}', 'delete')->name('delete');
+    Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
 });
 // questions routes
 Route::group(['prefix' => 'question', 'controller' => QuestionController::class, 'as' => 'question-', 'middleware' => checkAdminMiddleware::class], function () {
@@ -120,6 +121,7 @@ Route::group(['prefix' => 'question', 'controller' => QuestionController::class,
     Route::get('/edit/{question}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{question}', 'delete')->name('delete');
+    Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
 });
 // answers routes
 Route::group(['prefix' => 'answer', 'controller' => AnswerController::class, 'as' => 'answer-', 'middleware' => checkAdminMiddleware::class], function () {
@@ -129,6 +131,7 @@ Route::group(['prefix' => 'answer', 'controller' => AnswerController::class, 'as
     Route::get('/edit/{answer}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{answer}', 'delete')->name('delete');
+    Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
 });
 // home routes
 Route::group(['controller' => HomeController::class], function () {

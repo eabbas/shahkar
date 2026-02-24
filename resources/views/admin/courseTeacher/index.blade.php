@@ -3,7 +3,7 @@
 @section('content')
     <div class="w-full flex flex-col pb-4">
         <div class="bg-white rounded-lg">
-            <h2 class="text-lg font-bold text-gray-800 p-4 text-center">لیست دوره ها</h2>
+            <h2 class="text-lg font-bold text-gray-800 p-4 text-center">لیست اساتید</h2>
             <form class="flex flex-col gap-5" action="{{ route('teacher.deleteAll') }}" method="post">
                 @csrf
                 <div class="w-full mx-auto flex flex-row justify-between items-center">

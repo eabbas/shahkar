@@ -58,4 +58,15 @@ class AnswerController extends Controller
         $answer->delete();
         return to_route('answer-index');
     }
+
+    public function deleteAll(Request $request){
+        if(!isset($request->answers)){
+            return redirect()->back();
+        }
+        foreach($request->answers as $answer_id){
+            $answer = answer::find($answer_id);
+            $answer->delete();
+        }
+        return redirect()->back();
+    }
 }

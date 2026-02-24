@@ -1,28 +1,10 @@
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    @extends('admin.app.dashboard')
-    @section('content')
-        <table border="1" style="background-color:teal;color:olive ">
-            <thead>
-                <tr>
-                    <th style="color:black">status</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td style="background-color:white">{{ $status->title }}</td>
-                </tr>
-                </tr>
-        </table>
-    @endsection
-</body>
-
-</html>
+@extends('admin.app.dashboard')
+@section('title')
+    شاهکار | {{ $status->title }}
+@endsection
+@section('content')
+    <div class="w-1/2 mx-auto flex flex-row items-center justify-center gap-5 mt-10 py-3 border border-gray-300 rounded-sm">
+        <span class="text-sm font-bold text-gray-600">وضعیت: </span>
+        <h2 class="lg:text-lg font-bold">{{ $status->title }}</h2>
+    </div>
+@endsection
