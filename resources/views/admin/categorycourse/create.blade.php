@@ -1,4 +1,5 @@
 @extends('admin.app.dashboard')
+@section('title', 'شاهکار | ایجاد دسته بندی دوره')
 @section('content')
     {{-- <form action="{{ route('coursecategory.store') }}" enctype='multipart/form-data' method="POST">
             @csrf
@@ -59,7 +60,7 @@
         </form> --}}
 
     <div class="w-full h-full pb-10">
-        <h2 class="text-3xl text-center font-bold py-10 text-[#425A8B]">فرم ایجاد دسته بندی</h2>
+        <h2 class="text-3xl text-center font-bold py-10 text-[#425A8B]">فرم ایجاد دسته بندی دوره</h2>
         <div class="lg:w-2/3 w-full mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white">
             <form action="{{ route('coursecategory.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
