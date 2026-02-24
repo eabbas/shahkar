@@ -42,4 +42,15 @@ class HomeFormsController extends Controller
         $homeForms->delete();
         return to_route('homeForm-index');
     }
+
+    public function deleteAll(Request $request){
+        if(!isset($request->rows)){
+            return redirect()->back();
+        }
+        foreach ($request->rows as $row_id) {
+            $row = homeForms::find($row_id);
+            $row->delete();
+        }
+        return redirect()->back();
+    }
 }

@@ -173,4 +173,15 @@ class CoursecategoryController extends Controller
         $coursecategory->delete();
         return to_route('coursecategory.adminList');
     }
+
+    public function deleteAll(Request $request){
+        if (!isset($request->categories)) {
+            return redirect()->back();
+        }
+        foreach($request->categories as $category_id){
+            $category = coursecategory::find($category_id);
+            $category->delete();
+        }
+        return redirect()->back();
+    }
 }

@@ -398,6 +398,7 @@ function getRelatedProducts(param, section) {
                     let div = document.createElement('div');
                     div.classList = 'p-2 min-w-65 h-100 border border-(--color-border) rounded-[10px] relative flex flex-col justify-between productItem'
                     let element = `
+
                             <div>
                                 <a href="{{ route('product-show', [$product]) }}"
                                     class="flex justify-center mb-1 overflow-hidden">

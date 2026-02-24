@@ -220,6 +220,7 @@ Route::group(['prefix' => 'homeForm', 'controller' => HomeFormsController::class
     Route::get('/show/{homeForms}', 'show')->name('show');
     Route::get('/list', 'index')->name('index');
     Route::get('/delete/{homeForms}', 'delete')->name('delete');
+    Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
 });
 //! akbarnezhad courses
 // course category
@@ -238,6 +239,7 @@ Route::group([
     Route::get('/edit/{coursecategory}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{coursecategory}', 'delete')->name('delete');
+    Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
 });
 // course teacher
 Route::group([
@@ -386,6 +388,7 @@ Route::group([
     Route::get('/delete/{meta}', 'delete')->name('delete');
     Route::get('/show/{meta}', 'show')->name('show');
     Route::post('/update/{meta}', 'update')->name('update');
+    Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
 });
 // lesson comments
 Route::group([

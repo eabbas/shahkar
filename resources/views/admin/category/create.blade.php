@@ -1,21 +1,10 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
 
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="{{ url('assets/css/style.css') }}" type="text/css">
-   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-   <title>create category</title>
-</head>
-
-
-<body>
    @extends('admin.app.dashboard')
+   @section('title', 'شاهکار | ایجاد دسته')
    @section('content')
    <div class="w-full h-full pb-10">
       <h2 class="text-3xl text-center font-bold py-10 text-[#425A8B]">فرم ایجاد دسته بندی</h2>
-      <div class="w-2/3 mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white">
+      <div class="lg:w-2/3 w-full mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white">
          <form action="{{route('category-store')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="w-full flex flex-col">
@@ -53,6 +42,3 @@
       </div>
    </div>
    @endsection
-</body>
-
-</html>

@@ -1,104 +1,10 @@
-<!DOCTYPE html>
-<html lang="fa">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Info</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            background: #f5f5f5;
-            padding: 20px;
-            direction: rtl;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        thead {
-            background: #2563eb;
-            color: white;
-        }
-
-        th,
-        td {
-            padding: 12px;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-        }
-
-        tr:hover {
-            background: #f9fafb;
-        }
-
-        img.thumb {
-            width: 70px;
-            height: 70px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 8px 14px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-            margin: 3px;
-            color: white;
-            transition: 0.2s;
-        }
-
-        .btn-edit {
-            background: #0ea5e9;
-        }
-
-        .btn-edit:hover {
-            background: #0284c7;
-        }
-
-        .btn-register {
-            background: #22c55e;
-        }
-
-        .btn-register:hover {
-            background: #16a34a;
-        }
-
-        .teachers-box span {
-            background: #e2e8f0;
-            padding: 4px 8px;
-            margin: 2px;
-            border-radius: 6px;
-            display: inline-block;
-            font-size: 12px;
-        }
-
-        .tag-yes {
-            color: #16a34a;
-            font-weight: bold;
-        }
-
-        .tag-no {
-            color: #dc2626;
-            font-weight: bold;
-        }
-    </style>
-</head>
-
-<body>
     @extends('app.document')
-    @section('title', 'دوره')
+    @section('title')
+        شاهکار | {{ $course->title }}
+    @endsection
     @section('content')
-        <table>
+        {{-- <table>
             <thead>
                 <tr>
                     <th>ID</th>
@@ -205,8 +111,38 @@
 
                 </tr>
             </tbody>
-        </table>
+        </table> --}}
+        <div class="w-full flex flex-row items-center gap-3">
+            <a href="{{ route('home') }}" class="text-sm text-gray-400">خانه</a>
+            <span class="text-sm text-gray-400">/</span>
+            <a href="{{ route('home') }}" class="text-sm text-gray-400">{{ $cat_course->title }}</a>
+            <span class="text-sm text-gray-400">/</span>
+            <a href="{{ route('home') }}" class="text-sm text-gray-800 font-bold">{{ $course->title }}</a>
+        </div>
+        <div class="w-full grid grid-cols-2 gap-8 mt-6">
+            <div class="w-full flex flex-col gap-5">
+                <h1 class="text-3xl font-bold text-gray-800">{{ $course->title }}</h1>
+                <div class="flex flex-col gap-2">
+                    <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                        <path fill="var(--color-fill)" d="M226.5 168.8L287.9 42.3l61.4 126.5c4.6 9.5 13.6 16.1 24.1 17.7l137.4 20.3-99.8 98.8c-7.4 7.3-10.8 17.8-9 28.1l23.5 139.5L303 407.7c-9.4-5-20.7-5-30.2 0L150.2 473.2l23.5-139.5c1.7-10.3-1.6-20.7-9-28.1L65 206.8l137.4-20.3c10.5-1.5 19.5-8.2 24.1-17.7zM424.9 509.1c8.1 4.3 17.9 3.7 25.3-1.7s11.2-14.5 9.7-23.5L433.6 328.4 544.8 218.2c6.5-6.4 8.7-15.9 5.9-24.5s-10.3-14.9-19.3-16.3L378.1 154.8 309.5 13.5C305.5 5.2 297.1 0 287.9 0s-17.6 5.2-21.6 13.5L197.7 154.8 44.5 177.5c-9 1.3-16.5 7.6-19.3 16.3s-.5 18.1 5.9 24.5L142.2 328.4 116 483.9c-1.5 9 2.2 18.1 9.7 23.5s17.3 6 25.3 1.7l137-73.2 137 73.2z"/>
+                    </svg>
+                    <span class="text-gray-400 text-sm">از 0 رای</span>
+                </div>
+                <p class="w-full truncate text-justify text-sm text-gray-800">{{ $course->summary }}</p>
+                <div class="flex flex-row justify-between items-center">
+                    <div class="w-1/3">
+                        <a href="#" class="block w-full text-center py-3 rounded-lg bg-(--color-primary) text-(--color-primary-text)">ثبت نام در دوره</a>
+                    </div>
+                    <div class="text-(--color-text)">
+                        <span class="text-xl font-bold">{{ number_format($course->price) }}</span>
+                        <span class="text-xl font-bold">تومان</span>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full relative">
+                <span class=""></span>
+                <img src="{{ asset('storage/' . $course->img) }}" class="w-[600px] max-h-[387px] rounded-lg" alt="">
+            </div>
+        </div>
     @endsection
-</body>
 
-</html>
