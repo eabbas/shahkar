@@ -121,6 +121,7 @@ Route::group(['prefix' => 'question', 'controller' => QuestionController::class,
     Route::get('/edit/{question}', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
     Route::get('/delete/{question}', 'delete')->name('delete');
+    Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
 });
 // answers routes
 Route::group(['prefix' => 'answer', 'controller' => AnswerController::class, 'as' => 'answer-', 'middleware' => checkAdminMiddleware::class], function () {

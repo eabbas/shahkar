@@ -1,41 +1,7 @@
-
-   @extends('admin.app.dashboard')
-   @section('title', 'شاهکار | لیست پاسخ ها')
-   @section('content')
-   {{-- <h2>لیست پاسخ ها</h2>
-   <table border="1" style="border-collapse: collapse;">
-      <thead>
-         <tr>
-            <th>آیدی</th>
-            <th>پاسخ</th>
-            <th>سوال مربوطه</th>
-            <th>پاسخ والد</th>
-            <th>محصول مربوطه</th>
-            <th>کاربر مربوطه</th>
-            <th>عملیات</th>
-         </tr>
-      </thead>
-      <tbody>
-         @foreach($answers as $answer)
-         <tr>
-            <td>{{$answer['id']}}</td>
-            <td>{{$answer['text']}}</td>
-            <td>{{$answer->question['text']}}</td>
-            <td>@if($answer->parent) {{$answer->parent['text']}} @endif</td>
-            <td>{{$answer->question->product['id']}} {{$answer->question->product['title']}}</td>
-            <td>{{$answer->user['name']}} {{$answer->user['family']}}</td>
-            <td>
-               <a href="{{route('answer-show',[$answer])}}">نمایش</a>
-               <a href="{{route('answer-edit',[$answer])}}">ویرایش</a>
-               <a href="{{route('answer-delete',[$answer])}}">حذف</a>
-            </td>
-         </tr>
-         @endforeach
-      </tbody>
-   </table> --}}
-
-
-   <div class="w-full flex flex-col pb-4">
+@extends('admin.app.dashboard')
+@section('title', 'شاهکار | لیست پاسخ ها')
+@section('content')
+    <div class="w-full flex flex-col pb-4">
         <div class="bg-white rounded-lg">
             <h2 class="text-lg font-bold text-gray-800 p-4 text-center">لیست همه پاسخ ها</h2>
             <form class="flex flex-col gap-5" action="{{ route('comment.deleteAll') }}" method="post">
@@ -91,7 +57,7 @@
                         @php
                             $i = 1;
                         @endphp
-                        @foreach($answers as $answer)
+                        @foreach ($answers as $answer)
                             <div
                                 class="w-full flex flex-row lg:grid lg:grid-cols-12 items-center divide-x divide-[#f1f1f4]">
                                 <div
@@ -112,25 +78,31 @@
                                 <div
                                     class="p-1 lg:p-3 text-xs lg:text-sm h-full flex items-center justify-center text-gray-900 text-center">
                                     <span class="block w-20 lg:w-full">
-                                       {{ $answer->question['text'] }}
+                                        {{ $answer->question['text'] }}
                                     </span>
                                 </div>
                                 <div
                                     class="p-1 lg:p-3 text-xs lg:text-sm h-full flex items-center justify-center text-gray-900 text-center col-span-2">
-                                    <span class="block w-20 lg:w-full truncate">@if($answer->parent) {{$answer->parent['text']}} @endif</span>
+                                    <span class="block w-20 lg:w-full truncate">
+                                        @if ($answer->parent)
+                                            {{ $answer->parent['text'] }}
+                                        @endif
+                                    </span>
                                 </div>
                                 <div
                                     class="p-1 lg:p-3 text-xs lg:text-sm h-full flex items-center justify-center text-gray-900 w-[500px] lg:w-full text-center">
-                                    <span class="block w-24 lg:w-full">{{$answer->question->product['id']}} {{$answer->question->product['title']}}</span>
+                                    <span class="block w-24 lg:w-full">{{ $answer->question->product['id'] }}
+                                        {{ $answer->question->product['title'] }}</span>
                                 </div>
                                 <div
                                     class="p-1 lg:p-3 text-xs lg:text-sm h-full flex items-center justify-center text-gray-900 w-[500px] lg:w-full text-center col-span-2">
-                                    <span class="block w-24 lg:w-full">{{$answer->user['name']}} {{$answer->user['family']}}</span>
+                                    <span class="block w-24 lg:w-full">{{ $answer->user['name'] }}
+                                        {{ $answer->user['family'] }}</span>
                                 </div>
                                 <div class="col-span-2">
                                     <ul class="w-[180px] lg:w-full text-sm mt-1 rounded-sm p-1 grid grid-cols-3">
                                         <li class="flex justify-center">
-                                            <a href="{{ route('answer-show',[$answer]) }}"
+                                            <a href="{{ route('answer-show', [$answer]) }}"
                                                 class="w-fit flex flex-row items-center justify-center bg-sky-500 hover:bg-sky-600 p-1 rounded-sm"
                                                 title="مشاهده">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="size-4"
@@ -141,7 +113,7 @@
                                             </a>
                                         </li>
                                         <li class="flex justify-center">
-                                            <a href="{{ route('answer-edit',[$answer]) }}"
+                                            <a href="{{ route('answer-edit', [$answer]) }}"
                                                 class="w-fit flex flex-row items-center justify-center bg-green-500 hover:bg-green-600 p-1 rounded-sm"
                                                 title="ویرایش">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="size-4"
@@ -152,7 +124,7 @@
                                             </a>
                                         </li>
                                         <li class="flex justify-center">
-                                            <a href="{{ route('answer-delete',[$answer]) }}"
+                                            <a href="{{ route('answer-delete', [$answer]) }}"
                                                 class="w-fit flex flex-row items-center justify-center bg-red-500 hover:bg-red-600 p-1 rounded-sm"
                                                 title="حذف">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="size-4"
@@ -175,4 +147,4 @@
         </div>
     </div>
     <script src="{{ asset('assets/js/checkAll.js') }}"></script>
-   @endsection
+@endsection
