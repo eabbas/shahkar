@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class product_attributes extends Model
 {
     protected $fillable = ['product_id', 'attribute_key', 'attribute_value'];
-    public $timestamps=true;
+    public $timestamps = true;
     public function price()
     {
         return $this->belongsTo(product_price::class);
     }
-    public function product(){
+    public function product()
+    {
         return $this->belongsTo(product::class);
     }
 }

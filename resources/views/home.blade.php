@@ -309,7 +309,7 @@
             @foreach ($specialDiscounts as $specialDiscountProduct)
                 <div
                     class="min-w-64 p-2 border border-(--color-border) rounded-[10px] relative flex flex-col justify-between productItem">
-                    <div
+                    {{-- <div
                         class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 hidden md:flex flex-col gap-2 z-555 overflow-hidden">
                         <button
                             class="size-8 border border-(--color-border) buttonProduct btnAnimation bg-white rounded-sm flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500">
@@ -318,7 +318,7 @@
                                     d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
                             </svg>
                         </button>
-                        {{-- <button
+                        <button
                                 class="size-8 border border-(--color-border) buttonProduct bg-white rounded-sm flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-50">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 512 512">
                                     <path fill="var(--color-fill)"
@@ -331,7 +331,7 @@
                                     <path fill="var(--color-fill)"
                                         d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
                                 </svg>
-                            </button> --}}
+                            </button>
                         <button
                             class="size-8 border border-(--color-border) buttonProduct bg-white rounded-sm flex justify-center items-center -translate-x-4 opacity-0 cursor-pointer transition-all duration-500 delay-150">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 576 512">
@@ -339,8 +339,8 @@
                                     d="M117.2 136C160.3 96 217.6 64 288 64s127.7 32 170.8 72c43.1 40 71.9 88 85.2 120c-13.3 32-42.1 80-85.2 120c-43.1 40-100.4 72-170.8 72s-127.7-32-170.8-72C74.1 336 45.3 288 32 256c13.3-32 42.1-80 85.2-120zM288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM192 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
                             </svg>
                         </button>
-                    </div>
-                    <div
+                    </div> --}}
+                    {{-- <div
                         class="absolute top-[5px] lg:top-2.5 left-[5px] lg:left-2.5 md:hidden flex flex-col gap-2 z-555 overflow-hidden">
                         <button
                             class="size-5 sm:size-7 border border-(--color-border) bg-white rounded-sm flex justify-center items-center cursor-pointer productAnimation">
@@ -349,7 +349,7 @@
                                     d="M306.8 6.3C311.4 2.2 317.3 0 323.4 0c17.2 0 29.2 17.1 23.4 33.3L278.7 224H389c14.9 0 27 12.1 27 27c0 7.8-3.3 15.1-9.1 20.3L141.1 505.8c-4.5 4-10.4 6.2-16.5 6.2c-17.2 0-29.2-17.1-23.5-33.3L169.3 288H57.8C43.6 288 32 276.4 32 262.2c0-7.4 3.2-14.4 8.7-19.3L306.8 6.3zm.5 42.4L74.1 256H192c5.2 0 10.1 2.5 13.1 6.8s3.7 9.7 2 14.6L140.6 463.6 375.8 256H256c-5.2 0-10.1-2.5-13.1-6.8s-3.7-9.7-2-14.6l66.4-186z" />
                             </svg>
                         </button>
-                        {{-- <button
+                        <button
                                 class="size-5 sm:size-7 border border-(--color-border) bg-white rounded-sm flex justify-center items-center cursor-pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 512 512">
                                     <path fill="var(--color-fill)"
@@ -362,7 +362,7 @@
                                     <path fill="var(--color-fill)"
                                         d="M443.3 139.3c6.2-6.2 6.2-16.4 0-22.6l-96-96c-6.2-6.2-16.4-6.2-22.6 0s-6.2 16.4 0 22.6L393.4 112 16 112c-8.8 0-16 7.2-16 16s7.2 16 16 16l377.4 0-68.7 68.7c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0l96-96zm-342.6 352c6.2 6.2 16.4 6.2 22.6 0s6.2-16.4 0-22.6L54.6 400 432 400c8.8 0 16-7.2 16-16s-7.2-16-16-16L54.6 368l68.7-68.7c6.2-6.2 6.2-16.4 0-22.6s-16.4-6.2-22.6 0l-96 96c-6.2 6.2-6.2 16.4 0 22.6l96 96z" />
                                 </svg>
-                            </button> --}}
+                            </button>
                         <button
                             class="size-5 sm:size-7 border border-(--color-border) bg-white rounded-sm flex justify-center items-center cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-3 sm:size-4" viewBox="0 0 576 512">
@@ -371,7 +371,7 @@
                             </svg>
                         </button>
 
-                    </div>
+                    </div> --}}
                     {{-- <span
                             class="inline-block absolute top-[5px] lg:top-2.5 right-[5px] lg:right-2.5 py-[3px] px-2 bg-(--color-discount-bg) text-(--color-primary-text) rounded-full text-[8px] lg:text-[12px] text-center z-11">18%</span> --}}
                     <div>

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('product_id');
             $table->json('product_attribute');
             $table->integer('price');
-            $table->integer('discount');
+            $table->integer('discount')->nullable();
             $table->integer('quantity');
             $table->timestamps();
         });

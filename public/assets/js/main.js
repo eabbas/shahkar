@@ -398,9 +398,9 @@ function getRelatedProducts(param, section) {
                     let div = document.createElement('div');
                     div.classList = 'p-2 min-w-65 h-100 border border-(--color-border) rounded-[10px] relative flex flex-col justify-between productItem'
                     let element = `
-                   
+
                             <div>
-                                <a href="http://localhost/shahkar/public/product/show/${id}"
+                                <a href="{{ route('product-show', [$product]) }}"
                                     class="flex justify-center mb-1 overflow-hidden">
                                     <img src="${image}"
                                         class="w-full transition-all duration-500 hover:scale-[1.04] relative z-10 max-h-[182px] lg:max-h-[186px] md:max-h-[348px] xl:max-h-[171px]"
@@ -409,12 +409,11 @@ function getRelatedProducts(param, section) {
                             </div>
                             <div class="flex flex-col">
                                 <div class="mb-2 font-bold text-[14px] lg:text-base">
-                                    <a href="http://localhost/shahkar/public/product/show/${id}"
+                                    <a href="{{ route('product-show', [$product]) }}"
                                         class="text-[12px] lg:text-[14px] text-(--color-text)">${title}</a>
                                 </div>
                                 <div class="mb-1">
-                                    <a
-                                        href="http://localhost/shahkar/public/product/show/${id}">${description}</a>
+                                    <a href="{{ route('product-show', [$product]) }}">${description}</a>
                                 </div>
                             </div>
                             <div class="flex flex-row items-center mb-3 gap-3">
@@ -463,12 +462,12 @@ function getRelatedProducts(param, section) {
                             <div class="flex flex-col lg:flex-row gap-2 lg:gap-4">
                                 <div class="w-full h-12">
                                     <button
-                                        onclick="addToShoppingCart('${id}', '${title}', '${description}', '${image}', '${price}')"
+                                        onclick="addToShoppingCart(this,'${id}', '${title}', '${description}', '${image}', '${price}')"
                                         class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-(--color-primary-text) bg-(--color-bg-card-btn) leading-5 rounded-[10px] cursor-pointer">افزودن
                                         به سبد خرید</button>
                                 </div>
                             </div>
-                `
+                    `
                     div.innerHTML = element;
                     relatedProducts.appendChild(div)
                 })
