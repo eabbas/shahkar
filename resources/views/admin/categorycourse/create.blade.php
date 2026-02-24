@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    @extends('admin.app.dashboard')
-    @section('content')
-        <form action="{{ route('coursecategory.store') }}" enctype='multipart/form-data' method="POST">
+@extends('admin.app.dashboard')
+@section('content')
+    {{-- <form action="{{ route('coursecategory.store') }}" enctype='multipart/form-data' method="POST">
             @csrf
             <div class="min-h-screen flex items-start justify-center">
                 <div class="bg-white rounded-2xl shadow-md p-3 w-full md:w-9/12">
@@ -66,8 +56,60 @@
             </div>
             </div>
             </fieldset>
-        </form>
-    @endsection
-</body>
+        </form> --}}
 
-</html>
+    <div class="w-full h-full pb-10">
+        <h2 class="text-3xl text-center font-bold py-10 text-[#425A8B]">فرم ایجاد دسته بندی</h2>
+        <div class="lg:w-2/3 w-full mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white">
+            <form action="{{ route('coursecategory.store') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="w-full grid grid-cols-1 lg:grid-cols-2 gap-5">
+                    <div class="w-full flex flex-col">
+                        <label for="catTitle" class="mb-2 flex flex-row items-center">
+                            <span>
+                                عنوان دسته بندی:
+                                <span class="text-rose-500">*</span>
+                            </span>
+                        </label>
+                        <input type="text" class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]"
+                            name="title" id="catTitle" placeholder="نام دسته را وارد کنید" required>
+                    </div>
+                    <div class="w-full flex flex-col">
+                        <label for="image" class="mb-2">تصویر دسته بندی:</label>
+                        <input type="file"
+                            class="w-full outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]" name="image"
+                            id="image">
+                    </div>
+    
+                    <div class="w-full flex flex-col">
+                        <label for="parent_id">دسته بندی :</label>
+                        <select name="parent_id" id="parent_id" class="w-full bg-[#F9F9F9] py-3 pr-5 rounded-[10px]">
+                            <option value="0">بدون والد</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->title }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+    
+                    <div class="w-full flex flex-row items-center gap-5">
+                        <label for="image" class="mb-2">نمایش در خانه</label>
+                        <input type="checkbox"
+                            class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]" name="homes[]"
+                            value="1">
+                    </div>
+
+                    <div class="w-full flex flex-col lg:col-span-2">
+                        <label for="cat_desc" class="mb-2">توضیحات دسته بندی:</label>
+                        <textarea class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]"
+                            placeholder="توضیحات" name="description" id="cat_desc"></textarea>
+                    </div>
+                </div>
+
+                <div class="mt-5 text-center">
+                    <button type="submit"
+                        class="py-3 px-10 rounded-[10px] bg-[#1B84FF] hover:bg-[#056EE9] text-white cursor-pointer">ثبت</button>
+                </div>
+            </form>
+        </div>
+    </div>
+@endsection

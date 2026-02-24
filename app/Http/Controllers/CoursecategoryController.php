@@ -175,7 +175,6 @@ class CoursecategoryController extends Controller
     }
 
     public function deleteAll(Request $request){
-        dd($request->all());
         if (!isset($request->categories)) {
             return redirect()->back();
         }
