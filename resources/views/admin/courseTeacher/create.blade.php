@@ -1,111 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    @extends('admin.app.dashboard')
-    @section('content')
-        <form action="{{ route('teacher.store') }}" enctype='multipart/form-data' method="POST">
-            @csrf
-            <div class="min-h-screen flex items-start justify-center">
-                <div class="bg-white rounded-2xl shadow-md p-3 w-full md:w-9/12">
-                    <div class="text-center mb-4">
-                    </div class="w-full">
-                    <div class="md:flex md:flex-row md:w-full md:items-center md:gap-5">
-
-                        <div class="md:flex md:flex-col md:w-full">
-                            <fieldset class="mt-2 text-sm md:text-base border border-gray-400 rounded-[15px] py-1 pr-3">
-                                <legend
-                                    class="kelass p-1 w-30 bg-[#1cb7fd] text-white rounded-full flex flex-row justify-center text-sm">
-                                    عکس</legend>
-                                <input type="file" name='profile_img'
-                                    class="w-full px-2 py-1 md:px-2 outline-none text-gray-500">
-                            </fieldset>
-
-                            <fieldset class="mt-2 text-sm md:text-base border border-gray-400 rounded-[15px] py-1 pr-3">
-                                <legend
-                                    class="p-1 w-30 bg-[#1cb7fd] text-white rounded-full flex flex-row justify-center text-sm">
-                                    اسم</legend>
-                                <input type="text" name='name'
-                                    class="w-full px-2 py-1 md:px-2 outline-none text-gray-500">
-                            </fieldset>
-                        </div>
-
-                        <div class="md:flex md:flex-col md:w-full">
-                            <fieldset class="mt-2 text-sm md:text-base border border-gray-400 rounded-[15px] py-1 pr-3">
-                                <legend
-                                    class="p-1 w-30 bg-[#1cb7fd] text-white rounded-full flex flex-row justify-center text-sm">
-                                    بیوگرافی</legend>
-                                <input type="text" name='bio'
-                                    class="w-full px-2 py-1 md:px-2 outline-none text-gray-500">
-                            </fieldset>
-                        </div>
-                        <div class="md:flex md:flex-col md:w-full">
-                            <fieldset class="mt-2 text-sm md:text-base border border-gray-400 rounded-[15px] py-1 pr-3">
-                                <legend
-                                    class="p-1 w-30 bg-[#1cb7fd] text-white rounded-full flex flex-row justify-center text-sm">
-                                    تخصص</legend>
-                                <input type="text" name='expertise'
-                                    class="w-full px-2 py-1 md:px-2 outline-none text-gray-500">
-                            </fieldset>
-                        </div>
-                        <div class="md:flex md:flex-col md:w-full">
-                            <fieldset class="mt-2 text-sm md:text-base border border-gray-400 rounded-[15px] py-1 pr-3">
-                                <legend
-                                    class="p-1 w-30 bg-[#1cb7fd] text-white rounded-full flex flex-row justify-center text-sm">
-                                    شماره تلفن</legend>
-                                <input type="text" name='phone'
-                                    class="w-full px-2 py-1 md:px-2 outline-none text-gray-500">
-                            </fieldset>
-                        </div>
-                        <ul class="w-full px-4 py-3  mt-2">
-                            <li>
-                                <fieldset class="mt-2 text-sm md:text-base border border-gray-400 rounded-[10px] py-1 pr-3"
-                                    for="province">
-                                    <legend class="w-20 rounded-full flex flex-row justify-center text-sm">اینستاگرام:
-                                    </legend>
-                                    <input type="text" name='social_media[instagram]' placeholder="آدرس شبکه های اجتماعی"
-                                        class="w-full px-2 py-1 md:px-2 outline-none text-gray-500">
-                                </fieldset>
-                            </li>
-                            <li>
-
-                                <fieldset class="mt-2 text-sm md:text-base border border-gray-400 rounded-[10px] py-1 pr-3"
-                                    for="province">
-                                    <legend class="w-15 rounded-full flex flex-row justify-center text-sm">تلگرام:</legend>
-                                    <input type="text" name='social_media[telegram]' placeholder="آدرس شبکه های اجتماعی"
-                                        class="w-full px-2 py-1 md:px-2 outline-none text-gray-500">
-                                </fieldset>
-                            </li>
-                            <li>
-                                <fieldset class="mt-2 text-sm md:text-base border border-gray-400 rounded-[10px] py-1 pr-3"
-                                    for="province">
-                                    <legend class="w-17 rounded-full flex flex-row justify-center text-sm">واتساپ:</legend>
-                                    <input type="text" name='social_media[whatsapp]' placeholder="آدرس شبکه های اجتماعی"
-                                        class="w-full px-2 py-1 md:px-2 outline-none text-gray-500">
-                                </fieldset>
-                            </li>
-                        </ul>
-
+@extends('admin.app.dashboard')
+@section('title', 'شاهکار | ثبت نام استاد')
+@section('content')
+    <div class="w-full h-full pb-10">
+        <h2 class="text-3xl text-center font-bold py-10 text-[#425A8B]">ثبت نام استاد</h2>
+        <div class="lg:w-2/3 w-full mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white">
+            <form action="{{ route('teacher.store') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="id">
+                <div class="w-full grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-5">
+                    <div class="w-full flex flex-col">
+                        <label class="mb-2 flex flex-row items-center">
+                            نام و نام خانوادگی :
+                        </label>
+                        <input type="text" class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]"
+                            name="name" placeholder="نام و نام خانوادگی را وارد کنید" required>
                     </div>
-
+                    <div class="w-full flex flex-col">
+                        <label for="image" class="mb-2">تصویر :</label>
+                        <input type="file"
+                            class="w-full outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]"
+                            name="profile_img" id="profile_img">
+                    </div>
+                    <div class="w-full flex flex-col">
+                        <label for="expertise" class="mb-2">تخصص :</label>
+                        <input type="text"
+                            class="w-full outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]"
+                            name="expertise" placeholder="تخصص را وارد کنید">
+                    </div>
+                    <div class="w-full flex flex-col">
+                        <label for="phone" class="mb-2">شماره تلفن :</label>
+                        <input type="number"
+                            class="w-full outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]"
+                            name="phone" placeholder="0912345678">
+                    </div>
+                    <div class="w-full flex flex-col">
+                        <label for="instagram" class="mb-2">اینستاگرام :</label>
+                        <input type="text"
+                            class="w-full outline-none pl-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]"
+                            dir="ltr" name="social_media[instagram]">
+                    </div>
+                    <div class="w-full flex flex-col">
+                        <label for="telegram" class="mb-2">تلگرام :</label>
+                        <input type="text"
+                            class="w-full outline-none pl-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]"
+                            dir="ltr" name="social_media[telegram]">
+                    </div>
+                    <div class="w-full flex flex-col">
+                        <label for="whatsapp" class="mb-2">واتساپ :</label>
+                        <input type="text"
+                            class="w-full outline-none pl-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]"
+                            dir="ltr" name="social_media[whatsapp]">
+                    </div>
+                    <div class="w-full flex flex-col lg:col-span-2">
+                        <label for="cat_desc" class="mb-2">بیوگرافی :</label>
+                        <textarea class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]" placeholder="بیوگرافی استاد"
+                            name="bio"></textarea>
+                    </div>
                 </div>
-            </div>
-
-            <button type="submit"
-                class="active:bg-[#0080e5] mt-2 w-full bg-[#03A9F4] text-white py-3 rounded-md hover:bg-blue-700 transition duration-200 font-medium">
-                ارسال اطلاعات
-            </button>
-            </div>
-            </div>
-            </fieldset>
-        </form>
-    @endsection
-</body>
-
-</html>
+                <div class="text-center">
+                    <button type="submit"
+                        class="py-3 px-10 rounded-[10px] bg-[#1B84FF] hover:bg-[#056EE9] text-white cursor-pointer">ثبت</button>
+                </div>
+            </form>
+        </div>
+    </div>
+@endsection
