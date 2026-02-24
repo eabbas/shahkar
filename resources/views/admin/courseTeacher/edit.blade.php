@@ -1,138 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Teacher</title>
-</head>
-
-<body>
-    @extends('admin.app.dashboard')
-    @section('content')
-        <form action="{{ route('teacher.update', $teacher->id) }}" enctype="multipart/form-data" method="POST">
-            @csrf
-
-            <div class="min-h-screen flex items-start justify-center">
-                <div class="bg-white rounded-2xl shadow-md p-3 w-full md:w-9/12">
-
-                    <div class="text-center mb-4">
-                        <h2 class="text-xl font-bold">ویرایش اطلاعات معلم</h2>
+@extends('admin.app.dashboard')
+@section('title')
+    شاهکار | ویرایش استاد {{ $teacher->name }}
+@endsection
+@section('content')
+    <div class="w-full h-full pb-10">
+        <h2 class="text-3xl text-center font-bold py-10 text-[#425A8B]">ویرایش مشخصات استاد {{ $teacher->name }}</h2>
+        <div class="lg:w-2/3 w-full mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white">
+            <form action="{{ route('teacher.update', $teacher->id) }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="id">
+                <div class="w-full grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-5">
+                    <div class="w-full flex flex-col">
+                        <label class="mb-2 flex flex-row items-center">
+                            نام و نام خانوادگی :
+                        </label>
+                        <input type="text" class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]"
+                            name="name" placeholder="نام و نام خانوادگی را وارد کنید" required
+                            value="{{ $teacher->name }}">
                     </div>
-
-                    <div class="md:flex md:flex-row md:w-full md:items-center md:gap-5">
-
-
-                        <div class="md:flex md:flex-col md:w-full">
-
-
-                            <fieldset class="mt-2 text-sm md:text-base border border-gray-400 rounded-[15px] py-1 pr-3">
-                                <legend
-                                    class="kelass p-1 w-30 bg-[#1cb7fd] text-white rounded-full flex justify-center text-sm">
-                                    عکس</legend>
-
-                                @if ($teacher->profile_img)
-                                    <img src="{{ asset('storage/' . $teacher->profile_img) }}" alt="Teacher Image"
-                                        width="80" class="mb-2 rounded">
-                                @endif
-
-                                <input type="file" name="profile_img"
-                                    class="w-full px-2 py-1 outline-none text-gray-500">
-                            </fieldset>
-
-                            <fieldset class="mt-2 text-sm md:text-base border border-gray-400 rounded-[15px] py-1 pr-3">
-                                <legend class="p-1 w-30 bg-[#1cb7fd] text-white rounded-full flex justify-center text-sm">
-                                    اسم</legend>
-                                <input type="text" name="name" value="{{ $teacher->name }}"
-                                    class="w-full px-2 py-1 outline-none text-gray-500">
-                            </fieldset>
-
-                        </div>
-
-                        <div class="md:flex md:flex-col md:w-full">
-
-                            <fieldset class="mt-2 text-sm md:text-base border border-gray-400 rounded-[15px] py-1 pr-3">
-                                <legend class="p-1 w-30 bg-[#1cb7fd] text-white rounded-full flex justify-center text-sm">
-                                    بیوگرافی</legend>
-                                <input type="text" name="bio" value="{{ $teacher->bio }}"
-                                    class="w-full px-2 py-1 outline-none text-gray-500">
-                            </fieldset>
-
-                        </div>
-
-                        <!-- ستون 3 -->
-                        <div class="md:flex md:flex-col md:w-full">
-
-                            <!-- تخصص -->
-                            <fieldset class="mt-2 text-sm md:text-base border border-gray-400 rounded-[15px] py-1 pr-3">
-                                <legend class="p-1 bg-[#1cb7fd] text-white rounded-full flex justify-center text-sm">تخصص
-                                </legend>
-                                <input type="text" name="expertise" value="{{ $teacher->expertise }}"
-                                    class="w-full px-2 py-1 outline-none text-gray-500">
-                            </fieldset>
-
-                        </div>
-
-                        <!-- ستون 4 -->
-                        <div class="md:flex md:flex-col md:w-full">
-
-                            <!-- شماره تلفن -->
-                            <fieldset class="mt-2 text-sm md:text-base border border-gray-400 rounded-[15px] py-1 pr-3">
-                                <legend class="p-1 bg-[#1cb7fd] text-white rounded-full flex justify-center text-sm">شماره
-                                    تلفن</legend>
-                                <input type="text" name="phone" value="{{ $teacher->phone }}"
-                                    class="w-full px-2 py-1 outline-none text-gray-500">
-                            </fieldset>
-
-                        </div>
-
+                    <div class="w-full flex flex-col">
+                        <label for="image" class="mb-2">تصویر :</label>
+                        <input type="file"
+                            class="w-full outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]"
+                            name="profile_img" id="profile_img">
                     </div>
-
-                    <!-- شبکه‌های اجتماعی -->
+                    <div class="w-full flex flex-col">
+                        <label for="expertise" class="mb-2">تخصص :</label>
+                        <input type="text"
+                            class="w-full outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]"
+                            value="{{ $teacher->expertise }}" name="expertise" placeholder="تخصص را وارد کنید">
+                    </div>
+                    <div class="w-full flex flex-col">
+                        <label for="phone" class="mb-2">شماره تلفن :</label>
+                        <input type="number"
+                            class="w-full outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]"
+                            value="{{ $teacher->phone }}" name="phone" placeholder="0912345678">
+                    </div>
                     @php
                         $socials = json_decode($teacher->social_media, true);
                     @endphp
-
-                    <ul class="w-full px-4 py-3 mt-2">
-
-                        <li>
-                            <fieldset class="mt-2 text-sm md:text-base border border-gray-400 rounded-[10px] py-1 pr-3">
-                                <legend class="rounded-full flex justify-center text-sm">اینستاگرام:</legend>
-                                <input type="text" name="social_media[instagram]"
-                                    value="{{ $socials['instagram'] ?? '' }}"
-                                    class="w-full px-2 py-1 outline-none text-gray-500">
-                            </fieldset>
-                        </li>
-
-                        <li>
-                            <fieldset class="mt-2 text-sm md:text-base border border-gray-400 rounded-[10px] py-1 pr-3">
-                                <legend class="rounded-full flex justify-center text-sm">تلگرام:</legend>
-                                <input type="text" name="social_media[telegram]" value="{{ $socials['telegram'] ?? '' }}"
-                                    class="w-full px-2 py-1 outline-none text-gray-500">
-                            </fieldset>
-                        </li>
-
-                        <li>
-                            <fieldset class="mt-2 text-sm md:text-base border border-gray-400 rounded-[10px] py-1 pr-3">
-                                <legend class="rounded-full flex justify-center text-sm">واتساپ:</legend>
-                                <input type="text" name="social_media[whatsapp]" value="{{ $socials['whatsapp'] ?? '' }}"
-                                    class="w-full px-2 py-1 outline-none text-gray-500">
-                            </fieldset>
-                        </li>
-
-                    </ul>
-
+                    <div class="w-full flex flex-col">
+                        <label for="instagram" class="mb-2">اینستاگرام :</label>
+                        <input type="text"
+                            class="w-full outline-none pl-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]"
+                            value="{{ $socials['instagram'] ?? '' }}" dir="ltr" name="social_media[instagram]">
+                    </div>
+                    <div class="w-full flex flex-col">
+                        <label for="telegram" class="mb-2">تلگرام :</label>
+                        <input type="text"
+                            class="w-full outline-none pl-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]"
+                            value="{{ $socials['telegram'] ?? '' }}" dir="ltr" name="social_media[telegram]">
+                    </div>
+                    <div class="w-full flex flex-col">
+                        <label for="whatsapp" class="mb-2">واتساپ :</label>
+                        <input type="text"
+                            class="w-full outline-none pl-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]"
+                            value="{{ $socials['whatsapp'] ?? '' }}" dir="ltr" name="social_media[whatsapp]">
+                    </div>
+                    <div class="w-full flex flex-col lg:col-span-2">
+                        <label for="cat_desc" class="mb-2">بیوگرافی :</label>
+                        <textarea class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]" placeholder="بیوگرافی استاد"
+                            name="bio">{{ $teacher->bio }}</textarea>
+                    </div>
                 </div>
-            </div>
-
-            <!-- دکمه ارسال -->
-            <button type="submit"
-                class="active:bg-[#0080e5] mt-2 w-full bg-[#03A9F4] text-white py-3 rounded-md hover:bg-blue-700 transition duration-200 font-medium">
-                بروزرسانی اطلاعات
-            </button>
-
-        </form>
-    @endsection
-</body>
-
-</html>
+                <div class="text-center">
+                    <button type="submit"
+                        class="py-3 px-10 rounded-[10px] bg-[#1B84FF] hover:bg-[#056EE9] text-white cursor-pointer">ثبت</button>
+                </div>
+            </form>
+        </div>
+    </div>
+@endsection
