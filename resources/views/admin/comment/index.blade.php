@@ -1,36 +1,6 @@
 @extends('admin.app.dashboard')
 @section('title', 'شاهکار | لیست کامنت ها')
 @section('content')
-    {{-- <h2>لیست نظر ها</h2>
-   <table border="1" style="border-collapse: collapse;">
-      <thead>
-         <tr>
-            <th>آیدی</th>
-            <th>نظر</th>
-            <th>نظر والد</th>
-            <th>محصول مربوطه</th>
-            <th>کاربر مربوطه</th>
-            <th>عملیات</th>
-         </tr>
-      </thead>
-      <tbody>
-         @foreach ($comments as $comment)
-         <tr>
-            <td>{{$comment['id']}}</td>
-            <td>{{$comment['comment']}}</td>
-            <td>@if ($comment->parent) {{$comment->parent['comment']}} @endif</td>
-            <td>{{$comment['product']['title']}}</td>
-            <td>{{$comment->user['name']}} {{$comment->user['family']}}</td>
-            <td>
-               <a href="{{route('comment.show',[$comment])}}">نمایش</a>
-               <a href="{{route('comment.edit',[$comment])}}">ویرایش</a>
-               <a href="{{route('comment.delete',[$comment])}}">حذف</a>
-            </td>
-         </tr>
-         @endforeach
-      </tbody>
-   </table> --}}
-
     <div class="w-full flex flex-col pb-4">
         <div class="bg-white rounded-lg">
             <h2 class="text-lg font-bold text-gray-800 p-4 text-center">لیست همه کامنت ها</h2>
