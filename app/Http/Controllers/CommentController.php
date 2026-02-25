@@ -52,7 +52,8 @@ class CommentController extends Controller
     }
     public function show(comment $comment)
     {
-        return view('admin.comment.show', ['comment' => $comment]);
+        $logo = logo::first();
+        return view('admin.comment.show', ['comment' => $comment, 'logo' => $logo]);
     }
     public function edit(comment $comment)
     {
@@ -60,7 +61,8 @@ class CommentController extends Controller
         $products = $this->getProductMedias($products);
         $users = User::select('id', 'name', 'family')->get();
         $comments = comment::all();
-        return view('admin.comment.edit', ['comments' => $comments, 'comment' => $comment, 'products' => $products, 'users' => $users]);
+        $logo = logo::first();
+        return view('admin.comment.edit', ['comments' => $comments, 'comment' => $comment, 'products' => $products, 'users' => $users, 'logo' => $logo]);
     }
     public function update(Request $request)
     {
@@ -77,11 +79,12 @@ class CommentController extends Controller
         $comment->delete();
         return to_route('comment.index');
     }
-    public function deleteAll(Request $request){
-        if(!isset($request->comments)){
+    public function deleteAll(Request $request)
+    {
+        if (!isset($request->comments)) {
             return redirect()->back();
         }
-        foreach($request->comments as $comment_id){
+        foreach ($request->comments as $comment_id) {
             $comment = comment::find($comment_id);
             $comment->delete();
         }
