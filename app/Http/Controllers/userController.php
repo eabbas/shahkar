@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\category;
-use App\Models\product;
+use App\Models\course;
 use App\Models\footer_column;
 use App\Models\logo;
+use App\Models\phoneCode;
+use App\Models\product;
 use App\Models\settings;
 use App\Models\User;
-use App\Models\course;
-use App\Models\phoneCode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -33,6 +33,7 @@ class userController extends Controller
         }
         return $products;
     }
+
     public function signup()
     {
         return view('user.user.signup');
@@ -167,6 +168,7 @@ class userController extends Controller
             'logo' => $logo,
         ]);
     }
+
     public function courses(User $user)
     {
         $courses = $user->load('userCourses.course');
@@ -195,20 +197,27 @@ class userController extends Controller
 
     public function send_code(Request $request)
     {
-        $code = rand(1000, 10000);
-        phoneCode::upsert(['phoneNumber' => $request->phoneNumber, 'code' => $code], ['phoneNumber'], ['code']);
-        $apiKey = 'YTBhZjhlNDAtZGI1Zi00ZWQ1LTkwNmYtZWU2MWFhYTkzY2M0NTcxZGQ3ZjY2Yzk1MmNjZmFiM2M2ZjVmNjBhMDg2MTQ=';
-        $client = new \IPPanel\Client($apiKey);
-        $patternValues = [
-            'activation_code' => $code,
-        ];
-        $bulkID = $client->sendPattern(
-            '7fvdx77gveizxqn',  // pattern code
-            '+983000505',  // originator
-            $request->phoneNumber,  // recipient
-            $patternValues,  // pattern values
-        );
-        return response()->json('ok');
+        $flag = false;
+        $user = User::where('phoneNumber', $request->phoneNumber)->first();
+        if ($user) {
+            $flag = true;
+        }
+        if (!$flag) {
+            $code = rand(1000, 10000);
+            phoneCode::upsert(['phoneNumber' => $request->phoneNumber, 'code' => $code], ['phoneNumber'], ['code']);
+            $apiKey = 'YTBhZjhlNDAtZGI1Zi00ZWQ1LTkwNmYtZWU2MWFhYTkzY2M0NTcxZGQ3ZjY2Yzk1MmNjZmFiM2M2ZjVmNjBhMDg2MTQ=';
+            $client = new \IPPanel\Client($apiKey);
+            $patternValues = [
+                'activation_code' => $code,
+            ];
+            $bulkID = $client->sendPattern(
+                '7fvdx77gveizxqn',  // pattern code
+                '+983000505',  // originator
+                $request->phoneNumber,  // recipient
+                $patternValues,  // pattern values
+            );
+        }
+        return response()->json($flag);
     }
 
     public function checkAuth(Request $request)
@@ -243,14 +252,62 @@ class userController extends Controller
         return to_route('user.login');
     }
 
-    public function deleteAll(Request $request){
+    public function deleteAll(Request $request)
+    {
         if (!isset($request->users)) {
             return redirect()->back();
         }
-        foreach($request->users as $user_id){
+        foreach ($request->users as $user_id) {
             $user = User::find($user_id);
             $user->delete();
         }
         return redirect()->back();
+    }
+
+    public function removeActivationCode(Request $request)
+    {
+        $row = phoneCode::where('phoneNumber', $request->phoneNumber)->first();
+        if ($row) {
+            $row->delete();
+        }
+        return response()->json($row);
+    }
+
+    public function validate(Request $request)
+    {
+        $flag = false;
+        $user = User::where('phoneNumber', $request->phoneNumber)->first();
+        if ($user) {
+            $password = Hash::check($request->password, $user->password);
+            if ($password) {
+                $flag = true;
+            }
+        }
+        return response()->json($flag);
+    }
+
+    public function send_sms(Request $request)
+    {
+        $flag = false;
+        $user = User::where('phoneNumber', $request->phoneNumber)->first();
+        if ($user) {
+            $flag = true;
+        }
+        if ($flag) {
+            $code = rand(1000, 10000);
+            phoneCode::upsert(['phoneNumber' => $request->phoneNumber, 'code' => $code], ['phoneNumber'], ['code']);
+            $apiKey = 'YTBhZjhlNDAtZGI1Zi00ZWQ1LTkwNmYtZWU2MWFhYTkzY2M0NTcxZGQ3ZjY2Yzk1MmNjZmFiM2M2ZjVmNjBhMDg2MTQ=';
+            $client = new \IPPanel\Client($apiKey);
+            $patternValues = [
+                'activation_code' => $code,
+            ];
+            $bulkID = $client->sendPattern(
+                '7fvdx77gveizxqn',  // pattern code
+                '+983000505',  // originator
+                $request->phoneNumber,  // recipient
+                $patternValues,  // pattern values
+            );
+        }
+        return response()->json($flag);
     }
 }
