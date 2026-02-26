@@ -275,12 +275,6 @@ class userController extends Controller
 
     public function validate(Request $request)
     {
-        // $data['validate'] = User::where('phoneNumber', $request->phoneNumber)->first();
-        // $data['checkCode'] = false;
-        // $phoneCode = phoneCode::where('phoneNumber', $request->phoneNumber)->first();
-        // if ($phoneCode->code == $request->code) {
-        //     $data['checkCode'] = true;
-        // }
         $flag = false;
         $user = User::where('phoneNumber', $request->phoneNumber)->first();
         if ($user) {
@@ -288,6 +282,31 @@ class userController extends Controller
             if ($password) {
                 $flag = true;
             }
+        }
+        return response()->json($flag);
+    }
+
+    public function send_sms(Request $request)
+    {
+        $flag = false;
+        $user = User::where('phoneNumber', $request->phoneNumber)->first();
+        if ($user) {
+            $flag = true;
+        }
+        if ($flag) {
+            $code = rand(1000, 10000);
+            phoneCode::upsert(['phoneNumber' => $request->phoneNumber, 'code' => $code], ['phoneNumber'], ['code']);
+            $apiKey = 'YTBhZjhlNDAtZGI1Zi00ZWQ1LTkwNmYtZWU2MWFhYTkzY2M0NTcxZGQ3ZjY2Yzk1MmNjZmFiM2M2ZjVmNjBhMDg2MTQ=';
+            $client = new \IPPanel\Client($apiKey);
+            $patternValues = [
+                'activation_code' => $code,
+            ];
+            $bulkID = $client->sendPattern(
+                '7fvdx77gveizxqn',  // pattern code
+                '+983000505',  // originator
+                $request->phoneNumber,  // recipient
+                $patternValues,  // pattern values
+            );
         }
         return response()->json($flag);
     }

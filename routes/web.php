@@ -94,6 +94,7 @@ Route::group([
     Route::get('/courses/{user}', 'courses')->middleware(checklogin::class)->name('courses');
     Route::get('/admin/courses/{user}', 'adminCourses')->middleware(checklogin::class)->name('adminCourses');
     Route::post('/sendSMS', 'send_code')->name('sendSMS');
+    Route::post('/sendCode', 'send_sms')->name('sendCode');
     Route::post('/checkAuth', 'checkAuth')->name('checkAuth');
     Route::post('/validate', 'validate')->name('validate');
     Route::post('/setPassword', 'setPassword')->name('setPassword');
