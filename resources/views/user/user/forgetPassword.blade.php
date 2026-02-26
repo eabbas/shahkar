@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="{{ url('assets/css/style.css') }}" type="text/css">
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/IMG_20251225_131334_688.png') }}">
     <title>شاهکار | فراموشی رمز عبور</title>
-
 </head>
 
 <body>
