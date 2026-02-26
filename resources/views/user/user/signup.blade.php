@@ -31,7 +31,7 @@
                 <span class="text-gray-400 text-xs">حساب کاربری دارید؟</span>
                 <a href="{{ route('user.login') }}" class="text-xs text-gray-800 font-bold">ورود</a>
             </div>
-            <form action="{{ route('user.store') }}" method="post" class="flex flex-col gap-4" id="signupForm">
+            <form action="{{ route('user.store') }}" method="post" class="w-9/12 flex flex-col gap-4" id="signupForm">
                 @csrf
                 <div class="w-full grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <input type="text"
