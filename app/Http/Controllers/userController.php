@@ -272,4 +272,23 @@ class userController extends Controller
         }
         return response()->json($row);
     }
+
+    public function validate(Request $request)
+    {
+        // $data['validate'] = User::where('phoneNumber', $request->phoneNumber)->first();
+        // $data['checkCode'] = false;
+        // $phoneCode = phoneCode::where('phoneNumber', $request->phoneNumber)->first();
+        // if ($phoneCode->code == $request->code) {
+        //     $data['checkCode'] = true;
+        // }
+        $flag = false;
+        $user = User::where('phoneNumber', $request->phoneNumber)->first();
+        if ($user) {
+            $password = Hash::check($request->password, $user->password);
+            if ($password) {
+                $flag = true;
+            }
+        }
+        return response()->json($flag);
+    }
 }
