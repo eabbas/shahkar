@@ -12,6 +12,18 @@
 </head>
 
 <body>
+    <div class="absolute z-999 top-0 opacity-0 invisible right-1/2 translate-x-1/2 w-2/3 lg:w-1/3 bg-white rounded-lg shadow-md transition-all duration-500"
+        id="message">
+        <div class="relative">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                class="size-4 absolute top-1/2 -translate-y-1/2 right-3 cursor-pointer" onclick="showMessage('close')"
+                viewBox="0 0 384 512">
+                <path
+                    d="M345 137c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-119 119L73 103c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l119 119L39 375c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l119-119L311 409c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-119-119L345 137z" />
+            </svg>
+
+        </div>
+    </div>
     <main class="w-full lg:h-dvh flex flex-row items-center p-4">
         <div class="w-full lg:w-1/2 lg:h-full p-4 lg:p-10 flex flex-col items-center gap-10">
             <h2 class="text-2xl font-bold text-gray-800 text-center mt-10">ثبت نام</h2>
@@ -78,10 +90,24 @@
     <script>
         let code = document.getElementById('code')
 
+
+
+        let message = document.getElementById('message')
+        let element = document.createElement('div')
+        element.classList = "text-sm font-bold flex flex-row items-center justify-center py-3 gap-2 lg:gap-3"
+
         function sendCode() {
             let phoneNumber = document.getElementById('phoneNumber')
             if (phoneNumber.value == "") {
-                alert('لطفا شماره تلفن را وارد نمایید')
+                 showMessage('open')
+                element.innerHTML = `
+                        <span class="text-red-500">!</span>
+                        <span>لطفا شماره تلفن را وارد کنید</span>
+                    `
+                message.children[0].appendChild(element)
+                setTimeout(() => {
+                    showMessage('close')
+                }, 2000)
             } else {
                 $.ajaxSetup({
                     headers: {
@@ -96,10 +122,40 @@
                         'phoneNumber': phoneNumber.value,
                     },
                     success: function(data) {
-                        counter()
+                        console.log(data)
+                        if (!data) {
+                            counter()
+                            showMessage('open')
+                            element.innerHTML = `
+                                <span>✅</span>
+                                <span class="text-shadw-lg">کد ارسال شد</span>
+                            `
+                            message.children[0].appendChild(element)
+                            setTimeout(() => {
+                                showMessage('close')
+                            }, 2000)
+                        } else {
+                            showMessage('open')
+                            element.innerHTML = `
+                                <span class="text-red-500">کاربر قبلا با این شماره ثبت نام کرده است!</span>
+                            `
+                            message.children[0].appendChild(element)
+                            setTimeout(() => {
+                                showMessage('close')
+                                location.assign("{{ route('user.login') }}")
+                            }, 2000)
+                        }
                     },
                     error: function() {
-                        alert('خطا در دریافت داده')
+                        showMessage('open')
+                        element.innerHTML = `
+                            <span>❌</span>
+                            <span class="text-shadw-lg">خطا در دریافت اطلاعات!</span>
+                        `
+                        message.children[0].appendChild(element)
+                        setTimeout(() => {
+                            showMessage('close')
+                        }, 2500)
                     }
                 })
             }
@@ -111,7 +167,15 @@
             e.preventDefault()
             let phoneNumber = document.getElementById('phoneNumber')
             if (phoneNumber.value == "" && code.value == "") {
-                alert('لطفا همه فیلد هارا پر کنید')
+                showMessage('open')
+                element.innerHTML = `
+                        <span class="text-red-500">!</span>
+                        <span>لطفا همه فیلد ها را پر کنید</span>
+                    `
+                message.children[0].appendChild(element)
+                setTimeout(() => {
+                    showMessage('close')
+                }, 2000)
             } else {
                 $.ajaxSetup({
                     headers: {
@@ -129,11 +193,26 @@
                     success: function(user) {
                         console.log(user)
                         if (user.validate) {
-                            alert("شما قبلا با این شماره ثبت نام کرده اید")
-                            location.assign("{{ route('user.login') }}")
+                            showMessage('open')
+                            element.innerHTML = `
+                                <span class="text-red-500">شما قبلا با این شماره ثبت نام کرده اید!</span>
+                            `
+                            message.children[0].appendChild(element)
+                            setTimeout(() => {
+                                showMessage('close')
+                                location.assign("{{ route('user.login') }}")
+                            }, 2000)
                         } else {
                             if (!user.checkCode) {
-                                alert('کد وارد شده نامعتبر')
+                                showMessage('open')
+                                element.innerHTML = `
+                                    <span>❌</span>
+                                    <span class="text-shadw-lg">کد وارد شده نامعتبر!</span>
+                                `
+                                message.children[0].appendChild(element)
+                                setTimeout(() => {
+                                    showMessage('close')
+                                }, 2000)
                             }
                             if (user.checkCode) {
                                 signupForm.submit()
@@ -141,7 +220,15 @@
                         }
                     },
                     error: function() {
-                        alert('خطا در بارگیری اطلاعات')
+                        showMessage('open')
+                        element.innerHTML = `
+                            <span>❌</span>
+                            <span class="text-shadw-lg">خطا در دریافت اطلاعات!</span>
+                        `
+                        message.children[0].appendChild(element)
+                        setTimeout(() => {
+                            showMessage('close')
+                        }, 2500)
                     }
                 })
             }
@@ -207,6 +294,21 @@
                 countDown.innerText = minute.toString().padStart(2, "0") + " : " + seconds.toString().padStart(2,
                     "0");
             }, 1000)
+        }
+
+        function showMessage(state) {
+            if (state == 'open') {
+                message.classList.remove('top-0')
+                message.classList.remove('opacity-0')
+                message.classList.remove('invisible')
+                message.classList.add('top-2/10')
+            }
+            if (state == 'close') {
+                message.classList.remove('top-2/10')
+                message.classList.add('top-0')
+                message.classList.add('opacity-0')
+                message.classList.add('invisible')
+            }
         }
 
     </script>
