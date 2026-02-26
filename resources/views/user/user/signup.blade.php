@@ -45,7 +45,7 @@
                         name="code" id="code" placeholder="کد ارسال شده">
                     <button type="button"
                         class="w-1/4 py-2.5 lg:py-0 text-sm lg:text-base h-full bg-sky-500 flex items-center justify-center rounded-lg text-white transition-all duration-300 hover:bg-sky-600 cursor-pointer"
-                        onclick="sendCode()">
+                        onclick="sendCode()" id="countDown">
                         ارسال کد
                     </button>
                 </div>
@@ -96,7 +96,7 @@
                         'phoneNumber': phoneNumber.value,
                     },
                     success: function(data) {
-                        console.log(data)
+                        counter()
                     },
                     error: function() {
                         alert('خطا در دریافت داده')
@@ -146,6 +146,69 @@
                 })
             }
         }
+
+        let countDown = document.getElementById('countDown')
+
+        function counter() {
+            let phoneNumber = document.getElementById('phoneNumber')
+            countDown.classList.add('cursor-no-drop')
+            countDown.classList.remove('cursor-pointer')
+            countDown.classList.remove('hover:bg-sky-600')
+            countDown.classList.add('hover:bg-sky-500/50')
+            countDown.classList.remove('bg-sky-500')
+            countDown.classList.add('bg-sky-500/50')
+            countDown.setAttribute('disabled', true)
+            countDown.setAttribute('dir', 'ltr')
+            let count = 120
+            let result = setInterval(() => {
+                let minute = Math.floor(count / 60)
+                let seconds = count % 60
+                count -= 1
+                if (count < 0) {
+
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                        }
+                    })
+                    $.ajax({
+                        url: "{{ route('removeActivationCode') }}",
+                        type: "POST",
+                        dataType: "json",
+                        data: {
+                            'phoneNumber': phoneNumber.value
+                        },
+                        success: function(data) {
+                            console.log(data)
+                            countDown.classList.remove('cursor-no-drop')
+                            countDown.classList.add('bg-[#eb3254]')
+                            countDown.classList.remove('bg-[#eb3254]/50')
+                            countDown.classList.add('cursor-pointer')
+                            countDown.classList.add('hover:bg-[#d52b4a]')
+                            countDown.classList.remove('hover:bg-[#d52b4a]/50')
+                            countDown.removeAttribute('disabled')
+                            countDown.removeAttribute('dir')
+                            countDown.innerText = "ارسال مجدد"
+                        },
+                        error: function() {
+                            showMessage('open')
+                            element.innerHTML = `
+                                <span>❌</span>
+                                <span class="text-shadw-lg">خطا در دریافت اطلاعات!</span>
+                            `
+                            message.children[0].appendChild(element)
+                            setTimeout(() => {
+                                showMessage('close')
+                            }, 2500)
+                        }
+                    })
+                    clearInterval(result)
+                }
+                countDown.innerText = minute.toString().padStart(2, "0") + " : " + seconds.toString().padStart(2,
+                    "0");
+            }, 1000)
+        }
+
     </script>
 </body>
 

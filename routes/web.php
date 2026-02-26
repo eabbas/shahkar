@@ -37,6 +37,8 @@ use App\Http\Controllers\couresAnswerreactionController;
 use App\Http\Controllers\lessonErrortitleController;
 use App\Http\Controllers\lessonErrorController;
 
+
+Route::post('/removeActivationCode', [UserController::class, 'removeActivationCode'])->name('removeActivationCode');
 // category routes
 Route::group(['prefix' => 'category', 'controller' => CategoryController::class, 'as' => 'category-', 'middleware' => checkAdminMiddleware::class], function () {
     Route::get('/create', 'create')->name('create');

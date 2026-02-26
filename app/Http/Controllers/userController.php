@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\category;
-use App\Models\product;
+use App\Models\course;
 use App\Models\footer_column;
 use App\Models\logo;
+use App\Models\phoneCode;
+use App\Models\product;
 use App\Models\settings;
 use App\Models\User;
-use App\Models\course;
-use App\Models\phoneCode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -33,6 +33,7 @@ class userController extends Controller
         }
         return $products;
     }
+
     public function signup()
     {
         return view('user.user.signup');
@@ -167,6 +168,7 @@ class userController extends Controller
             'logo' => $logo,
         ]);
     }
+
     public function courses(User $user)
     {
         $courses = $user->load('userCourses.course');
@@ -243,14 +245,24 @@ class userController extends Controller
         return to_route('user.login');
     }
 
-    public function deleteAll(Request $request){
+    public function deleteAll(Request $request)
+    {
         if (!isset($request->users)) {
             return redirect()->back();
         }
-        foreach($request->users as $user_id){
+        foreach ($request->users as $user_id) {
             $user = User::find($user_id);
             $user->delete();
         }
         return redirect()->back();
+    }
+
+    public function removeActivationCode(Request $request)
+    {
+        $row = phoneCode::where('phoneNumber', $request->phoneNumber)->first();
+        if ($row) {
+            $row->delete();
+        }
+        return response()->json($row);
     }
 }
