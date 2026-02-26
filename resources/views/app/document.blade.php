@@ -404,12 +404,60 @@
                         class="flex justify-center items-center -top-2 -left-2 absolute size-4 bg-(--color-primary) rounded-full text-(--color-primary-text) text-sm">0</span>
                 </a> --}}
                 {{-- اینجا قراره پاپ آپ سرچ باکس بذاریم --}}
-                <a href="#" class="inline-block w-8 h-6 relative">
+                <a href="#" class="inline-block relative">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="size-5 rotate-y-180">
                         <path fill="var(--color-fill)"
                             d="M368 208A160 160 0 1 0 48 208a160 160 0 1 0 320 0zM337.1 371.1C301.7 399.2 256.8 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208c0 48.8-16.8 93.7-44.9 129.1L505 471c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L337.1 371.1z" />
                     </svg>
                 </a>
+                <div class="relative menuItemParent flex items-center gap-5 cursor-pointer">
+                    @if ($user)
+                        <div class="size-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-full" viewBox="0 0 448 512">
+                                <path fill="var(--color-fill)"
+                                    d="M320 128a96 96 0 1 0 -192 0 96 96 0 1 0 192 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM32 480H416c-1.2-79.7-66.2-144-146.3-144H178.3c-80 0-145 64.3-146.3 144zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z" />
+                            </svg>
+                        </div>
+                        <div
+                            class="absolute min-w-[250px] py-4 px-6 border border-(--color-border) bg-white top-10 opacity-0 -left-10 invisible z-9999 transition-all duration-500 mt-10">
+                            <ul class="text-(--color-text)">
+                                <li class="flex justify-between items-center">
+                                    <a href="{{ route('user.profile', [$user]) }}"
+                                        class="block py-2.5 text-sm font-bold transition-all duration-300 hover:text-(--color-primary)">{{ $user['name'] }}
+                                        {{ $user['family'] }}</a>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-3" viewBox="0 0 320 512">
+                                        <path fill="var(--color-fill)"
+                                            d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z">
+                                        </path>
+                                    </svg>
+                                </li>
+                                <li><a href="{{ route('user.edit', [$user]) }}"
+                                        class="block py-2.5 text-sm font-bold transition-all duration-300 hover:text-(--color-primary)">ویرایش
+                                        پروفایل</a></li>
+                                <li><a href="{{ route('user.logout') }}"
+                                        class="block py-2.5 text-sm font-bold transition-all duration-300 hover:text-(--color-primary)">خروج
+                                        از حساب کاربری</a></li>
+                                {{-- <li><a href="#"
+                                            class="block py-2.5 text-sm font-bold transition-all duration-300 hover:text-(--color-primary)">دیدگاه
+                                            ها و پرسش ها</a></li> --}}
+                                <li><a href="{{ route('user.courses', [$user]) }}"
+                                        class="block py-2.5 text-sm font-bold transition-all duration-300 hover:text-(--color-primary)">دوره
+                                        های ثبت نام شده</a></li>
+                                @if ($user->is_admin)
+                                    <li><a href="{{ route('dashboard') }}" target="_blank"
+                                            class="block py-2.5 text-sm font-bold transition-all duration-300 hover:text-(--color-primary)">پنل
+                                            ادمین</a></li>
+                                @endif
+                            </ul>
+                        </div>
+                    @else
+                        <div class="border border-(--color-border) py-2 px-4 rounded-md">
+                            <a href="{{ route('user.login') }}"
+                                class="block text-(--color-text) leading-[22px] font-medium text-[12px]">ورود | ثبت
+                                نام</a>
+                        </div>
+                    @endif
+                </div>
                 <div class="">
                     <span class="inline-block w-8 h-6 relative cursor-pointer" onclick="showCartContent()">
                         <svg xmlns="http://www.w3.org/2000/svg" class="size-6 rotate-y-180" viewBox="0 0 576 512">
@@ -522,12 +570,13 @@
                                         class="min-h-[71px] overflow-x-auto xl:overflow-y-auto w-full xl:w-1/4 flex flex-row xl:flex-col justify-between gap-4 px-3 xl:px-0">
                                         <p onclick="getRelatedProducts('all', 'header')"
                                             class="block rounded-[10px] text-(--color-text) py-4 px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat activeSubMenuCat">
-                                           <span class="text-sm block w-20 text-center xl:w-full"> همه دسته ها</span>
+                                            <span class="text-sm block w-20 text-center xl:w-full"> همه دسته ها</span>
                                         </p>
                                         @foreach ($categories as $category)
                                             <p onclick="getRelatedProducts({{ $category->id }}, 'header')"
                                                 class="block text-center rounded-[10px] text-(--color-text) py-4 px-4 xl:px-9 bg-(--color-primary-btn) transition-all duration-300 hover:bg-(--color-bg-hover-btn) hover:text-(--color-primary-text) cursor-pointer subMenuCat">
-                                                <span class="block text-sm text-center w-22 xl:w-full">{{ $category->title }}</span>
+                                                <span
+                                                    class="block text-sm text-center w-22 xl:w-full">{{ $category->title }}</span>
                                             </p>
                                         @endforeach
                                     </div>
