@@ -98,7 +98,7 @@ class CategoryController extends Controller
     public function adminShow(category $category)
     {
         $logo = logo::first();
-        return view('admin.category.show', ['category' => $category, 'logo'=>$logo]);
+        return view('admin.category.show', ['category' => $category, 'logo' => $logo]);
     }
 
     public function show(category $category)
@@ -160,11 +160,12 @@ class CategoryController extends Controller
         return to_route('category-adminIndex');
     }
 
-    public function deleteAll(Request $request){
-        if(!isset($request->categories)){
+    public function deleteAll(Request $request)
+    {
+        if (!isset($request->categories)) {
             return redirect()->back();
         }
-        foreach($request->categories as $category_id){
+        foreach ($request->categories as $category_id) {
             $category = category::find($category_id);
             $category->delete();
         }
