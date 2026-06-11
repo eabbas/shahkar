@@ -131,4 +131,26 @@ class HomeController extends Controller
         $products = $this->getProductMedias($products);
         return response()->json($products);
     }
+    public function pageNotFound()
+    {
+        $courses = course::all();
+        $products = product::where('is_in_home', 1)->get();
+        $products = $this->getProductMedias($products);
+        $settings = settings::all();
+        $cats = category::all();
+        $logo = logo::first();
+        $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
+        $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
+        $user = Auth::user();
+        return view('404', [
+            'courses' => $courses,
+            'products' => $products,
+            'settings' => $settings,
+            'categories' => $cats,
+            'logo' => $logo,
+            'footerColumns' => $footer_columns,
+            'footer_form_column' => $footer_form_column,
+            'user' => $user
+        ]);
+    }
 }

@@ -97,9 +97,11 @@
                         $cat = $category;
                     @endphp
                 @endif
-                <div class="h-48 p-4 border border-(--color-border) rounded-[10px] flex flex-col items-center justify-between">
-                    <a href="{{ route('search-cat-products', [$category]) }}" class="block mb-1 w-[137px]" target="_blank">
-                        <img src="{{ $category->image }}" class="w-[115px] max-h-20 h-20 mx-auto" alt="">
+                <div
+                    class="h-48 p-4 border border-(--color-border) rounded-[10px] flex flex-col items-center justify-between">
+                    {{-- <a href="{{ route('search-cat-products', [$category]) }}" class="block mb-1 w-[137px]" target="_blank"> --}}
+                    <a href="{{ route('category-show', [$category]) }}" class="block mb-1 w-[137px]" target="_blank">
+                        <img src="{{ asset($category->image) }}" class="w-[115px] max-h-20 h-20 mx-auto" alt="">
                         <span class="inline-block w-full text-center pt-2">{{ $category->title }}</span>
                     </a>
                     <span
@@ -117,7 +119,7 @@
         @if ($specialDiscounts->isNotEmpty())
             <div class="flex flex-col lg:flex-row justify-between gap-8 lg:gap-0 lg:items-center py-5 lg:py-10">
                 <h2 class="font-bold lg:text-[24px] leading-8">
-                    <a href="{{ route('search-cat-products', [$cat]) }}">تخفیفات ویژه</a>
+                    <a href="{{ route('category-show', [$cat]) }}">تخفیفات ویژه</a>
                 </h2>
                 {{-- <div class="flex flex-row flex-wrap lg:justify-end items-center text-xs lg:text-base gap-5 font-bold">
                 <a href="#" class="text-(--color-text)">
@@ -565,7 +567,7 @@
                     @foreach ($products as $product)
                         <div
                             class="p-2 min-w-65 h-100 border border-(--color-border) rounded-[10px] relative flex flex-col justify-between productItem">
-                           
+
                             <div>
                                 <a href="{{ route('product-show', [$product]) }}"
                                     class="flex justify-center mb-1 overflow-hidden">
@@ -614,7 +616,7 @@
                                     </div>
                                     <span>(0)</span>
                                 </div>
-                               
+
                             </div>
                             <div class="">
                                 <div
