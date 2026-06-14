@@ -211,3 +211,19 @@ input[type="checkbox"]:checked::after {
 .responsive-menu-shadow {
   box-shadow: 0px 0px 8px #888888;
 }
+
+/* اسلایدر مهدی بندعلی */
+.classss {
+  animation: traslate 1s;
+  transition: all 1s ease-in;
+}
+
+@keyframes traslate {
+  0% {
+    transform: translate(0px, 30px);
+  }
+
+  100% {
+    transform: translate(0px, 0px);
+  }
+}

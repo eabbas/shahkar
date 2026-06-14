@@ -2,67 +2,9 @@
 @section('title', 'شاهکار | خانه')
 @section('content')
 
-    <!-- sub header -->
-    <section class="flex flex-col lg:flex-row gap-5 text-(--color-text)">
-        <div
-            class="hidden sm:block lg:w-2/3 w-full rounded-md bg-(--color-primary-btn) bg-center bg-[url({{ $bigTile['bg_img'] }})] bg-cover bg-no-repeat p-8 lg:py-12 lg:px-20 relative overflow-hidden h-[440px] lg:h-auto max-h-[501px]">
-            <div class="w-2/3 flex flex-col gap-5">
-                <span class="font-medium mb-4 text-xs md:text-base leading-5">{{ $bigTile['header'] }}</span>
-                <div
-                    class="2xl:text-[60px] xl:text-[48px] lg:text-[42px] md:text-[36px] text-base 2xl:leading-[60px] font-bold mb-4">
-                    {{ $bigTile['title'] }}
-                </div>
-                <p class="w-fit mb-6">{{ $bigTile['text'] }}</p>
-                <div class="flex flex-row justify-start items-center gap-5">
-                    <a href="{{ $bigTile['btn1_href'] }}"
-                        class="bg-(--color-subheader-btn) text-sm lg:text-base rounded-[10px] py-2 px-5 text-(--color-primary-text) font-bold transition-all duration-500 ease-in-out hover:bg-(--color-bg-hover-btn)">{{ $bigTile['btn1_content'] }}</a>
-                    <a href="{{ $bigTile['btn2_href'] }}"
-                        class="py-1 leading-6 text-sm lg:text-base transition-all duration-[0.25s] ease-in-out hover:-translate-y-0.5">{{ $bigTile['btn2_content'] }}</a>
-                </div>
-            </div>
-            <img src="{{ asset($bigTile['img']) }}" class="w-full sm:w-8/12 absolute bottom-0 -left-10 sm:-left-[109px]"
-                alt="this is image">
-        </div>
-        {{-- big tile on mobile --}}
-        <div
-            class="sm:hidden w-full rounded-md bg-(--color-primary-btn) relative before:absolute before:content-[''] before:size-full before:top-0 before:right-0 before:bg-black/50 bg-center bg-[url({{ asset($bigTile['img']) }})] bg-cover bg-no-repeat overflow-hidden h-[440px] max-h-[501px]">
-            <div class="p-5 flex flex-col gap-5 text-white relative z-50">
-                <span class="font-medium mb-4 text-base leading-5">{{ $bigTile['header'] }}</span>
-                <div class="text-[48px] leading-[60px] font-bold mb-4">{{ $bigTile['title'] }}</div>
-                <p class="w-fit mb-6">{{ $bigTile['text'] }}</p>
-                <div class="flex flex-row justify-start items-center gap-5">
-                    <a href="{{ $bigTile['btn1_href'] }}"
-                        class="bg-(--color-subheader-btn) text-base rounded-[10px] py-2 px-5 text-(--color-primary-text) font-bold transition-all duration-500 ease-in-out hover:bg-(--color-bg-hover-btn)">{{ $bigTile['btn1_content'] }}</a>
-                    <a href="{{ $bigTile['btn2_href'] }}"
-                        class="py-1 leading-6 text-base transition-all duration-[0.25s] ease-in-out hover:-translate-y-0.5">{{ $bigTile['btn2_content'] }}</a>
-                </div>
-            </div>
-        </div>
-        {{-- end big tile on mobile --}}
-        <div class="lg:w-1/3 w-full flex flex-col sm:flex-row lg:flex-col gap-5">
-            @foreach ($tileBanners as $tileBanner)
-                <div
-                    class="relative before:absolute before:content-[''] before:size-full before:top-0 before:right-0 before:bg-black/50 before:rounded-[10px] md:before:bg-black/0 sm:w-1/2 lg:w-full bg-(--color-primary-btn) bg-[url({{ $tileBanner->image }})] bg-cover rotate-y-180 bg-bottom-right bg-no-repeat min-h-[225px] rounded-[10px] p-[30px]">
-                    <div class="rotate-y-180 flex flex-col gap-5 text-white md:text-(--color-text) z-50">
-                        <h2 class="font-bold xl:text-[28px] 2xl:text-[24px] leading-8">
-                            {{ $tileBanner->title }}
-                        </h2>
-                        <div class="flex">
-                            <a href="{{ $tileBanner->link_href }}"
-                                class="bg-(--color-subheader-btn) rounded-[10px] text-sm lg:text-base py-2 px-5 text-(--color-primary-text) font-bold transition-all duration-500 ease-in-out hover:bg-(--color-bg-hover-btn) flex items-center gap-2 buttonLink">
-                                <span>{{ $tileBanner->link_content }}</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-2.5 h-5" viewBox="0 0 320 512">
-                                    <path fill="white"
-                                        d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </section>
-    <!-- sub header -->
+    {{-- اسلایدر نوشته شده توسط مهدی بندعلی رو اضافه کردیم --}}
+    {{-- و چون که داخل کد های ساب هدر کامنت بود به همین دلیل نمیشد کل ساب هدر رو کامنت کرد و از این رو پاکش کردم اما در برنچ زیر آخرین نسخه ساب هدر موجود هست --}}
+    {{-- mr.olyafam_debuging --}}
 
     <!-- category -->
     <section class="text-(--color-text) pt-3">
@@ -464,8 +406,7 @@
             @foreach ($banners as $banner)
                 <div class="bg-(--color-primary-btn) p-2.5 rounded-[10px] flex flex-col lg:flex-row items-center gap-2.5">
                     <div class="lg:w-5/12">
-                        <img src="{{ $banner->image }}" class="w-[220px] sm:w-[80%] mx-auto lg:w-full"
-                            alt="product image">
+                        <img src="{{ $banner->image }}" class="w-[220px] sm:w-[80%] mx-auto lg:w-full" alt="product image">
                     </div>
                     <div class="lg:w-7/12 p-2.5">
                         <div class="mb-1">
