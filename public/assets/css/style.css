@@ -213,7 +213,7 @@ input[type="checkbox"]:checked::after {
 }
 
 /* اسلایدر مهدی بندعلی */
-.classss {
+/* .classss {
   animation: traslate 1s;
   transition: all 1s ease-in;
 }
@@ -226,4 +226,9 @@ input[type="checkbox"]:checked::after {
   100% {
     transform: translate(0px, 0px);
   }
+} */
+
+.menu-li:hover .hover-menu-li {
+   visibility: visible;
+   opacity: 100;
 }
