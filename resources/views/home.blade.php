@@ -1,7 +1,6 @@
 @extends('app.document')
 @section('title', 'شاهکار | خانه')
 @section('slider')
-
     {{-- mahdi slider --}}
     <div class="w-full h-dvh relative flex justify-center items-center">
         <img src="{{ asset('assets/img/slider-bg.jpg') }}" class="object-cover w-full h-full absolute top-0 right-0 z-1">
@@ -108,51 +107,17 @@
             </div>
         </div>
         <div class="2xl:container 2xl:w-11/12 w-11/12 absolute bottom-8 flex justify-center items-center z-3">
-            <div class="w-full flex flex-col gap-4">
-                <div class="w-full flex justify-end items-center pr-5">
-                    <div class="flex lg:gap-4 sm:gap-2 gap-1 items-center">
-                        <button
-                            class="lg:size-20 sm:size-15 size-12 rounded-full bg-[#534b43] flex justify-center items-center border-1 border-[#6d6861] active:bg-red-500 classss">
-                            <svg class="size-3/5 -rotate-90" viewBox="0 0 97.69 75.09" xml:space="preserve">
-                                <g>
-                                    <path
-                                        d="M97.69,36.54v2c-20.15,0-36.54,16.39-36.54,36.54h-2C59.15,53.83,76.44,36.54,97.69,36.54z"
-                                        style="fill: rgb(255, 255, 255);"></path>
-                                </g>
-                                <g>
-                                    <path
-                                        d="M59.15,0h2c0,20.15,16.39,36.54,36.54,36.54v2H0v-2h85.43C70.17,31.41,59.15,16.97,59.15,0z"
-                                        style="fill: rgb(255, 255, 255);"></path>
-                                </g>
-                            </svg>
-                        </button>
-                        <button
-                            class="lg:size-20 sm:size-15 size-12 rounded-full bg-[#534b43] flex justify-center items-center border-1 border-[#6d6861] active:bg-red-500 classss">
-                            <svg class="size-3/5 rotate-90" viewBox="0 0 97.69 75.09" xml:space="preserve">
-                                <g>
-                                    <path
-                                        d="M97.69,36.54v2c-20.15,0-36.54,16.39-36.54,36.54h-2C59.15,53.83,76.44,36.54,97.69,36.54z"
-                                        style="fill: rgb(255, 255, 255);"></path>
-                                </g>
-                                <g>
-                                    <path
-                                        d="M59.15,0h2c0,20.15,16.39,36.54,36.54,36.54v2H0v-2h85.43C70.17,31.41,59.15,16.97,59.15,0z"
-                                        style="fill: rgb(255, 255, 255);"></path>
-                                </g>
-                            </svg>
-                        </button>
+            <div class="w-full flex flex-col gap-4 ">
+                <span class="w-full h-[2px] bg-[#b6b4b1] rounded-xl"></span>
+                <div class="w-full flex flex-col-reverse gap-10 sm:flex-row lg:gap-30 justify-between">
+                    <div class="w-full md:w-1/2 flex flex-col gap-2 classss">
+                        <h3 class="text-white text-md sm:text-2xl font-bold mb-5">مجموعه چاپ شاهکار</h3>
+                        <p class="text-white text-xs sm:text-sm">این مجموعه با هدف خلق
+                            آثار هنری ماندگار و به همراه محصولات متنوع در صنعت چاپ در خدمت همه مشتریان عزیز میباشد.
+                        </p>
                     </div>
-                </div>
-                <div class="w-full flex flex-col gap-4 ">
-                    <span class="w-full h-[2px] bg-[#b6b4b1] rounded-xl"></span>
-                    <div class="w-full flex flex-col gap-10 sm:flex-row sm:gap-20 lg:gap-50 justify-between">
-                        <div class="w-full md:w-1/2 flex flex-col gap-2 classss">
-                            <h3 class="text-white text-md sm:text-2xl font-bold mb-5">مجموعه چاپ شاهکار</h3>
-                            <p class="text-white text-xs sm:text-sm">این مجموعه با هدف خلق
-                                آثار هنری ماندگار و به همراه محصولات متنوع در صنعت چاپ در خدمت همه مشتریان عزیز میباشد.
-                            </p>
-                        </div>
-                        <div class="w-full md:w-1/2 flex flex-col gap-2 classss">
+                    <div class="w-full md:w-1/2 flex items-start justify-between">
+                        <div class="flex flex-col gap-2 classss">
                             <h3 class="text-white text-md sm:text-2xl font-bold mb-5">ارتباط با ما</h3>
                             <p class="text-white flex items-center gap-2 text-xs sm:text-sm">
                                 <span class="font-bold">شماره تماس : </span>
@@ -167,10 +132,71 @@
                                 <a href="">www.ringaa.ir</a>
                             </p>
                         </div>
+                        <div class="flex gap-2 items-center">
+                            <button
+                                class="size-10 rounded-full bg-[#534b43] flex justify-center items-center border-1 border-[#6d6861] active:bg-red-500 classss">
+                                <svg class="size-3/5 -rotate-90" viewBox="0 0 97.69 75.09" xml:space="preserve">
+                                    <g>
+                                        <path
+                                            d="M97.69,36.54v2c-20.15,0-36.54,16.39-36.54,36.54h-2C59.15,53.83,76.44,36.54,97.69,36.54z"
+                                            style="fill: rgb(255, 255, 255);"></path>
+                                    </g>
+                                    <g>
+                                        <path
+                                            d="M59.15,0h2c0,20.15,16.39,36.54,36.54,36.54v2H0v-2h85.43C70.17,31.41,59.15,16.97,59.15,0z"
+                                            style="fill: rgb(255, 255, 255);"></path>
+                                    </g>
+                                </svg>
+                            </button>
+                            <button
+                                class="size-10 rounded-full bg-[#534b43] flex justify-center items-center border-1 border-[#6d6861] active:bg-red-500 classss">
+                                <svg class="size-3/5 rotate-90" viewBox="0 0 97.69 75.09" xml:space="preserve">
+                                    <g>
+                                        <path
+                                            d="M97.69,36.54v2c-20.15,0-36.54,16.39-36.54,36.54h-2C59.15,53.83,76.44,36.54,97.69,36.54z"
+                                            style="fill: rgb(255, 255, 255);"></path>
+                                    </g>
+                                    <g>
+                                        <path
+                                            d="M59.15,0h2c0,20.15,16.39,36.54,36.54,36.54v2H0v-2h85.43C70.17,31.41,59.15,16.97,59.15,0z"
+                                            style="fill: rgb(255, 255, 255);"></path>
+                                    </g>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <form action="" method="POST"
+            class="flex flex-col gap-4 p-3 rounded-[36px] border border-white absolute left-20 top-25 z-5 text-white">
+            <h2 class="font-bold text-center">سفارش سریع</h2>
+            @csrf
+            <div class="flex flex-col gap-4">
+                <label for="title" class="text-xs">عنوان : </label>
+                <div class="border-[1px] border-gray-300 rounded-lg px-2">
+                    <input type="text" name="title" id="title"
+                        class="w-full text-right text-[14px] py-1 outline-none">
+                </div>
+            </div>
+            <div class="flex flex-col gap-4">
+                <label for="file" class="text-xs">فایل : </label>
+                <div class="border-[1px] border-gray-300 rounded-lg px-2">
+                    <input type="file" name="file" id="file"
+                        class="w-full text-right text-[14px] py-1 outline-none">
+                </div>
+            </div>
+            <div class="flex flex-col gap-4">
+                <label for="description" class="text-xs">توضیحات : </label>
+                <div class="border-[1px] border-gray-300 rounded-lg px-2">
+                    <textarea name="description" id="description" class="w-full text-right text-[14px] py-1 outline-none"></textarea>
+                </div>
+            </div>
+            <button type="button"
+                class="w-25 mx-auto rounded-lg py-2 px-3 text-center cursor-pointer border white text-white outline-none font-bold text-xs">
+                ثبت سفارش 
+            </button>
+        </form>
     </div>
     {{-- end mahdi slider --}}
 @endsection
