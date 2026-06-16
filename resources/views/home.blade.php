@@ -6,6 +6,7 @@
     {{-- و چون که داخل کد های ساب هدر کامنت بود به همین دلیل نمیشد کل ساب هدر رو کامنت کرد و از این رو پاکش کردم اما در برنچ زیر آخرین نسخه ساب هدر موجود هست --}}
     {{-- mr.olyafam_debuging --}}
 
+
     <!-- category -->
     <section class="text-(--color-text) pt-3">
         <!-- title section -->
@@ -406,7 +407,8 @@
             @foreach ($banners as $banner)
                 <div class="bg-(--color-primary-btn) p-2.5 rounded-[10px] flex flex-col lg:flex-row items-center gap-2.5">
                     <div class="lg:w-5/12">
-                        <img src="{{ $banner->image }}" class="w-[220px] sm:w-[80%] mx-auto lg:w-full" alt="product image">
+                        <img src="{{ $banner->image }}" class="w-[220px] sm:w-[80%] mx-auto lg:w-full"
+                            alt="product image">
                     </div>
                     <div class="lg:w-7/12 p-2.5">
                         <div class="mb-1">
