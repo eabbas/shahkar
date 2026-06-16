@@ -168,7 +168,7 @@
                 </div>
             </div>
         </div>
-        <form action="" method="POST"
+        {{-- <form action="" method="POST"
             class="flex flex-col gap-4 p-3 rounded-[36px] border border-white absolute left-20 top-25 z-5 text-white">
             <h2 class="font-bold text-center">سفارش سریع</h2>
             @csrf
@@ -196,7 +196,7 @@
                 class="w-25 mx-auto rounded-lg py-2 px-3 text-center cursor-pointer border white text-white outline-none font-bold text-xs">
                 ثبت سفارش 
             </button>
-        </form>
+        </form> --}}
     </div>
     {{-- end mahdi slider --}}
 @endsection
