@@ -45,7 +45,7 @@ class HomeController extends Controller
         $bigBanner = banners::where('sectionName', 'bigBanner')->first();
         $tileBanners = banners::where('sectionName', 'tileBanners')->get();
         $specialDiscounts = category::where('title', 'تخفیفات ویژه')->with('products')->first();
-        $specialDiscounts = $this->getProductMedias($specialDiscounts['products']);
+        $specialDiscounts = $this->getProductMedias($specialDiscounts['products'] ?? []);
         $bigTile = bigTile::first();
         $footerTile = footerTile::first();
         $logo = logo::first();
