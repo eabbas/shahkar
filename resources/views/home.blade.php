@@ -259,12 +259,13 @@
     <!-- top pruducts -->
     <section class="text-(--color-text) pt-3">
         <!-- title section -->
-        @if ($specialDiscounts->isNotEmpty())
-            <div class="flex flex-col lg:flex-row justify-between gap-8 lg:gap-0 lg:items-center py-5 lg:py-10">
-                <h2 class="font-bold lg:text-[24px] leading-8">
-                    <a href="{{ route('category-show', [$cat]) }}">تخفیفات ویژه</a>
-                </h2>
-                {{-- <div class="flex flex-row flex-wrap lg:justify-end items-center text-xs lg:text-base gap-5 font-bold">
+        @if ($specialDiscounts)
+            @if ($specialDiscounts->isNotEmpty())
+                <div class="flex flex-col lg:flex-row justify-between gap-8 lg:gap-0 lg:items-center py-5 lg:py-10">
+                    <h2 class="font-bold lg:text-[24px] leading-8">
+                        <a href="{{ route('category-show', [$cat]) }}">تخفیفات ویژه</a>
+                    </h2>
+                    {{-- <div class="flex flex-row flex-wrap lg:justify-end items-center text-xs lg:text-base gap-5 font-bold">
                 <a href="#" class="text-(--color-text)">
                     همه دسته ها
                 </a>
@@ -278,7 +279,8 @@
                     تست 3
                 </a>
             </div> --}}
-            </div>
+                </div>
+            @endif
         @endif
         <!-- title section -->
 
@@ -640,15 +642,15 @@
 
             <!-- height problem -->
             <div
-                class="w-full children hidden xl:block xl:w-1/4 p-[30px] rounded-xl bg-[url({{ $bigBanner->image }})] bg-bottom-right bg-cover bg-no-repeat rotate-y-180">
+                class="w-full children hidden xl:block xl:w-1/4 p-[30px] rounded-xl bg-[url({{ $bigBanner?->image }})] bg-bottom-right bg-cover bg-no-repeat rotate-y-180">
                 <div class="rotate-y-180 h-[415px]">
                     <h2 class="text-[28px] leading-12 font-bold">
-                        {{ $bigBanner->title }}
+                        {{ $bigBanner?->title }}
                     </h2>
                     <div class="flex mt-3">
-                        <a href="{{ $bigBanner->link_href }}"
+                        <a href="{{ $bigBanner?->link_href }}"
                             class="flex flex-row items-center gap-2 bg-(--color-primary) rounded-[10px] py-2 px-5 text-(--color-primary-text) font-bold">
-                            <span>{{ $bigBanner->link_content }}</span>
+                            <span>{{ $bigBanner?->link_content }}</span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
                                 <path fill="#fff"
                                     d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z" />
@@ -791,15 +793,15 @@
     <section class="text-(--color-text) pt-3">
         <div class="py-10">
             <div
-                class="flex flex-col xl:flex-row items-stretch gap-5 rounded-[10px] bg-(--color-bg-contact-section) bg-[url({{ $footerTile['bg_img'] }})] bg-cover bg-no-repeat bg-center">
+                class="flex flex-col xl:flex-row items-stretch gap-5 rounded-[10px] bg-(--color-bg-contact-section) bg-[url({{ $footerTile?->bg_img }})] bg-cover bg-no-repeat bg-center">
                 <div class="w-full xl:w-1/2 px-[50px] pt-[60px] pb-[70px] flex flex-col justify-start gap-5">
                     <div>
                         <h2
                             class="text-(--color-primary-text) sm:text-3xl lg:text-[50px] 2xl:leading-[75px] font-bold mb-1">
-                            {{ $footerTile['title'] }}
+                            {{ $footerTile?->title }}
                         </h2>
                         <p class="text-(--color-primary-text) py-5">
-                            {{ $footerTile['text'] }}
+                            {{ $footerTile?->text }}
                         </p>
                     </div>
                     <div class="w-full bg-white rounded-[10px] p-3">
@@ -818,7 +820,7 @@
                     </div>
                 </div>
                 <div
-                    class="w-full xl:w-1/2 bg-[url({{ $footerTile['img'] }})] bg-cover bg-center bg-no-repeat rounded-l-[10px]">
+                    class="w-full xl:w-1/2 bg-[url({{ $footerTile?->img }})] bg-cover bg-center bg-no-repeat rounded-l-[10px]">
                 </div>
             </div>
         </div>
