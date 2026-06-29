@@ -208,52 +208,55 @@
 
 
     <!-- category -->
-    <section class="text-(--color-text) pt-3">
-        <!-- title section -->
-        <div class="flex flex-row justify-between items-center py-10">
-            <h2 class="font-bold text-[24px] leading-8">
-                <a href="{{ route('category-index') }}">دسته بندی ها</a>
-            </h2>
-            <div class="flex flex-row justify-end items-center gap-5">
-                <span class="size-[35px] rounded-xl border border-(--color-border) flex justify-center items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 320 512">
-                        <path fill="#8C9EC5"
-                            d="M273 239c9.4 9.4 9.4 24.6 0 33.9L113 433c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l143-143L79 113c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0L273 239z" />
-                    </svg>
-                </span>
-                <span class="size-[35px] rounded-xl border border-(--color-border) flex justify-center items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 320 512">
-                        <path fill="#8C9EC5"
-                            d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z" />
-                    </svg>
-                </span>
-            </div>
-        </div>
-        <!-- title section -->
-
-        {{-- grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 --}}
-        <div class="flex flex-row items-center gap-5 overflow-x-auto p-5"
-            style="scrollbar-width: thin; scrollbar-color: var(--color-primary) var(--color-primary-text);">
-            @foreach ($categories as $category)
-                @if ($category->title == 'تخفیفات ویژه')
-                    @php
-                        $cat = $category;
-                    @endphp
-                @endif
-                <div
-                    class="h-48 p-4 border border-(--color-border) rounded-[10px] flex flex-col items-center justify-between">
-                    {{-- <a href="{{ route('search-cat-products', [$category]) }}" class="block mb-1 w-[137px]" target="_blank"> --}}
-                    <a href="{{ route('category-show', [$category]) }}" class="block mb-1 w-[137px]" target="_blank">
-                        <img src="{{ asset($category->image) }}" class="w-[115px] max-h-20 h-20 mx-auto" alt="">
-                        <span class="inline-block w-full text-center pt-2">{{ $category->title }}</span>
-                    </a>
-                    <span
-                        class="block text-center text-[10px] text-(--color-secondary-text) max-h-[42px] h-[42px]">{{ $category->description }}</span>
+    @if ($categories->isNotEmpty())
+        <section class="text-(--color-text) pt-3">
+            <!-- title section -->
+            <div class="flex flex-row justify-between items-center py-10">
+                <h2 class="font-bold text-[24px] leading-8">
+                    <a href="{{ route('category-index') }}">دسته بندی ها</a>
+                </h2>
+                <div class="flex flex-row justify-end items-center gap-5">
+                    <span class="size-[35px] rounded-xl border border-(--color-border) flex justify-center items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 320 512">
+                            <path fill="#8C9EC5"
+                                d="M273 239c9.4 9.4 9.4 24.6 0 33.9L113 433c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l143-143L79 113c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0L273 239z" />
+                        </svg>
+                    </span>
+                    <span class="size-[35px] rounded-xl border border-(--color-border) flex justify-center items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 320 512">
+                            <path fill="#8C9EC5"
+                                d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z" />
+                        </svg>
+                    </span>
                 </div>
-            @endforeach
-        </div>
+            </div>
+            <!-- title section -->
 
-    </section>
+            {{-- grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 --}}
+            <div class="flex flex-row items-center gap-5 overflow-x-auto p-5"
+                style="scrollbar-width: thin; scrollbar-color: var(--color-primary) var(--color-primary-text);">
+                @foreach ($categories as $category)
+                    @if ($category->title == 'تخفیفات ویژه')
+                        @php
+                            $cat = $category;
+                        @endphp
+                    @endif
+                    <div
+                        class="h-48 p-4 border border-(--color-border) rounded-[10px] flex flex-col items-center justify-between">
+                        {{-- <a href="{{ route('search-cat-products', [$category]) }}" class="block mb-1 w-[137px]" target="_blank"> --}}
+                        <a href="{{ route('category-show', [$category]) }}" class="block mb-1 w-[137px]" target="_blank">
+                            <img src="{{ asset($category->image) }}" class="w-[115px] max-h-20 h-20 mx-auto"
+                                alt="">
+                            <span class="inline-block w-full text-center pt-2">{{ $category->title }}</span>
+                        </a>
+                        <span
+                            class="block text-center text-[10px] text-(--color-secondary-text) max-h-[42px] h-[42px]">{{ $category->description }}</span>
+                    </div>
+                @endforeach
+            </div>
+
+        </section>
+    @endif
     <!-- category -->
 
     <!-- top pruducts -->
@@ -641,190 +644,197 @@
 
 
             <!-- height problem -->
-            <div
-                class="w-full children hidden xl:block xl:w-1/4 p-[30px] rounded-xl bg-[url({{ $bigBanner?->image }})] bg-bottom-right bg-cover bg-no-repeat rotate-y-180">
-                <div class="rotate-y-180 h-[415px]">
-                    <h2 class="text-[28px] leading-12 font-bold">
-                        {{ $bigBanner?->title }}
-                    </h2>
-                    <div class="flex mt-3">
-                        <a href="{{ $bigBanner?->link_href }}"
-                            class="flex flex-row items-center gap-2 bg-(--color-primary) rounded-[10px] py-2 px-5 text-(--color-primary-text) font-bold">
-                            <span>{{ $bigBanner?->link_content }}</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
-                                <path fill="#fff"
-                                    d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- height problem -->
-
-            <div class="w-full children xl:w-3/4">
-                <div class="w-full flex flex-col gap-5">
-                    {{-- [&::-webkit-scrollbar]:w-0 --}}
-                    <div class="w-full flex flex-row justify-between items-center gap-5 font-bold overflow-x-auto pb-5 px-5"
-                        style="scrollbar-width: thin; scrollbar-color: var(--color-primary) var(--color-primary-text);">
-                        <p class="category-title cursor-pointer text-(--color-text)"
-                            onclick="getRelatedProducts('all', 'home')">
-                            <span class="inline-block w-[100px]">
-                                همه دسته ها
-                            </span>
-                        </p>
-                        @foreach ($categories as $category)
-                            <p class="category-title cursor-pointer text-(--color-secondary-text)"
-                                onclick="getRelatedProducts({{ $category->id }}, 'home')">
-                                <span class="inline-block text-center w-[110px]">
-                                    {{ $category['title'] }}
-                                </span>
-                            </p>
-                        @endforeach
-                    </div>
-
-                    <div class="w-full flex flex-row justify-between items-center">
-                        <div class="text-[14px] text-(--color-secondary-text)">
-                            <span id="relatedProductsCount">{{ count($products) }}</span>
-                            <span>محصول</span>
-                        </div>
-                        <div class="flex flex-row justify-end items-center gap-5">
-                            <span
-                                class="size-[35px] rounded-xl border border-(--color-border) flex justify-center items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 320 512">
-                                    <path fill="#8C9EC5"
-                                        d="M273 239c9.4 9.4 9.4 24.6 0 33.9L113 433c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l143-143L79 113c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0L273 239z" />
-                                </svg>
-                            </span>
-                            <span
-                                class="size-[35px] rounded-xl border border-(--color-border) flex justify-center items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 320 512">
-                                    <path fill="#8C9EC5"
+            @if ($bigBanner)
+                <div
+                    class="w-full children hidden xl:block xl:w-1/4 p-[30px] rounded-xl bg-[url({{ $bigBanner?->image }})] bg-bottom-right bg-cover bg-no-repeat rotate-y-180">
+                    <div class="rotate-y-180 h-[415px]">
+                        <h2 class="text-[28px] leading-12 font-bold">
+                            {{ $bigBanner?->title }}
+                        </h2>
+                        <div class="flex mt-3">
+                            <a href="{{ $bigBanner?->link_href }}"
+                                class="flex flex-row items-center gap-2 bg-(--color-primary) rounded-[10px] py-2 px-5 text-(--color-primary-text) font-bold">
+                                <span>{{ $bigBanner?->link_content }}</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 320 512">
+                                    <path fill="#fff"
                                         d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z" />
                                 </svg>
-                            </span>
+                            </a>
                         </div>
                     </div>
                 </div>
+            @endif
 
-                <div class="flex flex-row items-stretch justify-start overflow-x-scroll gap-4 py-5" id="relatedProducts"
-                    style="scrollbar-width: thin; scrollbar-color: var(--color-primary) var(--color-primary-text);">
-                    @foreach ($products as $product)
-                        <div
-                            class="p-2 min-w-65 h-100 border border-(--color-border) rounded-[10px] relative flex flex-col justify-between productItem">
+            <!-- height problem -->
+            @if ($categories->isNotEmpty())
+                <div class="w-full children xl:w-3/4">
+                    <div class="w-full flex flex-col gap-5">
+                        {{-- [&::-webkit-scrollbar]:w-0 --}}
+                        <div class="w-full flex flex-row justify-between items-center gap-5 font-bold overflow-x-auto pb-5 px-5"
+                            style="scrollbar-width: thin; scrollbar-color: var(--color-primary) var(--color-primary-text);">
+                            <p class="category-title cursor-pointer text-(--color-text)"
+                                onclick="getRelatedProducts('all', 'home')">
+                                <span class="inline-block w-[100px]">
+                                    همه دسته ها
+                                </span>
+                            </p>
+                            @foreach ($categories as $category)
+                                <p class="category-title cursor-pointer text-(--color-secondary-text)"
+                                    onclick="getRelatedProducts({{ $category->id }}, 'home')">
+                                    <span class="inline-block text-center w-[110px]">
+                                        {{ $category['title'] }}
+                                    </span>
+                                </p>
+                            @endforeach
+                        </div>
 
-                            <div>
-                                <a href="{{ route('product-show', [$product]) }}"
-                                    class="flex justify-center mb-1 overflow-hidden">
-                                    <img src="{{ $product['img'] }}"
-                                        class="w-full transition-all duration-500 hover:scale-[1.04] relative z-10 max-h-[182px] lg:max-h-[186px] md:max-h-[348px] xl:max-h-[171px]"
-                                        alt="product">
-                                </a>
+                        <div class="w-full flex flex-row justify-between items-center">
+                            <div class="text-[14px] text-(--color-secondary-text)">
+                                <span id="relatedProductsCount">{{ count($products) }}</span>
+                                <span>محصول</span>
                             </div>
-                            <div class="flex flex-col">
-                                <div class="mb-2 font-bold text-[14px] lg:text-base">
-                                    <a href="{{ route('product-show', [$product]) }}"
-                                        class="text-[12px] lg:text-[14px] text-(--color-text)">{{ $product->title }}</a>
-                                </div>
-                                <div class="mb-1">
-                                    <a href="{{ route('product-show', [$product]) }}">{{ $product->description }}</a>
-                                </div>
-                            </div>
-                            <div class="flex flex-row items-center mb-3 gap-3">
-                                <div class="lg:w-1/2 flex flex-row items-center text-[12px]">
-                                    <div class="text-(--color-secondary-text) flex flex-row items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4"
-                                            viewBox="0 0 576 512">
-                                            <path fill="#8C9EC5"
-                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4"
-                                            viewBox="0 0 576 512">
-                                            <path fill="#8C9EC5"
-                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4"
-                                            viewBox="0 0 576 512">
-                                            <path fill="#8C9EC5"
-                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4"
-                                            viewBox="0 0 576 512">
-                                            <path fill="#8C9EC5"
-                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4"
-                                            viewBox="0 0 576 512">
-                                            <path fill="#8C9EC5"
-                                                d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
-                                        </svg>
-                                    </div>
-                                    <span>(0)</span>
-                                </div>
-
-                            </div>
-                            <div class="">
-                                <div
-                                    class="hidden lg:flex flex-row items-center gap-2 text-(--color-text) mb-3 text-[18px] font-bold">
-                                    <span class="font-bold text-lg">{{ $product->price['price'] }}</span>
-                                    <span class="text-sm">تومان</span>
-                                </div>
-                                <div class="flex lg:hidden flex-row items-start gap-2 text-(--color-text) mb-3 font-bold">
-                                    <span class="font-bold text-lg">{{ $product->price['price'] }}</span>
-                                    <span class="text-sm">تومان</span>
-                                </div>
-                            </div>
-                            <div class="flex flex-col lg:flex-row gap-2 lg:gap-4">
-                                <div class="w-full h-12">
-                                    <button
-                                        onclick="addToShoppingCart(this,'{{ $product->id }}', '{{ $product->title }}', '{{ $product->description }}', '{{ $product['img'] }}', '{{ $product->price['price'] }}')"
-                                        class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-(--color-primary-text) bg-(--color-bg-card-btn) leading-5 rounded-[10px] cursor-pointer">افزودن
-                                        به سبد خرید</button>
-                                </div>
+                            <div class="flex flex-row justify-end items-center gap-5">
+                                <span
+                                    class="size-[35px] rounded-xl border border-(--color-border) flex justify-center items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 320 512">
+                                        <path fill="#8C9EC5"
+                                            d="M273 239c9.4 9.4 9.4 24.6 0 33.9L113 433c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l143-143L79 113c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0L273 239z" />
+                                    </svg>
+                                </span>
+                                <span
+                                    class="size-[35px] rounded-xl border border-(--color-border) flex justify-center items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 320 512">
+                                        <path fill="#8C9EC5"
+                                            d="M47 239c-9.4 9.4-9.4 24.6 0 33.9L207 433c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97.9 256 241 113c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L47 239z" />
+                                    </svg>
+                                </span>
                             </div>
                         </div>
-                    @endforeach
+                    </div>
+
+                    <div class="flex flex-row items-stretch justify-start overflow-x-scroll gap-4 py-5"
+                        id="relatedProducts"
+                        style="scrollbar-width: thin; scrollbar-color: var(--color-primary) var(--color-primary-text);">
+                        @foreach ($products as $product)
+                            <div
+                                class="p-2 min-w-65 h-100 border border-(--color-border) rounded-[10px] relative flex flex-col justify-between productItem">
+
+                                <div>
+                                    <a href="{{ route('product-show', [$product]) }}"
+                                        class="flex justify-center mb-1 overflow-hidden">
+                                        <img src="{{ $product['img'] }}"
+                                            class="w-full transition-all duration-500 hover:scale-[1.04] relative z-10 max-h-[182px] lg:max-h-[186px] md:max-h-[348px] xl:max-h-[171px]"
+                                            alt="product">
+                                    </a>
+                                </div>
+                                <div class="flex flex-col">
+                                    <div class="mb-2 font-bold text-[14px] lg:text-base">
+                                        <a href="{{ route('product-show', [$product]) }}"
+                                            class="text-[12px] lg:text-[14px] text-(--color-text)">{{ $product->title }}</a>
+                                    </div>
+                                    <div class="mb-1">
+                                        <a href="{{ route('product-show', [$product]) }}">{{ $product->description }}</a>
+                                    </div>
+                                </div>
+                                <div class="flex flex-row items-center mb-3 gap-3">
+                                    <div class="lg:w-1/2 flex flex-row items-center text-[12px]">
+                                        <div class="text-(--color-secondary-text) flex flex-row items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4"
+                                                viewBox="0 0 576 512">
+                                                <path fill="#8C9EC5"
+                                                    d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4"
+                                                viewBox="0 0 576 512">
+                                                <path fill="#8C9EC5"
+                                                    d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4"
+                                                viewBox="0 0 576 512">
+                                                <path fill="#8C9EC5"
+                                                    d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4"
+                                                viewBox="0 0 576 512">
+                                                <path fill="#8C9EC5"
+                                                    d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-3 lg:size-4"
+                                                viewBox="0 0 576 512">
+                                                <path fill="#8C9EC5"
+                                                    d="M287.9 0c9.2 0 17.6 5.2 21.6 13.5l68.6 141.3 153.2 22.6c9 1.3 16.5 7.6 19.3 16.3s.5 18.1-5.9 24.5L433.6 328.4l26.2 155.6c1.5 9-2.2 18.1-9.7 23.5s-17.3 6-25.3 1.7l-137-73.2L151 509.1c-8.1 4.3-17.9 3.7-25.3-1.7s-11.2-14.5-9.7-23.5l26.2-155.6L31.1 218.2c-6.5-6.4-8.7-15.9-5.9-24.5s10.3-14.9 19.3-16.3l153.2-22.6L266.3 13.5C270.4 5.2 278.7 0 287.9 0zm0 79L235.4 187.2c-3.5 7.1-10.2 12.1-18.1 13.3L99 217.9 184.9 303c5.5 5.5 8.1 13.3 6.8 21L171.4 443.7l105.2-56.2c7.1-3.8 15.6-3.8 22.6 0l105.2 56.2L384.2 324.1c-1.3-7.7 1.2-15.5 6.8-21l85.9-85.1L358.6 200.5c-7.8-1.2-14.6-6.1-18.1-13.3L287.9 79z" />
+                                            </svg>
+                                        </div>
+                                        <span>(0)</span>
+                                    </div>
+
+                                </div>
+                                <div class="">
+                                    <div
+                                        class="hidden lg:flex flex-row items-center gap-2 text-(--color-text) mb-3 text-[18px] font-bold">
+                                        <span class="font-bold text-lg">{{ $product->price['price'] }}</span>
+                                        <span class="text-sm">تومان</span>
+                                    </div>
+                                    <div
+                                        class="flex lg:hidden flex-row items-start gap-2 text-(--color-text) mb-3 font-bold">
+                                        <span class="font-bold text-lg">{{ $product->price['price'] }}</span>
+                                        <span class="text-sm">تومان</span>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col lg:flex-row gap-2 lg:gap-4">
+                                    <div class="w-full h-12">
+                                        <button
+                                            onclick="addToShoppingCart(this,'{{ $product->id }}', '{{ $product->title }}', '{{ $product->description }}', '{{ $product['img'] }}', '{{ $product->price['price'] }}')"
+                                            class="w-full h-full py-3 lg:py-1 text-[12px] lg:text-[14px] text-(--color-primary-text) bg-(--color-bg-card-btn) leading-5 rounded-[10px] cursor-pointer">افزودن
+                                            به سبد خرید</button>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
     </section>
     <!-- related products -->
 
-    <section class="text-(--color-text) pt-3">
-        <div class="py-10">
-            <div
-                class="flex flex-col xl:flex-row items-stretch gap-5 rounded-[10px] bg-(--color-bg-contact-section) bg-[url({{ $footerTile?->bg_img }})] bg-cover bg-no-repeat bg-center">
-                <div class="w-full xl:w-1/2 px-[50px] pt-[60px] pb-[70px] flex flex-col justify-start gap-5">
-                    <div>
-                        <h2
-                            class="text-(--color-primary-text) sm:text-3xl lg:text-[50px] 2xl:leading-[75px] font-bold mb-1">
-                            {{ $footerTile?->title }}
-                        </h2>
-                        <p class="text-(--color-primary-text) py-5">
-                            {{ $footerTile?->text }}
-                        </p>
-                    </div>
-                    <div class="w-full bg-white rounded-[10px] p-3">
-                        <form action="{{ route('homeForm-store') }}" method="post">
-                            @csrf
-                            <div class="rounded-lg 2xl:border-none border border-gray-300 relative">
-                                <input type="email" required
-                                    class="block w-full 2xl:w-2/3 2xl:mx-auto outline-none p-5 2xl:mb-4 rounded-lg"
-                                    placeholder="ایمیل خود را وارد کنید" name="contactMethod" id="">
-                                <button type="submit"
-                                    class="absolute left-3 top-2 2xl:static py-3 px-8 rounded-lg 2xl:mx-auto 2xl:block bg-(--color-btn-contact) text-(--color-primary-text) hover:bg-(--color-btn-contact-hover) transition-all duration-300">ثبت
-                                    نام</button>
-
-                            </div>
-                        </form>
-                    </div>
-                </div>
+    @if ($footerTile)
+        <section class="text-(--color-text) pt-3">
+            <div class="py-10">
                 <div
-                    class="w-full xl:w-1/2 bg-[url({{ $footerTile?->img }})] bg-cover bg-center bg-no-repeat rounded-l-[10px]">
+                    class="flex flex-col xl:flex-row items-stretch gap-5 rounded-[10px] bg-(--color-bg-contact-section) bg-[url({{ $footerTile?->bg_img }})] bg-cover bg-no-repeat bg-center">
+                    <div class="w-full xl:w-1/2 px-[50px] pt-[60px] pb-[70px] flex flex-col justify-start gap-5">
+                        <div>
+                            <h2
+                                class="text-(--color-primary-text) sm:text-3xl lg:text-[50px] 2xl:leading-[75px] font-bold mb-1">
+                                {{ $footerTile?->title }}
+                            </h2>
+                            <p class="text-(--color-primary-text) py-5">
+                                {{ $footerTile?->text }}
+                            </p>
+                        </div>
+                        <div class="w-full bg-white rounded-[10px] p-3">
+                            <form action="{{ route('homeForm-store') }}" method="post">
+                                @csrf
+                                <div class="rounded-lg 2xl:border-none border border-gray-300 relative">
+                                    <input type="email" required
+                                        class="block w-full 2xl:w-2/3 2xl:mx-auto outline-none p-5 2xl:mb-4 rounded-lg"
+                                        placeholder="ایمیل خود را وارد کنید" name="contactMethod" id="">
+                                    <button type="submit"
+                                        class="absolute left-3 top-2 2xl:static py-3 px-8 rounded-lg 2xl:mx-auto 2xl:block bg-(--color-btn-contact) text-(--color-primary-text) hover:bg-(--color-btn-contact-hover) transition-all duration-300">ثبت
+                                        نام</button>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div
+                        class="w-full xl:w-1/2 bg-[url({{ $footerTile?->img }})] bg-cover bg-center bg-no-repeat rounded-l-[10px]">
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 
 
 @endsection
