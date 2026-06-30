@@ -188,6 +188,9 @@ Route::group(['prefix' => 'answer', 'controller' => AnswerController::class, 'as
     Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
 });
 // home routes
+Route::get('/home',function(){
+    return view('mahdi.index');
+});
 Route::group(['controller' => HomeController::class], function () {
     Route::get('/', 'index')->name('home');
     Route::get('/notAccess', 'notAccess')->name('notAccess');
