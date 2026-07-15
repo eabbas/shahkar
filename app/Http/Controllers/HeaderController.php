@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\header;
+use App\Models\logo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -11,7 +12,8 @@ class HeaderController extends Controller
     public function create()
     {
         $header = header::first();
-        return view('admin.settings.header.create', ['header' => $header]);
+        $logo = logo::first();
+        return view('admin.settings.header.create', ['header' => $header, 'logo' => $logo]);
     }
     public function store(Request $request)
     {

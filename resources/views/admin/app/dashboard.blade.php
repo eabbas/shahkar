@@ -25,7 +25,7 @@
         <div class="hidden lg:block lg:w-3/12 bg-[#0D0E12] fixed right-0 top-0 h-dvh px-5">
             <div class="flex justify-center pt-5">
                 <a href="{{route('dashboard')}}" class="right-0 mr-[15px]">
-                    <img src="{{ asset($logo['logo'] ?? '') }}" alt="{{ $logo['alt_text'] ?? '' }}" class="w-40 h-15">
+                    <img src="{{ asset('storage/'.$logo?->logo) }}" alt="" class="w-40 h-15">
                 </a>
             </div>
             <hr class="text-[darkslategray] mt-2.5">
@@ -109,12 +109,12 @@
                     </div>
                     <div class="overflow-y-auto transition-all duration-300 @if (Route::is('settings.*') || Route::is('menu-*') || Route::is('banners-*') || Route::is('footer-*') || Route::is('homeForm-*')) max-h-100 @else max-h-0 @endif" style="scrollbar-width: none;">
                         <ul class="gap-2.5 pr-3">
-                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                            {{-- <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                 <span class="size-1 bg-white rounded-sm"></span>
                                 <a href="{{ route('settings.colors.createColor') }}"
                                     class="py-1 @if (Route::is('settings.colors.createColor')) text-[#FF0000] @endif">تنظیمات
                                     رنگ ها</a>
-                            </li>
+                            </li> --}}
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                 <span class="size-1 bg-white rounded-sm"></span>
                                 <a href="{{ route('settings.header.create') }}"
@@ -513,7 +513,7 @@
                 </div>
                 <div class="flex justify-center pt-5">
                     <a href="http://shahkar.art/dashboard" class="right-0 mr-[15px]">
-                        <img src="{{ asset($logo['logo'] ?? '') }}" alt="{{ $logo['alt_text'] ?? '' }}" class="w-40 h-15">
+                        <img src="{{ asset('storage/'.$logo?->logo) }}" alt="" class="w-40 h-15">
                     </a>
                 </div>
                 <hr class="text-[darkslategray] mt-2.5">
