@@ -1,0 +1,61 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\header;
+use App\Models\logo;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
+class HeaderController extends Controller
+{
+    public function create()
+    {
+        $header = header::first();
+        $logo = logo::first();
+        return view('admin.settings.header.create', ['header' => $header, 'logo' => $logo]);
+    }
+    public function store(Request $request)
+    {
+        $validated = $request->validate(
+            [
+                'img' => ['required'],
+                'title' => ['required'],
+                'subTitle' => ['required'],
+                'rightBtnText' => ['required'],
+                'rightBtnLink' => ['required'],
+                'leftBtnText' => ['required'],
+                'leftBtnLink' => ['required'],
+            ],
+            [
+                'img.required' => 'پر کردن این فیلد الزامی است.',
+                'title.required' => 'پر کردن این فیلد الزامی است.',
+                'subTitle.required' => 'پر کردن این فیلد الزامی است.',
+                'rightBtnText.required' => 'پر کردن این فیلد الزامی است.',
+                'rightBtnLink.required' => 'پر کردن این فیلد الزامی است.',
+                'leftBtnText.required' => 'پر کردن این فیلد الزامی است.',
+                'leftBtnLink.required' => 'پر کردن این فیلد الزامی است.',
+            ]
+        );
+        if ($validated) {
+            $header = header::first();
+            if ($header) {
+                Storage::disk('public')->delete($header->img);
+            }
+            $img_path = $request->img->store('images', 'public');
+            header::updateOrCreate(
+                ['id' => 1],
+                [
+                    'img' => $img_path,
+                    'title' => $request->title,
+                    'subTitle' => $request->subTitle,
+                    'rightBtnText' => $request->rightBtnText,
+                    'rightBtnLink' => $request->rightBtnLink,
+                    'leftBtnText' => $request->leftBtnText,
+                    'leftBtnLink' => $request->leftBtnLink,
+                ]
+            );
+            return to_route('settings.header.create')->with('message', 'هدر جدید برای سایت ایجاد شد.');
+        }
+    }
+}

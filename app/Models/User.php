@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 
 class User extends Authenticatable
@@ -91,5 +92,18 @@ class User extends Authenticatable
     public function Errors()
     {
         return $this->hasMany(lessonerror::class);
+    }
+    public static function isAdmin(User $user)
+    {
+        if (!$user) {
+            $user = Auth::user();
+        }
+        $flag = false;
+        foreach ($user->roles as $role) {
+            if ($role['name'] == 'admin') {
+                $flag = true;
+            }
+        }
+        return $flag;
     }
 }

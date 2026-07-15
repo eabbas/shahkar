@@ -34,8 +34,45 @@ use App\Http\Controllers\courseQuestionController;
 use App\Http\Controllers\courseAnswerController;
 use App\Http\Controllers\lessonSuggestionController;
 use App\Http\Controllers\couresAnswerreactionController;
+use App\Http\Controllers\HeaderController;
 use App\Http\Controllers\lessonErrortitleController;
 use App\Http\Controllers\lessonErrorController;
+use App\Http\Controllers\LogoController;
+
+// new version routes
+// settings routes
+Route::group([
+    'prefix' => 'settings',
+    'as' => 'settings.',
+    'middleware' => checkAdminMiddleware::class
+], function () {
+    Route::group([
+        'prefix' => 'colors',
+        'controller' => SettingsController::class,
+        'as' => 'colors.'
+    ], function () {
+        Route::get('/create', 'createColor')->name('createColor');
+        Route::post('/update', 'upsertColor')->name('upsertColor');
+        Route::get('/show', 'showColors')->name('showColors');
+        Route::get('/delete', 'deleteColor')->name('deleteColor');
+    });
+    Route::group([
+        'prefix' => 'header',
+        'controller' => HeaderController::class,
+        'as' => 'header.'
+    ], function () {
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+    });
+    Route::group([
+        'prefix' => 'logo',
+        'controller' => LogoController::class,
+        'as' => 'logo.'
+    ], function () {
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+    });
+});
 
 
 Route::post('/removeActivationCode', [UserController::class, 'removeActivationCode'])->name('removeActivationCode');
@@ -188,7 +225,7 @@ Route::group(['prefix' => 'answer', 'controller' => AnswerController::class, 'as
     Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
 });
 // home routes
-Route::get('/home',function(){
+Route::get('/home', function () {
     return view('mahdi.index');
 });
 Route::group(['controller' => HomeController::class], function () {
@@ -212,23 +249,6 @@ Route::controller(userController::class)->prefix('admin')->group(function () {
     // Route::post("/update","update");
     // Route::get("/delete/{id}","delete")->missing(function () {return to_route('missing');});
 });
-// settings routes
-Route::group([
-    'prefix' => 'settings',
-    'controller' => SettingsController::class,
-    'as' => 'settings.',
-    'middleware' => checkAdminMiddleware::class
-], function () {
-    Route::group([
-        'prefix' => 'colors',
-        'as' => 'colors.'
-    ], function () {
-        Route::get('/create', 'createColor')->name('createColor');
-        Route::post('/update', 'upsertColor')->name('upsertColor');
-        Route::get('/show', 'showColors')->name('showColors');
-        Route::get('/delete', 'deleteColor')->name('deleteColor');
-    });
-});
 // search routes
 Route::group(['controller' => SearchController::class, 'as' => 'search-'], function () {
     Route::post('/search', 'search')->name('search');
@@ -239,7 +259,7 @@ Route::group(['controller' => SearchController::class, 'as' => 'search-'], funct
 // banners routes
 Route::group(['prefix' => 'banners', 'controller' => BannersController::class, 'as' => 'banners-', 'middleware' => checkAdminMiddleware::class], function () {
     Route::get('/create', 'bannersCreate')->name('create');
-    Route::get('/logo/create', 'logoCreate')->name('logo-create');
+    // Route::get('/logo/create', 'logoCreate')->name('logo-create');
     Route::get('/bigBanner/create', 'bigBannerCreate')->name('bigBanner-create');
     Route::get('/tiles/create', 'tilesCreate')->name('tiles-create');
     Route::get('/bigTile/create', 'bigTileCreate')->name('bigTile-create');

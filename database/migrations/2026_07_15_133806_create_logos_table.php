@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('logos', function (Blueprint $table) {
             $table->id();
-            $table->string('logo');
-            $table->string('link_href');
-            $table->string('alt_text');
+            $table->string('logo')->unique();
+            $table->string('link')->unique();
             $table->timestamps();
         });
     }
