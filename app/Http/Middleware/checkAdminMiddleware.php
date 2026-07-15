@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class checkAdminMiddleware
 {
@@ -18,7 +19,7 @@ class checkAdminMiddleware
     {
         if (Auth::check()) {
             $user = Auth::user();
-            if ($user->is_admin  != 1) {
+            if (!User::isAdmin($user)) {
                 return to_route("notAccess");
             }
         } else {

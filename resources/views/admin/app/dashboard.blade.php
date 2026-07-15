@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> --}}
     <link rel="stylesheet" href="{{ url('assets/css/style.css') }}" type="text/css">
     <title>@yield('title') پنل ادمین</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/IMG_20251225_131334_688.png') }}">
@@ -25,7 +25,7 @@
         <div class="hidden lg:block lg:w-3/12 bg-[#0D0E12] fixed right-0 top-0 h-dvh px-5">
             <div class="flex justify-center pt-5">
                 <a href="{{route('dashboard')}}" class="right-0 mr-[15px]">
-                    <img src="{{ asset($logo['logo']) }}" alt="{{ $logo['alt_text'] }}" class="w-40 h-15">
+                    <img src="{{ asset($logo['logo'] ?? '') }}" alt="{{ $logo['alt_text'] ?? '' }}" class="w-40 h-15">
                 </a>
             </div>
             <hr class="text-[darkslategray] mt-2.5">
@@ -47,7 +47,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="border-b border-gray-500 pb-3">
+                {{-- <div class="border-b border-gray-500 pb-3">
                     <div class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md @if (Route::is('meta_*')) bg-[#383c4d] @endif">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                             class="size-6 fill-white w-[15px] transition-all duration-300 @if (Route::is('meta_*')) rotate-180 @endif">
@@ -84,11 +84,11 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> --}}
                 <div class="border-b border-gray-500 pb-3">
-                    <div class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md @if (Route::is('settings.colors.createColor') || Route::is('menu-*') || Route::is('banners-*') || Route::is('footer-*') || Route::is('homeForm-*')) bg-[#383c4d] @endif">
+                    <div class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md @if (Route::is('settings.*') || Route::is('menu-*') || Route::is('banners-*') || Route::is('footer-*') || Route::is('homeForm-*')) bg-[#383c4d] @endif">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="size-6 fill-white w-[15px] transition-all duration-300 @if (Route::is('settings.colors.createColor') || Route::is('menu-*') || Route::is('banners-*') || Route::is('footer-*') || Route::is('homeForm-*')) rotate-180 @endif">
+                            class="size-6 fill-white w-[15px] transition-all duration-300 @if (Route::is('settings.*') || Route::is('menu-*') || Route::is('banners-*') || Route::is('footer-*') || Route::is('homeForm-*')) rotate-180 @endif">
                             <path fill-rule="evenodd"
                                 d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
                                 clip-rule="evenodd" />
@@ -107,13 +107,23 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="overflow-y-auto transition-all duration-300 @if (Route::is('settings.colors.createColor') || Route::is('menu-*') || Route::is('banners-*') || Route::is('footer-*') || Route::is('homeForm-*')) max-h-100 @else max-h-0 @endif" style="scrollbar-width: none;">
+                    <div class="overflow-y-auto transition-all duration-300 @if (Route::is('settings.*') || Route::is('menu-*') || Route::is('banners-*') || Route::is('footer-*') || Route::is('homeForm-*')) max-h-100 @else max-h-0 @endif" style="scrollbar-width: none;">
                         <ul class="gap-2.5 pr-3">
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                 <span class="size-1 bg-white rounded-sm"></span>
                                 <a href="{{ route('settings.colors.createColor') }}"
                                     class="py-1 @if (Route::is('settings.colors.createColor')) text-[#FF0000] @endif">تنظیمات
                                     رنگ ها</a>
+                            </li>
+                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                <span class="size-1 bg-white rounded-sm"></span>
+                                <a href="{{ route('settings.header.create') }}"
+                                    class="py-1 @if (Route::is('settings.header.create')) text-[#FF0000] @endif">تنظیمات هدر</a>
+                            </li>
+                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                <span class="size-1 bg-white rounded-sm"></span>
+                                <a href="{{ route('settings.logo.create') }}"
+                                    class="py-1 @if (Route::is('settings.logo.create')) text-[#FF0000] @endif">لوگو</a>
                             </li>
                             {{-- <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                 <span class="size-1 bg-white rounded-sm"></span>
@@ -122,11 +132,6 @@
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                 <span class="size-1 bg-white rounded-sm"></span>
                                 <a href="{{ route('menu-create') }}" class="py-1 @if (Route::is('menu-create')) text-[#FF0000] @endif">ایجاد منوی جدید</a>
-                            </li> --}}
-                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
-                                <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{ route('banners-logo-create') }}"
-                                    class="py-1 @if (Route::is('banners-logo-create')) text-[#FF0000] @endif">لوگو</a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                 <span class="size-1 bg-white rounded-sm"></span>
@@ -177,7 +182,7 @@
                                     های ارتباطی
                                     با
                                     کاربران</a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                 </div>
@@ -264,7 +269,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="border-b border-gray-500 pb-3">
+                {{-- <div class="border-b border-gray-500 pb-3">
                     <div class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md  @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*') || Route::is('status.*') || Route::is('courseLevel.*') || Route::is('season.*') || Route::is('lesson_*') || Route::is('lessonComments_*') || Route::is('question_*') || Route::is('answer_*') || Route::is('suggestion_*') || Route::is('error_*') || Route::is('errortitle_*')) bg-[#383c4d] @endif">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                             class="size-6 fill-white w-[15px] transition-all duration-300  @if (Route::is('course.*') || Route::is('coursecategory.*') || Route::is('teacher.*') || Route::is('status.*') || Route::is('courseLevel.*') || Route::is('season.*') || Route::is('lesson_*') || Route::is('lessonComments_*') || Route::is('question_*') || Route::is('answer_*') || Route::is('suggestion_*') || Route::is('error_*') || Route::is('errortitle_*')) rotate-180 @endif">
@@ -358,7 +363,7 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> --}}
                 <div class="border-b border-gray-500 pb-3">
                     <div class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md @if (Route::is('user.*') || Route::is('admin_create_user')) bg-[#383c4d] @endif">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
@@ -396,12 +401,12 @@
                                     کاربر
                                     جدید</a>
                             </li>
-                            {{-- <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                 <span class="size-1 bg-white rounded-sm"></span>
                                 <a href="{{ route('user.login') }}"
                                     class="py-1 @if (Route::is('user.login')) text-[#FF0000] @endif">ایجاد ادمین
                                     جدید</a>
-                            </li> --}}
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -508,7 +513,7 @@
                 </div>
                 <div class="flex justify-center pt-5">
                     <a href="http://shahkar.art/dashboard" class="right-0 mr-[15px]">
-                        <img src="{{ asset($logo['logo']) }}" alt="{{ $logo['alt_text'] }}" class="w-40 h-15">
+                        <img src="{{ asset($logo['logo'] ?? '') }}" alt="{{ $logo['alt_text'] ?? '' }}" class="w-40 h-15">
                     </a>
                 </div>
                 <hr class="text-[darkslategray] mt-2.5">
@@ -607,11 +612,11 @@
                                     <span class="size-1 bg-white rounded-sm"></span>
                                     <a href="{{ route('menu-create') }}" class="py-1 @if (Route::is('menu-create'')) text-[#FF0000] @endif">ایجاد منوی جدید</a>
                                 </li> --}}
-                                <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                {{-- <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                     <span class="size-1 bg-white rounded-sm"></span>
                                     <a href="{{ route('banners-logo-create') }}"
                                         class="py-1 @if (Route::is('banners-logo-create')) text-[#FF0000] @endif">لوگو</a>
-                                </li>
+                                </li> --}}
                                 <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                     <span class="size-1 bg-white rounded-sm"></span>
                                     <a href="{{ route('banners-tiles-create') }}"
