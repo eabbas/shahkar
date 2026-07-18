@@ -52,7 +52,7 @@ class HomeController extends Controller
         $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
         $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
         $user = Auth::user();
-        return view('home', [
+        return view('mahdi.index', [
             'courses' => $courses,
             'settings' => $settings,
             'products' => $products,
