@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('headers', function (Blueprint $table) {
             $table->id();
-            $table->string('img')->unique();
-            $table->string('title')->unique();
-            $table->string('subTitle')->unique();
-            $table->string('rightBtnText')->unique();
-            $table->string('rightBtnLink')->unique();
+            $table->string('img');
+            $table->string('title');
+            $table->string('subTitle');
+            $table->string('rightBtnText');
+            $table->string('rightBtnLink');
             $table->string('rightBtnIcon')->nullable();
-            $table->string('leftBtnText')->unique();
-            $table->string('leftBtnLink')->unique();
+            $table->string('leftBtnText');
+            $table->string('leftBtnLink');
             $table->string('leftBtnIcon')->nullable();
             $table->timestamps();
         });
