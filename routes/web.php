@@ -38,6 +38,7 @@ use App\Http\Controllers\HeaderController;
 use App\Http\Controllers\lessonErrortitleController;
 use App\Http\Controllers\lessonErrorController;
 use App\Http\Controllers\LogoController;
+use App\Http\Controllers\SectionController;
 
 // new version routes
 // settings routes
@@ -71,6 +72,17 @@ Route::group([
     ], function () {
         Route::get('/create', 'create')->name('create');
         Route::post('/store', 'store')->name('store');
+    });
+    Route::group([
+        'prefix' => 'section',
+        'controller' => SectionController::class,
+        'as' => 'section.'
+    ], function () {
+        Route::get('/index', 'index')->name('index');
+        Route::post('/store', 'store')->name('store');
+        Route::post('/edit', 'edit')->name('edit');
+        Route::post('/update', 'update')->name('update');
+        Route::get('/delete/{id}', 'delete')->name('delete');
     });
 });
 
