@@ -100,6 +100,11 @@
                                     class="py-1 @if (Route::is('settings.section.index')) text-[#FF0000] @endif">تنظیمات سکشن
                                     ها</a>
                             </li>
+                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                <span class="size-1 bg-white rounded-sm"></span>
+                                <a href="{{ route('settings.service.create') }}"
+                                    class="py-1 @if (Route::is('settings.service.create')) text-[#FF0000] @endif">خدمات ما</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -191,6 +196,12 @@
                                     <a href="{{ route('settings.section.index') }}"
                                         class="py-1 @if (Route::is('settings.section.index')) text-[#FF0000] @endif">تنظیمات
                                         سکشن ها</a>
+                                </li>
+                                <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                    <span class="size-1 bg-white rounded-sm"></span>
+                                    <a href="{{ route('settings.service.create') }}"
+                                        class="py-1 @if (Route::is('settings.service.create')) text-[#FF0000] @endif">خدمات
+                                        ما</a>
                                 </li>
                             </ul>
                         </div>

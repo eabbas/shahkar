@@ -39,6 +39,7 @@ use App\Http\Controllers\lessonErrortitleController;
 use App\Http\Controllers\lessonErrorController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\ServiceController;
 
 // new version routes
 // settings routes
@@ -81,6 +82,18 @@ Route::group([
         Route::get('/index', 'index')->name('index');
         Route::post('/store', 'store')->name('store');
         Route::post('/edit', 'edit')->name('edit');
+        Route::post('/update', 'update')->name('update');
+        Route::get('/delete/{id}', 'delete')->name('delete');
+    });
+    Route::group([
+        'prefix' => 'service',
+        'controller' => ServiceController::class,
+        'as' => 'service.'
+    ], function () {
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::post('/edit', 'edit')->name('edit');
+        Route::post('/show', 'show')->name('show');
         Route::post('/update', 'update')->name('update');
         Route::get('/delete/{id}', 'delete')->name('delete');
     });

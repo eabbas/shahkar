@@ -42,7 +42,7 @@ class HeaderController extends Controller
             if ($header) {
                 Storage::disk('public')->delete($header->img);
             }
-            $img_path = $request->img->store('images', 'public');
+            $img_path = $request->img->store('headerImgs', 'public');
             header::updateOrCreate(
                 ['id' => 1],
                 [

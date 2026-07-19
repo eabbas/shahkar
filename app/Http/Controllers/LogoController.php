@@ -30,7 +30,7 @@ class LogoController extends Controller
             if ($logo) {
                 Storage::disk('public')->delete($logo->logo);
             }
-            $logo_path = $request->logo->store('images', 'public');
+            $logo_path = $request->logo->store('logoImgs', 'public');
             logo::updateOrCreate(
                 ['id' => 1],
                 [
