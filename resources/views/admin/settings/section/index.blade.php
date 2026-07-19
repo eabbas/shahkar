@@ -255,7 +255,7 @@
                         name.value = data.name
                         title.value = data.title
                         desc.value = data.description
-                        section_id.value = id
+                        section_id.value = data.id
                     },
                     error: function() {
                         alert('error')
