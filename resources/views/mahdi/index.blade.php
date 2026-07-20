@@ -279,7 +279,7 @@
                         </li>
 
                     </ul>
-                    <a href="{{ route('user.login') }}"
+                    <a href=""
                         class="xl:px-7 sm:px-5 px-3 sm:py-2 py-2 rounded-xl flex gap-2 justify-center items-center gradient_box1">
 
                         <div>
@@ -1804,8 +1804,7 @@
                     <div class="flex flex-col gap-1 items-center justify-center sm:hidden lg:flex">
                         <p class="xl:text-[15px] lg:text-[12px] text-[13px] text-[var(--text-secondary)]">طراحی و توسعه
                             <span class="font-bold">شرکت اندیشه گران طراحان دیجیتال<span class="text-[var(--gold)]">(
-                                    فائوس)</span> </span>
-                        </p>
+                                    فائوس)</span> </span></p>
                         <span
                             class="xl:text-[15px] lg:text-[12px] text-[15px] font-bold text-[var(--gold)]">09147794595</span>
                     </div>

@@ -53,7 +53,7 @@
                     </a>
                 </li>
                 <li class="group">
-                    <a href="{{ route('category-index') }}"
+                    <a href="{{ route('category.index') }}"
                         class="flex items-center gap-2 font-bold text-sm text-[var(--light-theme-text-color)]">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="" width="22" height="22"
                             class="fill-[var(--light-theme-text-color)] group-hover:fill-[var(--primary-color)] transition"

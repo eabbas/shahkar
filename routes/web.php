@@ -105,17 +105,13 @@ Route::group([
     ], function () {
         Route::get('/create', 'create')->name('create');
         Route::post('/store', 'store')->name('store');
-        Route::post('/edit', 'edit')->name('edit');
-        Route::post('/show', 'show')->name('show');
-        Route::post('/update', 'update')->name('update');
-        Route::get('/delete/{id}', 'delete')->name('delete');
     });
 });
 
 
 Route::post('/removeActivationCode', [UserController::class, 'removeActivationCode'])->name('removeActivationCode');
 // category routes
-Route::group(['prefix' => 'category', 'controller' => CategoryController::class, 'as' => 'category-', 'middleware' => checkAdminMiddleware::class], function () {
+Route::group(['prefix' => 'category', 'controller' => CategoryController::class, 'as' => 'category.', 'middleware' => checkAdminMiddleware::class], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
     Route::get('/admin/list', 'adminIndex')->name('adminIndex');
