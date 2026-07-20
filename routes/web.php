@@ -35,6 +35,7 @@ use App\Http\Controllers\courseAnswerController;
 use App\Http\Controllers\lessonSuggestionController;
 use App\Http\Controllers\couresAnswerreactionController;
 use App\Http\Controllers\HeaderController;
+use App\Http\Controllers\IntroductionController;
 use App\Http\Controllers\lessonErrortitleController;
 use App\Http\Controllers\lessonErrorController;
 use App\Http\Controllers\LogoController;
@@ -89,6 +90,18 @@ Route::group([
         'prefix' => 'service',
         'controller' => ServiceController::class,
         'as' => 'service.'
+    ], function () {
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::post('/edit', 'edit')->name('edit');
+        Route::post('/show', 'show')->name('show');
+        Route::post('/update', 'update')->name('update');
+        Route::get('/delete/{id}', 'delete')->name('delete');
+    });
+    Route::group([
+        'prefix' => 'introduction',
+        'controller' => IntroductionController::class,
+        'as' => 'introduction.'
     ], function () {
         Route::get('/create', 'create')->name('create');
         Route::post('/store', 'store')->name('store');
