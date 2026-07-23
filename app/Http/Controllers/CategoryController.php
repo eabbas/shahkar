@@ -30,7 +30,6 @@ class CategoryController extends Controller
     //     }
     //     return $products;
     // }
-
     public function create()
     {
         $categories = category::select('id', 'title')->get();
@@ -63,7 +62,6 @@ class CategoryController extends Controller
         ]);
         return redirect()->back()->with('message', 'دسته بندی جدید برای سایت ایجاد شد.');
     }
-
     public function adminIndex()
     {
         $cats = category::all();
@@ -72,6 +70,76 @@ class CategoryController extends Controller
             'categories' => $cats,
             'logo' => $logo
         ]);
+    }
+    public function showChildren($param)
+    {
+        $text = '<ul class="mr-5">';
+        foreach ($param as $child) {
+            $text .= '<li class="list-decimal list-inside"><span class="text-sm text-slate-500">' . $child['title'] . '</span></li>';
+            if (count($child['children']) > 0) {
+                $text .= $this->showChildren($child['children']);
+            }
+        }
+        $text .= "</ul>";
+        return $text;
+    }
+    public function adminShow(Request $request)
+    {
+        $category = category::find($request['id']);
+        $category['subCats'] = $this->showChildren($category->children);
+        $category->parent;
+        return response()->json($category);
+    }
+    public function edit(Request $request)
+    {
+        $category = category::find($request['id']);
+        $categories = category::all();
+        return response()->json(['cat' => $category, 'cats' => $categories]);
+    }
+    public function update(Request $request)
+    {
+        $validated = $request->validate(
+            [
+                'title' => ['required'],
+            ],
+            [
+                'title.required' => 'پر کردن این فیلد الزامی است.'
+            ]
+        );
+        if (isset($request['removedImg'])) {
+            Storage::disk('public')->delete($request['removedImg']);
+            $category = category::where('image', $request['removedImg'])->first();
+            $category->image = null;
+            $category->save();
+        }
+        $category = category::find($request['cat_id']);
+        if (isset($request['image'])) {
+            if ($category['image']) {
+                Storage::disk('public')->delete($category['image']);
+            }
+            $img_path = $request->image->store('categoryImgs', 'public');
+        } else {
+            $img_path = $category['image'];
+        }
+        $name = $category->title;
+        $category->title = $request['title'];
+        $category->description = $request['description'];
+        $category->parent_id = $request['parent_id'];
+        $category->image = $img_path;
+        $category->save();
+        return to_route('category.adminIndex')->with('message', 'دسته بندی ' . $name . ' به روزرسانی شد.');
+    }
+    public function delete($id)
+    {
+        $category = category::find($id);
+        if ($category) {
+            if ($category['image']) {
+                Storage::disk('public')->delete($category['image']);
+            }
+            $name = $category['title'];
+            $category->delete();
+        }
+        return to_route('category.adminIndex')->with('message', 'دسته بندی ' . $name . ' حذف شد.');
     }
 
     // public function index()
@@ -97,12 +165,6 @@ class CategoryController extends Controller
     //     ]);
     // }
 
-    // public function adminShow(category $category)
-    // {
-    //     $logo = logo::first();
-    //     return view('admin.category.show', ['category' => $category, 'logo' => $logo]);
-    // }
-
     // public function show(category $category)
     // {
     //     $courses = course::all();
@@ -125,41 +187,6 @@ class CategoryController extends Controller
     //         'footer_form_column' => $footer_form_column,
     //         'user' => $user
     //     ]);
-    // }
-
-    // public function edit(category $category)
-    // {
-    //     $cats = category::all();
-    //     $logo = logo::first();
-    //     return view('admin.category.edit', [
-    //         'cat' => $category,
-    //         'categories' => $cats,
-    //         'logo' => $logo
-    //     ]);
-    // }
-
-    // public function update(Request $request)
-    // {
-    //     $category = category::find($request->category_id);
-    //     $category->title = $request->title;
-    //     $category->description = $request->description;
-    //     $category->parent_id = $request->parent_id;
-    //     if ($request['image']) {
-    //         $originalName = request()->image->getClientOriginalName();
-    //         $path = $request->file('image')->storeAs('images', time() . $originalName, 'public');
-    //         $category->image = 'storage/' . $path;
-    //     }
-    //     if (!$request['image']) {
-    //         $category->image = null;
-    //     }
-    //     $category->save();
-    //     return to_route('category-adminIndex');
-    // }
-
-    // public function delete(category $category)
-    // {
-    //     $category->delete();
-    //     return to_route('category-adminIndex');
     // }
 
     // public function deleteAll(Request $request)

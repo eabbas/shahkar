@@ -47,14 +47,17 @@ class ServiceController extends Controller
     public function delete($id)
     {
         $service = service::find($id);
-        if ($service['icon']) {
-            Storage::disk('public')->delete($service['icon']);
+        $name = '';
+        if ($service) {
+            if ($service['icon']) {
+                Storage::disk('public')->delete($service['icon']);
+            }
+            if ($service['img']) {
+                Storage::disk('public')->delete($service['img']);
+            }
+            $name = $service['title'];
+            $service->delete();
         }
-        if ($service['img']) {
-            Storage::disk('public')->delete($service['img']);
-        }
-        $name = $service['title'];
-        $service->delete();
         return to_route('settings.service.create')->with('message', 'سرویس ' . $name . ' حذف شد.');
     }
     public function show(Request $request)

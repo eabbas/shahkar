@@ -84,7 +84,9 @@ Route::group([
         Route::post('/store', 'store')->name('store');
         Route::post('/edit', 'edit')->name('edit');
         Route::post('/update', 'update')->name('update');
-        Route::get('/delete/{id}', 'delete')->name('delete');
+        Route::get('/delete/{id}', 'delete')->missing(function () {
+            return to_route('missing');
+        })->name('delete');
     });
     Route::group([
         'prefix' => 'service',
@@ -96,7 +98,9 @@ Route::group([
         Route::post('/edit', 'edit')->name('edit');
         Route::post('/show', 'show')->name('show');
         Route::post('/update', 'update')->name('update');
-        Route::get('/delete/{id}', 'delete')->name('delete');
+        Route::get('/delete/{id}', 'delete')->missing(function () {
+            return to_route('missing');
+        })->name('delete');
     });
     Route::group([
         'prefix' => 'introduction',
@@ -108,29 +112,36 @@ Route::group([
     });
 });
 
-
-Route::post('/removeActivationCode', [UserController::class, 'removeActivationCode'])->name('removeActivationCode');
 // category routes
-Route::group(['prefix' => 'category', 'controller' => CategoryController::class, 'as' => 'category.', 'middleware' => checkAdminMiddleware::class], function () {
+Route::group([
+    'prefix' => 'category',
+    'controller' => CategoryController::class,
+    'as' => 'category.',
+    'middleware' => checkAdminMiddleware::class
+], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
     Route::get('/admin/list', 'adminIndex')->name('adminIndex');
-    Route::get('/list', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('index');
-    Route::get('/admin/show/{category}', 'adminShow')->missing(function () {
+    Route::post('/admin/show', 'adminShow')->missing(function () {
         return to_route('missing');
     })->name('adminShow');
-    Route::get('/show/{category}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->missing(function () {
-        return to_route('missing');
-    })->name('show');
-    Route::get('/edit/{category}', 'edit')->missing(function () {
+    Route::post('/edit/', 'edit')->missing(function () {
         return to_route('missing');
     })->name('edit');
     Route::post('/update', 'update')->name('update');
-    Route::get('/delete/{category}', 'delete')->missing(function () {
+    Route::get('/delete/{id}', 'delete')->missing(function () {
         return to_route('missing');
     })->name('delete');
-    Route::post('/admin/deleteAll', 'deleteAll')->name('deleteAll');
+
+
+    // Route::get('/list', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('index');
+    // Route::get('/show/{category}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->missing(function () {
+    //     return to_route('missing');
+    // })->name('show');
+    // Route::post('/admin/deleteAll', 'deleteAll')->name('deleteAll');
 });
+
+Route::post('/removeActivationCode', [UserController::class, 'removeActivationCode'])->name('removeActivationCode');
 // product routes
 Route::group(['prefix' => 'product', 'controller' => ProductController::class, 'as' => 'product-', 'middleware' => checkAdminMiddleware::class], function () {
     Route::get('/create', 'create')->name('create');
