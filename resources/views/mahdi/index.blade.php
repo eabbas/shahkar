@@ -852,17 +852,17 @@
                             <div
                                 class="sm:w-1/2 w-full h-full border border-[var(--gold)] rounded-xl px-[0.3px] py-[0.7px] overflow-hidden">
                                 @if (isset($products[1]))
-                                    <a href="{{ asset('storage/' . $products[1]->mainImg) }}">
-                                        <img src="{{ asset('assets/img/kart_rezume.jpg') }}" alt=""
+                                    <a href="{{ route('product.show', [$products[1]]) }}">
+                                        <img src="{{ asset('storage/' . $products[1]->mainImg) }}" alt=""
                                             class="object-fit w-full h-full rounded-xl scale transition_root">
                                     </a>
                                 @endif
                             </div>
                             <div
                                 class="w-1/2 h-full max-sm:hidden border border-[var(--gold)] rounded-xl px-[0.3px] py-[0.7px] overflow-hidden">
-                                @if (isset($products[1]))
-                                    <a href="{{ route('product.show', [$products[1]]) }}">
-                                        <img src="{{ asset('storage/' . $products[1]->mainImg) }}" alt=""
+                                @if (isset($products[2]))
+                                    <a href="{{ route('product.show', [$products[2]]) }}">
+                                        <img src="{{ asset('storage/' . $products[2]->mainImg) }}" alt=""
                                             class="object-fit w-full h-full rounded-xl scale transition_root">
                                     </a>
                                 @endif
