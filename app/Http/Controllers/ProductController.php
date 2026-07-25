@@ -90,6 +90,11 @@ class ProductController extends Controller
         $products = product::with('media')->with('categories')->get();
         return view('admin.product.index', ['products' => $products, 'logo' => $logo]);
     }
+    public function show(Product $product)
+    {
+        return view('commingSoon');
+        return $product;
+    }
     public function delete($id)
     {
         $product = product::find($id);

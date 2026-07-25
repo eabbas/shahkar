@@ -93,7 +93,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(lessonerror::class);
     }
-    public static function isAdmin(User $user)
+    public static function isAdmin(User $user = null)
     {
         if (!$user) {
             $user = Auth::user();
