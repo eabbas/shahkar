@@ -1,55 +1,34 @@
-function add(el, state) {
-    if (state === "size") {
-        let div = document.createElement('div');
-        div.classList = 'flex flex-row justify-between items-end gap-3 lg:gap-5 mt-3 md:mt-5'
-        let parentElement = el.previousElementSibling
-        div.innerHTML = `
-                <div class="w-full flex flex-col">
-                    <label class="mb-2">اندازه محصول :</label>
+function addAttribute(el) {
+    let div = document.createElement('div');
+    div.classList = 'flex flex-row items-center justify-between gap-4 mt-4 border border-slate-300 rounded-xl p-2'
+    let parentElement = el.previousElementSibling
+    div.innerHTML = `
+                <div class="w-full flex flex-col sm:flex-row items-center gap-4">
                     <input type="text"
-                        class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]"
-                        placeholder="مقدار ویژگی" name="proAttr[اندازه][]">
-                </div>
-                <div class="flex items-end">
-                    <button type="button"
-                        class="p-3 text-sm rounded-md bg-rose-500 hover:bg-rose-600 text-white cursor-pointer"
-                        onclick="remove(this)">حذف</button>
-                </div>
-        `
-        parentElement.appendChild(div)
-    }
-    if (state === "material") {
-        let div = document.createElement('div');
-        div.classList = 'flex flex-row justify-between items-end gap-3 lg:gap-5 mt-3 md:mt-5'
-        let parentElement = el.previousElementSibling
-        div.innerHTML = `
-                <div class="w-full flex flex-col">
-                    <label class="mb-2">جنس محصول :</label>
+                        class="w-full outline-none pr-3 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]"
+                        placeholder="ویژگی" name="attributes[attribute_key][]" required>
                     <input type="text"
-                        class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]"
-                        placeholder="مقدار ویژگی" name="proAttr[جنس][]">
+                        class="w-full outline-none pr-3 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]"
+                        placeholder="مقدار ویژگی" name="attributes[attribute_value][]" required>
                 </div>
-                <div class="flex items-end">
-                    <button type="button"
-                        class="p-3 text-sm rounded-md bg-rose-500 hover:bg-rose-600 text-white cursor-pointer"
-                        onclick="remove(this)">حذف</button>
-                </div>
+                <button type="button"
+                    class="p-3 text-sm rounded-md bg-rose-500 hover:bg-rose-600 text-white cursor-pointer"
+                    onclick="remove(this)">حذف</button>
         `
-        parentElement.appendChild(div)
-    }
+    parentElement.appendChild(div)
 }
 function remove(el) {
-    el.parentElement.parentElement.remove()
+    el.parentElement.remove()
 }
 
-let quantity = document.getElementById('quantity')
+let count = document.getElementById('count')
 function calculate(state) {
     if (state == "+") {
-        quantity.value++
+        count.value++
     }
-    if (quantity.value > 0) {
+    if (count.value > 1) {
         if (state == "-") {
-            quantity.value--
+            count.value--
         }
     }
 }

@@ -22,13 +22,13 @@ class HomeController extends Controller
     public function getProductMedias($products)
     {
         foreach ($products as $product) {
-            $product->load(['medias' => function ($query) {
-                $query->select('product_id', DB::raw("IFNULL(path , 'images/noImage.png') path"))->where('is_main', 1);
+            $product->load(['media' => function ($query) {
+                $query->select('product_id', DB::raw("IFNULL(media_path , 'images/noImage.png') media_path"))->where('is_main', 1);
             }]);
-            foreach ($product->medias as $media) {
+            foreach ($product->media as $media) {
                 $product['img'] = asset('storage/images/noImage.png');
-                if (Storage::disk('public')->exists($media['path'])) {
-                    $product['img'] = asset('storage/' . $media['path']);
+                if (Storage::disk('public')->exists($media['media_path'])) {
+                    $product['img'] = asset('storage/' . $media['media_path']);
                 }
             }
         }
@@ -37,7 +37,7 @@ class HomeController extends Controller
     public function index()
     {
         $courses = course::all();
-        $products = product::where('is_in_home', 1)->get();
+        $products = product::where('show_in_home', 1)->get();
         $products = $this->getProductMedias($products);
         $settings = settings::all();
         $cats = category::all();
@@ -72,7 +72,7 @@ class HomeController extends Controller
     public function notAccess()
     {
         $courses = course::all();
-        $products = product::where('is_in_home', 1)->get();
+        $products = product::where('show_in_home', 1)->get();
         $products = $this->getProductMedias($products);
         $settings = settings::all();
         $cats = category::all();
@@ -94,7 +94,7 @@ class HomeController extends Controller
     public function loginAtFirst()
     {
         $courses = course::all();
-        $products = product::where('is_in_home', 1)->get();
+        $products = product::where('show_in_home', 1)->get();
         $products = $this->getProductMedias($products);
         $settings = settings::all();
         $cats = category::all();
@@ -123,10 +123,10 @@ class HomeController extends Controller
     public function relatedProducts(Request $request)
     {
         if ($request['id'] == 'all') {
-            $products = product::where('is_in_home', 1)->with('price')->get();
+            $products = product::where('show_in_home', 1)->with('price')->get();
         }
         if ($request['id'] != 'all') {
-            $products = product::where('category_id', $request['id'])->where('is_in_home', 1)->with('price')->get();
+            $products = product::where('category_id', $request['id'])->where('show_in_home', 1)->with('price')->get();
         }
         $products = $this->getProductMedias($products);
         return response()->json($products);
@@ -134,7 +134,7 @@ class HomeController extends Controller
     public function pageNotFound()
     {
         $courses = course::all();
-        $products = product::where('is_in_home', 1)->get();
+        $products = product::where('show_in_home', 1)->get();
         $products = $this->getProductMedias($products);
         $settings = settings::all();
         $cats = category::all();

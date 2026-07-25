@@ -15,21 +15,21 @@ use DB;
 
 class CategoryController extends Controller
 {
-    public function getProductMedias($products)
-    {
-        foreach ($products as $product) {
-            $product->load(['medias' => function ($query) {
-                $query->select('product_id', DB::raw("IFNULL(path , 'images/noImage.png') path"))->where('is_main', 1);
-            }]);
-            foreach ($product->medias as $media) {
-                $product['img'] = asset('storage/images/noImage.png');
-                if (Storage::disk('public')->exists($media['path'])) {
-                    $product['img'] = asset('storage/' . $media['path']);
-                }
-            }
-        }
-        return $products;
-    }
+    // public function getProductMedias($products)
+    // {
+    //     foreach ($products as $product) {
+    //         $product->load(['medias' => function ($query) {
+    //             $query->select('product_id', DB::raw("IFNULL(path , 'images/noImage.png') path"))->where('is_main', 1);
+    //         }]);
+    //         foreach ($product->medias as $media) {
+    //             $product['img'] = asset('storage/images/noImage.png');
+    //             if (Storage::disk('public')->exists($media['path'])) {
+    //                 $product['img'] = asset('storage/' . $media['path']);
+    //             }
+    //         }
+    //     }
+    //     return $products;
+    // }
     public function create()
     {
         $categories = category::select('id', 'title')->get();
@@ -39,29 +39,29 @@ class CategoryController extends Controller
             'logo' => $logo
         ]);
     }
-
     public function store(Request $request)
     {
+        $validated = $request->validate(
+            [
+                'title' => ['required'],
+            ],
+            [
+                'title.required' => 'پر کردن این فیلد الزامی است.'
+            ]
+        );
         if ($request['image']) {
-            $originalName = request()->image->getClientOriginalName();
-            $path = $request->file('image')->storeAs('images', time() . $originalName, 'public');
-            category::create([
-                'title' => $request->title,
-                'description' => $request->description,
-                'parent_id' => $request->parent_id,
-                'image' => 'storage/' . $path
-            ]);
-            return redirect()->back();
+            $img_path = $request->image->store('categoryImgs', 'public');
+        } else {
+            $img_path = null;
         }
         category::create([
             'title' => $request->title,
             'description' => $request->description,
             'parent_id' => $request->parent_id,
-            'image' => null
+            'image' => $img_path
         ]);
-        return redirect()->back();
+        return redirect()->back()->with('message', 'دسته بندی جدید برای سایت ایجاد شد.');
     }
-
     public function adminIndex()
     {
         $cats = category::all();
@@ -71,104 +71,133 @@ class CategoryController extends Controller
             'logo' => $logo
         ]);
     }
-
-    public function index()
+    public function showChildren($param)
     {
-        $courses = course::all();
-        $products = product::all();
-        $products = $this->getProductMedias($products);
-        $settings = settings::all();
-        $logo = logo::first();
-        $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
-        $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
-        $user = Auth::user();
-        $cats = category::all();
-        return view('user.category.index', [
-            'courses' => $courses,
-            'products' => $products,
-            'settings' => $settings,
-            'categories' => $cats,
-            'logo' => $logo,
-            'footerColumns' => $footer_columns,
-            'footer_form_column' => $footer_form_column,
-            'user' => $user
-        ]);
+        $text = '<ul class="mr-5">';
+        foreach ($param as $child) {
+            $text .= '<li class="list-decimal list-inside"><span class="text-sm text-slate-500">' . $child['title'] . '</span></li>';
+            if (count($child['children']) > 0) {
+                $text .= $this->showChildren($child['children']);
+            }
+        }
+        $text .= "</ul>";
+        return $text;
     }
-
-    public function adminShow(category $category)
+    public function adminShow(Request $request)
     {
-        $logo = logo::first();
-        return view('admin.category.show', ['category' => $category, 'logo' => $logo]);
+        $category = category::find($request['id']);
+        $category['subCats'] = $this->showChildren($category->children);
+        $category->parent;
+        return response()->json($category);
     }
-
-    public function show(category $category)
+    public function edit(Request $request)
     {
-        $courses = course::all();
-        $products = product::where('category_id', $category->id)->get();
-        $products = $this->getProductMedias($products);
-        $cats = category::all();
-        $settings = settings::all();
-        $logo = logo::first();
-        $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
-        $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
-        $user = Auth::user();
-        return view('user.category.show', [
-            'courses' => $courses,
-            'products' => $products,
-            'categories' => $cats,
-            'settings' => $settings,
-            'category' => $category,
-            'logo' => $logo,
-            'footerColumns' => $footer_columns,
-            'footer_form_column' => $footer_form_column,
-            'user' => $user
-        ]);
+        $category = category::find($request['id']);
+        $categories = category::all();
+        return response()->json(['cat' => $category, 'cats' => $categories]);
     }
-
-    public function edit(category $category)
-    {
-        $cats = category::all();
-        $logo = logo::first();
-        return view('admin.category.edit', [
-            'cat' => $category,
-            'categories' => $cats,
-            'logo' => $logo
-        ]);
-    }
-
     public function update(Request $request)
     {
-        $category = category::find($request->category_id);
-        $category->title = $request->title;
-        $category->description = $request->description;
-        $category->parent_id = $request->parent_id;
-        if ($request['image']) {
-            $originalName = request()->image->getClientOriginalName();
-            $path = $request->file('image')->storeAs('images', time() . $originalName, 'public');
-            $category->image = 'storage/' . $path;
-        }
-        if (!$request['image']) {
+        $validated = $request->validate(
+            [
+                'title' => ['required'],
+            ],
+            [
+                'title.required' => 'پر کردن این فیلد الزامی است.'
+            ]
+        );
+        if (isset($request['removedImg'])) {
+            Storage::disk('public')->delete($request['removedImg']);
+            $category = category::where('image', $request['removedImg'])->first();
             $category->image = null;
+            $category->save();
         }
+        $category = category::find($request['cat_id']);
+        if (isset($request['image'])) {
+            if ($category['image']) {
+                Storage::disk('public')->delete($category['image']);
+            }
+            $img_path = $request->image->store('categoryImgs', 'public');
+        } else {
+            $img_path = $category['image'];
+        }
+        $name = $category->title;
+        $category->title = $request['title'];
+        $category->description = $request['description'];
+        $category->parent_id = $request['parent_id'];
+        $category->image = $img_path;
         $category->save();
-        return to_route('category-adminIndex');
+        return to_route('category.adminIndex')->with('message', 'دسته بندی ' . $name . ' به روزرسانی شد.');
     }
-
-    public function delete(category $category)
+    public function delete($id)
     {
-        $category->delete();
-        return to_route('category-adminIndex');
-    }
-
-    public function deleteAll(Request $request)
-    {
-        if (!isset($request->categories)) {
-            return redirect()->back();
-        }
-        foreach ($request->categories as $category_id) {
-            $category = category::find($category_id);
+        $category = category::find($id);
+        if ($category) {
+            if ($category['image']) {
+                Storage::disk('public')->delete($category['image']);
+            }
+            $name = $category['title'];
             $category->delete();
         }
-        return redirect()->back();
+        return to_route('category.adminIndex')->with('message', 'دسته بندی ' . $name . ' حذف شد.');
     }
+
+    // public function index()
+    // {
+    //     $courses = course::all();
+    //     $products = product::all();
+    //     $products = $this->getProductMedias($products);
+    //     $settings = settings::all();
+    //     $logo = logo::first();
+    //     $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
+    //     $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
+    //     $user = Auth::user();
+    //     $cats = category::all();
+    //     return view('user.category.index', [
+    //         'courses' => $courses,
+    //         'products' => $products,
+    //         'settings' => $settings,
+    //         'categories' => $cats,
+    //         'logo' => $logo,
+    //         'footerColumns' => $footer_columns,
+    //         'footer_form_column' => $footer_form_column,
+    //         'user' => $user
+    //     ]);
+    // }
+
+    // public function show(category $category)
+    // {
+    //     $courses = course::all();
+    //     $products = product::where('category_id', $category->id)->get();
+    //     $products = $this->getProductMedias($products);
+    //     $cats = category::all();
+    //     $settings = settings::all();
+    //     $logo = logo::first();
+    //     $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
+    //     $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
+    //     $user = Auth::user();
+    //     return view('user.category.show', [
+    //         'courses' => $courses,
+    //         'products' => $products,
+    //         'categories' => $cats,
+    //         'settings' => $settings,
+    //         'category' => $category,
+    //         'logo' => $logo,
+    //         'footerColumns' => $footer_columns,
+    //         'footer_form_column' => $footer_form_column,
+    //         'user' => $user
+    //     ]);
+    // }
+
+    // public function deleteAll(Request $request)
+    // {
+    //     if (!isset($request->categories)) {
+    //         return redirect()->back();
+    //     }
+    //     foreach ($request->categories as $category_id) {
+    //         $category = category::find($category_id);
+    //         $category->delete();
+    //     }
+    //     return redirect()->back();
+    // }
 }

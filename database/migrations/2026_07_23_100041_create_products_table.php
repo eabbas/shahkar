@@ -16,9 +16,10 @@ return new class extends Migration
             $table->string('title');
             $table->string('description')->nullable();
             $table->string('summary')->nullable();
-            $table->integer('category_id');
-            $table->string('brand')->nullable();
-            $table->tinyInteger('is_in_home')->nullable();
+            $table->integer('primary_price');
+            $table->integer('secondary_price')->nullable();
+            $table->integer('count');
+            $table->boolean('show_in_home')->default(false);
             $table->timestamps();
         });
     }

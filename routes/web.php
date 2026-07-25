@@ -35,6 +35,7 @@ use App\Http\Controllers\courseAnswerController;
 use App\Http\Controllers\lessonSuggestionController;
 use App\Http\Controllers\couresAnswerreactionController;
 use App\Http\Controllers\HeaderController;
+use App\Http\Controllers\IntroductionController;
 use App\Http\Controllers\lessonErrortitleController;
 use App\Http\Controllers\lessonErrorController;
 use App\Http\Controllers\LogoController;
@@ -48,16 +49,16 @@ Route::group([
     'as' => 'settings.',
     'middleware' => checkAdminMiddleware::class
 ], function () {
-    Route::group([
-        'prefix' => 'colors',
-        'controller' => SettingsController::class,
-        'as' => 'colors.'
-    ], function () {
-        Route::get('/create', 'createColor')->name('createColor');
-        Route::post('/update', 'upsertColor')->name('upsertColor');
-        Route::get('/show', 'showColors')->name('showColors');
-        Route::get('/delete', 'deleteColor')->name('deleteColor');
-    });
+    // Route::group([
+    //     'prefix' => 'colors',
+    //     'controller' => SettingsController::class,
+    //     'as' => 'colors.'
+    // ], function () {
+    //     Route::get('/create', 'createColor')->name('createColor');
+    //     Route::post('/update', 'upsertColor')->name('upsertColor');
+    //     Route::get('/show', 'showColors')->name('showColors');
+    //     Route::get('/delete', 'deleteColor')->name('deleteColor');
+    // });
     Route::group([
         'prefix' => 'header',
         'controller' => HeaderController::class,
@@ -83,7 +84,9 @@ Route::group([
         Route::post('/store', 'store')->name('store');
         Route::post('/edit', 'edit')->name('edit');
         Route::post('/update', 'update')->name('update');
-        Route::get('/delete/{id}', 'delete')->name('delete');
+        Route::get('/delete/{id}', 'delete')->missing(function () {
+            return to_route('missing');
+        })->name('delete');
     });
     Route::group([
         'prefix' => 'service',
@@ -95,38 +98,63 @@ Route::group([
         Route::post('/edit', 'edit')->name('edit');
         Route::post('/show', 'show')->name('show');
         Route::post('/update', 'update')->name('update');
-        Route::get('/delete/{id}', 'delete')->name('delete');
+        Route::get('/delete/{id}', 'delete')->missing(function () {
+            return to_route('missing');
+        })->name('delete');
+    });
+    Route::group([
+        'prefix' => 'introduction',
+        'controller' => IntroductionController::class,
+        'as' => 'introduction.'
+    ], function () {
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
     });
 });
 
-
-Route::post('/removeActivationCode', [UserController::class, 'removeActivationCode'])->name('removeActivationCode');
 // category routes
-Route::group(['prefix' => 'category', 'controller' => CategoryController::class, 'as' => 'category-', 'middleware' => checkAdminMiddleware::class], function () {
+Route::group([
+    'prefix' => 'category',
+    'controller' => CategoryController::class,
+    'as' => 'category.',
+    'middleware' => checkAdminMiddleware::class
+], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
     Route::get('/admin/list', 'adminIndex')->name('adminIndex');
-    Route::get('/list', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('index');
-    Route::get('/admin/show/{category}', 'adminShow')->missing(function () {
+    Route::post('/admin/show', 'adminShow')->missing(function () {
         return to_route('missing');
     })->name('adminShow');
-    Route::get('/show/{category}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->missing(function () {
-        return to_route('missing');
-    })->name('show');
-    Route::get('/edit/{category}', 'edit')->missing(function () {
+    Route::post('/edit/', 'edit')->missing(function () {
         return to_route('missing');
     })->name('edit');
     Route::post('/update', 'update')->name('update');
-    Route::get('/delete/{category}', 'delete')->missing(function () {
+    Route::get('/delete/{id}', 'delete')->missing(function () {
         return to_route('missing');
     })->name('delete');
-    Route::post('/admin/deleteAll', 'deleteAll')->name('deleteAll');
+
+
+    Route::get('/list', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('index');
+    // Route::get('/show/{category}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->missing(function () {
+    //     return to_route('missing');
+    // })->name('show');
+    // Route::post('/admin/deleteAll', 'deleteAll')->name('deleteAll');
 });
+
 // product routes
-Route::group(['prefix' => 'product', 'controller' => ProductController::class, 'as' => 'product-', 'middleware' => checkAdminMiddleware::class], function () {
+Route::group([
+    'prefix' => 'product',
+    'controller' => ProductController::class,
+    'as' => 'product.',
+    'middleware' => checkAdminMiddleware::class
+], function () {
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
     Route::get('/admin/list', 'adminIndex')->name('adminIndex');
+    Route::get('/delete/{id}', 'delete')->missing(function () {
+        return to_route('missing');
+    })->name('delete');
+
     Route::get('/list', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('index');
     Route::get('/admin/show/{product}', 'adminShow')->missing(function () {
         return to_route('missing');
@@ -138,27 +166,10 @@ Route::group(['prefix' => 'product', 'controller' => ProductController::class, '
         return to_route('missing');
     })->name('edit');
     Route::post('/update', 'update')->name('update');
-    Route::get('/delete/{product}', 'delete')->missing(function () {
-        return to_route('missing');
-    })->name('delete');
+
     Route::post('/admin/deleteAll', 'deleteAll')->name('deleteAll');
 });
-// menu routes
-Route::group(['prefix' => 'menu', 'controller' => MenuController::class, 'as' => 'menu-', 'middleware' => checkAdminMiddleware::class], function () {
-    Route::get('/create', 'create')->name('create');
-    Route::post('/store', 'store')->name('store');
-    Route::get('/list', 'index')->name('index');
-    Route::get('/show/{menu}', 'show')->missing(function () {
-        return to_route('missing');
-    })->name('show');
-    Route::get('/edit/{menu}', 'edit')->missing(function () {
-        return to_route('missing');
-    })->name('edit');
-    Route::post('/update', 'update')->name('update');
-    Route::get('/delete/{menu}', 'delete')->missing(function () {
-        return to_route('missing');
-    })->name('delete');
-});
+
 // user routes
 Route::group([
     'prefix' => 'user',
@@ -196,6 +207,26 @@ Route::group([
     Route::get('/forgetPassword', 'forgetPassword')->name('forgetPassword');
     Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
 });
+
+Route::post('/removeActivationCode', [UserController::class, 'removeActivationCode'])->name('removeActivationCode');
+
+// menu routes
+Route::group(['prefix' => 'menu', 'controller' => MenuController::class, 'as' => 'menu-', 'middleware' => checkAdminMiddleware::class], function () {
+    Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/list', 'index')->name('index');
+    Route::get('/show/{menu}', 'show')->missing(function () {
+        return to_route('missing');
+    })->name('show');
+    Route::get('/edit/{menu}', 'edit')->missing(function () {
+        return to_route('missing');
+    })->name('edit');
+    Route::post('/update', 'update')->name('update');
+    Route::get('/delete/{menu}', 'delete')->missing(function () {
+        return to_route('missing');
+    })->name('delete');
+});
+
 // comments routes
 Route::group([
     'prefix' => 'comment',

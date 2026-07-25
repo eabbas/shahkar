@@ -176,7 +176,7 @@
     <div id="editFormPopup" class="w-full h-dvh fixed top-0 left-0 invisible opacity-0 transition-all duration-400">
         <div class="size-full relative">
             <div class="size-full bg-black/40 absolute top-0 left-0 z-2" onclick="editForm('close')"></div>
-            <div class="w-8/12 max-h-130 overflow-auto mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 z-3"
+            <div class="w-8/12 2xl:container max-h-130 overflow-auto mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 z-3"
                 style="scrollbar-width: none">
                 <div class="relative">
                     <button
@@ -276,7 +276,7 @@
         <div class="size-full relative">
             <div class="size-full bg-black/40 absolute top-0 left-0 z-2" onclick="deleteService('close')"></div>
             <div
-                class="w-1/3 mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 z-3">
+                class="w-1/3 2xl:container mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 z-3">
                 <div class="relative">
                     <button
                         class="absolute -top-4 -left-4 z-4 size-6 flex flex-col justify-center items-center cursor-pointer"
@@ -302,7 +302,7 @@
         <div class="size-full relative">
             <div class="size-full bg-black/40 absolute top-0 left-0 z-2" onclick="show('close')"></div>
             <div
-                class="w-10/12 sm:w-8/12 mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 z-3">
+                class="w-10/12 sm:w-8/12 2xl:container mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 z-3">
                 <div class="relative">
                     <button
                         class="absolute -top-4 -left-4 z-4 size-6 flex flex-col justify-center items-center cursor-pointer"
@@ -478,7 +478,7 @@
             let confirmDeletePopup = document.getElementById('confirmDeletePopup')
             if (state == 'open') {
                 let yes = document.getElementById('yes')
-                yes.setAttribute('href', 'http://localhost/shahkar/public/settings/service/delete/' + id)
+                yes.setAttribute('href', `{{ url('settings/service/delete') }}/${id}`)
                 let confirmDeleteServiceName = document.getElementById('confirmDeleteServiceName')
                 confirmDeleteServiceName.innerText = serviceTitle
                 confirmDeletePopup.classList.remove('invisible', 'opacity-0')

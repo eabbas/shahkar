@@ -10,28 +10,21 @@ class product extends Model
         'title',
         'description',
         'summary',
-        'category_id',
-        'brand',
-        'is_in_home',
+        'primary_price',
+        'secondary_price',
+        'count',
+        'show_in_home',
     ];
-    public function category()
+    public function media()
     {
-        return $this->belongsTo(category::class);
+        return $this->hasMany(product_media::class);
     }
-    public function comments()
+    public function categories()
     {
-        return $this->hasMany(comment::class)->chaperone();
-    }
-    public function medias()
-    {
-        return $this->hasMany(media::class);
-    }
-    public function price()
-    {
-        return $this->hasOne(product_price::class);
+        return $this->belongsToMany(category::class, 'category_products');
     }
     public function attributes()
     {
-        return $this->hasMany(product_attributes::class)->chaperone();
+        return $this->hasMany(product_attributes::class);
     }
 }

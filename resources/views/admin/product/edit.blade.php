@@ -130,9 +130,9 @@
                         <div class="w-1/3">
 
                             <div class="w-full md:w-1/2 flex flex-row items-center gap-3">
-                                <label for="is_in_home">نمایش در خانه :</label>
-                                <input type="checkbox" value="1" name="is_in_home" id="is_in_home"
-                                    @if ($product['is_in_home']) checked @endif>
+                                <label for="show_in_home">نمایش در خانه :</label>
+                                <input type="checkbox" value="1" name="show_in_home" id="show_in_home"
+                                    @if ($product['show_in_home']) checked @endif>
                             </div>
                             <div class="flex flex-col mt-3 lg:mt-5">
                                 <label class="mb-2"> تعداد :</label>

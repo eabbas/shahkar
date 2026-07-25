@@ -11,7 +11,7 @@
             <div class="">
                 <ul class="flex items-center gap-5 lg:gap-10 text-white max-sm:hidden">
                     <li><a href="{{ route('home') }}">خانه</a></li>
-                    <li><a href="{{ route('product-index') }}">محصولات</a></li>
+                    <li><a href="{{ route('product.index') }}">محصولات</a></li>
                     <li><a href="{{ route('aboutus-index') }}">درباره ما</a></li>
                     <li><a href="{{ route('contactus-create') }}">تماس با ما</a></li>
                 </ul>

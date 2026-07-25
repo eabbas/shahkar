@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class product_attributes extends Model
+class product_media extends Model
 {
     protected $fillable = [
         'product_id',
-        'attribute_key',
-        'attribute_value',
+        'media_path',
+        'media_type',
+        'is_main',
     ];
 }

@@ -1,104 +1,95 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url('assets/css/style.css') }}" type="text/css">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <title>create product</title>
-    <style>
-        :root {
-            <?php
-            foreach ($settings as $setting) {
-                echo '--color-' . $setting->meta_key . ': ' . $setting->meta_value . ';';
-            }
-            ?>
-        }
-    </style>
-</head>
-
-<body>
-    @extends('admin.app.dashboard')
-    @section('content')
-        <div class="w-full h-full pb-10">
-            <h2 class="text-3xl text-center font-bold py-5 text-[#425A8B]">فرم ایجاد محصول</h2>
-            <div class="w-full mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white">
-                <form action="{{ route('product-store') }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="flex flex-col md:flex-row gap-3 md:gap-5">
-                        <div class="w-2/3">
-                            <div class="w-full flex flex-col">
-                                <label for="title" class="mb-2 flex flex-row items-center">
-                                    <span>نام محصول:</span>
-                                    <span class="text-rose-500">*</span>
-                                </label>
-                                <input type="text"
-                                    class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]" name="title"
-                                    id="title" placeholder="نام محصول را وارد کنید" required>
-                            </div>
-                            <div class="w-full flex flex-col mt-5">
-                                <label for="description" class="mb-2">توضیحات محصول:</label>
-                                <textarea name="description" class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]" rows="4"
-                                    id="description" placeholder="توضیحات محصول را وارد کنید"></textarea>
-                            </div>
-                            <div class="w-full flex flex-col mt-3 lg:mt-5">
-                                <label for="summary" class="mb-2">خلاصه محصول:</label>
-                                <input type="text"
-                                    class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]"
-                                    placeholder="خلاصه" name="summary" id="summary">
-                            </div>
-                            <div class="flex flex-row justify-between items-center gap-3 lg:gap-5 mt-3 lg:mt-5">
-                                <div class="w-full md:w-1/2 flex flex-col gap-3">
-                                    <label for="category_id">دسته بندی :</label>
-                                    <select name="category_id" id="categoroy_id"
-                                        class="w-full bg-[#F9F9F9] py-3 pr-5 rounded-[10px]">
-                                        {{-- <option value="0">بدون والد</option> --}}
-                                        @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->title }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="md:w-1/2 flex flex-col">
-                                    <label for="brand" class="mb-2"> برند محصول :</label>
-                                    <input type="text"
-                                        class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]"
-                                        placeholder="برند" name="brand" id="brand">
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div class="w-full flex flex-col items-center gap-5">
-                                    <div class=""></div>
-                                    <button type="button" onclick="add(this, 'size')"
-                                        class="p-2 text-sm rounded-md bg-[#1B84FF] hover:bg-[#056EE9] text-white cursor-pointer">
-                                        افزودن اندازه +
-                                    </button>
-                                </div>
-                                <div class="w-full flex flex-col items-center gap-5">
-                                    <div class=""></div>
-                                    <button type="button" onclick="add(this, 'material')"
-                                        class="p-2 text-sm rounded-md bg-[#1B84FF] hover:bg-[#056EE9] text-white cursor-pointer">
-                                        افزودن جنس +
-                                    </button>
-                                </div>
-                            </div>
-
+@extends('admin.app.dashboard')
+@section('title', 'شاهکار | ایجاد محصول')
+@section('content')
+    @if (session('message'))
+        <div
+            class="modal py-5 px-8 rounded-lg shadow-lg bg-slate-100 fixed top-10 right-10 z-5 flex justify-center items-center transition-all duration-300">
+            <span class="font-bold text-sm text-slate-500"> {{ session('message') }} </span>
+        </div>
+    @endif
+    <div class="w-full h-full pb-10">
+        <h2 class="text-3xl text-center font-bold py-5 text-[#425A8B]">فرم ایجاد محصول</h2>
+        <div class="w-full mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white">
+            <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="flex flex-col md:flex-row gap-3 md:gap-5">
+                    <div class="w-full md:w-2/3 space-y-8">
+                        <div class="w-full flex flex-col">
+                            <label for="title" class="mb-2 flex flex-row items-center">
+                                <span>نام محصول:</span>
+                                <span class="text-rose-500">*</span>
+                            </label>
+                            <input type="text" class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]"
+                                name="title" id="title" placeholder="نام محصول را وارد کنید"
+                                value="{{ old('title') }}">
+                            @error('title')
+                                <span class="text-xs text-red-500">{{ $message }}</span>
+                            @enderror
                         </div>
-                        <div class="w-1/3">
-
-                            <div class="w-full md:w-1/2 flex flex-row items-center gap-3">
-                                <label for="is_in_home">نمایش در خانه :</label>
-                                <input type="checkbox" value="1" name="is_in_home" id="is_in_home">
+                        <div class="w-full flex flex-col mt-5">
+                            <label for="description" class="mb-2">توضیحات محصول:</label>
+                            <textarea name="description" class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]" rows="4"
+                                id="description" placeholder="توضیحات محصول را وارد کنید">{{ old('description') }}</textarea>
+                            @error('description')
+                                <span class="text-xs text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="w-full flex flex-col mt-5">
+                            <label for="summary" class="mb-2">خلاصه محصول:</label>
+                            <textarea class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]" rows="4" placeholder="خلاصه"
+                                name="summary" id="summary">{{ old('summary') }}</textarea>
+                            @error('summary')
+                                <span class="text-xs text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="w-full flex flex-col gap-3 mt-5">
+                            <label for="category_ids" class="mb-2 flex flex-row items-center">
+                                <span>دسته بندی :</span>
+                                <span class="text-rose-500">*</span>
+                            </label>
+                            <select name="category_ids[]" id="category_ids"
+                                class="w-full bg-[#F9F9F9] py-3 pr-5 rounded-[10px]" multiple size="1">
+                                <option value="0" @if (in_array(0, old('category_ids', []))) selected @endif>بدون دسته </option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}" @if (in_array($category->id, old('category_ids', []))) selected @endif>
+                                        {{ $category->title }}</option>
+                                @endforeach
+                            </select>
+                            @error('category_ids')
+                                <span class="text-xs text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="w-full flex flex-col gap-5 mt-5">
+                            <div class=""></div>
+                            <button type="button" onclick="addAttribute(this)"
+                                class="w-30 mx-auto p-2 text-sm rounded-md bg-[#1B84FF] hover:bg-[#056EE9] text-white cursor-pointer">
+                                افزودن ویژگی +
+                            </button>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/3 space-y-8">
+                        <div class="w-full flex flex-col gap-6 mt-5">
+                            <div class="flex items-center gap-4">
+                                <label for="show_in_home">نمایش در خانه :</label>
+                                <label for="show_in_home"
+                                    class="w-[50px] h-[28px] flex rounded-full cursor-pointer relative">
+                                    <input type="checkbox" name="show_in_home" value="1" id="show_in_home" hidden
+                                        class="peer" @if (old('show_in_home')) checked @endif>
+                                    <span
+                                        class="size-full bg-gray-300 shadow-inner rounded-full peer-checked:bg-[#1B84FF] transition-all duration-300"></span>
+                                    <span
+                                        class="size-[20px] rounded-full bg-white absolute top-1 left-1 peer-checked:translate-x-[22px] transition-all duration-300 shadow-md"></span>
+                                </label>
                             </div>
-                            <div class="flex flex-col mt-3 lg:mt-5">
+                            <div class="flex items-center gap-4">
                                 <label class="mb-2"> تعداد :</label>
                                 <div class="flex">
                                     <div class="bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4] flex flex-row items-center">
                                         <button type="button"
                                             class="inline-block size-7 rounded-lg bg-[#1B84FF] hover:bg-[#056EE9] cursor-pointer text-white"
                                             onclick="calculate('+')">+</button>
-                                        <input type="number" min="1" value="1"
-                                            class="outline-none w-14 text-center text-xs" name="quantity" id="quantity"
+                                        <input type="number" min="1" value="{{ old('count', 1) }}"
+                                            class="outline-none w-14 text-center text-xs" name="count" id="count"
                                             dir="ltr">
                                         <button type="button"
                                             class="inline-block size-7 rounded-lg bg-[#1B84FF] hover:bg-[#056EE9] cursor-pointer text-white"
@@ -106,46 +97,54 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="w-full mt-3 lg:mt-5 flex flex-col">
-                                <label for="mainImage" class="mb-2">عکس اصلی:</label>
-                                <input type="file"
-                                    class="w-full outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]"
-                                    name="mainImage" id="mainImage">
+                        </div>
+                        <div class="w-full mt-3 lg:mt-5 flex flex-col">
+                            <label for="mainImage" class="mb-2">عکس اصلی:</label>
+                            <input type="file"
+                                class="w-full outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]"
+                                name="mainImage" id="mainImage">
+                        </div>
+                        <div class="w-full mt-3 lg:mt-5 flex flex-col">
+                            <label for="gallery" class="mb-2">گالری تصاویر :</label>
+                            <input type="file"
+                                class="w-full outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]"
+                                name="gallery[]" id="gallery" multiple>
+                        </div>
+                        <div class="w-full flex flex-col gap-3 md:gap-5 mt-3 lg:mt-5">
+                            <div class="w-full flex flex-col gap-3">
+                                <label for="primary_price"> قیمت اصلی :
+                                    <span class="text-rose-500">*</span>
+                                </label>
+                                <input type="number"
+                                    class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]"
+                                    name="primary_price" id="primary_price" value="{{ old('primary_price') }}">
+                                @error('primary_price')
+                                    <span class="text-xs text-red-500">{{ $message }}</span>
+                                @enderror
                             </div>
-                            <div class="w-full mt-3 lg:mt-5 flex flex-col">
-                                <label for="gallery" class="mb-2">گالری تصاویر :</label>
-                                <input type="file"
-                                    class="w-full outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]"
-                                    name="gallery[]" id="gallery" multiple>
-                            </div>
-                            <div class="w-full flex flex-col gap-3 md:gap-5 mt-3 lg:mt-5">
-                                <div class="w-full flex flex-col gap-3">
-                                    <label for="price"> قیمت اصلی :
-                                        <span class="text-rose-500">*</span>
-                                    </label>
-                                    <input type="number"
-                                        class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]"
-                                        name="price" id="price" required>
-                                </div>
-                                <div class="w-full flex flex-col gap-3">
-                                    <label for="discount"> قیمت ویژه :</label>
-                                    <input type="number"
-                                        class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]"
-                                        name="discount" id="discount">
-                                </div>
-
-                            </div>
-                            <div class="mt-5 text-center">
-                                <button type="submit"
-                                    class="py-3 px-10 rounded-[10px] bg-[#1B84FF] hover:bg-[#056EE9] text-white cursor-pointer">ثبت</button>
+                            <div class="w-full flex flex-col gap-3">
+                                <label for="secondary_price"> قیمت ویژه :</label>
+                                <input type="number"
+                                    class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]"
+                                    name="secondary_price" id="secondary_price" value="{{ old('secondary_price') }}">
                             </div>
                         </div>
+                        <div class="mt-5 text-center">
+                            <button type="submit"
+                                class="py-3 px-10 rounded-[10px] bg-[#1B84FF] hover:bg-[#056EE9] text-white cursor-pointer">ثبت</button>
+                        </div>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
-        <script src="{{ url('assets/js/attribute.js') }}"></script>
-    @endsection
-</body>
-
-</html>
+    </div>
+    <script>
+        let modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => {
+            setTimeout(() => {
+                modal.classList.add('opacity-0', 'invisible')
+            }, 3000)
+        })
+    </script>
+    <script src="{{ url('assets/js/attribute.js') }}"></script>
+@endsection

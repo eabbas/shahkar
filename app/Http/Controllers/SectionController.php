@@ -32,8 +32,11 @@ class SectionController extends Controller
     public function delete($id)
     {
         $section = section::find($id);
-        $name = $section['name'];
-        $section->delete();
+        $name = '';
+        if ($section) {
+            $name = $section['name'];
+            $section->delete();
+        }
         return to_route('settings.section.index')->with('message', 'سکشن ' . $name . ' حذف شد.');
         // در آینده باید واسط هاشو هم پاک کنم حواسم باشه
     }
