@@ -72,7 +72,7 @@
                     </a>
                 </li>
                 <li class="group">
-                    <a href="{{ route('product-index') }}"
+                    <a href="{{ route('product.index') }}"
                         class="flex items-center gap-2 font-bold text-sm text-[var(--light-theme-text-color)]">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -124,8 +124,7 @@
                             </g>
                             <defs>
                                 <clipPath id="clip0_683_2259">
-                                    <rect width="24" height="24" fill="white"
-                                        transform="translate(0.0253906)">
+                                    <rect width="24" height="24" fill="white" transform="translate(0.0253906)">
                                     </rect>
                                 </clipPath>
                             </defs>

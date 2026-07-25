@@ -143,6 +143,76 @@
                         </ul>
                     </div>
                 </div>
+                <div class="border-b border-gray-500 pb-3">
+                    <div
+                        class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md @if (Route::is('product.*')) bg-[#383c4d] @endif">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                            class="size-6 fill-white w-[15px] transition-all duration-300 @if (Route::is('product.*')) rotate-180 @endif">
+                            <path fill-rule="evenodd"
+                                d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <div class="flex flex-row-reverse items-center gap-2 text-white">
+                            <span class="flex justify-end">محصولات</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="size-5 fill-white">
+                                <path
+                                    d="M0 185.8c0-6.4 1.6-12.7 4.7-18.3L82.4 25C90.8 9.6 106.9 0 124.5 0h391c17.6 0 33.7 9.6 42.1 25l77.7 142.4c3.1 5.6 4.7 11.9 4.7 18.3c0 21.1-17.1 38.2-38.2 38.2H576V488c0 13.3-10.7 24-24 24s-24-10.7-24-24V224H384V472c0 22.1-17.9 40-40 40H104c-22.1 0-40-17.9-40-40V224H38.2C17.1 224 0 206.9 0 185.8zM112 224v96H336V224H112zM515.5 48l-391 0L54.7 176H585.3L515.5 48zM112 464H336V368H112v96z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="overflow-y-auto transition-all duration-300 @if (Route::is('product.*')) max-h-100 @else max-h-0 @endif"
+                        style="scrollbar-width: none;">
+                        <ul class="gap-2.5 pr-3">
+                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                <span class="size-1 bg-white rounded-sm"></span>
+                                <a href="{{ route('product.create') }}"
+                                    class="py-1 @if (Route::is('product.create')) text-[#FF0000] @endif">ایجاد محصول
+                                    جدید</a>
+                            </li>
+                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                <span class="size-1 bg-white rounded-sm"></span>
+                                <a href="{{ route('product.adminIndex') }}"
+                                    class="py-1 @if (Route::is('product.adminIndex')) text-[#FF0000] @endif">لیست
+                                    محصولات</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                {{-- <div class="border-b border-gray-500 pb-3">
+                    <div
+                        class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md @if (Route::is('user.*')) bg-[#383c4d] @endif">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                            class="size-6 fill-white w-[15px] transition-all duration-300 @if (Route::is('user.*')) rotate-180 @endif">
+                            <path fill-rule="evenodd"
+                                d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <div class="flex flex-row-reverse items-center gap-2 text-white">
+                            <span class="flex justify-end">کاربران</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="size-5 fill-white">
+                                <path
+                                    d="M224 48a80 80 0 1 1 0 160 80 80 0 1 1 0-160zm0 208A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 96h91.4c65.7 0 120.1 48.7 129 112H49.3c8.9-63.3 63.3-112 129-112zm0-48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3zm431 208c17 0 30.7-13.8 30.7-30.7C640 392.2 567.8 320 478.7 320H417.3c-4.4 0-8.8 .2-13.2 .5c46.4 38.6 75.9 96.7 75.9 161.8c0 10.8-2.8 20.9-7.6 29.7H609.3zM432 256c61.9 0 112-50.1 112-112s-50.1-112-112-112c-24.8 0-47.7 8.1-66.3 21.7C377.4 75.9 384 101.2 384 128c0 35.6-11.6 68.5-31.3 95.1C373 243.4 401 256 432 256z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="overflow-y-auto transition-all duration-300 @if (Route::is('user.*')) max-h-100 @else max-h-0 @endif"
+                        style="scrollbar-width: none;">
+                        <ul class="gap-2.5 pr-3">
+                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                <span class="size-1 bg-white rounded-sm"></span>
+                                <a href="{{ route('category.create') }}"
+                                    class="py-1 @if (Route::is('category.create')) text-[#FF0000] @endif">ایجاد کاربر
+                                    جدید</a>
+                            </li>
+                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                <span class="size-1 bg-white rounded-sm"></span>
+                                <a href="{{ route('category.adminIndex') }}"
+                                    class="py-1 @if (Route::is('category.adminIndex')) text-[#FF0000] @endif">لیست
+                                    کاربران</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div> --}}
             </div>
         </div>
         <!-- responsive menu -->
@@ -278,6 +348,78 @@
                             </ul>
                         </div>
                     </div>
+                    <div class="border-b border-gray-500 pb-3">
+                        <div
+                            class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md @if (Route::is('product.*')) bg-[#383c4d] @endif">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="size-6 fill-white w-[15px] transition-all duration-300 @if (Route::is('product.*')) rotate-180 @endif">
+                                <path fill-rule="evenodd"
+                                    d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <div class="flex flex-row-reverse items-center gap-2 text-white">
+                                <span class="flex justify-end">محصولات</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"
+                                    class="size-5 fill-white">
+                                    <path
+                                        d="M0 185.8c0-6.4 1.6-12.7 4.7-18.3L82.4 25C90.8 9.6 106.9 0 124.5 0h391c17.6 0 33.7 9.6 42.1 25l77.7 142.4c3.1 5.6 4.7 11.9 4.7 18.3c0 21.1-17.1 38.2-38.2 38.2H576V488c0 13.3-10.7 24-24 24s-24-10.7-24-24V224H384V472c0 22.1-17.9 40-40 40H104c-22.1 0-40-17.9-40-40V224H38.2C17.1 224 0 206.9 0 185.8zM112 224v96H336V224H112zM515.5 48l-391 0L54.7 176H585.3L515.5 48zM112 464H336V368H112v96z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="overflow-y-auto transition-all duration-300 @if (Route::is('product.*')) max-h-100 @else max-h-0 @endif"
+                            style="scrollbar-width: none;">
+                            <ul class="gap-2.5 pr-3">
+                                <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                    <span class="size-1 bg-white rounded-sm"></span>
+                                    <a href="{{ route('product.create') }}"
+                                        class="py-1 @if (Route::is('product.create')) text-[#FF0000] @endif">ایجاد
+                                        محصول جدید</a>
+                                </li>
+                                <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                    <span class="size-1 bg-white rounded-sm"></span>
+                                    <a href="{{ route('product.adminIndex') }}"
+                                        class="py-1 @if (Route::is('product.adminIndex')) text-[#FF0000] @endif">لیست
+                                        محصولات</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    {{-- <div class="border-b border-gray-500 pb-3">
+                        <div
+                            class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md @if (Route::is('user.*')) bg-[#383c4d] @endif">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="size-6 fill-white w-[15px] transition-all duration-300 @if (Route::is('user.*')) rotate-180 @endif">
+                                <path fill-rule="evenodd"
+                                    d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <div class="flex flex-row-reverse items-center gap-2 text-white">
+                                <span class="flex justify-end">کاربران</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"
+                                    class="size-5 fill-white">
+                                    <path
+                                        d="M224 48a80 80 0 1 1 0 160 80 80 0 1 1 0-160zm0 208A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 96h91.4c65.7 0 120.1 48.7 129 112H49.3c8.9-63.3 63.3-112 129-112zm0-48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3zm431 208c17 0 30.7-13.8 30.7-30.7C640 392.2 567.8 320 478.7 320H417.3c-4.4 0-8.8 .2-13.2 .5c46.4 38.6 75.9 96.7 75.9 161.8c0 10.8-2.8 20.9-7.6 29.7H609.3zM432 256c61.9 0 112-50.1 112-112s-50.1-112-112-112c-24.8 0-47.7 8.1-66.3 21.7C377.4 75.9 384 101.2 384 128c0 35.6-11.6 68.5-31.3 95.1C373 243.4 401 256 432 256z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="overflow-y-auto transition-all duration-300 @if (Route::is('user.*')) max-h-100 @else max-h-0 @endif"
+                            style="scrollbar-width: none;">
+                            <ul class="gap-2.5 pr-3">
+                                <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                    <span class="size-1 bg-white rounded-sm"></span>
+                                    <a href="{{ route('category.create') }}"
+                                        class="py-1 @if (Route::is('category.create')) text-[#FF0000] @endif">ایجاد
+                                        کاربر جدید</a>
+                                </li>
+                                <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                    <span class="size-1 bg-white rounded-sm"></span>
+                                    <a href="{{ route('category.adminIndex') }}"
+                                        class="py-1 @if (Route::is('category.adminIndex')) text-[#FF0000] @endif">لیست
+                                        کاربران</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="w-1/3 md:w-7/12 bg-black/50" onclick="responsive_menu('close')"></div>
