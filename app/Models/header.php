@@ -8,6 +8,7 @@ class header extends Model
 {
     protected $fillable = [
         'img',
+        'mobileImg',
         'title',
         'subTitle',
         'rightBtnText',

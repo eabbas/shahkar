@@ -100,7 +100,7 @@
                         <div class="w-full flex items-center gap-10">
                             <div class="w-1/3 mt-5">
                                 <label for="img" class="mb-2 flex flex-row items-center">
-                                    <span>تصویر هدر :</span>
+                                    <span>تصویر هدر سایز دسکتاپ:</span>
                                     <span class="text-rose-500">*</span>
                                 </label>
                                 <input type="file"
@@ -110,8 +110,28 @@
                                     <span class="text-xs text-red-500">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <img id="image" src="{{ old('img', asset('storage/' . $header?->img)) }}" alt=""
-                                class="h-70 w-2/3 mt-10 @if (!$header) hidden @endif">
+                            @if ($header)
+                                <img id="image" src="{{ old('img', asset('storage/' . $header->img)) }}" alt=""
+                                    class="h-70 w-2/3 mt-10">
+                            @endif
+                        </div>
+                        <div class="w-full flex items-center gap-10">
+                            <div class="w-1/3 mt-5">
+                                <label for="mobileImg" class="mb-2 flex flex-row items-center">
+                                    <span>تصویر هدر سایز موبایل</span>
+                                    <span class="text-rose-500">*</span>
+                                </label>
+                                <input type="file"
+                                    class="w-full outline-none pr-5 py-3 bg-[#F9F9F9] border border-slate-300 rounded-xl focus:bg-[#f1f1f4]"
+                                    name="mobileImg" id="mobileImg">
+                                @error('mobileImg')
+                                    <span class="text-xs text-red-500">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            @if ($header)
+                                <img id="image" src="{{ old('mobileImg', asset('storage/' . $header->mobileImg)) }}"
+                                    alt="" class="h-70 w-2/3 mt-10">
+                            @endif
                         </div>
                     </div>
                     <button type="submit"

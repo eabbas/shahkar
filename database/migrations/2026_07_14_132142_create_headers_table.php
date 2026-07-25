@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('headers', function (Blueprint $table) {
             $table->id();
             $table->string('img');
+            $table->string('mobileImg');
             $table->string('title');
             $table->string('subTitle');
             $table->string('rightBtnText');

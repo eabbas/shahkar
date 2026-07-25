@@ -110,7 +110,7 @@
 </style>
 
 <body class="max-w-[1700px] bg-[var(--background)] mx-auto">
-    <header class="w-full lg:h-dvh flex flex-col items-cener">
+    <header class="w-full lg:h-dvh flex flex-col items-center">
         <!-- menu -->
         <section class="w-full flex justify-center items-center fixed top-3 right-0 z-2">
             <div class="w-11/12 py-3 flex justify-between bg-[var(--background)] items-center px-3 rounded-2xl">
@@ -125,16 +125,18 @@
                     <!-- hamburger_menu_svg -->
                 </div>
                 <div
-                    class="max-lg:w-1/3 lg:w-1/5 h-full flex lg:items-center justify-center max-lg:justify-center justify-start cursor-pointer">
-                    <img src="{{ asset('assets/img/logo.png') }}" alt=""
-                        class="object-fit lg:w-10/24 w-6/12 h-full">
+                    class="max-lg:w-1/3 lg:w-1/5 h-full flex lg:items-center max-lg:justify-center justify-start cursor-pointer">
+                    @if ($logo)
+                        <img src="{{ asset('storage/' . $logo->logo) }}" alt=""
+                            class="object-fit lg:w-10/24 w-6/12 h-full">
+                    @endif
                 </div>
                 <div class="lg:w-9/12 w-1/3 h-8/12 flex lg:justify-between justify-end items-end">
                     <ul
                         class="h-9/12 h-full flex items-center xl:gap-10 lg:gap-6 gap-8 xl:text-md lg:text-sm font-bold max-lg:hidden">
 
                         <li>
-                            <a href="" class="flex justify-center items-center py-3 relative">
+                            <a href="{{ route('home') }}" class="flex justify-center items-center py-3 relative">
                                 <sapn class="transition_root text-nowrap font-bold text-[var(--gold)]">صفحه اصلی</sapn>
                                 <div
                                     class="w-full absolute bottom-0 right-auto left-auto  oveflow-hidden flex justify-center items-center transition_root">
@@ -279,19 +281,41 @@
                         </li>
 
                     </ul>
-                    <a href="{{ route('user.login') }}"
-                        class="xl:px-7 sm:px-5 px-3 sm:py-2 py-2 rounded-xl flex gap-2 justify-center items-center gradient_box1">
-
-                        <div>
+                    @if (Auth::check())
+                        <div class="px-3 py-2 rounded-xl relative gradient_box1 group">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                                class="sm:size-4 size-2 fill-white">
+                                class="sm:size-4 size-2 fill-white cursor-pointer">
                                 <path
                                     d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z" />
                             </svg>
+                            <div
+                                class="absolute top-10 left-0 rounded-xl invisible opacity-0 transition-all duration-300 group-hover:visible group-hover:opacity-100">
+                                <ul class="space-y-4 p-4 text-center rounded-xl gradient_box1">
+                                    <li class="w-full text-nowrap font-bold text-slate-800 rounded-xl">
+                                        {{ Auth::user()['name'] }} {{ Auth::user()['family'] }}</li>
+                                    @if (Auth::user()::isAdmin())
+                                        <li class="w-full text-nowrap font-bold text-slate-800 rounded-xl"><a
+                                                href="{{ route('dashboard') }}">پنل ادمین</a>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </div>
                         </div>
-                        <span class="lg:text-md sm:text-sm text-[12px] text-white">ورود / ثبت نام</span>
+                    @else
+                        <a href="{{ route('user.login') }}"
+                            class="xl:px-7 sm:px-5 px-3 sm:py-2 py-2 rounded-xl flex gap-2 justify-center items-center gradient_box1">
 
-                    </a>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                    class="sm:size-4 size-2 fill-white">
+                                    <path
+                                        d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z" />
+                                </svg>
+                            </div>
+                            <span class="lg:text-md sm:text-sm text-[12px] text-white">ورود / ثبت نام</span>
+
+                        </a>
+                    @endif
                 </div>
             </div>
 
@@ -301,7 +325,7 @@
                 <div class="w-full h-full bg-black/40 absolute top-0 right-0 invisible opacity-0  transition_root delay-190"
                     onclick="hamburger_menu('close') " id="close_hamburger_document"></div>
                 <div
-                    class="md:w-6/12 sm:w-7/12 w-11/12 max-h-full min-h-full overflow-y-auto bg-[var(--background-2)] rounded-l-4xl flex flex-col gap-5  justify-between pt-9 relative pb-5 overflow-y-auto [&::-webkit-scrollbar]:w-2  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
+                    class="md:w-6/12 sm:w-7/12 w-11/12 max-h-full min-h-full bg-[var(--background-2)] rounded-l-4xl flex flex-col gap-5  justify-between pt-9 relative pb-5 overflow-y-auto [&::-webkit-scrollbar]:w-2  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
                     <div class="w-full flex flex-col gap-5">
                         <div class="absolute top-9 right-6" onclick="hamburger_menu('close')">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"
@@ -547,65 +571,64 @@
         <section
             class="w-full xl:h-10/12 lg:h-full flex flex-col gap-2 items-center lg:items-start justify-between xl:mt-25  mt-23 relative">
             <div class="w-full h-full relative flex flex-col gap-3 justify-center items-center">
-                <img src="{{ asset('assets/img/background_sub_heder.jpg') }}" alt=""
-                    class="bg-center min-w-full lg:max-h-full lg:min-h-full max-lg:hidden">
-                <img src="{{ asset('assets/img/background_sub_heder_mobile.jpg') }}" alt=""
-                    class="w-full lg:hidden max-lg:order-1">
+                @if ($header)
+                    <img src="{{ asset('storage/' . $header->img) }}" alt=""
+                        class="bg-center min-w-full lg:max-h-full lg:min-h-full max-lg:hidden">
+                    <img src="{{ asset('storage/' . $header->mobileImg) }}" alt=""
+                        class="w-full lg:hidden max-lg:order-1">
 
-                {{-- item --}}
-                <div
-                    class="lg:w-23/24 w-11/12 lg:h-full max-lg:py-1.5 flex flex-col items-end justify-center py-5 lg:absolute lg:top-0 lg:right-0  max-lg:order-2 max-lg:mx-auto">
-                    <div class="lg:w-4/12 w-full h-2/3 flex flex-col gap-7 justify-center items-center">
-                        <div
-                            class="xl:text-5xl sm:text-4xl text-4xl text-white font-bold flex flex-col sm:gap-8 gap-4 justify-center items-center">
-                            <h2>چاپ حرفه‌ای</h2>
-                            <h2>برای <span class="text-[var(--gold)]">برندهای</span> خاص</h2>
-                        </div>
-                        <div
-                            class="xl:text-lg lg:text-xs sm:text-lg text-sm text-[var(--text-secondary)] flex flex-col justify-center items-center">
-                            <p>ز کارت ویزیت تا بیلبوردهای شهری،</p>
-                            <p>با جدیدترین تکنولوژی روز دنیا، کیفیتی بی‌رقیب را تجربه کنید.</p>
-                        </div>
-                        <!-- bottoms -->
-                        <div
-                            class="lg:w-full sm:w-9/12 w-full flex max-sm:flex-col gap-5 items-center justify-end py-5 ">
-                            <a href="#"
-                                class="sm:w-1/2 w-full py-3 flex gap-3 justify-center items-center rounded-2xl gradient_box1 gradient_box1_hover_chang border-2 border-[var(--gold)] transition_root">
-                                <div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                        class="xl:size-5 size-4" fill="white">
-                                        <path
-                                            d="M16 0H0V32H16 67.2l77.2 339.5 2.8 12.5H160 496h16V352H496 172.8l-14.5-64H496L566 64l10-32H542.5 100L95.6 12.5 92.8 0H80 16zm91.3 64H532.5l-60 192H151L107.3 64zM184 432a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm0 80a56 56 0 1 0 0-112 56 56 0 1 0 0 112zm248-56a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm80 0a56 56 0 1 0 -112 0 56 56 0 1 0 112 0z">
-                                        </path>
-                                    </svg>
-                                </div>
-                                <span class="xl:text-md text-sm text-white font-bold">سفارش آنلاین</span>
-                            </a>
-                            <a href="#"
-                                class="sm:w-1/2 w-full py-3 flex gap-3 justify-center items-center rounded-2xl border-2 border-[var(--gold)] rezume_gradient transition_root">
-                                <span class="xl:text-md sm:text-sm text-sm font-bold text-white">مشاهده نمونه کار
-                                    ها</span>
-                                <div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                                        class="xl:size-5 size-4 fill-white rotate-180">
-                                        <path
-                                            d="M440.6 273.4c4.7-4.5 7.4-10.8 7.4-17.4s-2.7-12.8-7.4-17.4l-176-168c-9.6-9.2-24.8-8.8-33.9 .8s-8.8 24.8 .8 33.9L364.1 232 24 232c-13.3 0-24 10.7-24 24s10.7 24 24 24l340.1 0L231.4 406.6c-9.6 9.2-9.9 24.3-.8 33.9s24.3 9.9 33.9 .8l176-168z">
-                                        </path>
-                                    </svg>
-                                </div>
-                            </a>
+                    {{-- item --}}
+                    <div
+                        class="lg:w-23/24 w-11/12 lg:h-full max-lg:py-1.5 flex flex-col items-end justify-center py-5 lg:absolute lg:top-0 lg:right-0  max-lg:order-2 max-lg:mx-auto">
+                        <div class="lg:w-4/12 w-full h-2/3 flex flex-col gap-7 justify-center items-center">
+                            <div
+                                class="xl:text-5xl sm:text-4xl text-4xl text-white font-bold flex flex-col sm:gap-8 gap-4 justify-center items-center">
+                                <h2>
+                                    {{ $header->title }}
+                                    <span class="text-[var(--gold)]"></span>
+                                </h2>
+                            </div>
+                            <div
+                                class="xl:text-lg lg:text-xs sm:text-lg text-sm text-[var(--text-secondary)] flex flex-col justify-center items-center">
+                                <p>{{ $header->subTitle }}</p>
+                            </div>
+                            <!-- bottoms -->
+                            <div
+                                class="lg:w-full sm:w-9/12 w-full flex max-sm:flex-col gap-5 items-center justify-end py-5 ">
+                                <a href="{{ $header->rightBtnLink }}"
+                                    class="sm:w-1/2 w-full py-3 flex gap-3 justify-center items-center rounded-2xl gradient_box1 gradient_box1_hover_chang border-2 border-[var(--gold)] transition_root">
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                                            class="xl:size-5 size-4" fill="white">
+                                            <path
+                                                d="M16 0H0V32H16 67.2l77.2 339.5 2.8 12.5H160 496h16V352H496 172.8l-14.5-64H496L566 64l10-32H542.5 100L95.6 12.5 92.8 0H80 16zm91.3 64H532.5l-60 192H151L107.3 64zM184 432a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm0 80a56 56 0 1 0 0-112 56 56 0 1 0 0 112zm248-56a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm80 0a56 56 0 1 0 -112 0 56 56 0 1 0 112 0z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <span
+                                        class="xl:text-md text-sm text-white font-bold">{{ $header->rightBtnText }}</span>
+                                </a>
+                                <a href="{{ $header->leftBtnLink }}"
+                                    class="sm:w-1/2 w-full py-3 flex gap-3 justify-center items-center rounded-2xl border-2 border-[var(--gold)] rezume_gradient transition_root">
+                                    <span
+                                        class="xl:text-md sm:text-sm text-sm font-bold text-white">{{ $header->leftBtnText }}</span>
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                            class="xl:size-5 size-4 fill-white rotate-180">
+                                            <path
+                                                d="M440.6 273.4c4.7-4.5 7.4-10.8 7.4-17.4s-2.7-12.8-7.4-17.4l-176-168c-9.6-9.2-24.8-8.8-33.9 .8s-8.8 24.8 .8 33.9L364.1 232 24 232c-13.3 0-24 10.7-24 24s10.7 24 24 24l340.1 0L231.4 406.6c-9.6 9.2-9.9 24.3-.8 33.9s24.3 9.9 33.9 .8l176-168z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                </a>
 
+                            </div>
+                            <!-- bottoms -->
                         </div>
-                        <!-- bottoms -->
                     </div>
-                </div>
-                {{-- item --}}
+                    {{-- item --}}
+                @endif
             </div>
-
-
-
-
-
 
         </section>
 
@@ -616,10 +639,6 @@
         <section class="w-full h-full flex items-center justify-center">
             <div class="w-11/12 h-full flex flex-col gap-8 items-center justify-center">
                 <div class="w-full flex flex-col gap-3 items-center justify-center">
-                    <!-- <div class="flex gap-0.5 items-center justify-center">
-                    <span class="w-10 h-1 bg-[#B84C75] rounded-full" style="background:linear-gradient(91deg,rgba(185, 1, 112, 1) 1%, rgba(54, 4, 130, 1) 38%, rgba(255, 255, 255, 1) 91%);"></span>
-                    <span class="size-2 rounded-full bg-[#FDB448]"></span>
-                </div> -->
                     <h3 class="xl:text-4xl lg:text-2xl text-xl text-white font-bold">محصولات و خدمات ما</h3>
                     <div class="flex gap-0.5 items-center justify-center">
                         <span class="size-1 rounded-full bg-[var(--gold)]"></span>
@@ -628,38 +647,41 @@
                 </div>
                 <div
                     class="w-full grid lg:grid-cols-6 lg:grid-rows-1 sm:grid-cols-2 sm:grid-rows-3 grid-cols-1 gird-rows-6  xl:gap-4 gap-4 items-center justify-center sm:justify-between">
-                    <div
-                        class="w-full h-full border-1 relative border-[var(--gold)] bg-[#181819] rounded-2xl flex lg:flex-col items-center justify-between scale transition_root">
-                        <div class="lg:w-full w-1/2 lg:h-7/12 h-full">
-                            <img src="{{ asset('assets/img/kart_servis.jpg') }}" alt=""
-                                class="object-fit w-full xl:h-50 lg:h-40 md:h-45 sm:h-39 h-40  lg:rounded-t-2xl rounded-2xl">
-                        </div>
+                    @foreach ($services as $service)
                         <div
-                            class="lg:w-full lg:h-5/12 max-lg:hidden bg-black/60 blur-[5px]  absolute bottom-0 left-0 rounded-b-2xl -z-0">
-                        </div>
-                        <div
-                            class="lg:w-full w-1/2 h-full  text-white  rounded-b-2xl relative flex flex-col max-lg:gap-5 justify-end">
-                            <div class="w-full lg:absolute lg:-top-10 lg:right-0 flex justify-center items-center">
-                                <div
-                                    class="lg:w-2/3 w-11/12 sm:pb-4 pb-2 sm:pt-2 pt-1 rounded-xl bg-[var(--background-2)] flex flex-col gap-1 items-center justify-center">
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                                            class="xl:xl:size-13 lg:size-9 size-7 lg:size-8 size-11">
+                            class="w-full h-full border-1 relative border-[var(--gold)] bg-[#181819] rounded-2xl flex lg:flex-col items-center justify-between scale transition_root">
+                            <div class="lg:w-full w-1/2 lg:h-7/12 h-full">
+                                <img src="{{ asset('storage/' . $service->img) }}" alt=""
+                                    class="object-fit w-full xl:h-50 lg:h-40 md:h-45 sm:h-39 h-40  lg:rounded-t-2xl rounded-2xl">
+                            </div>
+                            <div
+                                class="lg:w-full lg:h-5/12 max-lg:hidden bg-black/60 blur-[5px]  absolute bottom-0 left-0 rounded-b-2xl -z-0">
+                            </div>
+                            <div
+                                class="lg:w-full w-1/2 h-full  text-white  rounded-b-2xl relative flex flex-col max-lg:gap-5 justify-end">
+                                <div class="w-full lg:absolute lg:-top-10 lg:right-0 flex justify-center items-center">
+                                    <div
+                                        class="lg:w-2/3 w-11/12 sm:pb-4 pb-2 sm:pt-2 pt-1 rounded-xl bg-[var(--background-2)] flex flex-col gap-1 items-center justify-center">
+                                        <div>
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                                                class="size-12">
 
-                                            <g fill="none" stroke="#D4A23A" stroke-width="10"
-                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <g fill="none" stroke="#D4A23A" stroke-width="10"
+                                                    stroke-linecap="round" stroke-linejoin="round">
 
-                                                <!-- Outer Card -->
-                                                <rect x="90" y="110" width="332" height="220" rx="10" />
+                                                    <!-- Outer Card -->
+                                                    <rect x="90" y="110" width="332" height="220"
+                                                        rx="10" />
 
-                                                <!-- Inner Border -->
-                                                <rect x="120" y="140" width="272" height="160" rx="2" />
+                                                    <!-- Inner Border -->
+                                                    <rect x="120" y="140" width="272" height="160"
+                                                        rx="2" />
 
-                                                <!-- Top Right Circle -->
-                                                <circle cx="340" cy="175" r="18" />
+                                                    <!-- Top Right Circle -->
+                                                    <circle cx="340" cy="175" r="18" />
 
-                                                <!-- Logo -->
-                                                <path d="
+                                                    <!-- Logo -->
+                                                    <path d="
                                             M165 235
                                             L165 205
                                             Q165 180 188 180
@@ -673,351 +695,27 @@
                                             L165 245
                                             Z" />
 
-                                                <!-- Text Line -->
-                                                <line x1="220" y1="225" x2="305" y2="225" />
+                                                    <!-- Text Line -->
+                                                    <line x1="220" y1="225" x2="305"
+                                                        y2="225" />
 
-                                                <!-- Corner Accent -->
-                                                <path d="M375 270 L375 295 L350 295" />
+                                                    <!-- Corner Accent -->
+                                                    <path d="M375 270 L375 295 L350 295" />
 
-                                            </g>
-                                        </svg>
+                                                </g>
+                                            </svg>
+                                        </div>
+                                        <h4 class="xl:text-sm lg:text-xs sm:text-[10px] md:text-sm text-sm font-bold">
+                                            {{ $service->title }}</h4>
                                     </div>
-                                    <h4 class="xl:text-sm lg:text-xs sm:text-[10px] md:text-sm text-sm font-bold">چاپ
-                                        کارت ویزیت</h4>
                                 </div>
-                            </div>
-                            <div
-                                class="w-full flex flex-col gap-1 justify-center items-center xl:text-sm lg:text-xs sm:text-[11px] md:text-sm text-xs text-[var(--text-secondary)] pb-3 xl:pt-13 lg:pt-10">
-                                <p>طراحی و چاپ کارت ویزیت</p>
-                                <p>لوکس و اختصاصی</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="w-full h-full border-1 relative border-[var(--gold)] bg-[#181819] rounded-2xl flex lg:flex-col items-center justify-between scale transition_root">
-                        <div class="lg:w-full w-1/2 lg:h-7/12">
-                            <img src="{{ asset('assets/img/bibord_servis.jpg') }}" alt=""
-                                class="object-fit w-full xl:h-50 lg:h-40 md:h-45 sm:h-39 h-40  lg:rounded-t-2xl rounded-2xl">
-                        </div>
-                        <div
-                            class="lg:w-full lg:h-5/12 max-lg:hidden bg-black/60 blur-[5px]  absolute bottom-0 left-0 rounded-b-2xl -z-0">
-                        </div>
-                        <div
-                            class="lg:w-full w-1/2 h-full  text-white  rounded-b-2xl relative flex flex-col max-lg:gap-5 justify-end">
-                            <div class="w-full lg:absolute lg:-top-10 lg:right-0 flex justify-center items-center">
                                 <div
-                                    class="lg:w-2/3 w-11/12 sm:pb-4 pb-2 sm:pt-2 pt-1 rounded-xl bg-[var(--background-2)] flex flex-col gap-1 items-center justify-center">
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                                            class="xl:size-13 lg:size-8 size-11">
-
-                                            <g fill="none" stroke="#D4A23A" stroke-width="10"
-                                                stroke-linecap="round" stroke-linejoin="round">
-
-                                                <!-- Outer Card -->
-                                                <rect x="90" y="110" width="332" height="220" rx="10" />
-
-                                                <!-- Inner Border -->
-                                                <rect x="120" y="140" width="272" height="160" rx="2" />
-
-                                                <!-- Top Right Circle -->
-                                                <circle cx="340" cy="175" r="18" />
-
-                                                <!-- Logo -->
-                                                <path d="
-                                            M165 235
-                                            L165 205
-                                            Q165 180 188 180
-                                            L205 180
-                                            Q225 180 225 198
-                                            Q225 214 208 214
-                                            L188 214
-                                            L188 225
-                                            L215 225
-                                            Q235 225 235 245
-                                            L165 245
-                                            Z" />
-
-                                                <!-- Text Line -->
-                                                <line x1="220" y1="225" x2="305" y2="225" />
-
-                                                <!-- Corner Accent -->
-                                                <path d="M375 270 L375 295 L350 295" />
-
-                                            </g>
-                                        </svg>
-                                    </div>
-                                    <h4 class="xl:text-sm lg:text-xs sm:text-[10px] md:text-sm text-sm font-bold">چاپ
-                                        کارت ویزیت</h4>
+                                    class="w-full flex flex-col gap-1 justify-center items-center xl:text-sm lg:text-xs sm:text-[11px] md:text-sm text-xs text-[var(--text-secondary)] pb-3 xl:pt-13 lg:pt-10">
+                                    <p>{{ $service->subTitle }}</p>
                                 </div>
                             </div>
-                            <div
-                                class="w-full flex flex-col gap-1 justify-center items-center xl:text-sm lg:text-xs sm:text-[11px] md:text-sm text-xs text-[var(--text-secondary)] pb-3 xl:pt-13 lg:pt-10">
-                                <p>طراحی و چاپ کارت ویزیت</p>
-                                <p>لوکس و اختصاصی</p>
-                            </div>
                         </div>
-                    </div>
-                    <div
-                        class="w-full h-full border-1 relative border-[var(--gold)] bg-[#181819] rounded-2xl flex lg:flex-col items-center justify-between scale transition_root">
-                        <div class="lg:w-full w-1/2 lg:h-7/12 h-full">
-                            <img src="{{ asset('assets/img/kart_servis.jpg') }}" alt=""
-                                class="object-fit w-full xl:h-50 lg:h-40 md:h-45 sm:h-39 h-40  lg:rounded-t-2xl rounded-2xl">
-                        </div>
-                        <div
-                            class="lg:w-full lg:h-5/12 max-lg:hidden bg-black/60 blur-[5px]  absolute bottom-0 left-0 rounded-b-2xl -z-0">
-                        </div>
-                        <div
-                            class="lg:w-full w-1/2 h-full  text-white  rounded-b-2xl relative flex flex-col max-lg:gap-5 justify-end">
-                            <div class="w-full lg:absolute lg:-top-10 lg:right-0 flex justify-center items-center">
-                                <div
-                                    class="lg:w-2/3 w-11/12 sm:pb-4 pb-2 sm:pt-2 pt-1 rounded-xl bg-[var(--background-2)] flex flex-col gap-1 items-center justify-center">
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                                            class="xl:size-13 lg:size-8 size-11">
-
-                                            <g fill="none" stroke="#D4A23A" stroke-width="10"
-                                                stroke-linecap="round" stroke-linejoin="round">
-
-                                                <!-- Outer Card -->
-                                                <rect x="90" y="110" width="332" height="220" rx="10" />
-
-                                                <!-- Inner Border -->
-                                                <rect x="120" y="140" width="272" height="160" rx="2" />
-
-                                                <!-- Top Right Circle -->
-                                                <circle cx="340" cy="175" r="18" />
-
-                                                <!-- Logo -->
-                                                <path d="
-                                            M165 235
-                                            L165 205
-                                            Q165 180 188 180
-                                            L205 180
-                                            Q225 180 225 198
-                                            Q225 214 208 214
-                                            L188 214
-                                            L188 225
-                                            L215 225
-                                            Q235 225 235 245
-                                            L165 245
-                                            Z" />
-
-                                                <!-- Text Line -->
-                                                <line x1="220" y1="225" x2="305" y2="225" />
-
-                                                <!-- Corner Accent -->
-                                                <path d="M375 270 L375 295 L350 295" />
-
-                                            </g>
-                                        </svg>
-                                    </div>
-                                    <h4 class="xl:text-sm lg:text-xs sm:text-[10px] md:text-sm text-sm font-bold">چاپ
-                                        کارت ویزیت</h4>
-                                </div>
-                            </div>
-                            <div
-                                class="w-full flex flex-col gap-1 justify-center items-center xl:text-sm lg:text-xs sm:text-[11px] md:text-sm text-xs text-[var(--text-secondary)] pb-3 xl:pt-13 lg:pt-10">
-                                <p>طراحی و چاپ کارت ویزیت</p>
-                                <p>لوکس و اختصاصی</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="w-full h-full border-1 relative border-[var(--gold)] bg-[#181819] rounded-2xl flex lg:flex-col items-center justify-between scale transition_root">
-                        <div class="lg:w-full w-1/2 lg:h-7/12">
-                            <img src="{{ asset('assets/img/bibord_servis.jpg') }}" alt=""
-                                class="object-fit w-full xl:h-50 lg:h-40 md:h-45 sm:h-39 h-40  lg:rounded-t-2xl rounded-2xl">
-                        </div>
-                        <div
-                            class="lg:w-full lg:h-5/12 max-lg:hidden bg-black/60 blur-[5px]  absolute bottom-0 left-0 rounded-b-2xl -z-0">
-                        </div>
-                        <div
-                            class="lg:w-full w-1/2 h-full  text-white  rounded-b-2xl relative flex flex-col max-lg:gap-5 justify-end">
-                            <div class="w-full lg:absolute lg:-top-10 lg:right-0 flex justify-center items-center">
-                                <div
-                                    class="lg:w-2/3 w-11/12 sm:pb-4 pb-2 sm:pt-2 pt-1 rounded-xl bg-[var(--background-2)] flex flex-col gap-1 items-center justify-center">
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                                            class="xl:size-13 lg:size-8 size-11">
-
-                                            <g fill="none" stroke="#D4A23A" stroke-width="10"
-                                                stroke-linecap="round" stroke-linejoin="round">
-
-                                                <!-- Outer Card -->
-                                                <rect x="90" y="110" width="332" height="220" rx="10" />
-
-                                                <!-- Inner Border -->
-                                                <rect x="120" y="140" width="272" height="160" rx="2" />
-
-                                                <!-- Top Right Circle -->
-                                                <circle cx="340" cy="175" r="18" />
-
-                                                <!-- Logo -->
-                                                <path d="
-                                            M165 235
-                                            L165 205
-                                            Q165 180 188 180
-                                            L205 180
-                                            Q225 180 225 198
-                                            Q225 214 208 214
-                                            L188 214
-                                            L188 225
-                                            L215 225
-                                            Q235 225 235 245
-                                            L165 245
-                                            Z" />
-
-                                                <!-- Text Line -->
-                                                <line x1="220" y1="225" x2="305" y2="225" />
-
-                                                <!-- Corner Accent -->
-                                                <path d="M375 270 L375 295 L350 295" />
-
-                                            </g>
-                                        </svg>
-                                    </div>
-                                    <h4 class="xl:text-sm lg:text-xs sm:text-[10px] md:text-sm text-sm font-bold">چاپ
-                                        کارت ویزیت</h4>
-                                </div>
-                            </div>
-                            <div
-                                class="w-full flex flex-col gap-1 justify-center items-center xl:text-sm lg:text-xs sm:text-[11px] md:text-sm text-xs text-[var(--text-secondary)] pb-3 xl:pt-13 lg:pt-10">
-                                <p>طراحی و چاپ کارت ویزیت</p>
-                                <p>لوکس و اختصاصی</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="w-full h-full border-1 relative border-[var(--gold)] bg-[#181819] rounded-2xl flex lg:flex-col items-center justify-between scale transition_root">
-                        <div class="lg:w-full w-1/2 lg:h-7/12 h-full">
-                            <img src="{{ asset('assets/img/kart_servis.jpg') }}" alt=""
-                                class="object-fit w-full xl:h-50 lg:h-40 md:h-45 sm:h-39 h-40  lg:rounded-t-2xl rounded-2xl">
-                        </div>
-                        <div
-                            class="lg:w-full lg:h-5/12 max-lg:hidden bg-black/60 blur-[5px]  absolute bottom-0 left-0 rounded-b-2xl -z-0">
-                        </div>
-                        <div
-                            class="lg:w-full w-1/2 h-full  text-white  rounded-b-2xl relative flex flex-col max-lg:gap-5 justify-end">
-                            <div class="w-full lg:absolute lg:-top-10 lg:right-0 flex justify-center items-center">
-                                <div
-                                    class="lg:w-2/3 w-11/12 sm:pb-4 pb-2 sm:pt-2 pt-1 rounded-xl bg-[var(--background-2)] flex flex-col gap-1 items-center justify-center">
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                                            class="xl:size-9 lg:size-8 size-11">
-
-                                            <g fill="none" stroke="#D4A23A" stroke-width="10"
-                                                stroke-linecap="round" stroke-linejoin="round">
-
-                                                <!-- Outer Card -->
-                                                <rect x="90" y="110" width="332" height="220" rx="10" />
-
-                                                <!-- Inner Border -->
-                                                <rect x="120" y="140" width="272" height="160" rx="2" />
-
-                                                <!-- Top Right Circle -->
-                                                <circle cx="340" cy="175" r="18" />
-
-                                                <!-- Logo -->
-                                                <path d="
-                                            M165 235
-                                            L165 205
-                                            Q165 180 188 180
-                                            L205 180
-                                            Q225 180 225 198
-                                            Q225 214 208 214
-                                            L188 214
-                                            L188 225
-                                            L215 225
-                                            Q235 225 235 245
-                                            L165 245
-                                            Z" />
-
-                                                <!-- Text Line -->
-                                                <line x1="220" y1="225" x2="305" y2="225" />
-
-                                                <!-- Corner Accent -->
-                                                <path d="M375 270 L375 295 L350 295" />
-
-                                            </g>
-                                        </svg>
-                                    </div>
-                                    <h4 class="xl:text-sm lg:text-xs sm:text-[10px] md:text-sm text-sm font-bold">چاپ
-                                        کارت ویزیت</h4>
-                                </div>
-                            </div>
-                            <div
-                                class="w-full flex flex-col gap-1 justify-center items-center xl:text-sm lg:text-xs sm:text-[11px] md:text-sm text-xs text-[var(--text-secondary)] pb-3 xl:pt-13 lg:pt-10">
-                                <p>طراحی و چاپ کارت ویزیت</p>
-                                <p>لوکس و اختصاصی</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="w-full h-full border-1 relative border-[var(--gold)] bg-[#181819] rounded-2xl flex lg:flex-col items-center justify-between scale transition_root">
-                        <div class="lg:w-full w-1/2 lg:h-7/12">
-                            <img src="{{ asset('assets/img/bibord_servis.jpg') }}" alt=""
-                                class="object-fit w-full xl:h-50 lg:h-40 md:h-45 sm:h-39 h-40  lg:rounded-t-2xl rounded-2xl">
-                        </div>
-                        <div
-                            class="lg:w-full lg:h-5/12 max-lg:hidden bg-black/60 blur-[5px]  absolute bottom-0 left-0 rounded-b-2xl -z-0">
-                        </div>
-                        <div
-                            class="lg:w-full w-1/2 h-full  text-white  rounded-b-2xl relative flex flex-col max-lg:gap-5 justify-end">
-                            <div class="w-full lg:absolute lg:-top-10 lg:right-0 flex justify-center items-center">
-                                <div
-                                    class="lg:w-2/3 w-11/12 sm:pb-4 pb-2 sm:pt-2 pt-1 rounded-xl bg-[var(--background-2)] flex flex-col gap-1 items-center justify-center">
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                                            class="xl:size-9 lg:size-8 size-11">
-
-                                            <g fill="none" stroke="#D4A23A" stroke-width="10"
-                                                stroke-linecap="round" stroke-linejoin="round">
-
-                                                <!-- Outer Card -->
-                                                <rect x="90" y="110" width="332" height="220" rx="10" />
-
-                                                <!-- Inner Border -->
-                                                <rect x="120" y="140" width="272" height="160" rx="2" />
-
-                                                <!-- Top Right Circle -->
-                                                <circle cx="340" cy="175" r="18" />
-
-                                                <!-- Logo -->
-                                                <path d="
-                                            M165 235
-                                            L165 205
-                                            Q165 180 188 180
-                                            L205 180
-                                            Q225 180 225 198
-                                            Q225 214 208 214
-                                            L188 214
-                                            L188 225
-                                            L215 225
-                                            Q235 225 235 245
-                                            L165 245
-                                            Z" />
-
-                                                <!-- Text Line -->
-                                                <line x1="220" y1="225" x2="305" y2="225" />
-
-                                                <!-- Corner Accent -->
-                                                <path d="M375 270 L375 295 L350 295" />
-
-                                            </g>
-                                        </svg>
-                                    </div>
-                                    <h4 class="xl:text-sm lg:text-xs sm:text-[10px] md:text-sm text-sm font-bold">چاپ
-                                        کارت ویزیت</h4>
-                                </div>
-                            </div>
-                            <div
-                                class="w-full flex flex-col gap-1 justify-center items-center xl:text-sm lg:text-xs sm:text-[11px] md:text-sm text-xs text-[var(--text-secondary)] pb-3 xl:pt-13 lg:pt-10">
-                                <p>طراحی و چاپ کارت ویزیت</p>
-                                <p>لوکس و اختصاصی</p>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>
@@ -1028,80 +726,85 @@
         <section class="w-full flex items-center justify-center">
             <div class="w-11/12 h-full flex flex-col gap-10  justify-center items-center">
                 <div class="w-full flex flex-col gap-3 items-center justify-center">
-                    <h3 class="xl:text-4xl lg:text-2xl text-white font-bold">شاهکار چیست!؟</h3>
+                    <h3 class="xl:text-4xl lg:text-2xl text-white font-bold">چرا شاهکار ؟</h3>
                     <div class="flex gap-0.5 items-center justify-center">
                         <span class="size-1 rounded-full bg-[var(--gold)]"></span>
                         <span class="w-6 h-0.5 bg-[var(--gold)] rounded-full"></span>
                     </div>
                 </div>
-                <div
-                    class="w-full xl:h-120 lg:h-90 sm:h-60 flex max-sm:flex-col gap-3 max-sm:gap-6 justify-between max-sm:justify-center items-center">
+                @if ($introduction)
                     <div
-                        class="sm:w-4/12 max-sm:w-full h-full flex flex-col gap-4 justify-center items-start max-sm:order-2">
+                        class="w-full xl:h-120 lg:h-90 sm:h-60 flex max-sm:flex-col gap-3 max-sm:gap-6 justify-between max-sm:justify-center items-center">
                         <div
-                            class="w-full sm:h-1/3 max-sm:py-3 bg-[var(--background-2)] border-2 border-[var(--gold)] flex gap-7 justify-center items-center rounded-lg">
+                            class="sm:w-4/12 max-sm:w-full h-full flex flex-col gap-4 justify-center items-start max-sm:order-2">
                             <div
-                                class="lg:p-2 p-1.5 rounded-full bg-[var(--background)] border border-[var(--gold)] flex justify-center items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                                    class="lg:size-6 size-3 fill-[var(--gold)]">
-                                    <path
-                                        d="M464 258.2c0 2.7-1 5.2-4.2 8c-3.8 3.1-10.1 5.8-17.8 5.8H344c-53 0-96 43-96 96c0 6.8 .7 13.4 2.1 19.8c3.3 15.7 10.2 31.1 14.4 40.6l0 0c.7 1.6 1.4 3 1.9 4.3c5 11.5 5.6 15.4 5.6 17.1c0 5.3-1.9 9.5-3.8 11.8c-.9 1.1-1.6 1.6-2 1.8c-.3 .2-.8 .3-1.6 .4c-2.9 .1-5.7 .2-8.6 .2C141.1 464 48 370.9 48 256S141.1 48 256 48s208 93.1 208 208c0 .7 0 1.4 0 2.2zm48 .5c0-.9 0-1.8 0-2.7C512 114.6 397.4 0 256 0S0 114.6 0 256S114.6 512 256 512c3.5 0 7.1-.1 10.6-.2c31.8-1.3 53.4-30.1 53.4-62c0-14.5-6.1-28.3-12.1-42c-4.3-9.8-8.7-19.7-10.8-29.9c-.7-3.2-1-6.5-1-9.9c0-26.5 21.5-48 48-48h97.9c36.5 0 69.7-24.8 70.1-61.3zM160 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm0-64a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm128-64a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm64 64a32 32 0 1 0 0-64 32 32 0 1 0 0 64z" />
-                                </svg>
+                                class="w-full sm:h-1/3 max-sm:py-3 bg-[var(--background-2)] border-2 border-[var(--gold)] flex gap-7 justify-center items-center rounded-lg">
+                                <div
+                                    class="lg:p-2 p-1.5 rounded-full bg-[var(--background)] border border-[var(--gold)] flex justify-center items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                                        class="lg:size-6 size-3 fill-[var(--gold)]">
+                                        <path
+                                            d="M464 258.2c0 2.7-1 5.2-4.2 8c-3.8 3.1-10.1 5.8-17.8 5.8H344c-53 0-96 43-96 96c0 6.8 .7 13.4 2.1 19.8c3.3 15.7 10.2 31.1 14.4 40.6l0 0c.7 1.6 1.4 3 1.9 4.3c5 11.5 5.6 15.4 5.6 17.1c0 5.3-1.9 9.5-3.8 11.8c-.9 1.1-1.6 1.6-2 1.8c-.3 .2-.8 .3-1.6 .4c-2.9 .1-5.7 .2-8.6 .2C141.1 464 48 370.9 48 256S141.1 48 256 48s208 93.1 208 208c0 .7 0 1.4 0 2.2zm48 .5c0-.9 0-1.8 0-2.7C512 114.6 397.4 0 256 0S0 114.6 0 256S114.6 512 256 512c3.5 0 7.1-.1 10.6-.2c31.8-1.3 53.4-30.1 53.4-62c0-14.5-6.1-28.3-12.1-42c-4.3-9.8-8.7-19.7-10.8-29.9c-.7-3.2-1-6.5-1-9.9c0-26.5 21.5-48 48-48h97.9c36.5 0 69.7-24.8 70.1-61.3zM160 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm0-64a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm128-64a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm64 64a32 32 0 1 0 0-64 32 32 0 1 0 0 64z" />
+                                    </svg>
+                                </div>
+                                <div class="flex flex-col gap-2 justify-center items-center">
+                                    <span
+                                        class="xl:text-3xl lg:text-2xl texl-xl font-bold text-[var(--gold)]">{{ $introduction->firstBoxNumber }}</span>
+                                    <span
+                                        class="xl:text-lg lg:text-md text-xs font-bold text-[var(--text)]">{{ $introduction->firstBoxText }}</span>
+                                </div>
                             </div>
-                            <div class="flex flex-col gap-2 justify-center items-center">
-                                <span class="xl:text-3xl lg:text-2xl texl-xl font-bold text-[var(--gold)]">+10</span>
-                                <span class="xl:text-lg lg:text-md text-xs font-bold text-[var(--text)]">تجربه
-                                    درخشان</span>
+                            <div
+                                class="w-full sm:h-1/3 max-sm:py-3 bg-[var(--background-2)] border-2 border-[var(--gold)] flex gap-7 justify-center items-center rounded-lg">
+                                <div
+                                    class="p-2 rounded-full bg-[var(--background)] border border-[var(--gold)] flex justify-center items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                                        class="sm:size-6 size-4 fill-[var(--gold)]">
+                                        <path
+                                            d="M464 258.2c0 2.7-1 5.2-4.2 8c-3.8 3.1-10.1 5.8-17.8 5.8H344c-53 0-96 43-96 96c0 6.8 .7 13.4 2.1 19.8c3.3 15.7 10.2 31.1 14.4 40.6l0 0c.7 1.6 1.4 3 1.9 4.3c5 11.5 5.6 15.4 5.6 17.1c0 5.3-1.9 9.5-3.8 11.8c-.9 1.1-1.6 1.6-2 1.8c-.3 .2-.8 .3-1.6 .4c-2.9 .1-5.7 .2-8.6 .2C141.1 464 48 370.9 48 256S141.1 48 256 48s208 93.1 208 208c0 .7 0 1.4 0 2.2zm48 .5c0-.9 0-1.8 0-2.7C512 114.6 397.4 0 256 0S0 114.6 0 256S114.6 512 256 512c3.5 0 7.1-.1 10.6-.2c31.8-1.3 53.4-30.1 53.4-62c0-14.5-6.1-28.3-12.1-42c-4.3-9.8-8.7-19.7-10.8-29.9c-.7-3.2-1-6.5-1-9.9c0-26.5 21.5-48 48-48h97.9c36.5 0 69.7-24.8 70.1-61.3zM160 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm0-64a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm128-64a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm64 64a32 32 0 1 0 0-64 32 32 0 1 0 0 64z" />
+                                    </svg>
+                                </div>
+                                <div class="flex flex-col gap-2 justify-center items-center">
+                                    <span
+                                        class="xl:text-3xl lg:text-2xl texl-xl font-bold text-[var(--gold)]">{{ $introduction->secondBoxNumber }}</span>
+                                    <span
+                                        class="xl:text-lg lg:text-md text-xs font-bold text-[var(--text)]">{{ $introduction->secondBoxText }}</span>
+                                </div>
+                            </div>
+                            <div
+                                class="w-full sm:h-1/3 max-sm:py-3 bg-[var(--background-2)] border-2 border-[var(--gold)] flex gap-7 justify-center items-center rounded-lg">
+                                <div
+                                    class="p-2 rounded-full bg-[var(--background)] border border-[var(--gold)] flex justify-center items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                                        class="sm:size-6 size-4 fill-[var(--gold)]">
+                                        <path
+                                            d="M464 258.2c0 2.7-1 5.2-4.2 8c-3.8 3.1-10.1 5.8-17.8 5.8H344c-53 0-96 43-96 96c0 6.8 .7 13.4 2.1 19.8c3.3 15.7 10.2 31.1 14.4 40.6l0 0c.7 1.6 1.4 3 1.9 4.3c5 11.5 5.6 15.4 5.6 17.1c0 5.3-1.9 9.5-3.8 11.8c-.9 1.1-1.6 1.6-2 1.8c-.3 .2-.8 .3-1.6 .4c-2.9 .1-5.7 .2-8.6 .2C141.1 464 48 370.9 48 256S141.1 48 256 48s208 93.1 208 208c0 .7 0 1.4 0 2.2zm48 .5c0-.9 0-1.8 0-2.7C512 114.6 397.4 0 256 0S0 114.6 0 256S114.6 512 256 512c3.5 0 7.1-.1 10.6-.2c31.8-1.3 53.4-30.1 53.4-62c0-14.5-6.1-28.3-12.1-42c-4.3-9.8-8.7-19.7-10.8-29.9c-.7-3.2-1-6.5-1-9.9c0-26.5 21.5-48 48-48h97.9c36.5 0 69.7-24.8 70.1-61.3zM160 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm0-64a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm128-64a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm64 64a32 32 0 1 0 0-64 32 32 0 1 0 0 64z" />
+                                    </svg>
+                                </div>
+                                <div class="flex flex-col gap-2 justify-center items-center">
+                                    <span
+                                        class="txl:text-3xl lg:text-2xl texl-xl font-bold text-[var(--gold)]">{{ $introduction->thirdBoxNumber }}</span>
+                                    <span
+                                        class="xl:text-lg lg:text-md text-xs font-bold text-[var(--text)]">{{ $introduction->thirdBoxText }}</span>
+                                </div>
                             </div>
                         </div>
                         <div
-                            class="w-full sm:h-1/3 max-sm:py-3 bg-[var(--background-2)] border-2 border-[var(--gold)] flex gap-7 justify-center items-center rounded-lg">
-                            <div
-                                class="p-2 rounded-full bg-[var(--background)] border border-[var(--gold)] flex justify-center items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                                    class="sm:size-6 size-4 fill-[var(--gold)]">
+                            class="sm:w-8/12 max-sm:w-full h-full border-2 border-[var(--gold)] relative flex justify-center items-center rounded-lg max-sm:order-1">
+                            <video src="{{ asset('storage/' . $introduction->video) }}"
+                                poster="{{ asset('storage/' . $introduction->videoCover) }}" controls
+                                class="object-fit w-full h-full rounded-lg" onclick="vidio_onclic_play()"></video>
+                            <div class="p-4 bg-[var(--background)]  border-2 border-[var(--gold)] absolute flex justify-center items-center rounded-full animation_play_vidio transition-all duration-300"
+                                id="play_icon_vidio">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"
+                                    class="size-6 fill-white">
                                     <path
-                                        d="M464 258.2c0 2.7-1 5.2-4.2 8c-3.8 3.1-10.1 5.8-17.8 5.8H344c-53 0-96 43-96 96c0 6.8 .7 13.4 2.1 19.8c3.3 15.7 10.2 31.1 14.4 40.6l0 0c.7 1.6 1.4 3 1.9 4.3c5 11.5 5.6 15.4 5.6 17.1c0 5.3-1.9 9.5-3.8 11.8c-.9 1.1-1.6 1.6-2 1.8c-.3 .2-.8 .3-1.6 .4c-2.9 .1-5.7 .2-8.6 .2C141.1 464 48 370.9 48 256S141.1 48 256 48s208 93.1 208 208c0 .7 0 1.4 0 2.2zm48 .5c0-.9 0-1.8 0-2.7C512 114.6 397.4 0 256 0S0 114.6 0 256S114.6 512 256 512c3.5 0 7.1-.1 10.6-.2c31.8-1.3 53.4-30.1 53.4-62c0-14.5-6.1-28.3-12.1-42c-4.3-9.8-8.7-19.7-10.8-29.9c-.7-3.2-1-6.5-1-9.9c0-26.5 21.5-48 48-48h97.9c36.5 0 69.7-24.8 70.1-61.3zM160 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm0-64a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm128-64a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm64 64a32 32 0 1 0 0-64 32 32 0 1 0 0 64z" />
+                                        d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
                                 </svg>
-                            </div>
-                            <div class="flex flex-col gap-2 justify-center items-center">
-                                <span class="xl:text-3xl lg:text-2xl texl-xl font-bold text-[var(--gold)]">+5000</span>
-                                <span class="xl:text-lg lg:text-md text-xs font-bold text-[var(--text)]">پروژه
-                                    موفق</span>
-                            </div>
-                        </div>
-                        <div
-                            class="w-full sm:h-1/3 max-sm:py-3 bg-[var(--background-2)] border-2 border-[var(--gold)] flex gap-7 justify-center items-center rounded-lg">
-                            <div
-                                class="p-2 rounded-full bg-[var(--background)] border border-[var(--gold)] flex justify-center items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                                    class="sm:size-6 size-4 fill-[var(--gold)]">
-                                    <path
-                                        d="M464 258.2c0 2.7-1 5.2-4.2 8c-3.8 3.1-10.1 5.8-17.8 5.8H344c-53 0-96 43-96 96c0 6.8 .7 13.4 2.1 19.8c3.3 15.7 10.2 31.1 14.4 40.6l0 0c.7 1.6 1.4 3 1.9 4.3c5 11.5 5.6 15.4 5.6 17.1c0 5.3-1.9 9.5-3.8 11.8c-.9 1.1-1.6 1.6-2 1.8c-.3 .2-.8 .3-1.6 .4c-2.9 .1-5.7 .2-8.6 .2C141.1 464 48 370.9 48 256S141.1 48 256 48s208 93.1 208 208c0 .7 0 1.4 0 2.2zm48 .5c0-.9 0-1.8 0-2.7C512 114.6 397.4 0 256 0S0 114.6 0 256S114.6 512 256 512c3.5 0 7.1-.1 10.6-.2c31.8-1.3 53.4-30.1 53.4-62c0-14.5-6.1-28.3-12.1-42c-4.3-9.8-8.7-19.7-10.8-29.9c-.7-3.2-1-6.5-1-9.9c0-26.5 21.5-48 48-48h97.9c36.5 0 69.7-24.8 70.1-61.3zM160 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm0-64a32 32 0 1 0 0-64 32 32 0 1 0 0 64zm128-64a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm64 64a32 32 0 1 0 0-64 32 32 0 1 0 0 64z" />
-                                </svg>
-                            </div>
-                            <div class="flex flex-col gap-2 justify-center items-center">
-                                <span class="txl:text-3xl lg:text-2xl texl-xl font-bold text-[var(--gold)]">%100</span>
-                                <span class="xl:text-lg lg:text-md text-xs font-bold text-[var(--text)]">رضایت
-                                    مشتری</span>
                             </div>
                         </div>
                     </div>
-                    <div
-                        class="sm:w-8/12 max-sm:w-full h-full border-2 border-[var(--gold)] relative flex justify-center items-center rounded-lg max-sm:order-1">
-                        <video src="{{ asset('assets/img/identify_vidio.mkv') }}" controls
-                            class="object-fit w-full h-full rounded-lg" onclick="vidio_onclic_play()"></video>
-                        <!-- <div class="w-full h-full flex justify-center items-center  top-0 right-0" onclick="play_vidio_identify(this)"> -->
-                        <div class="p-4 bg-[var(--background)]  border-2 border-[var(--gold)] absolute flex justify-center items-center rounded-full animation_play_vidio transition-all duration-300"
-                            id="play_icon_vidio">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="size-6 fill-white">
-                                <path
-                                    d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
-                            </svg>
-                        </div>
-                        <!-- </div> -->
-                    </div>
-                </div>
+                @endif
             </div>
         </section>
 
@@ -1125,24 +828,10 @@
                         class="overflow-auto [&::-webkit-scrollbar]:h-2  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full flex gap-2 items-center xl:text-md sm:text-sm text-xs py-4 px-1">
                         <span
                             class="px-6 py-2 bg-[var(--gold)] rounded-full font-bold text-white flex justify-center items-center shadow_item cursor-pointer">همه</span>
-                        <span
-                            class="px-6 py-2 border border-[var(--border)] hover:border-[var(--gold)] rounded-full font-bold text-[var(--text-secondary)] scale hover:text-[var(--text)] transition_root flex justify-center items-center shadow_item text-nowrap cursor-pointer">تابلو
-                            سازی</span>
-                        <span
-                            class="px-6 py-2 border border-[var(--border)] hover:border-[var(--gold)] rounded-full font-bold text-[var(--text-secondary)] scale hover:text-[var(--text)] transition_root flex justify-center items-center shadow_item text-nowrap cursor-pointer">تابلو
-                            سازی</span>
-                        <span
-                            class="px-6 py-2 border border-[var(--border)] hover:border-[var(--gold)] rounded-full font-bold text-[var(--text-secondary)] scale hover:text-[var(--text)] transition_root flex justify-center items-center shadow_item text-nowrap cursor-pointer">تابلو
-                            سازی</span>
-                        <span
-                            class="px-6 py-2 border border-[var(--border)] hover:border-[var(--gold)] rounded-full font-bold text-[var(--text-secondary)] scale hover:text-[var(--text)] transition_root flex justify-center items-center shadow_item text-nowrap cursor-pointer">تابلو
-                            سازی</span>
-                        <span
-                            class="px-6 py-2 border border-[var(--border)] hover:border-[var(--gold)] rounded-full font-bold text-[var(--text-secondary)] scale hover:text-[var(--text)] transition_root flex justify-center items-center shadow_item text-nowrap cursor-pointer">تابلو
-                            سازی</span>
-                        <span
-                            class="px-6 py-2 border border-[var(--border)] hover:border-[var(--gold)] rounded-full font-bold text-[var(--text-secondary)] scale hover:text-[var(--text)] transition_root flex justify-center items-center shadow_item text-nowrap cursor-pointer">تابلو
-                            سازی</span>
+                        @foreach ($categories as $category)
+                            <span
+                                class="px-6 py-2 border border-[var(--border)] hover:border-[var(--gold)] rounded-full font-bold text-[var(--text-secondary)] scale hover:text-[var(--text)] transition_root flex justify-center items-center shadow_item text-nowrap cursor-pointer">{{ $category->title }}</span>
+                        @endforeach
                     </div>
                 </div>
                 <!-- category_rezume -->
@@ -1151,47 +840,73 @@
                     class="max-w-full min-w-full flex xl:h-100 lg:h-80 md:h-50 sm:h-45 h-40 items-center xl:justify-between gap-2">
                     <div
                         class="w-5/24 h-full border border-[var(--gold)] rounded-xl px-[0.3px] py-[0.7px] max-sm:hidden overflow-hidden">
-                        <img src="{{ asset('assets/img/poster_desk.jpg') }}" alt=""
-                            class="object-fit w-full h-full rounded-xl scale transition_root">
+                        @if (isset($products[0]))
+                            <a href="{{ route('product.show', [$products[0]]) }}">
+                                <img src="{{ asset('storage/' . $products[0]->mainImg) }}" alt=""
+                                    class="object-fit w-full h-full rounded-xl scale transition_root">
+                            </a>
+                        @endif
                     </div>
                     <div class="w-6/12 h-full flex flex-col justify-between items-center">
                         <div class="w-full h-49/100 flex gap-2 justify-between items-center">
                             <div
                                 class="sm:w-1/2 w-full h-full border border-[var(--gold)] rounded-xl px-[0.3px] py-[0.7px] overflow-hidden">
-                                <img src="{{ asset('assets/img/kart_rezume.jpg') }}" alt=""
-                                    class="object-fit w-full h-full rounded-xl scale transition_root">
+                                @if (isset($products[1]))
+                                    <a href="{{ asset('storage/' . $products[1]->mainImg) }}">
+                                        <img src="{{ asset('assets/img/kart_rezume.jpg') }}" alt=""
+                                            class="object-fit w-full h-full rounded-xl scale transition_root">
+                                    </a>
+                                @endif
                             </div>
                             <div
                                 class="w-1/2 h-full max-sm:hidden border border-[var(--gold)] rounded-xl px-[0.3px] py-[0.7px] overflow-hidden">
-                                <img src="{{ asset('assets/img/kart_rezume.jpg') }}" alt=""
-                                    class="object-fit w-full h-full rounded-xl scale transition_root">
+                                @if (isset($products[1]))
+                                    <a href="{{ route('product.show', [$products[1]]) }}">
+                                        <img src="{{ asset('storage/' . $products[1]->mainImg) }}" alt=""
+                                            class="object-fit w-full h-full rounded-xl scale transition_root">
+                                    </a>
+                                @endif
                             </div>
                         </div>
                         <div class="w-full h-49/100 flex gap-1 justify-between items-center">
                             <div
                                 class="sm:w-1/3 w-1/2 h-full border border-[var(--gold)] rounded-xl px-[0.3px] py-[0.7px] overflow-hidden">
-                                <img src="{{ asset('assets/img/kart_rezume.jpg') }}" alt=""
-                                    class="object-fit w-full h-full rounded-xl scale transition_root">
+                                @if (isset($products[3]))
+                                    <a href="{{ route('product.show', [$products[3]]) }}">
+                                        <img src="{{ asset('storage/' . $products[3]->mainImg) }}" alt=""
+                                            class="object-fit w-full h-full rounded-xl scale transition_root">
+                                    </a>
+                                @endif
                             </div>
                             <div
                                 class="sm:w-1/3 w-1/2 h-full border border-[var(--gold)] rounded-xl px-[0.3px] py-[0.7px] overflow-hidden">
-                                <img src="{{ asset('assets/img/kart_rezume.jpg') }}" alt=""
-                                    class="object-fit w-full h-full rounded-xl scale transition_root">
+                                @if (isset($products[4]))
+                                    <a href="{{ route('product.show', [$products[4]]) }}">
+                                        <img src="{{ asset('storage/' . $products[4]->mainImg) }}" alt=""
+                                            class="object-fit w-full h-full rounded-xl scale transition_root">
+                                    </a>
+                                @endif
                             </div>
                             <div
                                 class="sm:w-1/3 w-1/2 max-sm:hidden h-full border border-[var(--gold)] rounded-xl px-[0.3px] py-[0.7px] overflow-hidden">
-                                <img src="{{ asset('assets/img/kart_rezume.jpg') }}" alt=""
-                                    class="object-fit w-full h-full rounded-xl scale transition_root">
+                                @if (isset($products[5]))
+                                    <a href="{{ route('product.show', [$products[5]]) }}">
+                                        <img src="{{ asset('storage/' . $products[5]->mainImg) }}" alt=""
+                                            class="object-fit w-full h-full rounded-xl scale transition_root">
+                                    </a>
+                                @endif
                             </div>
                         </div>
                     </div>
                     <div
                         class="sm:w-7/24 max-sm:w-1/2 h-full border border-[var(--gold)] rounded-xl px-[0.3px] py-[0.7px] overflow-hidden">
-                        <img src="{{ asset('assets/img/bibord_servis.jpg') }}" alt=""
-                            class="object-fit w-full h-full rounded-xl scale transition_root">
+                        @if (isset($products[6]))
+                            <a href="{{ route('product.show', [$products[6]]) }}">
+                                <img src="{{ asset('storage/' . $products[6]->mainImg) }}" alt=""
+                                    class="object-fit w-full h-full rounded-xl scale transition_root">
+                            </a>
+                        @endif
                     </div>
-
-
                 </div>
                 <!-- rezumes items -->
                 <!-- show all rezume -->

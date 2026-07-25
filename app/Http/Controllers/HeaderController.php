@@ -20,6 +20,7 @@ class HeaderController extends Controller
         $validated = $request->validate(
             [
                 'img' => ['required'],
+                'mobileImg' => ['required'],
                 'title' => ['required'],
                 'subTitle' => ['required'],
                 'rightBtnText' => ['required'],
@@ -29,6 +30,7 @@ class HeaderController extends Controller
             ],
             [
                 'img.required' => 'پر کردن این فیلد الزامی است.',
+                'mobileImg.required' => 'پر کردن این فیلد الزامی است.',
                 'title.required' => 'پر کردن این فیلد الزامی است.',
                 'subTitle.required' => 'پر کردن این فیلد الزامی است.',
                 'rightBtnText.required' => 'پر کردن این فیلد الزامی است.',
@@ -41,12 +43,15 @@ class HeaderController extends Controller
             $header = header::first();
             if ($header) {
                 Storage::disk('public')->delete($header->img);
+                Storage::disk('public')->delete($header->mobileImg);
             }
             $img_path = $request->img->store('headerImgs', 'public');
+            $mobileImg_path = $request->mobileImg->store('headerImgs', 'public');
             header::updateOrCreate(
                 ['id' => 1],
                 [
                     'img' => $img_path,
+                    'mobileImg' => $mobileImg_path,
                     'title' => $request->title,
                     'subTitle' => $request->subTitle,
                     'rightBtnText' => $request->rightBtnText,
