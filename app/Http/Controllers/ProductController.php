@@ -88,12 +88,21 @@ class ProductController extends Controller
     {
         $logo = logo::first();
         $products = product::with('media')->with('categories')->get();
+        foreach ($products as $product) {
+            if ($product->media->isNotEmpty()) {
+                foreach ($product->media as $media) {
+                    if ($media['is_main']) {
+                        $product['mainImg']  = $media['media_path'];
+                        break;
+                    } else {
+                        $product['mainImg'] = 'default.png';
+                    }
+                }
+            } else {
+                $product['mainImg'] = 'default.png';
+            }
+        }
         return view('admin.product.index', ['products' => $products, 'logo' => $logo]);
-    }
-    public function show(Product $product)
-    {
-        return view('commingSoon');
-        return $product;
     }
     public function edit(Request $request)
     {
@@ -166,12 +175,6 @@ class ProductController extends Controller
             ]);
         }
         if (isset($request['gallery'])) {
-            foreach ($product->media as $media) {
-                if (!$media['is_main']) {
-                    Storage::disk('public')->delete($media['media_path']);
-                    product_media::where('media_path', $media['media_path'])->delete();
-                }
-            }
             foreach ($request['gallery'] as $file) {
                 $newImgType = $file->getClientOriginalExtension();
                 $newImgPath = $file->store('productImgs', 'public');
@@ -216,5 +219,9 @@ class ProductController extends Controller
         $product->categories()->detach();
         $product->delete();
         return to_route('product.adminIndex')->with('message', ' محصول ' . $product['title'] . ' حذف شد. ');
+    }
+    public function show(Product $product)
+    {
+        return view('admin.product.show', ['product' => $product]);
     }
 }

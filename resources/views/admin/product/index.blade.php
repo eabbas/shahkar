@@ -70,21 +70,8 @@
                                 <div
                                     class="p-1 lg:p-3 text-xs col-span-2 lg:text-sm h-full flex items-center justify-center text-gray-900">
                                     <div class="w-20 lg:w-full">
-                                        @if ($product['media']->isNotEmpty())
-                                            @foreach ($product['media'] as $media)
-                                                @if ($media['is_main'])
-                                                    <img class="max-w-[60px] max-h-[60px] mx-auto size-15 object-cover rounded-md"
-                                                        src={{ asset('storage/' . $media['media_path']) }}>
-                                                    @break
-
-                                                @else
-                                                    <p class="text-xs text-center">بدون تصویر</p>
-                                                    @break
-                                                @endif
-                                            @endforeach
-                                        @else
-                                            <p class="text-xs text-center">بدون تصویر</p>
-                                        @endif
+                                        <img class="max-w-[60px] max-h-[60px] mx-auto size-15 object-cover rounded-md"
+                                            src={{ asset('storage/' . $product['mainImg']) }}>
                                     </div>
                                 </div>
                                 <div

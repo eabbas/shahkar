@@ -156,14 +156,14 @@ Route::group([
     Route::get('/delete/{id}', 'delete')->missing(function () {
         return to_route('missing');
     })->name('delete');
+    Route::get('/show/{product}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->missing(function () {
+        return to_route('missing');
+    })->name('show');
 
     Route::get('/list', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('index');
     Route::get('/admin/show/{product}', 'adminShow')->missing(function () {
         return to_route('missing');
     })->name('adminShow');
-    Route::get('/show/{product}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->missing(function () {
-        return to_route('missing');
-    })->name('show');
     Route::post('/admin/deleteAll', 'deleteAll')->name('deleteAll');
 });
 

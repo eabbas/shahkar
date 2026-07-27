@@ -60,12 +60,18 @@ class HomeController extends Controller
         $introduction = introduction::first();
         $categories = category::all();
         $products = product::where('show_in_home', 1)->get();
-        // return $products;
         foreach ($products as $product) {
-            foreach ($product->media as $media) {
-                if ($media['is_main']) {
-                    $product['mainImg']  = $media['media_path'];
+            if ($product->media->isNotEmpty()) {
+                foreach ($product->media as $media) {
+                    if ($media['is_main']) {
+                        $product['mainImg']  = $media['media_path'];
+                        break;
+                    } else {
+                        $product['mainImg'] = 'default.png';
+                    }
                 }
+            } else {
+                $product['mainImg'] = 'default.png';
             }
         }
         return view('mahdi.index', [

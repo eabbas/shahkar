@@ -575,14 +575,14 @@
                         class="lg:w-23/24 w-11/12 lg:h-full max-lg:py-1.5 flex flex-col items-end justify-center py-5 lg:absolute lg:top-0 lg:right-0  max-lg:order-2 max-lg:mx-auto">
                         <div class="lg:w-4/12 w-full h-2/3 flex flex-col gap-7 justify-center items-center">
                             <div
-                                class="xl:text-5xl sm:text-4xl text-4xl text-white font-bold flex flex-col sm:gap-8 gap-4 justify-center items-center">
+                                class="text-xl sm:text-3xl leading-12 lg:text-4xl text-white font-bold flex flex-col sm:gap-8 gap-4 justify-center items-center">
                                 <h2>
                                     {{ $header->title }}
                                     <span class="text-[var(--gold)]"></span>
                                 </h2>
                             </div>
                             <div
-                                class="xl:text-lg lg:text-xs sm:text-lg text-sm text-[var(--text-secondary)] flex flex-col justify-center items-center">
+                                class="text-xs lg:text-sm leading-7 text-[var(--text-secondary)] flex flex-col justify-center items-center">
                                 <p>{{ $header->subTitle }}</p>
                             </div>
                             <!-- bottoms -->
@@ -644,8 +644,13 @@
                         <div
                             class="w-full h-full border-1 relative border-[var(--gold)] bg-[#181819] rounded-2xl flex lg:flex-col gap-5 lg:gap-18 justify-between p-1 scale transition_root">
                             <div class="lg:w-full w-1/2 lg:h-7/12 flex items-cebter">
-                                <img src="{{ asset('storage/' . $service->img) }}" alt=""
-                                    class="object-fit w-full h-45 lg:rounded-t-2xl rounded-2xl">
+                                @if ($service->img)
+                                    <img src="{{ asset('storage/' . $service->img) }}" alt=""
+                                        class="object-fit w-full h-45 lg:rounded-t-2xl rounded-2xl">
+                                @else
+                                    <img src="{{ asset('storage/default.png') }}" alt=""
+                                        class="object-fit w-full h-45 lg:rounded-t-2xl rounded-2xl">
+                                @endif
                             </div>
                             {{-- <div
                                 class="lg:w-full lg:h-6/12 max-lg:hidden bg-black/60 blur-[5px] absolute bottom-0 left-0 rounded-b-2xl -z-0">
@@ -835,12 +840,10 @@
                     <div
                         class="min-w-40 lg:w-1/5 h-full border border-[var(--gold)] rounded-xl px-[0.3px] py-[0.7px] overflow-hidden">
                         @if (isset($products[0]))
-                            {{-- <a href="{{ route('product.show', [$products[0]]) }}"> --}}
-                            <span class="cursor-pointer">
+                            <a href="{{ route('product.show', [$products[0]]) }}">
                                 <img src="{{ asset('storage/' . $products[0]->mainImg) }}" alt=""
                                     class="object-fit w-full h-full rounded-xl scale transition_root">
-                            </span>
-                            {{-- </a> --}}
+                            </a>
                         @endif
                     </div>
                     <div class="min-w-55 lg:w-3/5 h-full flex flex-col justify-between items-center">
@@ -848,23 +851,19 @@
                             <div
                                 class="w-1/2 h-full border border-[var(--gold)] rounded-xl px-[0.3px] py-[0.7px] overflow-hidden">
                                 @if (isset($products[1]))
-                                    {{-- <a href="{{ route('product.show', [$products[1]]) }}"> --}}
-                                    <span class="cursor-pointer">
+                                    <a href="{{ route('product.show', [$products[1]]) }}">
                                         <img src="{{ asset('storage/' . $products[1]->mainImg) }}" alt=""
                                             class="object-fit w-full h-full rounded-xl scale transition_root">
-                                    </span>
-                                    {{-- </a> --}}
+                                    </a>
                                 @endif
                             </div>
                             <div
                                 class="w-1/2 h-full border border-[var(--gold)] rounded-xl px-[0.3px] py-[0.7px] overflow-hidden">
                                 @if (isset($products[2]))
-                                    {{-- <a href="{{ route('product.show', [$products[2]]) }}"> --}}
-                                    <span class="cursor-pointer">
+                                    <a href="{{ route('product.show', [$products[2]]) }}">
                                         <img src="{{ asset('storage/' . $products[2]->mainImg) }}" alt=""
                                             class="object-fit w-full h-full rounded-xl scale transition_root">
-                                    </span>
-                                    {{-- </a> --}}
+                                    </a>
                                 @endif
                             </div>
                         </div>
@@ -872,34 +871,28 @@
                             <div
                                 class="sm:w-1/3 w-1/2 h-full border border-[var(--gold)] rounded-xl px-[0.3px] py-[0.7px] overflow-hidden">
                                 @if (isset($products[3]))
-                                    {{-- <a href="{{ route('product.show', [$products[3]]) }}"> --}}
-                                    <span class="cursor-pointer">
+                                    <a href="{{ route('product.show', [$products[3]]) }}">
                                         <img src="{{ asset('storage/' . $products[3]->mainImg) }}" alt=""
                                             class="object-fit w-full h-full rounded-xl scale transition_root">
-                                    </span>
-                                    {{-- </a> --}}
+                                    </a>
                                 @endif
                             </div>
                             <div
                                 class="sm:w-1/3 w-1/2 h-full border border-[var(--gold)] rounded-xl px-[0.3px] py-[0.7px] overflow-hidden">
                                 @if (isset($products[4]))
-                                    {{-- <a href="{{ route('product.show', [$products[4]]) }}"> --}}
-                                    <span class="cursor-pointer">
+                                    <a href="{{ route('product.show', [$products[4]]) }}">
                                         <img src="{{ asset('storage/' . $products[4]->mainImg) }}" alt=""
                                             class="object-fit w-full h-full rounded-xl scale transition_root">
-                                    </span>
-                                    {{-- </a> --}}
+                                    </a>
                                 @endif
                             </div>
                             <div
                                 class="sm:w-1/3 w-1/2 h-full border border-[var(--gold)] rounded-xl px-[0.3px] py-[0.7px] overflow-hidden">
                                 @if (isset($products[5]))
-                                    {{-- <a href="{{ route('product.show', [$products[5]]) }}"> --}}
-                                    <span class="cursor-pointer">
+                                    <a href="{{ route('product.show', [$products[5]]) }}">
                                         <img src="{{ asset('storage/' . $products[5]->mainImg) }}" alt=""
                                             class="object-fit w-full h-full rounded-xl scale transition_root">
-                                    </span>
-                                    {{-- </a> --}}
+                                    </a>
                                 @endif
                             </div>
                         </div>
@@ -907,12 +900,10 @@
                     <div
                         class="min-w-40 lg:w-1/5 h-full border border-[var(--gold)] rounded-xl px-[0.3px] py-[0.7px] overflow-hidden">
                         @if (isset($products[6]))
-                            {{-- <a href="{{ route('product.show', [$products[6]]) }}"> --}}
-                            <span class="cursor-pointer">
+                            <a href="{{ route('product.show', [$products[6]]) }}">
                                 <img src="{{ asset('storage/' . $products[6]->mainImg) }}" alt=""
                                     class="object-fit w-full h-full rounded-xl scale transition_root">
-                            </span>
-                            {{-- </a> --}}
+                            </a>
                         @endif
                     </div>
                 </div>
