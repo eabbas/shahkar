@@ -60,6 +60,7 @@ class HomeController extends Controller
         $introduction = introduction::first();
         $categories = category::all();
         $products = product::where('show_in_home', 1)->get();
+        // return $products;
         foreach ($products as $product) {
             foreach ($product->media as $media) {
                 if ($media['is_main']) {

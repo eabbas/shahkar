@@ -49,7 +49,6 @@
                             </label>
                             <select name="category_ids[]" id="category_ids"
                                 class="w-full bg-[#F9F9F9] py-3 pr-5 rounded-[10px]" multiple size="1">
-                                <option value="0" @if (in_array(0, old('category_ids', []))) selected @endif>بدون دسته </option>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}" @if (in_array($category->id, old('category_ids', []))) selected @endif>
                                         {{ $category->title }}</option>
@@ -61,7 +60,7 @@
                         </div>
                         <div class="w-full flex flex-col gap-5 mt-5">
                             <div class=""></div>
-                            <button type="button" onclick="addAttribute(this)"
+                            <button type="button" onclick="addAttribute(this, 'create')"
                                 class="w-30 mx-auto p-2 text-sm rounded-md bg-[#1B84FF] hover:bg-[#056EE9] text-white cursor-pointer">
                                 افزودن ویژگی +
                             </button>

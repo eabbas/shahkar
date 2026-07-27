@@ -151,6 +151,8 @@ Route::group([
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
     Route::get('/admin/list', 'adminIndex')->name('adminIndex');
+    Route::post('/edit/', 'edit')->name('edit');
+    Route::post('/update', 'update')->name('update');
     Route::get('/delete/{id}', 'delete')->missing(function () {
         return to_route('missing');
     })->name('delete');
@@ -162,11 +164,6 @@ Route::group([
     Route::get('/show/{product}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->missing(function () {
         return to_route('missing');
     })->name('show');
-    Route::get('/edit/{product}', 'edit')->missing(function () {
-        return to_route('missing');
-    })->name('edit');
-    Route::post('/update', 'update')->name('update');
-
     Route::post('/admin/deleteAll', 'deleteAll')->name('deleteAll');
 });
 
