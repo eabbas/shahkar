@@ -135,10 +135,10 @@ Route::group([
 
 
     Route::get('/list', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('index');
-    // Route::get('/show/{category}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->missing(function () {
-    //     return to_route('missing');
-    // })->name('show');
-    // Route::post('/admin/deleteAll', 'deleteAll')->name('deleteAll');
+    Route::get('/show/{category}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->missing(function () {
+        return to_route('missing');
+    })->name('show');
+    Route::post('/admin/deleteAll', 'deleteAll')->name('deleteAll');
 });
 
 // product routes

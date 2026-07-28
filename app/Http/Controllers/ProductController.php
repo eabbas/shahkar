@@ -95,11 +95,11 @@ class ProductController extends Controller
                         $product['mainImg']  = $media['media_path'];
                         break;
                     } else {
-                        $product['mainImg'] = 'default.png';
+                        $product['mainImg'] = 'default.jpg';
                     }
                 }
             } else {
-                $product['mainImg'] = 'default.png';
+                $product['mainImg'] = 'default.jpg';
             }
         }
         return view('admin.product.index', ['products' => $products, 'logo' => $logo]);
@@ -222,6 +222,23 @@ class ProductController extends Controller
     }
     public function show(Product $product)
     {
-        return view('admin.product.show', ['product' => $product]);
+        $logo = logo::first();
+        if ($product->media->isNotEmpty()) {
+            foreach ($product->media as $media) {
+                if ($media['is_main']) {
+                    $product['mainImg']  = $media['media_path'];
+                    break;
+                } else {
+                    $product['mainImg'] = 'default.jpg';
+                }
+            }
+        } else {
+            $product['mainImg'] = 'default.jpg';
+        }
+        return view('user.product.show', ['product' => $product, 'logo' => $logo]);
+    }
+    public function index()
+    {
+        return 'به زودی';
     }
 }

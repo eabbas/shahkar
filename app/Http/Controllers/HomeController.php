@@ -67,11 +67,11 @@ class HomeController extends Controller
                         $product['mainImg']  = $media['media_path'];
                         break;
                     } else {
-                        $product['mainImg'] = 'default.png';
+                        $product['mainImg'] = 'default.jpg';
                     }
                 }
             } else {
-                $product['mainImg'] = 'default.png';
+                $product['mainImg'] = 'default.jpg';
             }
         }
         return view('mahdi.index', [
