@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> --}}
     <link rel="stylesheet" href="{{ url('assets/css/style.css') }}" type="text/css">
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
+    <script src="{{ asset('assets/js/tailwind.js') }}"></script>
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/IMG_20251225_131334_688.png') }}">
     <title>شاهکار | ورود</title>
 
@@ -46,7 +47,7 @@
                 </div>
                 <div class="w-full flex flex-row items-center gap-2">
                     <div for="accept"
-                        class="text-sm text-[#0b0809] flex flex-row justify-start items-center gap-2 text-gray-400">
+                        class="text-sm flex flex-row justify-start items-center gap-2 text-gray-400">
                         رمز عبور خود را
                         <a href="{{ route('user.forgetPassword') }}" class="text-gray-800 font-bold">فراموش کردم</a>
                     </div>
@@ -81,7 +82,7 @@
 
         function checkAuth(e) {
             e.preventDefault()
-            
+
             if (phoneNumber.value == "" && password.value == "") {
                 showMessage('open')
                 element.innerHTML = `
@@ -107,7 +108,6 @@
                         'password': password.value
                     },
                     success: function(flag) {
-                        console.log(flag)
                         if (!flag) {
                             showMessage('open')
                             element.innerHTML = `
@@ -125,7 +125,7 @@
                         showMessage('open')
                         element.innerHTML = `
                             <span>❌</span>
-                            <span class="text-shadw-lg">خطا در دریافت اطلاعات!</span>
+                            <span class="text-shadow-lg">خطا در دریافت اطلاعات!</span>
                         `
                         message.children[0].appendChild(element)
                         setTimeout(() => {

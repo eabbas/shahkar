@@ -31,8 +31,10 @@
             <div
                 class="max-lg:w-1/3 lg:w-1/5 h-full flex lg:items-center max-lg:justify-center justify-start cursor-pointer">
                 @if ($logo)
-                    <img src="{{ asset('storage/' . $logo->logo) }}" alt=""
-                        class="object-fit lg:w-10/24 w-6/12 h-full">
+                    <a href="{{ route('home') }}">
+                        <img src="{{ asset('storage/' . $logo->logo) }}" alt=""
+                            class="object-fit lg:w-10/24 w-6/12 h-full">
+                    </a>
                 @endif
             </div>
             <div class="lg:w-9/12 w-1/3 h-8/12 flex lg:justify-between justify-end items-end">
@@ -196,6 +198,9 @@
                                             href="{{ route('dashboard') }}">پنل ادمین</a>
                                     </li>
                                 @endif
+                                <li class="w-full text-nowrap font-bold text-slate-800 rounded-xl"><a
+                                        href="{{ route('user.logout') }}">خروج</a>
+                                </li>
                             </ul>
                         </div>
                     </div>

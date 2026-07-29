@@ -624,3 +624,10 @@ function number_order(item) {
         number_order_item.setAttribute('value', minez_value)
     }
 }
+
+let modals = document.querySelectorAll('.modal');
+modals.forEach(modal => {
+    setTimeout(() => {
+        modal.classList.add('opacity-0', 'invisible')
+    }, 3000)
+})

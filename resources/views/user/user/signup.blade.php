@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url('assets/css/style.css') }}" type="text/css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> --}}
+    {{-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> --}}
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/IMG_20251225_131334_688.png') }}">
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="{{ asset('assets/js/tailwind.js') }}"></script>
     <title>شاهکار | ثبت نام</title>
 </head>
 
@@ -64,7 +65,7 @@
                 </div>
                 <div class="w-full flex flex-row items-center gap-2">
                     <input type="checkbox" name="accept" id="accept">
-                    <label for="accept" class="text-sm text-[#0b0809] flex flex-row justify-start items-center gap-2 text-gray-400">
+                    <label for="accept" class="text-sm flex flex-row justify-start items-center gap-2 text-gray-400">
                         <a href="#" class="text-gray-800 font-bold">شرایط و قوانین</a>
                         را میپذیرم
                     </label>

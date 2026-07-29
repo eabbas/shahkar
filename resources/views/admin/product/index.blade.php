@@ -57,7 +57,7 @@
                         @foreach ($products as $product)
                             <div class="w-full grid grid-cols-12 divide-x divide-slate-400 py-4">
                                 <div
-                                    class="p-1 lg:p-3 text-xs lg:text-sm h-full flex items-center justify-center  text-center text-gray-900">
+                                    class="p-1 lg:p-3 text-xs lg:text-sm h-full flex items-center justify-center text-center text-gray-900">
                                     <div class="w-10 lg:w-full flex items-center justify-center gap-2">
                                         <input type="checkbox" class="check" name="products[]" value="{{ $product->id }}">
                                         <span>{{ $i }}</span>
@@ -461,12 +461,6 @@
                 confirmDeletePopup.classList.add('invisible', 'opacity-0')
             }
         }
-        let modals = document.querySelectorAll('.modal');
-        modals.forEach(modal => {
-            setTimeout(() => {
-                modal.classList.add('opacity-0', 'invisible')
-            }, 3000)
-        })
     </script>
     <script src="{{ url('assets/js/attribute.js') }}"></script>
     <script src="{{ asset('assets/js/checkAll.js') }}"></script>

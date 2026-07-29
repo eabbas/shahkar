@@ -67,6 +67,18 @@
     </header>
 @endsection
 @section('content')
+    @if (session('success'))
+        <div
+            class="modal py-5 px-8 rounded-lg shadow-lg bg-green-300 fixed top-10 right-10 z-5 flex justify-center items-center transition-all duration-300">
+            <span class="text-sm text-[var(--light-theme-text-color)]"> {{ session('success') }} </span>
+        </div>
+    @endif
+    @if (session('failure'))
+        <div
+            class="modal py-5 px-8 rounded-lg shadow-lg bg-red-300 fixed top-10 right-10 z-5 flex justify-center items-center transition-all duration-300">
+            <span class="text-sm text-[var(--light-theme-text-color)]"> {{ session('failure') }} </span>
+        </div>
+    @endif
     <section class="w-full h-full flex items-center justify-center">
         <div class="w-11/12 h-full flex flex-col gap-8 items-center justify-center">
             <div class="w-full flex flex-col gap-3 items-center justify-center">
@@ -115,18 +127,18 @@
 
                                                 <!-- Logo -->
                                                 <path d="
-                                                                                M165 235
-                                                                                L165 205
-                                                                                Q165 180 188 180
-                                                                                L205 180
-                                                                                Q225 180 225 198
-                                                                                Q225 214 208 214
-                                                                                L188 214
-                                                                                L188 225
-                                                                                L215 225
-                                                                                Q235 225 235 245
-                                                                                L165 245
-                                                                                Z" />
+                                                                                        M165 235
+                                                                                        L165 205
+                                                                                        Q165 180 188 180
+                                                                                        L205 180
+                                                                                        Q225 180 225 198
+                                                                                        Q225 214 208 214
+                                                                                        L188 214
+                                                                                        L188 225
+                                                                                        L215 225
+                                                                                        Q235 225 235 245
+                                                                                        L165 245
+                                                                                        Z" />
 
                                                 <!-- Text Line -->
                                                 <line x1="220" y1="225" x2="305" y2="225" />
@@ -432,24 +444,25 @@
                                         stroke-linejoin="round">
 
                                         <!-- Scalloped medal -->
-                                        <path d="
-                                                                                        M12 3
-                                                                                        C12.7 3.6 13.6 3.5 14.3 3.9
-                                                                                        C15.1 4.2 15.5 5 16.2 5.4
-                                                                                        C17 5.8 17.8 6.3 18 7.2
-                                                                                        C18.3 8 19 8.8 19 9.8
-                                                                                        C19 10.8 18.3 11.6 18 12.4
-                                                                                        C17.8 13.3 17 13.8 16.2 14.2
-                                                                                        C15.5 14.6 15.1 15.4 14.3 15.7
-                                                                                        C13.6 16.1 12.7 16 12 16.6
-                                                                                        C11.3 16 10.4 16.1 9.7 15.7
-                                                                                        C8.9 15.4 8.5 14.6 7.8 14.2
-                                                                                        C7 13.8 6.2 13.3 6 12.4
-                                                                                        C5.7 11.6 5 10.8 5 9.8
-                                                                                        C5 8.8 5.7 8 6 7.2
-                                                                                        C6.2 6.3 7 5.8 7.8 5.4
-                                                                                        C8.5 5 8.9 4.2 9.7 3.9
-                                                                                        C10.4 3.5 11.3 3.6 12 3Z" />
+                                        <path
+                                            d="
+                                                                                                M12 3
+                                                                                                C12.7 3.6 13.6 3.5 14.3 3.9
+                                                                                                C15.1 4.2 15.5 5 16.2 5.4
+                                                                                                C17 5.8 17.8 6.3 18 7.2
+                                                                                                C18.3 8 19 8.8 19 9.8
+                                                                                                C19 10.8 18.3 11.6 18 12.4
+                                                                                                C17.8 13.3 17 13.8 16.2 14.2
+                                                                                                C15.5 14.6 15.1 15.4 14.3 15.7
+                                                                                                C13.6 16.1 12.7 16 12 16.6
+                                                                                                C11.3 16 10.4 16.1 9.7 15.7
+                                                                                                C8.9 15.4 8.5 14.6 7.8 14.2
+                                                                                                C7 13.8 6.2 13.3 6 12.4
+                                                                                                C5.7 11.6 5 10.8 5 9.8
+                                                                                                C5 8.8 5.7 8 6 7.2
+                                                                                                C6.2 6.3 7 5.8 7.8 5.4
+                                                                                                C8.5 5 8.9 4.2 9.7 3.9
+                                                                                                C10.4 3.5 11.3 3.6 12 3Z" />
 
                                         <!-- Inner circle -->
                                         <circle cx="12" cy="9.8" r="4.2" />

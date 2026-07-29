@@ -24,7 +24,7 @@
         </div>
         <div class="hidden lg:block lg:w-3/12 bg-[#0D0E12] fixed right-0 top-0 h-dvh px-5">
             <div class="flex justify-center pt-5">
-                <a href="{{ route('dashboard') }}" class="right-0 mr-[15px]">
+                <a href="{{ route('home') }}" class="right-0 mr-[15px]">
                     @if ($logo)
                         <img src="{{ asset('storage/' . $logo->logo) }}" alt="" class="w-40 h-15">
                     @endif
@@ -178,7 +178,7 @@
                         </ul>
                     </div>
                 </div>
-                {{-- <div class="border-b border-gray-500 pb-3">
+                <div class="border-b border-gray-500 pb-3">
                     <div
                         class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md @if (Route::is('user.*')) bg-[#383c4d] @endif">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
@@ -200,19 +200,19 @@
                         <ul class="gap-2.5 pr-3">
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{ route('category.create') }}"
-                                    class="py-1 @if (Route::is('category.create')) text-[#FF0000] @endif">ایجاد کاربر
+                                <a href="{{ route('user.admin_create_user') }}"
+                                    class="py-1 @if (Route::is('user.admin_create_user')) text-[#FF0000] @endif">ایجاد کاربر
                                     جدید</a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                 <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{ route('category.adminIndex') }}"
-                                    class="py-1 @if (Route::is('category.adminIndex')) text-[#FF0000] @endif">لیست
+                                <a href="{{ route('user.index') }}"
+                                    class="py-1 @if (Route::is('user.index')) text-[#FF0000] @endif">لیست
                                     کاربران</a>
                             </li>
                         </ul>
                     </div>
-                </div> --}}
+                </div>
             </div>
         </div>
         <!-- responsive menu -->
@@ -226,7 +226,7 @@
                     </button>
                 </div>
                 <div class="flex justify-center pt-5">
-                    <a href="http://shahkar.art/dashboard" class="right-0 mr-[15px]">
+                    <a href="{{ route('home') }}" class="right-0 mr-[15px]">
                         @if ($logo)
                             <img src="{{ asset('storage/' . $logo->logo) }}" alt="" class="w-40 h-15">
                         @endif
@@ -384,7 +384,7 @@
                             </ul>
                         </div>
                     </div>
-                    {{-- <div class="border-b border-gray-500 pb-3">
+                    <div class="border-b border-gray-500 pb-3">
                         <div
                             class="arrow-down cursor-pointer flex justify-between items-center flex-row-reverse py-1 px-3 rounded-md @if (Route::is('user.*')) bg-[#383c4d] @endif">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
@@ -407,19 +407,19 @@
                             <ul class="gap-2.5 pr-3">
                                 <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                     <span class="size-1 bg-white rounded-sm"></span>
-                                    <a href="{{ route('category.create') }}"
-                                        class="py-1 @if (Route::is('category.create')) text-[#FF0000] @endif">ایجاد
+                                    <a href="{{ route('user.admin_create_user') }}"
+                                        class="py-1 @if (Route::is('user.admin_create_user')) text-[#FF0000] @endif">ایجاد
                                         کاربر جدید</a>
                                 </li>
                                 <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                     <span class="size-1 bg-white rounded-sm"></span>
-                                    <a href="{{ route('category.adminIndex') }}"
-                                        class="py-1 @if (Route::is('category.adminIndex')) text-[#FF0000] @endif">لیست
+                                    <a href="{{ route('user.index') }}"
+                                        class="py-1 @if (Route::is('user.index')) text-[#FF0000] @endif">لیست
                                         کاربران</a>
                                 </li>
                             </ul>
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
             <div class="w-1/3 md:w-7/12 bg-black/50" onclick="responsive_menu('close')"></div>
