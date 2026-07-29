@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> --}}
     <link rel="stylesheet" href="{{ url('assets/css/style.css') }}" type="text/css">
+    <script src="{{ asset('assets/js/tailwind.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.js') }}"></script>
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/IMG_20251225_131334_688.png') }}">
     <title>شاهکار | فراموشی رمز عبور</title>
 </head>
@@ -87,7 +89,7 @@
                 message.children[0].appendChild(element)
                 setTimeout(() => {
                     showMessage('close')
-                    
+
                 }, 2000)
             } else {
                 $.ajaxSetup({
@@ -245,7 +247,6 @@
                             'phoneNumber': phoneNumber.value
                         },
                         success: function(data) {
-                            console.log(data)
                             countDown.classList.remove('cursor-no-drop')
                             countDown.classList.add('bg-[#eb3254]')
                             countDown.classList.remove('bg-[#eb3254]/50')

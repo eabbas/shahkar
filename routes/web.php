@@ -135,10 +135,10 @@ Route::group([
 
 
     Route::get('/list', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('index');
-    // Route::get('/show/{category}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->missing(function () {
-    //     return to_route('missing');
-    // })->name('show');
-    // Route::post('/admin/deleteAll', 'deleteAll')->name('deleteAll');
+    Route::get('/show/{category}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->missing(function () {
+        return to_route('missing');
+    })->name('show');
+    Route::post('/admin/deleteAll', 'deleteAll')->name('deleteAll');
 });
 
 // product routes
@@ -151,22 +151,19 @@ Route::group([
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
     Route::get('/admin/list', 'adminIndex')->name('adminIndex');
+    Route::post('/edit/', 'edit')->name('edit');
+    Route::post('/update', 'update')->name('update');
     Route::get('/delete/{id}', 'delete')->missing(function () {
         return to_route('missing');
     })->name('delete');
+    Route::get('/show/{product}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->missing(function () {
+        return to_route('missing');
+    })->name('show');
 
     Route::get('/list', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('index');
     Route::get('/admin/show/{product}', 'adminShow')->missing(function () {
         return to_route('missing');
     })->name('adminShow');
-    Route::get('/show/{product}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->missing(function () {
-        return to_route('missing');
-    })->name('show');
-    Route::get('/edit/{product}', 'edit')->missing(function () {
-        return to_route('missing');
-    })->name('edit');
-    Route::post('/update', 'update')->name('update');
-
     Route::post('/admin/deleteAll', 'deleteAll')->name('deleteAll');
 });
 
@@ -176,35 +173,40 @@ Route::group([
     'controller' => userController::class,
     'as' => 'user.'
 ], function () {
-    Route::get('/signup', 'signup')->name('signup');
-    Route::post('/store', 'store')->name('store');
     Route::get('/login', 'login')->name('login');
     Route::post('/check_user', 'checkUser')->name('checkUser');
-    Route::get('/profile/{user?}', 'profile')->middleware(checklogin::class)->missing(function () {
-        return to_route('missing');
-    })->name('profile');
-    Route::get('/edit/{user}', 'edit')->missing(function () {
+    Route::post('/validate', 'validate')->name('validate');
+    Route::get('/forgetPassword', 'forgetPassword')->name('forgetPassword');
+    Route::post('/sendCode', 'send_sms')->name('sendCode');
+    Route::post('/sendSMS', 'send_code')->name('sendSMS');
+    Route::post('/setPassword', 'setPassword')->name('setPassword');
+    Route::post('/savePassword', 'savePassword')->name('savePassword');
+    Route::get('/signup', 'signup')->name('signup');
+    Route::post('/store', 'store')->name('store');
+    Route::post('/adminStore', 'adminStore')->name('adminStore');
+    Route::get('/logout{id?}', 'logout')->name('logout');
+    Route::get('/signupUser', 'adminSignup')->middleware(checkAdminMiddleware::class)->name('admin_create_user');
+    Route::get('/index', 'index')->middleware(checkAdminMiddleware::class)->name('index');
+    Route::post('/edit', 'edit')->missing(function () {
         return to_route('missing');
     })->name('edit');
     Route::post('/update', 'update')->name('update');
+
+
+
+    Route::get('/profile/{user?}', 'profile')->middleware(checklogin::class)->missing(function () {
+        return to_route('missing');
+    })->name('profile');
     Route::get('/delete/{user}', 'delete')->missing(function () {
         return to_route('missing');
     })->name('delete');
-    Route::get('/logout{id?}', 'logout')->name('logout');
-    Route::get('/index', 'index')->middleware(checkAdminMiddleware::class)->name('index');
     Route::get('/courses/{user}', 'courses')->middleware(checklogin::class)->missing(function () {
         return to_route('missing');
     })->name('courses');
     Route::get('/admin/courses/{user}', 'adminCourses')->middleware(checklogin::class)->missing(function () {
         return to_route('missing');
     })->name('adminCourses');
-    Route::post('/sendSMS', 'send_code')->name('sendSMS');
-    Route::post('/sendCode', 'send_sms')->name('sendCode');
     Route::post('/checkAuth', 'checkAuth')->name('checkAuth');
-    Route::post('/validate', 'validate')->name('validate');
-    Route::post('/setPassword', 'setPassword')->name('setPassword');
-    Route::post('/savePassword', 'savePassword')->name('savePassword');
-    Route::get('/forgetPassword', 'forgetPassword')->name('forgetPassword');
     Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
 });
 
@@ -293,7 +295,7 @@ Route::group(['controller' => HomeController::class], function () {
 });
 // admin routes
 Route::controller(userController::class)->prefix('admin')->group(function () {
-    Route::get('/signupUser', 'adminSignup')->middleware(checkAdminMiddleware::class)->name('admin_create_user');
+    // Route::get('/signupUser', 'adminSignup')->middleware(checkAdminMiddleware::class)->name('admin_create_user');
     // Route::post("/store","store") -> name("user_store");
     // Route::get("/loginUser","login") -> name("user_login");
     // Route::post("/check_login","checkLogin");

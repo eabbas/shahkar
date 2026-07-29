@@ -31,22 +31,22 @@
             <div class="w-full shadow-md [&::-webkit-scrollbar]:hidden lg:overflow-visible overflow-x-auto">
                 <div class="w-full min-w-[620px] h-120 max-h-120 overflow-auto">
                     <div class="w-full grid grid-cols-12 divide-x divide-slate-400 sticky top-0 z-1">
-                        <div class="py-3 text-center text-xs font-medium text-gray-600 bg-gray-100">
+                        <div class="py-5 text-center text-xs font-medium text-gray-600 bg-gray-100">
                             <span class="w-10 lg:w-full">ردیف</span>
                         </div>
-                        <div class="py-3 text-center text-xs font-medium text-gray-600 bg-gray-100 col-span-2">
+                        <div class="py-5 text-center text-xs font-medium text-gray-600 bg-gray-100 col-span-2">
                             <span class="w-20 lg:w-full">عنوان</span>
                         </div>
-                        <div class="py-3 text-center text-xs font-medium text-gray-600 bg-gray-100 col-span-2">
+                        <div class="py-5 text-center text-xs font-medium text-gray-600 bg-gray-100 col-span-2">
                             <span class="w-20 lg:w-full">تصویر</span>
                         </div>
-                        <div class="py-3 text-center text-xs font-medium text-gray-600 bg-gray-100 col-span-3">
+                        <div class="py-5 text-center text-xs font-medium text-gray-600 bg-gray-100 col-span-3">
                             <span class="w-30 lg:w-full">خلاصه</span>
                         </div>
-                        <div class="py-3 text-center text-xs font-medium text-gray-600 bg-gray-100 col-span-2">
+                        <div class="py-5 text-center text-xs font-medium text-gray-600 bg-gray-100 col-span-2">
                             <span class="w-30 lg:w-full">دسته</span>
                         </div>
-                        <div class="py-3 text-center text-xs font-medium text-gray-600 bg-gray-100 col-span-2">
+                        <div class="py-5 text-center text-xs font-medium text-gray-600 bg-gray-100 col-span-2">
                             <span class="w-[180px] lg:w-full">عملیات</span>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                         @foreach ($products as $product)
                             <div class="w-full grid grid-cols-12 divide-x divide-slate-400 py-4">
                                 <div
-                                    class="p-1 lg:p-3 text-xs lg:text-sm h-full flex items-center justify-center  text-center text-gray-900">
+                                    class="p-1 lg:p-3 text-xs lg:text-sm h-full flex items-center justify-center text-center text-gray-900">
                                     <div class="w-10 lg:w-full flex items-center justify-center gap-2">
                                         <input type="checkbox" class="check" name="products[]" value="{{ $product->id }}">
                                         <span>{{ $i }}</span>
@@ -70,21 +70,8 @@
                                 <div
                                     class="p-1 lg:p-3 text-xs col-span-2 lg:text-sm h-full flex items-center justify-center text-gray-900">
                                     <div class="w-20 lg:w-full">
-                                        @if ($product['media']->isNotEmpty())
-                                            @foreach ($product['media'] as $media)
-                                                @if ($media['is_main'])
-                                                    <img class="max-w-[60px] max-h-[60px] mx-auto size-15 object-cover rounded-md"
-                                                        src={{ asset('storage/' . $media['media_path']) }}>
-                                                    @break
-
-                                                @else
-                                                    <p class="text-xs text-center">بدون تصویر</p>
-                                                    @break
-                                                @endif
-                                            @endforeach
-                                        @else
-                                            <p class="text-xs text-center">بدون تصویر</p>
-                                        @endif
+                                        <img class="max-w-[60px] max-h-[60px] mx-auto size-15 object-cover rounded-md"
+                                            src={{ asset('storage/' . $product['mainImg']) }}>
                                     </div>
                                 </div>
                                 <div
@@ -93,7 +80,8 @@
                                 </div>
                                 <div
                                     class="p-1 lg:p-3 text-xs lg:text-sm h-full flex items-center justify-center text-gray-900 text-center col-span-2 relative">
-                                    <span class="block max-w-30 lg:w-full overflow-x-auto font-bold text-blue-500">
+                                    <span class="block max-w-30 lg:w-full overflow-x-auto font-bold text-blue-500"
+                                        style="scrollbar-width: none">
                                         @foreach ($product['categories'] as $category)
                                             {{ $category['title'] }}-
                                         @endforeach
@@ -113,7 +101,7 @@
                                             </span>
                                         </li>
                                         <li class="flex justify-center">
-                                            <span
+                                            <span onclick="editForm('open', {{ $product['id'] }})"
                                                 class="w-fit flex flex-row items-center justify-center bg-green-500 hover:bg-green-600 p-1 rounded-sm cursor-pointer"
                                                 title="ویرایش">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="size-4"
@@ -174,7 +162,292 @@
         </div>
     </div>
     {{-- end confirmDelete popup --}}
+    {{-- start editForm popup --}}
+    @error('title')
+        <div
+            class="modal py-5 px-8 rounded-lg shadow-lg bg-red-100 fixed top-10 right-10 z-5 flex justify-center items-center transition-all duration-300">
+            <span class="font-bold text-sm text-red-500"> {{ $message }} </span>
+        </div>
+    @enderror
+    @error('primary_price')
+        <div
+            class="modal py-5 px-8 rounded-lg shadow-lg bg-red-100 fixed top-50 right-10 z-5 flex justify-center items-center transition-all duration-300">
+            <span class="font-bold text-sm text-red-500"> {{ $message }} </span>
+        </div>
+    @enderror
+    @error('category_ids')
+        <div
+            class="modal py-5 px-8 rounded-lg shadow-lg bg-red-100 fixed top-30 right-10 z-5 flex justify-center items-center transition-all duration-300">
+            <span class="font-bold text-sm text-red-500"> {{ $message }} </span>
+        </div>
+    @enderror
+    <div id="editFormPopup" class="w-full h-dvh fixed top-0 left-0 z-5 invisible opacity-0 transition-all duration-400">
+        <div class="size-full relative">
+            <div class="size-full bg-black/40 absolute top-0 left-0" onclick="editForm('close')"></div>
+            <div
+                class="w-9/12 2xl:container max-h-160 overflow-auto mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2">
+                <div class="relative">
+                    <button class="absolute -top-4 -left-4 size-6 flex flex-col justify-center items-center cursor-pointer"
+                        onclick="editForm('close')">
+                        <span class="w-full h-0.5 rounded-full bg-slate-500 rotate-45 translate-y-1/2"></span>
+                        <span class="w-full h-0.5 rounded-full bg-slate-500 -rotate-45 -translate-y-1/2"></span>
+                    </button>
+                </div>
+                <div id="popupContent">
+                    <form action="{{ route('product.update') }}" method="post" id="editForm"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="product_id" id="product_id">
+                        <div class="flex flex-col md:flex-row gap-3 md:gap-5">
+                            <div class="w-full md:w-2/3 space-y-8">
+                                <div class="w-full flex flex-col">
+                                    <label for="title" class="mb-2 flex flex-row items-center">
+                                        <span>نام محصول:</span>
+                                        <span class="text-rose-500">*</span>
+                                    </label>
+                                    <input type="text"
+                                        class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]"
+                                        name="title" id="title" placeholder="نام محصول را وارد کنید">
+                                    @error('title')
+                                        <span class="text-xs text-red-500">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="w-full flex flex-col mt-5">
+                                    <label for="description" class="mb-2">توضیحات محصول:</label>
+                                    <textarea name="description" class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]" rows="4"
+                                        id="description" placeholder="توضیحات محصول را وارد کنید"></textarea>
+                                    @error('description')
+                                        <span class="text-xs text-red-500">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="w-full flex flex-col mt-5">
+                                    <label for="summary" class="mb-2">خلاصه محصول:</label>
+                                    <textarea class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]" rows="4"
+                                        placeholder="خلاصه" name="summary" id="summary"></textarea>
+                                    @error('summary')
+                                        <span class="text-xs text-red-500">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="w-full flex flex-col gap-3 mt-5">
+                                    <label for="category_ids" class="mb-2 flex flex-row items-center">
+                                        <span>دسته بندی :</span>
+                                        <span class="text-rose-500">*</span>
+                                    </label>
+                                    <select name="category_ids[]" id="category_ids"
+                                        class="w-full bg-[#F9F9F9] py-3 pr-5 rounded-[10px]" multiple size="1">
+                                    </select>
+                                    @error('category_ids')
+                                        <span class="text-xs text-red-500">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="w-full flex flex-col gap-5 mt-5">
+                                    <div class="" id="attributesContainer">
+
+                                    </div>
+                                    <button type="button" onclick="addAttribute(this,'edit')"
+                                        class="w-30 mx-auto p-2 text-sm rounded-md bg-[#1B84FF] hover:bg-[#056EE9] text-white cursor-pointer">
+                                        افزودن ویژگی +
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/3 space-y-8">
+                                <div class="w-full flex flex-col gap-6 mt-5">
+                                    <div class="flex items-center gap-4">
+                                        <label for="show_in_home">نمایش در خانه :</label>
+                                        <label for="show_in_home"
+                                            class="w-[50px] h-[28px] flex rounded-full cursor-pointer relative">
+                                            <input type="checkbox" name="show_in_home" value="1" id="show_in_home"
+                                                hidden class="peer">
+                                            <span
+                                                class="size-full bg-gray-300 shadow-inner rounded-full peer-checked:bg-[#1B84FF] transition-all duration-300"></span>
+                                            <span
+                                                class="size-[20px] rounded-full bg-white absolute top-1 left-1 peer-checked:translate-x-[22px] transition-all duration-300 shadow-md"></span>
+                                        </label>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <label class="mb-2"> تعداد :</label>
+                                        <div class="flex">
+                                            <div
+                                                class="bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4] flex flex-row items-center">
+                                                <button type="button"
+                                                    class="inline-block size-7 rounded-lg bg-[#1B84FF] hover:bg-[#056EE9] cursor-pointer text-white"
+                                                    onclick="calculate('+')">+</button>
+                                                <input type="number" min="1"
+                                                    class="outline-none w-14 text-center text-xs" name="count"
+                                                    id="count" dir="ltr">
+                                                <button type="button"
+                                                    class="inline-block size-7 rounded-lg bg-[#1B84FF] hover:bg-[#056EE9] cursor-pointer text-white"
+                                                    onclick="calculate('-')">-</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-full mt-3 lg:mt-5 flex flex-col">
+                                    <label for="mainImage" class="mb-2">عکس اصلی:</label>
+                                    <input type="file"
+                                        class="w-full outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]"
+                                        name="mainImage" id="mainImage">
+                                    <div id="mainImgContainer" class="relative mt-2 p-2 "></div>
+                                </div>
+                                <div class="w-full mt-3 lg:mt-5 flex flex-col">
+                                    <label for="gallery" class="mb-2">گالری تصاویر :</label>
+                                    <input type="file"
+                                        class="w-full outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]"
+                                        name="gallery[]" id="gallery" multiple>
+                                    <div id="galleryContainer" class=" mt-2 p-2 flex items-center gap-3 overflow-auto">
+                                    </div>
+                                </div>
+                                <div class="w-full flex flex-col gap-3 md:gap-5 mt-3 lg:mt-5">
+                                    <div class="w-full flex flex-col gap-3">
+                                        <label for="primary_price"> قیمت اصلی :
+                                            <span class="text-rose-500">*</span>
+                                        </label>
+                                        <input type="number"
+                                            class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]"
+                                            name="primary_price" id="primary_price">
+                                        @error('primary_price')
+                                            <span class="text-xs text-red-500">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="w-full flex flex-col gap-3">
+                                        <label for="secondary_price"> قیمت ویژه :</label>
+                                        <input type="number"
+                                            class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]"
+                                            name="secondary_price" id="secondary_price">
+                                    </div>
+                                </div>
+                                <div class="mt-5 text-center">
+                                    <button type="submit"
+                                        class="py-3 px-10 rounded-[10px] bg-[#1B84FF] hover:bg-[#056EE9] text-white cursor-pointer">ثبت</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- end editForm popup --}}
     <script>
+        function editForm(state, id) {
+            let editFormPopup = document.getElementById('editFormPopup')
+            if (state == 'open') {
+                let product_id = document.getElementById('product_id')
+                let title = document.getElementById('title')
+                let description = document.getElementById('description')
+                let summary = document.getElementById('summary')
+                let show_in_home = document.getElementById('show_in_home')
+                let count = document.getElementById('count')
+                let mainImgContainer = document.getElementById('mainImgContainer')
+                let galleryContainer = document.getElementById('galleryContainer')
+                let primary_price = document.getElementById('primary_price')
+                let secondary_price = document.getElementById('secondary_price')
+                let category_ids = document.getElementById('category_ids')
+                let attributesContainer = document.getElementById('attributesContainer')
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    }
+                })
+                $.ajax({
+                    url: "{{ route('product.edit') }}",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        'id': id,
+                    },
+                    success: function(data) {
+                        product_id.value = data['product'].id
+                        title.value = data['product'].title
+                        description.value = data['product'].description
+                        summary.value = data['product'].summary
+                        count.value = data['product'].count
+                        primary_price.value = data['product'].primary_price
+                        secondary_price.value = data['product'].secondary_price
+                        mainImgContainer.innerHTML = ''
+                        galleryContainer.innerHTML = ''
+                        data['product'].media.forEach(media => {
+                            if (media.is_main) {
+                                let div = document.createElement('div')
+                                div.innerHTML = `
+                                    <img src="http://localhost/shahkar/public/storage/${media['media_path']}" class="w-35 h-20 rounded-lg">
+                                    <span class="absolute top-0 left-5 cursor-pointer" onclick="removeImg(this, '${media['media_path']}', 'mainImg')">❌</span>
+                                    `
+                                mainImgContainer.appendChild(div)
+                            } else {
+                                let div = document.createElement('div')
+                                div.classList = 'relative'
+                                div.innerHTML = `
+                                    <img src="http://localhost/shahkar/public/storage/${media['media_path']}" class="min-w-35 h-20 rounded-lg">
+                                    <span class="absolute top-0 left-0 cursor-pointer" onclick="removeImg(this, '${media['media_path']}', 'gallery')">❌</span>
+                                    `
+                                galleryContainer.appendChild(div)
+                            }
+                        })
+                        if (data.product.show_in_home) {
+                            show_in_home.setAttribute('checked', true)
+                        }
+                        category_ids.innerHTML = ''
+                        data['cats'].forEach(category => {
+                            let option = document.createElement('option')
+                            option.value = category.id
+                            option.innerText = category.title
+                            if (data.catIds.includes(category.id)) {
+                                option.setAttribute('selected', true)
+                            }
+                            category_ids.appendChild(option)
+                        });
+                        attributesContainer.innerHTML = ''
+                        data['product'].attributes.forEach(attribute => {
+                            let div = document.createElement('div');
+                            div.classList =
+                                'flex flex-row items-center justify-between gap-4 mt-4 border border-slate-300 rounded-xl p-2'
+                            div.innerHTML = `
+                                            <div class="w-full flex flex-col sm:flex-row items-center gap-4">
+                                                <input type="text"
+                                                    class="w-full outline-none pr-3 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]"
+                                                    placeholder="ویژگی" name="attributes[oldAttrs][attribute_key][${attribute.id}]" required value="${attribute.attribute_key}">
+                                                <input type="text"
+                                                    class="w-full outline-none pr-3 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]"
+                                                    placeholder="مقدار ویژگی" name="attributes[oldAttrs][attribute_value][${attribute.id}]" required value="${attribute.attribute_value}">
+                                            </div>
+                                            <button type="button"
+                                                class="p-3 text-sm rounded-md bg-rose-500 hover:bg-rose-600 text-white cursor-pointer"
+                                                onclick="remove(this, ${attribute.id})">حذف</button>
+                                            `
+                            attributesContainer.appendChild(div)
+                        })
+                    },
+                    error: function() {
+                        alert('error')
+                    }
+                })
+                editFormPopup.classList.remove('invisible', 'opacity-0')
+            }
+            if (state == 'close') {
+                editFormPopup.classList.add('invisible', 'opacity-0')
+            }
+        }
+
+        function removeImg(el, file, type) {
+            let editForm = document.getElementById('editForm')
+            if (type == 'mainImg') {
+                let input = document.createElement('input')
+                input.setAttribute("type", 'hidden')
+                input.setAttribute("name", "removedImgs[mainImg]")
+                input.setAttribute("value", file)
+                editForm.appendChild(input)
+            }
+            if (type == 'gallery') {
+                let input = document.createElement('input')
+                input.setAttribute("type", 'hidden')
+                input.setAttribute("name", "removedImgs[gallery][]")
+                input.setAttribute("value", file)
+                editForm.appendChild(input)
+            }
+            el.parentElement.remove()
+        }
+
         function deleteProduct(state, id, proTitle) {
             let confirmDeletePopup = document.getElementById('confirmDeletePopup')
             if (state == 'open') {
@@ -188,12 +461,7 @@
                 confirmDeletePopup.classList.add('invisible', 'opacity-0')
             }
         }
-        let modals = document.querySelectorAll('.modal');
-        modals.forEach(modal => {
-            setTimeout(() => {
-                modal.classList.add('opacity-0', 'invisible')
-            }, 3000)
-        })
     </script>
+    <script src="{{ url('assets/js/attribute.js') }}"></script>
     <script src="{{ asset('assets/js/checkAll.js') }}"></script>
 @endsection

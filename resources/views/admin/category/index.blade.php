@@ -418,12 +418,6 @@
                 showSinglePopup.classList.add('opacity-0', 'invisible')
             }
         }
-        let modals = document.querySelectorAll('.modal');
-        modals.forEach(modal => {
-            setTimeout(() => {
-                modal.classList.add('opacity-0', 'invisible')
-            }, 3000)
-        })
     </script>
     <script src="{{ asset('assets/js/checkAll.js') }}"></script>
     <script src="{{ asset('assets/js/category.js') }}"></script>

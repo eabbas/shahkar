@@ -281,12 +281,5 @@
                 confirmDeletePopup.classList.add('invisible', 'opacity-0')
             }
         }
-
-        let modals = document.querySelectorAll('.modal');
-        modals.forEach(modal => {
-            setTimeout(() => {
-                modal.classList.add('opacity-0', 'invisible')
-            }, 3000)
-        })
     </script>
 @endsection

@@ -1,234 +1,99 @@
-@import url("fontiran.css");
-/* @import url("primary_colors.css"); */
+    @import url('fontiran.css');
+
+    * {
+      font-family: IRANSansXFaNum;
+    }
+
+    :root {
+      --background: #07070B;
+      --background-2: #1B1C1E;
+      --card: #2F272C;
+      --card-2: #443F43;
+
+      --gold: #f18e15;
+      --gold-dark: #6A3922;
+
+      --purple: #26275F;
+      --magenta: #A02164;
+
+      --text: #E3E1E1;
+      --text-secondary: #B8AFAC;
+      --text-muted: #8D8786;
+      --border: #666162;
+      --star: #D7B437;
+    }
+
+    .transition_root {
+      transition: all 300ms ease-in;
+    }
+
+    .gradient_box1 {
+      background: linear-gradient(275deg, rgba(170, 117, 44, 1) 27%, rgba(224, 180, 73, 1) 90%);
+
+    }
+
+    .gradient_box1_hover_chang:hover {
+      background: var(--background);
+    }
+
+    .gradient_comment_box {
+      background: linear-gradient(305deg, rgba(19, 15, 53, 1) 0%, rgba(7, 7, 11, 1) 16%, rgba(9, 8, 13, 1) 89%, rgba(32, 22, 33, 1) 100%);
+    }
+
+    .cheng_text_colot_hover:hover .gradent_text_sub_heder {
+      width: 100%;
+
+    }
+
+    .rezume_gradient:hover {
+      background: linear-gradient(275deg, rgba(170, 117, 44, 1) 27%, rgba(224, 180, 73, 1) 90%);
+
+    }
+
+    .scale:hover {
+      transform: scale(1.03);
+    }
+
+    .scale:active {
+      transform: scale(1.03);
+    }
+
+    /* .servis_pup_up_hover:hover :nth-child(3){
+        display:block;
+    } */
+
+    .animation_play_vidio {
+
+      border: 1px dashed red;
+      animation: animation_play_vidio infinite 1.3s linear;
+
+    }
+
+    @keyframes animation_play_vidio {
+      0% {
+        box-shadow: 0px 0px 1px 1px #ff8c00;
+        /* box-shadow; */
+      }
+
+      25% {
+        box-shadow: 0px 0px 2px 2px #f18a0c;
+
+      }
+
+      50% {
+        box-shadow: 0px 0px 3px 3px #ed8c17;
+
+      }
+
+      75% {
+        box-shadow: 0px 0px 4px 4px #f4992a;
+
+      }
+
+      100% {
+        box-shadow: 0px 0px 5px 5px #ed9a35;
+
+      }
 
 
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  margin: 0;
-}
-
-* {
-  font-family: 'IRANSansX';
-  scroll-behavior: smooth;
-}
-
-.samim {
-  font-family: 'Samim';
-}
-
-.DimaShekasteh {
-  font-family: 'DimaShekasteh';
-}
-
-.yekan {
-  font-family: 'Yekan';
-}
-
-.menuLink svg path {
-  transition: all 300ms;
-}
-
-.menuLink:hover {
-  color: var(--color-primary);
-}
-
-.menuLink:hover svg>path {
-  fill: var(--color-primary);
-}
-
-.menuItemParent:hover>.menuItemChild {
-  margin-top: 0;
-  opacity: 1;
-  visibility: visible;
-  pointer-events: visible;
-  top: 56px;
-}
-
-.menuItemParent:hover>div {
-  margin-top: 0;
-  opacity: 1;
-  visibility: visible;
-  pointer-events: visible;
-  max-height: 575px;
-}
-
-
-.activeSubMenuCat {
-  background-color: #FD9636;
-  color: white;
-}
-
-.productItem:hover div .buttonProduct {
-  transform: translateX(16px);
-  opacity: 1;
-}
-
-
-.productItem>div>.buttonProduct.btnAnimation,
-.productItem>div>.buttonProduct.btnAnimation>svg>path,
-.productAnimation,
-.productAnimation>svg>path {
-  animation: itemProduct 1s infinite;
-}
-
-.productItemNone:hover div.showMetric {
-  display: block;
-}
-
-@keyframes itemProduct {
-  0% {
-    background-color: var(--color-primary);
-    border-color: var(--color-primary);
-    fill: white;
-
-  }
-
-  50% {
-    background-color: white;
-    border-color: #D5DFE4;
-    fill: #425A8B;
-  }
-
-  100% {
-    background-color: var(--color-primary);
-    border-color: var(--color-primary);
-    fill: white;
-  }
-}
-
-.styles_Tooltip__tooltip___Mj8o {
-  max-width: 320px;
-  width: max-content;
-  word-wrap: break-word;
-  border: 1px solid black;
-  background: var(--color-bg-card-btn);
-  color: var(--color-primary-text);
-  border-radius: 4px;
-  padding: calc(2 * 4px) calc(3 * 4px);
-  margin: calc(2 * 4px);
-  display: none;
-}
-
-.hoverIcon:hover .styles_Tooltip__tooltip___Mj8o {
-  display: block;
-}
-
-
-.productGrid:hover {
-  z-index: 1;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, .2);
-}
-
-input[type="checkbox"] {
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #555;
-  border-radius: 4px;
-  cursor: pointer;
-  position: relative;
-}
-
-input[type="checkbox"]:checked {
-  background-color: var(--color-secondary);
-  border-color: var(--color-secondary);
-}
-
-input[type="checkbox"]:checked::after {
-  content: "✔";
-  color: var(--color-primary-text);
-  position: absolute;
-  left: 3px;
-  top: 0;
-  font-size: 12px;
-}
-
-/* new */
-
-.kt-card {
-  border-radius: 12px;
-  border: 1px solid white;
-  box-shadow: 0 1px 2px 0 #0000000d;
-}
-
-.kt-btn {
-  height: calc(.25rem * 8.5);
-  gap: calc(.25rem * 1.5);
-  border-radius: calc(.5rem - 2px);
-  padding-inline: calc(.25rem * 3);
-  font-size: .8125rem;
-  line-height: calc(1.25/.875);
-}
-
-.kt-btn-outline {
-  border: 1px solid #e7e3e4;
-  color: #1b1718;
-  box-shadow: 0 0 #0000;
-}
-
-.kt-btn-outline:hover {
-  background-color: #f5f4f4;
-  color: #1b1718;
-}
-
-.kt-form-label {
-  align-items: center;
-  gap: calc(.25rem * 2);
-  width: 100%;
-  font-size: .875rem;
-  line-height: 1;
-  font-weight: 500;
-  display: flex;
-}
-
-.kt-input {
-  width: 100%;
-  height: calc(.25rem * 8.5);
-  border-radius: calc(.5rem - 2px);
-  padding-inline: calc(.25rem * 3);
-  font-size: .8125rem;
-  line-height: calc(1.25/.875);
-  outline: none;
-  border: 1px solid #e7e3e4;
-  color: #0b0809;
-  box-shadow: 0 0 #0000;
-  transition: all .15s;
-}
-
-.kt-input:focus-visible {
-  border: 1px solid #9f9fa9;
-  box-shadow: 0px 0px 3px 2px #b2b2ca;
-}
-
-.shadowHeader {
-  box-shadow: -5px 2px 5px rgb(216 217 229);
-}
-
-.responsive-menu-shadow {
-  box-shadow: 0px 0px 8px #888888;
-}
-
-/* اسلایدر مهدی بندعلی */
-/* .classss {
-  animation: traslate 1s;
-  transition: all 1s ease-in;
-}
-
-@keyframes traslate {
-  0% {
-    transform: translate(0px, 30px);
-  }
-
-  100% {
-    transform: translate(0px, 0px);
-  }
-} */
-
-.menu-li:hover .hover-menu-li {
-   visibility: visible;
-   opacity: 100;
-}
+    }

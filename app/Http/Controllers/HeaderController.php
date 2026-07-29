@@ -17,6 +17,9 @@ class HeaderController extends Controller
     }
     public function store(Request $request)
     {
+        // $titleArray = explode('|', $request['title']);
+        // $result = $titleArray[0] . '<span class="text-yellow-500">' . $titleArray[1] . '</span>' . $titleArray[2];
+        // dd($result);
         $validated = $request->validate(
             [
                 'img' => ['required'],

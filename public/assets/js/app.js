@@ -142,3 +142,10 @@ function responsive_menu(state) {
       menu.classList.remove('right-0');
    }
 }
+
+let modals = document.querySelectorAll('.modal');
+modals.forEach(modal => {
+   setTimeout(() => {
+      modal.classList.add('opacity-0', 'invisible')
+   }, 3000)
+})

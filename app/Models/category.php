@@ -9,7 +9,7 @@ class category extends Model
     protected $fillable = ['title', 'description', 'parent_id', 'image'];
     public function products()
     {
-        return $this->hasMany(product::class);
+        return $this->belongsToMany(product::class, 'category_products');
     }
     public function children()
     {
