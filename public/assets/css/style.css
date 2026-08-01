@@ -97,3 +97,12 @@
 
 
     }
+
+    .dropdown-child {
+      visibility: hidden;
+    }
+
+    .dropdown:hover .dropdown-child,
+    .dropdown-child:hover {
+      visibility: visible;
+    }
