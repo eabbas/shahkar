@@ -151,7 +151,6 @@ class userController extends Controller
             [
                 'name' => ['required'],
                 'family' => ['required'],
-                'email' => ['nullable', 'email'],
                 'phoneNumber' => ['required'],
                 'password' => ['required'],
             ],
@@ -160,17 +159,9 @@ class userController extends Controller
                 'family.required' => 'پر کردن این فیلد الزامی است.',
                 'phoneNumber.required' => 'پر کردن این فیلد الزامی است.',
                 'password.required' => 'پر کردن این فیلد الزامی است.',
-                'email.email' => 'ساختار ایمیل را رعایت کنید.',
             ]
         );
         $userNumber = User::where('phoneNumber', $validated['phoneNumber'])->first();
-        $userEmail = User::where('email', $validated['email'])->first();
-        if ($userEmail && $userNumber) {
-            return to_route('user.login')->with('failure', 'این شماره و ایمیل قبلا ثبت شده است ، لطفا وارد شوید.');
-        }
-        if ($userEmail) {
-            return to_route('user.login')->with('failure', 'این ایمیل قبلا ثبت شده است ، لطفا وارد شوید.');
-        }
         if ($userNumber) {
             return to_route('user.login')->with('failure', 'این شماره قبلا ثبت شده است ، لطفا وارد شوید.');
         }
@@ -179,7 +170,6 @@ class userController extends Controller
             'family' => $request->family,
             'phoneNumber' => $request->phoneNumber,
             'password' => $request->password,
-            'email' => $request->email,
         ]);
         return to_route('user.login');
     }
