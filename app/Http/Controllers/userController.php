@@ -199,8 +199,11 @@ class userController extends Controller
                 'email.email' => 'ساختار ایمیل را رعایت کنید.',
             ]
         );
-        $userNumber = User::where('phoneNumber', $validated['phoneNumber'])->first();
-        $userEmail = User::where('email', $validated['email'])->first();
+        $userNumber = User::where('phoneNumber', $request['phoneNumber'])->first();
+        $userEmail = null;
+        if ($request['email']) {
+            $userEmail = User::where('email', $request['email'])->first();
+        }
         if ($userEmail && $userNumber) {
             return redirect()->back()->with('failure', 'این شماره و ایمیل قبلا ثبت شده است ، لطفا وارد شوید.');
         }
