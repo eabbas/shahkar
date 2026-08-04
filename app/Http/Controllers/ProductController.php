@@ -249,6 +249,15 @@ class ProductController extends Controller
     }
     public function index()
     {
-        return 'به زودی';
+        // $logo = logo::first();
+        // $services = service::all();
+        // $categories = category::with('products')->has('products')->get();
+        // return view('user.product.index', [
+        //     'logo' => $logo,
+        //     'services' => $services,
+        //     'categories' => $categories
+            
+        // ]);
+        return view('mahdi.productList');
     }
 }

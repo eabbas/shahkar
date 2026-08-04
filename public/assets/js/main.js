@@ -530,12 +530,15 @@ servis_pup_up_hover.forEach((item) => {
     item.addEventListener('mouseenter', function () {
         item.nextElementSibling.classList.remove('invisible')
         item.nextElementSibling.classList.remove('opacity-0')
+        item.children[1].classList.add('rotate-180')
+
     })
 })
 servis_pup_up_hover.forEach((item) => {
     item.addEventListener('mouseleave', function () {
         item.nextElementSibling.classList.add('invisible')
         item.nextElementSibling.classList.add('opacity-0')
+        item.children[1].classList.remove('rotate-180')
     })
 })
 servis_pup_up_item.forEach((item) => {
