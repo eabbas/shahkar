@@ -102,50 +102,41 @@
                                     class="object-fit w-full h-45 lg:rounded-t-2xl rounded-2xl">
                             @endif
                         </div>
-                        {{-- <div
-                                class="lg:w-full lg:h-6/12 max-lg:hidden bg-black/60 blur-[5px] absolute bottom-0 left-0 rounded-b-2xl -z-0">
-                            </div> --}}
                         <div
                             class="lg:w-full w-1/2 h-full text-white rounded-b-2xl relative flex flex-col max-lg:gap-5 justify-start">
                             <div class="w-full lg:absolute lg:-top-28 lg:right-0 flex justify-center items-center">
                                 <div
-                                    class="lg:w-2/3 w-11/12 sm:pb-4 pb-2 sm:pt-2 pt-1 rounded-xl bg-[var(--background-2)] flex flex-col gap-1 items-center justify-center">
+                                    class=" w-11/12 sm:pb-4 pb-2 sm:pt-2 pt-1 rounded-xl bg-[var(--background-2)] flex flex-col gap-1 items-center justify-center">
                                     <div>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="size-12">
-
                                             <g fill="none" stroke="#D4A23A" stroke-width="10" stroke-linecap="round"
                                                 stroke-linejoin="round">
-
                                                 <!-- Outer Card -->
                                                 <rect x="90" y="110" width="332" height="220" rx="10" />
-
                                                 <!-- Inner Border -->
                                                 <rect x="120" y="140" width="272" height="160" rx="2" />
-
                                                 <!-- Top Right Circle -->
                                                 <circle cx="340" cy="175" r="18" />
-
                                                 <!-- Logo -->
-                                                <path d="
-                                                                                        M165 235
-                                                                                        L165 205
-                                                                                        Q165 180 188 180
-                                                                                        L205 180
-                                                                                        Q225 180 225 198
-                                                                                        Q225 214 208 214
-                                                                                        L188 214
-                                                                                        L188 225
-                                                                                        L215 225
-                                                                                        Q235 225 235 245
-                                                                                        L165 245
-                                                                                        Z" />
+                                                <path
+                                                    d="
+                                                                                                                                                                                                                M165 235
+                                                                                                                                                                                                                L165 205
+                                                                                                                                                                                                                Q165 180 188 180
+                                                                                                                                                                                                                L205 180
+                                                                                                                                                                                                                Q225 180 225 198
+                                                                                                                                                                                                                Q225 214 208 214
+                                                                                                                                                                                                                L188 214
+                                                                                                                                                                                                                L188 225
+                                                                                                                                                                                                                L215 225
+                                                                                                                                                                                                                Q235 225 235 245
+                                                                                                                                                                                                                L165 245
+                                                                                                                                                                                                                Z" />
 
                                                 <!-- Text Line -->
                                                 <line x1="220" y1="225" x2="305" y2="225" />
-
                                                 <!-- Corner Accent -->
                                                 <path d="M375 270 L375 295 L350 295" />
-
                                             </g>
                                         </svg>
                                     </div>
@@ -234,11 +225,11 @@
                     </div>
                     <div
                         class="sm:w-8/12 max-sm:w-full h-full border-2 border-[var(--gold)] relative flex justify-center items-center rounded-lg max-sm:order-1">
-                        <video src="{{ asset('storage/' . $introduction->video) }}"
+                        <video id="video" src="{{ asset('storage/' . $introduction->video) }}"
                             poster="{{ asset('storage/' . $introduction->videoCover) }}" controls
-                            class="object-cover w-full h-full rounded-lg" onclick="vidio_onclic_play()"></video>
+                            class="object-cover w-full h-full rounded-lg"></video>
                         <div class="p-4 bg-[var(--background)]  border-2 border-[var(--gold)] absolute flex justify-center items-center rounded-full animation_play_vidio transition-all duration-300"
-                            id="play_icon_vidio">
+                            id="play_icon_vidio" onclick="playVideo('play',this)">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="size-6 fill-white">
                                 <path
                                     d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
@@ -253,7 +244,7 @@
 
     <!-- identify_vidio -->
     <!-- rezimes_start -->
-    <section class="w-full flex flex-col items-center justify-center">
+    <section id="products" class="w-full flex flex-col items-center justify-center">
         <div class="w-11/12 h-full flex flex-col lg:gap-8 sm:gap-6 gap-5 items-center">
             <!-- title rezume -->
             <div class="w-full flex flex-col gap-3 items-center justify-center">
@@ -281,9 +272,9 @@
             <!-- category_rezume -->
             <!-- rezumes items -->
             <div
-                class="max-w-full min-w-full flex lg:h-90 h-50 items-center xl:justify-between gap-2 overflow-auto max-sm:pb-5 [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar-thumb]:bg-[var(--gold)] [&::-webkit-scrollbar-thumb]:rounded-full">
+                class="w-full flex pb-3 lg:h-90 h-80 items-center xl:justify-between gap-2 overflow-auto max-sm:pb-5 [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar-thumb]:bg-[var(--gold)] [&::-webkit-scrollbar-thumb]:rounded-full">
                 <div
-                    class="min-w-40 lg:w-1/5 h-full border border-[var(--gold)] rounded-xl px-[0.3px] py-[0.7px] overflow-hidden">
+                    class="min-w-45 md:w-2/12 h-full border border-[var(--gold)] rounded-xl px-[0.3px] py-[0.7px] overflow-hidden">
                     @if (isset($products[0]))
                         <a href="{{ route('product.show', [$products[0]]) }}">
                             <img src="{{ asset('storage/' . $products[0]->mainImg) }}" alt=""
@@ -291,8 +282,8 @@
                         </a>
                     @endif
                 </div>
-                <div class="min-w-55 lg:w-3/5 h-full flex flex-col justify-between items-center">
-                    <div class="w-full h-49/100 flex gap-2 justify-between items-center">
+                <div class="min-w-100 md:w-8/12 h-full flex flex-col justify-between items-center">
+                    <div class="w-full h-49/100 flex gap-1 justify-between items-center">
                         <div
                             class="w-1/2 h-full border border-[var(--gold)] rounded-xl px-[0.3px] py-[0.7px] overflow-hidden">
                             @if (isset($products[1]))
@@ -343,7 +334,7 @@
                     </div>
                 </div>
                 <div
-                    class="min-w-40 lg:w-1/5 h-full border border-[var(--gold)] rounded-xl px-[0.3px] py-[0.7px] overflow-hidden">
+                    class="min-w-45 md:w-2/12 h-full border border-[var(--gold)] rounded-xl px-[0.3px] py-[0.7px] overflow-hidden">
                     @if (isset($products[6]))
                         <a href="{{ route('product.show', [$products[6]]) }}">
                             <img src="{{ asset('storage/' . $products[6]->mainImg) }}" alt=""
@@ -375,16 +366,15 @@
         <div class="w-full lg:h-full h-full flex justify-center items-center relative">
             <img src="{{ asset('assets/img/background_commant.jpg') }}" alt=""
                 class="object-fit w-full h-85 max-lg:hidden">
-            <!-- <img src="../img_1/background_property_mobile.jpg" alt="" class="object-cover w-full :hidden rounded-2xl sm:hidden"> -->
             <div class="w-full h-full lg:absolute lg:bottom-0 lg:right-0 flex flex-col items-center justify-start">
                 <div class="w-11/12 h-full flex flex-col gap-9">
                     <!-- property -->
                     <div
-                        class="w-full lg:h-30 lg:border-y-1 lg:border-[var(--border)] max-lg:border sm:border-[var(--gold)] flex max-sm:flex-col gap-3 items-center justify-between lg:py-4 py-2 lg:px-5 max-sm:bg-[var(--background)] max-lg:bg-[var(--background-2)]">
+                        class="w-full lg:h-30 lg:border-y-1 lg:border-[var(--border)] max-lg:border sm:border-[var(--gold)] flex max-sm:flex max-sm:flex-col gap-4 items-center justify-between max-lg:grid grid-cols-2 lg:py-4 py-3 max-lg:px-5 max-sm:bg-[var(--background)] max-lg:bg-[var(--background-2)]">
                         <div
-                            class="sm:w-3/14 w-full h-full flex lg:gap-4  sm:justify-center max-sm:justify-end items-center max-lg:bg-[var(--background)] max-lg:rounded-xl max-lg:border-1 sm:border-[var(--border)] border-[var(--gold)] max-lg:py-2">
+                            class="w-full lg:w-1/6 h-full flex items-center justify-center max-lg:bg-[var(--background)] max-lg:rounded-xl max-lg:border-1 sm:border-[var(--border)] border-[var(--gold)] max-lg:py-2 max-lg:px-2">
                             <div
-                                class="group max-sm:w-9/12 msx-sm:h-full flex max-lg:flex-col max-sm:flex-row gap-2 jsutify-start items-center">
+                                class="group max-sm:w-9/12 msx-sm:h-full flex max-lg:flex-col gap-2 justify-center items-center">
 
                                 <div class="group-hover:scale-[1.05] group-active:scale-[1.3] transition_root">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
@@ -395,23 +385,22 @@
                                     </svg>
                                 </div>
                                 <div
-                                    class="flex flex-col sm:gap-2 gap-1 lg:items-start items-center max-sm:items-start justify-center">
+                                    class="flex flex-col sm:gap-2 gap-1 lg:items-start items-center max-sm:items-center justify-center">
                                     <h5 class="xl:text-lg sm:text-xs text-sm font-bold text-[var(--text)]">کیفیت
                                         تضمینی</h5>
                                     <div
-                                        class="flex flex-col lg:items-start items-center max-sm:items-start justify-center xl:text-[11px] sm:text-[7px] text-[10px] text-[var(--text-secondary)]">
-                                        <span class=" font-bold">استفاده از رنگ با کیفیت عالی</span>
-                                        <span class="font-bold">با دستگاه های پیشرفته</span>
+                                        class="text-justify flex flex-col lg:items-start items-center max-sm:items-start justify-center xl:text-[11px] sm:text-[7px] text-[10px] text-[var(--text-secondary)]">
+                                        <span class=" font-bold">از تفکیک دقیق رنگ ها تابرش و صحافی، تمام مراحل با حساسترین
+                                            استاندارد ها رعایت میشوند.</span>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <span class="w-0.5 h-full bg-[var(--border)] rounded-full max-lg:hidden"></span>
                         <div
-                            class="sm:w-3/14 w-full h-full flex lg:gap-4  sm:justify-center max-sm:justify-end items-center max-lg:bg-[var(--background)] max-lg:rounded-xl max-lg:border-1 sm:border-[var(--border)] border-[var(--gold)] max-lg:py-2">
+                            class="w-full lg:w-1/6 h-full flex items-center justify-center max-lg:bg-[var(--background)] max-lg:rounded-xl max-lg:border-1 sm:border-[var(--border)] border-[var(--gold)] max-lg:py-2 max-lg:px-2">
                             <div
-                                class="group max-sm:w-9/12 msx-sm:h-full flex max-lg:flex-col max-sm:flex-row gap-2 jsutify-start items-center">
+                                class="group max-sm:w-9/12 msx-sm:h-full flex max-lg:flex-col gap-2 justify-center items-center">
 
                                 <div class="group-hover:scale-[1.05] group-active:scale-[1.3] transition_root">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"
@@ -421,22 +410,21 @@
                                     </svg>
                                 </div>
                                 <div
-                                    class="flex flex-col sm:gap-2 gap-1 lg:items-start items-center max-sm:items-start justify-center">
+                                    class="flex flex-col sm:gap-2 gap-1 lg:items-start items-center max-sm:items-center justify-center">
                                     <h5 class="xl:text-lg sm:text-xs text-sm font-bold text-[var(--text)]">تیم
                                         حرفه‌ای</h5>
                                     <div
-                                        class="flex flex-col lg:items-start items-center max-sm:items-start justify-center xl:text-[11px] sm:text-[7px] text-[10px] text-[var(--text-secondary)]">
-                                        <span class=" font-bold">استفاده از رنگ با کیفیت عالی</span>
-                                        <span class="font-bold">با دستگاه های پیشرفته</span>
+                                        class="text-justify flex flex-col lg:items-start items-center max-sm:items-start justify-center xl:text-[11px] sm:text-[7px] text-[10px] text-[var(--text-secondary)]">
+                                        <span class=" font-bold">تیم ما متشکل از کارشناسان با تجربه در زمینه چاپ و طراحی و
+                                            گرافیک و هنر است.</span>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <div
-                            class="sm:w-4/14 w-full h-full flex lg:gap-4  sm:justify-center max-sm:justify-end items-center max-lg:bg-[var(--background)] max-lg:rounded-xl max-lg:border-1 sm:border-[var(--border)] border-[var(--gold)] max-lg:py-2 gradient_box1 rounded-xl">
+                            class="w-full lg:w-2/6 h-full flex items-center justify-center max-lg:bg-[var(--background)] max-lg:rounded-xl max-lg:border-1 sm:border-[var(--border)] border-[var(--gold)] max-lg:py-2 px-2 max-lg:col-span-2 gradient_box1 rounded-xl">
                             <div
-                                class="group max-sm:w-9/12 msx-sm:h-full flex max-lg:flex-col max-sm:flex-row gap-2 jsutify-start items-center">
+                                class="group max-sm:w-9/12 msx-sm:h-full flex max-lg:flex-col gap-2 justify-center items-center">
 
                                 <div class="group-hover:scale-[1.05] group-active:scale-[1.6] transition_root">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="xl:size-13 size-9" viewBox="0 0 24 24"
@@ -446,23 +434,23 @@
                                         <!-- Scalloped medal -->
                                         <path
                                             d="
-                                                                                                M12 3
-                                                                                                C12.7 3.6 13.6 3.5 14.3 3.9
-                                                                                                C15.1 4.2 15.5 5 16.2 5.4
-                                                                                                C17 5.8 17.8 6.3 18 7.2
-                                                                                                C18.3 8 19 8.8 19 9.8
-                                                                                                C19 10.8 18.3 11.6 18 12.4
-                                                                                                C17.8 13.3 17 13.8 16.2 14.2
-                                                                                                C15.5 14.6 15.1 15.4 14.3 15.7
-                                                                                                C13.6 16.1 12.7 16 12 16.6
-                                                                                                C11.3 16 10.4 16.1 9.7 15.7
-                                                                                                C8.9 15.4 8.5 14.6 7.8 14.2
-                                                                                                C7 13.8 6.2 13.3 6 12.4
-                                                                                                C5.7 11.6 5 10.8 5 9.8
-                                                                                                C5 8.8 5.7 8 6 7.2
-                                                                                                C6.2 6.3 7 5.8 7.8 5.4
-                                                                                                C8.5 5 8.9 4.2 9.7 3.9
-                                                                                                C10.4 3.5 11.3 3.6 12 3Z" />
+                                                                                                                                                                                                                        M12 3
+                                                                                                                                                                                                                        C12.7 3.6 13.6 3.5 14.3 3.9
+                                                                                                                                                                                                                        C15.1 4.2 15.5 5 16.2 5.4
+                                                                                                                                                                                                                        C17 5.8 17.8 6.3 18 7.2
+                                                                                                                                                                                                                        C18.3 8 19 8.8 19 9.8
+                                                                                                                                                                                                                        C19 10.8 18.3 11.6 18 12.4
+                                                                                                                                                                                                                        C17.8 13.3 17 13.8 16.2 14.2
+                                                                                                                                                                                                                        C15.5 14.6 15.1 15.4 14.3 15.7
+                                                                                                                                                                                                                        C13.6 16.1 12.7 16 12 16.6
+                                                                                                                                                                                                                        C11.3 16 10.4 16.1 9.7 15.7
+                                                                                                                                                                                                                        C8.9 15.4 8.5 14.6 7.8 14.2
+                                                                                                                                                                                                                        C7 13.8 6.2 13.3 6 12.4
+                                                                                                                                                                                                                        C5.7 11.6 5 10.8 5 9.8
+                                                                                                                                                                                                                        C5 8.8 5.7 8 6 7.2
+                                                                                                                                                                                                                        C6.2 6.3 7 5.8 7.8 5.4
+                                                                                                                                                                                                                        C8.5 5 8.9 4.2 9.7 3.9
+                                                                                                                                                                                                                        C10.4 3.5 11.3 3.6 12 3Z" />
 
                                         <!-- Inner circle -->
                                         <circle cx="12" cy="9.8" r="4.2" />
@@ -474,27 +462,26 @@
                                     </svg>
                                 </div>
                                 <div
-                                    class="flex flex-col sm:gap-2 gap-1 lg:items-start items-center max-sm:items-start justify-center">
+                                    class="flex flex-col sm:gap-2 gap-1 lg:items-start items-center max-sm:items-center justify-center">
                                     <h5 class="xl:text-lg text-md font-bold text-[var(--text)]">چرا ما را انتخاب
                                         کنید</h5>
                                     <div
-                                        class="flex flex-col lg:items-start items-center max-sm:items-start justify-center xl:text-[11px] text-[10px] text-[var(--text)]">
-                                        <span class=" font-bold">استفاده از رنگ با کیفیت عالی</span>
-                                        <span class="font-bold">با دستگاه های پیشرفته</span>
+                                        class="text-justify flex flex-col lg:items-start items-center max-sm:items-start justify-center xl:text-[11px] text-[10px] text-[var(--text)]">
+                                        <span class=" font-bold">ما با دانش فنی بالا و کادر مجرب و به روز همراه شما در مسیر
+                                            خلق یک اثر ماندگار هستیم.</span>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <div
-                            class="sm:w-3/14 w-full h-full flex lg:gap-4  sm:justify-center max-sm:justify-end items-center max-lg:bg-[var(--background)] max-lg:rounded-xl max-lg:border-1 sm:border-[var(--border)] border-[var(--gold)] max-lg:py-2">
+                            class="w-full lg:w-1/6 h-full flex items-center justify-center max-lg:bg-[var(--background)] max-lg:rounded-xl max-lg:border-1 sm:border-[var(--border)] border-[var(--gold)] max-lg:py-2 max-lg:px-2">
                             <div
-                                class="group max-sm:w-9/12 msx-sm:h-full flex max-lg:flex-col max-sm:flex-row gap-2 jsutify-start items-center">
+                                class="group max-sm:w-9/12 msx-sm:h-full flex max-lg:flex-col gap-2 justify-center items-center">
 
                                 <div class="group-hover:scale-[1.05] group-active:scale-[1.3] transition_root">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                        class="xl:size-13 lg:size-9 size-7" stroke="var(--gold)" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round">
+                                        class="xl:size-13 lg:size-9 size-7 fill-none" stroke="var(--gold)"
+                                        stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M2 7h11v10H2z"></path>
                                         <path d="M13 10h4l4 3.5V17h-8z"></path>
                                         <circle cx="6" cy="18.5" r="1.6"></circle>
@@ -502,23 +489,22 @@
                                     </svg>
                                 </div>
                                 <div
-                                    class="flex flex-col sm:gap-2 gap-1 lg:items-start items-center max-sm:items-start justify-center">
+                                    class="flex flex-col sm:gap-2 gap-1 lg:items-start items-center max-sm:items-center justify-center">
                                     <h5 class="xl:text-lg sm:text-xs text-sm font-bold text-[var(--text)]">تحویل
                                         سریع</h5>
                                     <div
-                                        class="flex flex-col lg:items-start items-center max-sm:items-start justify-center xl:text-[11px] sm:text-[7px]  text-[10px] text-[var(--text-secondary)]">
-                                        <span class=" font-bold">استفاده از رنگ با کیفیت عالی</span>
-                                        <span class="font-bold">با دستگاه های پیشرفته</span>
+                                        class="text-justify flex flex-col lg:items-start items-center max-sm:items-start justify-center xl:text-[11px] sm:text-[7px]  text-[10px] text-[var(--text-secondary)]">
+                                        <span class=" font-bold">با فرایند تولید بهینه و منسجم سفارش شما در سریع ترین زمان
+                                            ممکن آماده میشود.</span>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <span class="w-0.5 h-full bg-[var(--border)] rounded-full max-lg:hidden"></span>
                         <div
-                            class="sm:w-3/14 w-full h-full flex lg:gap-4  sm:justify-center max-sm:justify-end items-center max-lg:bg-[var(--background)] max-lg:rounded-xl max-lg:border-1 sm:border-[var(--border)] border-[var(--gold)] max-lg:py-2">
+                            class="w-full lg:w-1/6 h-full flex items-center justify-center max-lg:bg-[var(--background)] max-lg:rounded-xl max-lg:border-1 sm:border-[var(--border)] border-[var(--gold)] max-lg:py-2 max-lg:px-2">
                             <div
-                                class="group max-sm:w-9/12 msx-sm:h-full flex max-lg:flex-col max-sm:flex-row gap-2 jsutify-start items-center">
+                                class="group max-sm:w-9/12 msx-sm:h-full flex max-lg:flex-col gap-2 justify-center items-center">
 
                                 <div class="group-hover:scale-[1.05] group-active:scale-[1.3] transition_root">
                                     <svg class="xl:size-13 lg:size-9 size-7" viewBox="0 0 64 64" fill="none"
@@ -539,19 +525,17 @@
                                     </svg>
                                 </div>
                                 <div
-                                    class="flex flex-col sm:gap-2 gap-1 lg:items-start items-center max-sm:items-start justify-center">
+                                    class="flex flex-col sm:gap-2 gap-1 lg:items-start items-center max-sm:items-center justify-center">
                                     <h5 class="xl:text-lg sm:text-xs text-sm font-bold text-[var(--text)]">قیمت
                                         مناسب</h5>
                                     <div
-                                        class="flex flex-col lg:items-start items-center max-sm:items-start justify-center xl:text-[11px] sm:text-[7px] text-[10px] text-[var(--text-secondary)]">
-                                        <span class=" font-bold">استفاده از رنگ با کیفیت عالی</span>
-                                        <span class="font-bold">با دستگاه های پیشرفته</span>
+                                        class="text-justify flex flex-col lg:items-start items-center max-sm:items-start justify-center xl:text-[11px] sm:text-[7px] text-[10px] text-[var(--text-secondary)]">
+                                        <span class=" font-bold">با بهینه سازی مصرف مواد اولیه و کاهش هزینه های اضافه به
+                                            صرفه ترین قیمت ها را داریم.</span>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
                     <!-- property -->
                     <!-- commend_coustomer -->
@@ -600,8 +584,8 @@
                             <!-- comment_ttem -->
                             <p
                                 class="xl:w-9/12 w-11/12 xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs text-center text-[var(--text-secondary)]">
-                                چاپ شاهکار با سال‌ها تجربه در زمینه چاپ دیجیتال و تبلیغات محیطی، همراه مطمئن شما در
-                                مسیر برندسازی و معرفی کسب‌وکار است</p>
+                                کارکنان حرفه ای ، برخورد مناسب ، و تحویل سریع و به موقع واقعا کارتون حرف نداره دمتون گرم.
+                            </p>
                             <!-- comment_ttem -->
                             <div
                                 class="max-sm:w-full flex max-sm:justify-between justify-center max-sm:items-center max-sm:px-5">
@@ -613,9 +597,113 @@
                                         <h5
                                             class="xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs font-bold text-[var(--text)] text-nowrap">
                                             محمد مهدی بندعلی</h5>
-                                        <span
+                                        {{-- <span
                                             class="xl:text-xs lg:text-[11px] sm:text-[9px] md:text-[10px] text-[11px] text-[var(--text-secondary)] font-bold text-nowrap">طراح
-                                            سابت</span>
+                                            سابت</span> --}}
+                                    </div>
+
+                                </div>
+                                <!-- star_mobile -->
+                                <div class="w-1/2 flex gap-0.5 items-center justify-end sm:hidden">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                                        class="size-4 fill-[var(--star)]">
+                                        <defs></defs>
+                                        <path class="fa-secondary"
+                                            d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
+                                        <path class="fa-primary" d="" />
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                                        class="size-4 fill-[var(--star)]">
+                                        <defs></defs>
+                                        <path class="fa-secondary"
+                                            d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
+                                        <path class="fa-primary" d="" />
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                                        class="size-4 fill-[var(--star)]">
+                                        <defs></defs>
+                                        <path class="fa-secondary"
+                                            d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
+                                        <path class="fa-primary" d="" />
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                                        class="size-4 fill-[var(--star)]">
+                                        <defs></defs>
+                                        <path class="fa-secondary"
+                                            d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
+                                        <path class="fa-primary" d="" />
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                                        class="size-4 fill-[var(--star)]">
+                                        <defs></defs>
+                                        <path class="fa-secondary"
+                                            d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
+                                        <path class="fa-primary" d="" />
+                                    </svg>
+                                </div>
+                                <!-- star_mobile -->
+                            </div>
+                        </div>
+                        <div
+                            class="sm:w-32/100 w-full h-full gradient_comment_box flex flex-col gap-4 items-center justify-center border border-[var(--gold)] rounded-xl py-4 scale transition_root">
+                            <!-- star -->
+                            <div class="flex gap-0.5 items-center justify-center max-sm:hidden">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                                    class="size-4 fill-[var(--star)]">
+                                    <defs></defs>
+                                    <path class="fa-secondary"
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
+                                    <path class="fa-primary" d="" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                                    class="size-4 fill-[var(--star)]">
+                                    <defs></defs>
+                                    <path class="fa-secondary"
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
+                                    <path class="fa-primary" d="" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                                    class="size-4 fill-[var(--star)]">
+                                    <defs></defs>
+                                    <path class="fa-secondary"
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
+                                    <path class="fa-primary" d="" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                                    class="size-4 fill-[var(--star)]">
+                                    <defs></defs>
+                                    <path class="fa-secondary"
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
+                                    <path class="fa-primary" d="" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                                    class="size-4 fill-[var(--star)]">
+                                    <defs></defs>
+                                    <path class="fa-secondary"
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
+                                    <path class="fa-primary" d="" />
+                                </svg>
+                            </div>
+                            <!-- star -->
+                            <!-- comment_ttem -->
+                            <p
+                                class="xl:w-9/12 w-11/12 xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs text-center text-[var(--text-secondary)]">
+                                بهترین و با کیفیت ترین محصولات رو دارن با تنوع زیاد من یکی که از تابلو هاشون خیلی خوشم اومد
+                                .</p>
+                            <!-- comment_ttem -->
+                            <div
+                                class="max-sm:w-full flex max-sm:justify-between justify-center max-sm:items-center max-sm:px-5">
+                                <div
+                                    class="xl:w-1/2 sm:w-10/12 w-1/2 flex justify-center max-sm:justify-start items-center gap-4">
+                                    <img src="{{ asset('assets/img/user.png') }}" alt=""
+                                        class="object-cover lg:size-10 sm:size-6 size-7 rounded-full bg-white">
+                                    <div class="flex flex-col items-start justify-center">
+                                        <h5
+                                            class="xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs font-bold text-[var(--text)] text-nowrap">
+                                            امیر فرامرزی</h5>
+                                        {{-- <span
+                                            class="xl:text-xs lg:text-[11px] sm:text-[9px] md:text-[10px] text-[11px] text-[var(--text-secondary)] font-bold text-nowrap">طراح
+                                            سابت</span> --}}
 
                                     </div>
 
@@ -705,8 +793,8 @@
                             <!-- comment_ttem -->
                             <p
                                 class="xl:w-9/12 w-11/12 xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs text-center text-[var(--text-secondary)]">
-                                چاپ شاهکار با سال‌ها تجربه در زمینه چاپ دیجیتال و تبلیغات محیطی، همراه مطمئن شما در
-                                مسیر برندسازی و معرفی کسب‌وکار است</p>
+                                قیمت هاشون خیلی معقول و به صرفه بود در عین حال کیفیت محصولاتشون خیلی خوب بود و صفر تا صر کار
+                                رو خودشون انجام میدن.</p>
                             <!-- comment_ttem -->
                             <div
                                 class="max-sm:w-full flex max-sm:justify-between justify-center max-sm:items-center max-sm:px-5">
@@ -717,10 +805,10 @@
                                     <div class="flex flex-col items-start justify-center">
                                         <h5
                                             class="xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs font-bold text-[var(--text)] text-nowrap">
-                                            محمد مهدی بندعلی</h5>
-                                        <span
+                                            عباس ملکی</h5>
+                                        {{-- <span
                                             class="xl:text-xs lg:text-[11px] sm:text-[9px] md:text-[10px] text-[11px] text-[var(--text-secondary)] font-bold text-nowrap">طراح
-                                            سابت</span>
+                                            سابت</span> --}}
 
                                     </div>
 
@@ -766,113 +854,6 @@
                                 <!-- star_mobile -->
                             </div>
                         </div>
-                        <div
-                            class="sm:w-32/100 w-full h-full gradient_comment_box flex flex-col gap-4 items-center justify-center border border-[var(--gold)] rounded-xl py-4 scale transition_root">
-                            <!-- star -->
-                            <div class="flex gap-0.5 items-center justify-center max-sm:hidden">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                    class="size-4 fill-[var(--star)]">
-                                    <defs></defs>
-                                    <path class="fa-secondary"
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-                                    <path class="fa-primary" d="" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                    class="size-4 fill-[var(--star)]">
-                                    <defs></defs>
-                                    <path class="fa-secondary"
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-                                    <path class="fa-primary" d="" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                    class="size-4 fill-[var(--star)]">
-                                    <defs></defs>
-                                    <path class="fa-secondary"
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-                                    <path class="fa-primary" d="" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                    class="size-4 fill-[var(--star)]">
-                                    <defs></defs>
-                                    <path class="fa-secondary"
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-                                    <path class="fa-primary" d="" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                    class="size-4 fill-[var(--star)]">
-                                    <defs></defs>
-                                    <path class="fa-secondary"
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-                                    <path class="fa-primary" d="" />
-                                </svg>
-                            </div>
-                            <!-- star -->
-                            <!-- comment_ttem -->
-                            <p
-                                class="xl:w-9/12 w-11/12 xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs text-center text-[var(--text-secondary)]">
-                                چاپ شاهکار با سال‌ها تجربه در زمینه چاپ دیجیتال و تبلیغات محیطی، همراه مطمئن شما در
-                                مسیر برندسازی و معرفی کسب‌وکار است</p>
-                            <!-- comment_ttem -->
-                            <div
-                                class="max-sm:w-full flex max-sm:justify-between justify-center max-sm:items-center max-sm:px-5">
-                                <div
-                                    class="xl:w-1/2 sm:w-10/12 w-1/2 flex justify-center max-sm:justify-start items-center gap-4">
-                                    <img src="{{ asset('assets/img/user.png') }}" alt=""
-                                        class="object-cover lg:size-10 sm:size-6 size-7 rounded-full bg-white">
-                                    <div class="flex flex-col items-start justify-center">
-                                        <h5
-                                            class="xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs font-bold text-[var(--text)] text-nowrap">
-                                            محمد مهدی بندعلی</h5>
-                                        <span
-                                            class="xl:text-xs lg:text-[11px] sm:text-[9px] md:text-[10px] text-[11px] text-[var(--text-secondary)] font-bold text-nowrap">طراح
-                                            سابت</span>
-
-                                    </div>
-
-                                </div>
-                                <!-- star_mobile -->
-                                <div class="w-1/2 flex gap-0.5 items-center justify-end sm:hidden">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                        class="size-4 fill-[var(--star)]">
-                                        <defs></defs>
-                                        <path class="fa-secondary"
-                                            d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-                                        <path class="fa-primary" d="" />
-                                    </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                        class="size-4 fill-[var(--star)]">
-                                        <defs></defs>
-                                        <path class="fa-secondary"
-                                            d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-                                        <path class="fa-primary" d="" />
-                                    </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                        class="size-4 fill-[var(--star)]">
-                                        <defs></defs>
-                                        <path class="fa-secondary"
-                                            d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-                                        <path class="fa-primary" d="" />
-                                    </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                        class="size-4 fill-[var(--star)]">
-                                        <defs></defs>
-                                        <path class="fa-secondary"
-                                            d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-                                        <path class="fa-primary" d="" />
-                                    </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                        class="size-4 fill-[var(--star)]">
-                                        <defs></defs>
-                                        <path class="fa-secondary"
-                                            d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-                                        <path class="fa-primary" d="" />
-                                    </svg>
-                                </div>
-                                <!-- star_mobile -->
-                            </div>
-                        </div>
-
-
                     </div>
                     <!-- commend_coustomer -->
 
@@ -882,4 +863,44 @@
     </section>
     <!-- comment -->
 
+    <script>
+        let video = document.getElementById('video')
+        let play_icon_vidio = document.getElementById('play_icon_vidio')
+
+        function playVideo(state, el) {
+            if (state == 'play') {
+                video.play()
+                play_icon_vidio.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="size-6 fill-white">
+                                        <path d="M48 64C21.5 64 0 85.5 0 112V400c0 26.5 21.5 48 48 48H80c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zm192 0c-26.5 0-48 21.5-48 48V400c0 26.5 21.5 48 48 48h32c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H240z" />
+                                    </svg>`
+                play_icon_vidio.setAttribute('onclick', "playVideo('pause',this)")
+                play_icon_vidio.classList.add('opacity-0')
+            }
+            if (state == 'pause') {
+                video.pause()
+                play_icon_vidio.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="size-6 fill-white">
+                                        <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
+                                    </svg>`
+                play_icon_vidio.setAttribute('onclick', "playVideo('play',this)")
+                play_icon_vidio.classList.remove('opacity-0')
+            }
+        }
+
+        video.addEventListener('play', () => {
+            video.play()
+            play_icon_vidio.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="size-6 fill-white">
+                                        <path d="M48 64C21.5 64 0 85.5 0 112V400c0 26.5 21.5 48 48 48H80c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zm192 0c-26.5 0-48 21.5-48 48V400c0 26.5 21.5 48 48 48h32c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H240z" />
+                                    </svg>`
+            play_icon_vidio.setAttribute('onclick', "playVideo('pause',this)")
+            play_icon_vidio.classList.add('opacity-0')
+        })
+        video.addEventListener('pause', () => {
+            video.pause()
+            play_icon_vidio.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="size-6 fill-white">
+                                        <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
+                                    </svg>`
+            play_icon_vidio.setAttribute('onclick', "playVideo('play',this)")
+            play_icon_vidio.classList.remove('opacity-0')
+        })
+    </script>
 @endsection

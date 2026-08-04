@@ -16,7 +16,6 @@
                 <span class="text-lg text-[var(--gold)]">/</span>
                 <span
                     class="xl:text-lg max-lg:text-xs text-nowrap font-bold text-[var(--text)] cursor-pointer">{{ $product['title'] }}</span>
-                <span class="text-lg text-[var(--gold)]">/</span>
             </div>
             <!-- root_single -->
             <div class="w-full flex max-sm:flex-col justify-between items-start gap-1">
@@ -30,13 +29,11 @@
                     <div
                         class="max-w-full min-w-full overflow-auto h-29/100 flex gap-2 justify-start items-center pb-2 [&::-webkit-scrollbar]:h-2  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
                         @foreach ($product['media'] as $media)
-                            @if (!$media['is_main'])
-                                <div
-                                    class="xl:min-w-19/100 lg:min-w-32/100 min-w-49/100 h-full flex justify-center items-center rounded-xl border-2 border-[var(--border)] hover:border-[var(--gold)] active:border-[var(--gold)] transition_root cursor-pointer">
-                                    <img src="{{ asset('storage/' . $media['media_path']) }}" alt=""
-                                        class="w-full h-full rounded-xl gallery_product_item">
-                                </div>
-                            @endif
+                            <div
+                                class="xl:min-w-19/100 lg:min-w-32/100 min-w-49/100 h-full flex justify-center items-center rounded-xl border-2 border-[var(--border)] hover:border-[var(--gold)] active:border-[var(--gold)] transition_root cursor-pointer">
+                                <img src="{{ asset('storage/' . $media['media_path']) }}" alt=""
+                                    class="w-full h-full rounded-xl gallery_product_item">
+                            </div>
                         @endforeach
                     </div>
                 </div>
@@ -137,7 +134,7 @@
                     </div>
                     <!-- discription -->
                     <!-- property_order -->
-                    <div class="w-full flex sm:flex-col max-sm:flex-wrap sm:gap-1 max-sm:gap-y-2 justify-start items-start">
+                    {{-- <div class="w-full flex sm:flex-col max-sm:flex-wrap sm:gap-1 max-sm:gap-y-2 justify-start items-start">
                         <div class="max-sm:w-1/2 flex justify-start max-sm:justify-center items-center xl:gap-4 gap-2">
                             <div
                                 class="xl:size-4 lg:size-3 size-2 bg-[var(--gold)] flex justify-center items-center rounded-full">
@@ -182,18 +179,26 @@
                             <p class="max-xl:text-sm max-lg:text-xs text-[var(--text-secondary)]">چاپ آگهی با کیفیت
                                 بالا</p>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- property_order -->
                     <!-- price -->
                     <div class="w-full flex gap-4 justify-start max-sm:justify-center items-center">
-                        <span class="xl:text-xl lg:text-lg text-[var(--text)]">از</span>
-                        <span
-                            class="xl:text-xl lg:text-lg max-sm:text-lg text-[var(--gold)] font-bold">{{ $product['primary_price'] }}
-                            تومان</span>
+                        {{-- <span class="xl:text-xl lg:text-lg text-[var(--text)]">از</span> --}}
+                        @if ($product['secondary_price'])
+                            <span class="text-xs text-gray-400 font-bold line-through">{{ $product['primary_price'] }}
+                                تومان</span>
+                            <span
+                                class="xl:text-xl lg:text-lg max-sm:text-lg text-[var(--gold)] font-bold">{{ $product['secondary_price'] }}
+                                تومان</span>
+                        @else
+                            <span
+                                class="xl:text-xl lg:text-lg max-sm:text-lg text-[var(--gold)] font-bold">{{ $product['primary_price'] }}
+                                تومان</span>
+                        @endif
                     </div>
                     <!-- price -->
                     <!-- few_number -->
-                    <div class="w-full flex lg:gap-4 gap-2 justify-start max-sm:justify-center items-center">
+                    {{-- <div class="w-full flex lg:gap-4 gap-2 justify-start max-sm:justify-center items-center">
                         <h4 class="xl:text-lg max-lg:text-xs text-nowrap font-bold text-[var(--text)]">تعداد :</h4>
                         <div class="flex gap-2 justify-between items-center">
                             <div class="lg:p-2 p-1 border border-[var(--gold)] lg:rounded-lg rounded-sm text-2xl text-[var(--text)] flex justify-center items-center transition_root active:bg-[var(--background)] cursor-pointer"
@@ -216,63 +221,32 @@
                                 </svg>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- few_number -->
-                    <!-- coating_kart -->
-                    <div class="w-full flex lg:gap-4 gap-2 justify-start max-sm:justify-center items-center">
-                        <h4 class="xl:text-lg max-lg:text-xs text-nowrap font-bold text-[var(--text)]">روکش :</h4>
-                        <div class="flex lg:gap-2 gap-1 justify-start items-center">
-                            <div
-                                class="xl:size-6 lg:size-4 size-3 border-2 border-[var(--border)] rounded-full flex justify-center items-center cursor-pointer">
-                                <div class="size-1/2 bg-[var(--gold)] rounded-full"></div>
-                            </div>
-                            <span class="max-lg:text-xs text-[var(--text)]">مات</span>
-                        </div>
-                        <div class="flex lg:gap-2 gap-1 justify-start items-center">
-                            <div
-                                class="xl:size-6 lg:size-4 size-3 border-2 border-[var(--border)] rounded-full flex justify-center items-center cursor-pointer">
-                                <div class="size-1/2 bg-[var(--gold)] rounded-full invisible opacity-0 transition_root">
-                                </div>
-                            </div>
-                            <span class="max-lg:text-xs text-[var(--text)]">مات</span>
-                        </div>
-                        <div class="flex lg:gap-2 gap-1 justify-start items-center">
-                            <div
-                                class="xl:size-6 lg:size-4 size-3 border-2 border-[var(--border)] rounded-full flex justify-center items-center cursor-pointer">
-                                <div class="size-1/2 bg-[var(--gold)] rounded-full invisible opacity-0 transition_root">
-                                </div>
-                            </div>
-                            <span class="max-lg:text-xs text-[var(--text)]">مات</span>
-                        </div>
-                    </div>
-                    <!-- coating_kart -->
                     <!-- material_kart -->
-                    <div class="w-full flex lg:gap-4 gap-2 justify-start max-sm:justify-center items-center">
-                        <h4 class="xl:text-lg max-lg:text-xs text-nowrap font-bold text-[var(--text)]">جنس :</h4>
-                        <div class="flex lg:gap-2 gap-1 justify-start items-center">
-                            <div
-                                class="xl:size-6 lg:size-4 size-3 border-2 border-[var(--border)] rounded-full flex justify-center items-center cursor-pointer">
-                                <div class="size-1/2 bg-[var(--gold)] rounded-full"></div>
-                            </div>
-                            <span class="max-lg:text-xs text-[var(--text)]">مات</span>
-                        </div>
-                        <div class="flex lg:gap-2 gap-1 justify-start items-center">
-                            <div
-                                class="xl:size-6 lg:size-4 size-3 border-2 border-[var(--border)] rounded-full flex justify-center items-center cursor-pointer">
-                                <div class="size-1/2 bg-[var(--gold)] rounded-full invisible opacity-0 transition_root">
+                    @if ($product->attributes->isNotEmpty())
+                        <div class="grid grid-cols-2 gap-8">
+                            @if (isset($product->attributes[0]))
+                                <div class="w-full flex lg:gap-4 gap-2 justify-start max-sm:justify-center items-center">
+                                    <h4 class="xl:text-lg max-lg:text-xs text-nowrap font-bold text-[var(--text)]">
+                                        {{ $product->attributes[0]['attribute_key'] }} :</h4>
+                                    <span
+                                        class="max-lg:text-xs text-[var(--text)]">{{ $product->attributes[0]['attribute_value'] }}</span>
                                 </div>
-                            </div>
-                            <span class="max-lg:text-xs text-[var(--text)]">مات</span>
-                        </div>
-                        <div class="flex lg:gap-2 gap-1 justify-start items-center">
-                            <div
-                                class="xl:size-6 lg:size-4 size-3 border-2 border-[var(--border)] rounded-full flex justify-center items-center cursor-pointer">
-                                <div class="size-1/2 bg-[var(--gold)] rounded-full invisible opacity-0 transition_root">
+                            @endif
+                            @if (isset($product->attributes[1]))
+                                <div class="w-full flex lg:gap-4 gap-2 justify-start max-sm:justify-center items-center">
+                                    <h4 class="xl:text-lg max-lg:text-xs text-nowrap font-bold text-[var(--text)]">
+                                        {{ $product->attributes[1]['attribute_key'] }} :</h4>
+                                    <span
+                                        class="max-lg:text-xs text-[var(--text)]">{{ $product->attributes[1]['attribute_value'] }}</span>
                                 </div>
-                            </div>
-                            <span class="max-lg:text-xs text-[var(--text)]">مات</span>
+                            @endif
                         </div>
-                    </div>
+                        <a href="#attributes"
+                            class="text-lg font-bold text-[var(--gold)] border border-[var(--text)] py-2 px-3 rounded-xl">همه
+                            ویژگی ها</a>
+                    @endif
                     <!--material_kart -->
                     <!-- bottoms -->
                     <div class="w-full flex max-sm:flex-col lg:gap-5 gap-2 items-center justify-end ">
@@ -311,7 +285,7 @@
                         <div class="flex justify-start items-center gap-2">
                             <div>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                    class="xl:size-8 lg:size-5 size-3" stroke="var(--gold)" stroke-width="2"
+                                    class="xl:size-8 lg:size-5 size-3 fill-none" stroke="var(--gold)" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M2 7h11v10H2z"></path>
                                     <path d="M13 10h4l4 3.5V17h-8z"></path>
@@ -339,13 +313,10 @@
                         </div>
                         <div class="flex justify-start items-center gap-2">
                             <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                    class="xl:size-8 lg:size-5 size-3" stroke="var(--gold)" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M2 7h11v10H2z"></path>
-                                    <path d="M13 10h4l4 3.5V17h-8z"></path>
-                                    <circle cx="6" cy="18.5" r="1.6"></circle>
-                                    <circle cx="17" cy="18.5" r="1.6"></circle>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"
+                                    class="xl:size-6 lg:size-5 size-3 fill-[var(--gold)]">
+                                    <path
+                                        d="M512 112H64c-8.8 0-16 7.2-16 16V384c0 8.8 7.2 16 16 16H348.3c-5.6 7.1-9.6 15.3-11.8 24.1l-6 23.9H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64H512c35.3 0 64 28.7 64 64v64.6c-15.2 2-29.8 8.8-41.4 20.5l-6.6 6.6V128c0-8.8-7.2-16-16-16zM256 296c0-13.3 10.7-24 24-24h48c13.3 0 24 10.7 24 24s-10.7 24-24 24H280c-13.3 0-24-10.7-24-24zm24-120H424c13.3 0 24 10.7 24 24s-10.7 24-24 24H280c-13.3 0-24-10.7-24-24s10.7-24 24-24zM160 132c11 0 20 9 20 20v13.9c7.5 1.2 14.6 2.9 21.1 4.7c10.7 2.8 17 13.8 14.2 24.5s-13.8 17-24.5 14.2c-11-2.9-21.6-5-31.2-5.2c-7.9-.1-16 1.8-21.5 5c-4.8 2.8-6.2 5.6-6.2 9.3c0 1.8 .1 3.5 5.3 6.7c6.3 3.8 15.5 6.7 28.3 10.5l.7 .2c11.2 3.4 25.6 7.7 37.1 15c12.9 8.1 24.3 21.3 24.6 41.6c.3 20.9-10.5 36.1-24.8 45c-7.2 4.5-15.2 7.3-23.2 9V360c0 11-9 20-20 20s-20-9-20-20V345.4c-10.3-2.2-20-5.5-28.2-8.4l0 0 0 0c-2.1-.7-4.1-1.4-6.1-2.1c-10.5-3.5-16.1-14.8-12.6-25.3s14.8-16.1 25.3-12.6c2.5 .8 4.9 1.7 7.2 2.4c13.6 4.6 24 8.1 35.1 8.5c8.6 .3 16.5-1.6 21.4-4.7c4.1-2.5 6-5.5 5.9-10.5c0-2.9-.8-5-5.9-8.2c-6.3-4-15.4-6.9-28-10.7l-1.7-.5c-10.9-3.3-24.6-7.4-35.6-14c-12.7-7.7-24.6-20.5-24.7-40.7c-.1-21.1 11.8-35.7 25.8-43.9c6.9-4.1 14.5-6.8 22.2-8.5V152c0-11 9-20 20-20zM613.8 235.7l14.4 14.4c15.6 15.6 15.6 40.9 0 56.6l-29.4 29.4-71-71 29.4-29.4c15.6-15.6 40.9-15.6 56.6 0zM375.9 417L505.1 287.8l71 71L446.9 487.9c-4.1 4.1-9.2 7-14.9 8.4l-60.1 15c-5.5 1.4-11.2-.2-15.2-4.2s-5.6-9.7-4.2-15.2l15-60.1c1.4-5.6 4.3-10.8 8.4-14.9z" />
                                 </svg>
                             </div>
                             <span class="xl:text-xs lg:text-[10px] text-[5px] text-[var(--text-secondary)]">ضمانت
@@ -412,23 +383,23 @@
                     <!-- Scalloped medal -->
                     <path
                         d="
-                                                                                                                                                                                                                                                                                        M12 3
-                                                                                                                                                                                                                                                                                        C12.7 3.6 13.6 3.5 14.3 3.9
-                                                                                                                                                                                                                                                                                        C15.1 4.2 15.5 5 16.2 5.4
-                                                                                                                                                                                                                                                                                        C17 5.8 17.8 6.3 18 7.2
-                                                                                                                                                                                                                                                                                        C18.3 8 19 8.8 19 9.8
-                                                                                                                                                                                                                                                                                        C19 10.8 18.3 11.6 18 12.4
-                                                                                                                                                                                                                                                                                        C17.8 13.3 17 13.8 16.2 14.2
-                                                                                                                                                                                                                                                                                        C15.5 14.6 15.1 15.4 14.3 15.7
-                                                                                                                                                                                                                                                                                        C13.6 16.1 12.7 16 12 16.6
-                                                                                                                                                                                                                                                                                        C11.3 16 10.4 16.1 9.7 15.7
-                                                                                                                                                                                                                                                                                        C8.9 15.4 8.5 14.6 7.8 14.2
-                                                                                                                                                                                                                                                                                        C7 13.8 6.2 13.3 6 12.4
-                                                                                                                                                                                                                                                                                        C5.7 11.6 5 10.8 5 9.8
-                                                                                                                                                                                                                                                                                        C5 8.8 5.7 8 6 7.2
-                                                                                                                                                                                                                                                                                        C6.2 6.3 7 5.8 7.8 5.4
-                                                                                                                                                                                                                                                                                        C8.5 5 8.9 4.2 9.7 3.9
-                                                                                                                                                                                                                                                                                        C10.4 3.5 11.3 3.6 12 3Z">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                M12 3
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                C12.7 3.6 13.6 3.5 14.3 3.9
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                C15.1 4.2 15.5 5 16.2 5.4
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                C17 5.8 17.8 6.3 18 7.2
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                C18.3 8 19 8.8 19 9.8
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                C19 10.8 18.3 11.6 18 12.4
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                C17.8 13.3 17 13.8 16.2 14.2
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                C15.5 14.6 15.1 15.4 14.3 15.7
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                C13.6 16.1 12.7 16 12 16.6
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                C11.3 16 10.4 16.1 9.7 15.7
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                C8.9 15.4 8.5 14.6 7.8 14.2
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                C7 13.8 6.2 13.3 6 12.4
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                C5.7 11.6 5 10.8 5 9.8
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                C5 8.8 5.7 8 6 7.2
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                C6.2 6.3 7 5.8 7.8 5.4
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                C8.5 5 8.9 4.2 9.7 3.9
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                C10.4 3.5 11.3 3.6 12 3Z">
                     </path>
                     <!-- Inner circle -->
                     <circle cx="12" cy="9.8" r="4.2"></circle>
@@ -508,40 +479,16 @@
         <div
             class="w-11/12 flex flex-col gap-2 justify-start items-center bg-[var(--background-2)] border border-[var(--border)] rounded-xl py-4 px-5">
             <ul
-                class="max-w-full min-w-full flex justify-start items-center gap-4 max-sm:gap-2 overflow-auto [&::-webkit-scrollbar]:h-2  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
-                <li class="px-3 py-1 bg-[#1A1F20] backdrop-blur-xl rounded-xl">
-                    <a href="" class="flex justify-center items-center py-3 relative px-3">
-                        <sapn
-                            class="xl:text-xl lg:text-lg max-sm:text-sm transition_root text-nowrap font-bold text-[var(--gold)]">
-                            توضیحات محصول</sapn>
-                        <div
-                            class="w-full absolute bottom-0 right-auto left-auto  oveflow-hidden flex justify-center items-center transition_root">
-                            <div class="w-full h-[2px] bg-[var(--gold)] rounded-full"></div>
-                        </div>
-                    </a>
+                class="max-w-full min-w-full flex justify-start items-center gap-10 max-sm:gap-2 overflow-auto [&::-webkit-scrollbar]:h-2  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
+                <li class="flex justify-center items-center py-3 relative cheng_text_colot_hover cursor-pointer">
+                    <sapn
+                        class="xl:text-xl lg:text-lg max-sm:text-sm transition_root text-nowrap font-bold text-[var(--gold)]">
+                        توضیحات محصول</sapn>
+                    <div
+                        class="w-full absolute bottom-0 right-auto left-auto  oveflow-hidden flex justify-center items-center transition_root">
+                        <div class="w-full h-[2px] bg-[var(--gold)] rounded-full"></div>
+                    </div>
                 </li>
-                <li class="px-3 py-1 backdrop-blur-xl rounded-xl">
-                    <a href="" class="flex justify-center items-center py-3 relative cheng_text_colot_hover px-3">
-                        <sapn
-                            class="xl:text-xl lg:text-lg max-sm:text-sm transition_root text-nowrap font-bold text-[var(--text)]">
-                            مشخصات فنی</sapn>
-                        <div
-                            class="w-0 absolute bottom-0 right-auto left-auto gradent_text_sub_heder oveflow-hidden flex justify-center items-center transition_root">
-                            <div class="w-full h-[2px] bg-[var(--gold)] rounded-full"></div>
-                        </div>
-                    </a>
-                </li>
-                {{-- <li class="px-3 py-1 backdrop-blur-xl rounded-xl">
-                    <a href="" class="flex justify-center items-center py-3 relative cheng_text_colot_hover px-3">
-                        <sapn
-                            class="xl:text-xl lg:text-lg max-sm:text-sm transition_root text-nowrap font-bold text-[var(--text)]">
-                            راهنمای طراحی فابل</sapn>
-                        <div
-                            class="w-0 absolute bottom-0 right-auto left-auto gradent_text_sub_heder oveflow-hidden flex justify-center items-center transition_root">
-                            <div class="w-full h-[2px] bg-[var(--gold)] rounded-full"></div>
-                        </div>
-                    </a>
-                </li> --}}
             </ul>
             <div class="w-full flex gap-6 justify-between items-center">
                 <!-- desciption_product_start -->
@@ -549,52 +496,46 @@
                     <p class="xl:text-lg lg:text-sm sm:text-xs text-[10px] text-[var(--text)] leading-8 text-justify">
                         {{ $product['description'] }}</p>
                 </div>
-                <!-- desciption_product_end -->
-                <!-- مشخصات فنی -->
-                <div class="w-full h-full flex flex-col gap-1 items-center py-2 hidden">
-                    <div class="w-full flex gap-1 justify-between">
-                        <div class="w-1/2 flex justify-start items-center py-2 pr-4 bg-[#212224]">
-                            <span
-                                class="xl:text-lg max-lg:text-sm max-sm:text-xs font-bold text-[var(--text)]">ابعاد</span>
-                        </div>
-                        <div class="w-1/2 flex justify-start items-center py-2 px-3 max-sm:px-1 bg-[#212224]">
-                            <span class="max-xl:text-sm max-lg:text-xs max-sm:text-[10px] text-[var(--text)]">Lorem
-                                ipsum dolor sit amet consectetur adipisicing elit.</span>
-                        </div>
-                    </div>
-                    <div class="w-full flex gap-1 justify-between">
-                        <div class="w-1/2 flex justify-start items-center py-2 pr-4 bg-[#212224]">
-                            <span class="xl:text-lg max-lg:text-sm max-sm:text-xs font-bold text-[var(--text)]">جنس</span>
-                        </div>
-                        <div class="w-1/2 flex justify-start items-center py-2 px-3 max-sm:px-1 bg-[#212224]">
-                            <span class="max-xl:text-sm max-lg:text-xs max-sm:text-[10px] text-[var(--text)]">گلاسه
-                                300گرم</span>
-                        </div>
-                    </div>
-                    <div class="w-full flex gap-1 justify-between">
-                        <div class="w-1/2 flex justify-start items-center py-2 pr-4 bg-[#212224]">
-                            <span class="xl:text-lg max-lg:text-sm max-sm:text-xs font-bold text-[var(--text)]">روکش</span>
-                        </div>
-                        <div class="w-1/2 flex justify-start items-center py-2 px-3 max-sm:px-1 bg-[#212224]">
-                            <span class="max-xl:text-sm max-lg:text-xs max-sm:text-[10px] text-[var(--text)]">لمینت
-                                مات</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- مشخصات فنی -->
-                <!-- desigen_product_fill_start -->
-                <div class="w-full h-full py-2 hidden">
-                    <p class="xl:text-lg lg:text-sm sm:text-xs text-[10px] text-[var(--text)] leading-8 text-justify">
-                        اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.لورم ایپسوم
-                        متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و
-                        متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
-                        نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه
-                        درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد،</p>
-                </div>
-                <!-- design_product_fill_end -->
             </div>
         </div>
     </section>
+    @if ($product->attributes->isNotEmpty())
+        <section id="attributes" class="w-full flex justify-center items-center">
+            <div
+                class="w-11/12 flex flex-col gap-2 justify-start items-center bg-[var(--background-2)] border border-[var(--border)] rounded-xl py-4 px-5">
+                <ul
+                    class="max-w-full min-w-full flex justify-start items-center gap-10 max-sm:gap-2 overflow-auto [&::-webkit-scrollbar]:h-2  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
+                    <li class="flex justify-center items-center py-3 relative cheng_text_colot_hover cursor-pointer">
+                        <sapn
+                            class="xl:text-xl lg:text-lg max-sm:text-sm transition_root text-nowrap font-bold text-[var(--gold)]">
+                            مشخصات فنی</sapn>
+                        <div
+                            class="w-full absolute bottom-0 right-auto left-auto  oveflow-hidden flex justify-center items-center transition_root">
+                            <div class="w-full h-[2px] bg-[var(--gold)] rounded-full"></div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="w-full flex gap-6 justify-between items-center">
+                    <!-- مشخصات فنی -->
+                    <div class="w-full h-full flex flex-col gap-4 items-center py-2 ">
+                        @foreach ($product->attributes as $attribute)
+                            <div class="w-1/2 flex gap-2 justify-between">
+                                <div class="w-1/2 flex justify-start items-center py-2 pr-4 bg-[#212224]">
+                                    <span
+                                        class="xl:text-lg max-lg:text-sm max-sm:text-xs font-bold text-[var(--gold)]">{{ $attribute['attribute_key'] }}</span>
+                                </div>
+                                <div class="w-1/2 flex justify-start items-center py-2 px-3 max-sm:px-1 bg-[#212224]">
+                                    <span
+                                        class="max-xl:text-sm max-lg:text-xs max-sm:text-[10px] text-[var(--text)]">{{ $attribute['attribute_value'] }}</span>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    <!-- مشخصات فنی -->
+                </div>
+            </div>
+        </section>
+    @endif
     <!-- specification -->
     <!-- common_products_start -->
     <section class="w-full flex items-center justify-center">
@@ -607,12 +548,12 @@
                 </div>
             </div>
             <div
-                class="max-w-full min-w-full flex gap-4 items-center justify-start overflow-x-auto py-5 [&::-webkit-scrollbar]:h-1  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
+                class="max-w-full min-w-full flex gap-4 items-center justify-start overflow-x-auto p-5 [&::-webkit-scrollbar]:h-1  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
                 @foreach ($product['categories'] as $category)
                     @foreach ($category['products'] as $pro)
                         @if ($pro['id'] != $product['id'])
                             <div
-                                class="xl:min-w-15/100 xl:max-w-31/200 lg:min-w-19/100 sm:min-w-33/100 min-w-49/100 h-full border-1 border-[var(--gold)] bg-[#181819] rounded-2xl flex flex-col gap-5 items-center justify-between scale transition_root pb-2">
+                                class="xl:min-w-17/100 xl:max-w-35/200 lg:min-w-19/100 min-w-60 h-75 border-1 border-[var(--gold)] bg-[#181819] rounded-2xl flex flex-col gap-5 items-center justify-between scale transition_root pb-2">
                                 <a href="{{ route('product.show', [$pro]) }}" class="w-full lg:h-7/12 h-full">
                                     @foreach ($pro['media'] as $media)
                                         @if ($media['is_main'])
@@ -628,10 +569,11 @@
                                         @endif
                                     @endforeach
                                     <img src="{{ $imgSrc }}" alt=""
-                                        class="object-fit w-full xl:h-50 lg:h-40 md:h-45 sm:h-39 h-40  lg:rounded-t-2xl rounded-2xl">
+                                        class="object-fit w-full lg:h-55 h-45 rounded-2xl">
                                 </a>
                                 <div class="w-full flex gap-4 justify-between items-center px-4">
-                                    <div class="size-11 gradient_box1 rounded-xl flex justify-center items-center">
+                                    <div
+                                        class="min-w-11 min-h-11 max-w-11 max-h-11 gradient_box1 rounded-xl flex justify-center items-center cursor-pointer">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="size-1/2"
                                             fill="white">
                                             <path
@@ -640,9 +582,23 @@
                                         </svg>
                                     </div>
                                     <div
-                                        class="flex flex-col gap-1 justify-center items-start xl:text-sm lg:text-xs sm:text-[11px] md:text-sm text-xs">
-                                        <p class="font-bold text-[var(--text)]">{{ $pro['title'] }}</p>
-                                        <p class="text-[var(--gold)] w-full text-left">{{ $pro['primary_price'] }}</p>
+                                        class="w-8/12 flex flex-col gap-4 justify-center items-end xl:text-sm lg:text-xs sm:text-[11px] md:text-sm text-xs">
+                                        <p class="w-full truncate text-nowrap font-bold text-[var(--text)] text-left">
+                                            {{ $pro['title'] }}</p>
+                                        @if ($pro['secondary_price'])
+                                            <div class="flex items-center gap-2 text-end">
+                                                <span
+                                                    class="text-xs text-gray-400 font-bold line-through">{{ $pro['primary_price'] }}</span>
+                                                <span
+                                                    class="text-[var(--gold)] w-full text-left">{{ $pro['secondary_price'] }}
+                                                    <span class="text-[10px]">تومان</span>
+                                                </span>
+                                            </div>
+                                        @else
+                                            <span class="text-[var(--gold)] w-full text-left">{{ $pro['primary_price'] }}
+                                                <span class="text-[10px]">تومان</span>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -655,36 +611,20 @@
     <!-- common_products_end -->
     <!-- customer_start -->
     <section class="w-full flex justify-center">
-        <div class="w-11/12 flex max-lg:flex-col gap-3">
+        <div class="w-11/12 h-full flex max-lg:flex-col justify-center gap-3">
             <div
-                class="lg:w-1/2 w-full h-full bg-[var(--background-2)] rounded-xl flex flex-col gap-4 justify-start items-start max-lg:items-center px-7 py-5">
+                class="lg:w-1/2 w-full max-h-100 overflow-auto bg-[var(--background-2)] rounded-xl flex flex-col gap-4 justify-start items-start max-lg:items-center px-7 py-5 [&::-webkit-scrollbar]:w-1.5  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
                 <h3 class="sm:text-xl text-lg text-[var(--text)] font-bold">سوالات متداول</h3>
                 <div
-                    class="w-full h-12 flex flex-col justify-start items-start bg-[#171A1F] border border-[#272A2F] rounded-xl overflow-y-hidden transition_root cursor-pointer">
+                    class="w-full min-h-12 flex flex-col justify-start items-start bg-[#171A1F] border border-[#272A2F] rounded-xl overflow-y-hidden transition_root cursor-pointer">
                     <div class="w-full px-4 py-3  flex justify-between items-start question_common_onclick">
-                        <div class="flex gap-2 justify-start items-center">
-                            <div class="transition_root">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                                    class="size-4 fill-[var(--gold)] -rotate-90">
-                                    <path
-                                        d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z">
-                                    </path>
-                                </svg>
-                            </div>
-                            <span class="max-xl:text-sm max-sm:text-[10px] text-[var(--text-secondary)]">زمان چاپ و
-                                تحویل سفارش چقدر است ؟</span>
-                        </div>
+                        <span class="max-xl:text-sm max-sm:text-[10px] text-[var(--text-secondary)]">چه فرمت‌هایی برای
+                            ارسال فایل پذیرفته می‌شود؟</span>
                         <div class="transition_root">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                                class="xl:size-5 lg:size-4 size-2 fill-[var(--gold)]">
+                                class="size-4 fill-[var(--gold)] rotate-90">
                                 <path
-                                    d="M248 72c0-13.3-10.7-24-24-24s-24 10.7-24 24V232H40c-13.3 0-24 10.7-24 24s10.7 24 24 24H200V440c0 13.3 10.7 24 24 24s24-10.7 24-24V280H408c13.3 0 24-10.7 24-24s-10.7-24-24-24H248V72z">
-                                </path>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                                class="xl:size-5 lg:size-4 size-2 fill-[var(--gold)] hidden">
-                                <path
-                                    d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z">
+                                    d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z">
                                 </path>
                             </svg>
                         </div>
@@ -696,41 +636,22 @@
                             <span class="min-w-2 min-h-2 max-w-2 max-h-2 bg-[var(--gold)] rounded-full mt-1"></span>
                             <p
                                 class="max-xl:text-sm max-sm:text-[10px] text-[var(--text-secondary)] text-justify leading-6">
-                                اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار
-                                گیرد.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از
-                                طراحان گرافیک است، چاپگرها ت، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان
-                                ک و متون بلکه ت، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان ک ت، چاپگرها
-                                و متون بلکه روزنامه و مجله در ستون و سطرآنچنان ک ت، چاپگرها و متون بلکه روزنامه و
-                                مجله در ستون و سطرآنچنان ک روزنامه و مجله در ستون و سطرآنچنان که لازم است،</p>
+                                بهترین و استانداردترین فرمت، PDF (با کیفیت بالا) است. همچنین فایل‌های AI، PSD، CDR، EPS و
+                                تصاویر JPG/PNG با رزولوشن بالا را نیز پشتیبانی می‌کنیم. لطفاً برای جلوگیری از به هم ریختگی
+                                فونت، متن‌ها را به منحنی (Outline) تبدیل کنید یا فونت‌ها را همراه فایل ارسال کنید.</p>
                         </div>
                     </div>
                 </div>
                 <div
-                    class="w-full h-12 flex flex-col justify-start items-start bg-[#171A1F] border border-[#272A2F] rounded-xl overflow-y-hidden transition_root cursor-pointer">
+                    class="w-full min-h-12 flex flex-col justify-start items-start bg-[#171A1F] border border-[#272A2F] rounded-xl overflow-y-hidden transition_root cursor-pointer">
                     <div class="w-full px-4 py-3  flex justify-between items-start question_common_onclick">
-                        <div class="flex gap-2 justify-start items-center">
-                            <div class="transition_root">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                                    class="size-4 fill-[var(--gold)] -rotate-90">
-                                    <path
-                                        d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z">
-                                    </path>
-                                </svg>
-                            </div>
-                            <span class="max-xl:text-sm max-sm:text-[10px] text-[var(--text-secondary)]">زمان چاپ و
-                                تحویل سفارش چقدر است ؟</span>
-                        </div>
+                        <span class="max-xl:text-sm max-sm:text-[10px] text-[var(--text-secondary)]">کیفیت تصویر (رزولوشن)
+                            باید چند باشد تا چاپ مات و تار نشود؟</span>
                         <div class="transition_root">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                                class="xl:size-5 lg:size-4 size-2 fill-[var(--gold)]">
+                                class="size-4 fill-[var(--gold)] rotate-90">
                                 <path
-                                    d="M248 72c0-13.3-10.7-24-24-24s-24 10.7-24 24V232H40c-13.3 0-24 10.7-24 24s10.7 24 24 24H200V440c0 13.3 10.7 24 24 24s24-10.7 24-24V280H408c13.3 0 24-10.7 24-24s-10.7-24-24-24H248V72z">
-                                </path>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                                class="xl:size-5 lg:size-4 size-2 fill-[var(--gold)] hidden">
-                                <path
-                                    d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z">
+                                    d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z">
                                 </path>
                             </svg>
                         </div>
@@ -742,41 +663,22 @@
                             <span class="min-w-2 min-h-2 max-w-2 max-h-2 bg-[var(--gold)] rounded-full mt-1"></span>
                             <p
                                 class="max-xl:text-sm max-sm:text-[10px] text-[var(--text-secondary)] text-justify leading-6">
-                                اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار
-                                گیرد.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از
-                                طراحان گرافیک است، چاپگرها ت، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان
-                                ک و متون بلکه ت، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان ک ت، چاپگرها
-                                و متون بلکه روزنامه و مجله در ستون و سطرآنچنان ک ت، چاپگرها و متون بلکه روزنامه و
-                                مجله در ستون و سطرآنچنان ک روزنامه و مجله در ستون و سطرآنچنان که لازم است،</p>
+                                رزولوشن استاندارد برای چاپ، ۳۰۰ DPI (پیکسل در اینچ) است. تصاویری که از اینترنت دانلود
+                                می‌کنید معمولاً ۷۲ DPI هستند و مناسب وب می‌باشند؛ در چاپ قطعاً تار یا پیکسلی (مات) دیده
+                                می‌شوند. لطفاً قبل از ارسال، کیفیت تصویر خود را بررسی کنید.</p>
                         </div>
                     </div>
                 </div>
                 <div
-                    class="w-full h-12 flex flex-col justify-start items-start bg-[#171A1F] border border-[#272A2F] rounded-xl overflow-y-hidden transition_root cursor-pointer">
+                    class="w-full min-h-12 flex flex-col justify-start items-start bg-[#171A1F] border border-[#272A2F] rounded-xl overflow-y-hidden transition_root cursor-pointer">
                     <div class="w-full px-4 py-3  flex justify-between items-start question_common_onclick">
-                        <div class="flex gap-2 justify-start items-center">
-                            <div class="transition_root">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                                    class="size-4 fill-[var(--gold)] -rotate-90">
-                                    <path
-                                        d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z">
-                                    </path>
-                                </svg>
-                            </div>
-                            <span class="max-xl:text-sm max-sm:text-[10px] text-[var(--text-secondary)]">زمان چاپ و
-                                تحویل سفارش چقدر است ؟</span>
-                        </div>
+                        <span class="max-xl:text-sm max-sm:text-[10px] text-[var(--text-secondary)]">چرا رنگ چاپ شده با رنگ
+                            صفحه نمایش من فرق دارد؟</span>
                         <div class="transition_root">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                                class="xl:size-5 lg:size-4 size-2 fill-[var(--gold)]">
+                                class="size-4 fill-[var(--gold)] rotate-90">
                                 <path
-                                    d="M248 72c0-13.3-10.7-24-24-24s-24 10.7-24 24V232H40c-13.3 0-24 10.7-24 24s10.7 24 24 24H200V440c0 13.3 10.7 24 24 24s24-10.7 24-24V280H408c13.3 0 24-10.7 24-24s-10.7-24-24-24H248V72z">
-                                </path>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                                class="xl:size-5 lg:size-4 size-2 fill-[var(--gold)] hidden">
-                                <path
-                                    d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z">
+                                    d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z">
                                 </path>
                             </svg>
                         </div>
@@ -788,71 +690,219 @@
                             <span class="min-w-2 min-h-2 max-w-2 max-h-2 bg-[var(--gold)] rounded-full mt-1"></span>
                             <p
                                 class="max-xl:text-sm max-sm:text-[10px] text-[var(--text-secondary)] text-justify leading-6">
-                                اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار
-                                گیرد.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از
-                                طراحان گرافیک است، چاپگرها ت، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان
-                                ک و متون بلکه ت، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان ک ت، چاپگرها
-                                و متون بلکه روزنامه و مجله در ستون و سطرآنچنان ک ت، چاپگرها و متون بلکه روزنامه و
-                                مجله در ستون و سطرآنچنان ک روزنامه و مجله در ستون و سطرآنچنان که لازم است،</p>
-                        </div>
-                    </div>
-                </div>
-                <div
-                    class="w-full h-12 flex flex-col justify-start items-start bg-[#171A1F] border border-[#272A2F] rounded-xl overflow-y-hidden transition_root cursor-pointer">
-                    <div class="w-full px-4 py-3  flex justify-between items-start question_common_onclick">
-                        <div class="flex gap-2 justify-start items-center">
-                            <div class="transition_root">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                                    class="size-4 fill-[var(--gold)] -rotate-90">
-                                    <path
-                                        d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z">
-                                    </path>
-                                </svg>
-                            </div>
-                            <span class="max-xl:text-sm max-sm:text-[10px] text-[var(--text-secondary)]">زمان چاپ و
-                                تحویل سفارش چقدر است ؟</span>
-                        </div>
-                        <div class="transition_root">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                                class="xl:size-5 lg:size-4 size-2 fill-[var(--gold)]">
-                                <path
-                                    d="M248 72c0-13.3-10.7-24-24-24s-24 10.7-24 24V232H40c-13.3 0-24 10.7-24 24s10.7 24 24 24H200V440c0 13.3 10.7 24 24 24s24-10.7 24-24V280H408c13.3 0 24-10.7 24-24s-10.7-24-24-24H248V72z">
-                                </path>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                                class="xl:size-5 lg:size-4 size-2 fill-[var(--gold)] hidden">
-                                <path
-                                    d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z">
-                                </path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="w-full h-full flex flex-col gap-4 justify-start items-start px-4 max-xl:mt-1">
-                        <span class="w-full h-0.5 bg-[#272A2F]"></span>
-                        <div
-                            class="px-6 flex gap-2 max-h-30 overflow-y-auto justify-center items-cneter [&::-webkit-scrollbar]:w-1  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
-                            <span class="min-w-2 min-h-2 max-w-2 max-h-2 bg-[var(--gold)] rounded-full mt-1"></span>
-                            <p
-                                class="max-xl:text-sm max-sm:text-[10px] text-[var(--text-secondary)] text-justify leading-6">
-                                اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار
-                                گیرد.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از
-                                طراحان گرافیک است، چاپگرها ت، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان
-                                ک و متون بلکه ت، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان ک ت، چاپگرها
-                                و متون بلکه روزنامه و مجله در ستون و سطرآنچنان ک ت، چاپگرها و متون بلکه روزنامه و
-                                مجله در ستون و سطرآنچنان ک روزنامه و مجله در ستون و سطرآنچنان که لازم است،</p>
-                        </div>
-                    </div>
-                </div>
+                                صفحه نمایش از طیف رنگی RGB (نور) و دستگاه‌های چاپ از طیف CMYK (جوهر) استفاده می‌کنند. طیف
+                                CMYK محدودتر است، بنابراین همیشه کمی تغییر رنگ طبیعی است. برای کاهش این تفاوت:
 
+                                · فایل خود را با پروفایل رنگی CMYK آماده کنید.
+                                · در صورت نیاز به تطابق صددرصدی، امکان سفارش پرینت تست (Proof) قبل از چاپ نهایی وجود دارد.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="w-full min-h-12 flex flex-col justify-start items-start bg-[#171A1F] border border-[#272A2F] rounded-xl overflow-y-hidden transition_root cursor-pointer">
+                    <div class="w-full px-4 py-3  flex justify-between items-start question_common_onclick">
+                        <span class="max-xl:text-sm max-sm:text-[10px] text-[var(--text-secondary)]"> منظور از «بلیید
+                            (کناره‌برش)» چیست و چرا مهم است؟</span>
+                        <div class="transition_root">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                class="size-4 fill-[var(--gold)] rotate-90">
+                                <path
+                                    d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="w-full h-full flex flex-col gap-4 justify-start items-start px-4 max-xl:mt-1">
+                        <span class="w-full h-0.5 bg-[#272A2F]"></span>
+                        <div
+                            class="px-6 flex gap-2 max-h-30 overflow-y-auto justify-center items-cneter [&::-webkit-scrollbar]:w-1  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
+                            <span class="min-w-2 min-h-2 max-w-2 max-h-2 bg-[var(--gold)] rounded-full mt-1"></span>
+                            <p
+                                class="max-xl:text-sm max-sm:text-[10px] text-[var(--text-secondary)] text-justify leading-6">
+                                «بلیید» به فضای اضافی (معمولاً ۳ میلی‌متر در هر طرف) گفته می‌شود که طرح شما از لبه‌های نهایی
+                                بزرگ‌تر می‌رود. این کار باعث می‌شود پس از برش دستگاه، لبه‌های سفید (بی‌کیفیتی) در اطراف کار
+                                دیده نشود. لطفاً متن‌ها و المان‌های اصلی را حداقل ۵ میلی‌متر از لبه‌های نهایی فاصله دهید تا
+                                در حین برش خورده نشوند.</p>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="w-full min-h-12 flex flex-col justify-start items-start bg-[#171A1F] border border-[#272A2F] rounded-xl overflow-y-hidden transition_root cursor-pointer">
+                    <div class="w-full px-4 py-3  flex justify-between items-start question_common_onclick">
+                        <span class="max-xl:text-sm max-sm:text-[10px] text-[var(--text-secondary)]">آیا قبل از چاپ انبوه،
+                            نمونه (پرینت تست) را می‌توانم ببینم؟</span>
+                        <div class="transition_root">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                class="size-4 fill-[var(--gold)] rotate-90">
+                                <path
+                                    d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="w-full h-full flex flex-col gap-4 justify-start items-start px-4 max-xl:mt-1">
+                        <span class="w-full h-0.5 bg-[#272A2F]"></span>
+                        <div
+                            class="px-6 flex gap-2 max-h-30 overflow-y-auto justify-center items-cneter [&::-webkit-scrollbar]:w-1  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
+                            <span class="min-w-2 min-h-2 max-w-2 max-h-2 bg-[var(--gold)] rounded-full mt-1"></span>
+                            <p
+                                class="max-xl:text-sm max-sm:text-[10px] text-[var(--text-secondary)] text-justify leading-6">
+                                بله، کاملاً. برای سفارشات تیراژ بالا، ارائه نمونه فیزیکی (پرینت تست) کاملاً رایگان انجام
+                                می‌شود. برای سفارشات تکی یا کم‌تیراژ نیز با پرداخت هزینه ناچیز جوهر و کاغذ، می‌توانید نمونه
+                                را مشاهده و تأیید کنید تا خیالتان از بابت کیفیت و رنگ راحت باشد.</p>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="w-full min-h-12 flex flex-col justify-start items-start bg-[#171A1F] border border-[#272A2F] rounded-xl overflow-y-hidden transition_root cursor-pointer">
+                    <div class="w-full px-4 py-3  flex justify-between items-start question_common_onclick">
+                        <span class="max-xl:text-sm max-sm:text-[10px] text-[var(--text-secondary)]">زمان تحویل سفارش چقدر
+                            است؟</span>
+                        <div class="transition_root">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                class="size-4 fill-[var(--gold)] rotate-90">
+                                <path
+                                    d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="w-full h-full flex flex-col gap-4 justify-start items-start px-4 max-xl:mt-1">
+                        <span class="w-full h-0.5 bg-[#272A2F]"></span>
+                        <div
+                            class="px-6 flex gap-2 max-h-30 overflow-y-auto justify-center items-cneter [&::-webkit-scrollbar]:w-1  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
+                            <span class="min-w-2 min-h-2 max-w-2 max-h-2 bg-[var(--gold)] rounded-full mt-1"></span>
+                            <p
+                                class="max-xl:text-sm max-sm:text-[10px] text-[var(--text-secondary)] text-justify leading-6">
+                                زمان تحویل به نوع محصول و تیراژ بستگی دارد، اما به طور میانگین بین ۳ تا ۷ روز کاری است (پس
+                                از تأیید نهایی فایل توسط شما). سفارشات فوری (Express) با هماهنگی قبلی و هزینه اضافه، در کمتر
+                                از ۲۴ تا ۴۸ ساعت آماده می‌شوند.</p>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="w-full min-h-12 flex flex-col justify-start items-start bg-[#171A1F] border border-[#272A2F] rounded-xl overflow-y-hidden transition_root cursor-pointer">
+                    <div class="w-full px-4 py-3  flex justify-between items-start question_common_onclick">
+                        <span class="max-xl:text-sm max-sm:text-[10px] text-[var(--text-secondary)]">هزینه ارسال چگونه
+                            محاسبه می‌شود و بسته‌بندی به چه صورتی است؟</span>
+                        <div class="transition_root">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                class="size-4 fill-[var(--gold)] rotate-90">
+                                <path
+                                    d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="w-full h-full flex flex-col gap-4 justify-start items-start px-4 max-xl:mt-1">
+                        <span class="w-full h-0.5 bg-[#272A2F]"></span>
+                        <div
+                            class="px-6 flex gap-2 max-h-30 overflow-y-auto justify-center items-cneter [&::-webkit-scrollbar]:w-1  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
+                            <span class="min-w-2 min-h-2 max-w-2 max-h-2 bg-[var(--gold)] rounded-full mt-1"></span>
+                            <p
+                                class="max-xl:text-sm max-sm:text-[10px] text-[var(--text-secondary)] text-justify leading-6">
+                                هزینه ارسال بر اساس وزن، ابعاد بسته و مقصد توسط اپلیکیشن پست پیشتاز و تیپاکس محاسبه می‌گردد.
+                                سفارشات بالای ۲ میلیون تومان دارای ارسال رایگان هستند. بسته‌بندی محصولات کاملاً استاندارد و
+                                ضدضربه (با کارتن سخت و گوشه‌گیرهای مخصوص) انجام می‌شود تا محصول سالم به دستتان برسد.</p>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="w-full min-h-12 flex flex-col justify-start items-start bg-[#171A1F] border border-[#272A2F] rounded-xl overflow-y-hidden transition_root cursor-pointer">
+                    <div class="w-full px-4 py-3  flex justify-between items-start question_common_onclick">
+                        <span class="max-xl:text-sm max-sm:text-[10px] text-[var(--text-secondary)]">اگر طرح آماده نداشته
+                            باشم، آیا تیم شما طراحی را انجام می‌دهد؟</span>
+                        <div class="transition_root">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                class="size-4 fill-[var(--gold)] rotate-90">
+                                <path
+                                    d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="w-full h-full flex flex-col gap-4 justify-start items-start px-4 max-xl:mt-1">
+                        <span class="w-full h-0.5 bg-[#272A2F]"></span>
+                        <div
+                            class="px-6 flex gap-2 max-h-30 overflow-y-auto justify-center items-cneter [&::-webkit-scrollbar]:w-1  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
+                            <span class="min-w-2 min-h-2 max-w-2 max-h-2 bg-[var(--gold)] rounded-full mt-1"></span>
+                            <p
+                                class="max-xl:text-sm max-sm:text-[10px] text-[var(--text-secondary)] text-justify leading-6">
+                                قطعاً. تیم گرافیست حرفه‌ای ما آماده ارائه خدمات طراحی اختصاصی بر اساس ایده‌های شماست. هزینه
+                                طراحی به صورت مجزا محاسبه می‌شود، اما در صورت ثبت سفارش چاپ با تیراژ بالای مشخص، هزینه طراحی
+                                به صورت رایگان یا با تخفیف ویژه محاسبه خواهد شد.</p>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="w-full min-h-12 flex flex-col justify-start items-start bg-[#171A1F] border border-[#272A2F] rounded-xl overflow-y-hidden transition_root cursor-pointer">
+                    <div class="w-full px-4 py-3  flex justify-between items-start question_common_onclick">
+                        <span class="max-xl:text-sm max-sm:text-[10px] text-[var(--text-secondary)]">حداقل تعداد سفارش
+                            (تیراژ) چقدر است؟</span>
+                        <div class="transition_root">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                class="size-4 fill-[var(--gold)] rotate-90">
+                                <path
+                                    d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="w-full h-full flex flex-col gap-4 justify-start items-start px-4 max-xl:mt-1">
+                        <span class="w-full h-0.5 bg-[#272A2F]"></span>
+                        <div
+                            class="px-6 flex gap-2 max-h-30 overflow-y-auto justify-center items-cneter [&::-webkit-scrollbar]:w-1  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
+                            <span class="min-w-2 min-h-2 max-w-2 max-h-2 bg-[var(--gold)] rounded-full mt-1"></span>
+                            <p
+                                class="max-xl:text-sm max-sm:text-[10px] text-[var(--text-secondary)] text-justify leading-6">
+                                حداقل تیراژ بستگی به محصول دارد:
+
+                                · کارت ویزیت و برچسب: حداقل ۵۰ عدد
+                                · تراکت، کاتالوگ و پوستر: حداقل ۱۰۰ عدد
+                                · بوم (کانواس) و تابلوهای هنری: حداقل ۱ عدد (چاپ دیجیتال)
+                                اگر به تعداد کمتر از حداقل نیاز دارید، لطفاً با پشتیبانی تماس بگیرید تا چاپ دیجیتال (تک‌پر)
+                                را برایتان محاسبه کنیم.</p>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="w-full min-h-12 flex flex-col justify-start items-start bg-[#171A1F] border border-[#272A2F] rounded-xl overflow-y-hidden transition_root cursor-pointer">
+                    <div class="w-full px-4 py-3  flex justify-between items-start question_common_onclick">
+                        <span class="max-xl:text-sm max-sm:text-[10px] text-[var(--text-secondary)]">ضمانت کیفیت و بازگشت
+                            وجه در صورت خرابی چگونه است؟</span>
+                        <div class="transition_root">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                class="size-4 fill-[var(--gold)] rotate-90">
+                                <path
+                                    d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="w-full h-full flex flex-col gap-4 justify-start items-start px-4 max-xl:mt-1">
+                        <span class="w-full h-0.5 bg-[#272A2F]"></span>
+                        <div
+                            class="px-6 flex gap-2 max-h-30 overflow-y-auto justify-center items-cneter [&::-webkit-scrollbar]:w-1  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
+                            <span class="min-w-2 min-h-2 max-w-2 max-h-2 bg-[var(--gold)] rounded-full mt-1"></span>
+                            <p
+                                class="max-xl:text-sm max-sm:text-[10px] text-[var(--text-secondary)] text-justify leading-6">
+                                ما به کیفیت کار خود تضمین می‌دهیم. اگر ایراد چاپی به دلیل خطای دستگاه یا مواد اولیه (جوهر و
+                                کاغذ) ما باشد، کل سفارش را مجدداً بدون هیچ هزینه‌ای برای شما چاپ می‌کنیم. اما در صورتی که
+                                ایراد ناشی از کیفیت پایین فایل ارسالی، پیکسلی بودن تصویر یا عدم رعایت بلیید از سوی شما باشد،
+                                مسئولیت بر عهده سفارش‌دهنده است؛ بنابراین تأیید نهایی فایل را جدی بگیرید.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div
-                class="lg:w-1/2 w-full h-full bg-[var(--background-2)] rounded-xl flex flex-col gap-4 justify-start items-start px-7 py-5">
+                class="lg:w-1/2 w-full max-h-100 overflow-auto bg-[var(--background-2)] rounded-xl flex flex-col gap-4 justify-start items-start px-7 py-5 [&::-webkit-scrollbar]:w-1.5  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
                 <div class="w-full flex justify-between items-center">
                     <h3 class="sm:text-xl text-lg text-[var(--text)] font-bold">نظرات مشتریان</h3>
-                    <a href="#" class="sm:text-sm text-xs text-[var(--gold)]">مشاهده همه جزئیات</a>
+                    <a href="#" class="sm:text-sm text-xs text-[var(--gold)]">مشاهده همه نظرات</a>
                 </div>
                 <div
-                    class="w-full px-6 py-4 flex gap-10 justify-start items-center bg-[#171A1F] border border-[#272A2F] rounded-xl overflow-y-hidden transition_root">
+                    class="w-full min-h-24 px-6 py-4 flex gap-10 justify-start items-center bg-[#171A1F] border border-[#272A2F] rounded-xl overflow-y-hidden transition_root">
                     <div class="w-3/24 h-full flex justify-center items-center">
                         <div
                             class="sm:min-w-20 sm:min-h-20 sm:max-w-20 sm:max-h-15 min-w-15 min-h-15 max-w-15 border border-[var(--gold)] rounded-full">
@@ -903,13 +953,12 @@
                             <!-- star -->
                             <span class="xl:text-sm sm:text-xs text-[10px] text-[var(--text-secondary)]">1405/05/04</span>
                         </div>
-                        <p class="xl:text-sm sm:text-xs text-[10px] text-[var(--text)]">چاپ شاهکار با سال‌ها تجربه
-                            در زمینه چاپ دیجیتال و تبلیغات محیطی، همراه مطمئن شما در مسیر برندسازی و معرفی کسب‌وکار
-                            است</p>
+                        <p class="xl:text-sm sm:text-xs text-[10px] text-[var(--text)]">کارکنان حرفه ای ، برخورد مناسب ، و
+                            تحویل سریع و به موقع واقعا کارتون حرف نداره دمتون گرم.</p>
                     </div>
                 </div>
                 <div
-                    class="w-full px-6 py-4 flex gap-10 justify-start items-center bg-[#171A1F] border border-[#272A2F] rounded-xl overflow-y-hidden transition_root">
+                    class="w-full min-h-24 px-6 py-4 flex gap-10 justify-start items-center bg-[#171A1F] border border-[#272A2F] rounded-xl overflow-y-hidden transition_root">
                     <div class="w-3/24 h-full flex justify-center items-center">
                         <div
                             class="sm:min-w-20 sm:min-h-20 sm:max-w-20 sm:max-h-15 min-w-15 min-h-15 max-w-15 border border-[var(--gold)] rounded-full">
@@ -958,11 +1007,122 @@
                                 </svg>
                             </div>
                             <!-- star -->
-                            <span class="xl:text-sm sm:text-xs text-[10px] text-[var(--text-secondary)]">1405/05/04</span>
+                            <span class="xl:text-sm sm:text-xs text-[10px] text-[var(--text-secondary)]">1405/02/23</span>
                         </div>
-                        <p class="xl:text-sm sm:text-xs text-[10px] text-[var(--text)]">چاپ شاهکار با سال‌ها تجربه
-                            در زمینه چاپ دیجیتال و تبلیغات محیطی، همراه مطمئن شما در مسیر برندسازی و معرفی کسب‌وکار
-                            است</p>
+                        <p class="xl:text-sm sm:text-xs text-[10px] text-[var(--text)]">قیمت هاشون خیلی معقول و به صرفه بود
+                            در عین حال کیفیت محصولاتشون خیلی خوب بود و صفر تا صر کار رو خودشون انجام میدن.</p>
+                    </div>
+                </div>
+                <div
+                    class="w-full min-h-24 px-6 py-4 flex gap-10 justify-start items-center bg-[#171A1F] border border-[#272A2F] rounded-xl overflow-y-hidden transition_root">
+                    <div class="w-3/24 h-full flex justify-center items-center">
+                        <div
+                            class="sm:min-w-20 sm:min-h-20 sm:max-w-20 sm:max-h-15 min-w-15 min-h-15 max-w-15 border border-[var(--gold)] rounded-full">
+                            <img src="{{ asset('assets/img/user.png') }}" alt=""
+                                class="w-full h-full rounded-full">
+                        </div>
+                    </div>
+                    <div class="w-21/24 h-full flex flex-col gap-2 justify-start items-start">
+                        <div class="w-full flex justify-between items-center">
+                            <!-- star -->
+                            <div class="flex gap-0.5 items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                                    class="sm:size-4 size-3 fill-[var(--star)]">
+                                    <defs></defs>
+                                    <path class="fa-secondary"
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
+                                    <path class="fa-primary" d="" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                                    class="sm:size-4 size-3 fill-[var(--star)]">
+                                    <defs></defs>
+                                    <path class="fa-secondary"
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
+                                    <path class="fa-primary" d="" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                                    class="sm:size-4 size-3 fill-[var(--star)]">
+                                    <defs></defs>
+                                    <path class="fa-secondary"
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
+                                    <path class="fa-primary" d="" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                                    class="sm:size-4 size-3 fill-[var(--star)]">
+                                    <defs></defs>
+                                    <path class="fa-secondary"
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
+                                    <path class="fa-primary" d="" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                                    class="sm:size-4 size-3 fill-[var(--star)]">
+                                    <defs></defs>
+                                    <path class="fa-secondary"
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
+                                    <path class="fa-primary" d="" />
+                                </svg>
+                            </div>
+                            <!-- star -->
+                            <span class="xl:text-sm sm:text-xs text-[10px] text-[var(--text-secondary)]">1403/08/15</span>
+                        </div>
+                        <p class="xl:text-sm sm:text-xs text-[10px] text-[var(--text)]">من که از کیفیت و سرعت عملشون خیلی
+                            راضیم.</p>
+                    </div>
+                </div>
+                <div
+                    class="w-full min-h-24 px-6 py-4 flex gap-10 justify-start items-center bg-[#171A1F] border border-[#272A2F] rounded-xl overflow-y-hidden transition_root">
+                    <div class="w-3/24 h-full flex justify-center items-center">
+                        <div
+                            class="sm:min-w-20 sm:min-h-20 sm:max-w-20 sm:max-h-15 min-w-15 min-h-15 max-w-15 border border-[var(--gold)] rounded-full">
+                            <img src="{{ asset('assets/img/user.png') }}" alt=""
+                                class="w-full h-full rounded-full">
+                        </div>
+                    </div>
+                    <div class="w-21/24 h-full flex flex-col gap-2 justify-start items-start">
+                        <div class="w-full flex justify-between items-center">
+                            <!-- star -->
+                            <div class="flex gap-0.5 items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                                    class="sm:size-4 size-3 fill-[var(--star)]">
+                                    <defs></defs>
+                                    <path class="fa-secondary"
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
+                                    <path class="fa-primary" d="" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                                    class="sm:size-4 size-3 fill-[var(--star)]">
+                                    <defs></defs>
+                                    <path class="fa-secondary"
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
+                                    <path class="fa-primary" d="" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                                    class="sm:size-4 size-3 fill-[var(--star)]">
+                                    <defs></defs>
+                                    <path class="fa-secondary"
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
+                                    <path class="fa-primary" d="" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                                    class="sm:size-4 size-3 fill-[var(--star)]">
+                                    <defs></defs>
+                                    <path class="fa-secondary"
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
+                                    <path class="fa-primary" d="" />
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                                    class="sm:size-4 size-3 fill-[var(--star)]">
+                                    <defs></defs>
+                                    <path class="fa-secondary"
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
+                                    <path class="fa-primary" d="" />
+                                </svg>
+                            </div>
+                            <!-- star -->
+                            <span class="xl:text-sm sm:text-xs text-[10px] text-[var(--text-secondary)]">1404/08/23</span>
+                        </div>
+                        <p class="xl:text-sm sm:text-xs text-[10px] text-[var(--text)]">بهترین و با کیفیت ترین محصولات رو
+                            دارن با تنوع زیاد من یکی که از تابلو هاشون خیلی خوشم اومد .</p>
                     </div>
                 </div>
             </div>
@@ -1007,4 +1167,9 @@
         </div>
     </section>
     <!-- up_footer -->
+    <script>
+        function showContent(el, state) {
+            console.log(state);
+        }
+    </script>
 @endsection

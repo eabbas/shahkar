@@ -8,6 +8,7 @@ use App\Models\logo;
 use App\Models\product;
 use App\Models\product_attributes;
 use App\Models\product_media;
+use App\Models\service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Log;
@@ -223,6 +224,8 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         $logo = logo::first();
+        $services = service::all();
+        $categories = category::with('products')->has('products')->get();
         if ($product->media->isNotEmpty()) {
             foreach ($product->media as $media) {
                 if ($media['is_main']) {
@@ -235,7 +238,14 @@ class ProductController extends Controller
         } else {
             $product['mainImg'] = 'default.jpg';
         }
-        return view('user.product.show', ['product' => $product, 'logo' => $logo]);
+        // $product->attributes;
+        // return $product;
+        return view('user.product.show', [
+            'product' => $product,
+            'logo' => $logo,
+            'services' => $services,
+            'categories' => $categories
+        ]);
     }
     public function index()
     {
