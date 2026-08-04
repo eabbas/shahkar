@@ -513,13 +513,6 @@ function hamburger_menu(item) {
         hamburger_menu_item.classList.add('translate-x-0')
         close_hamburger_document.classList.remove('invisible')
         close_hamburger_document.classList.remove('opacity-0')
-        // close_search
-        pup_up_search_item.classList.add('h-0')
-        pup_up_search_item.classList.remove('h-dvh')
-        pup_up_search_item_box.classList.add('h-0')
-        pup_up_search_item_box.classList.remove('h-1/2')
-        // close_search
-
     }
     if (item == 'close') {
         hamburger_menu_item.classList.add('translate-x-full')
@@ -529,46 +522,46 @@ function hamburger_menu(item) {
     }
 }
 ////////
-let servis_pup_up_hover = document.querySelector('.servis_pup_up_hover')
-let servis_pup_up_item = document.querySelector('.servis_pup_up_item')
-let servis_pup_up_hover_close = document.querySelector('.servis_pup_up_hover_close')
+let servis_pup_up_hover = document.querySelectorAll('.servis_pup_up_hover')
+let servis_pup_up_item = document.querySelectorAll('.servis_pup_up_item')
+let servis_pup_up_hover_close = document.querySelectorAll('.servis_pup_up_hover_close')
 
-servis_pup_up_hover.addEventListener('mouseenter', function () {
-    servis_pup_up_item.classList.remove('invisible')
-    servis_pup_up_item.classList.remove('opacity-0')
+servis_pup_up_hover.forEach((item) => {
+    item.addEventListener('mouseenter', function () {
+        item.nextElementSibling.classList.remove('invisible')
+        item.nextElementSibling.classList.remove('opacity-0')
+    })
 })
-servis_pup_up_item.addEventListener('mouseenter', function () {
-    servis_pup_up_item.classList.remove('invisible')
-    servis_pup_up_item.classList.remove('opacity-0')
+servis_pup_up_hover.forEach((item) => {
+    item.addEventListener('mouseleave', function () {
+        item.nextElementSibling.classList.add('invisible')
+        item.nextElementSibling.classList.add('opacity-0')
+    })
 })
-servis_pup_up_hover.addEventListener('mouseleave', function () {
-    servis_pup_up_item.classList.add('invisible')
-    servis_pup_up_item.classList.add('opacity-0')
+servis_pup_up_item.forEach((item) => {
+    item.addEventListener('mouseenter', function () {
+        item.classList.remove('invisible')
+        item.classList.remove('opacity-0')
+    })
 })
-servis_pup_up_hover_close.addEventListener('mouseenter', function () {
-    servis_pup_up_item.classList.add('invisible')
-    servis_pup_up_item.classList.add('opacity-0')
+
+servis_pup_up_hover_close.forEach((item) => {
+    item.addEventListener('mouseenter', function () {
+        servis_pup_up_item.forEach((e) => {
+            e.classList.add('invisible', 'opacity-0')
+        })
+    })
 })
 ////////
 
 let pu_up_servis_hamburger_menu = document.querySelectorAll('.pu_up_servis_hamburger_menu')
 pu_up_servis_hamburger_menu.forEach((item) => {
     item.addEventListener('click', function () {
-        console.log('skdf')
         item.nextElementSibling.classList.toggle('h-0')
-        item.nextElementSibling.classList.toggle('h-30')
+        item.nextElementSibling.classList.toggle('h-50')
         item.children[1].classList.toggle('rotate-180')
     })
 })
-
-let play_icon_vidio = document.getElementById('play_icon_vidio')
-
-function vidio_onclic_play() {
-    console.log('slfls')
-    play_icon_vidio.classList.toggle('invisible')
-    play_icon_vidio.classList.toggle('opacity-0')
-
-}
 
 //! product single 
 function like_svg(item) {
@@ -579,23 +572,16 @@ function like_svg(item) {
 let question_common_onclick = document.querySelectorAll('.question_common_onclick')
 question_common_onclick.forEach((item) => {
     item.addEventListener('click', function () {
-
-        if (item.parentElement.classList.contains('h-12')) {
+        if (item.parentElement.classList.contains('min-h-12')) {
             question_common_onclick.forEach((element) => {
-                element.parentElement.classList.add('h-12')
-                element.parentElement.classList.remove('h-48')
-                element.children[1].classList.toggle('rotate-360')
-                element.children[1].children[0].classList.remove('hidden')
-                element.children[1].children[1].classList.add('hidden')
-                element.children[0].children[0].classList.remove('rotate-90')
+                element.parentElement.classList.add('min-h-12')
+                element.parentElement.classList.remove('min-h-48')
+                element.children[1].classList.remove('-rotate-90')
             })
         }
-        item.parentElement.classList.toggle('h-12')
-        item.parentElement.classList.toggle('h-48')
-        item.children[1].classList.toggle('rotate-360')
-        item.children[1].children[0].classList.toggle('hidden')
-        item.children[1].children[1].classList.toggle('hidden')
-        item.children[0].children[0].classList.toggle('rotate-90')
+        item.parentElement.classList.toggle('min-h-12')
+        item.parentElement.classList.toggle('min-h-48')
+        item.children[1].classList.toggle('-rotate-90')
     })
 })
 

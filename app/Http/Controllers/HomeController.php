@@ -58,7 +58,7 @@ class HomeController extends Controller
         $logo = logo::first();
         $services = service::all();
         $introduction = introduction::first();
-        $categories = category::all();
+        $categories = category::with('products')->has('products')->get();
         $products = product::where('show_in_home', 1)->get();
         foreach ($products as $product) {
             if ($product->media->isNotEmpty()) {
@@ -85,46 +85,24 @@ class HomeController extends Controller
     }
     public function notAccess()
     {
-        $courses = course::all();
-        $products = product::where('show_in_home', 1)->get();
-        // $products = $this->getProductMedias($products);
-        $settings = settings::all();
-        $cats = category::all();
+        $services = service::all();
+        $categories = category::with('products')->has('products')->get();
         $logo = logo::first();
-        $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
-        $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
-        $user = Auth::user();
         return view('notAccess', [
-            'courses' => $courses,
-            'products' => $products,
-            'settings' => $settings,
-            'categories' => $cats,
             'logo' => $logo,
-            'footerColumns' => $footer_columns,
-            'footer_form_column' => $footer_form_column,
-            'user' => $user
+            'services' => $services,
+            'categories' => $categories,
         ]);
     }
     public function loginAtFirst()
     {
-        $courses = course::all();
-        $products = product::where('show_in_home', 1)->get();
-        // $products = $this->getProductMedias($products);
-        $settings = settings::all();
-        $cats = category::all();
+        $services = service::all();
+        $categories = category::with('products')->has('products')->get();
         $logo = logo::first();
-        $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
-        $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
-        $user = Auth::user();
         return view('loginAtFirst', [
-            'courses' => $courses,
-            'products' => $products,
-            'settings' => $settings,
-            'categories' => $cats,
             'logo' => $logo,
-            'footerColumns' => $footer_columns,
-            'footer_form_column' => $footer_form_column,
-            'user' => $user
+            'services' => $services,
+            'categories' => $categories,
         ]);
     }
     public function dashboard()
@@ -147,24 +125,13 @@ class HomeController extends Controller
     }
     public function pageNotFound()
     {
-        $courses = course::all();
-        $products = product::where('show_in_home', 1)->get();
-        // $products = $this->getProductMedias($products);
-        $settings = settings::all();
-        $cats = category::all();
+        $services = service::all();
+        $categories = category::with('products')->has('products')->get();
         $logo = logo::first();
-        $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
-        $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
-        $user = Auth::user();
         return view('404', [
-            'courses' => $courses,
-            'products' => $products,
-            'settings' => $settings,
-            'categories' => $cats,
             'logo' => $logo,
-            'footerColumns' => $footer_columns,
-            'footer_form_column' => $footer_form_column,
-            'user' => $user
+            'services' => $services,
+            'categories' => $categories,
         ]);
     }
 }
