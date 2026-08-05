@@ -9,6 +9,7 @@ use App\Models\logo;
 use App\Models\phoneCode;
 use App\Models\product;
 use App\Models\role;
+use App\Models\service;
 use App\Models\settings;
 use App\Models\User;
 use App\Models\user_role;
@@ -20,21 +21,6 @@ use DB;
 
 class userController extends Controller
 {
-    // public function getProductMedias($products)
-    // {
-    //     foreach ($products as $product) {
-    //         $product->load(['medias' => function ($query) {
-    //             $query->select('product_id', DB::raw("IFNULL(path , 'images/noImage.png') path"))->where('is_main', 1);
-    //         }]);
-    //         foreach ($product->medias as $media) {
-    //             $product['img'] = asset('storage/images/noImage.png');
-    //             if (Storage::disk('public')->exists($media['path'])) {
-    //                 $product['img'] = asset('storage/' . $media['path']);
-    //             }
-    //         }
-    //     }
-    //     return $products;
-    // }
     public function login()
     {
         return view('user.user.login');
@@ -308,69 +294,20 @@ class userController extends Controller
         if (!$user) {
             $user = Auth::user();
         }
-        $courses = course::all();
         $products = product::all();
-        // $products = $this->getProductMedias($products);
-        $settings = settings::all();
         $cats = category::all();
         $logo = logo::first();
-        $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
-        $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
+        $services = service::all();
         return view('user.user.profile', [
-            'courses' => $courses,
             'products' => $products,
             'user' => $user,
-            'settings' => $settings,
             'categories' => $cats,
             'logo' => $logo,
-            'footerColumns' => $footer_columns,
-            'footer_form_column' => $footer_form_column,
+            'services' => $services,
         ]);
     }
 
 
-
-
-
-
-
-    public function adminCourses(User $user)
-    {
-        $courses = $user->load('userCourses.course');
-        $userCourses = $courses->toArray();
-        $logo = logo::first();
-        return view('admin.course.userCourse.courses', [
-            'userCourses' => $userCourses,
-            'courses' => $courses,
-            'logo' => $logo,
-        ]);
-    }
-
-    // public function courses(User $user)
-    // {
-    //     $courses = $user->load('userCourses.course');
-    //     $userCourses = $courses->toArray();
-    //     $courses = course::all();
-    //     $logo = logo::first();
-    //     $products = product::all();
-    //     $products = $this->getProductMedias($products);
-    //     $settings = settings::all();
-    //     $footer_columns = footer_column::whereIn('section_number', [1, 2, 3])->with('rows')->get();
-    //     $footer_form_column = footer_column::where('section_number', 4)->with('images')->with('texts')->first();
-    //     $categories = category::all();
-    //     return view('user.course.userCourse.courses', [
-    //         'userCourses' => $userCourses,
-    //         'user' => $user,
-    //         'courses' => $courses,
-    //         'logo' => $logo,
-    //         'categories' => $categories,
-    //         'courses' => $courses,
-    //         'products' => $products,
-    //         'settings' => $settings,
-    //         'footerColumns' => $footer_columns,
-    //         'footer_form_column' => $footer_form_column,
-    //     ]);
-    // }
 
 
 
@@ -384,12 +321,6 @@ class userController extends Controller
         }
         return response()->json($data);
     }
-
-
-
-
-
-
 
     public function deleteAll(Request $request)
     {

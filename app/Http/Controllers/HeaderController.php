@@ -26,20 +26,16 @@ class HeaderController extends Controller
                 'mobileImg' => ['required'],
                 'title' => ['required'],
                 'subTitle' => ['required'],
-                'rightBtnText' => ['required'],
-                'rightBtnLink' => ['required'],
-                'leftBtnText' => ['required'],
-                'leftBtnLink' => ['required'],
+                'btnText' => ['required'],
+                'btnLink' => ['required'],
             ],
             [
                 'img.required' => 'پر کردن این فیلد الزامی است.',
                 'mobileImg.required' => 'پر کردن این فیلد الزامی است.',
                 'title.required' => 'پر کردن این فیلد الزامی است.',
                 'subTitle.required' => 'پر کردن این فیلد الزامی است.',
-                'rightBtnText.required' => 'پر کردن این فیلد الزامی است.',
-                'rightBtnLink.required' => 'پر کردن این فیلد الزامی است.',
-                'leftBtnText.required' => 'پر کردن این فیلد الزامی است.',
-                'leftBtnLink.required' => 'پر کردن این فیلد الزامی است.',
+                'btnText.required' => 'پر کردن این فیلد الزامی است.',
+                'btnLink.required' => 'پر کردن این فیلد الزامی است.',
             ]
         );
         if ($validated) {
@@ -57,10 +53,8 @@ class HeaderController extends Controller
                     'mobileImg' => $mobileImg_path,
                     'title' => $request->title,
                     'subTitle' => $request->subTitle,
-                    'rightBtnText' => $request->rightBtnText,
-                    'rightBtnLink' => $request->rightBtnLink,
-                    'leftBtnText' => $request->leftBtnText,
-                    'leftBtnLink' => $request->leftBtnLink,
+                    'btnText' => $request->btnText,
+                    'btnLink' => $request->btnLink,
                 ]
             );
             return to_route('settings.header.create')->with('message', 'هدر جدید برای سایت ایجاد شد.');

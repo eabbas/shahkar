@@ -70,12 +70,6 @@
                     <div class="overflow-y-auto transition-all duration-300 @if (Route::is('settings.*')) max-h-100 @else max-h-0 @endif"
                         style="scrollbar-width: none;">
                         <ul class="gap-2.5 pr-3">
-                            {{-- <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
-                                <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{ route('settings.colors.createColor') }}"
-                                    class="py-1 @if (Route::is('settings.colors.createColor')) text-[#FF0000] @endif">تنظیمات
-                                    رنگ ها</a>
-                            </li> --}}
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                 <span class="size-1 bg-white rounded-sm"></span>
                                 <a href="{{ route('settings.header.create') }}"
@@ -86,12 +80,6 @@
                                 <a href="{{ route('settings.logo.create') }}"
                                     class="py-1 @if (Route::is('settings.logo.create')) text-[#FF0000] @endif">
                                     لوگو</a>
-                            </li>
-                            <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
-                                <span class="size-1 bg-white rounded-sm"></span>
-                                <a href="{{ route('settings.section.index') }}"
-                                    class="py-1 @if (Route::is('settings.section.index')) text-[#FF0000] @endif"> سکشن
-                                    ها</a>
                             </li>
                             <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                 <span class="size-1 bg-white rounded-sm"></span>
@@ -273,12 +261,6 @@
                         <div class="overflow-y-auto transition-all duration-300 @if (Route::is('settings.*')) max-h-100 @else max-h-0 @endif"
                             style="scrollbar-width: none;">
                             <ul class="gap-2.5 pr-3">
-                                {{-- <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
-                                    <span class="size-1 bg-white rounded-sm"></span>
-                                    <a href="{{ route('settings.colors.createColor') }}"
-                                        class="py-1 @if (Route::is('settings.colors.createColor')) text-[#FF0000] @endif">تنظیمات
-                                        رنگ ها</a>
-                                </li> --}}
                                 <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                     <span class="size-1 bg-white rounded-sm"></span>
                                     <a href="{{ route('settings.header.create') }}"
@@ -290,12 +272,6 @@
                                     <a href="{{ route('settings.logo.create') }}"
                                         class="py-1 @if (Route::is('settings.logo.create')) text-[#FF0000] @endif">
                                         لوگو</a>
-                                </li>
-                                <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
-                                    <span class="size-1 bg-white rounded-sm"></span>
-                                    <a href="{{ route('settings.section.index') }}"
-                                        class="py-1 @if (Route::is('settings.section.index')) text-[#FF0000] @endif">
-                                        سکشن ها</a>
                                 </li>
                                 <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
                                     <span class="size-1 bg-white rounded-sm"></span>
