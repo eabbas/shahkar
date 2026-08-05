@@ -43,7 +43,7 @@
                             </label>
                             <div class="w-full h-full flex flex-col gap-4 justify-start items-start px-4 pr-7 max-xl:mt-1">
                                 <div
-                                    class="w-full max-h-50 overflow-y-auto flex flex-col gap-4 justify-start items-start [&amp;::-webkit-scrollbar]:w-1  [&amp;::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&amp;::-webkit-scrollbar-thumb]:rounded-full">
+                                    class="w-full max-h-50 overflow-y-auto flex flex-col gap-4 justify-start items-start [&::-webkit-scrollbar]:w-1  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
                                     <div class="w-full flex justify-start items-center gap-4">
                                         <input id="all" checked type="checkbox"
                                             class="appearance-none xl:size-5 size-4 bg-[var(--background)] border border-[var(--gold)] checked:bg-[var(--gold)] rounded-sm after:content-['✓'] after:flex after:justify-center after:items-center  after:opacity-0 checked:after:opacity-100 max-xl:after:text-xs after:text-white transition_root">
@@ -121,7 +121,7 @@
                             </label>
                             <div class="w-full h-full flex flex-col gap-4 justify-start items-start px-4 pr-7 max-xl:mt-1">
                                 <div
-                                    class="w-full pb-2 max-h-50 overflow-y-auto flex flex-col gap-4 justify-start items-start [&amp;::-webkit-scrollbar]:w-1  [&amp;::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&amp;::-webkit-scrollbar-thumb]:rounded-full">
+                                    class="w-full pb-2 max-h-50 overflow-y-auto flex flex-col gap-4 justify-start items-start [&::-webkit-scrollbar]:w-1  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
                                     <div class="w-full flex justify-start items-center gap-4">
                                         <input id="all" checked type="checkbox"
                                             class="appearance-none xl:size-5 size-4 bg-[var(--background)] border border-[var(--gold)] checked:bg-[var(--gold)] rounded-sm after:content-['✓'] after:flex after:justify-center after:items-center  after:opacity-0 checked:after:opacity-100 max-xl:after:text-xs after:text-white transition_root">
@@ -176,7 +176,8 @@
             <!-- filter_index_product -->
             <!-- button_filter_mobile_start -->
             <div class="w-full flex flex-col gap-5 justify-start items-center sm:hidden relative">
-                <button class="w-11/12 py-2 gradient_box1 rounded-xl flex gap-2 justify-center items-center">
+                <button class="w-11/12 py-2 gradient_box1 rounded-xl flex gap-2 justify-center items-center"
+                    onclick="filter_index_product_pop_up_mobile('open')">
                     <div>
                         <svg version="1.1" class="xl:size-4 size-3 fill-[var(--text)]" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
@@ -184,8 +185,7 @@
                             </path>
                         </svg>
                     </div>
-                    <span class="max-xl:text-sm font-bold text-[var(--text)]"
-                        onclick="filter_index_product_pop_up_mobile('open')"> فیلتر</span>
+                    <span class="max-xl:text-sm font-bold text-[var(--text)]"> فیلتر</span>
                 </button>
                 <!-- button_sort_product_mobile -->
                 <div class="w-full h-12 relative flex justify-center items-center">
@@ -294,7 +294,7 @@
                             class="w-full sm:h-110 h-40 bg-[var(--background-2)] flex sm:flex-col gap-2 justify-start items-center border border-[var(--gold)] rounded-xl">
                             <div class="w-full max-sm:w-1/2 h-1/2 max-sm:h-full max-sm:order-2">
                                 <img src="{{ asset('/storage/' . $product['mainImg']) }}" alt=""
-                                    class="object-fill w-full h-full rounded-t-xl">
+                                    class="object-fill w-full h-full max-sm:rounded-l-xl sm:rounded-t-xl">
                             </div>
                             <div
                                 class="w-full max-sm:w-1/2 h-1/2 max-sm:h-full flex flex-col justify-between pb-4 pt-2 max-sm:justify-center items-center gap-5 max-sm:gap-3 max-sm:order-1">
@@ -426,7 +426,7 @@
                         </label>
                         <div class="w-full h-full flex flex-col gap-4 justify-start items-start px-4 pr-7 max-xl:mt-1">
                             <div
-                                class="w-full max-h-50 overflow-y-auto flex flex-col gap-4 justify-start items-start [&amp;::-webkit-scrollbar]:w-1  [&amp;::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&amp;::-webkit-scrollbar-thumb]:rounded-full">
+                                class="w-full max-h-50 overflow-y-auto flex flex-col gap-4 justify-start items-start [&::-webkit-scrollbar]:w-1  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
                                 <div class="w-full flex justify-start items-center gap-4">
                                     <input id="all" checked type="checkbox"
                                         class="appearance-none xl:size-5 size-4 bg-[var(--background)] border border-[var(--gold)] checked:bg-[var(--gold)] rounded-sm after:content-['✓'] after:flex after:justify-center after:items-center  after:opacity-0 checked:after:opacity-100 max-xl:after:text-xs after:text-white transition_root">
@@ -531,7 +531,7 @@
                         </label>
                         <div class="w-full h-full flex flex-col gap-4 justify-start items-start px-4 pr-7 max-xl:mt-1">
                             <div
-                                class="w-full pb-2 max-h-50 overflow-y-auto flex flex-col gap-4 justify-start items-start [&amp;::-webkit-scrollbar]:w-1  [&amp;::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&amp;::-webkit-scrollbar-thumb]:rounded-full">
+                                class="w-full pb-2 max-h-50 overflow-y-auto flex flex-col gap-4 justify-start items-start [&::-webkit-scrollbar]:w-1  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
                                 <div class="w-full flex justify-start items-center gap-4">
                                     <input id="all" checked type="checkbox"
                                         class="appearance-none xl:size-5 size-4 bg-[var(--background)] border border-[var(--gold)] checked:bg-[var(--gold)] rounded-sm after:content-['✓'] after:flex after:justify-center after:items-center  after:opacity-0 checked:after:opacity-100 max-xl:after:text-xs after:text-white transition_root">

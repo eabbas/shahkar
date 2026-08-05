@@ -316,7 +316,8 @@
                         </div>
                         <!-- servis_item_hamburger_menu -->
                         <span class="w-full h-[1px] bg-[#292931]"></span>
-                        <div class="group w-11/12 mx-auto py-1.5 flex items-center justify-start gap-4 px-3">
+                        <a href="{{ route('product.index') }}"
+                            class="group w-11/12 mx-auto py-1.5 flex items-center justify-start gap-4 px-3">
                             <div>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="size-6 fill-none stroke-[var(--gold)]"
                                     viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
@@ -328,7 +329,7 @@
                             <span
                                 class="text-[15px] md:text-lg font-bold text-white group-active:pr-5 group-active:text-[var(--gold)] transition_root">نمونه
                                 کار ها</span>
-                        </div>
+                        </a>
                         <span class="w-full h-[1px] bg-[#292931]"></span>
                         <div class="group w-11/12 mx-auto py-1.5 flex items-center justify-start gap-4 px-3">
                             <div>
