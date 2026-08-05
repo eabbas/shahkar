@@ -51,7 +51,7 @@
                         <span
                             class="flex gap-1 font-bold justify-center items-center py-3 relative cheng_text_colot_hover text-[var(--text)] cursor-pointer servis_pup_up_hover">
                             <span>خدمات</span>
-                            <div>
+                            <div class="transition_root">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
                                     class="size-4 fill-[var(--gold)]">
                                     <path
@@ -89,7 +89,7 @@
                         <span
                             class="flex gap-1 font-bold justify-center items-center py-3 relative cheng_text_colot_hover text-[var(--text)] cursor-pointer servis_pup_up_hover">
                             <span>دسته بندی ها</span>
-                            <div>
+                            <div class="transition_root">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
                                     class="size-4 fill-[var(--gold)]">
                                     <path
@@ -115,7 +115,6 @@
                                             <span
                                                 class="text-[15px] md:text-md font-bold text-white group-hover:pr-5 group-hover:text-[var(--gold)] transition_root">{{ $category['title'] }}</span>
                                         </div>
-                                        <span class="w-full h-[1px] bg-[#292931]"></span>
                                     </div>
                                 @endforeach
                             </div>
