@@ -106,18 +106,18 @@
                                                 <!-- Logo -->
                                                 <path
                                                     d="
-                                                                                                                                                                                                                                    M165 235
-                                                                                                                                                                                                                                    L165 205
-                                                                                                                                                                                                                                    Q165 180 188 180
-                                                                                                                                                                                                                                    L205 180
-                                                                                                                                                                                                                                    Q225 180 225 198
-                                                                                                                                                                                                                                    Q225 214 208 214
-                                                                                                                                                                                                                                    L188 214
-                                                                                                                                                                                                                                    L188 225
-                                                                                                                                                                                                                                    L215 225
-                                                                                                                                                                                                                                    Q235 225 235 245
-                                                                                                                                                                                                                                    L165 245
-                                                                                                                                                                                                                                    Z" />
+                                                                                                                                                                                                                                                    M165 235
+                                                                                                                                                                                                                                                    L165 205
+                                                                                                                                                                                                                                                    Q165 180 188 180
+                                                                                                                                                                                                                                                    L205 180
+                                                                                                                                                                                                                                                    Q225 180 225 198
+                                                                                                                                                                                                                                                    Q225 214 208 214
+                                                                                                                                                                                                                                                    L188 214
+                                                                                                                                                                                                                                                    L188 225
+                                                                                                                                                                                                                                                    L215 225
+                                                                                                                                                                                                                                                    Q235 225 235 245
+                                                                                                                                                                                                                                                    L165 245
+                                                                                                                                                                                                                                                    Z" />
 
                                                 <!-- Text Line -->
                                                 <line x1="220" y1="225" x2="305" y2="225" />
@@ -351,9 +351,9 @@
     <section class="w-full flex justify-center items-center">
         <div class="w-full lg:h-full h-full flex justify-center items-center relative">
             <img src="{{ asset('assets/img/background_commant.jpg') }}" alt=""
-                class="object-fit w-full h-60 max-lg:hidden">
+                class="object-fit w-full h-90 max-lg:hidden">
             <div class="w-full h-full lg:absolute lg:bottom-0 lg:right-0 flex flex-col items-center justify-start">
-                <div class="w-11/12 h-full flex flex-col justify-center">
+                <div class="w-11/12 h-full flex flex-col justify-between py-4">
                     <!-- property -->
                     <div
                         class="w-full lg:h-30 lg:border-y-1 lg:border-[var(--border)] max-lg:border sm:border-[var(--gold)] flex max-sm:flex max-sm:flex-col gap-4 items-center justify-between max-lg:grid grid-cols-2 lg:py-4 py-3 max-lg:px-5 max-sm:bg-[var(--background)] max-lg:bg-[var(--background-2)]">
@@ -420,23 +420,23 @@
                                         <!-- Scalloped medal -->
                                         <path
                                             d="
-                                                                                                                                                                                                                                            M12 3
-                                                                                                                                                                                                                                            C12.7 3.6 13.6 3.5 14.3 3.9
-                                                                                                                                                                                                                                            C15.1 4.2 15.5 5 16.2 5.4
-                                                                                                                                                                                                                                            C17 5.8 17.8 6.3 18 7.2
-                                                                                                                                                                                                                                            C18.3 8 19 8.8 19 9.8
-                                                                                                                                                                                                                                            C19 10.8 18.3 11.6 18 12.4
-                                                                                                                                                                                                                                            C17.8 13.3 17 13.8 16.2 14.2
-                                                                                                                                                                                                                                            C15.5 14.6 15.1 15.4 14.3 15.7
-                                                                                                                                                                                                                                            C13.6 16.1 12.7 16 12 16.6
-                                                                                                                                                                                                                                            C11.3 16 10.4 16.1 9.7 15.7
-                                                                                                                                                                                                                                            C8.9 15.4 8.5 14.6 7.8 14.2
-                                                                                                                                                                                                                                            C7 13.8 6.2 13.3 6 12.4
-                                                                                                                                                                                                                                            C5.7 11.6 5 10.8 5 9.8
-                                                                                                                                                                                                                                            C5 8.8 5.7 8 6 7.2
-                                                                                                                                                                                                                                            C6.2 6.3 7 5.8 7.8 5.4
-                                                                                                                                                                                                                                            C8.5 5 8.9 4.2 9.7 3.9
-                                                                                                                                                                                                                                            C10.4 3.5 11.3 3.6 12 3Z" />
+                                                                                                                                                                                                                                                            M12 3
+                                                                                                                                                                                                                                                            C12.7 3.6 13.6 3.5 14.3 3.9
+                                                                                                                                                                                                                                                            C15.1 4.2 15.5 5 16.2 5.4
+                                                                                                                                                                                                                                                            C17 5.8 17.8 6.3 18 7.2
+                                                                                                                                                                                                                                                            C18.3 8 19 8.8 19 9.8
+                                                                                                                                                                                                                                                            C19 10.8 18.3 11.6 18 12.4
+                                                                                                                                                                                                                                                            C17.8 13.3 17 13.8 16.2 14.2
+                                                                                                                                                                                                                                                            C15.5 14.6 15.1 15.4 14.3 15.7
+                                                                                                                                                                                                                                                            C13.6 16.1 12.7 16 12 16.6
+                                                                                                                                                                                                                                                            C11.3 16 10.4 16.1 9.7 15.7
+                                                                                                                                                                                                                                                            C8.9 15.4 8.5 14.6 7.8 14.2
+                                                                                                                                                                                                                                                            C7 13.8 6.2 13.3 6 12.4
+                                                                                                                                                                                                                                                            C5.7 11.6 5 10.8 5 9.8
+                                                                                                                                                                                                                                                            C5 8.8 5.7 8 6 7.2
+                                                                                                                                                                                                                                                            C6.2 6.3 7 5.8 7.8 5.4
+                                                                                                                                                                                                                                                            C8.5 5 8.9 4.2 9.7 3.9
+                                                                                                                                                                                                                                                            C10.4 3.5 11.3 3.6 12 3Z" />
 
                                         <!-- Inner circle -->
                                         <circle cx="12" cy="9.8" r="4.2" />
@@ -525,46 +525,9 @@
                     </div>
                     <!-- property -->
                     <!-- commend_coustomer -->
-                    {{-- <div class="w-full flex max-sm:flex-col max-sm:gap-4 justify-between items-center">
+                    <div class="w-full flex max-sm:flex-col max-sm:gap-4 justify-between items-center">
                         <div
                             class="sm:w-32/100 w-full h-full gradient_comment_box flex flex-col gap-4 items-center justify-center border border-[var(--gold)] rounded-xl py-4 scale transition_root">
-                            <div class="flex gap-0.5 items-center justify-center max-sm:hidden">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                    class="size-4 fill-[var(--star)]">
-                                    <defs></defs>
-                                    <path class="fa-secondary"
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-                                    <path class="fa-primary" d="" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                    class="size-4 fill-[var(--star)]">
-                                    <defs></defs>
-                                    <path class="fa-secondary"
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-                                    <path class="fa-primary" d="" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                    class="size-4 fill-[var(--star)]">
-                                    <defs></defs>
-                                    <path class="fa-secondary"
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-                                    <path class="fa-primary" d="" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                    class="size-4 fill-[var(--star)]">
-                                    <defs></defs>
-                                    <path class="fa-secondary"
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-                                    <path class="fa-primary" d="" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                    class="size-4 fill-[var(--star)]">
-                                    <defs></defs>
-                                    <path class="fa-secondary"
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-                                    <path class="fa-primary" d="" />
-                                </svg>
-                            </div>
                             <p
                                 class="xl:w-9/12 w-11/12 xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs text-center text-[var(--text-secondary)]">
                                 کارکنان حرفه ای ، برخورد مناسب ، و تحویل سریع و به موقع واقعا کارتون حرف نداره دمتون گرم.
@@ -623,43 +586,6 @@
                         </div>
                         <div
                             class="sm:w-32/100 w-full h-full gradient_comment_box flex flex-col gap-4 items-center justify-center border border-[var(--gold)] rounded-xl py-4 scale transition_root">
-                            <div class="flex gap-0.5 items-center justify-center max-sm:hidden">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                    class="size-4 fill-[var(--star)]">
-                                    <defs></defs>
-                                    <path class="fa-secondary"
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-                                    <path class="fa-primary" d="" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                    class="size-4 fill-[var(--star)]">
-                                    <defs></defs>
-                                    <path class="fa-secondary"
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-                                    <path class="fa-primary" d="" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                    class="size-4 fill-[var(--star)]">
-                                    <defs></defs>
-                                    <path class="fa-secondary"
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-                                    <path class="fa-primary" d="" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                    class="size-4 fill-[var(--star)]">
-                                    <defs></defs>
-                                    <path class="fa-secondary"
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-                                    <path class="fa-primary" d="" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                    class="size-4 fill-[var(--star)]">
-                                    <defs></defs>
-                                    <path class="fa-secondary"
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-                                    <path class="fa-primary" d="" />
-                                </svg>
-                            </div>
                             <p
                                 class="xl:w-9/12 w-11/12 xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs text-center text-[var(--text-secondary)]">
                                 بهترین و با کیفیت ترین محصولات رو دارن با تنوع زیاد من یکی که از تابلو هاشون خیلی خوشم اومد
@@ -719,43 +645,6 @@
                         </div>
                         <div
                             class="sm:w-32/100 w-full h-full gradient_comment_box flex flex-col gap-4 items-center justify-center border border-[var(--gold)] rounded-xl py-4 scale transition_root">
-                            <div class="flex gap-0.5 items-center justify-center max-sm:hidden">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                    class="size-4 fill-[var(--star)]">
-                                    <defs></defs>
-                                    <path class="fa-secondary"
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-                                    <path class="fa-primary" d="" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                    class="size-4 fill-[var(--star)]">
-                                    <defs></defs>
-                                    <path class="fa-secondary"
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-                                    <path class="fa-primary" d="" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                    class="size-4 fill-[var(--star)]">
-                                    <defs></defs>
-                                    <path class="fa-secondary"
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-                                    <path class="fa-primary" d="" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                    class="size-4 fill-[var(--star)]">
-                                    <defs></defs>
-                                    <path class="fa-secondary"
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-                                    <path class="fa-primary" d="" />
-                                </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                    class="size-4 fill-[var(--star)]">
-                                    <defs></defs>
-                                    <path class="fa-secondary"
-                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-                                    <path class="fa-primary" d="" />
-                                </svg>
-                            </div>
                             <p
                                 class="xl:w-9/12 w-11/12 xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs text-center text-[var(--text-secondary)]">
                                 قیمت هاشون خیلی معقول و به صرفه بود در عین حال کیفیت محصولاتشون خیلی خوب بود و صفر تا صر کار
@@ -811,7 +700,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>
