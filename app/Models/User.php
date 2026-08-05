@@ -49,10 +49,6 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    public function contactuss()
-    {
-        return $this->hasMany(contactUs::class);
-    }
     public function roles()
     {
         return $this->belongsToMany(role::class, 'user_roles');
@@ -60,38 +56,6 @@ class User extends Authenticatable
     public function users()
     {
         return $this->belongsToMany(User::class, 'user_roles');
-    }
-    public function userCourses()
-    {
-        return $this->hasMany(userCourse::class);
-    }
-    public function courses()
-    {
-        return $this->belongsToMany(course::class, 'user_courses')->withPivot(['id', 'user_id', 'course_id']);
-    }
-    public function lessoncomments()
-    {
-        return $this->hasMany(lessoncomments::class);
-    }
-    public function questions()
-    {
-        return $this->hasMany(coursequestion::class);
-    }
-    public function answers()
-    {
-        return $this->hasMany(courseanswer::class, 'answer_id');
-    }
-    public function Suggestions()
-    {
-        return $this->hasMany(lessonsuggestion::class);
-    }
-    public function answerreactions()
-    {
-        return $this->hasMany(courseanswerreaction::class);
-    }
-    public function Errors()
-    {
-        return $this->hasMany(lessonerror::class);
     }
     public static function isAdmin(User $user = null)
     {

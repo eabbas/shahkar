@@ -47,60 +47,28 @@
                         </div>
                         <div class="w-full flex flex-col sm:flex-row items-center gap-10">
                             <div class="w-full sm:w-1/2 flex flex-col mt-3 lg:mt-5">
-                                <label for="rightBtnText" class="mb-2 flex flex-row items-center">
-                                    <span>متن دکمه سمت راست:</span>
-                                    <span class="text-rose-500">*</span>
-                                </label>
-                                <input type="text"
-                                    class="outline-none pr-5 py-3 bg-[#F9F9F9] border border-slate-300 rounded-xl focus:bg-[#f1f1f4]"
-                                    name="rightBtnText" id="rightBtnText"
-                                    value="{{ old('rightBtnText', $header['rightBtnText'] ?? '') }}"
-                                    placeholder="مثال : محصولات">
-                                @error('rightBtnText')
-                                    <span class="text-xs text-red-500">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="w-full sm:w-1/2 flex flex-col mt-3 lg:mt-5">
-                                <label for="leftBtnText" class="mb-2 flex flex-row items-center">
+                                <label for="btnText" class="mb-2 flex flex-row items-center">
                                     <span>متن دکمه سمت چپ:</span>
                                     <span class="text-rose-500">*</span>
                                 </label>
                                 <input type="text"
                                     class="outline-none pr-5 py-3 bg-[#F9F9F9] border border-slate-300 rounded-xl focus:bg-[#f1f1f4]"
-                                    name="leftBtnText" id="leftBtnText"
-                                    value="{{ old('leftBtnText', $header['leftBtnText'] ?? '') }}"
+                                    name="btnText" id="btnText" value="{{ old('btnText', $header['btnText'] ?? '') }}"
                                     placeholder="مثال : سفارش سریع">
-                                @error('leftBtnText')
-                                    <span class="text-xs text-red-500">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="w-full flex flex-col sm:flex-row items-center gap-10">
-                            <div class="w-full sm:w-1/2 flex flex-col mt-3 lg:mt-5">
-                                <label for="rightBtnLink" class="mb-2 flex flex-row items-center">
-                                    <span>لینک دکمه سمت راست:</span>
-                                    <span class="text-rose-500">*</span>
-                                </label>
-                                <input type="text"
-                                    class="outline-none pr-5 py-3 bg-[#F9F9F9] border border-slate-300 rounded-xl focus:bg-[#f1f1f4]"
-                                    name="rightBtnLink" id="rightBtnLink"
-                                    value="{{ old('rightBtnLink', $header['rightBtnLink'] ?? '') }}"
-                                    placeholder="مثال : shahkar.art/products">
-                                @error('rightBtnLink')
+                                @error('btnText')
                                     <span class="text-xs text-red-500">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="w-full sm:w-1/2 flex flex-col mt-3 lg:mt-5">
-                                <label for="leftBtnLink" class="mb-2 flex flex-row items-center">
+                                <label for="btnLink" class="mb-2 flex flex-row items-center">
                                     <span>لینک دکمه سمت چپ:</span>
                                     <span class="text-rose-500">*</span>
                                 </label>
                                 <input type="text"
                                     class="outline-none pr-5 py-3 bg-[#F9F9F9] border border-slate-300 rounded-xl focus:bg-[#f1f1f4]"
-                                    name="leftBtnLink" id="leftBtnLink"
-                                    value="{{ old('leftBtnLink', $header['leftBtnLink'] ?? '') }}"
+                                    name="btnLink" id="btnLink" value="{{ old('btnLink', $header['btnLink'] ?? '') }}"
                                     placeholder="مثال : shahkar.art/orders">
-                                @error('leftBtnLink')
+                                @error('btnLink')
                                     <span class="text-xs text-red-500">{{ $message }}</span>
                                 @enderror
                             </div>

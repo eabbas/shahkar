@@ -36,7 +36,7 @@
                     </a>
                 @endif
             </div>
-            <div class="w-1/3 lg:w-4/5 h-8/12 flex gap-4 items-center justify-end lg:justify-between ">
+            <div class="w-1/3 lg:w-4/5 h-8/12 flex gap-4 items-center justify-end lg:justify-between">
                 <ul class="h-9/12 h-full flex items-center gap-5 xl:text-md lg:text-sm font-bold max-lg:hidden">
                     <li>
                         <a href="{{ route('home') }}" class="flex justify-center items-center py-3 relative">
@@ -48,8 +48,8 @@
                         </a>
                     </li>
                     <li class="relative">
-                        <a href=""
-                            class="flex gap-1 font-bold justify-center items-center py-3 relative cheng_text_colot_hover text-[var(--text)] servis_pup_up_hover">
+                        <span
+                            class="flex gap-1 font-bold justify-center items-center py-3 relative cheng_text_colot_hover text-[var(--text)] cursor-pointer servis_pup_up_hover">
                             <span>خدمات</span>
                             <div>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
@@ -63,64 +63,18 @@
                                 class="w-0 absolute bottom-0 right-auto left-auto gradent_text_sub_heder overflow-hidden flex justify-center items-center transition_root">
                                 <div class="w-full h-[2px] bg-white rounded-full"></div>
                             </div>
-                        </a>
+                        </span>
                         <!-- items_serviss -->
                         <div
                             class="w-100 h-dvh absolute top-17 right-0 flex justify-end items-start invisible opacity-0 transition_root servis_pup_up_item">
                             <div class="w-full h-full bg-black/50 fixed top-23 right-0 servis_pup_up_hover_close">
                             </div>
                             <div
-                                class="w-full flex flex-col justify-start items-start overflow-y-auto max-h-100 [&::-webkit-scrollbar]:w-1  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)] [&::-webkit-scrollbar-thumb]:rounded-full">
+                                class="w-full flex flex-col justify-start items-start overflow-y-auto max-h-100 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-[var(--gold)] [&::-webkit-scrollbar-thumb]:rounded-full">
                                 @foreach ($services as $service)
                                     <div
                                         class="w-full bg-[var(--background-2)] relative flex flex-col items-start justify-start p-4">
-                                        <div class="group w-11/12 mx-auto py-1.5 flex items-center justify-start gap-4">
-                                            <div>
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                                                    class="xl:size-8 size-11 fill-[var(--gold)]">
-
-                                                    <g fill="none" stroke="var(--gold)" stroke-width="10"
-                                                        stroke-linecap="round" stroke-linejoin="round">
-
-                                                        <!-- Outer Card -->
-                                                        <rect x="90" y="110" width="332" height="220"
-                                                            rx="10">
-                                                        </rect>
-
-                                                        <!-- Inner Border -->
-                                                        <rect x="120" y="140" width="272" height="160"
-                                                            rx="2">
-                                                        </rect>
-
-                                                        <!-- Top Right Circle -->
-                                                        <circle cx="340" cy="175" r="18"></circle>
-
-                                                        <!-- Logo -->
-                                                        <path d="
-                                                M165 235
-                                                L165 205
-                                                Q165 180 188 180
-                                                L205 180
-                                                Q225 180 225 198
-                                                Q225 214 208 214
-                                                L188 214
-                                                L188 225
-                                                L215 225
-                                                Q235 225 235 245
-                                                L165 245
-                                                Z"></path>
-
-                                                        <!-- Text Line -->
-                                                        <line x1="220" y1="225" x2="305"
-                                                            y2="225">
-                                                        </line>
-
-                                                        <!-- Corner Accent -->
-                                                        <path d="M375 270 L375 295 L350 295"></path>
-
-                                                    </g>
-                                                </svg>
-                                            </div>
+                                        <div class="group pb-4 pr-4">
                                             <span
                                                 class="text-[15px] md:text-md font-bold text-white group-hover:pr-5 group-hover:text-[var(--gold)] transition_root">{{ $service['title'] }}</span>
                                         </div>
@@ -130,11 +84,10 @@
                             </div>
                         </div>
                         <!-- items_serviss -->
-
                     </li>
                     <li class="relative">
-                        <a href=""
-                            class="flex gap-1 font-bold justify-center items-center py-3 relative cheng_text_colot_hover text-[var(--text)] servis_pup_up_hover">
+                        <span
+                            class="flex gap-1 font-bold justify-center items-center py-3 relative cheng_text_colot_hover text-[var(--text)] cursor-pointer servis_pup_up_hover">
                             <span>دسته بندی ها</span>
                             <div>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
@@ -148,8 +101,7 @@
                                 class="w-0 absolute bottom-0 right-auto left-auto gradent_text_sub_heder overflow-hidden flex justify-center items-center transition_root">
                                 <div class="w-full h-[2px] bg-white rounded-full"></div>
                             </div>
-                        </a>
-                        <!-- items_serviss -->
+                        </span>
                         <div
                             class="w-100 h-dvh absolute top-17 right-0 flex justify-end items-start invisible opacity-0 transition_root servis_pup_up_item">
                             <div class="w-full h-full bg-black/50 fixed top-23 right-0 servis_pup_up_hover_close">
@@ -159,53 +111,7 @@
                                 @foreach ($categories as $category)
                                     <div
                                         class="w-full bg-[var(--background-2)] relative flex flex-col items-start justify-start p-4">
-                                        <div class="group w-11/12 mx-auto py-1.5 flex items-center justify-start gap-4">
-                                            <div>
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                                                    class="xl:size-8 size-11 fill-[var(--gold)]">
-
-                                                    <g fill="none" stroke="var(--gold)" stroke-width="10"
-                                                        stroke-linecap="round" stroke-linejoin="round">
-
-                                                        <!-- Outer Card -->
-                                                        <rect x="90" y="110" width="332" height="220"
-                                                            rx="10">
-                                                        </rect>
-
-                                                        <!-- Inner Border -->
-                                                        <rect x="120" y="140" width="272" height="160"
-                                                            rx="2">
-                                                        </rect>
-
-                                                        <!-- Top Right Circle -->
-                                                        <circle cx="340" cy="175" r="18"></circle>
-
-                                                        <!-- Logo -->
-                                                        <path d="
-                                                M165 235
-                                                L165 205
-                                                Q165 180 188 180
-                                                L205 180
-                                                Q225 180 225 198
-                                                Q225 214 208 214
-                                                L188 214
-                                                L188 225
-                                                L215 225
-                                                Q235 225 235 245
-                                                L165 245
-                                                Z"></path>
-
-                                                        <!-- Text Line -->
-                                                        <line x1="220" y1="225" x2="305"
-                                                            y2="225">
-                                                        </line>
-
-                                                        <!-- Corner Accent -->
-                                                        <path d="M375 270 L375 295 L350 295"></path>
-
-                                                    </g>
-                                                </svg>
-                                            </div>
+                                        <div class="group pb-4 pr-4">
                                             <span
                                                 class="text-[15px] md:text-md font-bold text-white group-hover:pr-5 group-hover:text-[var(--gold)] transition_root">{{ $category['title'] }}</span>
                                         </div>
@@ -214,11 +120,9 @@
                                 @endforeach
                             </div>
                         </div>
-                        <!-- items_serviss -->
-
                     </li>
                     <li>
-                        <a href="#products"
+                        <a href="{{ route('product.index') }}"
                             class="flex justify-center items-center py-3 relative cheng_text_colot_hover">
                             <sapn class="transition_root text-nowrap font-bold text-[var(--text)]">نمونه کار ها
                             </sapn>
@@ -229,34 +133,34 @@
                         </a>
                     </li>
                     <li>
-                        <a href=""
-                            class="flex justify-center items-center py-3 relative cheng_text_colot_hover">
+                        <span
+                            class="flex justify-center items-center py-3 relative cursor-pointer cheng_text_colot_hover">
                             <sapn class="transition_root text-nowrap font-bold text-[var(--text)]">مقالات</sapn>
                             <div
                                 class="w-0 absolute bottom-0 right-auto left-auto gradent_text_sub_heder overflow-hidden flex justify-center items-center transition_root">
                                 <div class="w-full h-[2px] bg-white rounded-full"></div>
                             </div>
-                        </a>
+                        </span>
                     </li>
                     <li>
-                        <a href=""
-                            class="flex justify-center items-center py-3 relative cheng_text_colot_hover">
+                        <span
+                            class="flex justify-center items-center py-3 relative cursor-pointer cheng_text_colot_hover">
                             <sapn class="transition_root text-nowrap font-bold text-[var(--text)]">درباره ما</sapn>
                             <div
                                 class="w-0 absolute bottom-0 right-auto left-auto gradent_text_sub_heder overflow-hidden flex justify-center items-center transition_root">
                                 <div class="w-full h-[2px] bg-white rounded-full"></div>
                             </div>
-                        </a>
+                        </span>
                     </li>
                     <li>
-                        <a href=""
-                            class="flex justify-center items-center py-3 relative cheng_text_colot_hover">
+                        <span
+                            class="flex justify-center items-center py-3 relative cursor-pointer cheng_text_colot_hover">
                             <sapn class="transition_root text-nowrap font-bold text-[var(--text)]">تماس با ما</sapn>
                             <div
                                 class="w-0 absolute bottom-0 right-auto left-auto gradent_text_sub_heder overflow-hidden flex justify-center items-center transition_root">
                                 <div class="w-full h-[2px] bg-white rounded-full"></div>
                             </div>
-                        </a>
+                        </span>
                     </li>
                 </ul>
                 @if (Auth::check())
@@ -576,20 +480,10 @@
                                 <h5 class="xl:text-2xl lg:text-xl font-bold text-[var(--text)]">خدمات ما</h5>
                                 <div
                                     class="w-full flex flex-col gap-1 items-start justify-start xl:text-md lg:text-sm text-xs font-bold text-[#A4A4A5]">
-                                    <span class="hover:text-[var(--gold)] transition duration-300 cursor-pointer">کارت
-                                        ویزیت</span>
-                                    <span
-                                        class="hover:text-[var(--gold)] transition duration-300 cursor-pointer">بنر</span>
-                                    <span class="hover:text-[var(--gold)] transition duration-300 cursor-pointer">تابلو
-                                        چنلیوم</span>
-                                    <span
-                                        class="hover:text-[var(--gold)] transition duration-300 cursor-pointer">بیلبورد
-                                        تبلیغاتی</span>
-                                    <span class="hover:text-[var(--gold)] transition duration-300 cursor-pointer">لایت
-                                        باکس</span>
-                                    <span class="hover:text-[var(--gold)] transition duration-300 cursor-pointer">چاپ
-                                        ماگ و
-                                        تیشرت</span>
+                                    @foreach ($services as $service)
+                                        <span
+                                            class="hover:text-[var(--gold)] transition duration-300 cursor-pointer">{{ $service['title'] }}</span>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="w-1/2 h-full flex flex-col gap-3 justify-start items-start">
@@ -598,13 +492,13 @@
                                     class="w-full flex flex-col gap-1 items-start justify-start xl:text-md lg:text-sm text-xs font-bold text-[#A4A4A5]">
                                     <span class="hover:text-[var(--gold)] transition duration-300 cursor-pointer">دسته
                                         بندی</span>
-                                    <span
-                                        class="hover:text-[var(--gold)] transition duration-300 cursor-pointer">محصولات</span>
-                                    <span class="hover:text-[var(--gold)] transition duration-300 cursor-pointer">سفارش
-                                        آنلاین</span>
+                                    <span class="hover:text-[var(--gold)] transition duration-300 cursor-pointer">نمونه
+                                        کار ها</span>
                                     <span
                                         class="hover:text-[var(--gold)] transition duration-300 cursor-pointer">درباره
                                         ما</span>
+                                    <span class="hover:text-[var(--gold)] transition duration-300 cursor-pointer">تماس
+                                        با ما</span>
                                     <span
                                         class="hover:text-[var(--gold)] transition duration-300 cursor-pointer">مقالات</span>
                                 </div>
@@ -670,6 +564,10 @@
             </div>
         </section>
     </footer>
+    <script>
+        const csrfToken = "{{ csrf_token() }}"
+        const route = ""
+    </script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
 

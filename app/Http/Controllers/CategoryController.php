@@ -12,24 +12,10 @@ use App\Models\settings;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use DB;
+use Log;
 
 class CategoryController extends Controller
 {
-    // public function getProductMedias($products)
-    // {
-    //     foreach ($products as $product) {
-    //         $product->load(['medias' => function ($query) {
-    //             $query->select('product_id', DB::raw("IFNULL(path , 'images/noImage.png') path"))->where('is_main', 1);
-    //         }]);
-    //         foreach ($product->medias as $media) {
-    //             $product['img'] = asset('storage/images/noImage.png');
-    //             if (Storage::disk('public')->exists($media['path'])) {
-    //                 $product['img'] = asset('storage/' . $media['path']);
-    //             }
-    //         }
-    //     }
-    //     return $products;
-    // }
     public function create()
     {
         $categories = category::select('id', 'title')->get();
@@ -141,6 +127,12 @@ class CategoryController extends Controller
         }
         return to_route('category.adminIndex')->with('message', 'دسته بندی ' . $name . ' حذف شد.');
     }
+    
+    // public function showSubCats(Request $request)
+    // {
+    //     $category = category::find($request['catId'])->load('children');
+    //     return response()->json($category);
+    // }
 
     // public function index()
     // {

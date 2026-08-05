@@ -238,8 +238,6 @@ class ProductController extends Controller
         } else {
             $product['mainImg'] = 'default.jpg';
         }
-        // $product->attributes;
-        // return $product;
         return view('user.product.show', [
             'product' => $product,
             'logo' => $logo,
@@ -249,6 +247,29 @@ class ProductController extends Controller
     }
     public function index()
     {
-        return 'به زودی';
+        $logo = logo::first();
+        $services = service::all();
+        $categories = category::with('products')->has('products')->get();
+        $products = product::all();
+        foreach ($products as $product) {
+            if ($product->media->isNotEmpty()) {
+                foreach ($product->media as $media) {
+                    if ($media['is_main']) {
+                        $product['mainImg']  = $media['media_path'];
+                        break;
+                    } else {
+                        $product['mainImg'] = 'default.jpg';
+                    }
+                }
+            } else {
+                $product['mainImg'] = 'default.jpg';
+            }
+        }
+        return view('user.product.index', [
+            'logo' => $logo,
+            'services' => $services,
+            'categories' => $categories,
+            'products' => $products,
+        ]);
     }
 }

@@ -11,11 +11,8 @@ class header extends Model
         'mobileImg',
         'title',
         'subTitle',
-        'rightBtnText',
-        'rightBtnLink',
-        'rightBtnIcon',
-        'leftBtnText',
-        'leftBtnLink',
-        'leftBtnIcon'
+        'btnText',
+        'btnLink',
+        'btnIcon'
     ];
 }
