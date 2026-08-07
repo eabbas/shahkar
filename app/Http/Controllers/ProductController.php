@@ -108,8 +108,13 @@ class ProductController extends Controller
     public function edit(Request $request)
     {
         $catIds = product::find($request['id'])->categories->pluck('id');
-        $product = product::find($request['id'])->load('media')->load('attributes')->load('categories');
+        $product = product::find($request['id'])->load('attributes')->load('categories');
         $categories = category::select(['id', 'title'])->get();
+        if ($product->media->isNotEmpty()) {
+            foreach ($product->media as $media) {
+                $media->media_path = asset('storage/' . $media['media_path']);
+            }
+        }
         return response()->json(['product' => $product, 'cats' => $categories, 'catIds' => $catIds]);
     }
     public function update(Request $request)

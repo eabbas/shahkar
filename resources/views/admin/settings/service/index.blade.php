@@ -176,7 +176,7 @@
     <div id="editFormPopup" class="w-full h-dvh fixed top-0 left-0 invisible opacity-0 transition-all duration-400">
         <div class="size-full relative">
             <div class="size-full bg-black/40 absolute top-0 left-0 z-2" onclick="editForm('close')"></div>
-            <div class="w-8/12 2xl:container max-h-130 overflow-auto mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 z-3"
+            <div class="w-8/12 2xl:container 2xl:w-8/12 max-h-130 overflow-auto mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 z-3"
                 style="scrollbar-width: none">
                 <div class="relative">
                     <button
@@ -276,7 +276,7 @@
         <div class="size-full relative">
             <div class="size-full bg-black/40 absolute top-0 left-0 z-2" onclick="deleteService('close')"></div>
             <div
-                class="w-1/3 2xl:container mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 z-3">
+                class="w-1/3 2xl:container 2xl:w-1/3 mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 z-3">
                 <div class="relative">
                     <button
                         class="absolute -top-4 -left-4 z-4 size-6 flex flex-col justify-center items-center cursor-pointer"
@@ -302,7 +302,7 @@
         <div class="size-full relative">
             <div class="size-full bg-black/40 absolute top-0 left-0 z-2" onclick="show('close')"></div>
             <div
-                class="w-10/12 sm:w-8/12 2xl:container mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 z-3">
+                class="w-10/12 sm:w-8/12 2xl:container 2xl:w-10/12 mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 z-3">
                 <div class="relative">
                     <button
                         class="absolute -top-4 -left-4 z-4 size-6 flex flex-col justify-center items-center cursor-pointer"
@@ -370,7 +370,7 @@
                         if (data.img) {
                             let img = document.createElement('img')
                             img.classList = 'w-full h-50'
-                            img.setAttribute('src', `http://localhost/shahkar/public/storage/${data.img}`)
+                            img.setAttribute('src', data.img)
                             singleImg.appendChild(img)
                         }
                         let singleIcon = document.getElementById('singleIcon')
@@ -378,7 +378,7 @@
                         if (data.icon) {
                             let icon = document.createElement('img')
                             icon.classList = 'w-full h-50'
-                            icon.setAttribute('src', `http://localhost/shahkar/public/storage/${data.icon}`)
+                            icon.setAttribute('src', data.icon)
                             singleIcon.appendChild(icon)
                         }
                     },
@@ -417,10 +417,11 @@
                         'id': id,
                     },
                     success: function(data) {
+                        console.log(data);
                         if (data.img) {
                             let img = document.createElement('img')
                             img.classList = "size-20"
-                            img.setAttribute('src', `http://localhost/shahkar/public/storage/${data.img}`)
+                            img.setAttribute('src', data.img)
                             service_img.appendChild(img)
                             let deleteImgBtn = document.createElement('span')
                             deleteImgBtn.setAttribute('onclick', `removeImg(this, "${data.img}", 'img')`)
@@ -431,7 +432,7 @@
                         if (data.icon) {
                             let icon = document.createElement('img')
                             icon.classList = "size-20"
-                            icon.setAttribute('src', `http://localhost/shahkar/public/storage/${data.icon}`)
+                            icon.setAttribute('src', data.icon)
                             service_icon.appendChild(icon)
                             let deleteImgBtn = document.createElement('span')
                             deleteImgBtn.setAttribute('onclick', `removeImg(this, "${data.icon}", 'icon')`)
@@ -457,18 +458,20 @@
 
         function removeImg(el, file, type) {
             let editForm = document.getElementById('editForm')
+            let index = file.indexOf('serviceImgs')
+            let result = file.slice(index)
             if (type == 'img') {
                 let input = document.createElement('input')
                 input.setAttribute("type", 'hidden')
                 input.setAttribute("name", "removedImgs[img]")
-                input.setAttribute("value", file)
+                input.setAttribute("value", result)
                 editForm.appendChild(input)
             }
             if (type == 'icon') {
                 let input = document.createElement('input')
                 input.setAttribute("type", 'hidden')
                 input.setAttribute("name", "removedImgs[icon]")
-                input.setAttribute("value", file)
+                input.setAttribute("value", result)
                 editForm.appendChild(input)
             }
             el.parentElement.remove()

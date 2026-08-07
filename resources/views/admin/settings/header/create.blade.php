@@ -48,7 +48,7 @@
                         <div class="w-full flex flex-col sm:flex-row items-center gap-10">
                             <div class="w-full sm:w-1/2 flex flex-col mt-3 lg:mt-5">
                                 <label for="btnText" class="mb-2 flex flex-row items-center">
-                                    <span>متن دکمه سمت چپ:</span>
+                                    <span>متن دکمه :</span>
                                     <span class="text-rose-500">*</span>
                                 </label>
                                 <input type="text"
@@ -61,7 +61,7 @@
                             </div>
                             <div class="w-full sm:w-1/2 flex flex-col mt-3 lg:mt-5">
                                 <label for="btnLink" class="mb-2 flex flex-row items-center">
-                                    <span>لینک دکمه سمت چپ:</span>
+                                    <span>لینک دکمه :</span>
                                     <span class="text-rose-500">*</span>
                                 </label>
                                 <input type="text"

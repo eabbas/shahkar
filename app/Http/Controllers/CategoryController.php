@@ -74,12 +74,18 @@ class CategoryController extends Controller
         $category = category::find($request['id']);
         $category['subCats'] = $this->showChildren($category->children);
         $category->parent;
+        if ($category->image) {
+            $category->image = asset('storage/' . $category['image']);
+        }
         return response()->json($category);
     }
     public function edit(Request $request)
     {
         $category = category::find($request['id']);
         $categories = category::all();
+        if ($category->image) {
+            $category->image = asset('storage/' . $category['image']);
+        }
         return response()->json(['cat' => $category, 'cats' => $categories]);
     }
     public function update(Request $request)
@@ -127,7 +133,7 @@ class CategoryController extends Controller
         }
         return to_route('category.adminIndex')->with('message', 'دسته بندی ' . $name . ' حذف شد.');
     }
-    
+
     // public function showSubCats(Request $request)
     // {
     //     $category = category::find($request['catId'])->load('children');

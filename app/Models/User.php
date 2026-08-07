@@ -57,17 +57,21 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(User::class, 'user_roles');
     }
-    public static function isAdmin(User $user = null)
+    // public static function isAdmin(User $user = null)
+    // {
+    //     if (!$user) {
+    //         $user = Auth::user();
+    //     }
+    //     $flag = false;
+    //     foreach ($user->roles as $role) {
+    //         if ($role['name'] == 'admin') {
+    //             $flag = true;
+    //         }
+    //     }
+    //     return $flag;
+    // }
+    public function hasRole($roles)
     {
-        if (!$user) {
-            $user = Auth::user();
-        }
-        $flag = false;
-        foreach ($user->roles as $role) {
-            if ($role['name'] == 'admin') {
-                $flag = true;
-            }
-        }
-        return $flag;
+        return $this->roles()->whereIn('name', $roles)->exists();
     }
 }
