@@ -123,7 +123,9 @@ Route::group([
     'as' => 'user.'
 ], function () {
     Route::get('/login', 'login')->name('login');
-    Route::post('/check_user', 'checkUser')->name('checkUser');
+    Route::get('/loginWithCode', 'loginWithCode')->name('loginWithCode');
+    Route::post('/checkUser', 'checkUser')->name('checkUser');
+    Route::post('/checkUserWithCode', 'checkUserWithCode')->name('checkUserWithCode');
     Route::post('/validate', 'validate')->name('validate');
     Route::get('/forgetPassword', 'forgetPassword')->name('forgetPassword');
     Route::post('/sendCode', 'send_sms')->name('sendCode');
