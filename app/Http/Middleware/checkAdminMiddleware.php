@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 
 class checkAdminMiddleware
 {
@@ -18,12 +19,11 @@ class checkAdminMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
-            $user = Auth::user();
-            if (!User::isAdmin($user)) {
-                return to_route("notAccess");
+            if (!Gate::allows('access', ['admin'])) {
+                return to_route("home")->with('failure', 'شما به این صفحه دسترسی ندارید.');
             }
         } else {
-            return to_route("loginAtFirst");
+            return to_route("user.login");
         }
         return $next($request);
     }

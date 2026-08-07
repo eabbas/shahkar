@@ -16,9 +16,6 @@ use App\Http\Controllers\ServiceController;
 // home routes
 Route::group(['controller' => HomeController::class], function () {
     Route::get('/', 'index')->name('home');
-    Route::get('/notAccess', 'notAccess')->name('notAccess');
-    Route::get('/loginAtFirst', 'loginAtFirst')->name('loginAtFirst');
-    Route::get('/dashboard', 'dashboard')->middleware(checkAdminMiddleware::class)->name('dashboard');
 });
 
 // settings routes
@@ -111,12 +108,12 @@ Route::group([
     Route::get('/show/{product}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->missing(function () {
         return to_route('missing');
     })->name('show');
-
     Route::get('/list', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('index');
-    Route::get('/admin/show/{product}', 'adminShow')->missing(function () {
-        return to_route('missing');
-    })->name('adminShow');
-    Route::post('/admin/deleteAll', 'deleteAll')->name('deleteAll');
+
+    // Route::get('/admin/show/{product}', 'adminShow')->missing(function () {
+    //     return to_route('missing');
+    // })->name('adminShow');
+    // Route::post('/admin/deleteAll', 'deleteAll')->name('deleteAll');
 });
 
 // user routes
@@ -136,23 +133,20 @@ Route::group([
     Route::get('/signup', 'signup')->name('signup');
     Route::post('/store', 'store')->name('store');
     Route::post('/adminStore', 'adminStore')->name('adminStore');
-    Route::get('/logout{id?}', 'logout')->name('logout');
+    Route::get('/logout', 'logout')->name('logout');
     Route::get('/signupUser', 'adminSignup')->middleware(checkAdminMiddleware::class)->name('admin_create_user');
     Route::get('/index', 'index')->middleware(checkAdminMiddleware::class)->name('index');
-    Route::post('/edit', 'edit')->missing(function () {
-        return to_route('missing');
-    })->name('edit');
+    Route::post('/edit', 'edit')->name('edit');
+    Route::post('/profileEdit', 'profileEdit')->name('profileEdit');
     Route::post('/update', 'update')->name('update');
+    Route::post('/updateProfile', 'updateProfile')->name('updateProfile');
     Route::get('/delete/{user}', 'delete')->missing(function () {
         return to_route('missing');
     })->name('delete');
     Route::post('/checkAuth', 'checkAuth')->name('checkAuth');
-
-
-
-    // Route::get('/profile/{user?}', 'profile')->middleware(checklogin::class)->missing(function () {
-    //     return to_route('missing');
-    // })->name('profile');
+    Route::get('/profile/{user?}', 'profile')->middleware(checklogin::class)->missing(function () {
+        return to_route('missing');
+    })->name('profile');
     // Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
 });
 

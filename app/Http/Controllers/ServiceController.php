@@ -63,11 +63,23 @@ class ServiceController extends Controller
     public function show(Request $request)
     {
         $service = service::find($request['id']);
+        if ($service->img) {
+            $service->img = asset('storage/' . $service['img']);
+        }
+        if ($service->icon) {
+            $service->icon = asset('storage/' . $service['icon']);
+        }
         return response()->json($service);
     }
     public function edit(Request $request)
     {
         $service = service::find($request['id']);
+        if ($service->img) {
+            $service->img = asset('storage/' . $service['img']);
+        }
+        if ($service->icon) {
+            $service->icon = asset('storage/' . $service['icon']);
+        }
         return response()->json($service);
     }
     public function update(Request $request)

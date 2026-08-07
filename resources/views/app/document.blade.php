@@ -115,6 +115,7 @@
                                             <span
                                                 class="text-[15px] md:text-md font-bold text-white group-hover:pr-5 group-hover:text-[var(--gold)] transition_root">{{ $category['title'] }}</span>
                                         </div>
+                                        <span class="w-full h-[1px] bg-[#292931]"></span>
                                     </div>
                                 @endforeach
                             </div>
@@ -173,11 +174,9 @@
                             <ul class="space-y-4 p-4 text-center rounded-xl gradient_box1">
                                 <li class="w-full text-nowrap font-bold text-slate-800 rounded-xl">
                                     {{ Auth::user()['name'] }} {{ Auth::user()['family'] }}</li>
-                                @if (Auth::user()::isAdmin())
-                                    <li class="w-full text-nowrap font-bold text-slate-800 rounded-xl"><a
-                                            href="{{ route('dashboard') }}">پنل ادمین</a>
-                                    </li>
-                                @endif
+                                <li class="w-full text-nowrap font-bold text-slate-800 rounded-xl"><a
+                                        href="{{ route('user.profile') }}">حساب کاربری</a>
+                                </li>
                                 <li class="w-full text-nowrap font-bold text-slate-800 rounded-xl"><a
                                         href="{{ route('user.logout') }}">خروج</a>
                                 </li>

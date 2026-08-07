@@ -42,35 +42,6 @@ class HomeController extends Controller
             'products' => $products,
         ]);
     }
-    public function notAccess()
-    {
-        $services = service::all();
-        $categories = category::with('products')->has('products')->get();
-        $logo = logo::first();
-        return view('notAccess', [
-            'logo' => $logo,
-            'services' => $services,
-            'categories' => $categories,
-        ]);
-    }
-    public function loginAtFirst()
-    {
-        $services = service::all();
-        $categories = category::with('products')->has('products')->get();
-        $logo = logo::first();
-        return view('loginAtFirst', [
-            'logo' => $logo,
-            'services' => $services,
-            'categories' => $categories,
-        ]);
-    }
-    public function dashboard()
-    {
-        $logo = logo::first();
-        return view('admin.app.dashboard', [
-            'logo' => $logo,
-        ]);
-    }
     public function pageNotFound()
     {
         $services = service::all();

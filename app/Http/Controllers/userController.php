@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use DB;
+use Log;
 
 class userController extends Controller
 {
@@ -216,8 +217,9 @@ class userController extends Controller
     }
     public function logout()
     {
+        $name = Auth::user()->name;
         Auth::logout();
-        return to_route('home')->with('failure', 'خارج شدید');
+        return to_route('home')->with('failure', $name . ' عزیز به امید دیدار.');
     }
     public function index()
     {
@@ -248,12 +250,14 @@ class userController extends Controller
                 'family' => ['required'],
                 'email' => ['nullable', 'email'],
                 'phoneNumber' => ['required'],
+                'roles' => ['required'],
             ],
             [
                 'name.required' => 'پر کردن این فیلد الزامی است.',
                 'family.required' => 'پر کردن این فیلد الزامی است.',
                 'phoneNumber.required' => 'پر کردن این فیلد الزامی است.',
                 'email.email' => 'ساختار ایمیل را رعایت کنید.',
+                'roles.required' => 'پر کردن این فیلد الزامی است.',
             ]
         );
         $user = User::find($request->user_id);
@@ -276,6 +280,84 @@ class userController extends Controller
         $user->save();
         return to_route('user.index')->with('message',  $name . ' به روز رسانی شد. ');
     }
+    public function profile($user = null)
+    {
+        if (!$user) {
+            $user = Auth::user();
+        }
+        $roles = [];
+        foreach ($user->roles as $role) {
+            if ($role['name'] == 'admin') {
+                $roles[] = 'ادمین';
+            }
+            if ($role['name'] == 'general_user') {
+                $roles[] = 'کاربر عمومی';
+            }
+        }
+        $user['persianRoles'] = $roles;
+        $products = product::all();
+        $cats = category::all();
+        $logo = logo::first();
+        $services = service::all();
+        return view('user.user.profile', [
+            'products' => $products,
+            'user' => $user,
+            'categories' => $cats,
+            'logo' => $logo,
+            'services' => $services,
+        ]);
+    }
+    public function profileEdit(Request $request)
+    {
+        $user = User::find($request['id']);
+        if ($user->mainImage) {
+            $user->mainImage = asset('storage/' . $user['mainImage']);
+        }
+        return response()->json($user);
+    }
+    public function updateProfile(Request $request)
+    {
+        $validated = $request->validate(
+            [
+                'name' => ['required'],
+                'family' => ['required'],
+                'email' => ['nullable', 'email'],
+                'phoneNumber' => ['required'],
+            ],
+            [
+                'name.required' => 'پر کردن این فیلد الزامی است.',
+                'family.required' => 'پر کردن این فیلد الزامی است.',
+                'phoneNumber.required' => 'پر کردن این فیلد الزامی است.',
+                'email.email' => 'ساختار ایمیل را رعایت کنید.',
+            ]
+        );
+        if (isset($request['removedImg'])) {
+            Storage::disk('public')->delete($request['removedImg']);
+            $user = User::where('mainImage', $request['removedImg'])->first();
+            $user->mainImage = null;
+            $user->save();
+        }
+        $user = User::find($request->user_id);
+        if (isset($request['mainImage'])) {
+            if ($user['mainImage']) {
+                Storage::disk('public')->delete($user['mainImage']);
+            }
+            $img_path = $request->mainImage->store('userImgs', 'public');
+        } else {
+            $img_path = $user['mainImage'];
+        }
+        $user->name = $request->name;
+        $user->family = $request->family;
+        $user->phoneNumber = $request->phoneNumber;
+        $user->email = $request->email;
+        if ($request->password) {
+            $password = Hash::make($request->password);
+            $user->password = $password;
+        }
+        $user->mainImage = $img_path;
+        $user->save();
+        return redirect()->back()->with('message',  'پروفایل شما با موفقیت به روزرسانی شد.');
+    }
     // -----------------------------------------------------------
 
 
@@ -289,23 +371,7 @@ class userController extends Controller
 
 
 
-    public function profile($user = null)
-    {
-        if (!$user) {
-            $user = Auth::user();
-        }
-        $products = product::all();
-        $cats = category::all();
-        $logo = logo::first();
-        $services = service::all();
-        return view('user.user.profile', [
-            'products' => $products,
-            'user' => $user,
-            'categories' => $cats,
-            'logo' => $logo,
-            'services' => $services,
-        ]);
-    }
+
 
 
 

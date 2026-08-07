@@ -148,7 +148,7 @@
         <div class="size-full relative">
             <div class="size-full bg-black/40 absolute top-0 left-0" onclick="show('close')"></div>
             <div
-                class="w-10/12 2xl:container sm:w-8/12 mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2">
+                class="w-10/12 2xl:container 2xl:w-10/12 sm:w-8/12 mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2">
                 <div class="relative">
                     <button class="absolute -top-4 -left-4 size-6 flex flex-col justify-center items-center cursor-pointer"
                         onclick="show('close')">
@@ -197,7 +197,7 @@
         <div class="size-full relative">
             <div class="size-full bg-black/40 absolute top-0 left-0" onclick="editForm('close')"></div>
             <div
-                class="w-8/12 2xl:container mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2">
+                class="w-8/12 2xl:container 2xl:w-8/12 mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2">
                 <div class="relative">
                     <button class="absolute -top-4 -left-4 size-6 flex flex-col justify-center items-center cursor-pointer"
                         onclick="editForm('close')">
@@ -262,7 +262,7 @@
         <div class="size-full relative">
             <div class="size-full bg-black/40 absolute top-0 left-0" onclick="deleteCat('close')"></div>
             <div
-                class="w-1/3 2xl:container mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2">
+                class="w-1/3 2xl:container 2xl:w-1/3 mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2">
                 <div class="relative">
                     <button class="absolute -top-4 -left-4 size-6 flex flex-col justify-center items-center cursor-pointer"
                         onclick="deleteCat('close')">
@@ -318,6 +318,7 @@
                         'id': id,
                     },
                     success: function(data) {
+                        console.log(data);
                         catTitle.value = data['cat'].title
                         cat_desc.value = data['cat'].description
                         cat_id.value = data['cat'].id
@@ -325,8 +326,7 @@
                         if (data['cat'].image) {
                             let img = document.createElement('img')
                             img.classList = 'w-full h-30'
-                            img.setAttribute('src',
-                                `http://localhost/shahkar/public/storage/${data['cat'].image}`)
+                            img.setAttribute('src', data['cat'].image)
                             cat_img.appendChild(img)
                             let deleteImgBtn = document.createElement('span')
                             deleteImgBtn.setAttribute('onclick', `removeImg(this, "${data['cat'].image}")`)
@@ -366,11 +366,13 @@
         }
 
         function removeImg(el, file) {
+            let index = file.indexOf('categoryImgs')
+            let result = file.slice(index)
             let editForm = document.getElementById('editForm')
             let input = document.createElement('input')
             input.setAttribute("type", 'hidden')
             input.setAttribute("name", "removedImg")
-            input.setAttribute("value", file)
+            input.setAttribute("value", result)
             editForm.appendChild(input)
             el.parentElement.remove()
         }
@@ -404,7 +406,7 @@
                         if (data.image) {
                             let img = document.createElement('img')
                             img.classList = 'w-full h-50'
-                            img.setAttribute('src', `http://localhost/shahkar/public/storage/${data.image}`)
+                            img.setAttribute('src', data.image)
                             singleImg.appendChild(img)
                         }
                     },
