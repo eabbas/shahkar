@@ -27,7 +27,7 @@
     </div>
     <main class="w-full lg:h-dvh flex flex-row items-center p-4">
         <div class="w-full lg:w-1/2 lg:h-full p-4 lg:p-10 flex flex-col items-center gap-10">
-            <h2 class="text-2xl font-bold text-gray-800 text-center mt-10">ورود</h2>
+            <h2 class="text-2xl font-bold text-gray-800 text-center mt-10">ورود با رمز عبور</h2>
             <div class="flex flex-row items-center gap-2">
                 <span class="text-gray-400 text-xs">حساب کاربری ندارید؟</span>
                 <a href="{{ route('user.signup') }}" class="text-xs text-gray-800 font-bold">ثبت نام</a>
@@ -45,12 +45,14 @@
                         class="w-full outline-none px-5 py-2 border border-gray-300 rounded-lg placeholder-gray-300 transition-all duration-300 focus:border-blue-700/30 focus:bg-blue-100/30 focus:inset-shadow-sm inset-shadow-blue-700/10"
                         name="password" id="password" placeholder="رمز عبور">
                 </div>
-                <div class="w-full flex flex-row items-center gap-2">
-                    <div for="accept"
-                        class="text-sm flex flex-row justify-start items-center gap-2 text-gray-400">
+                <div class="w-full flex flex-row justify-between items-center gap-2">
+                    <div for="accept" class="text-sm flex flex-row justify-start items-center gap-2 text-gray-400">
                         رمز عبور خود را
                         <a href="{{ route('user.forgetPassword') }}" class="text-gray-800 font-bold">فراموش کردم</a>
                     </div>
+                    <a href="{{ route('user.loginWithCode') }}"
+                        class="text-sm flex flex-row justify-start items-center gap-2 text-gray-400">ورود با کد
+                        تایید</a>
                 </div>
                 <button onclick="checkAuth(event)"
                     class="py-3 rounded-md text-white text-sm font-bold bg-sky-500 cursor-pointer transition-all duration-300 hover:bg-sky-600">ورود</button>

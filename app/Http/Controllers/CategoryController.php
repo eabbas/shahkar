@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\category;
-use App\Models\footer_column;
 use App\Models\logo;
-use App\Models\course;
 use App\Models\product;
 use Illuminate\Http\Request;
-use App\Models\settings;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use DB;

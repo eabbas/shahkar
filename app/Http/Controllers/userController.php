@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\category;
-use App\Models\course;
-use App\Models\footer_column;
 use App\Models\logo;
 use App\Models\phoneCode;
 use App\Models\product;
 use App\Models\role;
 use App\Models\service;
-use App\Models\settings;
 use App\Models\User;
 use App\Models\user_role;
 use Illuminate\Http\Request;
@@ -25,6 +22,26 @@ class userController extends Controller
     public function login()
     {
         return view('user.user.login');
+    }
+    public function loginWithCode()
+    {
+        return view('user.user.loginWithCode');
+    }
+    public function checkAuth(Request $request)
+    {
+        $data['validate'] = User::where('phoneNumber', $request->phoneNumber)->first();
+        $data['checkCode'] = false;
+        $phoneCode = phoneCode::where('phoneNumber', $request->phoneNumber)->first();
+        if ($phoneCode->code == $request->code) {
+            $data['checkCode'] = true;
+        }
+        return response()->json($data);
+    }
+    public function checkUserWithCode(Request $request)
+    {
+        $user = User::where('phoneNumber', $request['phoneNumber'])->first();
+        Auth::login($user);
+        return to_route('home')->with('success', "$user->name $user->family عزیز خوش آمدید.");
     }
     public function checkUser(Request $request)
     {
@@ -232,6 +249,9 @@ class userController extends Controller
     }
     public function delete(User $user)
     {
+        if ($user['mainImage']) {
+            Storage::disk('public')->delete($user['mainImage']);
+        }
         $user->delete();
         return to_route('user.index')->with('message', $user['name'] . $user['family'] . " " . "حذف شد .");
     }
@@ -377,16 +397,7 @@ class userController extends Controller
 
 
 
-    public function checkAuth(Request $request)
-    {
-        $data['validate'] = User::where('phoneNumber', $request->phoneNumber)->first();
-        $data['checkCode'] = false;
-        $phoneCode = phoneCode::where('phoneNumber', $request->phoneNumber)->first();
-        if ($phoneCode->code == $request->code) {
-            $data['checkCode'] = true;
-        }
-        return response()->json($data);
-    }
+
 
     public function deleteAll(Request $request)
     {

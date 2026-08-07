@@ -24,7 +24,7 @@
                 <div class="sm:w-7/12 xl:h-150 lg:h-120 sm:h-100 h-90 w-full flex flex-col justify-between items-center">
                     <div class="w-full h-69/100 flex justify-center items-center">
                         <img src="{{ asset('storage/' . $product['mainImg']) }}" alt=""
-                            class="w-full h-full rounded-xl gallery_product_primary transition_root">
+                            class="size-full object-cover rounded-xl gallery_product_primary transition_root">
                     </div>
                     <div
                         class="max-w-full min-w-full overflow-auto h-29/100 flex gap-2 justify-start items-center pb-2 [&::-webkit-scrollbar]:h-2  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
