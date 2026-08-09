@@ -66,7 +66,7 @@
                         </span>
                         <!-- items_serviss -->
                         <div
-                            class="w-100 h-dvh absolute top-17 right-0 flex justify-end items-start invisible opacity-0 transition_root servis_pup_up_item">
+                            class="w-100 h-dvh absolute top-15 right-0 flex justify-end items-start invisible opacity-0 transition_root servis_pup_up_item">
                             <div class="w-full h-full bg-black/50 fixed top-23 right-0 servis_pup_up_hover_close">
                             </div>
                             <div
@@ -103,7 +103,7 @@
                             </div>
                         </span>
                         <div
-                            class="w-100 h-dvh absolute top-17 right-0 flex justify-end items-start invisible opacity-0 transition_root servis_pup_up_item">
+                            class="w-100 h-dvh absolute top-15 right-0 flex justify-end items-start invisible opacity-0 transition_root servis_pup_up_item">
                             <div class="w-full h-full bg-black/50 fixed top-23 right-0 servis_pup_up_hover_close">
                             </div>
                             <div
