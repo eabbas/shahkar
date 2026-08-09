@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\checkAdminMiddleware;
 use App\Http\Middleware\checklogin;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ConsultRequestController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\userController;
@@ -150,6 +151,16 @@ Route::group([
         return to_route('missing');
     })->name('profile');
     // Route::post('/deleteAll', 'deleteAll')->name('deleteAll');
+});
+
+// consult request routes
+Route::group([
+    'prefix' => 'consultRequest',
+    'controller' => ConsultRequestController::class,
+    'as' => 'consultRequest.'
+], function () {
+    Route::post('/store', 'store')->name('store');
+    Route::get('/list', 'index')->middleware(checkAdminMiddleware::class)->name('index');
 });
 
 Route::post('/removeActivationCode', [UserController::class, 'removeActivationCode'])->name('removeActivationCode');

@@ -5,12 +5,12 @@
         <div class="w-11/12 h-full flex max-lg:flex-col justify-between items-start xl:gap-12 gap-6">
             <!-- filter_index_product -->
             <div
-                class="lg:w-3/12 w-full pt-1 pb-9 lg:sticky lg:top-25 lg:left-0 lg:max-h-[90vh] lg:overflow-auto lg:[&::-webkit-scrollbar]:w-1  lg:[&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  lg:[&::-webkit-scrollbar-thumb]:rounded-full">
+                class="lg:w-3/12 w-full pt-1 pb-9 lg:sticky lg:top-27 lg:left-0 lg:max-h-[90vh] lg:overflow-auto lg:[&::-webkit-scrollbar]:w-1  lg:[&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  lg:[&::-webkit-scrollbar-thumb]:rounded-full">
                 <div
-                    class=" w-full bg-[var(--background-2)] border border-[var(--gold)] max-sm:hidden rounded-2xl flex flex-col justify-start items-start pb-3 ">
+                    class=" w-full bg-[var(--background-2)] border border-[var(--gold)] rounded-2xl flex flex-col justify-start items-start pb-3 ">
                     <div class="w-full py-2 border-b border-[var(--gold)] flex justify-center items-center">
                         <div
-                            class="w-10/12 bg-[var(--background)] border border-[var(--border)] rounded-xl flex gap-3 justify-between items-center shadow_boxs xl:px-6 px-4 xl:py-5 py-4">
+                            class="w-11/12 bg-[var(--background)] border border-[var(--border)] rounded-xl flex gap-3 justify-between items-center shadow_boxs xl:px-6 px-4 xl:py-5 py-4">
                             <div class="flex xl:gap-4 gap-2 items-center">
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
@@ -28,13 +28,13 @@
                     </div>
                     <form action="" class="w-full h-full  flex flex-col justify-start items-center">
                         <div
-                            class="w-full pb-3 flex flex-col gap-2 justify-start items-start  border-b border-[var(--gold)] overflow-y-hidden transition_root cursor-pointer">
+                            class="w-full pb-3 flex flex-col gap-2 justify-start items-start  border-b border-[var(--gold)] overflow-y-hidden transition_root ">
                             <label for=""
                                 class="w-full px-4 min-h-12 flex justify-between items-center filter_product_list">
                                 <span class="xl:text-lg text-sm text-[var(--text)]">دسته بندی</span>
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                                        class="xl:size-5 size-3 fill-[var(--gold)]">
+                                        class="xl:size-5 size-3 fill-[var(--gold)] rotate-180">
                                         <path
                                             d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z">
                                         </path>
@@ -52,18 +52,17 @@
                                     </div>
                                     @foreach ($categories as $category)
                                         <div class="w-full flex justify-start items-center gap-4">
-                                            <input id="kart" type="checkbox"
+                                            <input id="{{ $category['id'] }}" type="checkbox"
                                                 class="appearance-none xl:size-5 size-4 bg-[var(--background)] border border-[var(--gold)] checked:bg-[var(--gold)] rounded-sm after:content-['✓'] after:flex after:justify-center after:items-center  after:opacity-0 checked:after:opacity-100 max-xl:after:text-xs after:text-white transition_root">
-                                            <label for="kart"
+                                            <label for="{{ $category['id'] }}"
                                                 class="xl:text-sm text-xs font-bold text-[var(--text-secondary)]">{{ $category['title'] }}</label>
                                         </div>
                                     @endforeach
                                 </div>
                             </div>
                         </div>
-                        <!-- <span class="w-full h-[1px] bg-[var(--gold)]"></span> -->
                         <div
-                            class="w-full h-12 pb-3 flex flex-col justify-start items-start border-b border-[var(--gold)] overflow-y-hidden transition_root cursor-pointer">
+                            class="w-full h-12 pb-3 flex flex-col justify-start items-start border-b border-[var(--gold)] overflow-y-hidden transition_root ">
                             <label for=""
                                 class="w-full min-h-12 px-4 flex justify-between items-center filter_product_list">
                                 <span
@@ -81,31 +80,30 @@
                             </label>
                             <div class="w-full flex flex-col gap-7 justify-start items-center px-4 max-xl:mt-1 py-4">
                                 <div class="w-full flex justify-center items-start">
-                                    <input type="range"
+                                    <input type="range" class="w-11/12 xl:h-2 h-1.5 accent-[var(--gold)]" min="0"
+                                        max="20000" value="20000" dir="ltr">
+                                    {{-- <input type="range"
                                         class="w-11/12 xl:h-2 h-1.5 accent-[var(--gold)] bg-[var(--background-)]"
-                                        min="0" max="20000" value="20000" dir="ltr">
-                                    <input type="range"
-                                        class="w-11/12 xl:h-2 h-1.5 accent-[var(--gold)] bg-[var(--background-)]"
-                                        min="0" max="20000" value="20000">
+                                        min="0" max="20000" value="20000"> --}}
                                 </div>
-                                <div class="w-full flex justify-between items-start">
-                                    <div class="w-1/2 flex justify-start items-center gap-2">
-                                        <span class="text-[var(--text-secondary)] max-xl:text-sm">از</span>
-                                        <input type="number"
-                                            class="bg-[var(--backgorund)] border border-[var(--border)] text-[var(--text-secondary)] max-xl:text-sm w-2/3 px-2 py-1 rounded-md"
-                                            placeholder="0">
-                                    </div>
-                                    <div class="w-1/2 flex justify-start items-center gap-2">
+                                <div class="w-full flex justify-between items-center">
+                                    <div class="w-1/2 flex justify-end items-center gap-2">
                                         <span class="text-[var(--text-secondary)] max-xl:text-sm">تا</span>
                                         <input type="number"
                                             class="bg-[var(--backgorund)] border border-[var(--border)] text-[var(--text-secondary)] max-xl:text-sm w-full px-2 py-1 rounded-md"
                                             placeholder="20,000">
                                     </div>
+                                    <div class="w-1/2 flex justify-end items-center gap-2">
+                                        <span class="text-[var(--text-secondary)] max-xl:text-sm">از</span>
+                                        <input type="number"
+                                            class="bg-[var(--backgorund)] border border-[var(--border)] text-[var(--text-secondary)] max-xl:text-sm w-2/3 px-2 py-1 rounded-md"
+                                            placeholder="0">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <!-- <span class="w-full h-[1px] bg-[var(--gold)]"></span> -->
-                        <div
+                        {{-- <div
                             class="w-full h-12 pb-3 flex flex-col justify-start  border-b border-[var(--gold)] items-start overflow-y-hidden transition_root cursor-pointer">
                             <label for=""
                                 class="w-full min-h-12 px-4 flex justify-between items-center filter_product_list">
@@ -145,9 +143,10 @@
 
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="w-full flex flex-col gap-4 justify-start items-center mt-7">
-                            <button class="w-11/12 py-2 gradient_box1 rounded-xl flex gap-2 justify-center items-center">
+                            <button type="button"
+                                class="w-11/12 py-2 gradient_box1 rounded-xl flex gap-2 justify-center items-center cursor-pointer">
                                 <div>
                                     <svg version="1.1" class="xl:size-4 size-3 fill-[var(--text)]" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"
@@ -157,7 +156,8 @@
                                 </div>
                                 <span class="max-xl:text-sm font-bold text-[var(--text)]">اعمال فیلتر</span>
                             </button>
-                            <button class="w-11/12 py-2 rounded-xl flex gap-2 justify-center items-center">
+                            <button type="button"
+                                class="w-11/12 py-2 rounded-xl flex gap-2 justify-center items-center cursor-pointer">
                                 <div>
                                     <svg version="1.1" viewBox="0 0 36 36" class="size-4 fill-[var(--gold)]"
                                         preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"
@@ -175,7 +175,7 @@
             </div>
             <!-- filter_index_product -->
             <!-- button_filter_mobile_start -->
-            <div class="w-full flex flex-col gap-5 justify-start items-center sm:hidden relative">
+            {{-- <div class="w-full flex flex-col gap-5 justify-start items-center sm:hidden relative">
                 <button class="w-11/12 py-2 gradient_box1 rounded-xl flex gap-2 justify-center items-center"
                     onclick="filter_index_product_pop_up_mobile('open')">
                     <div>
@@ -235,21 +235,21 @@
                     </div>
                 </div>
                 <!-- button_sort_product_mobile -->
-            </div>
+            </div> --}}
             <!-- button_filter_mobile_end -->
 
             <!-- products -->
             <div class="lg:w-9/12 w-full h-full flex flex-col gap-10 justify-start items-center">
-                <div class="w-full flex justify-between max-sm:justify-center items-start relative pt-4">
+                <div class="w-full flex justify-between  items-start relative pt-4">
                     <span class="text-sm text-[var(--text)]">{{ count($products) }} محصول</span>
                     <div
-                        class="h-12 bg-[var(--background-2)] border border-[var(--border)] flex flex-col gap-2 justify-start items-center rounded-xl overflow-y-hidden absolute top-0 left-0 transition_root max-sm:hidden">
-                        <div class="w-full min-h-12  flex justify-between gap-12 items-center px-4 cursor-pointer"
+                        class="h-12 bg-[var(--background-2)] border border-[var(--border)] flex flex-col gap-2 justify-start items-center rounded-xl overflow-y-hidden absolute top-0 left-0 transition_root">
+                        <div class="w-full min-h-12 flex justify-between gap-12 items-center px-4 cursor-pointer"
                             onclick="sort_product(this)">
                             <div class="h-full flex xl:gap-2 gap-1 justify-start items-center">
                                 <span class="max-xl:text-xs max-sm:text-[10px] text-[var(--text)]">مرتب سازی :</span>
                                 <!-- value_item -->
-                                <span class="xl:text-lg text-sm text-[var(--text)]">پر فروش ترین</span>
+                                <span class="xl:text-lg text-sm text-[var(--text)]">جدید ترین</span>
                                 <!-- value_item -->
                             </div>
                             <div class="transition_root">
@@ -259,12 +259,6 @@
                                         d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z">
                                     </path>
                                 </svg>
-                            </div>
-                        </div>
-                        <div
-                            class="w-full min-h-12 flex justify-between items-center px-4 cursor-pointer hover:border hover:border-[var(--gold)] hover:px-6 hover:bg-[var(--background)] active:border active:border-[var(--gold)] active:bg-[var(--background)] active::px-6 transition_root">
-                            <div class="w-9/12 h-full flex gap-2 justify-start items-center">
-                                <span class="xl:text-lg text-sm text-[var(--text)]">همه</span>
                             </div>
                         </div>
                         <div
@@ -291,85 +285,53 @@
                     class="w-full grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5 justify-start items-start">
                     @foreach ($products as $product)
                         <div
-                            class="w-full sm:h-110 h-40 bg-[var(--background-2)] flex sm:flex-col gap-2 justify-start items-center border border-[var(--gold)] rounded-xl">
-                            <div class="w-full max-sm:w-1/2 h-1/2 max-sm:h-full max-sm:order-2">
-                                <img src="{{ asset('/storage/' . $product['mainImg']) }}" alt=""
-                                    class="object-fill w-full h-full max-sm:rounded-l-xl sm:rounded-t-xl">
-                            </div>
-                            <div
-                                class="w-full max-sm:w-1/2 h-1/2 max-sm:h-full flex flex-col justify-between pb-4 pt-2 max-sm:justify-center items-center gap-5 max-sm:gap-3 max-sm:order-1">
-                                <h5 class="max-sm:text-sm font-bold text-[var(--text)] px-2">{{ $product['title'] }}</h5>
-                                <div class="w-full flex justify-center items-center gap-3 max-sm:gap-1">
-                                    {{-- <span class="text-sm max-sm:text-xs text-[var(--text-secondary)]">شروع از</span> --}}
-                                    @if ($product['secondary_price'])
-                                        <span
-                                            class="text-xs text-gray-400 font-bold line-through">{{ $product['primary_price'] }}
-                                            تومان</span>
-                                        <span
-                                            class="max-sm:text-xs font-bold text-[var(--gold)] text-nowrap">{{ $product['secondary_price'] }}
-                                            تومان</span>
+                            class="w-full h-75 border-1 border-[var(--gold)] bg-[#181819] rounded-2xl flex flex-col gap-5 items-center justify-between scale transition_root pb-2">
+                            <a href="{{ route('product.show', [$product]) }}" class="w-full lg:h-7/12 h-full">
+                                @foreach ($product['media'] as $media)
+                                    @if ($media['is_main'])
+                                        @php
+                                            $imgSrc = asset('storage/' . $media['media_path']);
+                                        @endphp
+                                        @break
+
                                     @else
-                                        <span
-                                            class="max-sm:text-xs font-bold text-[var(--gold)] text-nowrap">{{ $product['primary_price'] }}
-                                            تومان</span>
+                                        @php
+                                            $imgSrc = asset('storage/default.jpg');
+                                        @endphp
+                                    @endif
+                                @endforeach
+                                <img src="{{ $imgSrc }}" alt=""
+                                    class="object-fit w-full lg:h-55 h-45 rounded-t-2xl">
+                            </a>
+                            <div class="w-full flex gap-4 justify-between items-center px-4">
+                                <div
+                                    class="min-w-11 min-h-11 max-w-11 max-h-11 gradient_box1 rounded-xl flex justify-center items-center cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="size-1/2"
+                                        fill="white">
+                                        <path
+                                            d="M16 0H0V32H16 67.2l77.2 339.5 2.8 12.5H160 496h16V352H496 172.8l-14.5-64H496L566 64l10-32H542.5 100L95.6 12.5 92.8 0H80 16zm91.3 64H532.5l-60 192H151L107.3 64zM184 432a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm0 80a56 56 0 1 0 0-112 56 56 0 1 0 0 112zm248-56a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm80 0a56 56 0 1 0 -112 0 56 56 0 1 0 112 0z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div
+                                    class="w-8/12 flex flex-col gap-4 justify-center items-end xl:text-sm lg:text-xs sm:text-[11px] md:text-sm text-xs">
+                                    <p class="w-full truncate text-nowrap font-bold text-[var(--text)] text-left">
+                                        {{ $product['title'] }}</p>
+                                    @if ($product['secondary_price'])
+                                        <div class="flex items-center gap-2 text-end">
+                                            <span
+                                                class="text-xs text-gray-400 font-bold line-through">{{ $product['primary_price'] }}</span>
+                                            <span
+                                                class="text-[var(--gold)] w-full text-left">{{ $product['secondary_price'] }}
+                                                <span class="text-[10px]">تومان</span>
+                                            </span>
+                                        </div>
+                                    @else
+                                        <span class="text-[var(--gold)] w-full text-left">{{ $product['primary_price'] }}
+                                            <span class="text-[10px]">تومان</span>
+                                        </span>
                                     @endif
                                 </div>
-                                {{-- <div class="flex gap-0.5 items-center justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                        class="sm:size-4 size-3 fill-[var(--star)]">
-                                        <defs></defs>
-                                        <path class="fa-secondary"
-                                            d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z">
-                                        </path>
-                                        <path class="fa-primary" d=""></path>
-                                    </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                        class="sm:size-4 size-3 fill-[var(--star)]">
-                                        <defs></defs>
-                                        <path class="fa-secondary"
-                                            d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z">
-                                        </path>
-                                        <path class="fa-primary" d=""></path>
-                                    </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                        class="sm:size-4 size-3 fill-[var(--star)]">
-                                        <defs></defs>
-                                        <path class="fa-secondary"
-                                            d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z">
-                                        </path>
-                                        <path class="fa-primary" d=""></path>
-                                    </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                        class="sm:size-4 size-3 fill-[var(--star)]">
-                                        <defs></defs>
-                                        <path class="fa-secondary"
-                                            d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z">
-                                        </path>
-                                        <path class="fa-primary" d=""></path>
-                                    </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
-                                        class="sm:size-4 size-3 fill-[var(--star)]">
-                                        <defs></defs>
-                                        <path class="fa-secondary"
-                                            d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z">
-                                        </path>
-                                        <path class="fa-primary" d=""></path>
-                                    </svg>
-                                </div> --}}
-                                <a href="{{ route('product.show', [$product]) }}"
-                                    class="w-9/12 py-1.5 max-sm:py-1 flex gap-4 justify-center items-center rounded-2xl border-2 border-[var(--gold)]">
-                                    <span
-                                        class="xl:text-sm sm:text-sm text-[8px] font-bold text-[var(--text-secondary)]">مشاهده
-                                        محصول</span>
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                                            class="size-3 fill-white rotate-180">
-                                            <path
-                                                d="M440.6 273.4c4.7-4.5 7.4-10.8 7.4-17.4s-2.7-12.8-7.4-17.4l-176-168c-9.6-9.2-24.8-8.8-33.9 .8s-8.8 24.8 .8 33.9L364.1 232 24 232c-13.3 0-24 10.7-24 24s10.7 24 24 24l340.1 0L231.4 406.6c-9.6 9.2-9.9 24.3-.8 33.9s24.3 9.9 33.9 .8l176-168z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                </a>
                             </div>
                         </div>
                     @endforeach
@@ -378,7 +340,7 @@
             <!-- products -->
         </div>
         <!-- filter_mobild_item_start -->
-        <div class="w-full h-dvh overflow-y-auto fixed top-0 z-2 flex justify-center items-start invisible opacity-0 transition_root sm:hidden lg:[&::-webkit-scrollbar]:w-1  lg:[&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  lg:[&::-webkit-scrollbar-thumb]:rounded-full"
+        {{-- <div class="w-full h-dvh overflow-y-auto fixed top-0 z-2 flex justify-center items-start invisible opacity-0 transition_root sm:hidden lg:[&::-webkit-scrollbar]:w-1  lg:[&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  lg:[&::-webkit-scrollbar-thumb]:rounded-full"
             id="filter_index_product_pop_up_mobile_item">
             <div class="w-full h-full bg-black/50 absolute -z-1" onclick="filter_index_product_pop_up_mobile('close')">
             </div>
@@ -581,7 +543,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div> --}}
         <!-- filter_mobild_item_end -->
     </section>
 @endsection

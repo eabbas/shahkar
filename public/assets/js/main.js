@@ -177,7 +177,7 @@ function filter_index_product_pop_up_mobile(item) {
 
 function sort_product(item) {
     item.parentElement.classList.toggle('h-12')
-    item.parentElement.classList.toggle('h-71')
+    item.parentElement.classList.toggle('h-60')
     item.children[1].classList.toggle('rotate-180')
 
 }
