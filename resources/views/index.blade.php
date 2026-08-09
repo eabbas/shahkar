@@ -106,18 +106,18 @@
                                                 <!-- Logo -->
                                                 <path
                                                     d="
-                                                                                                                                                                                                                                                    M165 235
-                                                                                                                                                                                                                                                    L165 205
-                                                                                                                                                                                                                                                    Q165 180 188 180
-                                                                                                                                                                                                                                                    L205 180
-                                                                                                                                                                                                                                                    Q225 180 225 198
-                                                                                                                                                                                                                                                    Q225 214 208 214
-                                                                                                                                                                                                                                                    L188 214
-                                                                                                                                                                                                                                                    L188 225
-                                                                                                                                                                                                                                                    L215 225
-                                                                                                                                                                                                                                                    Q235 225 235 245
-                                                                                                                                                                                                                                                    L165 245
-                                                                                                                                                                                                                                                    Z" />
+                                                                                                                                                                                                                                                        M165 235
+                                                                                                                                                                                                                                                        L165 205
+                                                                                                                                                                                                                                                        Q165 180 188 180
+                                                                                                                                                                                                                                                        L205 180
+                                                                                                                                                                                                                                                        Q225 180 225 198
+                                                                                                                                                                                                                                                        Q225 214 208 214
+                                                                                                                                                                                                                                                        L188 214
+                                                                                                                                                                                                                                                        L188 225
+                                                                                                                                                                                                                                                        L215 225
+                                                                                                                                                                                                                                                        Q235 225 235 245
+                                                                                                                                                                                                                                                        L165 245
+                                                                                                                                                                                                                                                        Z" />
 
                                                 <!-- Text Line -->
                                                 <line x1="220" y1="225" x2="305" y2="225" />
@@ -258,7 +258,7 @@
             <!-- category_rezume -->
             <!-- rezumes items -->
             <div
-                class="w-full flex pb-3 lg:h-90 h-80 items-center xl:justify-between gap-2 overflow-auto max-sm:pb-5 [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar-thumb]:bg-[var(--gold)] [&::-webkit-scrollbar-thumb]:rounded-full">
+                class="w-full flex pb-3 lg:h-100 h-85 items-center xl:justify-between gap-2 overflow-auto max-sm:pb-5 [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar-thumb]:bg-[var(--gold)] [&::-webkit-scrollbar-thumb]:rounded-full">
                 <div
                     class="min-w-45 md:w-2/12 h-full border border-[var(--gold)] rounded-xl px-[0.3px] py-[0.7px] overflow-hidden">
                     @if (isset($products[0]))
@@ -420,23 +420,23 @@
                                         <!-- Scalloped medal -->
                                         <path
                                             d="
-                                                                                                                                                                                                                                                            M12 3
-                                                                                                                                                                                                                                                            C12.7 3.6 13.6 3.5 14.3 3.9
-                                                                                                                                                                                                                                                            C15.1 4.2 15.5 5 16.2 5.4
-                                                                                                                                                                                                                                                            C17 5.8 17.8 6.3 18 7.2
-                                                                                                                                                                                                                                                            C18.3 8 19 8.8 19 9.8
-                                                                                                                                                                                                                                                            C19 10.8 18.3 11.6 18 12.4
-                                                                                                                                                                                                                                                            C17.8 13.3 17 13.8 16.2 14.2
-                                                                                                                                                                                                                                                            C15.5 14.6 15.1 15.4 14.3 15.7
-                                                                                                                                                                                                                                                            C13.6 16.1 12.7 16 12 16.6
-                                                                                                                                                                                                                                                            C11.3 16 10.4 16.1 9.7 15.7
-                                                                                                                                                                                                                                                            C8.9 15.4 8.5 14.6 7.8 14.2
-                                                                                                                                                                                                                                                            C7 13.8 6.2 13.3 6 12.4
-                                                                                                                                                                                                                                                            C5.7 11.6 5 10.8 5 9.8
-                                                                                                                                                                                                                                                            C5 8.8 5.7 8 6 7.2
-                                                                                                                                                                                                                                                            C6.2 6.3 7 5.8 7.8 5.4
-                                                                                                                                                                                                                                                            C8.5 5 8.9 4.2 9.7 3.9
-                                                                                                                                                                                                                                                            C10.4 3.5 11.3 3.6 12 3Z" />
+                                                                                                                                                                                                                                                                M12 3
+                                                                                                                                                                                                                                                                C12.7 3.6 13.6 3.5 14.3 3.9
+                                                                                                                                                                                                                                                                C15.1 4.2 15.5 5 16.2 5.4
+                                                                                                                                                                                                                                                                C17 5.8 17.8 6.3 18 7.2
+                                                                                                                                                                                                                                                                C18.3 8 19 8.8 19 9.8
+                                                                                                                                                                                                                                                                C19 10.8 18.3 11.6 18 12.4
+                                                                                                                                                                                                                                                                C17.8 13.3 17 13.8 16.2 14.2
+                                                                                                                                                                                                                                                                C15.5 14.6 15.1 15.4 14.3 15.7
+                                                                                                                                                                                                                                                                C13.6 16.1 12.7 16 12 16.6
+                                                                                                                                                                                                                                                                C11.3 16 10.4 16.1 9.7 15.7
+                                                                                                                                                                                                                                                                C8.9 15.4 8.5 14.6 7.8 14.2
+                                                                                                                                                                                                                                                                C7 13.8 6.2 13.3 6 12.4
+                                                                                                                                                                                                                                                                C5.7 11.6 5 10.8 5 9.8
+                                                                                                                                                                                                                                                                C5 8.8 5.7 8 6 7.2
+                                                                                                                                                                                                                                                                C6.2 6.3 7 5.8 7.8 5.4
+                                                                                                                                                                                                                                                                C8.5 5 8.9 4.2 9.7 3.9
+                                                                                                                                                                                                                                                                C10.4 3.5 11.3 3.6 12 3Z" />
 
                                         <!-- Inner circle -->
                                         <circle cx="12" cy="9.8" r="4.2" />
@@ -545,7 +545,7 @@
                                     </div>
 
                                 </div>
-                                <div class="w-1/2 flex gap-0.5 items-center justify-end sm:hidden">
+                                {{-- <div class="w-1/2 flex gap-0.5 items-center justify-end sm:hidden">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
                                         class="size-4 fill-[var(--star)]">
                                         <defs></defs>
@@ -581,7 +581,7 @@
                                             d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
                                         <path class="fa-primary" d="" />
                                     </svg>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         <div
@@ -604,7 +604,7 @@
                                     </div>
 
                                 </div>
-                                <div class="w-1/2 flex gap-0.5 items-center justify-end sm:hidden">
+                                {{-- <div class="w-1/2 flex gap-0.5 items-center justify-end sm:hidden">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
                                         class="size-4 fill-[var(--star)]">
                                         <defs></defs>
@@ -640,7 +640,7 @@
                                             d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
                                         <path class="fa-primary" d="" />
                                     </svg>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         <div
@@ -661,7 +661,7 @@
                                             عباس ملکی</h5>
                                     </div>
                                 </div>
-                                <div class="w-1/2 flex gap-0.5 items-center justify-end sm:hidden">
+                                {{-- <div class="w-1/2 flex gap-0.5 items-center justify-end sm:hidden">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
                                         class="size-4 fill-[var(--star)]">
                                         <defs></defs>
@@ -697,7 +697,7 @@
                                             d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
                                         <path class="fa-primary" d="" />
                                     </svg>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>

@@ -40,7 +40,8 @@
             <div class="w-full flex max-sm:flex-col justify-between items-start gap-5">
                 <!-- galeri -->
 
-                <div class="sm:w-7/12 w-full xl:h-100 lg:h-80 sm:h-50 h-90  gap-2 flex max-sm:flex-col justify-between items-center">
+                <div
+                    class="sm:w-7/12 w-full xl:h-100 lg:h-80 sm:h-50 h-90  gap-2 flex max-sm:flex-col justify-between items-center">
                     <div
                         class="sm:w-2/12 max-w-full w-full  max-h-full h-full sm:overflow-y-auto  max-sm:overflow-x-auto max-sm:h-19/100 flex sm:flex-col gap-3 justify-start items-center bg-[var(--background-2)] rounded-xl [&::-webkit-scrollbar]:w-1 max-sm:[&::-webkit-scrollbar]:h-1  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full max-sm:order-2">
                         @foreach ($product['media'] as $media)
@@ -49,10 +50,10 @@
                                 <img src="{{ asset('storage/' . $media['media_path']) }}" alt=""
                                     class="object-cover rounded-xl gallery_product_item">
                             </div>
-                          
                         @endforeach
                     </div>
-                    <div class="w-10/12 max-sm:w-full h-full max-sm:h-80/100 flex justify-center items-center bg-[var(--background-2)] rounded-xl px-1 max-sm:order-1">
+                    <div
+                        class="w-10/12 max-sm:w-full h-full max-sm:h-80/100 flex justify-center items-center bg-[var(--background-2)] rounded-xl px-1 max-sm:order-1">
                         <img src="{{ asset('storage/' . $product['mainImg']) }}" alt=""
                             class="max-w-full max-h-full rounded-xl gallery_product_primary transition_root">
                     </div>
@@ -60,7 +61,7 @@
                 <!-- galeri -->
                 <!-- order -->
                 <div
-                    class="sm:w-40/100 w-full h-full border border-[var(--border)] bg-[var(--background-2)] rounded-xl lg:p-6 p-3 flex flex-col lg:gap-5 gap-3 justify-start items-start max-sm:items-center">
+                    class="sm:w-40/100 w-full h-full border border-[var(--border)] bg-[var(--background-2)] rounded-xl lg:p-6 p-3 flex flex-col gap-6 justify-start items-start max-sm:items-center">
                     <!-- title_product -->
                     <div class="w-full flex justify-between max-sm:justify-center items-center">
                         <h2 class="lg:text-xl text-lg font-bold text-[var(--text)]">{{ $product['title'] }}</h2>
@@ -131,7 +132,7 @@
                                 </svg>
                             </div>
                         </div> --}}
-                        <div onclick="like_svg(this)" class="sm:hidden">
+                        {{-- <div onclick="like_svg(this)" class="sm:hidden">
                             <!-- unlike -->
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
                                 class="lg:size-6 size-4 fill-[var(--gold)]">
@@ -146,7 +147,7 @@
                                     d="M39.8 263.8L64 288 256 480 448 288l24.2-24.2c25.5-25.5 39.8-60 39.8-96C512 92.8 451.2 32 376.2 32c-36 0-70.5 14.3-96 39.8L256 96 231.8 71.8c-25.5-25.5-60-39.8-96-39.8C60.8 32 0 92.8 0 167.8c0 36 14.3 70.5 39.8 96z" />
                             </svg>
                             <!-- like -->
-                        </div>
+                        </div> --}}
                     </div>
                     <!-- score -->
                     <!-- discription -->
@@ -266,7 +267,7 @@
                             @endif
                         </div>
                         <a href="#attributes"
-                            class="lg:text-lg max-sm:text-sm font-bold text-[var(--gold)] border border-[var(--text)] py-2 px-3 rounded-xl">همه
+                            class="text-xs md:text-md font-bold text-[var(--gold)] border border-[var(--text)] py-2 px-3 rounded-xl">همه
                             ویژگی ها</a>
                     @endif
                     <!--material_kart -->
@@ -315,7 +316,7 @@
                                     <circle cx="17" cy="18.5" r="1.6"></circle>
                                 </svg>
                             </div>
-                            <span class="xl:text-xs lg:text-[10px] text-[5px] text-[var(--text-secondary)]">ارسال
+                            <span class="text-[8px] text-[var(--text-secondary)]">ارسال
                                 به سراسر کشور</span>
                         </div>
                         <div class="flex justify-start items-center gap-2">
@@ -330,7 +331,7 @@
                                     </g>
                                 </svg>
                             </div>
-                            <span class="xl:text-xs lg:text-[10px] text-[5px] text-[var(--text-secondary)]">پرداخت
+                            <span class="text-[8px] text-[var(--text-secondary)]">پرداخت
                                 امن</span>
                         </div>
                         <div class="flex justify-start items-center gap-2">
@@ -341,7 +342,7 @@
                                         d="M512 112H64c-8.8 0-16 7.2-16 16V384c0 8.8 7.2 16 16 16H348.3c-5.6 7.1-9.6 15.3-11.8 24.1l-6 23.9H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64H512c35.3 0 64 28.7 64 64v64.6c-15.2 2-29.8 8.8-41.4 20.5l-6.6 6.6V128c0-8.8-7.2-16-16-16zM256 296c0-13.3 10.7-24 24-24h48c13.3 0 24 10.7 24 24s-10.7 24-24 24H280c-13.3 0-24-10.7-24-24zm24-120H424c13.3 0 24 10.7 24 24s-10.7 24-24 24H280c-13.3 0-24-10.7-24-24s10.7-24 24-24zM160 132c11 0 20 9 20 20v13.9c7.5 1.2 14.6 2.9 21.1 4.7c10.7 2.8 17 13.8 14.2 24.5s-13.8 17-24.5 14.2c-11-2.9-21.6-5-31.2-5.2c-7.9-.1-16 1.8-21.5 5c-4.8 2.8-6.2 5.6-6.2 9.3c0 1.8 .1 3.5 5.3 6.7c6.3 3.8 15.5 6.7 28.3 10.5l.7 .2c11.2 3.4 25.6 7.7 37.1 15c12.9 8.1 24.3 21.3 24.6 41.6c.3 20.9-10.5 36.1-24.8 45c-7.2 4.5-15.2 7.3-23.2 9V360c0 11-9 20-20 20s-20-9-20-20V345.4c-10.3-2.2-20-5.5-28.2-8.4l0 0 0 0c-2.1-.7-4.1-1.4-6.1-2.1c-10.5-3.5-16.1-14.8-12.6-25.3s14.8-16.1 25.3-12.6c2.5 .8 4.9 1.7 7.2 2.4c13.6 4.6 24 8.1 35.1 8.5c8.6 .3 16.5-1.6 21.4-4.7c4.1-2.5 6-5.5 5.9-10.5c0-2.9-.8-5-5.9-8.2c-6.3-4-15.4-6.9-28-10.7l-1.7-.5c-10.9-3.3-24.6-7.4-35.6-14c-12.7-7.7-24.6-20.5-24.7-40.7c-.1-21.1 11.8-35.7 25.8-43.9c6.9-4.1 14.5-6.8 22.2-8.5V152c0-11 9-20 20-20zM613.8 235.7l14.4 14.4c15.6 15.6 15.6 40.9 0 56.6l-29.4 29.4-71-71 29.4-29.4c15.6-15.6 40.9-15.6 56.6 0zM375.9 417L505.1 287.8l71 71L446.9 487.9c-4.1 4.1-9.2 7-14.9 8.4l-60.1 15c-5.5 1.4-11.2-.2-15.2-4.2s-5.6-9.7-4.2-15.2l15-60.1c1.4-5.6 4.3-10.8 8.4-14.9z" />
                                 </svg>
                             </div>
-                            <span class="xl:text-xs lg:text-[10px] text-[5px] text-[var(--text-secondary)]">ضمانت
+                            <span class="text-[8px] text-[var(--text-secondary)]">ضمانت
                                 بازگشت کالا</span>
                         </div>
                     </div>
@@ -353,16 +354,10 @@
     </section>
     <!-- order_box_end -->
 
-    <!-- property -->
-                    <section
-                        class="w-11/12 lg:h-30 lg:border lg:border-[var(--border)] max-lg:border sm:border-[var(--gold)] flex max-sm:flex max-sm:flex-col gap-4 items-center justify-between max-lg:grid grid-cols-2 lg:py-4 py-3 px-5 sm:bg-[var(--background-2)]  rounded-xl">
-                        <div
-                            class="w-full lg:w-1/6 h-full flex items-center justify-center max-lg:bg-[var(--background)] max-lg:rounded-xl max-lg:border-1 sm:border-[var(--border)] border-[var(--gold)] max-lg:py-2 max-lg:px-2">
-                            <div
-                                class="group max-sm:w-9/12 msx-sm:h-full flex max-lg:flex-col gap-2 justify-center items-center">
+
     <!-- property_bisinnes -->
     <section id="attributes"
-        class="w-11/12 lg:border  lg:border-[var(--border)] max-lg:border sm:border-[var(--gold)] flex max-sm:flex-col gap-2 items-center justify-between lg:py-4 py-2 lg:px-5 bg-[var(--background-2)] rounded-xl">
+        class="w-11/12 lg:border  lg:border-[var(--border)] max-lg:border sm:border-[var(--gold)] flex max-sm:flex-col gap-2 items-center justify-between lg:py-4 py-2 px-2 lg:px-5 bg-[var(--background-2)] rounded-xl">
         <div
             class="group sm:w-3/14 w-full h-full flex max-lg:flex-col max-sm:flex-row lg:gap-4 gap-2 justify-center items-center max-lg:bg-[var(--background)] max-lg:rounded-xl max-lg:border-1 sm:border-[var(--border)] border-[var(--gold)] max-lg:py-2">
             <div class="group-hover:scale-[1.05] group-active:scale-[1.3] transition_root">
@@ -382,81 +377,27 @@
                 </div>
             </div>
 
-                                <div class="group-hover:scale-[1.05] group-active:scale-[1.3] transition_root">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                                        class="xl:size-13 lg:size-9 size-7 fill-[var(--gold)]">
-                                        <path
-                                            d="M73 127L256 49.4 439 127c5.9 2.5 9.1 7.8 9 12.8c-.4 91.4-38.4 249.3-186.3 320.1c-3.6 1.7-7.8 1.7-11.3 0C102.4 389 64.5 231.2 64 139.7c0-5 3.1-10.2 9-12.8zM457.7 82.8L269.4 2.9C265.2 1 260.7 0 256 0s-9.2 1-13.4 2.9L54.3 82.8c-22 9.3-38.4 31-38.3 57.2c.5 99.2 41.3 280.7 213.6 363.2c16.7 8 36.1 8 52.8 0C454.8 420.7 495.5 239.2 496 140c.1-26.2-16.3-47.9-38.3-57.2zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z">
-                                        </path>
-                                    </svg>
-                                </div>
-                                <div
-                                    class="flex flex-col sm:gap-2 gap-1 lg:items-start items-center max-sm:items-center justify-center">
-                                    <h5 class="xl:text-lg sm:text-xs text-sm font-bold text-[var(--text)]">کیفیت
-                                        تضمینی</h5>
-                                    <div
-                                        class="text-justify flex flex-col lg:items-start items-center max-sm:items-start justify-center xl:text-[11px] sm:text-[7px] text-[10px] text-[var(--text-secondary)]">
-                                        <span class=" font-bold">از تفکیک دقیق رنگ ها تابرش و صحافی، تمام مراحل با حساسترین
-                                            استاندارد ها رعایت میشوند.</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <span class="w-0.5 h-full bg-[var(--border)] rounded-full max-lg:hidden"></span>
-                        <div
-                            class="w-full lg:w-1/6 h-full flex items-center justify-center max-lg:bg-[var(--background)] max-lg:rounded-xl max-lg:border-1 sm:border-[var(--border)] border-[var(--gold)] max-lg:py-2 max-lg:px-2">
-                            <div
-                                class="group max-sm:w-9/12 msx-sm:h-full flex max-lg:flex-col gap-2 justify-center items-center">
+        </div>
+        <span class="w-0.5 h-full bg-[var(--border)] rounded-full max-lg:hidden"></span>
+        <div
+            class="group sm:w-3/14 w-full h-full flex max-lg:flex-col max-sm:flex-row lg:gap-4 gap-2 justify-center items-center max-lg:bg-[var(--background)] max-lg:rounded-xl max-lg:border-1 sm:border-[var(--border)] border-[var(--gold)] max-lg:py-2">
 
-                                <div class="group-hover:scale-[1.05] group-active:scale-[1.3] transition_root">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"
-                                        class="xl:size-13 lg:size-9 size-7 fill-[var(--gold)]">
-                                        <path
-                                            d="M128 128a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM269.7 336c80 0 145 64.3 146.3 144H32c1.2-79.7 66.2-144 146.3-144h91.4zM224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3zm431 208c17 0 30.7-13.8 30.7-30.7C640 392.2 567.8 320 478.7 320H417.3c-4.4 0-8.8 .2-13.2 .5c11.3 9.4 21.6 19.9 30.7 31.5h43.9c71 0 128.6 57.2 129.3 128H480c0 .8 0 1.5 0 2.3c0 10.8-2.8 20.9-7.6 29.7H609.3zM432 256c61.9 0 112-50.1 112-112s-50.1-112-112-112c-24.8 0-47.7 8.1-66.3 21.7c5.2 9.8 9.3 20.3 12.4 31.2C392.3 71.9 411.2 64 432 64c44.2 0 80 35.8 80 80s-35.8 80-80 80c-25.2 0-47.6-11.6-62.3-29.8c-4.7 10.3-10.4 19.9-17 28.9C373 243.4 401 256 432 256z" />
-                                    </svg>
-                                </div>
-                                <div
-                                    class="flex flex-col sm:gap-2 gap-1 lg:items-start items-center max-sm:items-center justify-center">
-                                    <h5 class="xl:text-lg sm:text-xs text-sm font-bold text-[var(--text)]">تیم
-                                        حرفه‌ای</h5>
-                                    <div
-                                        class="text-justify flex flex-col lg:items-start items-center max-sm:items-start justify-center xl:text-[11px] sm:text-[7px] text-[10px] text-[var(--text-secondary)]">
-                                        <span class=" font-bold">تیم ما متشکل از کارشناسان با تجربه در زمینه چاپ و طراحی و
-                                            گرافیک و هنر است.</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            class="w-full lg:w-1/4 h-full flex items-center justify-center max-lg:bg-[var(--background)] max-lg:rounded-xl max-lg:border-1 sm:border-[var(--border)] border-[var(--gold)] max-lg:py-2 px-2 max-lg:col-span-2 gradient_box1 rounded-xl">
-                            <div
-                                class="group max-sm:w-9/12 msx-sm:h-full flex max-lg:flex-col gap-2 justify-center items-center">
+            <div class="group-hover:scale-[1.05] group-active:scale-[1.3] transition_root">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"
+                    class="xl:size-13 lg:size-9 size-7 fill-[var(--gold)]">
+                    <path
+                        d="M128 128a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM269.7 336c80 0 145 64.3 146.3 144H32c1.2-79.7 66.2-144 146.3-144h91.4zM224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3zm431 208c17 0 30.7-13.8 30.7-30.7C640 392.2 567.8 320 478.7 320H417.3c-4.4 0-8.8 .2-13.2 .5c11.3 9.4 21.6 19.9 30.7 31.5h43.9c71 0 128.6 57.2 129.3 128H480c0 .8 0 1.5 0 2.3c0 10.8-2.8 20.9-7.6 29.7H609.3zM432 256c61.9 0 112-50.1 112-112s-50.1-112-112-112c-24.8 0-47.7 8.1-66.3 21.7c5.2 9.8 9.3 20.3 12.4 31.2C392.3 71.9 411.2 64 432 64c44.2 0 80 35.8 80 80s-35.8 80-80 80c-25.2 0-47.6-11.6-62.3-29.8c-4.7 10.3-10.4 19.9-17 28.9C373 243.4 401 256 432 256z" />
+                </svg>
+            </div>
+            <div class="flex flex-col items-start justify-center">
+                <h5 class="xl:text-lg text-sm font-bold text-[var(--text)]">تیم حرفه‌ای</h5>
+                <div
+                    class="flex flex-col items-start justify-center xl:text-[11px] text-[7px] text-[var(--text-secondary)]">
+                    <span class=" font-bold">استفاده از رنگ با کیفیت عالی</span>
+                    <span class="font-bold">با دستگاه های پیشرفته</span>
+                </div>
+            </div>
 
-                                <div class="group-hover:scale-[1.05] group-active:scale-[1.6] transition_root">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="xl:size-13 size-9" viewBox="0 0 24 24"
-                                        fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"
-                                        stroke-linejoin="round">
-
-                                        <!-- Scalloped medal -->
-                                        <path
-                                            d="
-                                                                                                                                                                                                                                                            M12 3
-                                                                                                                                                                                                                                                            C12.7 3.6 13.6 3.5 14.3 3.9
-                                                                                                                                                                                                                                                            C15.1 4.2 15.5 5 16.2 5.4
-                                                                                                                                                                                                                                                            C17 5.8 17.8 6.3 18 7.2
-                                                                                                                                                                                                                                                            C18.3 8 19 8.8 19 9.8
-                                                                                                                                                                                                                                                            C19 10.8 18.3 11.6 18 12.4
-                                                                                                                                                                                                                                                            C17.8 13.3 17 13.8 16.2 14.2
-                                                                                                                                                                                                                                                            C15.5 14.6 15.1 15.4 14.3 15.7
-                                                                                                                                                                                                                                                            C13.6 16.1 12.7 16 12 16.6
-                                                                                                                                                                                                                                                            C11.3 16 10.4 16.1 9.7 15.7
-                                                                                                                                                                                                                                                            C8.9 15.4 8.5 14.6 7.8 14.2
-                                                                                                                                                                                                                                                            C7 13.8 6.2 13.3 6 12.4
-                                                                                                                                                                                                                                                            C5.7 11.6 5 10.8 5 9.8
-                                                                                                                                                                                                                                                            C5 8.8 5.7 8 6 7.2
-                                                                                                                                                                                                                                                            C6.2 6.3 7 5.8 7.8 5.4
-                                                                                                                                                                                                                                                            C8.5 5 8.9 4.2 9.7 3.9
-                                                                                                                                                                                                                                                            C10.4 3.5 11.3 3.6 12 3Z" />
         </div>
         <div
             class="group sm:w-4/14 w-full h-full gradient_box1 rounded-xl flex max-lg:flex-col max-sm:flex-row lg:gap-4 gap-2 justify-center items-center max-lg:bg-[var(--background)] max-lg:rounded-xl max-lg:border-1 sm:border-[var(--border)] border-[var(--gold)] py-2">
@@ -483,99 +424,69 @@
                 </div>
             </div>
 
-                                        <!-- Inner circle -->
-                                        <circle cx="12" cy="9.8" r="4.2" />
+        </div>
+        <div
+            class="group sm:w-3/14 w-full h-full flex max-lg:flex-col max-sm:flex-row lg:gap-4 gap-2 justify-center items-center max-lg:bg-[var(--background)] max-lg:rounded-xl max-lg:border-1 sm:border-[var(--border)] border-[var(--gold)] max-lg:py-2">
 
-                                        <!-- Ribbons -->
-                                        <path d="M9.8 14.6L7.7 20H10L12 17.7" />
-                                        <path d="M14.2 14.6L16.3 20H14L12 17.7" />
+            <div class="group-hover:scale-[1.05] group-active:scale-[1.3] transition_root">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    class="xl:size-13 lg:size-9 size-7 fill-[var(--background-2)]" stroke="var(--gold)" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 7h11v10H2z"></path>
+                    <path d="M13 10h4l4 3.5V17h-8z"></path>
+                    <circle cx="6" cy="18.5" r="1.6"></circle>
+                    <circle cx="17" cy="18.5" r="1.6"></circle>
+                </svg>
+            </div>
+            <div class="flex flex-col items-start justify-center">
+                <h5 class="xl:text-lg text-sm font-bold text-[var(--text)]">تحویل سریع</h5>
+                <div
+                    class="flex flex-col items-start justify-center xl:text-[11px] text-[7px] text-[var(--text-secondary)]">
+                    <span class=" font-bold">استفاده از رنگ با کیفیت عالی</span>
+                    <span class="font-bold">با دستگاه های پیشرفته</span>
+                </div>
+            </div>
 
-                                    </svg>
-                                </div>
-                                <div
-                                    class="flex flex-col sm:gap-2 gap-1 lg:items-start items-center max-sm:items-center justify-center">
-                                    <h5 class="xl:text-lg text-md font-bold text-[var(--text)]">چرا ما را انتخاب
-                                        کنید</h5>
-                                    <div
-                                        class="text-justify flex flex-col lg:items-start items-center max-sm:items-start justify-center xl:text-[11px] text-[10px] text-[var(--text)]">
-                                        <span class=" font-bold">ما با دانش فنی بالا و کادر مجرب و به روز همراه شما در مسیر
-                                            خلق یک اثر ماندگار هستیم.</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            class="w-full lg:w-1/6 h-full flex items-center justify-center max-lg:bg-[var(--background)] max-lg:rounded-xl max-lg:border-1 sm:border-[var(--border)] border-[var(--gold)] max-lg:py-2 max-lg:px-2">
-                            <div
-                                class="group max-sm:w-9/12 msx-sm:h-full flex max-lg:flex-col gap-2 justify-center items-center">
+        </div>
+        <span class="w-0.5 h-full bg-[var(--border)] rounded-full max-lg:hidden"></span>
+        <div
+            class="group sm:w-3/14 w-full h-full flex max-lg:flex-col max-sm:flex-row lg:gap-4 gap-2 justify-center items-center max-lg:bg-[var(--background)] max-lg:rounded-xl max-lg:border-1 sm:border-[var(--border)] border-[var(--gold)] max-lg:py-2">
+            <div class="group-hover:scale-[1.05] group-active:scale-[1.3] transition_root">
+                <svg class="xl:size-13 lg:size-9 size-7" viewBox="0 0 64 64" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <!-- Circle -->
+                    <circle cx="32" cy="32" r="22" stroke="#D4A437" stroke-width="3.5"
+                        stroke-linecap="round" stroke-dasharray="132 12"></circle>
+                    <!-- Top & Bottom marks -->
+                    <line x1="32" y1="6" x2="32" y2="11" stroke="#D4A437"
+                        stroke-width="3" stroke-linecap="round"></line>
+                    <line x1="32" y1="53" x2="32" y2="58" stroke="#D4A437"
+                        stroke-width="3" stroke-linecap="round"></line>
+                    <!-- Dollar -->
+                    <text x="32" y="42" text-anchor="middle" font-size="28" font-family="Arial, sans-serif"
+                        font-weight="700" fill="#D4A437">$</text>
+                </svg>
+            </div>
+            <div class="flex flex-col items-start justify-center">
+                <h5 class="xl:text-lg text-sm font-bold text-[var(--text)]">قیمت مناسب</h5>
+                <div
+                    class="flex flex-col items-start justify-center xl:text-[11px] text-[7px] text-[var(--text-secondary)]">
+                    <span class=" font-bold">استفاده از رنگ با کیفیت عالی</span>
+                    <span class="font-bold">با دستگاه های پیشرفته</span>
+                </div>
+            </div>
 
-                                <div class="group-hover:scale-[1.05] group-active:scale-[1.3] transition_root">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                        class="xl:size-13 lg:size-9 size-7 fill-none" stroke="var(--gold)"
-                                        stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M2 7h11v10H2z"></path>
-                                        <path d="M13 10h4l4 3.5V17h-8z"></path>
-                                        <circle cx="6" cy="18.5" r="1.6"></circle>
-                                        <circle cx="17" cy="18.5" r="1.6"></circle>
-                                    </svg>
-                                </div>
-                                <div
-                                    class="flex flex-col sm:gap-2 gap-1 lg:items-start items-center max-sm:items-center justify-center">
-                                    <h5 class="xl:text-lg sm:text-xs text-sm font-bold text-[var(--text)]">تحویل
-                                        سریع</h5>
-                                    <div
-                                        class="text-justify flex flex-col lg:items-start items-center max-sm:items-start justify-center xl:text-[11px] sm:text-[7px]  text-[10px] text-[var(--text-secondary)]">
-                                        <span class=" font-bold">با فرایند تولید بهینه و منسجم سفارش شما در سریع ترین زمان
-                                            ممکن آماده میشود.</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <span class="w-0.5 h-full bg-[var(--border)] rounded-full max-lg:hidden"></span>
-                        <div
-                            class="w-full lg:w-1/6 h-full flex items-center justify-center max-lg:bg-[var(--background)] max-lg:rounded-xl max-lg:border-1 sm:border-[var(--border)] border-[var(--gold)] max-lg:py-2 max-lg:px-2">
-                            <div
-                                class="group max-sm:w-9/12 msx-sm:h-full flex max-lg:flex-col gap-2 justify-center items-center">
+        </div>
 
-                                <div class="group-hover:scale-[1.05] group-active:scale-[1.3] transition_root">
-                                    <svg class="xl:size-13 lg:size-9 size-7" viewBox="0 0 64 64" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <!-- Circle -->
-                                        <circle cx="32" cy="32" r="22" stroke="#D4A437" stroke-width="3.5"
-                                            stroke-linecap="round" stroke-dasharray="132 12" />
-
-                                        <!-- Top & Bottom marks -->
-                                        <line x1="32" y1="6" x2="32" y2="11"
-                                            stroke="#D4A437" stroke-width="3" stroke-linecap="round" />
-                                        <line x1="32" y1="53" x2="32" y2="58"
-                                            stroke="#D4A437" stroke-width="3" stroke-linecap="round" />
-
-                                        <!-- Dollar -->
-                                        <text x="32" y="42" text-anchor="middle" font-size="28"
-                                            font-family="Arial, sans-serif" font-weight="700" fill="#D4A437">$</text>
-                                    </svg>
-                                </div>
-                                <div
-                                    class="flex flex-col sm:gap-2 gap-1 lg:items-start items-center max-sm:items-center justify-center">
-                                    <h5 class="xl:text-lg sm:text-xs text-sm font-bold text-[var(--text)]">قیمت
-                                        مناسب</h5>
-                                    <div
-                                        class="text-justify flex flex-col lg:items-start items-center max-sm:items-start justify-center xl:text-[11px] sm:text-[7px] text-[10px] text-[var(--text-secondary)]">
-                                        <span class=" font-bold">با بهینه سازی مصرف مواد اولیه و کاهش هزینه های اضافه به
-                                            صرفه ترین قیمت ها را داریم.</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <!-- property -->
+    </section>
+    <!-- property_bisinnes -->
 
     <!-- specification -->
     <section class="w-full flex justify-center items-center">
         <div
             class="w-11/12 flex flex-col gap-2 justify-start items-center bg-[var(--background-2)] border border-[var(--border)] rounded-xl py-4 px-5">
             <ul
-                class="max-w-full min-w-full flex justify-start items-center gap-5 max-sm:gap-2 overflow-auto mb-10 [&::-webkit-scrollbar]:h-2  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
+                class="max-w-full min-w-full flex justify-start items-center gap-5 overflow-auto mb-10 [&::-webkit-scrollbar]:h-2  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
                 <li data-id="desc" data-info="{{ $product['description'] }}"
                     class="box-titles flex justify-center items-center pb-1.5 relative cheng_text_colot_hover cursor-pointer">
                     <sapn
@@ -1231,7 +1142,7 @@
                     arr.forEach(item => {
                         innerElements +=
                             `
-                            <div class="w-1/2 flex gap-2 justify-between">
+                            <div class="w-11/12 sm:w-3/4 flex gap-2 justify-between">
                                 <div class="w-1/2 flex justify-start items-center py-2 pr-4 bg-[#212224]">
                                     <span
                                         class="xl:text-lg max-lg:text-sm max-sm:text-xs font-bold text-[var(--gold)]">${ item['attribute_key'] }</span>
