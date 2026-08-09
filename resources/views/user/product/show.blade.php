@@ -3,6 +3,25 @@
     شاهکار | {{ $product['title'] }}
 @endsection
 @section('content')
+@section('content')
+    @if (session('success'))
+        <div
+            class="modal py-5 px-8 rounded-lg shadow-lg bg-green-300 fixed top-10 right-10 z-5 flex justify-center items-center transition-all duration-300">
+            <span class="text-sm text-[var(--light-theme-text-color)]"> {{ session('success') }} </span>
+        </div>
+    @endif
+    @if ($errors->hasAny(['name', 'family', 'phoneNumber', 'email', 'subject', 'text']))
+        <div
+            class="modal py-5 px-8 rounded-lg shadow-lg bg-red-300 fixed top-10 right-10 z-5 flex justify-center items-center transition-all duration-300">
+            <span class="text-sm text-[var(--light-theme-text-color)]"> هنگام تکمیل فرم به فیلد ها توجه کنید. </span>
+        </div>
+    @endif
+    @if (session('failure'))
+        <div
+            class="modal py-5 px-8 rounded-lg shadow-lg bg-red-300 fixed top-10 right-10 z-5 flex justify-center items-center transition-all duration-300">
+            <span class="text-sm text-[var(--light-theme-text-color)]"> {{ session('failure') }} </span>
+        </div>
+    @endif
     <!-- order_box_start -->
     <section class="w-full flex justify-center items-center">
         <div class="w-11/12 h-full flex flex-col justify-between items-center">
@@ -45,7 +64,8 @@
                     <!-- title_product -->
                     <div class="w-full flex justify-between max-sm:justify-center items-center">
                         <h2 class="lg:text-xl text-lg font-bold text-[var(--text)]">{{ $product['title'] }}</h2>
-                        <div onclick="like_svg(this)" class="max-sm:hidden cursor-pointer">
+                        {{-- آیکون قلب اینجاس که فعلا کامنت شده --}}
+                        {{-- <div onclick="like_svg(this)" class="max-sm:hidden cursor-pointer">
                             <!-- unlike -->
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
                                 class="lg:size-6 size-4 fill-[var(--gold)]">
@@ -60,12 +80,13 @@
                                     d="M39.8 263.8L64 288 256 480 448 288l24.2-24.2c25.5-25.5 39.8-60 39.8-96C512 92.8 451.2 32 376.2 32c-36 0-70.5 14.3-96 39.8L256 96 231.8 71.8c-25.5-25.5-60-39.8-96-39.8C60.8 32 0 92.8 0 167.8c0 36 14.3 70.5 39.8 96z" />
                             </svg>
                             <!-- like -->
-                        </div>
+                        </div> --}}
                     </div>
                     <!-- title_product -->
                     <!-- score -->
                     <div class="w-full max-sm:w-7/12 flex gap-4 justify-start max-sm:justify-between items-center">
-                        <div class="flex justify-start items-center gap-4">
+                        {{-- ستاره ها کامنت شدن این زیر --}}
+                        {{-- <div class="flex justify-start items-center gap-4">
                             <span class="text-sm text-[var(--text-secondary)]">(4.9)</span>
                             <div class="flex justify-start items-center gap-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
@@ -109,7 +130,7 @@
                                     <path class="fa-primary" d=""></path>
                                 </svg>
                             </div>
-                        </div>
+                        </div> --}}
                         <div onclick="like_svg(this)" class="sm:hidden">
                             <!-- unlike -->
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
@@ -251,21 +272,21 @@
                     <!--material_kart -->
                     <!-- bottoms -->
                     <div class="w-full flex max-sm:flex-col lg:gap-5 gap-2 items-center justify-end ">
-                        <a href="#"
-                            class="sm:w-1/2 w-full xl:py-3 py-2 flex lg:gap-3 gap-1 justify-center items-center rounded-2xl border-2 border-[var(--gold)] rezume_gradient transition_root">
+                        <span onclick="consultForm('open')"
+                            class="group sm:w-1/2 w-full xl:py-3 py-2 flex lg:gap-3 gap-1 justify-center items-center rounded-2xl border-2 border-[var(--gold)] cursor-pointer rezume_gradient transition_root">
                             <span class="xl:text-md lg:text-sm text-[9px] font-bold text-white">مشاوره
-                                رایکان</span>
+                                رایگان</span>
                             <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="lg:size-6 size-4"
-                                    fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                    class="lg:size-6 size-4 stroke-[var(--gold)] group-hover:stroke-white" fill="none"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M4 13v-1a8 8 0 0 1 16 0v1" />
                                     <rect x="2" y="13" width="5" height="7" rx="1.5" />
                                     <rect x="17" y="13" width="5" height="7" rx="1.5" />
                                     <path d="M20 20v1a3 3 0 0 1-3 3h-3" />
                                 </svg>
                             </div>
-                        </a>
+                        </span>
                         <a href="#"
                             class="sm:w-1/2 w-full xl:py-3 py-2 flex lg:gap-3 gap-1 justify-center items-center rounded-2xl gradient_box1 gradient_box1_hover_chang border-2 border-[var(--gold)] transition_root">
                             <div>
@@ -339,6 +360,27 @@
                             class="w-full lg:w-1/6 h-full flex items-center justify-center max-lg:bg-[var(--background)] max-lg:rounded-xl max-lg:border-1 sm:border-[var(--border)] border-[var(--gold)] max-lg:py-2 max-lg:px-2">
                             <div
                                 class="group max-sm:w-9/12 msx-sm:h-full flex max-lg:flex-col gap-2 justify-center items-center">
+    <!-- property_bisinnes -->
+    <section id="attributes"
+        class="w-11/12 lg:border  lg:border-[var(--border)] max-lg:border sm:border-[var(--gold)] flex max-sm:flex-col gap-2 items-center justify-between lg:py-4 py-2 lg:px-5 bg-[var(--background-2)] rounded-xl">
+        <div
+            class="group sm:w-3/14 w-full h-full flex max-lg:flex-col max-sm:flex-row lg:gap-4 gap-2 justify-center items-center max-lg:bg-[var(--background)] max-lg:rounded-xl max-lg:border-1 sm:border-[var(--border)] border-[var(--gold)] max-lg:py-2">
+            <div class="group-hover:scale-[1.05] group-active:scale-[1.3] transition_root">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                    class="xl:size-13 lg:size-9 size-7 fill-[var(--gold)]">
+                    <path
+                        d="M73 127L256 49.4 439 127c5.9 2.5 9.1 7.8 9 12.8c-.4 91.4-38.4 249.3-186.3 320.1c-3.6 1.7-7.8 1.7-11.3 0C102.4 389 64.5 231.2 64 139.7c0-5 3.1-10.2 9-12.8zM457.7 82.8L269.4 2.9C265.2 1 260.7 0 256 0s-9.2 1-13.4 2.9L54.3 82.8c-22 9.3-38.4 31-38.3 57.2c.5 99.2 41.3 280.7 213.6 363.2c16.7 8 36.1 8 52.8 0C454.8 420.7 495.5 239.2 496 140c.1-26.2-16.3-47.9-38.3-57.2zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z">
+                    </path>
+                </svg>
+            </div>
+            <div class="flex flex-col lg:items-start items-center justify-center">
+                <h5 class="xl:text-lg text-sm font-bold text-[var(--text)]">کیفیت تضمینی</h5>
+                <div
+                    class="flex flex-col lg:items-start items-center justify-center xl:text-[11px] text-[7px] text-[var(--text-secondary)]">
+                    <span class=" font-bold">استفاده از رنگ با کیفیت عالی</span>
+                    <span class="font-bold">با دستگاه های پیشرفته</span>
+                </div>
+            </div>
 
                                 <div class="group-hover:scale-[1.05] group-active:scale-[1.3] transition_root">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
@@ -415,6 +457,31 @@
                                                                                                                                                                                                                                                             C6.2 6.3 7 5.8 7.8 5.4
                                                                                                                                                                                                                                                             C8.5 5 8.9 4.2 9.7 3.9
                                                                                                                                                                                                                                                             C10.4 3.5 11.3 3.6 12 3Z" />
+        </div>
+        <div
+            class="group sm:w-4/14 w-full h-full gradient_box1 rounded-xl flex max-lg:flex-col max-sm:flex-row lg:gap-4 gap-2 justify-center items-center max-lg:bg-[var(--background)] max-lg:rounded-xl max-lg:border-1 sm:border-[var(--border)] border-[var(--gold)] py-2">
+            <div class="group-hover:scale-[1.07] group-active:scale-[1.7] transition_root">
+                <svg xmlns="http://www.w3.org/2000/svg" class="xl:size-13 size-9" viewBox="0 0 24 24" fill="none"
+                    stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <!-- Scalloped medal -->
+                    <path
+                        d=" M12 3 C12.7 3.6 13.6 3.5 14.3 3.9 C15.1 4.2 15.5 5 16.2 5.4 C17 5.8 17.8 6.3 18 7.2 C18.3 8 19 8.8 19 9.8 C19 10.8 18.3 11.6 18 12.4 C17.8 13.3 17 13.8 16.2 14.2 C15.5 14.6 15.1 15.4 14.3 15.7 C13.6 16.1 12.7 16 12 16.6 C11.3 16 10.4 16.1 9.7 15.7 C8.9 15.4 8.5 14.6 7.8 14.2 C7 13.8 6.2 13.3 6 12.4 C5.7 11.6 5 10.8 5 9.8 C5 8.8 5.7 8 6 7.2 C6.2 6.3 7 5.8 7.8 5.4 C8.5 5 8.9 4.2 9.7 3.9 C10.4 3.5 11.3 3.6 12 3Z">
+                    </path>
+                    <!-- Inner circle -->
+                    <circle cx="12" cy="9.8" r="4.2"></circle>
+                    <!-- Ribbons -->
+                    <path d="M9.8 14.6L7.7 20H10L12 17.7"></path>
+                    <path d="M14.2 14.6L16.3 20H14L12 17.7"></path>
+                </svg>
+            </div>
+            <div class="flex flex-col items-start justify-center">
+                <h5 class="xl:text-lg text-sm font-bold text-[var(--text)]">چرا ما را انتخاب کنید</h5>
+                <div
+                    class="flex flex-col items-start justify-center xl:text-[11px] text-[7px] text-[var(--text-secondary)]">
+                    <span class=" font-bold">استفاده از رنگ با کیفیت عالی</span>
+                    <span class="font-bold">با دستگاه های پیشرفته</span>
+                </div>
+            </div>
 
                                         <!-- Inner circle -->
                                         <circle cx="12" cy="9.8" r="4.2" />
@@ -508,63 +575,39 @@
         <div
             class="w-11/12 flex flex-col gap-2 justify-start items-center bg-[var(--background-2)] border border-[var(--border)] rounded-xl py-4 px-5">
             <ul
-                class="max-w-full min-w-full flex justify-start items-center gap-10 max-sm:gap-2 overflow-auto [&::-webkit-scrollbar]:h-2  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
-                <li class="flex justify-center items-center py-3 relative cheng_text_colot_hover cursor-pointer">
+                class="max-w-full min-w-full flex justify-start items-center gap-5 max-sm:gap-2 overflow-auto mb-10 [&::-webkit-scrollbar]:h-2  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
+                <li data-id="desc" data-info="{{ $product['description'] }}"
+                    class="box-titles flex justify-center items-center pb-1.5 relative cheng_text_colot_hover cursor-pointer">
                     <sapn
                         class="xl:text-xl lg:text-lg max-sm:text-sm transition_root text-nowrap font-bold text-[var(--gold)]">
                         توضیحات محصول</sapn>
                     <div
                         class="w-full absolute bottom-0 right-auto left-auto  oveflow-hidden flex justify-center items-center transition_root">
-                        <div class="w-full h-[2px] bg-[var(--gold)] rounded-full"></div>
+                        <div class="w-full h-[1px] bg-[var(--gold)] rounded-full transition_root"></div>
                     </div>
                 </li>
+                @if ($product->attributes->isNotEmpty())
+                    <li data-id="attr" data-info="{{ $product['attributes'] }}"
+                        class="box-titles flex justify-center items-center pb-1.5 relative cheng_text_colot_hover cursor-pointer">
+                        <sapn
+                            class="xl:text-xl lg:text-lg max-sm:text-sm transition_root text-nowrap font-bold text-[var(--text)]">
+                            مشخصات فنی</sapn>
+                        <div
+                            class="w-full absolute bottom-0 right-auto left-auto  oveflow-hidden flex justify-center items-center transition_root">
+                            <div class="w-full h-[1px] bg-[var(--text)] rounded-full transition_root"></div>
+                        </div>
+                    </li>
+                @endif
             </ul>
             <div class="w-full flex gap-6 justify-between items-center">
                 <!-- desciption_product_start -->
-                <div class="w-full h-full py-2">
+                <div id="box-content" class="w-full h-full py-2">
                     <p class="xl:text-lg lg:text-sm sm:text-xs text-[10px] text-[var(--text)] leading-8 text-justify">
                         {{ $product['description'] }}</p>
                 </div>
             </div>
         </div>
     </section>
-    @if ($product->attributes->isNotEmpty())
-        <section id="attributes" class="w-full flex justify-center items-center">
-            <div
-                class="w-11/12 flex flex-col gap-2 justify-start items-center bg-[var(--background-2)] border border-[var(--border)] rounded-xl py-4 px-5">
-                <ul
-                    class="max-w-full min-w-full flex justify-start items-center gap-10 max-sm:gap-2 overflow-auto [&::-webkit-scrollbar]:h-2  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
-                    <li class="flex justify-center items-center py-3 relative cheng_text_colot_hover cursor-pointer">
-                        <sapn
-                            class="xl:text-xl lg:text-lg max-sm:text-sm transition_root text-nowrap font-bold text-[var(--gold)]">
-                            مشخصات فنی</sapn>
-                        <div
-                            class="w-full absolute bottom-0 right-auto left-auto  oveflow-hidden flex justify-center items-center transition_root">
-                            <div class="w-full h-[2px] bg-[var(--gold)] rounded-full"></div>
-                        </div>
-                    </li>
-                </ul>
-                <div class="w-full flex gap-6 justify-between items-center">
-                    <!-- مشخصات فنی -->
-                    <div class="w-full h-full flex flex-col gap-4 items-center py-2 ">
-                        @foreach ($product->attributes as $attribute)
-                            <div class="w-1/2 flex gap-2 justify-between">
-                                <div class="w-1/2 flex justify-start items-center py-2 pr-4 bg-[#212224]">
-                                    <span
-                                        class="xl:text-lg max-lg:text-sm max-sm:text-xs font-bold text-[var(--gold)]">{{ $attribute['attribute_key'] }}</span>
-                                </div>
-                                <div class="w-1/2 flex justify-start items-center py-2 px-3 max-sm:px-1 bg-[#212224]">
-                                    <span
-                                        class="max-xl:text-sm max-lg:text-xs max-sm:text-[10px] text-[var(--text)]">{{ $attribute['attribute_value'] }}</span>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                    <!-- مشخصات فنی -->
-                </div>
-            </div>
-        </section>
-    @endif
     <!-- specification -->
     <!-- common_products_start -->
     <section class="w-full flex items-center justify-center">
@@ -598,7 +641,7 @@
                                         @endif
                                     @endforeach
                                     <img src="{{ $imgSrc }}" alt=""
-                                        class="object-fit w-full lg:h-55 h-45 rounded-2xl">
+                                        class="object-fit w-full lg:h-55 h-45 rounded-t-2xl">
                                 </a>
                                 <div class="w-full flex gap-4 justify-between items-center px-4">
                                     <div
@@ -639,7 +682,7 @@
     </section>
     <!-- common_products_end -->
     <!-- customer_start -->
-    <section class="w-full flex justify-center">
+    {{-- <section class="w-full flex justify-center">
         <div class="w-11/12 h-full flex max-lg:flex-col justify-center gap-3">
             <div
                 class="lg:w-1/2 w-full max-h-100 overflow-auto bg-[var(--background-2)] rounded-xl flex flex-col gap-4 justify-start items-start max-lg:items-center px-7 py-5 [&::-webkit-scrollbar]:w-1.5  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
@@ -1000,15 +1043,15 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- customer_end -->
     <!-- up_footer -->
     <section class="w-full flex justify-center">
         <div class="w-11/12 py-2 lg:px-10 px-5 bg-[#18092A] rounded-xl flex justify-between"
             style="background: linear-gradient(276deg,rgba(24, 9, 42, 1) 68%, rgba(34, 9, 48, 1) 100%);">
             <div class="max-sm:w-full h-full flex max-sm:flex-col justify-start items-center gap-5">
-                <a href="#"
-                    class="lg:px-8 sm:px-5 max-sm:w-full py-3 flex gap-3 justify-center items-center rounded-2xl gradient_box1 border-2 border-[var(--gold)] transition_root">
+                <span onclick="consultForm('open')"
+                    class="lg:px-8 sm:px-5 max-sm:w-full py-3 flex gap-3 justify-center items-center rounded-2xl gradient_box1 border-2 border-[var(--gold)] cursor-pointer transition_root">
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="lg:size-6 size-4"
                             fill="none" stroke="white" stroke-width="2" stroke-linecap="round"
@@ -1020,10 +1063,10 @@
                         </svg>
                     </div>
                     <span class="xl:text-lg max-lg:text-sm text-xs text-white font-bold">ثبت درخواست مشاوره</span>
-                </a>
+                </span>
                 <div class="max-sm:w-full flex flex-col gap-2 justify-center items-start max-sm:items-center">
                     <h5 class="lg:text-lg max-sm:text-sm text-[var(--text)]">نیاز به مشاوره دارید؟</h5>
-                    <p class="max-lg:text-sm max-sm:text-xs text-[var(--text-secondary)]">همکارن ما آماده پاسگویی
+                    <p class="max-lg:text-sm max-sm:text-xs text-[var(--text-secondary)]">همکارن ما آماده پاسخگویی
                         به سوالات شما هستن</p>
                 </div>
             </div>
@@ -1040,9 +1083,170 @@
         </div>
     </section>
     <!-- up_footer -->
+    <!-- consult form popup -->
+    <div id="consultForm"
+        class="w-full h-dvh fixed top-0 left-0 flex justify-center items-center invisible opacity-0 max-md:px-5 transition-all duration-300 z-5">
+        <div class="size-full bg-black/50 absolute backdrop-blur-[5px]" onclick="consultForm('close')"></div>
+        <div class="max-h-120 overflow-auto relative p-4 sm:p-10 w-full md:w-3/4 xl:w-1/2 bg-[#1B1C1E] rounded-2xl"
+            style="scrollbar-width: none">
+            <button
+                class="absolute z-1 top-1 left-1 size-6 flex flex-col justify-center items-center cursor-pointer bg-white rounded-full "
+                onclick="consultForm('close')">
+                <span class=" w-2/3 h-[2.5px] rounded-full bg-slate-500 rotate-45
+              translate-y-1/2"></span>
+                <span class="w-2/3 h-[2.5px] rounded-full bg-slate-500 -rotate-45 -translate-y-1/2"></span>
+            </button>
+            <form action="{{ route('consultRequest.store') }}" method="post" enctype="multipart/form-data"
+                class="w-full h-full grid grid-cols-1 md:grid-cols-2 grid-rows-7 md:grid-rows-5 gap-5">
+                @csrf
+                <div class="w-full flex flex-col">
+                    <label for="name" class="mb-2 flex flex-row items-center text-[var(--text)]">
+                        <span>
+                            نام :
+                            <span class="text-rose-500">*</span>
+                        </span>
+                    </label>
+                    <input type="text"
+                        class="text-xs outline-none pr-5 py-4 border border-[var(--gold)] rounded-[12px] text-[var(--text)]"
+                        name="name" id="name" placeholder="نام را وارد کنید" value="{{ old('name') }}">
+                    @error('name')
+                        <span class="text-xs text-red-500">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="w-full flex flex-col">
+                    <label for="family" class="mb-2 flex flex-row items-center text-[var(--text)]">
+                        <span>
+                            نام خانوادگی :
+                            <span class="text-rose-500">*</span>
+                        </span>
+                    </label>
+                    <input type="text"
+                        class="text-xs outline-none pr-5 py-4 border border-[var(--gold)] rounded-[12px] text-[var(--text)]"
+                        name="family" id="family" placeholder="نام خانوادگی را وارد کنید"
+                        value="{{ old('family') }}">
+                    @error('family')
+                        <span class="text-xs text-red-500">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="w-full flex flex-col">
+                    <label for="phoneNumber" class="mb-2 flex flex-row items-center text-[var(--text)]">
+                        <span>
+                            شماره تلفن :
+                            <span class="text-rose-500">*</span>
+                        </span>
+                    </label>
+                    <input type="tel"
+                        class="text-right text-xs outline-none pr-5 py-4 border border-[var(--gold)] rounded-[12px] text-[var(--text)]"
+                        name="phoneNumber" id="phoneNumber" placeholder="0912345678" value="{{ old('phoneNumber') }}">
+                    @error('phoneNumber')
+                        <span class="text-xs text-red-500">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="w-full flex flex-col">
+                    <label for="email" class="mb-2 text-[var(--text)]">
+                        <span>
+                            ایمیل :
+                        </span>
+                    </label>
+                    <input type="text"
+                        class="text-xs outline-none pr-5 py-4 border border-[var(--gold)] rounded-[12px] text-[var(--text)]"
+                        name="email" id="email" placeholder="example@gmail.com" value="{{ old('email') }}">
+                    @error('email')
+                        <span class="text-xs text-red-500">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="w-full flex flex-col md:col-span-2">
+                    <label for="subject" class="mb-2 flex flex-row items-center text-[var(--text)]">
+                        <span>
+                            موضوع و عنوان درخواست :
+                        </span>
+                        <span class="text-rose-500">*</span>
+                    </label>
+                    <input type="text"
+                        class="text-xs outline-none pr-5 py-4 border border-[var(--gold)] rounded-[12px] text-[var(--text)]"
+                        name="subject" id="subject"
+                        placeholder="مثال : مشاوره در مورد جنس و متریال استفاده شده در محصولات."
+                        value="{{ old('subject') }}">
+                    @error('subject')
+                        <span class="text-xs text-red-500">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="w-full flex flex-col md:col-span-2 row-span-2">
+                    <label for="text" class="mb-2 flex flex-row items-center text-[var(--text)]">
+                        <span>
+                            متن درخواست :
+                        </span>
+                        <span class="text-rose-500">*</span>
+                    </label>
+                    <textarea class="text-xs outline-none pr-5 py-4 border border-[var(--gold)] rounded-[12px] text-[var(--text)] h-full"
+                        name="text" id="text">{{ old('text') }}</textarea>
+                    @error('text')
+                        <span class="text-xs text-red-500">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="md:col-span-2 text-center">
+                    <button type="submit"
+                        class="py-3 px-10 rounded-[10px] bg-[var(--gold)] text-white cursor-pointer">ثبت</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- end consult form popup -->
     <script>
-        function showContent(el, state) {
-            console.log(state);
+        function consultForm(state) {
+            let consultForm = document.getElementById('consultForm')
+            if (state == 'open') {
+                consultForm.classList.remove('opacity-0', 'invisible');
+            }
+            if (state == 'close') {
+                consultForm.classList.add('opacity-0', 'invisible');
+            }
         }
+        let boxTitles = document.querySelectorAll('.box-titles')
+        boxTitles.forEach(title => {
+            title.addEventListener('click', () => {
+                boxTitles.forEach(el => {
+                    el.children[0].classList.remove('text-[var(--gold)]')
+                    el.children[0].classList.add('text-[var(--text)]')
+                    el.children[1].children[0].classList.remove('bg-[var(--gold)]')
+                    el.children[1].children[0].classList.add('bg-[var(--text)]')
+                });
+                title.children[0].classList.add('text-[var(--gold)]')
+                title.children[0].classList.remove('text-[var(--text)]')
+                title.children[1].children[0].classList.add('bg-[var(--gold)]')
+                title.children[1].children[0].classList.remove('bg-[var(--text)]')
+
+                let boxContent = document.getElementById('box-content')
+                boxContent.innerHTML = ''
+                if (title.dataset.id == 'desc') {
+                    boxContent.innerHTML = `
+                            <p class="xl:text-lg lg:text-sm sm:text-xs text-[10px] text-[var(--text)] leading-8 text-justify">
+                                ${title.dataset.info}
+                            </p>`
+                }
+                if (title.dataset.id == 'attr') {
+                    let arr = JSON.parse(title.dataset.info)
+                    innerElements = `
+                    <div class="w-full h-full flex flex-col gap-4 items-center py-2 ">`
+                    arr.forEach(item => {
+                        innerElements +=
+                            `
+                            <div class="w-1/2 flex gap-2 justify-between">
+                                <div class="w-1/2 flex justify-start items-center py-2 pr-4 bg-[#212224]">
+                                    <span
+                                        class="xl:text-lg max-lg:text-sm max-sm:text-xs font-bold text-[var(--gold)]">${ item['attribute_key'] }</span>
+                                </div>
+                                <div class="w-1/2 flex justify-start items-center py-2 px-3 max-sm:px-1 bg-[#212224]">
+                                    <span
+                                        class="max-xl:text-sm max-lg:text-xs max-sm:text-[10px] text-[var(--text)]">${ item['attribute_value'] }</span>
+                                </div>
+                            </div>
+                        `
+                    });
+                    innerElements += `</div>`
+                    boxContent.innerHTML = innerElements
+                }
+            })
+        });
     </script>
 @endsection
