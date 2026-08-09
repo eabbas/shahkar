@@ -353,10 +353,10 @@
             <img src="{{ asset('assets/img/background_commant.jpg') }}" alt=""
                 class="object-fit w-full h-90 max-lg:hidden">
             <div class="w-full h-full lg:absolute lg:bottom-0 lg:right-0 flex flex-col items-center justify-start">
-                <div class="w-11/12 h-full flex flex-col justify-between py-4">
+                <div class="w-11/12 h-full flex flex-col gap-10 justify-between py-4">
                     <!-- property -->
                     <div
-                        class="w-full lg:h-30 lg:border-y-1 lg:border-[var(--border)] max-lg:border sm:border-[var(--gold)] flex max-sm:flex max-sm:flex-col gap-4 items-center justify-between max-lg:grid grid-cols-2 lg:py-4 py-3 max-lg:px-5 max-sm:bg-[var(--background)] max-lg:bg-[var(--background-2)]">
+                        class="w-full lg:h-30 lg:border-y-1 lg:border-[var(--border)] max-lg:border sm:border-[var(--gold)] flex max-sm:flex max-sm:flex-col gap-4 items-center justify-between max-lg:grid grid-cols-2 lg:py-4 sm:py-3 max-lg:px-5 max-sm:px-0 max-sm:bg-[var(bakground-2)] max-lg:bg-[var(--background-2)]">
                         <div
                             class="w-full lg:w-1/6 h-full flex items-center justify-center max-lg:bg-[var(--background)] max-lg:rounded-xl max-lg:border-1 sm:border-[var(--border)] border-[var(--gold)] max-lg:py-2 max-lg:px-2">
                             <div
@@ -525,9 +525,9 @@
                     </div>
                     <!-- property -->
                     <!-- commend_coustomer -->
-                    <div class="w-full flex max-sm:flex-col max-sm:gap-4 justify-between items-center">
+                    <div class="w-full flex max-sm:flex-col max-sm:gap-4 justify-between">
                         <div
-                            class="sm:w-32/100 w-full h-full gradient_comment_box flex flex-col gap-4 items-center justify-center border border-[var(--gold)] rounded-xl py-4 scale transition_root">
+                            class="sm:w-32/100 w-full min-h-full gradient_comment_box flex flex-col gap-4 items-center justify-center border border-[var(--gold)] rounded-xl py-4 scale transition_root">
                             <p
                                 class="xl:w-9/12 w-11/12 xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs text-center text-[var(--text-secondary)]">
                                 کارکنان حرفه ای ، برخورد مناسب ، و تحویل سریع و به موقع واقعا کارتون حرف نداره دمتون گرم.
@@ -585,7 +585,7 @@
                             </div>
                         </div>
                         <div
-                            class="sm:w-32/100 w-full h-full gradient_comment_box flex flex-col gap-4 items-center justify-center border border-[var(--gold)] rounded-xl py-4 scale transition_root">
+                            class="sm:w-32/100 w-full min-h-full gradient_comment_box flex flex-col gap-4 items-center justify-center border border-[var(--gold)] rounded-xl py-4 scale transition_root">
                             <p
                                 class="xl:w-9/12 w-11/12 xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs text-center text-[var(--text-secondary)]">
                                 بهترین و با کیفیت ترین محصولات رو دارن با تنوع زیاد من یکی که از تابلو هاشون خیلی خوشم اومد
@@ -644,7 +644,7 @@
                             </div>
                         </div>
                         <div
-                            class="sm:w-32/100 w-full h-full gradient_comment_box flex flex-col gap-4 items-center justify-center border border-[var(--gold)] rounded-xl py-4 scale transition_root">
+                            class="sm:w-32/100 w-full min-h-full gradient_comment_box flex flex-col gap-4 items-center justify-center border border-[var(--gold)] rounded-xl py-4 scale transition_root">
                             <p
                                 class="xl:w-9/12 w-11/12 xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs text-center text-[var(--text-secondary)]">
                                 قیمت هاشون خیلی معقول و به صرفه بود در عین حال کیفیت محصولاتشون خیلی خوب بود و صفر تا صر کار
