@@ -5,6 +5,7 @@ use App\Http\Middleware\checkAdminMiddleware;
 use App\Http\Middleware\checklogin;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ConsultRequestController;
+use App\Http\Controllers\DefaultCommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\userController;
@@ -59,6 +60,14 @@ Route::group([
         'prefix' => 'introduction',
         'controller' => IntroductionController::class,
         'as' => 'introduction.'
+    ], function () {
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+    });
+    Route::group([
+        'prefix' => 'defaultComment',
+        'controller' => DefaultCommentController::class,
+        'as' => 'defaultComment.'
     ], function () {
         Route::get('/create', 'create')->name('create');
         Route::post('/store', 'store')->name('store');

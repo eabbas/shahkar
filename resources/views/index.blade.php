@@ -106,18 +106,18 @@
                                                 <!-- Logo -->
                                                 <path
                                                     d="
-                                                                                                                                                                                                                                                        M165 235
-                                                                                                                                                                                                                                                        L165 205
-                                                                                                                                                                                                                                                        Q165 180 188 180
-                                                                                                                                                                                                                                                        L205 180
-                                                                                                                                                                                                                                                        Q225 180 225 198
-                                                                                                                                                                                                                                                        Q225 214 208 214
-                                                                                                                                                                                                                                                        L188 214
-                                                                                                                                                                                                                                                        L188 225
-                                                                                                                                                                                                                                                        L215 225
-                                                                                                                                                                                                                                                        Q235 225 235 245
-                                                                                                                                                                                                                                                        L165 245
-                                                                                                                                                                                                                                                        Z" />
+                                                                                                                                                                                                                                                                                        M165 235
+                                                                                                                                                                                                                                                                                        L165 205
+                                                                                                                                                                                                                                                                                        Q165 180 188 180
+                                                                                                                                                                                                                                                                                        L205 180
+                                                                                                                                                                                                                                                                                        Q225 180 225 198
+                                                                                                                                                                                                                                                                                        Q225 214 208 214
+                                                                                                                                                                                                                                                                                        L188 214
+                                                                                                                                                                                                                                                                                        L188 225
+                                                                                                                                                                                                                                                                                        L215 225
+                                                                                                                                                                                                                                                                                        Q235 225 235 245
+                                                                                                                                                                                                                                                                                        L165 245
+                                                                                                                                                                                                                                                                                        Z" />
 
                                                 <!-- Text Line -->
                                                 <line x1="220" y1="225" x2="305" y2="225" />
@@ -420,23 +420,23 @@
                                         <!-- Scalloped medal -->
                                         <path
                                             d="
-                                                                                                                                                                                                                                                                M12 3
-                                                                                                                                                                                                                                                                C12.7 3.6 13.6 3.5 14.3 3.9
-                                                                                                                                                                                                                                                                C15.1 4.2 15.5 5 16.2 5.4
-                                                                                                                                                                                                                                                                C17 5.8 17.8 6.3 18 7.2
-                                                                                                                                                                                                                                                                C18.3 8 19 8.8 19 9.8
-                                                                                                                                                                                                                                                                C19 10.8 18.3 11.6 18 12.4
-                                                                                                                                                                                                                                                                C17.8 13.3 17 13.8 16.2 14.2
-                                                                                                                                                                                                                                                                C15.5 14.6 15.1 15.4 14.3 15.7
-                                                                                                                                                                                                                                                                C13.6 16.1 12.7 16 12 16.6
-                                                                                                                                                                                                                                                                C11.3 16 10.4 16.1 9.7 15.7
-                                                                                                                                                                                                                                                                C8.9 15.4 8.5 14.6 7.8 14.2
-                                                                                                                                                                                                                                                                C7 13.8 6.2 13.3 6 12.4
-                                                                                                                                                                                                                                                                C5.7 11.6 5 10.8 5 9.8
-                                                                                                                                                                                                                                                                C5 8.8 5.7 8 6 7.2
-                                                                                                                                                                                                                                                                C6.2 6.3 7 5.8 7.8 5.4
-                                                                                                                                                                                                                                                                C8.5 5 8.9 4.2 9.7 3.9
-                                                                                                                                                                                                                                                                C10.4 3.5 11.3 3.6 12 3Z" />
+                                                                                                                                                                                                                                                                                                M12 3
+                                                                                                                                                                                                                                                                                                C12.7 3.6 13.6 3.5 14.3 3.9
+                                                                                                                                                                                                                                                                                                C15.1 4.2 15.5 5 16.2 5.4
+                                                                                                                                                                                                                                                                                                C17 5.8 17.8 6.3 18 7.2
+                                                                                                                                                                                                                                                                                                C18.3 8 19 8.8 19 9.8
+                                                                                                                                                                                                                                                                                                C19 10.8 18.3 11.6 18 12.4
+                                                                                                                                                                                                                                                                                                C17.8 13.3 17 13.8 16.2 14.2
+                                                                                                                                                                                                                                                                                                C15.5 14.6 15.1 15.4 14.3 15.7
+                                                                                                                                                                                                                                                                                                C13.6 16.1 12.7 16 12 16.6
+                                                                                                                                                                                                                                                                                                C11.3 16 10.4 16.1 9.7 15.7
+                                                                                                                                                                                                                                                                                                C8.9 15.4 8.5 14.6 7.8 14.2
+                                                                                                                                                                                                                                                                                                C7 13.8 6.2 13.3 6 12.4
+                                                                                                                                                                                                                                                                                                C5.7 11.6 5 10.8 5 9.8
+                                                                                                                                                                                                                                                                                                C5 8.8 5.7 8 6 7.2
+                                                                                                                                                                                                                                                                                                C6.2 6.3 7 5.8 7.8 5.4
+                                                                                                                                                                                                                                                                                                C8.5 5 8.9 4.2 9.7 3.9
+                                                                                                                                                                                                                                                                                                C10.4 3.5 11.3 3.6 12 3Z" />
 
                                         <!-- Inner circle -->
                                         <circle cx="12" cy="9.8" r="4.2" />
@@ -525,27 +525,27 @@
                     </div>
                     <!-- property -->
                     <!-- commend_coustomer -->
-                    <div class="w-full flex max-sm:flex-col max-sm:gap-4 justify-between">
-                        <div
-                            class="sm:w-32/100 w-full min-h-full gradient_comment_box flex flex-col gap-4 items-center justify-center border border-[var(--gold)] rounded-xl py-4 scale transition_root">
-                            <p
-                                class="xl:w-9/12 w-11/12 xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs text-center text-[var(--text-secondary)]">
-                                کارکنان حرفه ای ، برخورد مناسب ، و تحویل سریع و به موقع واقعا کارتون حرف نداره دمتون گرم.
-                            </p>
+                    @if ($defaultComments->isNotEmpty())
+                        <div class="w-full flex max-sm:flex-col max-sm:gap-4 justify-between">
                             <div
-                                class="max-sm:w-full flex max-sm:justify-between justify-center max-sm:items-center max-sm:px-5">
+                                class="sm:w-32/100 w-full min-h-full gradient_comment_box flex flex-col gap-4 items-center justify-center border border-[var(--gold)] rounded-xl py-4 scale transition_root">
+                                <p
+                                    class="xl:w-9/12 w-11/12 xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs text-center text-[var(--text-secondary)]">
+                                    {{ $defaultComments[0]['comment'] }}</p>
                                 <div
-                                    class="xl:w-1/2 sm:w-10/12 w-1/2 flex justify-center max-sm:justify-start items-center gap-4">
-                                    <img src="{{ asset('assets/img/user.png') }}" alt=""
-                                        class="object-cover lg:size-10 sm:size-6 size-7 rounded-full bg-white">
-                                    <div class="flex flex-col items-start justify-center">
-                                        <h5
-                                            class="xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs font-bold text-[var(--text)] text-nowrap">
-                                            محمد مهدی بندعلی</h5>
-                                    </div>
+                                    class="max-sm:w-full flex max-sm:justify-between justify-center max-sm:items-center max-sm:px-5">
+                                    <div
+                                        class="xl:w-1/2 sm:w-10/12 w-1/2 flex justify-center max-sm:justify-start items-center gap-4">
+                                        <img src="{{ asset('assets/img/user.png') }}" alt=""
+                                            class="object-cover lg:size-10 sm:size-6 size-7 rounded-full bg-white">
+                                        <div class="flex flex-col items-start justify-center">
+                                            <h5
+                                                class="xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs font-bold text-[var(--text)] text-nowrap">
+                                                {{ $defaultComments[0]['userName'] }}</h5>
+                                        </div>
 
-                                </div>
-                                {{-- <div class="w-1/2 flex gap-0.5 items-center justify-end sm:hidden">
+                                    </div>
+                                    {{-- <div class="w-1/2 flex gap-0.5 items-center justify-end sm:hidden">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
                                         class="size-4 fill-[var(--star)]">
                                         <defs></defs>
@@ -582,29 +582,27 @@
                                         <path class="fa-primary" d="" />
                                     </svg>
                                 </div> --}}
+                                </div>
                             </div>
-                        </div>
-                        <div
-                            class="sm:w-32/100 w-full min-h-full gradient_comment_box flex flex-col gap-4 items-center justify-center border border-[var(--gold)] rounded-xl py-4 scale transition_root">
-                            <p
-                                class="xl:w-9/12 w-11/12 xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs text-center text-[var(--text-secondary)]">
-                                بهترین و با کیفیت ترین محصولات رو دارن با تنوع زیاد من یکی که از تابلو هاشون خیلی خوشم اومد
-                                .</p>
                             <div
-                                class="max-sm:w-full flex max-sm:justify-between justify-center max-sm:items-center max-sm:px-5">
+                                class="sm:w-32/100 w-full min-h-full gradient_comment_box flex flex-col gap-4 items-center justify-center border border-[var(--gold)] rounded-xl py-4 scale transition_root">
+                                <p
+                                    class="xl:w-9/12 w-11/12 xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs text-center text-[var(--text-secondary)]">
+                                    {{ $defaultComments[1]['comment'] }}</p>
                                 <div
-                                    class="xl:w-1/2 sm:w-10/12 w-1/2 flex justify-center max-sm:justify-start items-center gap-4">
-                                    <img src="{{ asset('assets/img/user.png') }}" alt=""
-                                        class="object-cover lg:size-10 sm:size-6 size-7 rounded-full bg-white">
-                                    <div class="flex flex-col items-start justify-center">
-                                        <h5
-                                            class="xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs font-bold text-[var(--text)] text-nowrap">
-                                            امیر فرامرزی</h5>
+                                    class="max-sm:w-full flex max-sm:justify-between justify-center max-sm:items-center max-sm:px-5">
+                                    <div
+                                        class="xl:w-1/2 sm:w-10/12 w-1/2 flex justify-center max-sm:justify-start items-center gap-4">
+                                        <img src="{{ asset('assets/img/user.png') }}" alt=""
+                                            class="object-cover lg:size-10 sm:size-6 size-7 rounded-full bg-white">
+                                        <div class="flex flex-col items-start justify-center">
+                                            <h5
+                                                class="xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs font-bold text-[var(--text)] text-nowrap">
+                                                {{ $defaultComments[1]['userName'] }}</h5>
+                                        </div>
 
                                     </div>
-
-                                </div>
-                                {{-- <div class="w-1/2 flex gap-0.5 items-center justify-end sm:hidden">
+                                    {{-- <div class="w-1/2 flex gap-0.5 items-center justify-end sm:hidden">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
                                         class="size-4 fill-[var(--star)]">
                                         <defs></defs>
@@ -641,27 +639,27 @@
                                         <path class="fa-primary" d="" />
                                     </svg>
                                 </div> --}}
-                            </div>
-                        </div>
-                        <div
-                            class="sm:w-32/100 w-full min-h-full gradient_comment_box flex flex-col gap-4 items-center justify-center border border-[var(--gold)] rounded-xl py-4 scale transition_root">
-                            <p
-                                class="xl:w-9/12 w-11/12 xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs text-center text-[var(--text-secondary)]">
-                                قیمت هاشون خیلی معقول و به صرفه بود در عین حال کیفیت محصولاتشون خیلی خوب بود و صفر تا صر کار
-                                رو خودشون انجام میدن.</p>
-                            <div
-                                class="max-sm:w-full flex max-sm:justify-between justify-center max-sm:items-center max-sm:px-5">
-                                <div
-                                    class="xl:w-1/2 sm:w-10/12 w-1/2 flex justify-center max-sm:justify-start items-center gap-4">
-                                    <img src="{{ asset('assets/img/user.png') }}" alt=""
-                                        class="object-cover lg:size-10 sm:size-6 size-7 rounded-full bg-white">
-                                    <div class="flex flex-col items-start justify-center">
-                                        <h5
-                                            class="xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs font-bold text-[var(--text)] text-nowrap">
-                                            عباس ملکی</h5>
-                                    </div>
                                 </div>
-                                {{-- <div class="w-1/2 flex gap-0.5 items-center justify-end sm:hidden">
+                            </div>
+                            <div
+                                class="sm:w-32/100 w-full min-h-full gradient_comment_box flex flex-col gap-4 items-center justify-center border border-[var(--gold)] rounded-xl py-4 scale transition_root">
+                                <p
+                                    class="xl:w-9/12 w-11/12 xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs text-center text-[var(--text-secondary)]">
+                                    {{ $defaultComments[2]['comment'] }}</p>
+                                <div
+                                    class="max-sm:w-full flex max-sm:justify-between justify-center max-sm:items-center max-sm:px-5">
+                                    <div
+                                        class="xl:w-1/2 sm:w-10/12 w-1/2 flex justify-center max-sm:justify-start items-center gap-4">
+                                        <img src="{{ asset('assets/img/user.png') }}" alt=""
+                                            class="object-cover lg:size-10 sm:size-6 size-7 rounded-full bg-white">
+                                        <div class="flex flex-col items-start justify-center">
+                                            <h5
+                                                class="xl:text-sm lg:text-xs sm:text-[9px] md:text-[10px] text-xs font-bold text-[var(--text)] text-nowrap">
+                                                {{ $defaultComments[2]['userName'] }}</h5>
+                                        </div>
+
+                                    </div>
+                                    {{-- <div class="w-1/2 flex gap-0.5 items-center justify-end sm:hidden">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
                                         class="size-4 fill-[var(--star)]">
                                         <defs></defs>
@@ -698,9 +696,10 @@
                                         <path class="fa-primary" d="" />
                                     </svg>
                                 </div> --}}
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>
