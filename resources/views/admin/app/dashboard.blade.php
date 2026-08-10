@@ -74,6 +74,12 @@
                                     <a href="{{ route('settings.introduction.create') }}"
                                         class="py-1 @if (Route::is('settings.introduction.create')) text-[#FF0000] @endif">معرفی ما</a>
                                 </li>
+                                <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                    <span class="size-1 bg-white rounded-sm"></span>
+                                    <a href="{{ route('settings.defaultComment.create') }}"
+                                        class="py-1 @if (Route::is('settings.defaultComment.create')) text-[#FF0000] @endif">نظرات پیش
+                                        فرض</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -292,6 +298,12 @@
                                         <a href="{{ route('settings.introduction.create') }}"
                                             class="py-1 @if (Route::is('settings.introduction.create')) text-[#FF0000] @endif">معرفی
                                             ما</a>
+                                    </li>
+                                    <li class="flex flex-row items-center gap-2.5 mt-2.5 mb-2.5 mr-5 text-white">
+                                        <span class="size-1 bg-white rounded-sm"></span>
+                                        <a href="{{ route('settings.defaultComment.create') }}"
+                                            class="py-1 @if (Route::is('settings.defaultComment.create')) text-[#FF0000] @endif">نظرات
+                                            پیش فرض</a>
                                     </li>
                                 </ul>
                             </div>

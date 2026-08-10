@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\category;
+use App\Models\defaultComment;
 use App\Models\logo;
 use App\Models\product;
 use App\Models\header;
@@ -19,6 +20,7 @@ class HomeController extends Controller
         $introduction = introduction::first();
         $categories = category::with('products')->has('products')->get();
         $products = product::where('show_in_home', 1)->get();
+        $defaultComments = defaultComment::all();
         foreach ($products as $product) {
             if ($product->media->isNotEmpty()) {
                 foreach ($product->media as $media) {
@@ -40,6 +42,7 @@ class HomeController extends Controller
             'introduction' => $introduction,
             'categories' => $categories,
             'products' => $products,
+            'defaultComments' => $defaultComments,
         ]);
     }
     public function pageNotFound()
