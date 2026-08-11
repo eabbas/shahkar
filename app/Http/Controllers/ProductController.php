@@ -279,8 +279,6 @@ class ProductController extends Controller
     }
     public function filter(Request $request)
     {
-        unset($request['_token']);
-        // dd(count($request->all()));
         if (isset($request['all'])) {
             return to_route('product.index');
         }
@@ -312,6 +310,39 @@ class ProductController extends Controller
             'categories' => $categories,
             'products' => $products,
             'catIds' => $request['selectedCats']
+        ]);
+    }
+    public function search(Request $request)
+    {
+        // $product = product::where('title', 'like', '%' . $request['title'] . '%')->orWhere('summary', 'like', '%' . $request['title'] . '%')->orWhere('description', 'like', '%' . $request['title'] . '%')->get();
+        $products = product::where('title', 'like', '%' . $request['title'] . '%')->with('media')->get();
+        return response()->json($products);
+    }
+    public function searchResult(Request $request)
+    {
+        $products = product::where('title', 'like', '%' . $request['searchedValue'] . '%')->get();
+        $logo = logo::first();
+        $services = service::all();
+        $categories = category::with('products')->has('products')->get();
+        foreach ($products as $product) {
+            if ($product->media->isNotEmpty()) {
+                foreach ($product->media as $media) {
+                    if ($media['is_main']) {
+                        $product['mainImg']  = $media['media_path'];
+                        break;
+                    } else {
+                        $product['mainImg'] = 'default.jpg';
+                    }
+                }
+            } else {
+                $product['mainImg'] = 'default.jpg';
+            }
+        }
+        return view('user.product.index', [
+            'logo' => $logo,
+            'services' => $services,
+            'categories' => $categories,
+            'products' => $products,
         ]);
     }
 }

@@ -8,25 +8,33 @@
                 class="lg:w-3/12 w-full pt-1 pb-9 lg:sticky lg:top-27 lg:left-0 lg:max-h-[90vh] lg:overflow-auto lg:[&::-webkit-scrollbar]:w-1  lg:[&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  lg:[&::-webkit-scrollbar-thumb]:rounded-full">
                 <div
                     class=" w-full bg-[var(--background-2)] border border-[var(--gold)] rounded-2xl flex flex-col justify-start items-start pb-3 ">
-                    <div class="w-full py-2 border-b border-[var(--gold)] flex justify-center items-center">
+                    <div class="w-full py-2 border-b border-[var(--gold)] flex justify-center items-center relative">
                         <div
                             class="w-11/12 bg-[var(--background)] border border-[var(--border)] rounded-xl flex gap-3 justify-between items-center shadow_boxs xl:px-6 px-4 xl:py-5 py-4">
-                            <div class="flex xl:gap-4 gap-2 items-center">
-                                <div>
+                            <form action="{{ route('product.searchResult') }}" method="post"
+                                class="flex xl:gap-4 gap-2 items-center">
+                                @csrf
+                                <button class="cursor-pointer">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
                                         class="xl:size-4 size-3 fill-[var(--text)]">
                                         <path
                                             d="M368 208A160 160 0 1 0 48 208a160 160 0 1 0 320 0zM337.1 371.1C301.7 399.2 256.8 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208c0 48.8-16.8 93.7-44.9 129.1L505 471c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L337.1 371.1z">
                                         </path>
                                     </svg>
-                                </div>
-                                <input type="text" placeholder="جستحوی مجصول..."
+                                </button>
+                                <input type="text" placeholder="جستحوی مجصول..." id="searchInput" name="searchedValue"
                                     class="outline-none xl:text-sm text-xs font-bold text-[var(--text-secondary)]"
-                                    onclick="search_focus_box('open')">
-                            </div>
+                                    onkeyup="searchProduct(this)" required>
+                            </form>
+                        </div>
+                        <div id="searchResultBox"
+                            class="invisible opacity-0 absolute top-18 left-0 w-full max-h-70 overflow-auto bg-[var(--background)] border border-[var(--gold)] shadow-xl rounded-xl z-5 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-[var(--gold)] [&::-webkit-scrollbar-thumb]:rounded-full">
+                            <a href="#"
+                                class="w-full flex justify-between items-center px-2 py-4 border-b border-[var(--gold)]">
+                            </a>
                         </div>
                     </div>
-                    <form action="{{ route('product.filter') }}" method="POST"
+                    <form action="{{ route('product.filter') }}" method="POST" id="filterForm"
                         class="w-full h-full  flex flex-col justify-start items-center">
                         @csrf
                         <div
@@ -57,11 +65,9 @@
                                         <div class="w-full flex justify-start items-center gap-4">
                                             <input id="{{ $category['id'] }}" type="checkbox" name="selectedCats[]"
                                                 value="{{ $category->id }}"
-                                                @if (isset($currentCat)) @if ($currentCat->id == $category->id) 
-                                                 checked @endif
+                                                @if (isset($currentCat)) @if ($currentCat->id == $category->id) checked @endif
                                                 @endif
-                                            @if (isset($catIds)) @if (in_array($category->id, $catIds))
-                                                    checked @endif
+                                            @if (isset($catIds)) @if (in_array($category->id, $catIds)) checked @endif
                                     @endif
                                     class="checkBox appearance-none xl:size-5 size-4 bg-[var(--background)] border border-[var(--gold)] checked:bg-[var(--gold)] rounded-sm after:content-['✓'] after:flex after:justify-center after:items-center  after:opacity-0 checked:after:opacity-100 max-xl:after:text-xs after:text-white transition_root">
                                     <label for="{{ $category['id'] }}"
@@ -71,12 +77,12 @@
                             </div>
                         </div>
                 </div>
-                <div
+                {{-- <div
                     class="w-full h-12 pb-3 flex flex-col justify-start items-start border-b border-[var(--gold)] overflow-y-hidden transition_root ">
                     <label for=""
                         class="w-full min-h-12 px-4 flex justify-between items-center filter_product_list">
-                        <span class="xl:text-lg text-sm text-[var(--text)] flex justify-center items-center gap-2">رنج
-                            قیمت<span class="xl:text-base text-xs text-[var(--text-secondary)]">(تومان)</span></span>
+                        <span class="xl:text-lg text-sm text-[var(--text)] flex justify-center items-center gap-2">بازه
+                            قیمت<span class="text-xs text-[var(--text-secondary)]">(تومان)</span></span>
                         <div>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
                                 class="xl:size-5 size-3 fill-[var(--gold)]">
@@ -106,7 +112,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="w-full flex flex-col gap-4 justify-start items-center mt-7">
                     <button type="submit"
                         class="w-11/12 py-2 gradient_box1 rounded-xl flex gap-2 justify-center items-center cursor-pointer">
@@ -205,7 +211,7 @@
         <div class="lg:w-9/12 w-full h-full flex flex-col gap-10 justify-start items-center">
             <div class="w-full flex justify-between  items-start relative pt-4">
                 <span class="text-sm text-[var(--text)]">{{ count($products) }} محصول</span>
-                <div
+                {{-- <div
                     class="h-12 bg-[var(--background-2)] border border-[var(--border)] flex flex-col gap-2 justify-start items-center rounded-xl overflow-y-hidden absolute top-0 left-0 transition_root">
                     <div class="w-full min-h-12 flex justify-between gap-12 items-center px-4 cursor-pointer"
                         onclick="sort_product(this)">
@@ -242,7 +248,7 @@
                             <span class="xl:text-lg text-sm text-[var(--text)]">محبوب ترین</span>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div
                 class="w-full grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5 justify-start items-start">
@@ -284,8 +290,7 @@
                                     <div class="flex items-center gap-2 text-end">
                                         <span
                                             class="text-xs text-gray-400 font-bold line-through">{{ $product['primary_price'] }}</span>
-                                        <span
-                                            class="text-[var(--gold)] w-full text-left">{{ $product['secondary_price'] }}
+                                        <span class="text-[var(--gold)] w-full text-left">{{ $product['secondary_price'] }}
                                             <span class="text-[10px]">تومان</span>
                                         </span>
                                     </div>
@@ -553,7 +558,81 @@
                 checkBox.checked = false
             });
             allCheckbox.checked = true
-            document.forms[0].submit()
+            document.getElementById('filterForm').submit()
+        }
+
+        let searchResultBox = document.getElementById('searchResultBox')
+        let searchInput = document.getElementById('searchInput')
+        searchInput.addEventListener('blur', () => {
+            searchResultBox.classList.add('invisible', 'opacity-0')
+        })
+
+        function searchProduct(el) {
+            if (el.value != '') {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    }
+                })
+                $.ajax({
+                    url: "{{ route('product.search') }}",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        'title': el.value,
+                    },
+                    success: function(data) {
+                        searchResultBox.classList.remove('opacity-0', 'invisible')
+                        searchResultBox.innerHTML = ''
+                        data.forEach(product => {
+                            let a = document.createElement('a')
+                            a.classList =
+                                'w-full flex justify-between items-center px-2 py-4 border-b border-[var(--gold)]'
+                            a.setAttribute('href', `{{ url('product/show/${product.id}') }}`)
+                            let imgSrc
+                            for (let i = 0; i < product.media.length; i++) {
+                                if (product.media[i].is_main) {
+                                    imgSrc =
+                                        `{{ asset('storage/${product.media[i].media_path}') }}`
+                                    break
+                                } else {
+                                    imgSrc = `{{ asset('storage/default.jpg') }}`
+                                }
+                            };
+                            element = `
+                                <img src="${imgSrc}" alt=""
+                                    class="size-15 rounded-xl">
+                                <div class="flex flex-col items-end gap-4 text-xs text-[var(--text)]">
+                                    <span class="text-nowrap w-11/12 truncate">${product.title}</span>
+                                    `
+                            if (product['secondary_price']) {
+                                element += `
+                                    <div class="flex items-center gap-2 text-end">
+                                        <span
+                                            class="text-xs text-gray-400 font-bold line-through">${product.primary_price}</span>
+                                        <span
+                                            class="text-[var(--gold)]">${product.secondary_price}
+                                            <span class="text-[10px]">تومان</span>
+                                        </span>
+                                    </div>
+                                    `
+                            } else {
+                                element += `
+                                    <span class="text-[var(--gold)]">${product.primary_price}
+                                        <span class="text-[10px]">تومان</span>
+                                    </span>
+                                    `
+                            }
+                            element += `</div>`
+                            a.innerHTML = element
+                            searchResultBox.append(a)
+                        })
+                    },
+                    error: function() {
+                        alert('error')
+                    }
+                })
+            }
         }
     </script>
 @endsection

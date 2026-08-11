@@ -121,6 +121,8 @@ Route::group([
     })->name('show');
     Route::get('/list', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('index');
     Route::post('/filterRelatedProducts', 'filter')->withoutMiddleware(checkAdminMiddleware::class)->name('filter');
+    Route::post('/search', 'search')->withoutMiddleware(checkAdminMiddleware::class)->name('search');
+    Route::post('/searchResult', 'searchResult')->withoutMiddleware(checkAdminMiddleware::class)->name('searchResult');
     // Route::get('/admin/show/{product}', 'adminShow')->missing(function () {
     //     return to_route('missing');
     // })->name('adminShow');
