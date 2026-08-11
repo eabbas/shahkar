@@ -109,14 +109,14 @@
                             <div
                                 class="w-full flex flex-col justify-start items-start overflow-y-auto max-h-100 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-[var(--gold)] [&::-webkit-scrollbar-thumb]:rounded-full">
                                 @foreach ($categories as $category)
-                                    <div
+                                    <a href="{{ route('category.relatedProducts', [$category]) }}"
                                         class="w-full bg-[var(--background-2)] relative flex flex-col items-start justify-start p-4">
                                         <div class="group pb-4 pr-4">
                                             <span
                                                 class="text-[15px] md:text-md font-bold text-white group-hover:pr-5 group-hover:text-[var(--gold)] transition_root">{{ $category['title'] }}</span>
                                         </div>
                                         <span class="w-full h-[1px] bg-[#292931]"></span>
-                                    </div>
+                                    </a>
                                 @endforeach
                             </div>
                         </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\category;
 use App\Models\logo;
 use App\Models\product;
+use App\Models\service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -129,6 +130,35 @@ class CategoryController extends Controller
             $category->delete();
         }
         return to_route('category.adminIndex')->with('message', 'دسته بندی ' . $name . ' حذف شد.');
+    }
+    public function relatedProducts(category $category)
+    {
+        // return $category;
+        $logo = logo::first();
+        $services = service::all();
+        $categories = category::with('products')->has('products')->get();
+        $products = $category->products;
+        foreach ($products as $product) {
+            if ($product->media->isNotEmpty()) {
+                foreach ($product->media as $media) {
+                    if ($media['is_main']) {
+                        $product['mainImg']  = $media['media_path'];
+                        break;
+                    } else {
+                        $product['mainImg'] = 'default.jpg';
+                    }
+                }
+            } else {
+                $product['mainImg'] = 'default.jpg';
+            }
+        }
+        return view('user.product.index', [
+            'currentCat' => $category,
+            'logo' => $logo,
+            'services' => $services,
+            'categories' => $categories,
+            'products' => $products,
+        ]);
     }
 
     // public function showSubCats(Request $request)

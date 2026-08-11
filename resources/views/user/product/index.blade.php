@@ -8,25 +8,35 @@
                 class="lg:w-3/12 w-full pt-1 pb-9 lg:sticky lg:top-27 lg:left-0 lg:max-h-[90vh] lg:overflow-auto lg:[&::-webkit-scrollbar]:w-1  lg:[&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  lg:[&::-webkit-scrollbar-thumb]:rounded-full">
                 <div
                     class=" w-full bg-[var(--background-2)] border border-[var(--gold)] rounded-2xl flex flex-col justify-start items-start pb-3 ">
-                    <div class="w-full py-2 border-b border-[var(--gold)] flex justify-center items-center">
+                    <div class="w-full py-2 border-b border-[var(--gold)] flex justify-center items-center relative">
                         <div
                             class="w-11/12 bg-[var(--background)] border border-[var(--border)] rounded-xl flex gap-3 justify-between items-center shadow_boxs xl:px-6 px-4 xl:py-5 py-4">
-                            <div class="flex xl:gap-4 gap-2 items-center">
-                                <div>
+                            <form action="{{ route('product.searchResult') }}" method="post"
+                                class="flex xl:gap-4 gap-2 items-center">
+                                @csrf
+                                <button class="cursor-pointer">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
                                         class="xl:size-4 size-3 fill-[var(--text)]">
                                         <path
                                             d="M368 208A160 160 0 1 0 48 208a160 160 0 1 0 320 0zM337.1 371.1C301.7 399.2 256.8 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208c0 48.8-16.8 93.7-44.9 129.1L505 471c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L337.1 371.1z">
                                         </path>
                                     </svg>
-                                </div>
-                                <input type="text" placeholder="جستحوی مجصول..."
+                                </button>
+                                <input type="text" placeholder="جستحوی مجصول..." id="searchInput" name="searchedValue"
                                     class="outline-none xl:text-sm text-xs font-bold text-[var(--text-secondary)]"
-                                    onclick="search_focus_box('open')">
-                            </div>
+                                    onkeyup="searchProduct(this)" required>
+                            </form>
+                        </div>
+                        <div id="searchResultBox"
+                            class="invisible opacity-0 absolute top-18 left-0 w-full max-h-70 overflow-auto bg-[var(--background)] border border-[var(--gold)] shadow-xl rounded-xl z-5 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-[var(--gold)] [&::-webkit-scrollbar-thumb]:rounded-full">
+                            <a href="#"
+                                class="w-full flex justify-between items-center px-2 py-4 border-b border-[var(--gold)]">
+                            </a>
                         </div>
                     </div>
-                    <form action="" class="w-full h-full  flex flex-col justify-start items-center">
+                    <form action="{{ route('product.filter') }}" method="POST" id="filterForm"
+                        class="w-full h-full  flex flex-col justify-start items-center">
+                        @csrf
                         <div
                             class="w-full pb-3 flex flex-col gap-2 justify-start items-start  border-b border-[var(--gold)] overflow-y-hidden transition_root ">
                             <label for=""
@@ -45,137 +55,96 @@
                                 <div
                                     class="w-full max-h-50 overflow-y-auto flex flex-col gap-4 justify-start items-start [&::-webkit-scrollbar]:w-1  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
                                     <div class="w-full flex justify-start items-center gap-4">
-                                        <input id="all" checked type="checkbox"
+                                        <input id="all" @if (!isset($currentCat) && !isset($catIds)) checked @endif
+                                            name="all" value="all" type="checkbox"
                                             class="appearance-none xl:size-5 size-4 bg-[var(--background)] border border-[var(--gold)] checked:bg-[var(--gold)] rounded-sm after:content-['✓'] after:flex after:justify-center after:items-center  after:opacity-0 checked:after:opacity-100 max-xl:after:text-xs after:text-white transition_root">
                                         <label for="all"
-                                            class="xl:text-sm text-xs font-bold text-[var(--text-secondary)]">همه</label>
+                                            class="xl:text-sm text-xs font-bold text-[var(--text-secondary)] cursor-pointer">همه</label>
                                     </div>
                                     @foreach ($categories as $category)
                                         <div class="w-full flex justify-start items-center gap-4">
-                                            <input id="{{ $category['id'] }}" type="checkbox"
-                                                class="appearance-none xl:size-5 size-4 bg-[var(--background)] border border-[var(--gold)] checked:bg-[var(--gold)] rounded-sm after:content-['✓'] after:flex after:justify-center after:items-center  after:opacity-0 checked:after:opacity-100 max-xl:after:text-xs after:text-white transition_root">
-                                            <label for="{{ $category['id'] }}"
-                                                class="xl:text-sm text-xs font-bold text-[var(--text-secondary)]">{{ $category['title'] }}</label>
-                                        </div>
-                                    @endforeach
+                                            <input id="{{ $category['id'] }}" type="checkbox" name="selectedCats[]"
+                                                value="{{ $category->id }}"
+                                                @if (isset($currentCat)) @if ($currentCat->id == $category->id) checked @endif
+                                                @endif
+                                            @if (isset($catIds)) @if (in_array($category->id, $catIds)) checked @endif
+                                    @endif
+                                    class="checkBox appearance-none xl:size-5 size-4 bg-[var(--background)] border border-[var(--gold)] checked:bg-[var(--gold)] rounded-sm after:content-['✓'] after:flex after:justify-center after:items-center  after:opacity-0 checked:after:opacity-100 max-xl:after:text-xs after:text-white transition_root">
+                                    <label for="{{ $category['id'] }}"
+                                        class="xl:text-sm text-xs font-bold text-[var(--text-secondary)] cursor-pointer">{{ $category['title'] }}</label>
                                 </div>
+                                @endforeach
                             </div>
                         </div>
-                        <div
-                            class="w-full h-12 pb-3 flex flex-col justify-start items-start border-b border-[var(--gold)] overflow-y-hidden transition_root ">
-                            <label for=""
-                                class="w-full min-h-12 px-4 flex justify-between items-center filter_product_list">
-                                <span
-                                    class="xl:text-lg text-sm text-[var(--text)] flex justify-center items-center gap-2">رنج
-                                    قیمت<span
-                                        class="xl:text-base text-xs text-[var(--text-secondary)]">(تومان)</span></span>
-                                <div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                                        class="xl:size-5 size-3 fill-[var(--gold)]">
-                                        <path
-                                            d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z">
-                                        </path>
-                                    </svg>
-                                </div>
-                            </label>
-                            <div class="w-full flex flex-col gap-7 justify-start items-center px-4 max-xl:mt-1 py-4">
-                                <div class="w-full flex justify-center items-start">
-                                    <input type="range" class="w-11/12 xl:h-2 h-1.5 accent-[var(--gold)]" min="0"
-                                        max="20000" value="20000" dir="ltr">
-                                    {{-- <input type="range"
-                                        class="w-11/12 xl:h-2 h-1.5 accent-[var(--gold)] bg-[var(--background-)]"
-                                        min="0" max="20000" value="20000"> --}}
-                                </div>
-                                <div class="w-full flex justify-between items-center">
-                                    <div class="w-1/2 flex justify-end items-center gap-2">
-                                        <span class="text-[var(--text-secondary)] max-xl:text-sm">تا</span>
-                                        <input type="number"
-                                            class="bg-[var(--backgorund)] border border-[var(--border)] text-[var(--text-secondary)] max-xl:text-sm w-full px-2 py-1 rounded-md"
-                                            placeholder="20,000">
-                                    </div>
-                                    <div class="w-1/2 flex justify-end items-center gap-2">
-                                        <span class="text-[var(--text-secondary)] max-xl:text-sm">از</span>
-                                        <input type="number"
-                                            class="bg-[var(--backgorund)] border border-[var(--border)] text-[var(--text-secondary)] max-xl:text-sm w-2/3 px-2 py-1 rounded-md"
-                                            placeholder="0">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- <span class="w-full h-[1px] bg-[var(--gold)]"></span> -->
-                        {{-- <div
-                            class="w-full h-12 pb-3 flex flex-col justify-start  border-b border-[var(--gold)] items-start overflow-y-hidden transition_root cursor-pointer">
-                            <label for=""
-                                class="w-full min-h-12 px-4 flex justify-between items-center filter_product_list">
-                                <span class="xl:text-lg text-sm text-[var(--text)]">رنگ</span>
-                                <div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                                        class="xl:size-5 size-3 fill-[var(--gold)]">
-                                        <path
-                                            d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z">
-                                        </path>
-                                    </svg>
-                                </div>
-                            </label>
-                            <div class="w-full h-full flex flex-col gap-4 justify-start items-start px-4 pr-7 max-xl:mt-1">
-                                <div
-                                    class="w-full pb-2 max-h-50 overflow-y-auto flex flex-col gap-4 justify-start items-start [&::-webkit-scrollbar]:w-1  [&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  [&::-webkit-scrollbar-thumb]:rounded-full">
-                                    <div class="w-full flex justify-start items-center gap-4">
-                                        <input id="all" checked type="checkbox"
-                                            class="appearance-none xl:size-5 size-4 bg-[var(--background)] border border-[var(--gold)] checked:bg-[var(--gold)] rounded-sm after:content-['✓'] after:flex after:justify-center after:items-center  after:opacity-0 checked:after:opacity-100 max-xl:after:text-xs after:text-white transition_root">
-                                        <label for="all"
-                                            class="xl:text-sm text-xs font-bold text-[var(--text-secondary)]">همه</label>
-                                    </div>
-                                    <div class="w-full flex justify-start items-center gap-4">
-                                        <input id="kart" type="checkbox"
-                                            class="appearance-none xl:size-5 size-4 bg-[var(--background)] border border-[var(--gold)] checked:bg-[var(--gold)] rounded-sm after:content-['✓'] after:flex after:justify-center after:items-center  after:opacity-0 checked:after:opacity-100 max-xl:after:text-xs after:text-white transition_root">
-                                        <label for="kart"
-                                            class="xl:text-sm text-xs font-bold text-[var(--text-secondary)]">کارت
-                                            ویزیت</label>
-                                    </div>
-                                    <div class="w-full flex justify-start items-center gap-4">
-                                        <input id="baner" type="checkbox"
-                                            class="appearance-none xl:size-5 size-4 bg-[var(--background)] border border-[var(--gold)] checked:bg-[var(--gold)] rounded-sm after:content-['✓'] after:flex after:justify-center after:items-center  after:opacity-0 checked:after:opacity-100 max-xl:after:text-xs after:text-white transition_root">
-                                        <label for="baner"
-                                            class="xl:text-sm text-xs font-bold text-[var(--text-secondary)]">چاپ
-                                            بنر</label>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div> --}}
-                        <div class="w-full flex flex-col gap-4 justify-start items-center mt-7">
-                            <button type="button"
-                                class="w-11/12 py-2 gradient_box1 rounded-xl flex gap-2 justify-center items-center cursor-pointer">
-                                <div>
-                                    <svg version="1.1" class="xl:size-4 size-3 fill-[var(--text)]" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M.75 3a.75.75 0 000 1.5h14.5a.75.75 0 000-1.5H.75zM3 7.75A.75.75 0 013.75 7h8.5a.75.75 0 010 1.5h-8.5A.75.75 0 013 7.75zm3 4a.75.75 0 01.75-.75h2.5a.75.75 0 010 1.5h-2.5a.75.75 0 01-.75-.75z">
-                                        </path>
-                                    </svg>
-                                </div>
-                                <span class="max-xl:text-sm font-bold text-[var(--text)]">اعمال فیلتر</span>
-                            </button>
-                            <button type="button"
-                                class="w-11/12 py-2 rounded-xl flex gap-2 justify-center items-center cursor-pointer">
-                                <div>
-                                    <svg version="1.1" viewBox="0 0 36 36" class="size-4 fill-[var(--gold)]"
-                                        preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"
-                                        xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" role="img">
-                                        <path class="clr-i-outline clr-i-outline-path-1"
-                                            d="M22.4,11.65a1.09,1.09,0,0,0,1.09,1.09H34.43V1.81a1.09,1.09,0,1,0-2.19,0V8.95a16.41,16.41,0,1,0,1.47,15.86,1.12,1.12,0,0,0-2.05-.9,14.18,14.18,0,1,1-1.05-13.36H23.5A1.09,1.09,0,0,0,22.4,11.65Z">
-                                        </path>
-                                    </svg>
-                                </div>
-                                <span class="xl:text-sm text-xs font-bold text-[var(--text)]">حذف فیلتر ها</span>
-                            </button>
-                        </div>
-                    </form>
                 </div>
+                {{-- <div
+                    class="w-full h-12 pb-3 flex flex-col justify-start items-start border-b border-[var(--gold)] overflow-y-hidden transition_root ">
+                    <label for=""
+                        class="w-full min-h-12 px-4 flex justify-between items-center filter_product_list">
+                        <span class="xl:text-lg text-sm text-[var(--text)] flex justify-center items-center gap-2">بازه
+                            قیمت<span class="text-xs text-[var(--text-secondary)]">(تومان)</span></span>
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                class="xl:size-5 size-3 fill-[var(--gold)]">
+                                <path
+                                    d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z">
+                                </path>
+                            </svg>
+                        </div>
+                    </label>
+                    <div class="w-full flex flex-col gap-7 justify-start items-center px-4 max-xl:mt-1 py-4">
+                        <div class="w-full flex justify-center items-start">
+                            <input type="range" class="w-11/12 xl:h-2 h-1.5 accent-[var(--gold)]" min="0"
+                                max="20000" value="20000" dir="ltr">
+                        </div>
+                        <div class="w-full flex justify-between items-center">
+                            <div class="w-1/2 flex justify-end items-center gap-2">
+                                <span class="text-[var(--text-secondary)] max-xl:text-sm">تا</span>
+                                <input type="number"
+                                    class="bg-[var(--backgorund)] border border-[var(--border)] text-[var(--text-secondary)] max-xl:text-sm w-full px-2 py-1 rounded-md"
+                                    placeholder="20,000">
+                            </div>
+                            <div class="w-1/2 flex justify-end items-center gap-2">
+                                <span class="text-[var(--text-secondary)] max-xl:text-sm">از</span>
+                                <input type="number"
+                                    class="bg-[var(--backgorund)] border border-[var(--border)] text-[var(--text-secondary)] max-xl:text-sm w-2/3 px-2 py-1 rounded-md"
+                                    placeholder="0">
+                            </div>
+                        </div>
+                    </div>
+                </div> --}}
+                <div class="w-full flex flex-col gap-4 justify-start items-center mt-7">
+                    <button type="submit"
+                        class="w-11/12 py-2 gradient_box1 rounded-xl flex gap-2 justify-center items-center cursor-pointer">
+                        <div>
+                            <svg version="1.1" class="xl:size-4 size-3 fill-[var(--text)]" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M.75 3a.75.75 0 000 1.5h14.5a.75.75 0 000-1.5H.75zM3 7.75A.75.75 0 013.75 7h8.5a.75.75 0 010 1.5h-8.5A.75.75 0 013 7.75zm3 4a.75.75 0 01.75-.75h2.5a.75.75 0 010 1.5h-2.5a.75.75 0 01-.75-.75z">
+                                </path>
+                            </svg>
+                        </div>
+                        <span class="max-xl:text-sm font-bold text-[var(--text)]">اعمال فیلتر</span>
+                    </button>
+                    <button type="reset" onclick="resetForm(this)"
+                        class="w-11/12 py-2 rounded-xl flex gap-2 justify-center items-center cursor-pointer">
+                        <div>
+                            <svg version="1.1" viewBox="0 0 36 36" class="size-4 fill-[var(--gold)]"
+                                preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" role="img">
+                                <path class="clr-i-outline clr-i-outline-path-1"
+                                    d="M22.4,11.65a1.09,1.09,0,0,0,1.09,1.09H34.43V1.81a1.09,1.09,0,1,0-2.19,0V8.95a16.41,16.41,0,1,0,1.47,15.86,1.12,1.12,0,0,0-2.05-.9,14.18,14.18,0,1,1-1.05-13.36H23.5A1.09,1.09,0,0,0,22.4,11.65Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <span class="xl:text-sm text-xs font-bold text-[var(--text)]">حذف فیلتر ها</span>
+                    </button>
+                </div>
+                </form>
             </div>
-            <!-- filter_index_product -->
-            <!-- button_filter_mobile_start -->
-            {{-- <div class="w-full flex flex-col gap-5 justify-start items-center sm:hidden relative">
+        </div>
+        <!-- filter_index_product -->
+        <!-- button_filter_mobile_start -->
+        {{-- <div class="w-full flex flex-col gap-5 justify-start items-center sm:hidden relative">
                 <button class="w-11/12 py-2 gradient_box1 rounded-xl flex gap-2 justify-center items-center"
                     onclick="filter_index_product_pop_up_mobile('open')">
                     <div>
@@ -236,108 +205,107 @@
                 </div>
                 <!-- button_sort_product_mobile -->
             </div> --}}
-            <!-- button_filter_mobile_end -->
+        <!-- button_filter_mobile_end -->
 
-            <!-- products -->
-            <div class="lg:w-9/12 w-full h-full flex flex-col gap-10 justify-start items-center">
-                <div class="w-full flex justify-between  items-start relative pt-4">
-                    <span class="text-sm text-[var(--text)]">{{ count($products) }} محصول</span>
+        <!-- products -->
+        <div class="lg:w-9/12 w-full h-full flex flex-col gap-10 justify-start items-center">
+            <div class="w-full flex justify-between  items-start relative pt-4">
+                <span class="text-sm text-[var(--text)]">{{ count($products) }} محصول</span>
+                {{-- <div
+                    class="h-12 bg-[var(--background-2)] border border-[var(--border)] flex flex-col gap-2 justify-start items-center rounded-xl overflow-y-hidden absolute top-0 left-0 transition_root">
+                    <div class="w-full min-h-12 flex justify-between gap-12 items-center px-4 cursor-pointer"
+                        onclick="sort_product(this)">
+                        <div class="h-full flex xl:gap-2 gap-1 justify-start items-center">
+                            <span class="max-xl:text-xs max-sm:text-[10px] text-[var(--text)]">مرتب سازی :</span>
+                            <!-- value_item -->
+                            <span class="xl:text-lg text-sm text-[var(--text)]">جدید ترین</span>
+                            <!-- value_item -->
+                        </div>
+                        <div class="transition_root">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                class="xl:size-5 size-3 fill-[var(--gold)]">
+                                <path
+                                    d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
                     <div
-                        class="h-12 bg-[var(--background-2)] border border-[var(--border)] flex flex-col gap-2 justify-start items-center rounded-xl overflow-y-hidden absolute top-0 left-0 transition_root">
-                        <div class="w-full min-h-12 flex justify-between gap-12 items-center px-4 cursor-pointer"
-                            onclick="sort_product(this)">
-                            <div class="h-full flex xl:gap-2 gap-1 justify-start items-center">
-                                <span class="max-xl:text-xs max-sm:text-[10px] text-[var(--text)]">مرتب سازی :</span>
-                                <!-- value_item -->
-                                <span class="xl:text-lg text-sm text-[var(--text)]">جدید ترین</span>
-                                <!-- value_item -->
-                            </div>
-                            <div class="transition_root">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                                    class="xl:size-5 size-3 fill-[var(--gold)]">
+                        class="w-full min-h-12 flex justify-between items-center px-4 cursor-pointer hover:border hover:border-[var(--gold)] hover:px-6 hover:bg-[var(--background)] active:border active:border-[var(--gold)] active:bg-[var(--background)] active::px-6 transition_root">
+                        <div class="w-9/12 h-full flex gap-2 justify-start items-center">
+                            <span class="xl:text-lg text-sm text-[var(--text)]">جدید ترین</span>
+                        </div>
+                    </div>
+                    <div
+                        class="w-full min-h-12  flex justify-between items-center px-4 cursor-pointer hover:border hover:border-[var(--gold)] hover:px-6 hover:bg-[var(--background)] active:border active:border-[var(--gold)] active:bg-[var(--background)] active::px-6 transition_root">
+                        <div class="w-9/12 h-full flex gap-2 justify-start items-center">
+                            <span class="xl:text-lg text-sm text-[var(--text)]">پرفروش ترین</span>
+                        </div>
+                    </div>
+                    <div
+                        class="w-full min-h-12  flex justify-between items-center px-4 cursor-pointer hover:border hover:border-[var(--gold)] hover:px-6 hover:bg-[var(--background)] active:border active:border-[var(--gold)] active:bg-[var(--background)] active::px-6 transition_root">
+                        <div class="w-9/12 h-full flex gap-2 justify-start items-center">
+                            <span class="xl:text-lg text-sm text-[var(--text)]">محبوب ترین</span>
+                        </div>
+                    </div>
+                </div> --}}
+            </div>
+            <div
+                class="w-full grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5 justify-start items-start">
+                @foreach ($products as $product)
+                    <div
+                        class="w-full h-75 border-1 border-[var(--gold)] bg-[#181819] rounded-2xl flex flex-col gap-5 items-center justify-between scale transition_root pb-2">
+                        <a href="{{ route('product.show', [$product]) }}" class="w-full lg:h-7/12 h-full">
+                            @foreach ($product['media'] as $media)
+                                @if ($media['is_main'])
+                                    @php
+                                        $imgSrc = asset('storage/' . $media['media_path']);
+                                    @endphp
+                                    @break
+
+                                @else
+                                    @php
+                                        $imgSrc = asset('storage/default.jpg');
+                                    @endphp
+                                @endif
+                            @endforeach
+                            <img src="{{ $imgSrc }}" alt=""
+                                class="object-fit w-full lg:h-55 h-45 rounded-t-2xl">
+                        </a>
+                        <div class="w-full flex gap-4 justify-between items-center px-4">
+                            <div
+                                class="min-w-11 min-h-11 max-w-11 max-h-11 gradient_box1 rounded-xl flex justify-center items-center cursor-pointer">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="size-1/2"
+                                    fill="white">
                                     <path
-                                        d="M241 337c-9.4 9.4-24.6 9.4-33.9 0L47 177c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l143 143L367 143c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9L241 337z">
+                                        d="M16 0H0V32H16 67.2l77.2 339.5 2.8 12.5H160 496h16V352H496 172.8l-14.5-64H496L566 64l10-32H542.5 100L95.6 12.5 92.8 0H80 16zm91.3 64H532.5l-60 192H151L107.3 64zM184 432a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm0 80a56 56 0 1 0 0-112 56 56 0 1 0 0 112zm248-56a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm80 0a56 56 0 1 0 -112 0 56 56 0 1 0 112 0z">
                                     </path>
                                 </svg>
                             </div>
-                        </div>
-                        <div
-                            class="w-full min-h-12 flex justify-between items-center px-4 cursor-pointer hover:border hover:border-[var(--gold)] hover:px-6 hover:bg-[var(--background)] active:border active:border-[var(--gold)] active:bg-[var(--background)] active::px-6 transition_root">
-                            <div class="w-9/12 h-full flex gap-2 justify-start items-center">
-                                <span class="xl:text-lg text-sm text-[var(--text)]">جدید ترین</span>
-                            </div>
-                        </div>
-                        <div
-                            class="w-full min-h-12  flex justify-between items-center px-4 cursor-pointer hover:border hover:border-[var(--gold)] hover:px-6 hover:bg-[var(--background)] active:border active:border-[var(--gold)] active:bg-[var(--background)] active::px-6 transition_root">
-                            <div class="w-9/12 h-full flex gap-2 justify-start items-center">
-                                <span class="xl:text-lg text-sm text-[var(--text)]">پرفروش ترین</span>
-                            </div>
-                        </div>
-                        <div
-                            class="w-full min-h-12  flex justify-between items-center px-4 cursor-pointer hover:border hover:border-[var(--gold)] hover:px-6 hover:bg-[var(--background)] active:border active:border-[var(--gold)] active:bg-[var(--background)] active::px-6 transition_root">
-                            <div class="w-9/12 h-full flex gap-2 justify-start items-center">
-                                <span class="xl:text-lg text-sm text-[var(--text)]">محبوب ترین</span>
+                            <div
+                                class="w-8/12 flex flex-col gap-4 justify-center items-end xl:text-sm lg:text-xs sm:text-[11px] md:text-sm text-xs">
+                                <p class="w-full truncate text-nowrap font-bold text-[var(--text)] text-left">
+                                    {{ $product['title'] }}</p>
+                                @if ($product['secondary_price'])
+                                    <div class="flex items-center gap-2 text-end">
+                                        <span
+                                            class="text-xs text-gray-400 font-bold line-through">{{ $product['primary_price'] }}</span>
+                                        <span class="text-[var(--gold)] w-full text-left">{{ $product['secondary_price'] }}
+                                            <span class="text-[10px]">تومان</span>
+                                        </span>
+                                    </div>
+                                @else
+                                    <span class="text-[var(--gold)] w-full text-left">{{ $product['primary_price'] }}
+                                        <span class="text-[10px]">تومان</span>
+                                    </span>
+                                @endif
                             </div>
                         </div>
                     </div>
-                </div>
-                <div
-                    class="w-full grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5 justify-start items-start">
-                    @foreach ($products as $product)
-                        <div
-                            class="w-full h-75 border-1 border-[var(--gold)] bg-[#181819] rounded-2xl flex flex-col gap-5 items-center justify-between scale transition_root pb-2">
-                            <a href="{{ route('product.show', [$product]) }}" class="w-full lg:h-7/12 h-full">
-                                @foreach ($product['media'] as $media)
-                                    @if ($media['is_main'])
-                                        @php
-                                            $imgSrc = asset('storage/' . $media['media_path']);
-                                        @endphp
-                                        @break
-
-                                    @else
-                                        @php
-                                            $imgSrc = asset('storage/default.jpg');
-                                        @endphp
-                                    @endif
-                                @endforeach
-                                <img src="{{ $imgSrc }}" alt=""
-                                    class="object-fit w-full lg:h-55 h-45 rounded-t-2xl">
-                            </a>
-                            <div class="w-full flex gap-4 justify-between items-center px-4">
-                                <div
-                                    class="min-w-11 min-h-11 max-w-11 max-h-11 gradient_box1 rounded-xl flex justify-center items-center cursor-pointer">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="size-1/2"
-                                        fill="white">
-                                        <path
-                                            d="M16 0H0V32H16 67.2l77.2 339.5 2.8 12.5H160 496h16V352H496 172.8l-14.5-64H496L566 64l10-32H542.5 100L95.6 12.5 92.8 0H80 16zm91.3 64H532.5l-60 192H151L107.3 64zM184 432a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm0 80a56 56 0 1 0 0-112 56 56 0 1 0 0 112zm248-56a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm80 0a56 56 0 1 0 -112 0 56 56 0 1 0 112 0z">
-                                        </path>
-                                    </svg>
-                                </div>
-                                <div
-                                    class="w-8/12 flex flex-col gap-4 justify-center items-end xl:text-sm lg:text-xs sm:text-[11px] md:text-sm text-xs">
-                                    <p class="w-full truncate text-nowrap font-bold text-[var(--text)] text-left">
-                                        {{ $product['title'] }}</p>
-                                    @if ($product['secondary_price'])
-                                        <div class="flex items-center gap-2 text-end">
-                                            <span
-                                                class="text-xs text-gray-400 font-bold line-through">{{ $product['primary_price'] }}</span>
-                                            <span
-                                                class="text-[var(--gold)] w-full text-left">{{ $product['secondary_price'] }}
-                                                <span class="text-[10px]">تومان</span>
-                                            </span>
-                                        </div>
-                                    @else
-                                        <span class="text-[var(--gold)] w-full text-left">{{ $product['primary_price'] }}
-                                            <span class="text-[10px]">تومان</span>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
+                @endforeach
             </div>
-            <!-- products -->
+        </div>
+        <!-- products -->
         </div>
         <!-- filter_mobild_item_start -->
         {{-- <div class="w-full h-dvh overflow-y-auto fixed top-0 z-2 flex justify-center items-start invisible opacity-0 transition_root sm:hidden lg:[&::-webkit-scrollbar]:w-1  lg:[&::-webkit-scrollbar-thumb]:bg-[var(--gold)]  lg:[&::-webkit-scrollbar-thumb]:rounded-full"
@@ -546,4 +514,125 @@
         </div> --}}
         <!-- filter_mobild_item_end -->
     </section>
+    <script>
+        let checkBoxs = document.querySelectorAll('.checkBox')
+        let allCheckbox = document.getElementById('all')
+        allCheckbox.addEventListener('click', () => {
+            checkBoxs.forEach(checkBox => {
+                if (checkBox.checked) {
+                    checkBox.checked = false
+                } else {
+                    allCheckbox.checked = true
+                }
+            });
+        })
+        checkBoxs.forEach(el => {
+            el.addEventListener('click', () => {
+                if (allCheckbox.checked) {
+                    allCheckbox.checked = false
+                }
+                let i = 0
+                checkBoxs.forEach(item => {
+                    if (!item.checked) {
+                        i++
+                    }
+                })
+                if (i == checkBoxs.length) {
+                    allCheckbox.checked = true
+                }
+
+                let j = 0
+                checkBoxs.forEach(item => {
+                    if (item.checked) {
+                        j++
+                    }
+                })
+                if (j == checkBoxs.length) {
+                    allCheckbox.checked = true
+                }
+            })
+        });
+
+        function resetForm(el) {
+            checkBoxs.forEach(checkBox => {
+                checkBox.checked = false
+            });
+            allCheckbox.checked = true
+            document.getElementById('filterForm').submit()
+        }
+
+        let searchResultBox = document.getElementById('searchResultBox')
+        let searchInput = document.getElementById('searchInput')
+        searchInput.addEventListener('blur', () => {
+            searchResultBox.classList.add('invisible', 'opacity-0')
+        })
+
+        function searchProduct(el) {
+            if (el.value != '') {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    }
+                })
+                $.ajax({
+                    url: "{{ route('product.search') }}",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        'title': el.value,
+                    },
+                    success: function(data) {
+                        searchResultBox.classList.remove('opacity-0', 'invisible')
+                        searchResultBox.innerHTML = ''
+                        data.forEach(product => {
+                            let a = document.createElement('a')
+                            a.classList =
+                                'w-full flex justify-between items-center px-2 py-4 border-b border-[var(--gold)]'
+                            a.setAttribute('href', `{{ url('product/show/${product.id}') }}`)
+                            let imgSrc
+                            for (let i = 0; i < product.media.length; i++) {
+                                if (product.media[i].is_main) {
+                                    imgSrc =
+                                        `{{ asset('storage/${product.media[i].media_path}') }}`
+                                    break
+                                } else {
+                                    imgSrc = `{{ asset('storage/default.jpg') }}`
+                                }
+                            };
+                            element = `
+                                <img src="${imgSrc}" alt=""
+                                    class="size-15 rounded-xl">
+                                <div class="flex flex-col items-end gap-4 text-xs text-[var(--text)]">
+                                    <span class="text-nowrap w-11/12 truncate">${product.title}</span>
+                                    `
+                            if (product['secondary_price']) {
+                                element += `
+                                    <div class="flex items-center gap-2 text-end">
+                                        <span
+                                            class="text-xs text-gray-400 font-bold line-through">${product.primary_price}</span>
+                                        <span
+                                            class="text-[var(--gold)]">${product.secondary_price}
+                                            <span class="text-[10px]">تومان</span>
+                                        </span>
+                                    </div>
+                                    `
+                            } else {
+                                element += `
+                                    <span class="text-[var(--gold)]">${product.primary_price}
+                                        <span class="text-[10px]">تومان</span>
+                                    </span>
+                                    `
+                            }
+                            element += `</div>`
+                            a.innerHTML = element
+                            searchResultBox.append(a)
+                        })
+                    },
+                    error: function() {
+                        alert('error')
+                    }
+                })
+            }
+        }
+    </script>
 @endsection
