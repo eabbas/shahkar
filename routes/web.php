@@ -94,6 +94,7 @@ Route::group([
     Route::get('/show/{category}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->missing(function () {
         return to_route('missing');
     })->name('show');
+    Route::get('/relatedProducts/{category}', 'relatedProducts')->withoutMiddleware(checkAdminMiddleware::class)->name('relatedProducts');
 
 
     // Route::post('/showSubCategories', 'showSubCats')->withoutMiddleware(checkAdminMiddleware::class)->name('showSubCats');
@@ -119,7 +120,7 @@ Route::group([
         return to_route('missing');
     })->name('show');
     Route::get('/list', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('index');
-
+    Route::post('/filterRelatedProducts', 'filter')->withoutMiddleware(checkAdminMiddleware::class)->name('filter');
     // Route::get('/admin/show/{product}', 'adminShow')->missing(function () {
     //     return to_route('missing');
     // })->name('adminShow');
