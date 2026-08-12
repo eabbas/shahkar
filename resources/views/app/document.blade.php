@@ -486,20 +486,13 @@
                                 </div>
                             </div>
                             <div class="w-1/2 h-full flex flex-col gap-3 justify-start items-start">
-                                <h5 class="xl:text-2xl lg:text-xl font-bold text-[var(--text)]">دسترسی سریع</h5>
+                                <h5 class="xl:text-2xl lg:text-xl font-bold text-[var(--text)]">دسته بندی ها</h5>
                                 <div
                                     class="w-full flex flex-col gap-1 items-start justify-start xl:text-md lg:text-sm text-xs font-bold text-[#A4A4A5]">
-                                    <span class="hover:text-[var(--gold)] transition duration-300 cursor-pointer">دسته
-                                        بندی</span>
-                                    <span class="hover:text-[var(--gold)] transition duration-300 cursor-pointer">نمونه
-                                        کار ها</span>
-                                    <span
-                                        class="hover:text-[var(--gold)] transition duration-300 cursor-pointer">درباره
-                                        ما</span>
-                                    <span class="hover:text-[var(--gold)] transition duration-300 cursor-pointer">تماس
-                                        با ما</span>
-                                    <span
-                                        class="hover:text-[var(--gold)] transition duration-300 cursor-pointer">مقالات</span>
+                                    @foreach ($categories as $category)
+                                        <a href="{{ route('category.relatedProducts', [$category]) }}"
+                                            class="hover:text-[var(--gold)] transition duration-300 cursor-pointer">{{ $category['title'] }}</a>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

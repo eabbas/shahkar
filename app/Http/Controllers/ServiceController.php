@@ -47,7 +47,6 @@ class ServiceController extends Controller
     public function delete($id)
     {
         $service = service::find($id);
-        $name = '';
         if ($service) {
             if ($service['icon']) {
                 Storage::disk('public')->delete($service['icon']);
@@ -57,6 +56,8 @@ class ServiceController extends Controller
             }
             $name = $service['title'];
             $service->delete();
+        } else {
+            return to_route('settings.service.create')->with('message', 'چنین سرویسی وجود ندارد.');
         }
         return to_route('settings.service.create')->with('message', 'سرویس ' . $name . ' حذف شد.');
     }

@@ -217,13 +217,17 @@ class ProductController extends Controller
     public function delete($id)
     {
         $product = product::find($id);
-        foreach ($product->media as $media) {
-            Storage::disk('public')->delete($media['media_path']);
+        if ($product) {
+            foreach ($product->media as $media) {
+                Storage::disk('public')->delete($media['media_path']);
+            }
+            $product->media()->delete();
+            $product->attributes()->delete();
+            $product->categories()->detach();
+            $product->delete();
+        } else {
+            return to_route('product.adminIndex')->with('message', ' چنین محصولی وجود ندارد.');
         }
-        $product->media()->delete();
-        $product->attributes()->delete();
-        $product->categories()->detach();
-        $product->delete();
         return to_route('product.adminIndex')->with('message', ' محصول ' . $product['title'] . ' حذف شد. ');
     }
     public function show(Product $product)
