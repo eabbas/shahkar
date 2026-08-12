@@ -256,19 +256,25 @@
                     <div
                         class="w-full h-75 border-1 border-[var(--gold)] bg-[#181819] rounded-2xl flex flex-col gap-5 items-center justify-between scale transition_root pb-2">
                         <a href="{{ route('product.show', [$product]) }}" class="w-full lg:h-7/12 h-full">
-                            @foreach ($product['media'] as $media)
-                                @if ($media['is_main'])
-                                    @php
-                                        $imgSrc = asset('storage/' . $media['media_path']);
-                                    @endphp
-                                    @break
+                            @if ($product['media']->isNotEmpty())
+                                @foreach ($product['media'] as $media)
+                                    @if ($media['is_main'])
+                                        @php
+                                            $imgSrc = asset('storage/' . $media['media_path']);
+                                        @endphp
+                                        @break
 
-                                @else
-                                    @php
-                                        $imgSrc = asset('storage/default.jpg');
-                                    @endphp
-                                @endif
-                            @endforeach
+                                    @else
+                                        @php
+                                            $imgSrc = asset('storage/default.jpg');
+                                        @endphp
+                                    @endif
+                                @endforeach
+                            @else
+                                @php
+                                    $imgSrc = asset('storage/default.jpg');
+                                @endphp
+                            @endif
                             <img src="{{ $imgSrc }}" alt=""
                                 class="object-fit w-full lg:h-55 h-45 rounded-t-2xl">
                         </a>
@@ -595,15 +601,19 @@
                                 a.setAttribute('href',
                                     `{{ url('product/show/${product.id}') }}`)
                                 let imgSrc
-                                for (let i = 0; i < product.media.length; i++) {
-                                    if (product.media[i].is_main) {
-                                        imgSrc =
-                                            `{{ asset('storage/${product.media[i].media_path}') }}`
-                                        break
-                                    } else {
-                                        imgSrc = `{{ asset('storage/default.jpg') }}`
-                                    }
-                                };
+                                if (product.media.length > 0) {
+                                    for (let i = 0; i < product.media.length; i++) {
+                                        if (product.media[i].is_main) {
+                                            imgSrc =
+                                                `{{ asset('storage/${product.media[i].media_path}') }}`
+                                            break
+                                        } else {
+                                            imgSrc = `{{ asset('storage/default.jpg') }}`
+                                        }
+                                    };
+                                } else {
+                                    imgSrc = `{{ asset('storage/default.jpg') }}`
+                                }
                                 element = `
                                     <img src="${imgSrc}" alt=""
                                         class="size-15 rounded-xl">
