@@ -276,7 +276,7 @@
         <div class="size-full relative">
             <div class="size-full bg-black/40 absolute top-0 left-0 z-2" onclick="deleteService('close')"></div>
             <div
-                class="w-1/3 2xl:container 2xl:w-1/3 mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 z-3">
+                class="w-11/12 md:w-1/2 xl:w-1/3 2xl:container mx-auto border border-[#D5DFE4] rounded-[10px] text-[#425A8B] p-5 bg-white absolute right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 z-3">
                 <div class="relative">
                     <button
                         class="absolute -top-4 -left-4 z-4 size-6 flex flex-col justify-center items-center cursor-pointer"

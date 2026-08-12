@@ -173,6 +173,8 @@ Route::group([
 ], function () {
     Route::post('/store', 'store')->name('store');
     Route::get('/list', 'index')->middleware(checkAdminMiddleware::class)->name('index');
+    Route::post('/update', 'update')->middleware(checkAdminMiddleware::class)->name('update');
+    Route::get('/delete/{id}', 'delete')->middleware(checkAdminMiddleware::class)->name('delete');
 });
 
 Route::post('/removeActivationCode', [UserController::class, 'removeActivationCode'])->name('removeActivationCode');

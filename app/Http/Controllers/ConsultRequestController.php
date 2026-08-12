@@ -47,4 +47,22 @@ class ConsultRequestController extends Controller
         $logo = logo::first();
         return view('admin.consultRequests.index', ['consultRequests' => $requests, 'logo' => $logo]);
     }
+    public function update(Request $request)
+    {
+        $consultRequest = consultRequest::find($request['id']);
+        if ($consultRequest->is_completed) {
+            $consultRequest->is_completed = 0;
+        } else {
+            $consultRequest->is_completed = 1;
+        }
+        $result = $consultRequest->save();
+        return response()->json($result);
+    }
+    public function delete($id)
+    {
+        $consultRequest = consultRequest::find($id);
+        $subject = $consultRequest->subject;
+        $consultRequest->delete();
+        return redirect()->back()->with('message', 'درخواست مشاوره درمورد ' . $subject . ' حذف شد.');
+    }
 }

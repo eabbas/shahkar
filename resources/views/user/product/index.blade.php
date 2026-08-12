@@ -563,75 +563,81 @@
 
         let searchResultBox = document.getElementById('searchResultBox')
         let searchInput = document.getElementById('searchInput')
-        searchInput.addEventListener('blur', () => {
-            searchResultBox.classList.add('invisible', 'opacity-0')
-        })
+        // searchInput.addEventListener('blur', () => {
+        //     searchResultBox.classList.add('invisible', 'opacity-0')
+        // })
+
+        let timeout
 
         function searchProduct(el) {
             if (el.value != '') {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                    }
-                })
-                $.ajax({
-                    url: "{{ route('product.search') }}",
-                    type: "POST",
-                    dataType: "json",
-                    data: {
-                        'title': el.value,
-                    },
-                    success: function(data) {
-                        searchResultBox.classList.remove('opacity-0', 'invisible')
-                        searchResultBox.innerHTML = ''
-                        data.forEach(product => {
-                            let a = document.createElement('a')
-                            a.classList =
-                                'w-full flex justify-between items-center px-2 py-4 border-b border-[var(--gold)]'
-                            a.setAttribute('href', `{{ url('product/show/${product.id}') }}`)
-                            let imgSrc
-                            for (let i = 0; i < product.media.length; i++) {
-                                if (product.media[i].is_main) {
-                                    imgSrc =
-                                        `{{ asset('storage/${product.media[i].media_path}') }}`
-                                    break
+                clearTimeout(timeout)
+                timeout = setTimeout(() => {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                        }
+                    })
+                    $.ajax({
+                        url: "{{ route('product.search') }}",
+                        type: "POST",
+                        dataType: "json",
+                        data: {
+                            'title': el.value,
+                        },
+                        success: function(data) {
+                            searchResultBox.classList.remove('opacity-0', 'invisible')
+                            searchResultBox.innerHTML = ''
+                            data.forEach(product => {
+                                let a = document.createElement('a')
+                                a.classList =
+                                    'w-full flex justify-between items-center px-2 py-4 border-b border-[var(--gold)]'
+                                a.setAttribute('href',
+                                    `{{ url('product/show/${product.id}') }}`)
+                                let imgSrc
+                                for (let i = 0; i < product.media.length; i++) {
+                                    if (product.media[i].is_main) {
+                                        imgSrc =
+                                            `{{ asset('storage/${product.media[i].media_path}') }}`
+                                        break
+                                    } else {
+                                        imgSrc = `{{ asset('storage/default.jpg') }}`
+                                    }
+                                };
+                                element = `
+                                    <img src="${imgSrc}" alt=""
+                                        class="size-15 rounded-xl">
+                                    <div class="flex flex-col items-end gap-4 text-xs text-[var(--text)]">
+                                        <span class="text-nowrap w-11/12 truncate">${product.title}</span>
+                                        `
+                                if (product['secondary_price']) {
+                                    element += `
+                                        <div class="flex items-center gap-2 text-end">
+                                            <span
+                                                class="text-xs text-gray-400 font-bold line-through">${product.primary_price}</span>
+                                            <span
+                                                class="text-[var(--gold)]">${product.secondary_price}
+                                                <span class="text-[10px]">تومان</span>
+                                            </span>
+                                        </div>
+                                        `
                                 } else {
-                                    imgSrc = `{{ asset('storage/default.jpg') }}`
-                                }
-                            };
-                            element = `
-                                <img src="${imgSrc}" alt=""
-                                    class="size-15 rounded-xl">
-                                <div class="flex flex-col items-end gap-4 text-xs text-[var(--text)]">
-                                    <span class="text-nowrap w-11/12 truncate">${product.title}</span>
-                                    `
-                            if (product['secondary_price']) {
-                                element += `
-                                    <div class="flex items-center gap-2 text-end">
-                                        <span
-                                            class="text-xs text-gray-400 font-bold line-through">${product.primary_price}</span>
-                                        <span
-                                            class="text-[var(--gold)]">${product.secondary_price}
+                                    element += `
+                                        <span class="text-[var(--gold)]">${product.primary_price}
                                             <span class="text-[10px]">تومان</span>
                                         </span>
-                                    </div>
-                                    `
-                            } else {
-                                element += `
-                                    <span class="text-[var(--gold)]">${product.primary_price}
-                                        <span class="text-[10px]">تومان</span>
-                                    </span>
-                                    `
-                            }
-                            element += `</div>`
-                            a.innerHTML = element
-                            searchResultBox.append(a)
-                        })
-                    },
-                    error: function() {
-                        alert('error')
-                    }
-                })
+                                        `
+                                }
+                                element += `</div>`
+                                a.innerHTML = element
+                                searchResultBox.append(a)
+                            })
+                        },
+                        error: function() {
+                            alert('error')
+                        }
+                    })
+                }, 500);
             }
         }
     </script>
