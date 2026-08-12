@@ -128,6 +128,8 @@ class CategoryController extends Controller
             }
             $name = $category['title'];
             $category->delete();
+        } else {
+            return to_route('category.adminIndex')->with('message', 'چنین دسته بندی وجود ندارد.');
         }
         return to_route('category.adminIndex')->with('message', 'دسته بندی ' . $name . ' حذف شد.');
     }

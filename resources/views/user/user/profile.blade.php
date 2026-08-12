@@ -16,7 +16,7 @@
                     <img src="{{ asset('/assets/img/user.png') }}" alt="" class="size-full rounded-full">
                 @endif
             </div>
-            <h1 class="mt-6 text-xl sm:text-4xl font-extrabold text-slate-800">{{ $user->name }} {{ $user->family }}</h1>
+            <h1 class="mt-6 text-xl sm:text-4xl font-bold text-slate-800">{{ $user->name }} {{ $user->family }}</h1>
             <p class="mt-2 text-sm sm:text-lg text-slate-500">
                 @foreach ($user['persianRoles'] as $index => $role)
                     @if ($index == count($user['persianRoles']) - 1)

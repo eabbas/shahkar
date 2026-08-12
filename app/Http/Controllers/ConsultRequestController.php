@@ -61,8 +61,12 @@ class ConsultRequestController extends Controller
     public function delete($id)
     {
         $consultRequest = consultRequest::find($id);
-        $subject = $consultRequest->subject;
-        $consultRequest->delete();
+        if ($consultRequest) {
+            $subject = $consultRequest->subject;
+            $consultRequest->delete();
+        } else {
+            return redirect()->back()->with('message', 'چنین درخواست مشاوره ای وجود ندارد.');
+        }
         return redirect()->back()->with('message', 'درخواست مشاوره درمورد ' . $subject . ' حذف شد.');
     }
 }

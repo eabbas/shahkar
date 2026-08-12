@@ -52,9 +52,7 @@ Route::group([
         Route::post('/edit', 'edit')->name('edit');
         Route::post('/show', 'show')->name('show');
         Route::post('/update', 'update')->name('update');
-        Route::get('/delete/{id}', 'delete')->missing(function () {
-            return to_route('missing');
-        })->name('delete');
+        Route::get('/delete/{id}', 'delete')->name('delete');
     });
     Route::group([
         'prefix' => 'introduction',
@@ -87,18 +85,18 @@ Route::group([
     Route::post('/admin/show', 'adminShow')->name('adminShow');
     Route::post('/edit/', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
-    Route::get('/delete/{id}', 'delete')->missing(function () {
-        return to_route('missing');
-    })->name('delete');
+    Route::get('/delete/{id}', 'delete')->name('delete');
     Route::get('/list', 'index')->withoutMiddleware(checkAdminMiddleware::class)->name('index');
-    Route::get('/show/{category}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->missing(function () {
+    Route::get('/relatedProducts/{category}', 'relatedProducts')->withoutMiddleware(checkAdminMiddleware::class)->missing(function () {
         return to_route('missing');
-    })->name('show');
-    Route::get('/relatedProducts/{category}', 'relatedProducts')->withoutMiddleware(checkAdminMiddleware::class)->name('relatedProducts');
+    })->name('relatedProducts');
 
 
+    // Route::get('/show/{category}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->missing(function () {
+    //     return to_route('missing');
+    // })->name('show');
     // Route::post('/showSubCategories', 'showSubCats')->withoutMiddleware(checkAdminMiddleware::class)->name('showSubCats');
-    Route::post('/admin/deleteAll', 'deleteAll')->name('deleteAll');
+    // Route::post('/admin/deleteAll', 'deleteAll')->name('deleteAll');
 });
 
 // product routes
@@ -113,9 +111,7 @@ Route::group([
     Route::get('/admin/list', 'adminIndex')->name('adminIndex');
     Route::post('/edit/', 'edit')->name('edit');
     Route::post('/update', 'update')->name('update');
-    Route::get('/delete/{id}', 'delete')->missing(function () {
-        return to_route('missing');
-    })->name('delete');
+    Route::get('/delete/{id}', 'delete')->name('delete');
     Route::get('/show/{product}', 'show')->withoutMiddleware(checkAdminMiddleware::class)->missing(function () {
         return to_route('missing');
     })->name('show');
