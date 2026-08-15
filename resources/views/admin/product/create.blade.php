@@ -102,24 +102,36 @@
                             <input type="file"
                                 class="w-full outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]"
                                 name="mainImage" id="mainImage">
+                            @error('mainImage')
+                                <span class="text-xs text-red-500">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="w-full mt-3 lg:mt-5 flex flex-col">
                             <label for="gallery" class="mb-2">گالری تصاویر :</label>
                             <input type="file"
                                 class="w-full outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]"
                                 name="gallery[]" id="gallery" multiple>
+                            <span class="text-xs text-red-500">حجم کل فایل ها نباید بیشتر از 500 کیلوبایت باشد.</span>
+                            @error('gallery')
+                                <span class="text-xs text-red-500">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="w-full flex flex-col gap-3 md:gap-5 mt-3 lg:mt-5">
                             <div class="w-full flex flex-col gap-3">
-                                <label for="primary_price"> قیمت اصلی :
-                                    <span class="text-rose-500">*</span>
+                                <label for="primary_price" class="flex items-center gap-2">
+                                    <span>قیمت اصلی :</span>
+                                    <div class="relative group">
+                                        <span
+                                            class="size-4 text-xs bg-[#ededed] border border-[#6f6f6f] rounded-full p-2 flex justify-center items-center cursor-pointer">?</span>
+                                        <span
+                                            class="w-70 py-4 text-center rounded-xl text-xs absolute bottom-5 left-5 bg-[#F9F9F9] border border-slate-300 invisible opacity-0 transition-all duration-300 group-hover:visible group-hover:opacity-100">در
+                                            صورتی که مایلید برای استعلام قیمت تماس گرفته شود این فیلد را خالی
+                                            بگذارید.</span>
+                                    </div>
                                 </label>
                                 <input type="number"
                                     class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-xl focus:bg-[#f1f1f4]"
                                     name="primary_price" id="primary_price" value="{{ old('primary_price') }}">
-                                @error('primary_price')
-                                    <span class="text-xs text-red-500">{{ $message }}</span>
-                                @enderror
                             </div>
                             <div class="w-full flex flex-col gap-3">
                                 <label for="secondary_price"> قیمت ویژه :</label>

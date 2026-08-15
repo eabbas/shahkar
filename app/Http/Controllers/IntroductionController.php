@@ -19,7 +19,8 @@ class IntroductionController extends Controller
     {
         $validated = $request->validate(
             [
-                'video' => ['required', 'file', 'mimes:mp4,mov,webm,mkv', 'max:20480'],
+                'video' => ['required', 'file', 'mimes:mp4,mov,webm,mkv', 'max:2048'],
+                'videoCover' => ['max:100'],
                 'firstBoxText' => ['required'],
                 'firstBoxNumber' => ['required'],
                 'secondBoxText' => ['required'],
@@ -30,7 +31,8 @@ class IntroductionController extends Controller
             [
                 'video.required' => 'پر کردن این فیلد الزامی است.',
                 'video.mimes' => 'فرمت فایل باید mp4 یا mov یا webm یا mkv باشد .',
-                'video.max' => 'حجم فایل نباید بیشتر از 20 مگابایت باشد.',
+                'video.max' => 'حجم فایل نباید بیشتر از 2 مگابایت باشد.',
+                'videoCover.max' => 'حجم فایل نباید بیشتر از 100 کیلوبایت باشد.',
                 'firstBoxText.required' => 'پر کردن این فیلد الزامی است.',
                 'firstBoxNumber.required' => 'پر کردن این فیلد الزامی است.',
                 'secondBoxText.required' => 'پر کردن این فیلد الزامی است.',

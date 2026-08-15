@@ -183,9 +183,14 @@
                                 <span>انتخاب عکس</span>
                             </label>
                             <div class="flex items-start">
-                                <input type="file" name="mainImage"
-                                    class="w-1/2 outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]"
-                                    id="image">
+                                <div class="w-1/2">
+                                    <input type="file" name="mainImage"
+                                        class="w-full outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]"
+                                        id="image">
+                                    @error('mainImage')
+                                        <span class="text-xs text-red-500">{{ $message }}</span>
+                                    @enderror
+                                </div>
                                 <div id="imgContainer" class="w-1/2 h-30 flex items-center justify-center relative">
                                 </div>
                             </div>

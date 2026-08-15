@@ -17,11 +17,12 @@ class LogoController extends Controller
     {
         $validated = $request->validate(
             [
-                'logo' => ['required'],
+                'logo' => ['required', 'max:50'],
                 'link' => ['required']
             ],
             [
                 'logo.required' => 'پر کردن این فیلد الزامی است.',
+                'logo.max' => 'حجم فایل نباید بیشتر از 50 کیلوبایت باشد.',
                 'link.required' => 'پر کردن این فیلد الزامی است.'
             ]
         );

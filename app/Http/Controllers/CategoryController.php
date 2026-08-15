@@ -28,9 +28,11 @@ class CategoryController extends Controller
         $validated = $request->validate(
             [
                 'title' => ['required'],
+                'image' => ['max:100']
             ],
             [
-                'title.required' => 'پر کردن این فیلد الزامی است.'
+                'title.required' => 'پر کردن این فیلد الزامی است.',
+                'image.max' => 'حجم فایل نباید بیشتر از 100 کیلوبایت باشد',
             ]
         );
         if ($request['image']) {
@@ -91,9 +93,11 @@ class CategoryController extends Controller
         $validated = $request->validate(
             [
                 'title' => ['required'],
+                'image' => ['max:100'],
             ],
             [
-                'title.required' => 'پر کردن این فیلد الزامی است.'
+                'title.required' => 'پر کردن این فیلد الزامی است.',
+                'image.max' => 'حجم فایل نباید بیشتر از 100 کیلوبایت باشد.',
             ]
         );
         if (isset($request['removedImg'])) {

@@ -22,8 +22,8 @@ class HeaderController extends Controller
         // dd($result);
         $validated = $request->validate(
             [
-                'img' => ['required'],
-                'mobileImg' => ['required'],
+                'img' => ['required', 'max:100'],
+                'mobileImg' => ['required', 'max:100'],
                 'title' => ['required'],
                 'subTitle' => ['required'],
                 'btnText' => ['required'],
@@ -31,7 +31,9 @@ class HeaderController extends Controller
             ],
             [
                 'img.required' => 'پر کردن این فیلد الزامی است.',
+                'img.max' => 'حجم فایل نباید بیشتر از 100 کیلوبایت باشد.',
                 'mobileImg.required' => 'پر کردن این فیلد الزامی است.',
+                'mobileImg.max' => 'حجم فایل نباید بیشتر از 100 کیلوبایت باشد.',
                 'title.required' => 'پر کردن این فیلد الزامی است.',
                 'subTitle.required' => 'پر کردن این فیلد الزامی است.',
                 'btnText.required' => 'پر کردن این فیلد الزامی است.',

@@ -292,18 +292,24 @@
                                 class="w-8/12 flex flex-col gap-4 justify-center items-end xl:text-sm lg:text-xs sm:text-[11px] md:text-sm text-xs">
                                 <p class="w-full truncate text-nowrap font-bold text-[var(--text)] text-left">
                                     {{ $product['title'] }}</p>
-                                @if ($product['secondary_price'])
-                                    <div class="flex items-center gap-2 text-end">
-                                        <span
-                                            class="text-xs text-gray-400 font-bold line-through">{{ $product['primary_price'] }}</span>
-                                        <span class="text-[var(--gold)] w-full text-left">{{ $product['secondary_price'] }}
+                                @if ($product['primary_price'])
+                                    @if ($product['secondary_price'])
+                                        <div class="flex items-center gap-2 text-end">
+                                            <span
+                                                class="text-xs text-gray-400 font-bold line-through">{{ $product['primary_price'] }}</span>
+                                            <span
+                                                class="text-[var(--gold)] w-full text-left">{{ $product['secondary_price'] }}
+                                                <span class="text-[10px]">تومان</span>
+                                            </span>
+                                        </div>
+                                    @else
+                                        <span class="text-[var(--gold)] w-full text-left">{{ $product['primary_price'] }}
                                             <span class="text-[10px]">تومان</span>
                                         </span>
-                                    </div>
+                                    @endif
                                 @else
-                                    <span class="text-[var(--gold)] w-full text-left">{{ $product['primary_price'] }}
-                                        <span class="text-[10px]">تومان</span>
-                                    </span>
+                                    <span class="text-[var(--gold)] w-full text-left text-[10px]">برای استعلام قیمت تماس
+                                        بگیرید</span>
                                 @endif
                             </div>
                         </div>
@@ -618,25 +624,31 @@
                                     <img src="${imgSrc}" alt=""
                                         class="size-15 rounded-xl">
                                     <div class="flex flex-col items-end gap-4 text-xs text-[var(--text)]">
-                                        <span class="text-nowrap w-11/12 truncate">${product.title}</span>
+                                        <span class="text-nowrap w-11/12 truncate text-end">${product.title}</span>
                                         `
-                                if (product['secondary_price']) {
-                                    element += `
-                                        <div class="flex items-center gap-2 text-end">
-                                            <span
-                                                class="text-xs text-gray-400 font-bold line-through">${product.primary_price}</span>
-                                            <span
-                                                class="text-[var(--gold)]">${product.secondary_price}
+                                if (product['primary_price']) {
+                                    if (product['secondary_price']) {
+                                        element += `
+                                            <div class="flex items-center gap-2 text-end">
+                                                <span
+                                                    class="text-xs text-gray-400 font-bold line-through">${product.primary_price}</span>
+                                                <span
+                                                    class="text-[var(--gold)]">${product.secondary_price}
+                                                    <span class="text-[10px]">تومان</span>
+                                                </span>
+                                            </div>
+                                            `
+                                    } else {
+                                        element += `
+                                            <span class="text-[var(--gold)]">${product.primary_price}
                                                 <span class="text-[10px]">تومان</span>
                                             </span>
-                                        </div>
-                                        `
+                                            `
+                                    }
                                 } else {
                                     element += `
-                                        <span class="text-[var(--gold)]">${product.primary_price}
-                                            <span class="text-[10px]">تومان</span>
-                                        </span>
-                                        `
+                                        <span class="text-[var(--gold)] w-full text-left text-[10px]">برای استعلام قیمت تماس بگیرید</span>
+                                    `
                                 }
                                 element += `</div>`
                                 a.innerHTML = element

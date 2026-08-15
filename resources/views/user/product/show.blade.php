@@ -208,16 +208,21 @@
                     <!-- price -->
                     <div class="w-full flex gap-4 justify-start max-sm:justify-center items-center">
                         {{-- <span class="xl:text-xl lg:text-lg text-[var(--text)]">از</span> --}}
-                        @if ($product['secondary_price'])
-                            <span class="text-xs text-gray-400 font-bold line-through">{{ $product['primary_price'] }}
-                                تومان</span>
-                            <span
-                                class="xl:text-xl lg:text-lg max-sm:text-lg text-[var(--gold)] font-bold">{{ $product['secondary_price'] }}
-                                تومان</span>
+                        @if ($product['primary_price'])
+                            @if ($product['secondary_price'])
+                                <span class="text-xs text-gray-400 font-bold line-through">{{ $product['primary_price'] }}
+                                    تومان</span>
+                                <span
+                                    class="xl:text-xl lg:text-lg max-sm:text-lg text-[var(--gold)] font-bold">{{ $product['secondary_price'] }}
+                                    تومان</span>
+                            @else
+                                <span
+                                    class="xl:text-xl lg:text-lg max-sm:text-lg text-[var(--gold)] font-bold">{{ $product['primary_price'] }}
+                                    تومان</span>
+                            @endif
                         @else
-                            <span
-                                class="xl:text-xl lg:text-lg max-sm:text-lg text-[var(--gold)] font-bold">{{ $product['primary_price'] }}
-                                تومان</span>
+                            <span class="text-[var(--gold)] w-full text-right text-md">برای استعلام قیمت تماس
+                                بگیرید</span>
                         @endif
                     </div>
                     <!-- price -->
@@ -548,21 +553,27 @@
                     @foreach ($category['products'] as $pro)
                         @if ($pro['id'] != $product['id'])
                             <div
-                                class="xl:min-w-17/100 xl:max-w-35/200 lg:min-w-19/100 min-w-60 h-75 border-1 border-[var(--gold)] bg-[#181819] rounded-2xl flex flex-col gap-5 items-center justify-between scale transition_root pb-2">
+                                class="min-w-60 max-w-60 h-75 border-1 border-[var(--gold)] bg-[#181819] rounded-2xl flex flex-col gap-5 items-center justify-between scale transition_root pb-2">
                                 <a href="{{ route('product.show', [$pro]) }}" class="w-full lg:h-7/12 h-full">
-                                    @foreach ($pro['media'] as $media)
-                                        @if ($media['is_main'])
-                                            @php
-                                                $imgSrc = asset('storage/' . $media['media_path']);
-                                            @endphp
-                                            @break
+                                    @if ($pro['media']->isNotEmpty())
+                                        @foreach ($pro['media'] as $media)
+                                            @if ($media['is_main'])
+                                                @php
+                                                    $imgSrc = asset('storage/' . $media['media_path']);
+                                                @endphp
+                                                @break
 
-                                        @else
-                                            @php
-                                                $imgSrc = asset('storage/default.jpg');
-                                            @endphp
-                                        @endif
-                                    @endforeach
+                                            @else
+                                                @php
+                                                    $imgSrc = asset('storage/default.jpg');
+                                                @endphp
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        @php
+                                            $imgSrc = asset('storage/default.jpg');
+                                        @endphp
+                                    @endif
                                     <img src="{{ $imgSrc }}" alt=""
                                         class="object-fit w-full lg:h-55 h-45 rounded-t-2xl">
                                 </a>
@@ -581,19 +592,25 @@
                                         <p class="w-full truncate text-nowrap font-bold text-[var(--text)] text-left">
                                             {{ $pro['title'] }}
                                         </p>
-                                        @if ($pro['secondary_price'])
-                                            <div class="flex items-center gap-2 text-end">
+                                        @if ($pro['primary_price'])
+                                            @if ($pro['secondary_price'])
+                                                <div class="flex items-center gap-2 text-end">
+                                                    <span
+                                                        class="text-xs text-gray-400 font-bold line-through">{{ $pro['primary_price'] }}</span>
+                                                    <span
+                                                        class="text-[var(--gold)] w-full text-left">{{ $pro['secondary_price'] }}
+                                                        <span class="text-[10px]">تومان</span>
+                                                    </span>
+                                                </div>
+                                            @else
                                                 <span
-                                                    class="text-xs text-gray-400 font-bold line-through">{{ $pro['primary_price'] }}</span>
-                                                <span
-                                                    class="text-[var(--gold)] w-full text-left">{{ $pro['secondary_price'] }}
+                                                    class="text-[var(--gold)] w-full text-left">{{ $pro['primary_price'] }}
                                                     <span class="text-[10px]">تومان</span>
                                                 </span>
-                                            </div>
+                                            @endif
                                         @else
-                                            <span class="text-[var(--gold)] w-full text-left">{{ $pro['primary_price'] }}
-                                                <span class="text-[10px]">تومان</span>
-                                            </span>
+                                            <span class="text-[var(--gold)] w-full text-left text-[10px]">برای استعلام قیمت
+                                                تماس بگیرید</span>
                                         @endif
                                     </div>
                                 </div>

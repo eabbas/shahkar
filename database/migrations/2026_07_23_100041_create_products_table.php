@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('summary')->nullable();
-            $table->integer('primary_price');
+            $table->integer('primary_price')->nullable();
             $table->integer('secondary_price')->nullable();
             $table->integer('count');
             $table->boolean('show_in_home')->default(false);

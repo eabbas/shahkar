@@ -20,10 +20,12 @@ class ServiceController extends Controller
         $validated = $request->validate(
             [
                 'title' => ['required'],
+                'img' => ['max:100'],
                 'link' => ['required']
             ],
             [
                 'title.required' => 'پر کردن این فیلد الزامی است.',
+                'img.max' => 'حجم فایل نباید بیشتر از 100 کیلوبایت باشد.',
                 'link.required' => 'پر کردن این فیلد الزامی است.'
             ]
         );
@@ -88,10 +90,12 @@ class ServiceController extends Controller
         $validated = $request->validate(
             [
                 'editTitle' => ['required'],
+                'editImg' => ['max:100'],
                 'editLink' => ['required']
             ],
             [
                 'editTitle.required' => 'پر کردن فیلد عنوان الزامی است.',
+                'editImg.max' => 'حجم فایل نباید بیشتر از 100 کیلوبایت باشد.',
                 'editLink.required' => 'پر کردن فیلد لینک الزامی است.'
             ]
         );

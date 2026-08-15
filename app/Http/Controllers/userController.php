@@ -343,12 +343,14 @@ class userController extends Controller
                 'family' => ['required'],
                 'email' => ['nullable', 'email'],
                 'phoneNumber' => ['required'],
+                'mainImage' => ['max:100'],
             ],
             [
                 'name.required' => 'پر کردن این فیلد الزامی است.',
                 'family.required' => 'پر کردن این فیلد الزامی است.',
                 'phoneNumber.required' => 'پر کردن این فیلد الزامی است.',
                 'email.email' => 'ساختار ایمیل را رعایت کنید.',
+                'mainImage.max' => 'حجم فایل نباید بیشتر از 100 کیلوبایت باشد.',
             ]
         );
         if (isset($request['removedImg'])) {
