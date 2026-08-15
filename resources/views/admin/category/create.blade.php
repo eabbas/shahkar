@@ -45,6 +45,9 @@
                         <label for="image" class="mb-2">عکس دسته بندی:</label>
                         <input type="file" class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]"
                             name="image" id="image">
+                        @error('image')
+                            <span class="text-xs text-red-500">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="mt-5 text-center">

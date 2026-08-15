@@ -32,7 +32,7 @@
                 @if ($logo)
                     <a href="{{ route('home') }}">
                         <img src="{{ asset('storage/' . $logo->logo) }}" alt=""
-                            class="object-fit w-3/4 sm:w-2/4">
+                            class="object-fit w-3/4 sm:w-2/4 max-lg:mx-auto">
                     </a>
                 @endif
             </div>
@@ -66,7 +66,7 @@
                         </span>
                         <!-- items_serviss -->
                         <div
-                            class="w-100 h-dvh absolute top-15 right-0 flex justify-end items-start invisible opacity-0 transition_root servis_pup_up_item">
+                            class="w-100 h-dvh absolute top-13 right-0 flex justify-end items-start invisible opacity-0 transition_root servis_pup_up_item">
                             <div class="w-full h-full bg-black/50 fixed top-23 right-0 servis_pup_up_hover_close">
                             </div>
                             <div
@@ -103,7 +103,7 @@
                             </div>
                         </span>
                         <div
-                            class="w-100 h-dvh absolute top-15 right-0 flex justify-end items-start invisible opacity-0 transition_root servis_pup_up_item">
+                            class="w-100 h-dvh absolute top-13 right-0 flex justify-end items-start invisible opacity-0 transition_root servis_pup_up_item">
                             <div class="w-full h-full bg-black/50 fixed top-23 right-0 servis_pup_up_hover_close">
                             </div>
                             <div
@@ -303,13 +303,14 @@
                         <div class="w-full h-0 flex flex-col gap-2 overflow-y-auto transition_root">
                             <span class="w-full h-[1px] bg-[#292931]"></span>
                             @foreach ($categories as $category)
-                                <div class="group w-11/12 mx-auto py-1.5 flex items-center justify-start gap-4 px-3">
+                                <a href="{{ route('category.relatedProducts', [$category]) }}"
+                                    class="group w-11/12 mx-auto py-1.5 flex items-center justify-start gap-4 px-3">
                                     <div class="size-6 flex justify-center items-center">
                                         <span class="size-2 rounded-full bg-[var(--gold)]"></span>
                                     </div>
                                     <span
                                         class="text-xs sm:text-md font-bold text-white group-active:pr-5 group-active:text-[var(--gold)] transition_root">{{ $category['title'] }}</span>
-                                </div>
+                                </a>
                             @endforeach
                         </div>
                         <!-- servis_item_hamburger_menu -->

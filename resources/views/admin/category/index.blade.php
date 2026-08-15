@@ -193,6 +193,12 @@
             <span class="font-bold text-sm text-red-500"> {{ $message }} </span>
         </div>
     @enderror
+    @error('image')
+        <div
+            class="modal py-5 px-8 rounded-lg shadow-lg bg-red-100 fixed top-10 right-10 z-5 flex justify-center items-center transition-all duration-300">
+            <span class="font-bold text-sm text-red-500"> {{ $message }} </span>
+        </div>
+    @enderror
     <div id="editFormPopup" class="w-full h-dvh fixed top-0 left-0 z-5 invisible opacity-0 transition-all duration-400">
         <div class="size-full relative">
             <div class="size-full bg-black/40 absolute top-0 left-0" onclick="editForm('close')"></div>
@@ -242,6 +248,9 @@
                                 <input type="file"
                                     class="outline-none pr-5 py-3 bg-[#F9F9F9] rounded-[12px] focus:bg-[#f1f1f4]"
                                     name="image" id="image">
+                                @error('image')
+                                    <span class="text-xs text-red-500">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="md:w-1/3 relative" id="cat_img">
                             </div>

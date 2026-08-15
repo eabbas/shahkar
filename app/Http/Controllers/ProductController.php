@@ -26,12 +26,14 @@ class ProductController extends Controller
         $validated = $request->validate(
             [
                 'title' => ['required'],
-                'primary_price' => ['required'],
+                'mainImage' => ['max:100'],
+                'gallery.*' => ['max:500'],
                 'category_ids' => ['required'],
             ],
             [
                 'title.required' => 'پر کردن این فیلد الزامی است.',
-                'primary_price.required' => 'پر کردن این فیلد الزامی است.',
+                'mainImage.max' => 'حجم فایل نباید بیشتر از 100 کیلوبایت باشد.',
+                'gallery.*.max' => 'حجم کل فایل ها نباید بیشتر از 500 کیلوبایت باشد.',
                 'category_ids.required' => 'پر کردن این فیلد الزامی است.',
             ]
         );
@@ -122,12 +124,12 @@ class ProductController extends Controller
         $validated = $request->validate(
             [
                 'title' => ['required'],
-                'primary_price' => ['required'],
+                'gallery.*' => ['max:500'],
                 'category_ids' => ['required'],
             ],
             [
                 'title.required' => 'پر کردن فیلد عنوان الزامی است.',
-                'primary_price.required' => 'پر کردن فیلد قیمت اصلی الزامی است.',
+                'gallery.*.max' => 'حجم کل فایل ها نباید بیشتر از 500 کیلوبایت باشد.',
                 'category_ids.required' => 'حداقل یک دسته بندی برای محصول انتخاب کنید.',
             ]
         );
