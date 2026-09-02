@@ -6,11 +6,13 @@ use App\Models\category;
 use App\Models\category_product;
 use App\Models\logo;
 use App\Models\product;
+use App\Models\carts;
 use App\Models\product_attributes;
 use App\Models\product_media;
 use App\Models\service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use Log;
 
 class ProductController extends Controller
@@ -249,10 +251,25 @@ class ProductController extends Controller
         } else {
             $product['mainImg'] = 'default.jpg';
         }
+        $cartCount = 0;
+        $currentUser = null;
+        $cart = null ;
+        if (Auth::check()) {
+            $currentUser = Auth::user();
+            $cart = carts::where('product_id' , $product->id)->where('user_id' , Auth::id())->first();
+            foreach ($currentUser->carts as $cart) {
+                $cartCount += $cart->quantity;
+                if($cart->order_id != null){
+                    $cartCount = 0;
+                }
+            }
+        }
         return view('user.product.show', [
             'product' => $product,
             'logo' => $logo,
             'services' => $services,
+            'cartCount' => $cartCount,
+            'cart'=> $cart,
             'categories' => $categories
         ]);
     }
