@@ -74,4 +74,8 @@ class User extends Authenticatable
     {
         return $this->roles()->whereIn('name', $roles)->exists();
     }
+    public function carts()
+    {
+        return $this->hasMany(carts::class);
+    }
 }

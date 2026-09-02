@@ -13,6 +13,7 @@ use App\Http\Controllers\HeaderController;
 use App\Http\Controllers\IntroductionController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\CartsController;
 
 // new version routes
 // home routes
@@ -171,6 +172,16 @@ Route::group([
     Route::get('/list', 'index')->middleware(checkAdminMiddleware::class)->name('index');
     Route::post('/update', 'update')->middleware(checkAdminMiddleware::class)->name('update');
     Route::get('/delete/{id}', 'delete')->middleware(checkAdminMiddleware::class)->name('delete');
+});
+
+// cart
+Route::group([
+    'prefix' => 'cart',
+    'controller' => CartsController::class,
+    'as' => 'cart.'
+], function () {
+    Route::post('/store', 'store')->name('store');
+    Route::post('/update', 'update')->name('update');
 });
 
 Route::post('/removeActivationCode', [UserController::class, 'removeActivationCode'])->name('removeActivationCode');
