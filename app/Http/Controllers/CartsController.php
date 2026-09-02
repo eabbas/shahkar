@@ -32,17 +32,13 @@ class CartsController extends Controller
             $cart->delete();
         }
 
-        // $remainingItems = carts::where('user_id', $request->user_id)->where('order_id', null)->get();
-
-        $count = 0;
-        // foreach ($remainingItems as $item) {
-        //     $count += $item->quantity;
-        // }
+        $remainingItems = carts::where('user_id', $request->user_id)->where('order_id', null)->get();
+        $count = $remainingItems->sum('quantity');
 
         return response()->json([
             'message' => 'محصول از سبد خرید حذف شد',
-            'data'=> $data,
-            'count'=>$count
+            'data' => $data,
+            'count' => $count
         ]);
     }
     function update(Request $request)
@@ -58,9 +54,36 @@ class CartsController extends Controller
         return response()->json($cart);
     }
 
+    // public function showCarts(Request $request)
+    // {
+    //     $carts = carts::where('user_id', $request->user_id)->where('product_id' , $request->product_id)->where('order_id', null)->get();
+
+    //     $total_price = 0;
+    //     $cartData = [];
+    //     foreach ($carts as $cart) {
+    //         $price = $cart->product->primary_price ?? 0;
+    //         $total_price += $price * $cart->quantity;
+
+    //         $cartData[] = [
+    //             'id' => $cart->id,
+    //             'product_id' => $cart->product_id,
+    //             'product_name' => $cart->product->title ?? 'محصول',
+    //             'quantity' => $cart->quantity,
+    //             'price' => $price,
+    //             'total' => $price * $cart->quantity
+    //         ];
+    //     }
+
+    //     return response()->json([
+    //         'success' => true,
+    //         'carts' => $cartData,
+    //         'total_price' => $total_price,
+    //         'count' => $carts->sum('quantity')
+    //     ]);
+    // } 
     public function showCarts(Request $request)
     {
-        $carts = carts::where('user_id', $request->user_id)->where('product_id' , $request->product_id)->where('order_id', null)->get();
+        $carts = carts::where('user_id', $request->user_id)->where('order_id', null)->get();
 
         $total_price = 0;
         $cartData = [];
@@ -84,9 +107,9 @@ class CartsController extends Controller
             'total_price' => $total_price,
             'count' => $carts->sum('quantity')
         ]);
-        } 
-        
     }
+        
+}
     
     
 

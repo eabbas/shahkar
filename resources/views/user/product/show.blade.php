@@ -297,7 +297,7 @@
                             </div>
                         </span>
                         {{-- @dd($cart) --}}
-                        @if ($cart->order_id == null)
+                        @if ($cart && $cart->order_id == null &&  $cart->product_id == $product->id)
                            <div
                                 class="sm:w-1/2 w-full xl:py-3 py-2 flex lg:gap-3 gap-1 justify-center items-center rounded-2xl gradient_box1 gradient_box1_hover_chang border-2 border-[var(--gold)] transition_root cursor-pointer">
                                  <div class="w-10/12 h-full flex flex-row gap-2 items-center justify-between px-1 count">
@@ -312,7 +312,7 @@
                             </div>
                         @else
                             <div
-                                class="sm:w-1/2 w-full xl:py-3 py-2 flex lg:gap-3 gap-1 justify-center items-center rounded-2xl gradient_box1 gradient_box1_hover_chang border-2 border-[var(--gold)] transition_root cursor-pointer" onclick='addToCart(this , "{{ $product->id }}")'>
+                                class="sm:w-1/2 w-full xl:py-3 py-2 flex lg:gap-3 gap-1 justify-center items-center rounded-2xl gradient_box1 gradient_box1_hover_chang border-2 border-[var(--gold)] transition_root cursor-pointer" onclick='addToCart(this , "{{ $product->id }}")' id="cartBtn">
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="xl:size-6 size-4"
                                         fill="white">
@@ -594,15 +594,15 @@
                                         class="object-fit w-full lg:h-55 h-45 rounded-t-2xl">
                                 </a>
                                 <div class="w-full flex gap-4 justify-between items-center px-4">
-                                    <div
-                                        class="min-w-11 min-h-11 max-w-11 max-h-11 gradient_box1 rounded-xl flex justify-center items-center cursor-pointer" onclick='addToCart(this , "{{ $product->id }}")'>
+                                    {{-- <div
+                                        class="min-w-11 min-h-11 max-w-11 max-h-11 gradient_box1 rounded-xl flex justify-center items-center cursor-pointer" onclick='addToCart(this , "{{ $pro->id }}")'>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="size-1/2"
                                             fill="white">
                                             <path
                                                 d="M16 0H0V32H16 67.2l77.2 339.5 2.8 12.5H160 496h16V352H496 172.8l-14.5-64H496L566 64l10-32H542.5 100L95.6 12.5 92.8 0H80 16zm91.3 64H532.5l-60 192H151L107.3 64zM184 432a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm0 80a56 56 0 1 0 0-112 56 56 0 1 0 0 112zm248-56a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm80 0a56 56 0 1 0 -112 0 56 56 0 1 0 112 0z">
                                             </path>
                                         </svg>
-                                    </div>
+                                    </div> --}}
                                     <div
                                         class="w-8/12 flex flex-col gap-4 justify-center items-end xl:text-sm lg:text-xs sm:text-[11px] md:text-sm text-xs">
                                         <p class="w-full truncate text-nowrap font-bold text-[var(--text)] text-left">
@@ -1303,7 +1303,7 @@ class="w-full h-full rounded-full">
         let userId = "{{ Auth::id() }}";
         let product_id = "{{ $product->id ?? '' }}";
         let link = "{{ url('/') }}/";
-        let element = ""
+        let element = document.getElementById('cartBtn')
         let message = document.getElementById('message')
         let authenticationDiv = document.getElementById('authenticationDiv')
         let orderBasket = document.getElementById('orderBasket')
@@ -1416,7 +1416,7 @@ class="w-full h-full rounded-full">
         // addToCart
         function addToCart(el, proId) {
             let originalHtml = el.innerHTML;
-            element = el
+            // element = el
             el.innerHTML = `
                 <div class="w-5 h-5 border-2 border-gray-200 border-t-[#d5a743] rounded-full animate-spin"></div>
             `
@@ -1435,7 +1435,7 @@ class="w-full h-full rounded-full">
                         console.log(data)
                         orderBasket.parentElement.classList.remove('hidden')
                         orderBasket.parentElement.classList.add('flex')
-                            orderBasket.children[2].innerText++
+                        orderBasket.children[2].innerText++
                             el.innerHTML = `
                                 <div class="w-10/12 h-full flex flex-row gap-2 items-center justify-between px-1 count">
                                     <button class="size-7 pt-1 'bg-[#f6911e] flex justify-center items-center rounded-md changeButton cursor-pointer" onclick="setCount(this, '+', ${data.product_id})">
@@ -1447,17 +1447,19 @@ class="w-full h-full rounded-full">
                                     </button>
                                 </div>
                             `
-                        showMessage('open')
-                        let msgElement = document.createElement('div')
-                        msgElement.classList = "text-sm font-bold flex flex-row items-center justify-center py-3 gap-2 lg:gap-3"
-                        msgElement.innerHTML = `
-                            <span>✅</span>
-                            <span>محصول به سبد خرید اضافه شد</span>
-                        `
-                        message.children[0].appendChild(msgElement)
-                        setTimeout(() => {
-                            showMessage('close')
-                        }, 2000)
+                            message.children[0].innerHTML = ''
+                            showMessage('open')
+                            let msgElement = document.createElement('div')
+                            msgElement.classList = "text-sm font-bold flex flex-row items-center justify-center py-3 gap-2 lg:gap-3"
+                            msgElement.innerHTML = `
+                                <span>✅</span>
+                                <span>محصول به سبد خرید اضافه شد</span>
+                            `
+                            message.children[0].appendChild(msgElement)
+                            setTimeout(() => {
+                                showMessage('close')
+                            }, 2000)
+                        
                         
                     },
                     error: function() {
@@ -1515,13 +1517,14 @@ class="w-full h-full rounded-full">
                         'product_id' : proId
                     },
                     success: function(data){
+                        message.children[0].innerHTML = ''
                         console.log(data)
                         if(data.count == 0){
+                            el.parentElement.parentElement.setAttribute('onclick' , `addToCart(this , ${product_id})`)
                             orderBasket.parentElement.classList.remove('flex')
                             orderBasket.parentElement.classList.add('hidden')
                             el.parentElement.parentElement.innerHTML = `
-                                    <div
-                                    class="sm:w-1/2 w-full xl:py-3 py-2 flex lg:gap-3 gap-1 justify-center items-center rounded-2xl gradient_box1 gradient_box1_hover_chang border-2 border-[var(--gold)] transition_root cursor-pointer" onclick='addToCart(this , ${data.data.product_id})'>
+
                                     <div>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="xl:size-6 size-4"
                                             fill="white">
@@ -1531,7 +1534,7 @@ class="w-full h-full rounded-full">
                                         </svg>
                                     </div>
                                     <span class="xl:text-md lg:text-sm text-[9px] text-white font-bold">ثبت سفارش</span>
-                                </div>
+                             
                             `
                         }
                     
@@ -1582,8 +1585,7 @@ class="w-full h-full rounded-full">
                         }
                         if(el.parentElement.children[1].value == 0){
                             el.parentElement.parentElement.innerHTML = `
-                                 <div
-                                    class="sm:w-1/2 w-full xl:py-3 py-2 flex lg:gap-3 gap-1 justify-center items-center rounded-2xl gradient_box1 gradient_box1_hover_chang border-2 border-[var(--gold)] transition_root cursor-pointer" onclick='addToCart(this , ${data.data.product_id})'>
+                                 
                                     <div>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="xl:size-6 size-4"
                                             fill="white">
@@ -1593,7 +1595,7 @@ class="w-full h-full rounded-full">
                                         </svg>
                                     </div>
                                     <span class="xl:text-md lg:text-sm text-[9px] text-white font-bold">ثبت سفارش</span>
-                                </div>
+
                             `
                         }
                     },
@@ -1608,6 +1610,9 @@ class="w-full h-full rounded-full">
         // shoppingCard
      
         function openShoppingCart() {
+            const container = document.getElementById('cartItemsContainer');
+            const empty = document.getElementById('cartEmpty');
+            container.innerHTML = ''
             console.log(product_id)
             // نمایش مودال سبد خرید
             document.getElementById('shoppingCartModal').classList.remove('hidden');
@@ -1628,8 +1633,7 @@ class="w-full h-full rounded-full">
                 },
                 success: function(data) {
                     console.log(data)
-                    const container = document.getElementById('cartItemsContainer');
-                    const empty = document.getElementById('cartEmpty');
+                    
                     
                     if (data.carts && data.carts.length > 0) {
                         empty.classList.add('hidden');
@@ -1677,41 +1681,6 @@ class="w-full h-full rounded-full">
             orderBasket.parentElement.classList.add('flex');
         }
 
-        // ثبت سفارش
-        // function submitOrder() {
-        //     if (!confirm('آیا از ثبت سفارش مطمئن هستید؟')) return;
-            
-        //     $.ajax({
-        //         url: "{{ url('/api/order/store') }}",
-        //         type: "POST",
-        //         dataType: "json",
-        //         data: {
-        //             'product_id' : product_id,
-        //             'user_id': userId
-        //         },
-        //         success: function(data) {
-        //             console.log(data)
-        //             // el.parentElement.children[1].value--
-        //             // orderBasket.children[2].innerText--
-        //             orderBasket.parentElement.classList.add('flex')
-        //             orderBasket.parentElement.classList.remove('hidden')
-        //             console.log(orderBasket.parentElement.classList)
-        //             if (orderBasket.parentElement.classList.contains('flex')) {
-        //                 console.log('hhhh')
-        //                  orderBasket.parentElement.classList.remove('flex')
-        //                 orderBasket.parentElement.classList.add('hidden')
-        //             }
-
-        //             closeShoppingCart();
-        //             // بروزرسانی تعداد سبد خرید
-        //             // document.getElementById('cartCount').textContent = '0';
-        //         },
-        //         error: function() {
-        //             alert('خطا در ثبت سفارش');
-        //         }
-        //     });
-        // }
-
         function submitOrder() {
             if (!confirm('آیا از ثبت سفارش مطمئن هستید؟')) return;
             
@@ -1724,6 +1693,7 @@ class="w-full h-full rounded-full">
                     'user_id': userId
                 },
                 success: function(data) {
+                    message.children[0].innerHTML = ''
                     closeShoppingCart()
                     let productId = null;
                     if (orderBasket && orderBasket.parentElement) {
@@ -1737,9 +1707,8 @@ class="w-full h-full rounded-full">
                         productId = cart.product_id
                     })
                     console.log(productId)
+                    console.log(element)
                     element.innerHTML = `
-                        <div
-                            class="sm:w-1/2 w-full xl:py-3 py-2 flex lg:gap-3 gap-1 justify-center items-center rounded-2xl gradient_box1 gradient_box1_hover_chang border-2 border-[var(--gold)] transition_root cursor-pointer" onclick='addToCart(this , ${productId})'>
                             <div>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="xl:size-6 size-4"
                                     fill="white">
@@ -1749,7 +1718,6 @@ class="w-full h-full rounded-full">
                                 </svg>
                             </div>
                             <span class="xl:text-md lg:text-sm text-[9px] text-white font-bold">ثبت سفارش</span>
-                        </div>
                     `
   
                     showMessage('open');
