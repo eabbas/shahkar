@@ -297,22 +297,28 @@
                             </div>
                         </span>
                         {{-- @dd($cart) --}}
-                        @if ($cart && $cart->order_id == null &&  $cart->product_id == $product->id)
-                           <div
+                        @if ($cart && $cart->order_id == null && $cart->product_id == $product->id)
+                            <div
                                 class="sm:w-1/2 w-full xl:py-3 py-2 flex lg:gap-3 gap-1 justify-center items-center rounded-2xl gradient_box1 gradient_box1_hover_chang border-2 border-[var(--gold)] transition_root cursor-pointer">
-                                 <div class="w-10/12 h-full flex flex-row gap-2 items-center justify-between px-1 count">
-                                        <button class="size-7 pt-1 bg-[#f6911e] flex justify-center items-center rounded-md changeButton cursor-pointer" onclick="setCount(this, '+', {{ $product->id }})">
-                                            <span class="text-2xl text-white">+</span>
-                                        </button>
-                                        <input type="number" disabled min="1" value="{{ $cart->quantity ?? 1 }}" class="size-7 text-center font-bold text-xs text-yellow-500 outline-none" name="" id="">
-                                        <button class="size-7 pt-1 bg-[#f6911e] flex justify-center items-center rounded-md changeButton cursor-pointer" onclick="setCount(this, '-', {{ $product->id }})">
-                                            <span class='text-2xl text-white'>-</span>
-                                        </button>
-                                    </div>
+                                <div class="w-10/12 h-full flex flex-row gap-2 items-center justify-between px-1 count">
+                                    <button
+                                        class="size-7 pt-1 bg-[#f6911e] flex justify-center items-center rounded-md changeButton cursor-pointer"
+                                        onclick="setCount(this, '+', {{ $product->id }})">
+                                        <span class="text-2xl text-white">+</span>
+                                    </button>
+                                    <input type="number" disabled min="1" value="{{ $cart->quantity ?? 1 }}"
+                                        class="size-7 text-center font-bold text-xs text-white outline-none" name=""
+                                        id="">
+                                    <button
+                                        class="size-7 pt-1 bg-[#f6911e] flex justify-center items-center rounded-md changeButton cursor-pointer"
+                                        onclick="setCount(this, '-', {{ $product->id }})">
+                                        <span class='text-2xl text-white'>-</span>
+                                    </button>
+                                </div>
                             </div>
                         @else
-                            <div
-                                class="sm:w-1/2 w-full xl:py-3 py-2 flex lg:gap-3 gap-1 justify-center items-center rounded-2xl gradient_box1 gradient_box1_hover_chang border-2 border-[var(--gold)] transition_root cursor-pointer" onclick='addToCart(this , "{{ $product->id }}")' id="cartBtn">
+                            <div class="sm:w-1/2 w-full xl:py-3 py-2 flex lg:gap-3 gap-1 justify-center items-center rounded-2xl gradient_box1 gradient_box1_hover_chang border-2 border-[var(--gold)] transition_root cursor-pointer"
+                                onclick='addToCart(this , "{{ $product->id }}")' id="cartBtn">
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="xl:size-6 size-4"
                                         fill="white">
@@ -593,7 +599,7 @@
                                     <img src="{{ $imgSrc }}" alt=""
                                         class="object-fit w-full lg:h-55 h-45 rounded-t-2xl">
                                 </a>
-                                <div class="w-full flex gap-4 justify-between items-center px-4">
+                                <div class="w-full  px-4">
                                     {{-- <div
                                         class="min-w-11 min-h-11 max-w-11 max-h-11 gradient_box1 rounded-xl flex justify-center items-center cursor-pointer" onclick='addToCart(this , "{{ $pro->id }}")'>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="size-1/2"
@@ -604,7 +610,7 @@
                                         </svg>
                                     </div> --}}
                                     <div
-                                        class="w-8/12 flex flex-col gap-4 justify-center items-end xl:text-sm lg:text-xs sm:text-[11px] md:text-sm text-xs">
+                                        class="w-full flex flex-col gap-4 justify-center items-end xl:text-sm lg:text-xs sm:text-[11px] md:text-sm text-xs">
                                         <p class="w-full truncate text-nowrap font-bold text-[var(--text)] text-left">
                                             {{ $pro['title'] }}
                                         </p>
@@ -1148,87 +1154,57 @@ class="w-full h-full rounded-full">
             </form>
         </div>
     </div>
-    <!-- end consult form popup -->
-    <div class="fixed bottom-22 right-0 w-full flex-row items-center justify-center z-9991 @if(!isset($cartCount) || (isset($cartCount) && $cartCount == 0)) hidden @else flex @endif">
-        <button class="w-11/12 mx-auto text-center py-3.5 bg-[#d5a743] text-white font-bold flex flex-row items-center justify-center rounded-xl cursor-pointer" onclick="openShoppingCart()" id="orderBasket">
-            <svg version="1.1" class="can-badge can-alert has-solid w-5 rotate-y-180 fill-white ml-2" viewBox="0 0 36 36" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" role="img">
-                <circle cx="13.33" cy="29.75" r="2.25" class="clr-i-outline clr-i-outline-path-1"></circle>
-                <circle cx="27" cy="29.75" r="2.25" class="clr-i-outline clr-i-outline-path-2"></circle>
-                <circle cx="13.33" cy="29.75" r="2.25" class="clr-i-outline--alerted clr-i-outline-path-1--alerted" style="display:none"></circle>
-                <circle cx="27" cy="29.75" r="2.25" class="clr-i-outline--alerted clr-i-outline-path-2--alerted" style="display:none"></circle>
-                <circle cx="13.33" cy="29.75" r="2.25" class="clr-i-outline--badged clr-i-outline-path-1--badged" style="display:none"></circle>
-                <circle cx="27" cy="29.75" r="2.25" class="clr-i-outline--badged clr-i-outline-path-2--badged" style="display:none"></circle>
-                <circle cx="30" cy="6" r="5" class="clr-i-outline--badged clr-i-outline-path-5--badged clr-i-badge" style="display:none"></circle>
-                <circle cx="13.5" cy="29.5" r="2.5" class="clr-i-solid clr-i-solid-path-1" style="display:none"></circle>
-                <circle cx="26.5" cy="29.5" r="2.5" class="clr-i-solid clr-i-solid-path-2" style="display:none"></circle>
-                <circle cx="13.5" cy="29.5" r="2.5" class="clr-i-solid--alerted clr-i-solid-path-1--alerted" style="display:none"></circle>
-                <circle cx="26.5" cy="29.5" r="2.5" class="clr-i-solid--alerted clr-i-solid-path-2--alerted" style="display:none"></circle>
-                <circle cx="13.5" cy="29.5" r="2.5" class="clr-i-solid--badged clr-i-solid-path-1--badged" style="display:none"></circle>
-                <circle cx="26.5" cy="29.5" r="2.5" class="clr-i-solid--badged clr-i-solid-path-2--badged" style="display:none"></circle>
-                <circle cx="30" cy="6" r="5" class="clr-i-solid--badged clr-i-solid-path-4--badged clr-i-badge" style="display:none"></circle>
-                <path d="M33.08,5.37A1,1,0,0,0,32.31,5H11.49l.65,2H31L28.33,19h-15L8.76,4.53a1,1,0,0,0-.66-.65L4,2.62a1,1,0,1,0-.59,1.92L7,5.64l4.59,14.5L9.95,21.48l-.13.13A2.66,2.66,0,0,0,9.74,25,2.75,2.75,0,0,0,12,26H28.69a1,1,0,0,0,0-2H11.84a.67.67,0,0,1-.56-1l2.41-2H29.13a1,1,0,0,0,1-.78l3.17-14A1,1,0,0,0,33.08,5.37Z" class="clr-i-outline clr-i-outline-path-3"></path>
-                <path d="M29.15,15.4,28.33,19h-15L8.76,4.53a1,1,0,0,0-.66-.65L4,2.62a1,1,0,1,0-.59,1.92L7,5.64l4.59,14.5L9.95,21.48l-.13.13A2.66,2.66,0,0,0,9.74,25,2.75,2.75,0,0,0,12,26H28.69a1,1,0,0,0,0-2H11.84a.67.67,0,0,1-.56-1l2.41-2H29.13a1,1,0,0,0,1-.78l1.09-4.82Z" class="clr-i-outline--alerted clr-i-outline-path-4--alerted" style="display:none"></path>
-                <path d="M26.85,1.14,21.13,11A1.28,1.28,0,0,0,22.23,13H33.68A1.28,1.28,0,0,0,34.78,11L29.06,1.14A1.28,1.28,0,0,0,26.85,1.14Z" class="clr-i-outline--alerted clr-i-outline-path-5--alerted clr-i-alert" style="display:none"></path>
-                <path d="M22.57,7a7.52,7.52,0,0,1-.07-1,7.52,7.52,0,0,1,.07-1H11.49l.65,2Z" class="clr-i-outline--badged clr-i-outline-path-3--badged" style="display:none"></path>
-                <path d="M30,13.5l-.42,0L28.33,19h-15L8.76,4.53a1,1,0,0,0-.66-.65L4,2.62a1,1,0,1,0-.59,1.92L7,5.64l4.59,14.5L9.95,21.48l-.13.13A2.66,2.66,0,0,0,9.74,25,2.75,2.75,0,0,0,12,26H28.69a1,1,0,0,0,0-2H11.84a.67.67,0,0,1-.56-1l2.41-2H29.13a1,1,0,0,0,1-.78l1.57-6.91A7.51,7.51,0,0,1,30,13.5Z" class="clr-i-outline--badged clr-i-outline-path-4--badged" style="display:none"></path>
-                <path d="M33.1,6.39A1,1,0,0,0,32.31,6H9.21L8.76,4.57a1,1,0,0,0-.66-.65L4,2.66a1,1,0,1,0-.59,1.92L7,5.68l4.58,14.47L9.95,21.49l-.13.13A2.66,2.66,0,0,0,9.74,25,2.75,2.75,0,0,0,12,26H28.69a1,1,0,0,0,0-2H11.84a.67.67,0,0,1-.56-1l2.41-2H29.12a1,1,0,0,0,1-.76l3.2-13A1,1,0,0,0,33.1,6.39Z" class="clr-i-solid clr-i-solid-path-3" style="display:none"></path>
-                <path d="M22.23,15.4A3.68,3.68,0,0,1,19,9.89L21.29,6H9.21L8.76,4.57a1,1,0,0,0-.66-.65L4,2.66a1,1,0,1,0-.59,1.92L7,5.68l4.58,14.47L9.95,21.49l-.13.13A2.66,2.66,0,0,0,9.74,25,2.75,2.75,0,0,0,12,26H28.69a1,1,0,0,0,0-2H11.84a.67.67,0,0,1-.56-1l2.41-2H29.12a1,1,0,0,0,1-.76l1.19-4.84Z" class="clr-i-solid--alerted clr-i-solid-path-3--alerted" style="display:none"></path>
-                <path d="M26.85,1.14,21.13,11A1.28,1.28,0,0,0,22.23,13H33.68A1.28,1.28,0,0,0,34.78,11L29.06,1.14A1.28,1.28,0,0,0,26.85,1.14Z" class="clr-i-solid--alerted clr-i-solid-path-4--alerted clr-i-alert" style="display:none"></path>
-                <path d="M30,13.5A7.5,7.5,0,0,1,22.5,6H9.21L8.76,4.57a1,1,0,0,0-.66-.65L4,2.66a1,1,0,1,0-.59,1.92L7,5.68l4.58,14.47L9.95,21.49l-.13.13A2.66,2.66,0,0,0,9.74,25,2.75,2.75,0,0,0,12,26H28.69a1,1,0,0,0,0-2H11.84a.67.67,0,0,1-.56-1l2.41-2H29.12a1,1,0,0,0,1-.76l1.71-7A7.49,7.49,0,0,1,30,13.5Z" class="clr-i-solid--badged clr-i-solid-path-3--badged" style="display:none"></path>
-                <polygon points="20.71 7 21.87 5 11.49 5 12.14 7 20.71 7" class="clr-i-outline--alerted clr-i-outline-path-3--alerted" style="display:none"></polygon>
-            </svg>
-            <span class="inline-block ml-0.5">سبد خرید</span>
-            (<span class="in-fa">
-                @if(Auth::check())
-                    {{ isset($cartCount) ? $cartCount : '0' }}
-                @endif
-            </span>)
-        </button>
-    </div>
+
     <div class="absolute top-0 opacity-0 invisible right-1/2 translate-x-1/2 w-3/4 lg:w-1/3 bg-white rounded-lg shadow-md transition-all duration-500 z-99999999"
-         id="message">
+        id="message">
         <div class="relative">
             <svg xmlns="http://www.w3.org/2000/svg"
-                 class="size-4 absolute top-1/2 -translate-y-1/2 right-3 cursor-pointer"
-                 onclick="showMessage('close')" viewBox="0 0 384 512">
-                <path d="M345 137c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-119 119L73 103c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l119 119L39 375c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l119-119L311 409c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-119-119L345 137z"/>
+                class="size-4 absolute top-1/2 -translate-y-1/2 right-3 cursor-pointer" onclick="showMessage('close')"
+                viewBox="0 0 384 512">
+                <path
+                    d="M345 137c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-119 119L73 103c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l119 119L39 375c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l119-119L311 409c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-119-119L345 137z" />
             </svg>
 
         </div>
     </div>
     <div id="authenticationDiv"
-         class="fixed w-full h-dvh bg-black/50 backdrop-blur-sm top-0 right-0 flex justify-center items-center transition-all duration-300 opacity-0 invisible z-10">
-        <div class="w-3/4 bg-white rounded-sm p-3 transition-all duration-300 delay-100 scale-95">
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-5 cursor-pointer"
-                onclick="closeLoginForm()" viewBox="0 0 384 512">
-            <path d="M345 137c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-119 119L73 103c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l119 119L39 375c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l119-119L311 409c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-119-119L345 137z"/>
-            </svg>
-            <h3 class="text-center text-sm font-bold text-gray-800">ابتدا وارد شوید</h3>
-            <form action="{{ route('user.checkUser') }}" class="flex flex-col items-center my-6 gap-3 w-full"
-                  method="post" id="loginForm">
+        class="w-full h-dvh fixed top-0 left-0 flex justify-center items-center invisible opacity-0 max-md:px-5 transition-all duration-300 z-5">
+        <div class="size-full bg-black/50 absolute backdrop-blur-[5px]" onclick="closeLoginForm()"></div>
+        <div class="max-h-120 overflow-auto relative p-4 sm:p-10 w-full md:w-3/4 xl:w-1/2 bg-[#1B1C1E] rounded-2xl"
+            style="scrollbar-width: none">
+            <button
+                class="absolute z-1 top-1 left-1 size-6 flex flex-col justify-center items-center cursor-pointer bg-white rounded-full "
+                onclick="closeLoginForm()">
+                <span class=" w-2/3 h-[2.5px] rounded-full bg-slate-500 rotate-45
+              translate-y-1/2"></span>
+                <span class="w-2/3 h-[2.5px] rounded-full bg-slate-500 -rotate-45 -translate-y-1/2"></span>
+            </button>
+            <h3 class="text-center text-sm font-bold text-gray-400">ابتدا وارد شوید</h3>
+            <form action="{{ route('user.checkUserPopup') }}" class="flex flex-col items-center my-6 gap-3 w-full"
+                method="post" id="loginForm">
                 @csrf
                 <input type="number"
-                       class="placeholder-gray-400 focus:border-1 focus:border-[#d5a743] p-2 md:p-[9px] mb-1 rounded-[7px] border-1 border-[#DBDFE9] focus:outline-none w-full"
-                       name="phoneNumber" id="phoneNumber" placeholder="شماره تلفن" required>
+                    class="placeholder-gray-400 focus:border-1 focus:border-[#d5a743] p-2 md:p-[9px] mb-1 rounded-[7px] border-1 border-[#DBDFE9] focus:outline-none w-full"
+                    name="phoneNumber" id="phoneNumber" placeholder="شماره تلفن" required>
                 <div class="w-full" id="login">
                     <div class="w-full flex flex-row items-center gap-3">
                         <input type="number"
-                               class="w-8/12 p-2 placeholder-gray-400 focus:border-[#d5a743] md:p-[9px] rounded-[7px] border-1 border-[#DBDFE9] outline-none"
-                               name="code" placeholder="کد" required id="code">
+                            class="w-8/12 p-2 placeholder-gray-400 focus:border-[#d5a743] md:p-[9px] rounded-[7px] border-1 border-[#DBDFE9] outline-none"
+                            name="code" placeholder="کد" required id="code">
                         <button type="button"
-                                class="w-4/12 text-xs lg:text-base h-full p-2 md:p-[9px] rounded-[7px] bg-[#d5a743] text-white cursor-pointer"
-                                onclick="sendCode()" id="countDown">ارسال کد
+                            class="w-4/12 text-xs lg:text-base h-full p-2 md:p-[9px] rounded-[7px] bg-[#d5a743] text-white cursor-pointer"
+                            onclick="sendCode()" id="countDown">ارسال کد
                         </button>
                     </div>
                 </div>
                 <div class="w-full flex flex-row items-center justify-between" id="loginWay">
                     <a href="{{ route('user.forgetPassword') }}"
-                       class="text-[#d5a743] inline-block max-md:my-1 my-4 max-md:text-sm">فراموشی رمز عبور</a>
+                        class="text-[#d5a743] inline-block max-md:my-1 my-4 max-md:text-sm">فراموشی رمز عبور</a>
                     <span class="text-[#d5a743] inline-block max-md:my-1 my-4 max-md:text-sm cursor-pointer"
-                          onclick="loginWithPassKey(this)">ورود با رمز عبور</span>
+                        onclick="loginWithPassKey(this)">ورود با رمز عبور</span>
                 </div>
                 <button onclick="check(event)"
-                        class="focus:bg-[#d5a743] hover:bg-[#d5a743] transition-all duration-400 text-center w-full bg-[#d5a743] p-2 md:p-3 rounded-[10px] text-white cursor-pointer">
+                    class="focus:bg-[#d5a743] hover:bg-[#d5a743] transition-all duration-400 text-center w-full bg-[#d5a743] p-2 md:p-3 rounded-[10px] text-white cursor-pointer">
                     ورود
                 </button>
                 <div class="w-full text-center">
@@ -1240,35 +1216,42 @@ class="w-full h-full rounded-full">
             </form>
         </div>
     </div>
-    
+
     <!-- Modal سبد خرید -->
     <div id="shoppingCartModal" class="fixed inset-0 z-50 hidden overflow-y-auto">
         <div class="flex items-center justify-center min-h-screen p-4">
             <!-- بک‌گراند -->
             <div class="fixed inset-0 bg-black/50 backdrop-blur-sm" onclick="closeShoppingCart()"></div>
-            
+
             <!-- محتوای مودال -->
-            <div class="relative bg-white dark:bg-gray-800 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden shadow-2xl">
+            <div
+                class="relative bg-white dark:bg-gray-800 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden shadow-2xl">
                 <!-- هدر -->
-                <div class="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4 flex justify-between items-center">
+                <div
+                    class="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4 flex justify-between items-center">
                     <h3 class="text-xl font-bold text-gray-800 dark:text-white">
                         🛒 سبد خرید
                     </h3>
-                    <button onclick="closeShoppingCart()" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                    <button onclick="closeShoppingCart()"
+                        class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
                     </button>
                 </div>
-                
+
                 <!-- لیست آیتم‌ها -->
                 <div id="cartItemsList" class="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
                     {{-- <div id="cartLoading" class="flex justify-center items-center py-12">
                         <div class="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
                     </div> --}}
                     <div id="cartEmpty" class="hidden text-center py-12">
-                        <svg class="w-24 h-24 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        <svg class="w-24 h-24 mx-auto text-gray-400" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                            </path>
                         </svg>
                         <p class="mt-4 text-gray-500 dark:text-gray-400">سبد خرید شما خالی است</p>
                     </div>
@@ -1276,9 +1259,10 @@ class="w-full h-full rounded-full">
                         <!-- آیتم‌ها با جاوااسکریپت اضافه می‌شوند -->
                     </div>
                 </div>
-                
+
                 <!-- فوتر با دکمه‌ها -->
-                <div class="sticky bottom-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 px-6 py-4">
+                <div
+                    class="sticky bottom-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 px-6 py-4">
                     <div class="flex justify-between items-center gap-4 flex-wrap">
                         <div class="flex items-center gap-2">
                             <span class="text-gray-600 dark:text-gray-300">جمع کل:</span>
@@ -1286,10 +1270,13 @@ class="w-full h-full rounded-full">
                             <span class="text-gray-500">تومان</span>
                         </div>
                         <div class="flex gap-3">
-                            <button onclick="closeShoppingCart()" class="px-6 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                            <button onclick="closeShoppingCart()"
+                                class="px-6 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
                                 لغو همه
                             </button>
-                            <button onclick="submitOrder()" class="px-6 py-2 bg-yellow-500 text-white rounded-lg hover:bg-primary-dark transition disabled:opacity-50 disabled:cursor-not-allowed" id="submitOrderBtn">
+                            <button onclick="submitOrder()"
+                                class="px-6 py-2 bg-yellow-500 text-white rounded-lg hover:bg-primary-dark transition disabled:opacity-50 disabled:cursor-not-allowed"
+                                id="submitOrderBtn">
                                 ثبت سفارشات
                             </button>
                         </div>
@@ -1414,14 +1401,15 @@ class="w-full h-full rounded-full">
         }
 
         // addToCart
+        let originalHtml;
+
         function addToCart(el, proId) {
-            let originalHtml = el.innerHTML;
+            originalHtml = el.innerHTML;
             // element = el
             el.innerHTML = `
                 <div class="w-5 h-5 border-2 border-gray-200 border-t-[#d5a743] rounded-full animate-spin"></div>
             `
-            
-            if (flag) { 
+            if (flag) {
                 $.ajax({
                     // url: "{{ url('/api/cart/store') }}",
                     url: link + "api/cart/store",
@@ -1436,38 +1424,40 @@ class="w-full h-full rounded-full">
                         orderBasket.parentElement.classList.remove('hidden')
                         orderBasket.parentElement.classList.add('flex')
                         orderBasket.children[2].innerText++
-                            el.innerHTML = `
+                        el.innerHTML = `
                                 <div class="w-10/12 h-full flex flex-row gap-2 items-center justify-between px-1 count">
                                     <button class="size-7 pt-1 'bg-[#f6911e] flex justify-center items-center rounded-md changeButton cursor-pointer" onclick="setCount(this, '+', ${data.product_id})">
                                         <span class="text-2xl text-white">+</span>
                                     </button>
-                                    <input type="number" disabled min="1" value="${data.quantity}" class="size-7 text-center font-bold text-xs text-yellow-500 outline-none" name="" id="">
+                                    <input type="number" disabled min="1" value="${data.quantity}" class="size-7 text-center font-bold text-xs text-white outline-none" name="" id="">
                                     <button class="size-7 pt-1 bg-[#f6911e] flex justify-center items-center rounded-md changeButton cursor-pointer" onclick="setCount(this, '-', ${data.product_id})">
                                         <span class='text-2xl text-white'>-</span>
                                     </button>
                                 </div>
                             `
-                            message.children[0].innerHTML = ''
-                            showMessage('open')
-                            let msgElement = document.createElement('div')
-                            msgElement.classList = "text-sm font-bold flex flex-row items-center justify-center py-3 gap-2 lg:gap-3"
-                            msgElement.innerHTML = `
+                        message.children[0].innerHTML = ''
+                        showMessage('open')
+                        let msgElement = document.createElement('div')
+                        msgElement.classList =
+                            "text-sm font-bold flex flex-row items-center justify-center py-3 gap-2 lg:gap-3"
+                        msgElement.innerHTML = `
                                 <span>✅</span>
                                 <span>محصول به سبد خرید اضافه شد</span>
                             `
-                            message.children[0].appendChild(msgElement)
-                            setTimeout(() => {
-                                showMessage('close')
-                            }, 2000)
-                        
-                        
+                        message.children[0].appendChild(msgElement)
+                        setTimeout(() => {
+                            showMessage('close')
+                        }, 2000)
+
+
                     },
                     error: function() {
                         console.log('addToCart error')
                         el.innerHTML = originalHtml;
                         showMessage('open')
                         let msgElement = document.createElement('div')
-                        msgElement.classList = "text-sm font-bold flex flex-row items-center justify-center py-3 gap-2 lg:gap-3"
+                        msgElement.classList =
+                            "text-sm font-bold flex flex-row items-center justify-center py-3 gap-2 lg:gap-3"
                         msgElement.innerHTML = `
                             <span class="text-red-500">!</span>
                             <span>خطا در افزودن به سبد خرید</span>
@@ -1481,14 +1471,28 @@ class="w-full h-full rounded-full">
             } else {
                 authenticationDiv.classList.remove('invisible')
                 authenticationDiv.classList.remove('opacity-0')
-                authenticationDiv.children[0].classList.remove('scale-95')
             }
         }
 
+        function closeLoginForm() {
+            authenticationDiv.classList.add('invisible', 'opacity-0')
+            element.innerHTML = `
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="xl:size-6 size-4"
+                        fill="white">
+                        <path
+                            d="M16 0H0V32H16 67.2l77.2 339.5 2.8 12.5H160 496h16V352H496 172.8l-14.5-64H496L566 64l10-32H542.5 100L95.6 12.5 92.8 0H80 16zm91.3 64H532.5l-60 192H151L107.3 64zM184 432a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm0 80a56 56 0 1 0 0-112 56 56 0 1 0 0 112zm248-56a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm80 0a56 56 0 1 0 -112 0 56 56 0 1 0 112 0z">
+                        </path>
+                    </svg>
+                </div>
+                <span class="xl:text-md lg:text-sm text-[9px] text-white font-bold">ثبت سفارش</span>
+            `
+        }
+
         // setCount
-        function setCount(el , state , proId){
+        function setCount(el, state, proId) {
             product_id = proId
-    
+
             el.parentElement.parentElement.removeAttribute('onclick')
             el.setAttribute('disabled', true)
 
@@ -1503,24 +1507,25 @@ class="w-full h-full rounded-full">
                 if (state == "-") {
                     el.parentElement.children[1].value--
                     orderBasket.children[2].innerText--
-                    
+
                 }
             }
-            if(el.parentElement.children[1].value == 0){
-                
+            if (el.parentElement.children[1].value == 0) {
+
                 $.ajax({
-                    url : link + "api/cart/delete" , 
-                    type : "POST" ,
-                    dataType : "json" ,
-                    data : {
-                        'user_id' : userId , 
-                        'product_id' : proId
+                    url: link + "api/cart/delete",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        'user_id': userId,
+                        'product_id': proId
                     },
-                    success: function(data){
+                    success: function(data) {
                         message.children[0].innerHTML = ''
                         console.log(data)
-                        if(data.count == 0){
-                            el.parentElement.parentElement.setAttribute('onclick' , `addToCart(this , ${product_id})`)
+                        if (data.count == 0) {
+                            el.parentElement.parentElement.setAttribute('onclick',
+                                `addToCart(this , ${product_id})`)
                             orderBasket.parentElement.classList.remove('flex')
                             orderBasket.parentElement.classList.add('hidden')
                             el.parentElement.parentElement.innerHTML = `
@@ -1537,9 +1542,9 @@ class="w-full h-full rounded-full">
                              
                             `
                         }
-                    
+
                     },
-                    error: function(){
+                    error: function() {
                         console.log('error')
                     }
                 })
@@ -1553,37 +1558,39 @@ class="w-full h-full rounded-full">
                         'quantity': el.parentElement.children[1].value,
                         'user_id': userId
                     },
-                    success: function (data) {
-                        
+                    success: function(data) {
+
                         el.removeAttribute('disabled')
                         let currentQuantity = data.quantity || 0
                         console.log(currentQuantity)
-                        
+
                         el.parentElement.children[1].value = currentQuantity
                         console.log(el.parentElement.children[1].value)
                         if (state == "+") {
                             el.innerHTML = "<span class='text-2xl text-white'>+</span>"
-                            if(data.disabled){
+                            if (data.disabled) {
                                 el.classList.remove('bg-[#f6911e]')
                                 el.classList.add('bg-gray-500')
                                 el.innerHTML = "<span class='text-2xl text-white/50'>+</span>"
-                                el.disabled = true 
+                                el.disabled = true
                             }
-                           
-                            
-                           
-                            el.parentElement.children[2].innerHTML = "<span class='text-2xl text-white'>-</span>"
+
+
+
+                            el.parentElement.children[2].innerHTML =
+                                "<span class='text-2xl text-white'>-</span>"
                         }
                         if (state == "-") {
                             el.innerHTML = "<span class='text-2xl text-white'>-</span>"
-                            if(!data.disabled){
+                            if (!data.disabled) {
                                 el.parentElement.children[0].classList.remove('bg-gray-500')
                                 el.parentElement.children[0].classList.add('bg-[#f6911e]')
-                                el.parentElement.children[0].innerHTML = "<span class='text-2xl text-white'>+</span>"
+                                el.parentElement.children[0].innerHTML =
+                                    "<span class='text-2xl text-white'>+</span>"
                                 el.parentElement.children[0].disabled = false
                             }
                         }
-                        if(el.parentElement.children[1].value == 0){
+                        if (el.parentElement.children[1].value == 0) {
                             el.parentElement.parentElement.innerHTML = `
                                  
                                     <div>
@@ -1599,83 +1606,19 @@ class="w-full h-full rounded-full">
                             `
                         }
                     },
-                    error: function () {
+                    error: function() {
                         console.log('error')
                     }
                 })
             }
-            
-        }
 
-        // shoppingCard
-     
-        function openShoppingCart() {
-            const container = document.getElementById('cartItemsContainer');
-            const empty = document.getElementById('cartEmpty');
-            container.innerHTML = ''
-            console.log(product_id)
-            // نمایش مودال سبد خرید
-            document.getElementById('shoppingCartModal').classList.remove('hidden');
-            document.body.classList.add('overflow-hidden');
-            
-            // مخفی کردن آیکون سبد خرید تو صفحه اصلی
-            orderBasket.parentElement.classList.add('hidden');
-            orderBasket.parentElement.classList.remove('flex');
-            
-            // گرفتن اطلاعات سبد خرید
-            $.ajax({
-                url: "{{ url('/api/cart/showCarts') }}",
-                type: "POST",
-                dataType: "json",
-                data: {
-                    'product_id' : product_id,
-                    'user_id': userId
-                },
-                success: function(data) {
-                    console.log(data)
-                    
-                    
-                    if (data.carts && data.carts.length > 0) {
-                        empty.classList.add('hidden');
-                        container.classList.remove('hidden');
-                        
-                        let html = '';
-                        data.carts.forEach(item => {
-                            html += `
-                                <div class="flex justify-between items-center p-3 border-b">
-                                    <div>
-                                        <p class="font-bold">${item.product_name}</p>
-                                        <p class="text-sm text-gray-500">تعداد: ${item.quantity}</p>
-                                    </div>
-                                    <div>
-                                        <span class="text-primary">${item.price} تومان</span>
-                                    </div>
-                                </div>
-                            `;
-                        });
-                        container.innerHTML = html;
-                        
-                        // نمایش قیمت کل
-                        document.getElementById('cartTotalPrice').textContent = data.total_price || 0;
-                        document.getElementById('submitOrderBtn').disabled = false;
-                    } else {
-                        empty.classList.remove('hidden');
-                        container.classList.add('hidden');
-                        document.getElementById('submitOrderBtn').disabled = true;
-                    }
-                },
-                error: function() {
-                    document.getElementById('cartEmpty').classList.remove('hidden');
-                    document.getElementById('cartEmpty').innerHTML = 'خطا در دریافت اطلاعات';
-                }
-            });
         }
 
         // تابع بستن مودال
         function closeShoppingCart() {
             document.getElementById('shoppingCartModal').classList.add('hidden');
             document.body.classList.remove('overflow-hidden');
-            
+
             // برگردوندن آیکون سبد خرید
             orderBasket.parentElement.classList.remove('hidden');
             orderBasket.parentElement.classList.add('flex');
@@ -1683,7 +1626,7 @@ class="w-full h-full rounded-full">
 
         function submitOrder() {
             if (!confirm('آیا از ثبت سفارش مطمئن هستید؟')) return;
-            
+
             $.ajax({
                 url: "{{ url('/api/order/store') }}",
                 type: "POST",
@@ -1719,10 +1662,11 @@ class="w-full h-full rounded-full">
                             </div>
                             <span class="xl:text-md lg:text-sm text-[9px] text-white font-bold">ثبت سفارش</span>
                     `
-  
+
                     showMessage('open');
                     let msgElement = document.createElement('div');
-                    msgElement.classList = "text-sm font-bold flex flex-row items-center justify-center py-3 gap-2 lg:gap-3";
+                    msgElement.classList =
+                        "text-sm font-bold flex flex-row items-center justify-center py-3 gap-2 lg:gap-3";
                     msgElement.innerHTML = `
                         <span>✅</span>
                         <span>سفارش با موفقیت ثبت شد</span>
@@ -1731,8 +1675,8 @@ class="w-full h-full rounded-full">
                     setTimeout(() => {
                         showMessage('close');
                     }, 3000);
-                    
-                  
+
+
                 },
                 error: function() {
                     console.log('error');
@@ -1740,8 +1684,5 @@ class="w-full h-full rounded-full">
                 }
             });
         }
-                    
-            
-    
     </script>
 @endsection
