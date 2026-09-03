@@ -188,3 +188,67 @@ modals.forEach(modal => {
         modal.classList.add('opacity-0', 'invisible')
     }, 3000)
 })
+
+// shoppingCard
+
+function openShoppingCart() {
+    const container = document.getElementById('cartItemsContainer');
+    const empty = document.getElementById('cartEmpty');
+    container.innerHTML = ''
+    console.log(product_id)
+    // نمایش مودال سبد خرید
+    document.getElementById('shoppingCartModal').classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
+
+    // مخفی کردن آیکون سبد خرید تو صفحه اصلی
+    orderBasket.parentElement.classList.add('hidden');
+    orderBasket.parentElement.classList.remove('flex');
+
+    // گرفتن اطلاعات سبد خرید
+    $.ajax({
+        url: "{{ url('/api/cart/showCarts') }}",
+        type: "POST",
+        dataType: "json",
+        data: {
+            'product_id': product_id,
+            'user_id': userId
+        },
+        success: function (data) {
+            console.log(data)
+
+
+            if (data.carts && data.carts.length > 0) {
+                empty.classList.add('hidden');
+                container.classList.remove('hidden');
+
+                let html = '';
+                data.carts.forEach(item => {
+                    html += `
+                                <div class="flex justify-between items-center p-3 border-b">
+                                    <div>
+                                        <p class="font-bold">${item.product_name}</p>
+                                        <p class="text-sm text-gray-500">تعداد: ${item.quantity}</p>
+                                    </div>
+                                    <div>
+                                        <span class="text-primary">${item.price} تومان</span>
+                                    </div>
+                                </div>
+                            `;
+                });
+                container.innerHTML = html;
+
+                // نمایش قیمت کل
+                document.getElementById('cartTotalPrice').textContent = data.total_price || 0;
+                document.getElementById('submitOrderBtn').disabled = false;
+            } else {
+                empty.classList.remove('hidden');
+                container.classList.add('hidden');
+                document.getElementById('submitOrderBtn').disabled = true;
+            }
+        },
+        error: function () {
+            document.getElementById('cartEmpty').classList.remove('hidden');
+            document.getElementById('cartEmpty').innerHTML = 'خطا در دریافت اطلاعات';
+        }
+    });
+}

@@ -18,9 +18,9 @@
     <!-- menu -->
     <section class="max-w-[1700px] mx-auto w-full flex justify-center items-center sticky top-0 right-0 z-2">
         <div class="w-11/12 py-3 flex justify-between items-center xl:gap-10 bg-[var(--background)] px-3 rounded-2xl">
-            <div class="w-1/3 flex justify-start lg:hidden ">
+            <div class="w-1/3 flex justify-start lg:hidden cursor-pointer">
                 <!-- hamburger_menu_svg -->
-                <div class="flex flex-col gap-1 items-start justify-center cursor-pointer"
+                <div class="flex flex-col gap-1 items-start justify-center "
                     onclick="hamburger_menu('open')">
                     <span class="w-7 h-1 bg-white rounded-full"></span>
                     <span class="w-7 h-1 bg-white rounded-full"></span>
@@ -28,7 +28,7 @@
                 </div>
                 <!-- hamburger_menu_svg -->
             </div>
-            <div class="max-lg:w-1/3 lg:w-1/5 h-full  cursor-pointer">
+            <div class="w-1/3 lg:w-1/5 h-full  cursor-pointer">
                 @if ($logo)
                     <a href="{{ route('home') }}">
                         <img src="{{ asset('storage/' . $logo->logo) }}" alt=""
@@ -37,7 +37,7 @@
                 @endif
             </div>
             <div class="w-1/3 lg:w-4/5 h-8/12 flex gap-4 items-center justify-end lg:justify-between">
-                <ul class="h-9/12 h-full flex items-center gap-5 xl:text-md lg:text-sm font-bold max-lg:hidden">
+                <ul class="h-9/12 h-full flex items-center gap-5 text-xs xl:text-md font-bold max-lg:hidden">
                     <li>
                         <a href="{{ route('home') }}" class="flex justify-center items-center py-3 relative">
                             <sapn class="transition_root text-nowrap font-bold text-[var(--gold)]">صفحه اصلی</sapn>
@@ -163,40 +163,55 @@
                         </span>
                     </li>
                 </ul>
-                @if (Auth::check())
-                    <div class="px-3 py-2 rounded-xl relative gradient_box1 dropdown">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                <div class="flex items-center gap-2">
+                    <div class="px-3 py-2 rounded-xl relative gradient_box1 dropdown" onclick="openShoppingCart()"
+                        id="orderBasket">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
                             class="size-4 fill-white cursor-pointer">
                             <path
-                                d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z" />
+                                d="M24 0C10.7 0 0 10.7 0 24S10.7 48 24 48H69.5c3.8 0 7.1 2.7 7.9 6.5l51.6 271c6.5 34 36.2 58.5 70.7 58.5H488c13.3 0 24-10.7 24-24s-10.7-24-24-24H199.7c-11.5 0-21.4-8.2-23.6-19.5L170.7 288H459.2c32.6 0 61.1-21.8 69.5-53.3l41-152.3C576.6 57 557.4 32 531.1 32h-411C111 12.8 91.6 0 69.5 0H24zM131.1 80H520.7L482.4 222.2c-2.8 10.5-12.3 17.8-23.2 17.8H161.6L131.1 80zM176 512a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm336-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0z" />
                         </svg>
-                        <div class="absolute top-10 left-0 rounded-xl transition-all duration-300 dropdown-child">
-                            <ul class="space-y-4 p-4 text-center rounded-xl gradient_box1">
-                                <li class="w-full text-nowrap font-bold text-slate-800 rounded-xl">
-                                    {{ Auth::user()['name'] }} {{ Auth::user()['family'] }}</li>
-                                <li class="w-full text-nowrap font-bold text-slate-800 rounded-xl"><a
-                                        href="{{ route('user.profile') }}">حساب کاربری</a>
-                                </li>
-                                <li class="w-full text-nowrap font-bold text-slate-800 rounded-xl"><a
-                                        href="{{ route('user.logout') }}">خروج</a>
-                                </li>
-                            </ul>
+                        <div
+                            class="size-4 rounded-full p-1 absolute -top-2 -right-2 text-xs bg-[var(--gold)] flex items-center justify-center">
+                            0
                         </div>
                     </div>
-                @else
-                    <a href="{{ route('user.login') }}"
-                        class="xl:px-7 sm:px-5 px-3 sm:py-2 py-2 rounded-xl flex flex-col sm:flex-row gap-2 justify-center items-center gradient_box1">
-
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="size-3 fill-white">
+                    @if (Auth::check())
+                        <div class="px-3 py-2 rounded-xl relative gradient_box1 dropdown">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                class="size-4 fill-white cursor-pointer">
                                 <path
                                     d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z" />
                             </svg>
+                            <div class="absolute top-10 left-0 rounded-xl transition-all duration-300 dropdown-child">
+                                <ul class="space-y-4 p-4 text-center rounded-xl gradient_box1">
+                                    <li class="w-full text-nowrap font-bold text-slate-800 rounded-xl">
+                                        {{ Auth::user()['name'] }} {{ Auth::user()['family'] }}</li>
+                                    <li class="w-full text-nowrap font-bold text-slate-800 rounded-xl"><a
+                                            href="{{ route('user.profile') }}">حساب کاربری</a>
+                                    </li>
+                                    <li class="w-full text-nowrap font-bold text-slate-800 rounded-xl"><a
+                                            href="{{ route('user.logout') }}">خروج</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <span class="text-[10px] sm:text-sm text-white">ورود / ثبت نام</span>
+                    @else
+                        <a href="{{ route('user.login') }}"
+                            class="xl:px-7 sm:px-5 px-3 sm:py-2 py-2 rounded-xl flex flex-col sm:flex-row gap-2 justify-center items-center gradient_box1">
 
-                    </a>
-                @endif
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                    class="size-3 fill-white">
+                                    <path
+                                        d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z" />
+                                </svg>
+                            </div>
+                            <span class="text-[10px] sm:text-sm text-white">ورود / ثبت نام</span>
+
+                        </a>
+                    @endif
+                </div>
             </div>
         </div>
 
