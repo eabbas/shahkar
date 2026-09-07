@@ -173,7 +173,11 @@
                         </svg>
                         <div
                             class="size-4 rounded-full p-1 absolute -top-2 -right-2 text-xs bg-[var(--gold)] flex items-center justify-center">
-                            0
+                            @if (isset($allCartCount) && $allCartCount)
+                                {{ $allCartCount }}
+                            @else
+                                {{ '0' }}
+                            @endif
                         </div>
                     </div>
                     @if (Auth::check())

@@ -254,6 +254,7 @@ class ProductController extends Controller
         $cartCount = 0;
         $currentUser = null;
         $cart = null ;
+        $allCartCount = 0;
         if (Auth::check()) {
             $currentUser = Auth::user();
             $cart = carts::where('product_id' , $product->id)->where('user_id' , Auth::id())->first();
@@ -263,6 +264,12 @@ class ProductController extends Controller
                     $cartCount = 0;
                 }
             }
+            $allCarts = carts::select('user_id', 'order_id', 'quantity')->where('user_id', Auth::id())->where('order_id', null)->get();
+            if(count($allCarts)){
+                foreach($allCarts as $allCart){
+                    $allCartCount += $allCart->quantity;
+                }
+            }
         }
         return view('user.product.show', [
             'product' => $product,
@@ -270,7 +277,8 @@ class ProductController extends Controller
             'services' => $services,
             'cartCount' => $cartCount,
             'cart'=> $cart,
-            'categories' => $categories
+            'categories' => $categories,
+            'allCartCount' => $allCartCount
         ]);
     }
     public function index()

@@ -43,6 +43,7 @@ class CartsController extends Controller
     }
     function update(Request $request)
     {
+        // return response()->json($request->all());
         $user_id = $request->input('user_id');
         if (Auth::check()) {
             $user_id = Auth::id();
