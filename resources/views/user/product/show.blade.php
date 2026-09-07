@@ -1423,7 +1423,7 @@ class="w-full h-full rounded-full">
                         console.log(data)
                         orderBasket.parentElement.classList.remove('hidden')
                         orderBasket.parentElement.classList.add('flex')
-                        orderBasket.children[2].innerText++
+                        orderBasket.children[1].innerText++
                         el.innerHTML = `
                                 <div class="w-10/12 h-full flex flex-row gap-2 items-center justify-between px-1 count">
                                     <button class="size-7 pt-1 'bg-[#f6911e] flex justify-center items-center rounded-md changeButton cursor-pointer" onclick="setCount(this, '+', ${data.product_id})">
@@ -1501,12 +1501,12 @@ class="w-full h-full rounded-full">
                 `
             if (state == "+") {
                 el.parentElement.children[1].value++
-                orderBasket.children[2].innerText++
+                orderBasket.children[1].innerText++
             }
-            if (el.parentElement.children[1].value != 0 && orderBasket.children[2].innerText != 0) {
+            if (el.parentElement.children[1].value != 0 && orderBasket.children[1].innerText != 0) {
                 if (state == "-") {
                     el.parentElement.children[1].value--
-                    orderBasket.children[2].innerText--
+                    orderBasket.children[1].innerText--
 
                 }
             }
@@ -1644,7 +1644,7 @@ class="w-full h-full rounded-full">
                         orderBasket.parentElement.classList.add('hidden')
                     }
                     if (orderBasket) {
-                        orderBasket.children[2].innerText = '0'
+                        orderBasket.children[1].innerText = '0'
                     }
                     data.forEach(cart => {
                         productId = cart.product_id
