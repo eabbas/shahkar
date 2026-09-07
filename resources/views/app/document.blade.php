@@ -579,6 +579,8 @@
     <script>
         const csrfToken = "{{ csrf_token() }}"
         const route = ""
+        const link = "{{ url('/') }}/"
+        const storage = "{{ asset('storage/') }}/"
     </script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>

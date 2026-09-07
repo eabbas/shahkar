@@ -43,7 +43,6 @@ class CartsController extends Controller
     }
     function update(Request $request)
     {
-        // return response()->json($request->all());
         $user_id = $request->input('user_id');
         if (Auth::check()) {
             $user_id = Auth::id();
@@ -85,10 +84,12 @@ class CartsController extends Controller
     public function showCarts(Request $request)
     {
         $carts = carts::where('user_id', $request->user_id)->where('order_id', null)->get();
-
         $total_price = 0;
         $cartData = [];
         foreach ($carts as $cart) {
+            $product = $cart->product->load(['media'=>function($query){
+                $query->where('is_main', 1)->first();
+            }]);
             $price = $cart->product->primary_price ?? 0;
             $total_price += $price * $cart->quantity;
 
@@ -98,7 +99,8 @@ class CartsController extends Controller
                 'product_name' => $cart->product->title ?? 'محصول',
                 'quantity' => $cart->quantity,
                 'price' => $price,
-                'total' => $price * $cart->quantity
+                'total' => $price * $cart->quantity,
+                'img' => count($product->media) ? $product->media[0]->media_path : null
             ];
         }
 

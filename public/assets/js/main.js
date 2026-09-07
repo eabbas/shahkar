@@ -206,7 +206,7 @@ function openShoppingCart() {
 
     // گرفتن اطلاعات سبد خرید
     $.ajax({
-        url: "{{ url('/api/cart/showCarts') }}",
+        url: link +"api/cart/showCarts",
         type: "POST",
         dataType: "json",
         data: {
@@ -215,8 +215,6 @@ function openShoppingCart() {
         },
         success: function (data) {
             console.log(data)
-
-
             if (data.carts && data.carts.length > 0) {
                 empty.classList.add('hidden');
                 container.classList.remove('hidden');
@@ -224,13 +222,25 @@ function openShoppingCart() {
                 let html = '';
                 data.carts.forEach(item => {
                     html += `
-                                <div class="flex justify-between items-center p-3 border-b">
-                                    <div>
-                                        <p class="font-bold">${item.product_name}</p>
-                                        <p class="text-sm text-gray-500">تعداد: ${item.quantity}</p>
+                                <div class="flex justify-between items-center p-3 border-b border-gray-500 parentCart">
+                                    <div class="flex items-center gap-3">
+                                        <img src="${storage+item.img} " alt='product image' class="size-12 rounded-md">
+                                        <div>
+                                            <p class="font-bold text-white">${item.product_name}</p>
+                                            <p class="text-sm text-gray-300">تعداد: ${item.quantity}</p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <span class="text-primary">${item.price} تومان</span>
+                                    <div class="flex flex-col gap-2">
+                                    <div class="w-10/12 h-full flex flex-row gap-2 items-center justify-between px-1 count">
+                                        <button class="size-7 pt-1 bg-[#f6911e] flex justify-center items-center rounded-md changeButton cursor-pointer" onclick="setCount(this, '+', ${item.product_id})">
+                                            <span class="text-2xl text-white">+</span>
+                                        </button>
+                                        <input type="number" disabled min="1" value="${item.quantity}" class="size-7 text-center font-bold text-xs text-white outline-none" name="" id="">
+                                        <button class="size-7 pt-1 bg-[#f6911e] flex justify-center items-center rounded-md changeButton cursor-pointer" onclick="setCount(this, '-', ${item.product_id}, true)">
+                                            <span class='text-2xl text-white'>-</span>
+                                        </button>
+                                    </div>
+                                        <span class="text-primary text-gray-300">${item.price} تومان</span>
                                     </div>
                                 </div>
                             `;
