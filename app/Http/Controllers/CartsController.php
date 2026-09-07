@@ -111,7 +111,6 @@ class CartsController extends Controller
             'count' => $carts->sum('quantity')
         ]);
     }
-        
 }
     
     
