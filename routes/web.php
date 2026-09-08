@@ -14,6 +14,15 @@ use App\Http\Controllers\IntroductionController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CartsController;
+use App\Http\Controllers\OrdersController;
+
+Route::group([
+    'prefix'=>'order',
+    'controller'=>OrdersController::class,
+    'as'=>'order.'
+], function(){
+    Route::get('/index', 'index')->name('index');
+});
 
 // new version routes
 // home routes

@@ -193,7 +193,7 @@
                                 </div>
                             </div>
                         </div>
-                    @endif
+                    
                 @endforeach
             @endif
         </div>
@@ -236,7 +236,7 @@
         element.classList = "text-sm font-bold flex flex-row items-center justify-center py-3 gap-2 lg:gap-3"
 
 
-        {{-- function showItems(el, orderId) {
+        function showItems(el, orderId) {
             el.disabled = true
             el.classList.add('cursor-no-drop')
             el.classList.remove('cursor-pointer')
@@ -257,8 +257,8 @@
                     el.classList.add('cursor-pointer')
 
                     tableName.innerText = data.qr_code ? (data.qr_code.description ? data.qr_code.description : data.qr_code.slug) : "-"
-                    orderStatus.innerText = data.status.title
-                    orderStatus.classList = `text-[10px] font-bold px-2 py-0.5 rounded-full border-1 border-[${data.status.color}] text-[${data.status.color}] bg-[${data.status.color}]/10`
+                    // orderStatus.innerText = data.status.title
+                    orderStatus.classList = `text-[10px] font-bold px-2 py-0.5 rounded-full border-1 border-blue-500 text-blue-500 bg-blue-500/10`
                     orderCode.innerText = '#'+data.order_code
                     if(data.address){
                         address.parentElement.classList.remove('hidden')
@@ -267,32 +267,32 @@
                     data.carts.forEach((cart)=>{
                         let item = document.createElement('div')
                         item.classList = 'w-full px-2 py-1.5 bg-white rounded-xl flex justify-between items-center shadow_box menuItems'
-                        item.setAttribute('data-menu-item-id', cart.menu_item.id)
+                        item.setAttribute('data-menu-item-id', cart.product_id)
                         let inner = `
                         <div class="w-full flex gap-3 items-center relative">
                             <div class="w-7/12 relative">
                     `
 
                         inner+= `
-                        <img src='${cart.menu_item.image ? "{{ asset('storage/') }}/" + cart.menu_item.image : "{{ asset('storage/resturan_img/807c88cc-7948-4f75-88e5-4c4598ab8175_1767800481_6872954f6e4630ba6c0eda84b2ca1882.jpg') }}"}'
+                        <img src='${cart.product.media[0].media_path ? "{{ asset('storage/') }}/" + cart.product.media[0].media_path : "{{ asset('storage/resturan_img/807c88cc-7948-4f75-88e5-4c4598ab8175_1767800481_6872954f6e4630ba6c0eda84b2ca1882.jpg') }}"}'
                             alt="" class="w-full min-h-24 max-h-24 rounded-xl">
                    </div>
                     <div class="w-full flex h-full flex-col gap-1 items-start">
                         <div class="w-full flex gap-1 items-center">
                             <span class="w-[7px] h-[7px] rounded-full bg-[#f6911e]"></span>
-                            <h3 class="text-[14px] font-bold">${ cart.menu_item.title }</h3>
+                            <h3 class="text-[14px] font-bold">${ cart.product.title }</h3>
                         </div>
                         <div class="flex flex-row items-center gap-2">
-                            <div class="flex gap-1 relative ${ cart.menu_item.discount != 0 && 'through' }">
-                                <span class="text-[10px] text-[#f6911e] in-fa">${ formatter.format(cart.menu_item.price) }</span>
-                                <span class='text-[10px] text-[#f6911e] ${ cart.menu_item.discount != 0 && 'hidden' } '></span>
+                            <div class="flex gap-1 relative ${ cart.product.secondary_price != 0 && 'through' }">
+                                <span class="text-[10px] text-[#f6911e] in-fa">${ formatter.format(cart.product.primary_price) }</span>
+                                <span class='text-[10px] text-[#f6911e] ${ cart.product.secondary_price != 0 && 'hidden' } '></span>
                             </div>
-                            <div class="flex gap-1 relative ${ cart.menu_item.discount == 0 && 'hidden' }">
-                                <span class="text-[10px] text-[#f6911e] font-bold in-fa">${ formatter.format(cart.menu_item.discount) }</span>
+                            <div class="flex gap-1 relative ${ cart.product.secondary_price == 0 && 'hidden' }">
+                                <span class="text-[10px] text-[#f6911e] font-bold in-fa">${ formatter.format(cart.product.secondary_price) }</span>
                                 <span class="text-[10px] text-[#f6911e]">تومان</span>
                             </div>
                         </div>
-                        <p class="text-[10px] text-[#6B7280] mt-0.5">${ cart.menu_item.description ?? "" }</p>
+                        <p class="text-[10px] text-[#6B7280] mt-0.5">${ cart.product.description ?? "" }</p>
                         <div class="flex flex-wrap gap-1">
                             <span class="px-1.5 py-0.5 rounded-full text-[9px] bg-[#f5d4ae] text-[#f6911e]">محبوب ها</span>
                             <span class="px-1.5 py-0.5 rounded-full text-[9px] bg-[#F3F3F3] ">محبوب ها</span>
@@ -301,7 +301,7 @@
                     </div>
                 </div>
                     <div class="flex gap-1 items-center">
-                        <div class="h-full flex flex-col gap-2 items-center justify-center px-1" data-item-id="${ cart.menu_item.id }">
+                        <div class="h-full flex flex-col gap-2 items-center justify-center px-1" data-item-id="${ cart.product_id }">
 
                             <span class="text-xs text-(--secondary-text-color)">تعداد</span>
                             <span class="text-xs text-(--primary-text-color) font-bold in-fa">${cart.quantity}</span>
@@ -326,7 +326,7 @@
                     }, 2000)
                 }
             })
-        } --}}
+        }
 
         function hideItems() {
             orderBlock.classList.add('invisible')
@@ -374,9 +374,9 @@
                                 let show = order.querySelector('.order-show-btn')
                                 let accept = order.querySelector('.order-accept-btn')
                                 table.innerText = data.qr_code ? (data.qr_code.description ? data.qr_code.description : data.qr_code.slug) : "-"
-                                status.classList = `text-[10px] text-[${data.status.color}] px-2 py-0.5 bg-[${data.status.color}]/10 rounded-full border-1 border-[${data.status.color}] order-status`
+                                status.classList = `text-[10px] text-blue-500 px-2 py-0.5 bg-blue-500/10 rounded-full border-1 border-blue-500 order-status`
                                 status.innerText = data.status.title
-                                show.classList = `w-1/2 flex flex-row gap-1 items-center justify-center py-1.5 rounded-md border-1 border-[${data.status.color}] bg-[${data.status.color}] text-white text-xs cursor-pointer order-show-btn`
+                                show.classList = `w-1/2 flex flex-row gap-1 items-center justify-center py-1.5 rounded-md border-1 border-blue-500 bg-blue-500 text-white text-xs cursor-pointer order-show-btn`
                                 accept.setAttribute('onclick', `accept(${data.id}, this, ${data.status.id})`)
                                 accept.innerHTML = `
                                     <span class="text-white text-sm font-bold">${data.status.admin_title}</span>
@@ -420,7 +420,7 @@
             })
         }--}}
         
- 
+ </script>
 
   
 @endsection

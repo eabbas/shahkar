@@ -18,3 +18,4 @@ Route::post('/cart/saveOrder', [CartsController::class, 'saveOrder']);
 
 
 Route::post('/order/store', [OrdersController::class, 'store']);
+Route::get('/order/showItems/{order}', [OrdersController::class, 'showItems']);
