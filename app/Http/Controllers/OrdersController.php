@@ -34,13 +34,12 @@ class OrdersController extends Controller
 
         $createdOrders = [];
 
+        $order_id = orders::insertGetId([
+            'address_id' => isset($request->address) ? $request->address : null,
+            'user_id' => $user_id,
+            'order_status_id' => 1,
+        ]);
         foreach ($cartItems as $cartItem) {
-            $order_id = orders::insertGetId([
-                'address_id' => isset($request->address) ? $request->address : null,
-                'user_id' => $user_id,
-                'product_id' => $cartItem->product_id,
-                'order_status_id' => 1,
-            ]);
 
             $order_code = "100" . $order_id;
             orders::where('id', $order_id)->update(['order_code' => $order_code]);
@@ -95,8 +94,8 @@ class OrdersController extends Controller
     public function showItems(orders $order){
         $order->load(['carts'=>function($query){
             $query->with(['product'=>function($q){
-                $q->with(['media'=>function($m){
-                    $m->where('is_main', 1)->first();
+                $q->with(['media'=>function($qr){
+                    $qr->where('is_main', 1)->get();
                 }]);
             }]);
         }]);

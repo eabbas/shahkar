@@ -1490,12 +1490,14 @@ class="w-full h-full rounded-full">
                     <div class="w-5 h-5 border-2 border-white border-t-(--primary-color) rounded-full animate-spin"></div>
                 `
             if (state == "+") {
-                document.getElementById('quantity').value++
+                if(flag)
+                    document.getElementById('quantity').value++
                 el.parentElement.children[1].value++
                 orderBasket.children[1].innerText++
             }
             if (state == "-") {
-                document.getElementById('quantity').value--
+                if(flag)
+                    document.getElementById('quantity').value--
                 el.parentElement.children[1].value--
                 orderBasket.children[1].innerText--
             }
@@ -1631,8 +1633,7 @@ class="w-full h-full rounded-full">
                     closeShoppingCart()
                     let productId = null;
                     if (orderBasket && orderBasket.parentElement) {
-                        orderBasket.parentElement.classList.remove('flex')
-                        orderBasket.parentElement.classList.add('hidden')
+                        orderBasket.children[1].innerText = 0
                     }
                     if (orderBasket) {
                         orderBasket.children[1].innerText = '0'
@@ -1640,8 +1641,7 @@ class="w-full h-full rounded-full">
                     data.forEach(cart => {
                         productId = cart.product_id
                     })
-                    console.log(productId)
-                    console.log(element)
+
                     element.innerHTML = `
                             <div>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="xl:size-6 size-4"

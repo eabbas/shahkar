@@ -273,8 +273,8 @@
                             <div class="w-7/12 relative">
                     `
 
-                        inner+= `
-                        <img src='${cart.product.media[0].media_path ? "{{ asset('storage/') }}/" + cart.product.media[0].media_path : "{{ asset('storage/resturan_img/807c88cc-7948-4f75-88e5-4c4598ab8175_1767800481_6872954f6e4630ba6c0eda84b2ca1882.jpg') }}"}'
+                    inner+= `
+                    <img src='${cart.product.media[0].media_path ? "{{ asset('storage/') }}/" + cart.product.media[0].media_path : "{{ asset('storage/resturan_img/807c88cc-7948-4f75-88e5-4c4598ab8175_1767800481_6872954f6e4630ba6c0eda84b2ca1882.jpg') }}"}'
                             alt="" class="w-full min-h-24 max-h-24 rounded-xl">
                    </div>
                     <div class="w-full flex h-full flex-col gap-1 items-start">
@@ -283,11 +283,11 @@
                             <h3 class="text-[14px] font-bold">${ cart.product.title }</h3>
                         </div>
                         <div class="flex flex-row items-center gap-2">
-                            <div class="flex gap-1 relative ${ cart.product.secondary_price != 0 && 'through' }">
+                            <div class="flex gap-1 relative ${ cart.product.secondary_price ? 'through' : '' }">
                                 <span class="text-[10px] text-[#f6911e] in-fa">${ formatter.format(cart.product.primary_price) }</span>
-                                <span class='text-[10px] text-[#f6911e] ${ cart.product.secondary_price != 0 && 'hidden' } '></span>
+                                <span class='text-[10px] text-[#f6911e] ${ cart.product.secondary_price ? '' : 'hidden' } '></span>
                             </div>
-                            <div class="flex gap-1 relative ${ cart.product.secondary_price == 0 && 'hidden' }">
+                            <div class="flex gap-1 relative ${ cart.product.secondary_price ? '' : 'hidden' }">
                                 <span class="text-[10px] text-[#f6911e] font-bold in-fa">${ formatter.format(cart.product.secondary_price) }</span>
                                 <span class="text-[10px] text-[#f6911e]">تومان</span>
                             </div>
