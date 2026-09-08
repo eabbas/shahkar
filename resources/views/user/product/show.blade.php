@@ -306,9 +306,9 @@
                                         onclick="setCount(this, '+', {{ $product->id }})">
                                         <span class="text-2xl text-white">+</span>
                                     </button>
-                                    <input type="number" disabled min="1" value="{{ $cart->quantity ?? 1 }}"
+                                    <input type="number" disabled min="1" value="{{ $cart->quantity ?? 1 }}" 
                                         class="size-7 text-center font-bold text-xs text-white outline-none" name=""
-                                        id="">
+                                        id="quantity">
                                     <button
                                         class="size-7 pt-1 bg-[#f6911e] flex justify-center items-center rounded-md changeButton cursor-pointer"
                                         onclick="setCount(this, '-', {{ $product->id }})">
@@ -600,15 +600,6 @@
                                         class="object-fit w-full lg:h-55 h-45 rounded-t-2xl">
                                 </a>
                                 <div class="w-full  px-4">
-                                    {{-- <div
-                                        class="min-w-11 min-h-11 max-w-11 max-h-11 gradient_box1 rounded-xl flex justify-center items-center cursor-pointer" onclick='addToCart(this , "{{ $pro->id }}")'>
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="size-1/2"
-                                            fill="white">
-                                            <path
-                                                d="M16 0H0V32H16 67.2l77.2 339.5 2.8 12.5H160 496h16V352H496 172.8l-14.5-64H496L566 64l10-32H542.5 100L95.6 12.5 92.8 0H80 16zm91.3 64H532.5l-60 192H151L107.3 64zM184 432a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm0 80a56 56 0 1 0 0-112 56 56 0 1 0 0 112zm248-56a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm80 0a56 56 0 1 0 -112 0 56 56 0 1 0 112 0z">
-                                            </path>
-                                        </svg>
-                                    </div> --}}
                                     <div
                                         class="w-full flex flex-col gap-4 justify-center items-end xl:text-sm lg:text-xs sm:text-[11px] md:text-sm text-xs">
                                         <p class="w-full truncate text-nowrap font-bold text-[var(--text)] text-left">
@@ -1266,8 +1257,8 @@ class="w-full h-full rounded-full">
                     <div class="flex justify-between items-center gap-4 flex-wrap">
                         <div class="flex items-center gap-2">
                             <span class="text-gray-600 dark:text-gray-300">جمع کل:</span>
-                            <span id="cartTotalPrice" class="text-xl font-bold text-primary">0</span>
-                            <span class="text-gray-500">تومان</span>
+                            <span id="cartTotalPrice" class="text-xl font-bold text-white">0</span>
+                            <span class="text-gray-300">تومان</span>
                         </div>
                         <div class="flex gap-3">
                             <button onclick="closeShoppingCart()"
@@ -1289,7 +1280,7 @@ class="w-full h-full rounded-full">
         let flag = "{{ Auth::check() }}";
         let userId = "{{ Auth::id() }}";
         let product_id = "{{ $product->id ?? '' }}";
-        let link = "{{ url('/') }}/";
+        // let link = "{{ url('/') }}/";
         let element = document.getElementById('cartBtn')
         let message = document.getElementById('message')
         let authenticationDiv = document.getElementById('authenticationDiv')
@@ -1411,7 +1402,6 @@ class="w-full h-full rounded-full">
             `
             if (flag) {
                 $.ajax({
-                    // url: "{{ url('/api/cart/store') }}",
                     url: link + "api/cart/store",
                     type: "POST",
                     dataType: "json",
@@ -1423,13 +1413,13 @@ class="w-full h-full rounded-full">
                         console.log(data)
                         orderBasket.parentElement.classList.remove('hidden')
                         orderBasket.parentElement.classList.add('flex')
-                        orderBasket.children[2].innerText++
+                        orderBasket.children[1].innerText++
                         el.innerHTML = `
                                 <div class="w-10/12 h-full flex flex-row gap-2 items-center justify-between px-1 count">
-                                    <button class="size-7 pt-1 'bg-[#f6911e] flex justify-center items-center rounded-md changeButton cursor-pointer" onclick="setCount(this, '+', ${data.product_id})">
+                                    <button class="size-7 pt-1 bg-[#f6911e] flex justify-center items-center rounded-md changeButton cursor-pointer" onclick="setCount(this, '+', ${data.product_id})">
                                         <span class="text-2xl text-white">+</span>
                                     </button>
-                                    <input type="number" disabled min="1" value="${data.quantity}" class="size-7 text-center font-bold text-xs text-white outline-none" name="" id="">
+                                    <input type="number" disabled min="1" value="${data.quantity}" class="size-7 text-center font-bold text-xs text-white outline-none" name="" id="quantity">
                                     <button class="size-7 pt-1 bg-[#f6911e] flex justify-center items-center rounded-md changeButton cursor-pointer" onclick="setCount(this, '-', ${data.product_id})">
                                         <span class='text-2xl text-white'>-</span>
                                     </button>
@@ -1490,7 +1480,7 @@ class="w-full h-full rounded-full">
         }
 
         // setCount
-        function setCount(el, state, proId) {
+        function setCount(el, state, proId, flag = false) {
             product_id = proId
 
             el.parentElement.parentElement.removeAttribute('onclick')
@@ -1500,15 +1490,16 @@ class="w-full h-full rounded-full">
                     <div class="w-5 h-5 border-2 border-white border-t-(--primary-color) rounded-full animate-spin"></div>
                 `
             if (state == "+") {
+                if(flag)
+                    document.getElementById('quantity').value++
                 el.parentElement.children[1].value++
-                orderBasket.children[2].innerText++
+                orderBasket.children[1].innerText++
             }
-            if (el.parentElement.children[1].value != 0 && orderBasket.children[2].innerText != 0) {
-                if (state == "-") {
-                    el.parentElement.children[1].value--
-                    orderBasket.children[2].innerText--
-
-                }
+            if (state == "-") {
+                if(flag)
+                    document.getElementById('quantity').value--
+                el.parentElement.children[1].value--
+                orderBasket.children[1].innerText--
             }
             if (el.parentElement.children[1].value == 0) {
 
@@ -1523,11 +1514,21 @@ class="w-full h-full rounded-full">
                     success: function(data) {
                         message.children[0].innerHTML = ''
                         console.log(data)
-                        if (data.count == 0) {
+                        // if (data.count == 0) {
+                            if(flag){
+                                el.closest('.parentCart').remove()
+                                document.getElementById('quantity').closest('#cartBtn').innerHTML = `<div>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="xl:size-6 size-4"
+                        fill="white">
+                        <path
+                            d="M16 0H0V32H16 67.2l77.2 339.5 2.8 12.5H160 496h16V352H496 172.8l-14.5-64H496L566 64l10-32H542.5 100L95.6 12.5 92.8 0H80 16zm91.3 64H532.5l-60 192H151L107.3 64zM184 432a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm0 80a56 56 0 1 0 0-112 56 56 0 1 0 0 112zm248-56a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm80 0a56 56 0 1 0 -112 0 56 56 0 1 0 112 0z">
+                        </path>
+                    </svg>
+                </div>
+                <span class="xl:text-md lg:text-sm text-[9px] text-white font-bold">ثبت سفارش</span>`
+                            }
                             el.parentElement.parentElement.setAttribute('onclick',
                                 `addToCart(this , ${product_id})`)
-                            orderBasket.parentElement.classList.remove('flex')
-                            orderBasket.parentElement.classList.add('hidden')
                             el.parentElement.parentElement.innerHTML = `
 
                                     <div>
@@ -1541,7 +1542,7 @@ class="w-full h-full rounded-full">
                                     <span class="xl:text-md lg:text-sm text-[9px] text-white font-bold">ثبت سفارش</span>
                              
                             `
-                        }
+                        // }
 
                     },
                     error: function() {
@@ -1550,7 +1551,7 @@ class="w-full h-full rounded-full">
                 })
             } else {
                 $.ajax({
-                    url: "{{ url('/api/cart/update') }}",
+                    url: link+'api/cart/update',
                     type: "POST",
                     dataType: "json",
                     data: {
@@ -1559,13 +1560,10 @@ class="w-full h-full rounded-full">
                         'user_id': userId
                     },
                     success: function(data) {
-
+                        console.log(data)
                         el.removeAttribute('disabled')
                         let currentQuantity = data.quantity || 0
-                        console.log(currentQuantity)
-
                         el.parentElement.children[1].value = currentQuantity
-                        console.log(el.parentElement.children[1].value)
                         if (state == "+") {
                             el.innerHTML = "<span class='text-2xl text-white'>+</span>"
                             if (data.disabled) {
@@ -1574,9 +1572,6 @@ class="w-full h-full rounded-full">
                                 el.innerHTML = "<span class='text-2xl text-white/50'>+</span>"
                                 el.disabled = true
                             }
-
-
-
                             el.parentElement.children[2].innerHTML =
                                 "<span class='text-2xl text-white'>-</span>"
                         }
@@ -1592,7 +1587,6 @@ class="w-full h-full rounded-full">
                         }
                         if (el.parentElement.children[1].value == 0) {
                             el.parentElement.parentElement.innerHTML = `
-                                 
                                     <div>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="xl:size-6 size-4"
                                             fill="white">
@@ -1602,7 +1596,6 @@ class="w-full h-full rounded-full">
                                         </svg>
                                     </div>
                                     <span class="xl:text-md lg:text-sm text-[9px] text-white font-bold">ثبت سفارش</span>
-
                             `
                         }
                     },
@@ -1640,17 +1633,15 @@ class="w-full h-full rounded-full">
                     closeShoppingCart()
                     let productId = null;
                     if (orderBasket && orderBasket.parentElement) {
-                        orderBasket.parentElement.classList.remove('flex')
-                        orderBasket.parentElement.classList.add('hidden')
+                        orderBasket.children[1].innerText = 0
                     }
                     if (orderBasket) {
-                        orderBasket.children[2].innerText = '0'
+                        orderBasket.children[1].innerText = '0'
                     }
                     data.forEach(cart => {
                         productId = cart.product_id
                     })
-                    console.log(productId)
-                    console.log(element)
+
                     element.innerHTML = `
                             <div>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="xl:size-6 size-4"
