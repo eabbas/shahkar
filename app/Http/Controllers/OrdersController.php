@@ -10,9 +10,11 @@ use App\Models\category;
 use App\Models\defaultComment;
 use App\Models\logo;
 use App\Models\product;
+use App\Models\User;
 use App\Models\header;
 use App\Models\introduction;
 use App\Models\service;
+use Hekmatinasser\Verta\Verta;
 
 class OrdersController extends Controller
 {
@@ -33,11 +35,15 @@ class OrdersController extends Controller
         }
 
         $createdOrders = [];
-
+        $dateTime = explode(' ', verta());
+        $date = implode('/', explode('-', $dateTime[0]));
+        $time = $dateTime[1];
         $order_id = orders::insertGetId([
             'address_id' => isset($request->address) ? $request->address : null,
             'user_id' => $user_id,
             'order_status_id' => 1,
+            'date'=>$date,
+            'time'=>$time
         ]);
         foreach ($cartItems as $cartItem) {
 
@@ -100,5 +106,10 @@ class OrdersController extends Controller
             }]);
         }]);
         return response()->json($order);
+    }
+
+    public function cancelAll(User $user){
+        carts::where('user_id', $user->id)->whereNull('order_id')->delete();
+        return response()->json('ok');
     }
 }
