@@ -15,6 +15,13 @@ use App\Http\Controllers\LogoController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CartsController;
 use App\Http\Controllers\OrdersController;
+use Hekmatinasser\Verta\Verta;
+
+Route::get('/test', function(){
+    $dateTime = explode(' ', verta());
+    $date = implode('/', explode('-', $dateTime[0]));
+    dd($date);
+});
 
 Route::group([
     'prefix'=>'order',

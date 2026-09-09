@@ -10,7 +10,9 @@ class orders extends Model
         'address_id',
         'user_id',
         'order_status_id',
-        'order_code'
+        'order_code',
+        'date',
+        'time'
     ];
     public function user(){
         return $this->belongsTo(User::class);

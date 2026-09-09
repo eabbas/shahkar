@@ -90,10 +90,12 @@ class CartsController extends Controller
             $product = $cart->product->load(['media'=>function($query){
                 $query->where('is_main', 1)->first();
             }]);
-            $price = $cart->product->primary_price ?? 0;
+            $price = $cart->product->secondary_price ? $cart->product->secondary_price : $cart->product->primary_price;
             $total_price += $price * $cart->quantity;
 
             $cartData[] = [
+                'summary'=>$cart->product->summary,
+                'user_id'=>$cart->user_id,
                 'id' => $cart->id,
                 'product_id' => $cart->product_id,
                 'product_name' => $cart->product->title ?? 'محصول',

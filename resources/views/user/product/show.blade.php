@@ -299,7 +299,7 @@
                         {{-- @dd($cart) --}}
                         @if ($cart && $cart->order_id == null && $cart->product_id == $product->id)
                             <div
-                                class="sm:w-1/2 w-full xl:py-3 py-2 flex lg:gap-3 gap-1 justify-center items-center rounded-2xl gradient_box1 gradient_box1_hover_chang border-2 border-[var(--gold)] transition_root cursor-pointer">
+                                class="sm:w-1/2 w-full xl:py-3 py-2 flex lg:gap-3 gap-1 justify-center items-center rounded-2xl gradient_box1 gradient_box1_hover_chang border-2 border-[var(--gold)] transition_root cursor-pointer" id="cartBtn">
                                 <div class="w-10/12 h-full flex flex-row gap-2 items-center justify-between px-1 count">
                                     <button
                                         class="size-7 pt-1 bg-[#f6911e] flex justify-center items-center rounded-md changeButton cursor-pointer"
@@ -1261,7 +1261,7 @@ class="w-full h-full rounded-full">
                             <span class="text-gray-300">تومان</span>
                         </div>
                         <div class="flex gap-3">
-                            <button onclick="closeShoppingCart()"
+                            <button onclick="canceleOrder()"
                                 class="px-6 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
                                 لغو همه
                             </button>
@@ -1392,14 +1392,11 @@ class="w-full h-full rounded-full">
         }
 
         // addToCart
-        let originalHtml;
+        let originalHtml
 
         function addToCart(el, proId) {
-            originalHtml = el.innerHTML;
-            // element = el
-            el.innerHTML = `
-                <div class="w-5 h-5 border-2 border-gray-200 border-t-[#d5a743] rounded-full animate-spin"></div>
-            `
+            originalHtml = el.innerHTML
+            el.innerHTML = `<div class="w-5 h-5 border-2 border-gray-200 border-t-[#d5a743] rounded-full animate-spin"></div>`
             if (flag) {
                 $.ajax({
                     url: link + "api/cart/store",
@@ -1423,35 +1420,28 @@ class="w-full h-full rounded-full">
                                     <button class="size-7 pt-1 bg-[#f6911e] flex justify-center items-center rounded-md changeButton cursor-pointer" onclick="setCount(this, '-', ${data.product_id})">
                                         <span class='text-2xl text-white'>-</span>
                                     </button>
-                                </div>
-                            `
+                                </div>`
                         message.children[0].innerHTML = ''
                         showMessage('open')
                         let msgElement = document.createElement('div')
-                        msgElement.classList =
-                            "text-sm font-bold flex flex-row items-center justify-center py-3 gap-2 lg:gap-3"
+                        msgElement.classList = "text-sm font-bold flex flex-row items-center justify-center py-3 gap-2 lg:gap-3"
                         msgElement.innerHTML = `
                                 <span>✅</span>
-                                <span>محصول به سبد خرید اضافه شد</span>
-                            `
+                                <span>محصول به سبد خرید اضافه شد</span>`
                         message.children[0].appendChild(msgElement)
                         setTimeout(() => {
                             showMessage('close')
                         }, 2000)
-
-
                     },
                     error: function() {
                         console.log('addToCart error')
                         el.innerHTML = originalHtml;
                         showMessage('open')
                         let msgElement = document.createElement('div')
-                        msgElement.classList =
-                            "text-sm font-bold flex flex-row items-center justify-center py-3 gap-2 lg:gap-3"
+                        msgElement.classList = "text-sm font-bold flex flex-row items-center justify-center py-3 gap-2 lg:gap-3"
                         msgElement.innerHTML = `
                             <span class="text-red-500">!</span>
-                            <span>خطا در افزودن به سبد خرید</span>
-                        `
+                            <span>خطا در افزودن به سبد خرید</span>`
                         message.children[0].appendChild(msgElement)
                         setTimeout(() => {
                             showMessage('close')
@@ -1475,34 +1465,39 @@ class="w-full h-full rounded-full">
                         </path>
                     </svg>
                 </div>
-                <span class="xl:text-md lg:text-sm text-[9px] text-white font-bold">ثبت سفارش</span>
-            `
+                <span class="xl:text-md lg:text-sm text-[9px] text-white font-bold">ثبت سفارش</span>`
         }
 
         // setCount
         function setCount(el, state, proId, flag = false) {
             product_id = proId
-
             el.parentElement.parentElement.removeAttribute('onclick')
             el.setAttribute('disabled', true)
-
-            el.innerHTML = `
-                    <div class="w-5 h-5 border-2 border-white border-t-(--primary-color) rounded-full animate-spin"></div>
-                `
+            el.innerHTML = `<div class="w-5 h-5 border-2 border-white border-t-(--primary-color) rounded-full animate-spin"></div>`
+      
             if (state == "+") {
-                if(flag)
-                    document.getElementById('quantity').value++
+                if(flag){
+                    document.getElementById('quantity') && document.getElementById('quantity').value++
+                    let plusPr = el.parentElement.getAttribute('data-price')
+                    let pricee = document.getElementById('cartTotalPrice').innerText
+                    let newPrice = parseInt(pricee) + parseInt(plusPr)
+                    document.getElementById('cartTotalPrice').innerText = newPrice
+                }
                 el.parentElement.children[1].value++
                 orderBasket.children[1].innerText++
             }
             if (state == "-") {
-                if(flag)
-                    document.getElementById('quantity').value--
+                if(flag){
+                    document.getElementById('quantity') && document.getElementById('quantity').value--
+                    let minusPr = el.parentElement.getAttribute('data-price')
+                    let pricee = document.getElementById('cartTotalPrice').innerText
+                    let newPrice = parseInt(pricee) - parseInt(minusPr)
+                    document.getElementById('cartTotalPrice').innerText = newPrice
+                }
                 el.parentElement.children[1].value--
                 orderBasket.children[1].innerText--
             }
             if (el.parentElement.children[1].value == 0) {
-
                 $.ajax({
                     url: link + "api/cart/delete",
                     type: "POST",
@@ -1514,24 +1509,10 @@ class="w-full h-full rounded-full">
                     success: function(data) {
                         message.children[0].innerHTML = ''
                         console.log(data)
-                        // if (data.count == 0) {
                             if(flag){
                                 el.closest('.parentCart').remove()
-                                document.getElementById('quantity').closest('#cartBtn').innerHTML = `<div>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="xl:size-6 size-4"
-                        fill="white">
-                        <path
-                            d="M16 0H0V32H16 67.2l77.2 339.5 2.8 12.5H160 496h16V352H496 172.8l-14.5-64H496L566 64l10-32H542.5 100L95.6 12.5 92.8 0H80 16zm91.3 64H532.5l-60 192H151L107.3 64zM184 432a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm0 80a56 56 0 1 0 0-112 56 56 0 1 0 0 112zm248-56a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm80 0a56 56 0 1 0 -112 0 56 56 0 1 0 112 0z">
-                        </path>
-                    </svg>
-                </div>
-                <span class="xl:text-md lg:text-sm text-[9px] text-white font-bold">ثبت سفارش</span>`
-                            }
-                            el.parentElement.parentElement.setAttribute('onclick',
-                                `addToCart(this , ${product_id})`)
-                            el.parentElement.parentElement.innerHTML = `
-
-                                    <div>
+                                if(document.getElementById('quantity')){
+                                    document.getElementById('quantity').closest('#cartBtn').innerHTML = `<div>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="xl:size-6 size-4"
                                             fill="white">
                                             <path
@@ -1539,10 +1520,21 @@ class="w-full h-full rounded-full">
                                             </path>
                                         </svg>
                                     </div>
-                                    <span class="xl:text-md lg:text-sm text-[9px] text-white font-bold">ثبت سفارش</span>
-                             
-                            `
-                        // }
+                                    <span class="xl:text-md lg:text-sm text-[9px] text-white font-bold">ثبت سفارش</span>`
+                                }
+                            }
+                            el.parentElement.parentElement.setAttribute('onclick',
+                                `addToCart(this , ${product_id})`)
+                            el.parentElement.parentElement.innerHTML = `
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="xl:size-6 size-4"
+                                        fill="white">
+                                        <path
+                                            d="M16 0H0V32H16 67.2l77.2 339.5 2.8 12.5H160 496h16V352H496 172.8l-14.5-64H496L566 64l10-32H542.5 100L95.6 12.5 92.8 0H80 16zm91.3 64H532.5l-60 192H151L107.3 64zM184 432a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm0 80a56 56 0 1 0 0-112 56 56 0 1 0 0 112zm248-56a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm80 0a56 56 0 1 0 -112 0 56 56 0 1 0 112 0z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <span class="xl:text-md lg:text-sm text-[9px] text-white font-bold">ثبت سفارش</span>`
 
                     },
                     error: function() {
@@ -1615,6 +1607,61 @@ class="w-full h-full rounded-full">
             // برگردوندن آیکون سبد خرید
             orderBasket.parentElement.classList.remove('hidden');
             orderBasket.parentElement.classList.add('flex');
+           
+            
+        }
+        function canceleOrder() {
+            document.getElementById('shoppingCartModal').classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+
+            // برگردوندن آیکون سبد خرید
+            orderBasket.parentElement.classList.remove('hidden');
+            orderBasket.parentElement.classList.add('flex');
+            $.ajax({
+                url: link+'api/order/cancelAll/'+userId,
+                type: 'GET',
+                success: function(response){
+                    console.log(response)
+                    message.children[0].innerHTML = ''
+                  
+                    let productId = "{{ $product->id }}";
+                    if (orderBasket && orderBasket.parentElement) {
+                        orderBasket.children[1].innerText = 0
+                    }
+                    if (orderBasket) {
+                        orderBasket.children[1].innerText = '0'
+                    }
+                    
+                    element.setAttribute('onclick', `addToCart(this , ${productId})`)
+                    element.innerHTML = `
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="xl:size-6 size-4"
+                                    fill="white">
+                                    <path
+                                        d="M16 0H0V32H16 67.2l77.2 339.5 2.8 12.5H160 496h16V352H496 172.8l-14.5-64H496L566 64l10-32H542.5 100L95.6 12.5 92.8 0H80 16zm91.3 64H532.5l-60 192H151L107.3 64zM184 432a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm0 80a56 56 0 1 0 0-112 56 56 0 1 0 0 112zm248-56a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm80 0a56 56 0 1 0 -112 0 56 56 0 1 0 112 0z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <span class="xl:text-md lg:text-sm text-[9px] text-white font-bold">ثبت سفارش</span>
+                    `
+
+                    showMessage('open');
+                    let msgElement = document.createElement('div');
+                    msgElement.classList =
+                        "text-sm font-bold flex flex-row items-center justify-center py-3 gap-2 lg:gap-3";
+                    msgElement.innerHTML = `
+                        <span>✅</span>
+                        <span>سفارشات شما لغو شد</span>
+                    `;
+                    message.children[0].appendChild(msgElement);
+                    setTimeout(() => {
+                        showMessage('close');
+                    }, 3000);
+                },
+                error: function (){
+                    console.log('error')
+                }
+            })
         }
 
         function submitOrder() {
@@ -1641,7 +1688,7 @@ class="w-full h-full rounded-full">
                     data.forEach(cart => {
                         productId = cart.product_id
                     })
-
+                    element.setAttribute('onclick', `addToCart(this , ${productId})`)
                     element.innerHTML = `
                             <div>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="xl:size-6 size-4"
