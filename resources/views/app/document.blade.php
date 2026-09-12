@@ -20,8 +20,7 @@
         <div class="w-11/12 py-3 flex justify-between items-center xl:gap-10 bg-[var(--background)] px-3 rounded-2xl">
             <div class="w-1/3 flex justify-start lg:hidden cursor-pointer">
                 <!-- hamburger_menu_svg -->
-                <div class="flex flex-col gap-1 items-start justify-center "
-                    onclick="hamburger_menu('open')">
+                <div class="flex flex-col gap-1 items-start justify-center " onclick="hamburger_menu('open')">
                     <span class="w-7 h-1 bg-white rounded-full"></span>
                     <span class="w-7 h-1 bg-white rounded-full"></span>
                     <span class="w-7 h-1 bg-white rounded-full"></span>
@@ -581,7 +580,16 @@
         const route = ""
         const link = "{{ url('/') }}/"
         const storage = "{{ asset('storage/') }}/"
+        let flag = "{{ Auth::check() }}";
+        let userId = "{{ Auth::id() }}";
+        let product_id = "{{ $product->id ?? '' }}";
+        // let link = "{{ url('/') }}/";
+        let element = document.getElementById('cartBtn')
+        let message = document.getElementById('message')
+        let authenticationDiv = document.getElementById('authenticationDiv')
+        let orderBasket = document.getElementById('orderBasket')
     </script>
+    <script src="{{ asset('assets/js/shoppingCart.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
 

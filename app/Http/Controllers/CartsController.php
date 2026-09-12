@@ -13,7 +13,7 @@ class CartsController extends Controller
     public function store(Request $request)
     {
         $user_id = Auth::id();
-        if(!Auth::check()){
+        if (!Auth::check()) {
             $user_id = $request->input('user_id');
         }
         $cart = carts::create([
@@ -21,7 +21,7 @@ class CartsController extends Controller
             'user_id' => $user_id,
             'quantity' => $request->quantity ? $request->quantity : 1,
         ]);
-                
+
         return response()->json($cart);
     }
     public function delete(Request $request)
@@ -87,22 +87,35 @@ class CartsController extends Controller
         $total_price = 0;
         $cartData = [];
         foreach ($carts as $cart) {
-            $product = $cart->product->load(['media'=>function($query){
-                $query->where('is_main', 1)->first();
-            }]);
+            $product = $cart->product;
             $price = $cart->product->secondary_price ? $cart->product->secondary_price : $cart->product->primary_price;
             $total_price += $price * $cart->quantity;
 
+           
+                if ($product->media->isNotEmpty()) {
+                    foreach ($product->media as $media) {
+                        if ($media['is_main']) {
+                            $product['mainImg']  = $media['media_path'];
+                            break;
+                        } else {
+                            $product['mainImg'] = 'default.jpg';
+                        }
+                    }
+                } else {
+                    $product['mainImg'] = 'default.jpg';
+                }
+            
+
             $cartData[] = [
-                'summary'=>$cart->product->summary,
-                'user_id'=>$cart->user_id,
+                'summary' => $cart->product->summary,
+                'user_id' => $cart->user_id,
                 'id' => $cart->id,
                 'product_id' => $cart->product_id,
                 'product_name' => $cart->product->title ?? 'محصول',
                 'quantity' => $cart->quantity,
                 'price' => $price,
                 'total' => $price * $cart->quantity,
-                'img' => count($product->media) ? $product->media[0]->media_path : null
+                'img' => $product->mainImg
             ];
         }
 
@@ -114,6 +127,3 @@ class CartsController extends Controller
         ]);
     }
 }
-    
-    
-

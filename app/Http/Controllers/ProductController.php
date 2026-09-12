@@ -236,6 +236,7 @@ class ProductController extends Controller
     }
     public function show(Product $product)
     {
+        // dd($product);
         $logo = logo::first();
         $services = service::all();
         $categories = category::with('products')->has('products')->get();
@@ -253,32 +254,40 @@ class ProductController extends Controller
         }
         $cartCount = 0;
         $currentUser = null;
-        $cart = null ;
+        $cart = null;
         $allCartCount = 0;
         if (Auth::check()) {
             $currentUser = Auth::user();
-            $cart = carts::where('product_id' , $product->id)->where('user_id' , Auth::id())->first();
+            $cartt = carts::where('product_id', $product->id)->where('user_id', Auth::id())->where('order_id', null)->first();
+            // dd($cart);
             foreach ($currentUser->carts as $cart) {
-                $cartCount += $cart->quantity;
-                if($cart->order_id != null){
-                    $cartCount = 0;
+                if ($cart->order_id == null) {
+                    $cartCount = $cart->quantity;
+                    // $cartCount= 0;
                 }
             }
-            $allCarts = carts::select('user_id', 'order_id', 'quantity')->where('user_id', Auth::id())->where('order_id', null)->get();
-            if(count($allCarts)){
-                foreach($allCarts as $allCart){
+            // dd($cartCount);
+            $allCarts = carts::select('user_id', 'order_id', 'quantity', 'product_id')->where('user_id', Auth::id())->where('order_id', null)->get();
+            if (count($allCarts)) {
+                foreach ($allCarts as $allCart) {
                     $allCartCount += $allCart->quantity;
                 }
             }
+        }
+        // dd($cartt);
+        $proIds = [];
+        foreach ($allCarts as $pro) {
+            $proIds[] = $pro->product_id;
         }
         return view('user.product.show', [
             'product' => $product,
             'logo' => $logo,
             'services' => $services,
             'cartCount' => $cartCount,
-            'cart'=> $cart,
+            'cart' => $cartt,
             'categories' => $categories,
-            'allCartCount' => $allCartCount
+            'allCartCount' => $allCartCount,
+            'proIds' => $proIds
         ]);
     }
     public function index()
@@ -301,11 +310,25 @@ class ProductController extends Controller
                 $product['mainImg'] = 'default.jpg';
             }
         }
+        $cartCount = 0;
+        $cart = null;
+        $allCartCount = 0;
+        if (Auth::check()) {
+            $allCarts = carts::select('user_id', 'order_id', 'quantity')->where('user_id', Auth::id())->where('order_id', null)->get();
+            if (count($allCarts)) {
+                foreach ($allCarts as $allCart) {
+                    $allCartCount += $allCart->quantity;
+                }
+            }
+        }
         return view('user.product.index', [
             'logo' => $logo,
             'services' => $services,
             'categories' => $categories,
             'products' => $products,
+            'cartCount' => $cartCount,
+            'cart' => $cart,
+            'allCartCount' => $allCartCount
         ]);
     }
     public function filter(Request $request)
