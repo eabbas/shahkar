@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\carts;
 use App\Models\category;
 use App\Models\defaultComment;
 use App\Models\logo;
@@ -9,6 +10,7 @@ use App\Models\product;
 use App\Models\header;
 use App\Models\introduction;
 use App\Models\service;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -35,6 +37,17 @@ class HomeController extends Controller
                 $product['mainImg'] = 'default.jpg';
             }
         }
+        $cartCount = 0;
+        $cart = null;
+        $allCartCount = 0;
+        if (Auth::check()) {
+            $allCarts = carts::select('user_id', 'order_id', 'quantity')->where('user_id', Auth::id())->where('order_id', null)->get();
+            if (count($allCarts)) {
+                foreach ($allCarts as $allCart) {
+                    $allCartCount += $allCart->quantity;
+                }
+            }
+        }
         return view('index', [
             'logo' => $logo,
             'header' => $header,
@@ -43,6 +56,9 @@ class HomeController extends Controller
             'categories' => $categories,
             'products' => $products,
             'defaultComments' => $defaultComments,
+            'cartCount' => $cartCount,
+            'cart' => $cart,
+            'allCartCount' => $allCartCount
         ]);
     }
     public function pageNotFound()
@@ -50,10 +66,24 @@ class HomeController extends Controller
         $services = service::all();
         $categories = category::with('products')->has('products')->get();
         $logo = logo::first();
+        $cartCount = 0;
+        $cart = null;
+        $allCartCount = 0;
+        if (Auth::check()) {
+            $allCarts = carts::select('user_id', 'order_id', 'quantity')->where('user_id', Auth::id())->where('order_id', null)->get();
+            if (count($allCarts)) {
+                foreach ($allCarts as $allCart) {
+                    $allCartCount += $allCart->quantity;
+                }
+            }
+        }
         return view('404', [
             'logo' => $logo,
             'services' => $services,
             'categories' => $categories,
+            'cartCount' => $cartCount,
+            'cart' => $cart,
+            'allCartCount' => $allCartCount
         ]);
     }
 }

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->integer('user_id');
             $table->integer('order_status_id')->nullable();
             $table->integer('order_code')->nullable();
+            $table->string('date')->nullable();
+            $table->string('time')->nullable();
             $table->timestamps();
         });
     }

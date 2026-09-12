@@ -106,18 +106,18 @@
                                                 <!-- Logo -->
                                                 <path
                                                     d="
-                                                                                                                                                                                                                                                                                                M165 235
-                                                                                                                                                                                                                                                                                                L165 205
-                                                                                                                                                                                                                                                                                                Q165 180 188 180
-                                                                                                                                                                                                                                                                                                L205 180
-                                                                                                                                                                                                                                                                                                Q225 180 225 198
-                                                                                                                                                                                                                                                                                                Q225 214 208 214
-                                                                                                                                                                                                                                                                                                L188 214
-                                                                                                                                                                                                                                                                                                L188 225
-                                                                                                                                                                                                                                                                                                L215 225
-                                                                                                                                                                                                                                                                                                Q235 225 235 245
-                                                                                                                                                                                                                                                                                                L165 245
-                                                                                                                                                                                                                                                                                                Z" />
+                                                                                                                                                                                                                                                                                                        M165 235
+                                                                                                                                                                                                                                                                                                        L165 205
+                                                                                                                                                                                                                                                                                                        Q165 180 188 180
+                                                                                                                                                                                                                                                                                                        L205 180
+                                                                                                                                                                                                                                                                                                        Q225 180 225 198
+                                                                                                                                                                                                                                                                                                        Q225 214 208 214
+                                                                                                                                                                                                                                                                                                        L188 214
+                                                                                                                                                                                                                                                                                                        L188 225
+                                                                                                                                                                                                                                                                                                        L215 225
+                                                                                                                                                                                                                                                                                                        Q235 225 235 245
+                                                                                                                                                                                                                                                                                                        L165 245
+                                                                                                                                                                                                                                                                                                        Z" />
 
                                                 <!-- Text Line -->
                                                 <line x1="220" y1="225" x2="305" y2="225" />
@@ -420,23 +420,23 @@
                                         <!-- Scalloped medal -->
                                         <path
                                             d="
-                                                                                                                                                                                                                                                                                                        M12 3
-                                                                                                                                                                                                                                                                                                        C12.7 3.6 13.6 3.5 14.3 3.9
-                                                                                                                                                                                                                                                                                                        C15.1 4.2 15.5 5 16.2 5.4
-                                                                                                                                                                                                                                                                                                        C17 5.8 17.8 6.3 18 7.2
-                                                                                                                                                                                                                                                                                                        C18.3 8 19 8.8 19 9.8
-                                                                                                                                                                                                                                                                                                        C19 10.8 18.3 11.6 18 12.4
-                                                                                                                                                                                                                                                                                                        C17.8 13.3 17 13.8 16.2 14.2
-                                                                                                                                                                                                                                                                                                        C15.5 14.6 15.1 15.4 14.3 15.7
-                                                                                                                                                                                                                                                                                                        C13.6 16.1 12.7 16 12 16.6
-                                                                                                                                                                                                                                                                                                        C11.3 16 10.4 16.1 9.7 15.7
-                                                                                                                                                                                                                                                                                                        C8.9 15.4 8.5 14.6 7.8 14.2
-                                                                                                                                                                                                                                                                                                        C7 13.8 6.2 13.3 6 12.4
-                                                                                                                                                                                                                                                                                                        C5.7 11.6 5 10.8 5 9.8
-                                                                                                                                                                                                                                                                                                        C5 8.8 5.7 8 6 7.2
-                                                                                                                                                                                                                                                                                                        C6.2 6.3 7 5.8 7.8 5.4
-                                                                                                                                                                                                                                                                                                        C8.5 5 8.9 4.2 9.7 3.9
-                                                                                                                                                                                                                                                                                                        C10.4 3.5 11.3 3.6 12 3Z" />
+                                                                                                                                                                                                                                                                                                                M12 3
+                                                                                                                                                                                                                                                                                                                C12.7 3.6 13.6 3.5 14.3 3.9
+                                                                                                                                                                                                                                                                                                                C15.1 4.2 15.5 5 16.2 5.4
+                                                                                                                                                                                                                                                                                                                C17 5.8 17.8 6.3 18 7.2
+                                                                                                                                                                                                                                                                                                                C18.3 8 19 8.8 19 9.8
+                                                                                                                                                                                                                                                                                                                C19 10.8 18.3 11.6 18 12.4
+                                                                                                                                                                                                                                                                                                                C17.8 13.3 17 13.8 16.2 14.2
+                                                                                                                                                                                                                                                                                                                C15.5 14.6 15.1 15.4 14.3 15.7
+                                                                                                                                                                                                                                                                                                                C13.6 16.1 12.7 16 12 16.6
+                                                                                                                                                                                                                                                                                                                C11.3 16 10.4 16.1 9.7 15.7
+                                                                                                                                                                                                                                                                                                                C8.9 15.4 8.5 14.6 7.8 14.2
+                                                                                                                                                                                                                                                                                                                C7 13.8 6.2 13.3 6 12.4
+                                                                                                                                                                                                                                                                                                                C5.7 11.6 5 10.8 5 9.8
+                                                                                                                                                                                                                                                                                                                C5 8.8 5.7 8 6 7.2
+                                                                                                                                                                                                                                                                                                                C6.2 6.3 7 5.8 7.8 5.4
+                                                                                                                                                                                                                                                                                                                C8.5 5 8.9 4.2 9.7 3.9
+                                                                                                                                                                                                                                                                                                                C10.4 3.5 11.3 3.6 12 3Z" />
 
                                         <!-- Inner circle -->
                                         <circle cx="12" cy="9.8" r="4.2" />
@@ -705,7 +705,136 @@
         </div>
     </section>
     <!-- comment -->
+    <div class="absolute top-0 opacity-0 invisible right-1/2 translate-x-1/2 w-3/4 lg:w-1/3 bg-white rounded-lg shadow-md transition-all duration-500 z-99999999"
+        id="message">
+        <div class="relative">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                class="size-4 absolute top-1/2 -translate-y-1/2 right-3 cursor-pointer" onclick="showMessage('close')"
+                viewBox="0 0 384 512">
+                <path
+                    d="M345 137c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-119 119L73 103c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l119 119L39 375c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l119-119L311 409c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-119-119L345 137z" />
+            </svg>
 
+        </div>
+    </div>
+    <div id="authenticationDiv"
+        class="w-full h-dvh fixed top-0 left-0 flex justify-center items-center invisible opacity-0 max-md:px-5 transition-all duration-300 z-5">
+        <div class="size-full bg-black/50 absolute backdrop-blur-[5px]" onclick="closeLoginForm()"></div>
+        <div class="max-h-120 overflow-auto relative p-4 sm:p-10 w-full md:w-3/4 xl:w-1/2 bg-[#1B1C1E] rounded-2xl"
+            style="scrollbar-width: none">
+            <button
+                class="absolute z-1 top-1 left-1 size-6 flex flex-col justify-center items-center cursor-pointer bg-white rounded-full "
+                onclick="closeLoginForm()">
+                <span class=" w-2/3 h-[2.5px] rounded-full bg-slate-500 rotate-45
+              translate-y-1/2"></span>
+                <span class="w-2/3 h-[2.5px] rounded-full bg-slate-500 -rotate-45 -translate-y-1/2"></span>
+            </button>
+            <h3 class="text-center text-sm font-bold text-gray-400">ابتدا وارد شوید</h3>
+            <form action="{{ route('user.checkUserPopup') }}" class="flex flex-col items-center my-6 gap-3 w-full"
+                method="post" id="loginForm">
+                @csrf
+                <input type="number"
+                    class="placeholder-gray-400 focus:border-1 focus:border-[#d5a743] p-2 md:p-[9px] mb-1 rounded-[7px] border-1 border-[#DBDFE9] focus:outline-none w-full"
+                    name="phoneNumber" id="phoneNumber" placeholder="شماره تلفن" required>
+                <div class="w-full" id="login">
+                    <div class="w-full flex flex-row items-center gap-3">
+                        <input type="number"
+                            class="w-8/12 p-2 placeholder-gray-400 focus:border-[#d5a743] md:p-[9px] rounded-[7px] border-1 border-[#DBDFE9] outline-none"
+                            name="code" placeholder="کد" required id="code">
+                        <button type="button"
+                            class="w-4/12 text-xs lg:text-base h-full p-2 md:p-[9px] rounded-[7px] bg-[#d5a743] text-white cursor-pointer"
+                            onclick="sendCode()" id="countDown">ارسال کد
+                        </button>
+                    </div>
+                </div>
+                <div class="w-full flex flex-row items-center justify-between" id="loginWay">
+                    <a href="{{ route('user.forgetPassword') }}"
+                        class="text-[#d5a743] inline-block max-md:my-1 my-4 max-md:text-sm">فراموشی رمز عبور</a>
+                    <span class="text-[#d5a743] inline-block max-md:my-1 my-4 max-md:text-sm cursor-pointer"
+                        onclick="loginWithPassKey(this)">ورود با رمز عبور</span>
+                </div>
+                <button onclick="check(event)"
+                    class="focus:bg-[#d5a743] hover:bg-[#d5a743] transition-all duration-400 text-center w-full bg-[#d5a743] p-2 md:p-3 rounded-[10px] text-white cursor-pointer">
+                    ورود
+                </button>
+                <div class="w-full text-center">
+                    <span class="text-[#4B5675] mt-1 md:mt-5 max-md:text-sm">
+                        هنوز عضو نشدی؟
+                        <a href="{{ route('user.signup') }}" class="text-[#d5a743] mr-2">ثبت نام!</a>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Modal سبد خرید -->
+    <div id="shoppingCartModal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <!-- بک‌گراند -->
+            <div class="fixed inset-0 bg-black/50 backdrop-blur-sm" onclick="closeShoppingCart()"></div>
+
+            <!-- محتوای مودال -->
+            <div
+                class="relative bg-white dark:bg-gray-800 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden shadow-2xl">
+                <!-- هدر -->
+                <div
+                    class="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4 flex justify-between items-center">
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white">
+                        🛒 سبد خرید
+                    </h3>
+                    <button onclick="closeShoppingCart()"
+                        class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- لیست آیتم‌ها -->
+                <div id="cartItemsList" class="p-6 overflow-y-auto max-h-[calc(90vh-180px)]">
+                    {{-- <div id="cartLoading" class="flex justify-center items-center py-12">
+                        <div class="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+                    </div> --}}
+                    <div id="cartEmpty" class="hidden text-center py-12">
+                        <svg class="w-24 h-24 mx-auto text-gray-400" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                            </path>
+                        </svg>
+                        <p class="mt-4 text-gray-500 dark:text-gray-400">سبد خرید شما خالی است</p>
+                    </div>
+                    <div id="cartItemsContainer" class="hidden space-y-4">
+                        <!-- آیتم‌ها با جاوااسکریپت اضافه می‌شوند -->
+                    </div>
+                </div>
+
+                <!-- فوتر با دکمه‌ها -->
+                <div
+                    class="sticky bottom-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 px-6 py-4">
+                    <div class="flex justify-between items-center gap-4 flex-wrap">
+                        <div class="flex items-center gap-2">
+                            <span class="text-gray-600 dark:text-gray-300">جمع کل:</span>
+                            <span id="cartTotalPrice" class="text-xl font-bold text-white">0</span>
+                            <span class="text-gray-300">تومان</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button onclick="canceleOrder()"
+                                class="px-6 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+                                id="cancelOrderBtn">
+                                لغو همه
+                            </button>
+                            <button onclick="submitOrder()"
+                                class="px-6 py-2 bg-yellow-500 text-white rounded-lg hover:bg-primary-dark transition disabled:opacity-50 disabled:cursor-not-allowed"
+                                id="submitOrderBtn">
+                                ثبت سفارشات
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         let video = document.getElementById('video')
         let play_icon_vidio = document.getElementById('play_icon_vidio')
