@@ -234,7 +234,7 @@ class ProductController extends Controller
         }
         return to_route('product.adminIndex')->with('message', ' محصول ' . $product['title'] . ' حذف شد. ');
     }
-    public function show(Product $product)
+    public function show(product $product)
     {
         // dd($product);
         $logo = logo::first();
