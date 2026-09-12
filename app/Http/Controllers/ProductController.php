@@ -259,14 +259,12 @@ class ProductController extends Controller
         if (Auth::check()) {
             $currentUser = Auth::user();
             $cartt = carts::where('product_id', $product->id)->where('user_id', Auth::id())->where('order_id', null)->first();
-            // dd($cart);
             foreach ($currentUser->carts as $cart) {
                 if ($cart->order_id == null) {
                     $cartCount = $cart->quantity;
                     // $cartCount= 0;
                 }
             }
-            // dd($cartCount);
             $allCarts = carts::select('user_id', 'order_id', 'quantity', 'product_id')->where('user_id', Auth::id())->where('order_id', null)->get();
             if (count($allCarts)) {
                 foreach ($allCarts as $allCart) {
@@ -274,17 +272,18 @@ class ProductController extends Controller
                 }
             }
         }
-        // dd($cartt);
         $proIds = [];
-        foreach ($allCarts as $pro) {
-            $proIds[] = $pro->product_id;
+        if (isset($allCarts)) {
+            foreach ($allCarts as $pro) {
+                $proIds[] = $pro->product_id;
+            }
         }
         return view('user.product.show', [
             'product' => $product,
             'logo' => $logo,
             'services' => $services,
             'cartCount' => $cartCount,
-            'cart' => $cartt,
+            'cart' => isset($cartt) ? $cartt : null,
             'categories' => $categories,
             'allCartCount' => $allCartCount,
             'proIds' => $proIds
