@@ -116,17 +116,36 @@ class userController extends Controller
         if (!$flag) {
             $code = rand(1000, 10000);
             phoneCode::upsert(['phoneNumber' => $request->phoneNumber, 'code' => $code], ['phoneNumber'], ['code']);
-            $apiKey = 'YTBhZjhlNDAtZGI1Zi00ZWQ1LTkwNmYtZWU2MWFhYTkzY2M0NTcxZGQ3ZjY2Yzk1MmNjZmFiM2M2ZjVmNjBhMDg2MTQ=';
-            $client = new \IPPanel\Client($apiKey);
-            $patternValues = [
-                'activation_code' => $code,
+            // $apiKey = 'YTBhZjhlNDAtZGI1Zi00ZWQ1LTkwNmYtZWU2MWFhYTkzY2M0NTcxZGQ3ZjY2Yzk1MmNjZmFiM2M2ZjVmNjBhMDg2MTQ=';
+            // $client = new \IPPanel\Client($apiKey);
+            // $patternValues = [
+            //     'activation_code' => $code,
+            // ];
+            // $bulkID = $client->sendPattern(
+            //     '7fvdx77gveizxqn',  // pattern code
+            //     '+983000505',  // originator
+            //     $request->phoneNumber,  // recipient
+            //     $patternValues,  // pattern values
+            // );
+            $ch = curl_init('https://api.iranpayamak.com/ws/v1/sms/pattern');
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'Accept: application/json',
+                'Api-Key: M1MIQPQ9s85i6dxdzTeRGx9t87AtRQJlXNiu01e7awuQz94TkI',
+                'Content-Type: application/json'
+            ]);
+            $payload = [
+                'code' => '7fvdx77gveizxqn',
+                'attributes' => [
+                    'activation_code' => $code,
+                ],
+                'recipient' => $request->phoneNumber,
+                'line_number' => '50002178584000',
+                'number_format' => 'english'
             ];
-            $bulkID = $client->sendPattern(
-                '7fvdx77gveizxqn',  // pattern code
-                '+983000505',  // originator
-                $request->phoneNumber,  // recipient
-                $patternValues,  // pattern values
-            );
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
+            $response = curl_exec($ch);
         }
         return response()->json($flag);
     }
@@ -140,17 +159,36 @@ class userController extends Controller
         if ($flag) {
             $code = rand(1000, 10000);
             phoneCode::upsert(['phoneNumber' => $request->phoneNumber, 'code' => $code], ['phoneNumber'], ['code']);
-            $apiKey = 'YTBhZjhlNDAtZGI1Zi00ZWQ1LTkwNmYtZWU2MWFhYTkzY2M0NTcxZGQ3ZjY2Yzk1MmNjZmFiM2M2ZjVmNjBhMDg2MTQ=';
-            $client = new \IPPanel\Client($apiKey);
-            $patternValues = [
-                'activation_code' => $code,
+            // $apiKey = 'YTBhZjhlNDAtZGI1Zi00ZWQ1LTkwNmYtZWU2MWFhYTkzY2M0NTcxZGQ3ZjY2Yzk1MmNjZmFiM2M2ZjVmNjBhMDg2MTQ=';
+            // $client = new \IPPanel\Client($apiKey);
+            // $patternValues = [
+            //     'activation_code' => $code,
+            // ];
+            // $bulkID = $client->sendPattern(
+            //     '7fvdx77gveizxqn',  // pattern code
+            //     '+983000505',  // originator
+            //     $request->phoneNumber,  // recipient
+            //     $patternValues,  // pattern values
+            // );
+            $ch = curl_init('https://api.iranpayamak.com/ws/v1/sms/pattern');
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'Accept: application/json',
+                'Api-Key: M1MIQPQ9s85i6dxdzTeRGx9t87AtRQJlXNiu01e7awuQz94TkI',
+                'Content-Type: application/json'
+            ]);
+            $payload = [
+                'code' => '7fvdx77gveizxqn',
+                'attributes' => [
+                    'activation_code' => $code,
+                ],
+                'recipient' => $request->phoneNumber,
+                'line_number' => '50002178584000',
+                'number_format' => 'english'
             ];
-            $bulkID = $client->sendPattern(
-                '7fvdx77gveizxqn',  // pattern code
-                '+983000505',  // originator
-                $request->phoneNumber,  // recipient
-                $patternValues,  // pattern values
-            );
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
+            $response = curl_exec($ch);
         }
         return response()->json($flag);
     }
